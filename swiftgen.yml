@@ -1,0 +1,14 @@
+output_dir: Holk/Generated/
+strings:
+  inputs: Holk/Base.lproj
+  filter: .+\.strings$
+  outputs:
+    - templateName: structured-swift4
+      output: StringConstants.swift
+ib:
+  inputs: .
+  outputs:
+    - templateName: scenes-swift4
+      output: StoryboardsScenes.swift
+    - templateName: segues-swift4
+      output: StoryboardsSegues.swift
