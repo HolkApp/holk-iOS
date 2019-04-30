@@ -1,5 +1,5 @@
 //
-//  Coordinator.swift
+//  MainCoordinator.swift
 //  Holk
 //
 //  Created by 张梦皓 on 2019-04-29.
@@ -26,6 +26,8 @@ class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
     func start() {
         let vc = StoryboardScene.Main.landingViewController.instantiate()
         vc.coordinator = self
+        navController.tabBarItem = UITabBarItem(tabBarSystemItem: .featured, tag: 0)
+        navController.isNavigationBarHidden = true
         navController.delegate = self
         navController.pushViewController(vc, animated: true)
     }
