@@ -1,0 +1,127 @@
+disabled_rules:
+  - colon
+  - function_body_length
+  - type_body_length
+  - file_length
+  - line_length
+  - identifier_name
+  - function_parameter_count
+  - unused_closure_parameter
+  - todo
+  - cyclomatic_complexity
+  - trailing_whitespace
+  - comma
+  - control_statement
+  - for_where
+  - type_name
+  - vertical_whitespace
+  - statement_position
+  - trailing_newline
+  - opening_brace
+  - unused_optional_binding
+  - mark
+  - closure_parameter_position
+  - multiple_closures_with_trailing_closure
+  - block_based_kvo
+  
+excluded:
+  - Pods
+
+force_cast: warning
+force_try: warning
+
+line_length:
+  warning: 120
+  error: 500
+
+file_length:
+  warning: 600
+  error: 1000
+
+function_body_length:
+  warning: 40
+  error: 120
+
+type_body_length:
+  warning: 400
+  error: 500
+
+large_tuple:
+  warning: 4
+  error: 6
+
+opt_in_rules:
+  - explicit_init
+  - redundant_nil_coalescing
+  - nimble_operator
+  # - vertical_whitespace
+  # - closure_spacing
+  # - closure_end_indentation
+  # - empty_count
+  # - missing_docs
+  # - force_unwrapping
+  # - conditional_returns_on_newline
+  # - private_outlet
+  # - attributes 
+
+# custom_rules:
+#   comments_space:
+#     name: "Space After Comment"
+#     regex: '(^ *//\w+)'
+#     message: "There should be a space after //"
+#     severity: warning
+#   empty_first_line:
+#     name: "Empty First Line"
+#     regex: '(^[ a-zA-Z ]*(?:protocol|extension|class|struct) (?!(?:var|let))[ a-zA-Z:]*\{\n *\S+)'
+#     message: "There should be an empty line after a declaration"
+#     severity: warning
+#   empty_line_after_guard:
+#     name: "Empty Line After Guard"
+#     regex: '(^ *guard[ a-zA-Z0-9=?.\(\),><!]*\{[ a-zA-Z0-9=?.\(\),><!]*\}\n *(?!(?:return|guard))\S+)'
+#     message: "There should be an empty line after a guard"
+#     severity: warning
+#   empty_line_after_super:
+#     name: "Empty Line After Super"
+#     regex: '(^ *super\.[ a-zA-Z0-9=?.\(\)\{\}:,><!]*\n *(?!(?:\}|return))\S+)'
+#     message: "There should be an empty line after super"
+#     severity: warning
+#   multiple_empty_lines:
+#     name: "Multiple Empty Lines"
+#     regex: '((?:\s*\n){3,})'
+#     message: "There are too many empty lines"
+#     severity: warning
+#   unnecessary_leading_void_in:
+#     name: "Unnecessary -> Void in at the end of the line"
+#     regex: '(-> (Void|\(\)) in$)'
+#     message: "Unnecessary '-> Void in' at the end of the line. Use only 'in'"
+#     severity: warning
+#   unnecessary_type:
+#     name: "Unnecessary Type"
+#     regex: '(?sm)[ \ta-zA-Z0-9]?(?:let|var){1} [ \ta-zA-Z0-9]+?:[ \t]+?([a-zA-Z0-9]+?)[\t ]+?=[\t ]?\1'
+#     message: "Type Definition Not Needed"
+#     severity: warning
+#   empty_closure_params:
+#     name: "Empty closure params"
+#     regex: '\{ (\(\) -> Void in)$'
+#     message: "`() -> Void in` should be avoided"
+#     severity: warning 
+#   invalid_mark_format:
+#     name: "Invalid MARK Format"
+#     regex: '(?m-s)(\/\/[\s]*?MARK(?!(\:[\s]{1}\-[\s]{1}){1}))'
+#     message: "Use format: MARK: - Your Info"
+#     severity: warning
+#   unnecessary_space:
+#     name: "Unnecessary Space"
+#     regex: '(\[[a-zA-Z]+? {1}: {1}[a-zA-Z]+?\])'
+#     message: "Unnecessary space. use [DataType: DataType]."
+#     severity: warning
+#   missing_space:
+#     name: "Missing Space"
+#     regex: '(\[[a-zA-Z]+?:[a-zA-Z]+?\])'
+#     message: "Missing space. use [DataType: DataType]."
+#     severity: warning
+#   get_prefixed_function:
+#     name: "Get prefixed function"
+#     regex: '(?-smxi)(func get[\w]+?(\())'
+#     message: "You should not prefix your functions with the word get."
+#     severity: warning
