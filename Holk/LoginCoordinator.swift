@@ -8,7 +8,15 @@
 
 import UIKit
 
-class LoginCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
+protocol OnBoardingInfo: AnyObject {
+    func displayOnBoradingInfo()
+}
+
+protocol BackNavigation: AnyObject {
+    func back()
+}
+
+class LoginCoordinator: NSObject, Coordinator, OnBoardingInfo, BackNavigation, UINavigationControllerDelegate {
     // MARK: - Public Properties
     var navController: UINavigationController
     
@@ -26,6 +34,18 @@ class LoginCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
         navController.pushViewController(vc, animated: true)
     }
     
+    // MARK: - BackNavigation
+    func back() {
+        // In case the navbar is hidden and handle the back nav programmaticlly
+        navController.popViewController(animated: true)
+    }
+    
+    // MARK: - OnBoardingInfo
+    func displayOnBoradingInfo() {
+        let vc = StoryboardScene.Main.onboardingInfoViewController.instantiate()
+        vc.coordinator = self
+        navController.pushViewController(vc, animated: true)
+    }
     
     // MARK: - UINavigationControllerDelegate
     
@@ -39,6 +59,5 @@ class LoginCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
         }
         
         // check the fromVC if it is a sepecific VC then handle the navigation back action if needed
-        
     }
 }

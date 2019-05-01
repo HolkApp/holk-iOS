@@ -14,7 +14,7 @@ class APIStoreBase {
     
     private let sessionManager = Alamofire.SessionManager(configuration: .default)
     
-    func httpRequest(method: Alamofire.HTTPMethod, url: URL, headers: [String: String]?, parameters: [String: AnyObject]?) -> Observable<DataRequest> {
+    func httpRequest<Value: Codable>(method: Alamofire.HTTPMethod, url: URL, headers: [String: String]?, parameters: [String: AnyObject]?) -> Observable<Result<Value>> {
         
         let encoding: Alamofire.ParameterEncoding = (method == .get ? URLEncoding.default : JSONEncoding.default)
         
@@ -26,12 +26,26 @@ class APIStoreBase {
         httpHeaders["Accept"] = "application/json"
         
         let requestObservable = sessionManager.rx.request(method, url, parameters: parameters, encoding: encoding, headers: headers)
-        return requestObservable.do(onNext: { (req) in
-            req.responseJSON(completionHandler: { (res) in
-                if let  code = req.response?.statusCode, 200...299 ~= code {
-                    // Success request, update token or refresh token
+        let dataObservable = requestObservable.flatMap {
+            $0.rx.responseData()
+            }.map({ (response, data) -> Result<Value> in
+                if !(200..<300 ~= response.statusCode) {
+                    throw NSError(domain: "Qliro", code: response.statusCode)
+                }
+                let token = response.allHeaderFields.first(where: { (key, value) -> Bool in
+                    (key as? String) == "token"
+                })?.value
+                if let t = token {
+                    // check the token, do something(refresh token)
+                }
+                do {
+                    let data = try JSONDecoder().decode(Value.self, from: data)
+                    return .success(data)
+                } catch {
+                    
+                    return .failure(APIError.decodingError)
                 }
             })
-        })
+        return dataObservable
     }
 }

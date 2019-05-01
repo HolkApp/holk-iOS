@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F0D403F227A0AD4000BD840 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0D403E227A0AD4000BD840 /* APIError.swift */; };
+		8F0D4041227A0D68000BD840 /* OnboardingInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0D4040227A0D68000BD840 /* OnboardingInfoViewController.swift */; };
 		8F5B5A3722771ED400E79A40 /* StoryboardsSegues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5B5A3422771ED400E79A40 /* StoryboardsSegues.swift */; };
 		8F5B5A3822771ED400E79A40 /* StringConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5B5A3522771ED400E79A40 /* StringConstants.swift */; };
 		8F5B5A3922771ED400E79A40 /* StoryboardsScenes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5B5A3622771ED400E79A40 /* StoryboardsScenes.swift */; };
@@ -40,6 +42,8 @@
 		724CB890DF743E54198823B2 /* Pods-HolkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HolkTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HolkTests/Pods-HolkTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8B80DFE433079278D0CE38BB /* Pods_HolkTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HolkTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BE4C8D20BBE4A002F7E3A10 /* Pods-Holk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Holk.release.xcconfig"; path = "Pods/Target Support Files/Pods-Holk/Pods-Holk.release.xcconfig"; sourceTree = "<group>"; };
+		8F0D403E227A0AD4000BD840 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		8F0D4040227A0D68000BD840 /* OnboardingInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingInfoViewController.swift; sourceTree = "<group>"; };
 		8F5B5A3422771ED400E79A40 /* StoryboardsSegues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardsSegues.swift; sourceTree = "<group>"; };
 		8F5B5A3522771ED400E79A40 /* StringConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringConstants.swift; sourceTree = "<group>"; };
 		8F5B5A3622771ED400E79A40 /* StoryboardsScenes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardsScenes.swift; sourceTree = "<group>"; };
@@ -139,9 +143,10 @@
 			children = (
 				8FD84E672270E732009D563D /* AppDelegate.swift */,
 				8F5B5A402278709D00E79A40 /* LoginCoordinator.swift */,
-				8F5B5A3E22786E4C00E79A40 /* LoginViewController.swift */,
 				8F9807E82276F10E00584BA9 /* MainCoordinator.swift */,
+				8F5B5A3E22786E4C00E79A40 /* LoginViewController.swift */,
 				8F5B5A3A22783D0200E79A40 /* TabBarController.swift */,
+				8F0D4040227A0D68000BD840 /* OnboardingInfoViewController.swift */,
 				8FD84E692270E732009D563D /* LandingViewController.swift */,
 				8F5B5A3322771EBF00E79A40 /* Generated */,
 				8FD84E872270E7C9009D563D /* API */,
@@ -165,6 +170,7 @@
 		8FD84E872270E7C9009D563D /* API */ = {
 			isa = PBXGroup;
 			children = (
+				8F0D403E227A0AD4000BD840 /* APIError.swift */,
 				8FD84E882271B157009D563D /* APIStoreBase.swift */,
 				8F9807E622722D5E00584BA9 /* APIStore.swift */,
 			);
@@ -343,8 +349,10 @@
 				8F9807E722722D5E00584BA9 /* APIStore.swift in Sources */,
 				8FD84E892271B157009D563D /* APIStoreBase.swift in Sources */,
 				8F9807E92276F10E00584BA9 /* MainCoordinator.swift in Sources */,
+				8F0D4041227A0D68000BD840 /* OnboardingInfoViewController.swift in Sources */,
 				8F5B5A3822771ED400E79A40 /* StringConstants.swift in Sources */,
 				8F5B5A412278709D00E79A40 /* LoginCoordinator.swift in Sources */,
+				8F0D403F227A0AD4000BD840 /* APIError.swift in Sources */,
 				8FD84E6A2270E732009D563D /* LandingViewController.swift in Sources */,
 				8F5B5A3722771ED400E79A40 /* StoryboardsSegues.swift in Sources */,
 				8FD84E682270E732009D563D /* AppDelegate.swift in Sources */,

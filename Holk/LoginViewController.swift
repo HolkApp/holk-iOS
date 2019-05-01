@@ -17,6 +17,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func infoButtonTapped(_ sender: UIButton) {
+        coordinator?.displayOnBoradingInfo()
     }
     
     @IBAction func loginTapped(_ sender: UIButton) {
