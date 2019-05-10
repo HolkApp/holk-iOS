@@ -12,25 +12,31 @@ import RxAlamofire
 
 class APIStoreBase {
     
+    private struct Constants {
+        static let basicAuthUsername = "SampleClientId"
+        static let basicAuthPassword = "secret"
+    }
+    
     private let sessionManager = Alamofire.SessionManager(configuration: .default)
     
     func httpRequest<Value: Codable>(method: Alamofire.HTTPMethod, url: URL, headers: [String: String]?, parameters: [String: AnyObject]?) -> Observable<Result<Value>> {
         
         let encoding: Alamofire.ParameterEncoding = (method == .get ? URLEncoding.default : JSONEncoding.default)
         
-        var httpHeaders = [String: String]()
+        var httpHeaders = authorizationHeader
         if let headers = headers {
-            httpHeaders = headers
+            headers.forEach { (key, value) in
+                httpHeaders.updateValue(value, forKey: key)
+            }
         }
-        httpHeaders["Content-Type"] = "application/json"
         httpHeaders["Accept"] = "application/json"
-        
-        let requestObservable = sessionManager.rx.request(method, url, parameters: parameters, encoding: encoding, headers: headers)
+        // TODO: Update this with correct encoding
+        let requestObservable = sessionManager.rx.request(method, url, parameters: parameters, encoding: URLEncoding.default, headers: httpHeaders)
         let dataObservable = requestObservable.flatMap {
             $0.rx.responseData()
             }.map({ (response, data) -> Result<Value> in
                 if !(200..<300 ~= response.statusCode) {
-                    throw NSError(domain: "Qliro", code: response.statusCode)
+                    throw NSError(domain: "Holk", code: response.statusCode)
                 }
                 let token = response.allHeaderFields.first(where: { (key, value) -> Bool in
                     (key as? String) == "token"
@@ -47,5 +53,17 @@ class APIStoreBase {
                 }
             })
         return dataObservable
+    }
+    
+    private var authorizationHeader: [String: String] {
+        guard let token = User.sharedInstance.accessToken else {
+            // Use the basic auth for /authorize/oauth/token, public endpoint
+            let authString = String(format: "%@:%@", Constants.basicAuthUsername, Constants.basicAuthPassword)
+            let authData = authString.data(using: String.Encoding.utf8)!
+            let base64AuthString = authData.base64EncodedString()
+            return ["Authorization": "Basic " + base64AuthString]
+            
+        }
+        return ["Authorization": "Bearer " + token]
     }
 }

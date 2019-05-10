@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import RxSwift
 
 class LoginViewController: UIViewController {
     
     weak var coordinator: LoginCoordinator?
+    
+    private var bag = DisposeBag()
     
     override func viewDidLoad() {
         
@@ -21,7 +24,12 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func loginTapped(_ sender: UIButton) {
-        
+        APIStore.sharedInstance.login(username: "filip", password: "password").subscribe(onNext: { event in
+            User.sharedInstance.accessToken = event.value?.access_token
+            User.sharedInstance.refreshToken = event.value?.refresh_token
+        }, onError: { error in
+            
+        }).disposed(by: bag)
     }
     
     @IBAction func signUpTapped(_ sender: UIButton) {
