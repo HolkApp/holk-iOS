@@ -16,7 +16,7 @@ protocol BackNavigation: AnyObject {
     func back()
 }
 
-class LoginCoordinator: NSObject, Coordinator, OnBoardingInfo, BackNavigation, UINavigationControllerDelegate {
+final class LoginCoordinator: NSObject, Coordinator, OnBoardingInfo, BackNavigation, UINavigationControllerDelegate {
     // MARK: - Public Properties
     var navController: UINavigationController
     
@@ -27,8 +27,9 @@ class LoginCoordinator: NSObject, Coordinator, OnBoardingInfo, BackNavigation, U
     
     // MARK: - Public Methods
     func start() {
-        let vc = StoryboardScene.Main.loginViewController.instantiate()
-        vc.coordinator = self
+        let vc = StoryboardScene.InsuranceOverview.insuranceOverviewViewController.instantiate()
+//        StoryboardScene.Main.loginViewController.instantiate()
+//        vc.coordinator = self
         navController.isNavigationBarHidden = true
         navController.delegate = self
         navController.pushViewController(vc, animated: true)

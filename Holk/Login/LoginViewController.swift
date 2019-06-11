@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-class LoginViewController: UIViewController {
+final class LoginViewController: UIViewController {
     
     weak var coordinator: LoginCoordinator?
     
