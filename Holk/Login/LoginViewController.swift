@@ -24,12 +24,19 @@ final class LoginViewController: UIViewController {
     }
     
     @IBAction func loginTapped(_ sender: UIButton) {
-        APIStore.sharedInstance.login(username: "filip", password: "password").subscribe(onNext: { event in
-            User.sharedInstance.accessToken = event.value?.access_token
-            User.sharedInstance.refreshToken = event.value?.refresh_token
-        }, onError: { error in
-            
-        }).disposed(by: bag)
+        APIStore.sharedInstance.login(username: "filip", password: "password")
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { event in
+                switch event {
+                case .success(let value):
+                    User.sharedInstance.accessToken = value.access_token
+                    User.sharedInstance.refreshToken = value.refresh_token
+                case .failure(let error):
+                    print("server error here")
+                }
+            }, onError: { error in
+                print("network error here")
+            }).disposed(by: bag)
     }
     
     @IBAction func signUpTapped(_ sender: UIButton) {
