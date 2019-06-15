@@ -27,9 +27,8 @@ final class LoginCoordinator: NSObject, Coordinator, OnBoardingInfo, BackNavigat
     
     // MARK: - Public Methods
     func start() {
-        let vc = StoryboardScene.InsuranceOverview.insuranceOverviewViewController.instantiate()
-//        StoryboardScene.Main.loginViewController.instantiate()
-//        vc.coordinator = self
+        let vc = StoryboardScene.Main.loginViewController.instantiate()
+        vc.coordinator = self
         navController.isNavigationBarHidden = true
         navController.delegate = self
         navController.pushViewController(vc, animated: true)

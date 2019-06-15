@@ -25,6 +25,7 @@ final class InsuranceOverviewViewController: UIViewController {
     
     private func setup() {
         view.backgroundColor = Color.mainBackgroundColor
+        containerView.backgroundColor = .clear
         
         // TODO: Update the font
         headerLabel.font = UIFont.systemFont(ofSize: 30, weight: .bold)
@@ -43,7 +44,7 @@ final class InsuranceOverviewViewController: UIViewController {
             NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 12)
             ], for: UIControl.State.selected)
         
-//        segmentedControl.setBackgroundImage(UIImage(), for: UIControl.State.normal, barMetrics: .default)
+        segmentedControl.setBackgroundImage(UIImage(), for: UIControl.State.normal, barMetrics: .default)
         segmentedControl.setBackgroundImage(UIImage(), for: UIControl.State.selected, barMetrics: .default)
         segmentedControl.tintColor = .white
 //        segmentedControl.addTarget(self, action: #selector(segmentChanged(sender:)), for: .valueChanged)

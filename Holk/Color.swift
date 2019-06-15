@@ -12,4 +12,8 @@ enum Color {
     static var mainBackgroundColor: UIColor {
         return UIColor(red: 254, green: 206, blue: 0, alpha: 1)
     }
+    
+    static var tabbarBackgroundColor: UIColor {
+        return UIColor(red: 256, green: 256, blue: 256, alpha: 1)
+    }
 }
