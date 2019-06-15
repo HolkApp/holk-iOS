@@ -30,6 +30,12 @@ final class InsurancesViewController: UIViewController {
         tableView.estimatedRowHeight = 340
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.separatorStyle = .none
+        tableView.showsVerticalScrollIndicator = false
+        tableView.alwaysBounceVertical = false
+        
+        let insuranceTableViewCell = UINib(nibName: InsuranceTableViewCell.identifier, bundle: nil)
+        tableView.register(insuranceTableViewCell, forCellReuseIdentifier: InsuranceTableViewCell.identifier)
     }
 }
 
@@ -48,7 +54,21 @@ extension InsurancesViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        switch indexPath.section {
+        case Section.insurance.rawValue:
+            let cell = tableView.dequeueReusableCell(withIdentifier: InsuranceTableViewCell.identifier, for: indexPath)
+            if let insuranceTableViewCell = cell as? InsuranceTableViewCell {
+                insuranceTableViewCell.configureCell()
+            }
+            return cell
+        case Section.addMore.rawValue:
+            return UITableViewCell()
+        default: return UITableViewCell()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 200
     }
     
     

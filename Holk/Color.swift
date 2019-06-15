@@ -14,6 +14,6 @@ enum Color {
     }
     
     static var tabbarBackgroundColor: UIColor {
-        return UIColor(red: 256, green: 256, blue: 256, alpha: 1)
+        return UIColor(red: 255, green: 255, blue: 255, alpha: 1)
     }
 }

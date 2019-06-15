@@ -16,6 +16,7 @@ final class InsuranceOverviewViewController: UIViewController {
     
     var childSegmentViewControllers: [UIViewController] = []
     var insuranceOvewviewDetailViewController: UIViewController?
+    var currentChildSegmentViewController: UIViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +25,9 @@ final class InsuranceOverviewViewController: UIViewController {
     }
     
     private func setup() {
+        childSegmentViewControllers = [
+            StoryboardScene.InsuranceOverview.insurancesViewController.instantiate()
+        ]
         view.backgroundColor = Color.mainBackgroundColor
         containerView.backgroundColor = .clear
         
@@ -47,16 +51,27 @@ final class InsuranceOverviewViewController: UIViewController {
         segmentedControl.setBackgroundImage(UIImage(), for: UIControl.State.normal, barMetrics: .default)
         segmentedControl.setBackgroundImage(UIImage(), for: UIControl.State.selected, barMetrics: .default)
         segmentedControl.tintColor = .white
-//        segmentedControl.addTarget(self, action: #selector(segmentChanged(sender:)), for: .valueChanged)
+        segmentedControl.addTarget(self, action: #selector(segmentChanged(sender:)), for: .valueChanged)
         
-        segmentedControl.selectedSegmentIndex = 0
+        segmentedControl.selectedSegmentIndex = 1
     }
     
     @objc private func segmentChanged(sender: UISegmentedControl) {
+        if let previousChildViewController = currentChildSegmentViewController {
+            previousChildViewController.removeFromParent()
+            previousChildViewController.view.removeFromSuperview()
+        }
         let childSegmentViewController = childSegmentViewControllers[sender.selectedSegmentIndex]
         addChild(childSegmentViewController)
         childSegmentViewController.view.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(childSegmentViewController.view)
         childSegmentViewController.didMove(toParent: self)
+        NSLayoutConstraint.activate([
+            containerView.topAnchor.constraint(equalTo: childSegmentViewController.view.topAnchor),
+            containerView.bottomAnchor.constraint(equalTo: childSegmentViewController.view.bottomAnchor),
+            containerView.leftAnchor.constraint(equalTo: childSegmentViewController.view.leftAnchor),
+            containerView.rightAnchor.constraint(equalTo: childSegmentViewController.view.rightAnchor)
+            ])
+        currentChildSegmentViewController = childSegmentViewController
     }
 }

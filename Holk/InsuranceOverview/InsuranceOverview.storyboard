@@ -79,10 +79,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="nGf-C6-IaW" firstAttribute="bottom" secondItem="8gF-Di-68f" secondAttribute="bottom" id="0P1-n2-cci"/>
-                            <constraint firstItem="8gF-Di-68f" firstAttribute="top" secondItem="nGf-C6-IaW" secondAttribute="top" id="Zgi-Vz-bA2"/>
-                            <constraint firstItem="8gF-Di-68f" firstAttribute="leading" secondItem="nGf-C6-IaW" secondAttribute="leading" id="hdc-LF-BNf"/>
-                            <constraint firstItem="nGf-C6-IaW" firstAttribute="trailing" secondItem="8gF-Di-68f" secondAttribute="trailing" id="vLr-vh-AVf"/>
+                            <constraint firstItem="nGf-C6-IaW" firstAttribute="trailing" secondItem="8gF-Di-68f" secondAttribute="trailing" id="3om-87-8qc"/>
+                            <constraint firstItem="nGf-C6-IaW" firstAttribute="bottom" secondItem="8gF-Di-68f" secondAttribute="bottom" id="olG-rc-DDU"/>
+                            <constraint firstItem="8gF-Di-68f" firstAttribute="leading" secondItem="nGf-C6-IaW" secondAttribute="leading" id="uxE-Z1-EaQ"/>
+                            <constraint firstItem="8gF-Di-68f" firstAttribute="top" secondItem="nGf-C6-IaW" secondAttribute="top" id="vmn-wX-Mx9"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nGf-C6-IaW"/>
                     </view>
