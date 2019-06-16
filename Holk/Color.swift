@@ -10,10 +10,10 @@ import UIKit
 
 enum Color {
     static var mainBackgroundColor: UIColor {
-        return UIColor(red: 254, green: 206, blue: 0, alpha: 1)
+        return UIColor(red: 254/255, green: 206/255, blue: 0/255, alpha: 1)
     }
     
     static var tabbarBackgroundColor: UIColor {
-        return UIColor(red: 255, green: 255, blue: 255, alpha: 1)
+        return UIColor.white
     }
 }

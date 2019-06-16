@@ -10,12 +10,17 @@ import UIKit
 
 class TabBarController: UITabBarController {
     
-    let main = MainCoordinator(navController: UINavigationController())
+    let mainCoordinator = MainCoordinator(navController: UINavigationController())
+    let protectionCoordinator = ProtectionCoordinator(navController: UINavigationController())
     
     override func viewDidLoad() {
+        mainCoordinator.start()
+        protectionCoordinator.start()
+        viewControllers = [
+            mainCoordinator.navController,
+            protectionCoordinator.navController
+        ]
         
-        main.start()
-        viewControllers = [main.navController]
         tabBar.barTintColor = Color.tabbarBackgroundColor
     }
 }

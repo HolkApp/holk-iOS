@@ -26,7 +26,7 @@ class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
     func start() {
         let vc = StoryboardScene.InsuranceOverview.insuranceOverviewViewController.instantiate()
 //        let vc = StoryboardScene.Main.landingViewController.instantiate()
-        vc.tabBarItem = UITabBarItem(title: "Översikt", image: UIImage(named: "OverView"), tag: 0)
+//        vc.tabBarItem = UITabBarItem(title: "Översikt", image: UIImage(named: "OverView"), tag: 0)
 //        vc.coordinator = self
         navController.tabBarItem = UITabBarItem(title: "Översikt", image: UIImage(named: "OverView"), tag: 0)
         navController.isNavigationBarHidden = true
