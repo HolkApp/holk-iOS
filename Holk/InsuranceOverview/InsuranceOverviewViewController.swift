@@ -53,7 +53,8 @@ final class InsuranceOverviewViewController: UIViewController {
         segmentedControl.tintColor = .white
         segmentedControl.addTarget(self, action: #selector(segmentChanged(sender:)), for: .valueChanged)
         
-        segmentedControl.selectedSegmentIndex = 1
+        segmentedControl.selectedSegmentIndex = 0
+        segmentChanged(sender: segmentedControl)
     }
     
     @objc private func segmentChanged(sender: UISegmentedControl) {

@@ -36,6 +36,7 @@ final class InsurancesViewController: UIViewController {
         
         let insuranceTableViewCell = UINib(nibName: InsuranceTableViewCell.identifier, bundle: nil)
         tableView.register(insuranceTableViewCell, forCellReuseIdentifier: InsuranceTableViewCell.identifier)
+        tableView.register(InsuranceAddMoreCell.self, forCellReuseIdentifier: InsuranceAddMoreCell.identifier)
     }
 }
 
@@ -62,20 +63,30 @@ extension InsurancesViewController: UITableViewDataSource {
             }
             return cell
         case Section.addMore.rawValue:
-            return UITableViewCell()
+            return tableView.dequeueReusableCell(withIdentifier: InsuranceAddMoreCell.identifier, for: indexPath)
         default: return UITableViewCell()
         }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
+        switch indexPath.section {
+        case Section.insurance.rawValue:
+            return 200
+        case Section.addMore.rawValue:
+            return 145
+        default:
+            return 0
+        }
     }
-    
-    
 }
 
 extension InsurancesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        switch indexPath.section {
+        case Section.addMore.rawValue:
+            print("addMore")
+        default:
+            return
+        }
     }
 }

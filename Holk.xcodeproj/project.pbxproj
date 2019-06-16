@@ -34,6 +34,7 @@
 		8FF6E72D22B0333000F6D398 /* InsuranceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF6E72C22B0333000F6D398 /* InsuranceTableViewCell.swift */; };
 		8FF6E72F22B533FF00F6D398 /* LoginToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF6E72E22B533FF00F6D398 /* LoginToken.swift */; };
 		8FF6E73422B57DA800F6D398 /* UITableViewCell+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF6E73322B57DA800F6D398 /* UITableViewCell+extension.swift */; };
+		8FF6E73622B6A88100F6D398 /* InsuranceAddMoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF6E73522B6A88100F6D398 /* InsuranceAddMoreCell.swift */; };
 		BAF35E3A0FC2681C15010270 /* Pods_Holk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8FE8B9DA95EB0FD6E86D7C8 /* Pods_Holk.framework */; };
 		BEC69268D196FC01992EDBB1 /* Pods_HolkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B80DFE433079278D0CE38BB /* Pods_HolkTests.framework */; };
 /* End PBXBuildFile section */
@@ -83,6 +84,7 @@
 		8FF6E72C22B0333000F6D398 /* InsuranceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceTableViewCell.swift; sourceTree = "<group>"; };
 		8FF6E72E22B533FF00F6D398 /* LoginToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginToken.swift; path = Holk/Login/Model/LoginToken.swift; sourceTree = SOURCE_ROOT; };
 		8FF6E73322B57DA800F6D398 /* UITableViewCell+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+extension.swift"; sourceTree = "<group>"; };
+		8FF6E73522B6A88100F6D398 /* InsuranceAddMoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceAddMoreCell.swift; sourceTree = "<group>"; };
 		97E98E517D78DF88FA66A5F6 /* Pods-Holk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Holk.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Holk/Pods-Holk.debug.xcconfig"; sourceTree = "<group>"; };
 		CBDD3942014B08C5EE16C7C5 /* Pods-HolkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HolkTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HolkTests/Pods-HolkTests.release.xcconfig"; sourceTree = "<group>"; };
 		D8FE8B9DA95EB0FD6E86D7C8 /* Pods_Holk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Holk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -242,6 +244,7 @@
 			children = (
 				8FF6E72A22B0331000F6D398 /* InsuranceTableViewCell.xib */,
 				8FF6E72C22B0333000F6D398 /* InsuranceTableViewCell.swift */,
+				8FF6E73522B6A88100F6D398 /* InsuranceAddMoreCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -455,6 +458,7 @@
 				8F0D403F227A0AD4000BD840 /* APIError.swift in Sources */,
 				8FD84E6A2270E732009D563D /* LandingViewController.swift in Sources */,
 				8FF6E72422A70F6600F6D398 /* Then.swift in Sources */,
+				8FF6E73622B6A88100F6D398 /* InsuranceAddMoreCell.swift in Sources */,
 				8F5B5A3722771ED400E79A40 /* StoryboardsSegues.swift in Sources */,
 				8FF6E73422B57DA800F6D398 /* UITableViewCell+extension.swift in Sources */,
 				8FD84E682270E732009D563D /* AppDelegate.swift in Sources */,
