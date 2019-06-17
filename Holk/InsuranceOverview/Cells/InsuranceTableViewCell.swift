@@ -10,6 +10,7 @@ import UIKit
 
 final class InsuranceTableViewCell: UITableViewCell {
     
+    @IBOutlet private weak var containerView: UIView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var addressLabel: UILabel!
     @IBOutlet private weak var hintValueLabel: UILabel!
@@ -27,8 +28,12 @@ final class InsuranceTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        backgroundColor = .clear
+        contentView.backgroundColor = .clear
+        containerView.backgroundColor = Color.secondaryBackgroundColor
+        
         selectionStyle = .none
-        layer.cornerRadius = 6
+        containerView.layer.cornerRadius = 6
     }
     
     func configureCell() {

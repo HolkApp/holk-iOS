@@ -11,11 +11,12 @@ import UIKit
 final class InsurancesViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     
-    enum Section: Int, CaseIterable {
+    private enum Section: Int, CaseIterable {
         case insurance
         case addMore
     }
     
+    private var numberOfInsurances = 1
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,7 +49,7 @@ extension InsurancesViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
-        case Section.insurance.rawValue: return 1
+        case Section.insurance.rawValue: return numberOfInsurances
         case Section.addMore.rawValue: return 1
         default: return 0
         }
@@ -84,7 +85,8 @@ extension InsurancesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
         case Section.addMore.rawValue:
-            print("addMore")
+            numberOfInsurances += 1
+            tableView.reloadData()
         default:
             return
         }
