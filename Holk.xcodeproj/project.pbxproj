@@ -39,6 +39,11 @@
 		8FF6E73B22B6B55800F6D398 /* InsuranceProtectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF6E73A22B6B55800F6D398 /* InsuranceProtectionViewController.swift */; };
 		8FF6E73D22B6B59B00F6D398 /* ProtectionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF6E73C22B6B59B00F6D398 /* ProtectionCoordinator.swift */; };
 		8FF6E73F22B6B67A00F6D398 /* InsuranceProtection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FF6E73E22B6B67A00F6D398 /* InsuranceProtection.storyboard */; };
+		8FF6E74122B82D1100F6D398 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF6E74022B82D1100F6D398 /* Font.swift */; };
+		8FF6E74422B82ECA00F6D398 /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8FF6E74322B82ECA00F6D398 /* Montserrat-SemiBold.ttf */; };
+		8FF6E74822B82EFB00F6D398 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8FF6E74722B82EFA00F6D398 /* OpenSans-Regular.ttf */; };
+		8FF6E74A22B82F3600F6D398 /* Montserrat-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8FF6E74922B82F3600F6D398 /* Montserrat-ExtraBold.ttf */; };
+		8FF6E74C22B82F5B00F6D398 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8FF6E74B22B82F5B00F6D398 /* OpenSans-Bold.ttf */; };
 		BAF35E3A0FC2681C15010270 /* Pods_Holk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8FE8B9DA95EB0FD6E86D7C8 /* Pods_Holk.framework */; };
 		BEC69268D196FC01992EDBB1 /* Pods_HolkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B80DFE433079278D0CE38BB /* Pods_HolkTests.framework */; };
 /* End PBXBuildFile section */
@@ -93,6 +98,11 @@
 		8FF6E73A22B6B55800F6D398 /* InsuranceProtectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceProtectionViewController.swift; sourceTree = "<group>"; };
 		8FF6E73C22B6B59B00F6D398 /* ProtectionCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtectionCoordinator.swift; sourceTree = "<group>"; };
 		8FF6E73E22B6B67A00F6D398 /* InsuranceProtection.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = InsuranceProtection.storyboard; sourceTree = "<group>"; };
+		8FF6E74022B82D1100F6D398 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		8FF6E74322B82ECA00F6D398 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
+		8FF6E74722B82EFA00F6D398 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
+		8FF6E74922B82F3600F6D398 /* Montserrat-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraBold.ttf"; sourceTree = "<group>"; };
+		8FF6E74B22B82F5B00F6D398 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		97E98E517D78DF88FA66A5F6 /* Pods-Holk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Holk.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Holk/Pods-Holk.debug.xcconfig"; sourceTree = "<group>"; };
 		CBDD3942014B08C5EE16C7C5 /* Pods-HolkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HolkTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HolkTests/Pods-HolkTests.release.xcconfig"; sourceTree = "<group>"; };
 		D8FE8B9DA95EB0FD6E86D7C8 /* Pods_Holk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Holk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -202,10 +212,10 @@
 			isa = PBXGroup;
 			children = (
 				8FD84E672270E732009D563D /* AppDelegate.swift */,
-				8FF6E73222B534F800F6D398 /* Main */,
 				8FD84E692270E732009D563D /* LandingViewController.swift */,
-				8F0D4042227F5A7A000BD840 /* User.swift */,
+				8FF6E73222B534F800F6D398 /* Main */,
 				8FF6E72522AC0D2800F6D398 /* Color.swift */,
+				8FF6E74222B82D9A00F6D398 /* Fonts */,
 				8FF6E73122B534E000F6D398 /* Onboarding */,
 				8F0D404922A3121A000BD840 /* Login */,
 				8F9C83D822A313EE005BB336 /* InsuranceOverview */,
@@ -262,6 +272,7 @@
 		8FF6E73022B5340900F6D398 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8F0D4042227F5A7A000BD840 /* User.swift */,
 				8FF6E72E22B533FF00F6D398 /* LoginToken.swift */,
 			);
 			path = Model;
@@ -292,6 +303,18 @@
 				8FF6E73E22B6B67A00F6D398 /* InsuranceProtection.storyboard */,
 			);
 			path = Protection;
+			sourceTree = "<group>";
+		};
+		8FF6E74222B82D9A00F6D398 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				8FF6E74322B82ECA00F6D398 /* Montserrat-SemiBold.ttf */,
+				8FF6E74922B82F3600F6D398 /* Montserrat-ExtraBold.ttf */,
+				8FF6E74722B82EFA00F6D398 /* OpenSans-Regular.ttf */,
+				8FF6E74B22B82F5B00F6D398 /* OpenSans-Bold.ttf */,
+				8FF6E74022B82D1100F6D398 /* Font.swift */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -378,11 +401,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8FF6E74C22B82F5B00F6D398 /* OpenSans-Bold.ttf in Resources */,
 				8FD84E722270E736009D563D /* LaunchScreen.storyboard in Resources */,
 				8FD84E6F2270E736009D563D /* Assets.xcassets in Resources */,
 				8F9C83DC22A31658005BB336 /* InsuranceOverview.storyboard in Resources */,
+				8FF6E74422B82ECA00F6D398 /* Montserrat-SemiBold.ttf in Resources */,
+				8FF6E74A22B82F3600F6D398 /* Montserrat-ExtraBold.ttf in Resources */,
 				8FD84E6D2270E732009D563D /* Main.storyboard in Resources */,
 				8FF6E73F22B6B67A00F6D398 /* InsuranceProtection.storyboard in Resources */,
+				8FF6E74822B82EFB00F6D398 /* OpenSans-Regular.ttf in Resources */,
 				8FF6E72B22B0331000F6D398 /* InsuranceTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -486,6 +513,7 @@
 				8FF6E73B22B6B55800F6D398 /* InsuranceProtectionViewController.swift in Sources */,
 				8FF6E73422B57DA800F6D398 /* UITableViewCell+extension.swift in Sources */,
 				8FD84E682270E732009D563D /* AppDelegate.swift in Sources */,
+				8FF6E74122B82D1100F6D398 /* Font.swift in Sources */,
 				8F5B5A3922771ED400E79A40 /* StoryboardsScenes.swift in Sources */,
 				8F5B5A3F22786E4C00E79A40 /* LoginViewController.swift in Sources */,
 				8F9C83DA22A3140B005BB336 /* InsuranceOverviewViewController.swift in Sources */,
