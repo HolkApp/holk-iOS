@@ -32,8 +32,8 @@ final class InsuranceOverviewViewController: UIViewController {
         view.backgroundColor = Color.mainBackgroundColor
         containerView.backgroundColor = .clear
         
-        // TODO: Update the font
-        headerLabel.font = UIFont.systemFont(ofSize: 30, weight: .bold)
+        headerLabel.text = "Översikt"
+        headerLabel.font = Font.extraBold(.header)
         
         segmentedControl.removeAllSegments()
         segmentedControl.insertSegment(withTitle: "Försäkringar", at: 0, animated: false)
@@ -42,11 +42,11 @@ final class InsuranceOverviewViewController: UIViewController {
             UIControl.State(), barMetrics: .default)
         segmentedControl.setTitleTextAttributes([
             NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.42),
-            NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 12)
+            NSAttributedString.Key.font: Font.light(.label)
             ], for: UIControl.State.normal)
         segmentedControl.setTitleTextAttributes([
             NSAttributedString.Key.foregroundColor: UIColor.black,
-            NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 12)
+            NSAttributedString.Key.font: Font.light(.label)
             ], for: UIControl.State.selected)
         
         segmentedControl.setBackgroundImage(UIImage(), for: UIControl.State.normal, barMetrics: .default)

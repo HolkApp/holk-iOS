@@ -28,6 +28,15 @@ final class InsuranceTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        titleLabel.font = Font.semibold(.title)
+        addressLabel.font = Font.regular(.subtitle)
+        
+        hintValueLabel.font = Font.semibold(.title)
+        hintLabel.font = Font.regular(.description)
+        
+        ideaValueLabel.font = Font.semibold(.title)
+        ideaLabel.font = Font.regular(.description)
+        
         backgroundColor = .clear
         contentView.backgroundColor = .clear
         containerView.backgroundColor = Color.secondaryBackgroundColor
@@ -37,6 +46,14 @@ final class InsuranceTableViewCell: UITableViewCell {
     }
     
     func configureCell() {
-        logoImageView.image = UIImage(named: "Insurance")
+        // TODO: Create a model
+        titleLabel.text = "Hemförsäkring"
+        addressLabel.text = "Sveavägen 140, 1 trp"
+        hintValueLabel.text = "3"
+        hintLabel.text = "Tänk på"
+        ideaValueLabel.text = "2"
+        ideaLabel.text = "Luckor"
+        
+        logoImageView.image = UIImage(named: "Folksam")
     }
 }

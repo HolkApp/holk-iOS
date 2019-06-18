@@ -44,6 +44,7 @@
 		8FF6E74822B82EFB00F6D398 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8FF6E74722B82EFA00F6D398 /* OpenSans-Regular.ttf */; };
 		8FF6E74A22B82F3600F6D398 /* Montserrat-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8FF6E74922B82F3600F6D398 /* Montserrat-ExtraBold.ttf */; };
 		8FF6E74C22B82F5B00F6D398 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8FF6E74B22B82F5B00F6D398 /* OpenSans-Bold.ttf */; };
+		8FF6E74E22B955A400F6D398 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8FF6E74D22B955A400F6D398 /* Montserrat-Regular.ttf */; };
 		BAF35E3A0FC2681C15010270 /* Pods_Holk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8FE8B9DA95EB0FD6E86D7C8 /* Pods_Holk.framework */; };
 		BEC69268D196FC01992EDBB1 /* Pods_HolkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B80DFE433079278D0CE38BB /* Pods_HolkTests.framework */; };
 /* End PBXBuildFile section */
@@ -103,6 +104,7 @@
 		8FF6E74722B82EFA00F6D398 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		8FF6E74922B82F3600F6D398 /* Montserrat-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraBold.ttf"; sourceTree = "<group>"; };
 		8FF6E74B22B82F5B00F6D398 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
+		8FF6E74D22B955A400F6D398 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
 		97E98E517D78DF88FA66A5F6 /* Pods-Holk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Holk.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Holk/Pods-Holk.debug.xcconfig"; sourceTree = "<group>"; };
 		CBDD3942014B08C5EE16C7C5 /* Pods-HolkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HolkTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HolkTests/Pods-HolkTests.release.xcconfig"; sourceTree = "<group>"; };
 		D8FE8B9DA95EB0FD6E86D7C8 /* Pods_Holk.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Holk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -308,6 +310,7 @@
 		8FF6E74222B82D9A00F6D398 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				8FF6E74D22B955A400F6D398 /* Montserrat-Regular.ttf */,
 				8FF6E74322B82ECA00F6D398 /* Montserrat-SemiBold.ttf */,
 				8FF6E74922B82F3600F6D398 /* Montserrat-ExtraBold.ttf */,
 				8FF6E74722B82EFA00F6D398 /* OpenSans-Regular.ttf */,
@@ -402,6 +405,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8FF6E74C22B82F5B00F6D398 /* OpenSans-Bold.ttf in Resources */,
+				8FF6E74E22B955A400F6D398 /* Montserrat-Regular.ttf in Resources */,
 				8FD84E722270E736009D563D /* LaunchScreen.storyboard in Resources */,
 				8FD84E6F2270E736009D563D /* Assets.xcassets in Resources */,
 				8F9C83DC22A31658005BB336 /* InsuranceOverview.storyboard in Resources */,

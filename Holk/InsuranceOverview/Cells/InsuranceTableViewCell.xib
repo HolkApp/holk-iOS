@@ -38,7 +38,7 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="70Q-7a-6Ha">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="70Q-7a-6Ha">
                                 <rect key="frame" x="30" y="196.5" width="42" height="41"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fpb-Su-hJO">
@@ -55,7 +55,7 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="mk8-Xu-JZg">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="mk8-Xu-JZg">
                                 <rect key="frame" x="102" y="196.5" width="42" height="41"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ILb-0a-o6o">
@@ -83,7 +83,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Rj6-hM-JQV" secondAttribute="trailing" constant="15" id="HnU-dD-7w1"/>
-                            <constraint firstItem="Rj6-hM-JQV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="mk8-Xu-JZg" secondAttribute="trailing" constant="30" id="PKR-wE-jJf"/>
+                            <constraint firstItem="Rj6-hM-JQV" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="mk8-Xu-JZg" secondAttribute="trailing" constant="15" id="PKR-wE-jJf"/>
                             <constraint firstAttribute="bottom" secondItem="70Q-7a-6Ha" secondAttribute="bottom" constant="20" id="Pma-07-vNs"/>
                             <constraint firstAttribute="trailing" secondItem="V25-io-ZgT" secondAttribute="trailing" constant="30" id="ZdD-UY-vdb"/>
                             <constraint firstItem="V25-io-ZgT" firstAttribute="top" secondItem="hFs-hs-Ijq" secondAttribute="top" constant="20" id="cL9-9J-JnH"/>

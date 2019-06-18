@@ -72,7 +72,7 @@ extension InsurancesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
         case Section.insurance.rawValue:
-            return 200
+            return 340
         case Section.addMore.rawValue:
             return 145
         default:
