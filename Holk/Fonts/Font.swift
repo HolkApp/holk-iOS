@@ -9,6 +9,7 @@ import UIKit
 
 public enum Font {
     enum Weight {
+        case light
         case regular
         case semibold
         case bold
@@ -16,36 +17,22 @@ public enum Font {
     }
     
     public enum Size: UInt {
+        /// 33
+        case header = 35
         
-        /// 80
-        case yotta = 80
+        /// 27
+        case title = 27
         
-        /// 45
-        case peta = 45
+        /// 19
+        case subtitle = 19
         
-        /// 35
-        case tera = 35
+        /// 14
+        case description = 14
         
-        /// 25
-        case giga = 25
-        
-        /// 21
-        case mega = 21
-        
-        /// 17
-        case hecto = 17
-        
-        /// 15
-        case deci = 15
-        
-        /// 13
-        case micro = 13
-        
-        /// 11
-        case nano = 11
+        /// 12
+        case label = 12
         
         /// 10
-        /// - Note: This size should only be used for the tab bar label.
         case tabBarLabel = 10
         
         /// 9
@@ -55,6 +42,10 @@ public enum Font {
             return CGFloat(rawValue)
         }
         
+    }
+    
+    public static func light(_ size: Size) -> UIFont {
+        return font(weight: .light, size: size)
     }
     
     public static func regular(_ size: Size) -> UIFont {
@@ -69,8 +60,13 @@ public enum Font {
         return font(weight: .bold, size: size)
     }
     
+    public static func extraBold(_ size: Size) -> UIFont {
+        return font(weight: .extraBold, size: size)
+    }
+    
     private static func font(weight: Weight, size: Size) -> UIFont {
         switch weight {
+        case .light: return UIFont(name: "Montserrat-Regular", size: size.pointSize)!
         case .regular: return UIFont(name: "OpenSans-Regular", size: size.pointSize)!
         case .semibold: return UIFont(name: "Montserrat-SemiBold", size: size.pointSize)!
         case .bold: return UIFont(name: "OpenSans-Bold", size: size.pointSize)!
