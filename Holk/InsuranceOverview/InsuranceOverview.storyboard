@@ -24,7 +24,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="frn-wO-OR7">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zf4-82-GBi">
+                                <rect key="frame" x="334" y="104" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="7Rw-Zb-Y5n"/>
+                                    <constraint firstAttribute="height" constant="50" id="sJA-7J-mO1"/>
+                                </constraints>
+                            </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="frn-wO-OR7" customClass="HolkSegmentedControl" customModule="Holk" customModuleProvider="target">
                                 <rect key="frame" x="34" y="167" width="346" height="39"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -42,9 +49,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="Zf4-82-GBi" firstAttribute="top" secondItem="pU4-PL-ccR" secondAttribute="top" constant="60" id="9PD-b2-9FA"/>
                             <constraint firstItem="frn-wO-OR7" firstAttribute="top" secondItem="ocl-Dy-QTf" secondAttribute="bottom" constant="24" id="FD9-Il-kdJ"/>
                             <constraint firstItem="pU4-PL-ccR" firstAttribute="trailing" secondItem="bV8-Se-BnN" secondAttribute="trailing" constant="25" id="Lyu-nT-KvM"/>
                             <constraint firstItem="frn-wO-OR7" firstAttribute="leading" secondItem="pU4-PL-ccR" secondAttribute="leading" constant="34" id="S5r-f7-aK5"/>
+                            <constraint firstItem="pU4-PL-ccR" firstAttribute="trailing" secondItem="Zf4-82-GBi" secondAttribute="trailing" constant="30" id="eGr-rx-F90"/>
                             <constraint firstItem="pU4-PL-ccR" firstAttribute="trailing" secondItem="frn-wO-OR7" secondAttribute="trailing" constant="34" id="fy6-ja-kjJ"/>
                             <constraint firstItem="ocl-Dy-QTf" firstAttribute="top" secondItem="pU4-PL-ccR" secondAttribute="top" constant="78" id="hxH-CE-qZB"/>
                             <constraint firstItem="pU4-PL-ccR" firstAttribute="bottom" secondItem="bV8-Se-BnN" secondAttribute="bottom" id="jzU-9G-hOh"/>
@@ -57,6 +66,7 @@
                     <connections>
                         <outlet property="containerView" destination="bV8-Se-BnN" id="vSw-G8-9pu"/>
                         <outlet property="headerLabel" destination="ocl-Dy-QTf" id="t9V-fE-u9N"/>
+                        <outlet property="profileButton" destination="Zf4-82-GBi" id="uAK-WB-ae8"/>
                         <outlet property="segmentedControl" destination="frn-wO-OR7" id="lGf-rf-3FZ"/>
                     </connections>
                 </viewController>

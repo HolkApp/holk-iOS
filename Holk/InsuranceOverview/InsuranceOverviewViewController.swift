@@ -12,6 +12,7 @@ final class InsuranceOverviewViewController: UIViewController {
     
     @IBOutlet private weak var headerLabel: UILabel!
     @IBOutlet private weak var segmentedControl: UISegmentedControl!
+    @IBOutlet private weak var profileButton: UIButton!
     @IBOutlet private weak var containerView: UIView!
     
     var childSegmentViewControllers: [UIViewController] = []
@@ -34,6 +35,10 @@ final class InsuranceOverviewViewController: UIViewController {
         
         headerLabel.text = "Översikt"
         headerLabel.font = Font.extraBold(.header)
+        
+        profileButton.setTitle("", for: UIControl.State())
+        profileButton.setImage(UIImage(named: "Profile"), for: UIControl.State())
+        profileButton.tintColor = Color.mainForegroundColor
         
         segmentedControl.removeAllSegments()
         segmentedControl.insertSegment(withTitle: "Försäkringar", at: 0, animated: false)
