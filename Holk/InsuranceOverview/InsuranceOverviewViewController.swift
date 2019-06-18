@@ -11,7 +11,7 @@ import UIKit
 final class InsuranceOverviewViewController: UIViewController {
     
     @IBOutlet private weak var headerLabel: UILabel!
-    @IBOutlet private weak var segmentedControl: UISegmentedControl!
+    @IBOutlet private weak var segmentedControl: HolkSegmentedControl!
     @IBOutlet private weak var profileButton: UIButton!
     @IBOutlet private weak var containerView: UIView!
     
