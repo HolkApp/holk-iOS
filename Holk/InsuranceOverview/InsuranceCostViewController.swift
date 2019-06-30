@@ -1,5 +1,5 @@
 //
-//  InsuranceOutGoingViewController.swift
+//  InsuranceCostViewController.swift
 //  Holk
 //
 //  Created by 张梦皓 on 2019-06-16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class InsuranceOutGoingViewController: UIViewController {
+final class InsuranceCostViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
