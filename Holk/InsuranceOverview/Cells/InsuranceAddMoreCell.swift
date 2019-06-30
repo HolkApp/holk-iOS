@@ -26,6 +26,14 @@ final class InsuranceAddMoreCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        let scaleTransform = highlighted ? CGAffineTransform(scaleX: 0.95, y: 0.95) : .identity
+        let animator = UIViewPropertyAnimator(duration: 0.1, curve: .easeOut) {
+            self.transform = scaleTransform
+        }
+        animator.startAnimation()
+    }
+    
     private func setup() {
         backgroundColor = .clear
         contentView.backgroundColor = .clear

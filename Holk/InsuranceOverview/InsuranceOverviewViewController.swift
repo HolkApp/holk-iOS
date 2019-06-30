@@ -28,7 +28,7 @@ final class InsuranceOverviewViewController: UIViewController {
     private func setup() {
         childSegmentViewControllers = [
             StoryboardScene.InsuranceOverview.insurancesViewController.instantiate(),
-            StoryboardScene.InsuranceOverview.insuranceOutGoingViewController.instantiate()
+            StoryboardScene.InsuranceOverview.insuranceCostViewController.instantiate()
         ]
         view.backgroundColor = Color.mainBackgroundColor
         containerView.backgroundColor = .clear
