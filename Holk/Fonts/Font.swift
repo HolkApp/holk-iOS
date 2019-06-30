@@ -17,11 +17,17 @@ public enum Font {
     }
     
     public enum Size: UInt {
-        /// 33
+        /// 35
         case header = 35
+        
+        /// 30
+        case secondHeader = 30
         
         /// 27
         case title = 27
+        
+        /// 25
+        case cellTitle = 25
         
         /// 19
         case subtitle = 19
