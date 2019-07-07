@@ -10,4 +10,5 @@ import UIKit
 
 final class InsuranceDetailViewController: UIViewController {
     
+    @IBOutlet private weak var container: UIView!
 }

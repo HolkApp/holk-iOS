@@ -37,7 +37,10 @@ final class InsuranceCostViewController: UIViewController {
 
 // MARK: - UITableViewDelegate
 extension InsuranceCostViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailViewController = StoryboardScene.InsuranceOverview.insuranceDetailViewController.instantiate()
+        present(detailViewController, animated: true)
+    }
 }
 
 extension InsuranceCostViewController: UITableViewDataSource {
