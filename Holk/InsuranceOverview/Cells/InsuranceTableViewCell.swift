@@ -19,6 +19,8 @@ final class InsuranceTableViewCell: UITableViewCell {
     @IBOutlet private weak var ideaLabel: UILabel!
     @IBOutlet private weak var logoImageView: UIImageView!
     
+    private let lightFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         
@@ -51,6 +53,8 @@ final class InsuranceTableViewCell: UITableViewCell {
             self.transform = scaleTransform
         }
         animator.startAnimation()
+        
+        lightFeedbackGenerator.impactOccurred()
     }
     
     func configureCell() {

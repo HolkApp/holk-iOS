@@ -17,6 +17,8 @@ class InsuranceCostTableViewCell: UITableViewCell {
     @IBOutlet private weak var costLabel: UILabel!
     @IBOutlet private weak var costValueLabel: UILabel!
     
+    private let lightFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
+    
     override var reuseIdentifier: String? {
         return InsuranceCostTableViewCell.identifier
     }
@@ -33,6 +35,8 @@ class InsuranceCostTableViewCell: UITableViewCell {
             self.transform = scaleTransform
         }
         animator.startAnimation()
+        
+        lightFeedbackGenerator.impactOccurred()
     }
     
     private func setup() {
@@ -47,6 +51,7 @@ class InsuranceCostTableViewCell: UITableViewCell {
         costLabel.font = Font.regular(.description)
         costLabel.textColor = Color.secondaryForegroundColor
         costValueLabel.font = Font.regular(.secondHeader)
+        lightFeedbackGenerator.prepare()
     }
     
 }
