@@ -8,13 +8,18 @@
 
 import UIKit
 
+protocol InsuranceDetailViewControllerDelegate: class {
+    func controllerDismissed(insuranceDetailViewController: InsuranceDetailViewController)
+}
+
 final class InsuranceDetailViewController: UIViewController {
     
     @IBOutlet private weak var container: UIView!
+    @IBOutlet private weak var typeLabel: UILabel!
     
     @IBAction func backTapped(_ sender: UIButton) {
-        coordinator?.back()
+        delegate?.controllerDismissed(insuranceDetailViewController: self)
     }
     
-    weak var coordinator: InsuranceDetailCoordinator?
+    weak var delegate: InsuranceDetailViewControllerDelegate?
 }

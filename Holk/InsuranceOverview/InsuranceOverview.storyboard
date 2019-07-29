@@ -473,6 +473,7 @@
                     </view>
                     <connections>
                         <outlet property="container" destination="b4p-WK-IvX" id="bMJ-ZD-18r"/>
+                        <outlet property="typeLabel" destination="eIc-BW-wuf" id="cAT-Jj-Xgk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PjV-HK-RdP" userLabel="First Responder" sceneMemberID="firstResponder"/>

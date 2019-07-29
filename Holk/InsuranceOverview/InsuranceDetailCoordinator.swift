@@ -11,6 +11,13 @@ import UIKit
 
 class InsuranceDetailCoordinator: NSObject, Coordinator, BackNavigation, UINavigationControllerDelegate {
     
+    lazy var insuranceDetailViewController: InsuranceDetailViewController = {
+        let vc = StoryboardScene.InsuranceOverview
+            .insuranceDetailViewController.instantiate()
+        vc.delegate = self
+        return vc
+    }()
+    
     var navController: UINavigationController
     
     // MARK: - Init
@@ -24,9 +31,7 @@ class InsuranceDetailCoordinator: NSObject, Coordinator, BackNavigation, UINavig
     }
     
     func showDetail() {
-        let vc = StoryboardScene.InsuranceOverview.insuranceDetailViewController.instantiate()
-        vc.coordinator = self
-        navController.pushViewController(vc, animated: true)
+        navController.pushViewController(insuranceDetailViewController, animated: true)
     }
     
     // MARK: - BackNavigation
@@ -35,16 +40,22 @@ class InsuranceDetailCoordinator: NSObject, Coordinator, BackNavigation, UINavig
     }
     
     // MARK: - UINavigationControllerDelegate
-    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
-        guard let fromViewController = navigationController.transitionCoordinator?.viewController(forKey: .from),
-            let toViewController = navigationController.transitionCoordinator?.viewController(forKey: .to) else {
-            return
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        if let insuranceOverviewViewController = fromVC as? InsuranceOverviewViewController,
+            let fromInsuranceCostViewController = insuranceOverviewViewController.currentChildSegmentViewController as? InsuranceCostViewController,
+            let toInsuranceDetailViewController = toVC as? InsuranceDetailViewController {
+            if let selectedIndexPath = fromInsuranceCostViewController.tableView.indexPathForSelectedRow {
+                return InsuranceDetailTransition()
+            }
         }
-        
-        if let insuranceOverviewViewController = fromViewController as? InsuranceOverviewViewController,
-            let insuranceDetailViewController = toViewController as? InsuranceDetailViewController,
-            let InsuranceCostViewController = insuranceOverviewViewController.currentChildSegmentViewController as? InsuranceCostViewController {
+        return nil
+    }
+}
 
+extension InsuranceDetailCoordinator: InsuranceDetailViewControllerDelegate {
+    func controllerDismissed(insuranceDetailViewController: InsuranceDetailViewController) {
+        if navController.topViewController == insuranceDetailViewController {
+            navController.popViewController(animated: true)
         }
     }
 }

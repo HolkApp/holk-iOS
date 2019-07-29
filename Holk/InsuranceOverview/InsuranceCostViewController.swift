@@ -31,6 +31,7 @@ final class InsuranceCostViewController: UIViewController {
         tableView.dataSource = self
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
+        registerForPreviewing(with: self, sourceView: tableView)
         
         let insuranceCostTableViewCell = UINib(nibName: InsuranceCostTableViewCell.identifier, bundle: nil)
         tableView.register(insuranceCostTableViewCell, forCellReuseIdentifier: InsuranceCostTableViewCell.identifier)
@@ -58,6 +59,22 @@ extension InsuranceCostViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: InsuranceCostTableViewCell.identifier, for: indexPath)
         return cell
     }
+}
+
+// MARK: UIViewControllerPreviewingDelegate
+extension InsuranceCostViewController: UIViewControllerPreviewingDelegate {
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        
+        guard let indexPath = tableView.indexPathForRow(at: location) else { return nil }
+        
+        if let cellFrame = tableView.cellForRow(at: indexPath)?.frame {
+            previewingContext.sourceRect = cellFrame
+        }
+        
+        return insuranceDetailCoordinator?.insuranceDetailViewController
+    }
     
-    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        insuranceDetailCoordinator?.showDetail()
+    }
 }
