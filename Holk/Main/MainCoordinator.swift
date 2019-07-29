@@ -24,10 +24,12 @@ class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
     
     // MARK: - Public Methods
     func start() {
-        let vc = StoryboardScene.InsuranceOverview.insuranceOverviewViewController.instantiate()
+//        Should present the landing page
 //        let vc = StoryboardScene.Main.landingViewController.instantiate()
 //        vc.tabBarItem = UITabBarItem(title: "Översikt", image: UIImage(named: "OverView"), tag: 0)
 //        vc.coordinator = self
+        
+        let vc = StoryboardScene.InsuranceOverview.insuranceOverviewViewController.instantiate()
         navController.tabBarItem = UITabBarItem(title: "Översikt", image: UIImage(named: "OverView"), tag: 0)
         navController.isNavigationBarHidden = true
         navController.delegate = self
@@ -36,7 +38,6 @@ class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
     
     
     // MARK: - UINavigationControllerDelegate
-    
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
         guard let fromViewController = navigationController.transitionCoordinator?.viewController(forKey: .from) else {
             return

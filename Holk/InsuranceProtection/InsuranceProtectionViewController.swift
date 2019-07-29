@@ -9,4 +9,5 @@
 import UIKit
 
 final class InsuranceProtectionViewController: UIViewController {
+    weak var coordinator: InsuranceProtectionCoordinator?
 }

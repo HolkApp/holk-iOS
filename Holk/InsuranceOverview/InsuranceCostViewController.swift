@@ -10,7 +10,9 @@ import UIKit
 
 final class InsuranceCostViewController: UIViewController {
     
-    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView!
+    
+    var insuranceDetailCoordinator: InsuranceDetailCoordinator?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,14 +34,18 @@ final class InsuranceCostViewController: UIViewController {
         
         let insuranceCostTableViewCell = UINib(nibName: InsuranceCostTableViewCell.identifier, bundle: nil)
         tableView.register(insuranceCostTableViewCell, forCellReuseIdentifier: InsuranceCostTableViewCell.identifier)
+        
+        let navController = navigationController ?? UINavigationController()
+        insuranceDetailCoordinator = InsuranceDetailCoordinator(navController: navController)
+        insuranceDetailCoordinator?.start()
     }
 }
 
 // MARK: - UITableViewDelegate
 extension InsuranceCostViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detailViewController = StoryboardScene.InsuranceOverview.insuranceDetailViewController.instantiate()
-        present(detailViewController, animated: true)
+        // TODO: Use coordinator
+        insuranceDetailCoordinator?.showDetail()
     }
 }
 

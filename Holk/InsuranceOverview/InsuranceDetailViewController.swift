@@ -11,4 +11,10 @@ import UIKit
 final class InsuranceDetailViewController: UIViewController {
     
     @IBOutlet private weak var container: UIView!
+    
+    @IBAction func backTapped(_ sender: UIButton) {
+        coordinator?.back()
+    }
+    
+    weak var coordinator: InsuranceDetailCoordinator?
 }
