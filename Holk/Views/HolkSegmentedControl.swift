@@ -39,6 +39,16 @@ final class HolkSegmentedControl: UISegmentedControl {
         layer.addSublayer(imageLayer)
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        // Update the frame of imageLayer, since there are some cases that the image size is not updated properly
+        let imageLayerWidth = frame.width / CGFloat(numberOfSegments)
+        let imageLayerX = CGFloat(selectedSegmentIndex) * imageLayerWidth
+        
+        imageLayer.frame = CGRect(x: imageLayerX, y: 0, width: imageLayerWidth, height: frame.height)
+    }
+    
     override func insertSegment(with image: UIImage?, at segment: Int, animated: Bool) {
         super.insertSegment(with: image, at: segment, animated: animated)
         segmentedControlFrames = []
