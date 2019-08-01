@@ -49,35 +49,9 @@ final class HolkSegmentedControl: UISegmentedControl {
         imageLayer.frame = CGRect(x: imageLayerX, y: 0, width: imageLayerWidth, height: frame.height)
     }
     
-    override func insertSegment(with image: UIImage?, at segment: Int, animated: Bool) {
-        super.insertSegment(with: image, at: segment, animated: animated)
-        segmentedControlFrames = []
-        for index in 0..<numberOfSegments {
-            let segmentFrame = CGRect(x: CGFloat(index) * frame.width / CGFloat(numberOfSegments), y: 0, width: frame.width / CGFloat(numberOfSegments), height: frame.height)
-            segmentedControlFrames.append(segmentFrame)
-        }
-    }
-    
-    override func insertSegment(withTitle title: String?, at segment: Int, animated: Bool) {
-        super.insertSegment(withTitle: title, at: segment, animated: animated)
-        segmentedControlFrames = []
-        for index in 0..<numberOfSegments {
-            let segmentFrame = CGRect(x: CGFloat(index) * frame.width / CGFloat(numberOfSegments), y: 0, width: frame.width / CGFloat(numberOfSegments), height: frame.height)
-            segmentedControlFrames.append(segmentFrame)
-        }
-    }
-    
     override func sendActions(for controlEvents: UIControl.Event) {
         super.sendActions(for: controlEvents)
         
-        if controlEvents == .valueChanged {
-            for (offset, frame) in segmentedControlFrames.enumerated() {
-                if offset == selectedSegmentIndex {
-                    imageLayer.removeFromSuperlayer()
-                    imageLayer.frame = frame
-                    layer.insertSublayer(imageLayer, at: 0)
-                }
-            }
-        }
+        setNeedsLayout()
     }
 }
