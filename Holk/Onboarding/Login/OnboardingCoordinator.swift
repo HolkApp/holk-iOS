@@ -8,15 +8,11 @@
 
 import UIKit
 
-protocol OnBoardingInfo: AnyObject {
-    func displayOnBoradingInfo()
-}
-
 protocol BackNavigation: AnyObject {
     func back()
 }
 
-final class LoginCoordinator: NSObject, Coordinator, OnBoardingInfo, BackNavigation, UINavigationControllerDelegate {
+final class OnboardingCoordinator: NSObject, Coordinator, BackNavigation, UINavigationControllerDelegate {
     // MARK: - Public Properties
     var navController: UINavigationController
     
@@ -27,7 +23,7 @@ final class LoginCoordinator: NSObject, Coordinator, OnBoardingInfo, BackNavigat
     
     // MARK: - Public Methods
     func start() {
-        let vc = StoryboardScene.Main.loginViewController.instantiate()
+        let vc = StoryboardScene.Main.onboardingLoginViewController.instantiate()
         vc.coordinator = self
         navController.isNavigationBarHidden = true
         navController.delegate = self

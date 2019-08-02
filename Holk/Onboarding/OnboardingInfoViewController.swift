@@ -10,7 +10,7 @@ import UIKit
 
 class OnboardingInfoViewController: UIViewController {
     
-    weak var coordinator: (OnBoardingInfo & BackNavigation)?
+    weak var coordinator: BackNavigation?
     
     @IBAction func backButtonTapped(_ sender: UIButton) {
         coordinator?.back()

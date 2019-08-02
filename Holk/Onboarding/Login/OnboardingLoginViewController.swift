@@ -1,5 +1,5 @@
 //
-//  LoginViewController.swift
+//  OnboardingLoginViewController.swift
 //  Holk
 //
 //  Created by 张梦皓 on 2019-04-30.
@@ -9,9 +9,9 @@
 import UIKit
 import RxSwift
 
-final class LoginViewController: UIViewController {
+final class OnboardingLoginViewController: UIViewController {
     
-    weak var coordinator: LoginCoordinator?
+    weak var coordinator: OnboardingCoordinator?
     
     private var bag = DisposeBag()
     
