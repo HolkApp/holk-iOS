@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (4.8.1)
+  - FontAwesome.swift (1.7.0)
   - RxAlamofire (4.3.0):
     - RxAlamofire/Core (= 4.3.0)
   - RxAlamofire/Core (4.3.0):
@@ -14,6 +15,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - FontAwesome.swift
   - RxAlamofire
   - RxCocoa
   - RxSwift
@@ -22,6 +24,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
+    - FontAwesome.swift
     - RxAlamofire
     - RxAtomic
     - RxCocoa
@@ -30,12 +33,13 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
+  FontAwesome.swift: 9f377615aa61381796dca143cddfd2a388723ea1
   RxAlamofire: 09624d0f2d48ed8b686e4eb4cf68e28cbd2df556
   RxAtomic: f8d6adc1ccb87a767811269e4875887bc74dbf19
   RxCocoa: 2f35a76bf8887872e28a1914112395b11b8e0e64
   RxSwift: 92fcf68dfef21f3e2ab1965363d9e7b3d787597e
   SwiftLint: a54bf1fe12b55c68560eb2a7689dfc81458508f7
 
-PODFILE CHECKSUM: 2bf67d41fcd8ca8347450359338847691f0feebd
+PODFILE CHECKSUM: 512ec9e001569bb746668ecb06c6b8598c13c283
 
 COCOAPODS: 1.6.1

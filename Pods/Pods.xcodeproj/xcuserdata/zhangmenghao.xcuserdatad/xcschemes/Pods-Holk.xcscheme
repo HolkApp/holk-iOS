@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "33BDF5E7C5ECE733B534C1EA1FE4F6CE"
+               BlueprintIdentifier = "78ABDB09FB80EA968F6BDC58BB909CFB"
                BuildableName = "Pods_Holk.framework"
                BlueprintName = "Pods-Holk"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "33BDF5E7C5ECE733B534C1EA1FE4F6CE"
+            BlueprintIdentifier = "78ABDB09FB80EA968F6BDC58BB909CFB"
             BuildableName = "Pods_Holk.framework"
             BlueprintName = "Pods-Holk"
             ReferencedContainer = "container:Pods.xcodeproj">
