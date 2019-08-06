@@ -15,8 +15,7 @@ final class InsuranceDetailTransition: NSObject, UIViewControllerAnimatedTransit
     }
     
     private func push(_ transitionContext: UIViewControllerContextTransitioning, fromViewController: InsuranceCostViewController, toViewController: InsuranceDetailViewController) {
-        if let selectedIndexPath = fromViewController.tableView.indexPathForSelectedRow, let fromCell = fromViewController.tableView.cellForRow(at: selectedIndexPath) as? InsuranceCostTableViewCell {
-            let toView = toViewController.view
+        if let selectedIndexPath = fromViewController.tableView.indexPathForSelectedRow, let fromCell = fromViewController.tableView.cellForRow(at: selectedIndexPath) as? InsuranceCostTableViewCell, let toView = toViewController.view {
             
             let containerView = transitionContext.containerView
             containerView.backgroundColor = .white

@@ -21,7 +21,11 @@
 		8F63C30F22C8CE5300CFE334 /* InsuranceCostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F63C30D22C8CE5300CFE334 /* InsuranceCostTableViewCell.xib */; };
 		8F63C31122E44A7A00CFE334 /* InsuranceDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F63C31022E44A7A00CFE334 /* InsuranceDetailCoordinator.swift */; };
 		8F6BCA2122EF61EF004B887E /* InsuranceDetailTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6BCA2022EF61EF004B887E /* InsuranceDetailTransition.swift */; };
-		8F6BCA2922F73250004B887E /* Font Awesome 5 Brands-Regular-400.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8F6BCA2422F73250004B887E /* Font Awesome 5 Brands-Regular-400.otf */; };
+		8F6BCA3922F73CBF004B887E /* Font Awesome 5 Pro-Solid-900.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8F6BCA3422F73CBF004B887E /* Font Awesome 5 Pro-Solid-900.otf */; };
+		8F6BCA3A22F73CBF004B887E /* Font Awesome 5 Brands-Regular-400.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8F6BCA3522F73CBF004B887E /* Font Awesome 5 Brands-Regular-400.otf */; };
+		8F6BCA3B22F73CBF004B887E /* Font Awesome 5 Pro-Regular-400.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8F6BCA3622F73CBF004B887E /* Font Awesome 5 Pro-Regular-400.otf */; };
+		8F6BCA3C22F73CBF004B887E /* Font Awesome 5 Pro-Light-300.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8F6BCA3722F73CBF004B887E /* Font Awesome 5 Pro-Light-300.otf */; };
+		8F6BCA3D22F73CBF004B887E /* Font Awesome 5 Duotone-Solid-900.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8F6BCA3822F73CBF004B887E /* Font Awesome 5 Duotone-Solid-900.otf */; };
 		8F9807E722722D5E00584BA9 /* APIStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9807E622722D5E00584BA9 /* APIStore.swift */; };
 		8F9807E92276F10E00584BA9 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9807E82276F10E00584BA9 /* MainCoordinator.swift */; };
 		8F9C83DA22A3140B005BB336 /* InsuranceOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9C83D922A3140B005BB336 /* InsuranceOverviewViewController.swift */; };
@@ -85,7 +89,11 @@
 		8F63C30D22C8CE5300CFE334 /* InsuranceCostTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InsuranceCostTableViewCell.xib; sourceTree = "<group>"; };
 		8F63C31022E44A7A00CFE334 /* InsuranceDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceDetailCoordinator.swift; sourceTree = "<group>"; };
 		8F6BCA2022EF61EF004B887E /* InsuranceDetailTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceDetailTransition.swift; sourceTree = "<group>"; };
-		8F6BCA2422F73250004B887E /* Font Awesome 5 Brands-Regular-400.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Font Awesome 5 Brands-Regular-400.otf"; sourceTree = "<group>"; };
+		8F6BCA3422F73CBF004B887E /* Font Awesome 5 Pro-Solid-900.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Font Awesome 5 Pro-Solid-900.otf"; sourceTree = "<group>"; };
+		8F6BCA3522F73CBF004B887E /* Font Awesome 5 Brands-Regular-400.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Font Awesome 5 Brands-Regular-400.otf"; sourceTree = "<group>"; };
+		8F6BCA3622F73CBF004B887E /* Font Awesome 5 Pro-Regular-400.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Font Awesome 5 Pro-Regular-400.otf"; sourceTree = "<group>"; };
+		8F6BCA3722F73CBF004B887E /* Font Awesome 5 Pro-Light-300.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Font Awesome 5 Pro-Light-300.otf"; sourceTree = "<group>"; };
+		8F6BCA3822F73CBF004B887E /* Font Awesome 5 Duotone-Solid-900.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Font Awesome 5 Duotone-Solid-900.otf"; sourceTree = "<group>"; };
 		8F9807E622722D5E00584BA9 /* APIStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIStore.swift; sourceTree = "<group>"; };
 		8F9807E82276F10E00584BA9 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		8F9C83D922A3140B005BB336 /* InsuranceOverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceOverviewViewController.swift; sourceTree = "<group>"; };
@@ -340,7 +348,11 @@
 				8FF6E74922B82F3600F6D398 /* Montserrat-ExtraBold.ttf */,
 				8FF6E74722B82EFA00F6D398 /* OpenSans-Regular.ttf */,
 				8FF6E74B22B82F5B00F6D398 /* OpenSans-Bold.ttf */,
-				8F6BCA2422F73250004B887E /* Font Awesome 5 Brands-Regular-400.otf */,
+				8F6BCA3522F73CBF004B887E /* Font Awesome 5 Brands-Regular-400.otf */,
+				8F6BCA3822F73CBF004B887E /* Font Awesome 5 Duotone-Solid-900.otf */,
+				8F6BCA3722F73CBF004B887E /* Font Awesome 5 Pro-Light-300.otf */,
+				8F6BCA3622F73CBF004B887E /* Font Awesome 5 Pro-Regular-400.otf */,
+				8F6BCA3422F73CBF004B887E /* Font Awesome 5 Pro-Solid-900.otf */,
 				8FF6E74022B82D1100F6D398 /* Font.swift */,
 			);
 			path = Fonts;
@@ -441,15 +453,19 @@
 				8FF6E74E22B955A400F6D398 /* Montserrat-Regular.ttf in Resources */,
 				8FD84E722270E736009D563D /* LaunchScreen.storyboard in Resources */,
 				8FD84E6F2270E736009D563D /* Assets.xcassets in Resources */,
+				8F6BCA3D22F73CBF004B887E /* Font Awesome 5 Duotone-Solid-900.otf in Resources */,
+				8F6BCA3C22F73CBF004B887E /* Font Awesome 5 Pro-Light-300.otf in Resources */,
 				8F9C83DC22A31658005BB336 /* InsuranceOverview.storyboard in Resources */,
+				8F6BCA3A22F73CBF004B887E /* Font Awesome 5 Brands-Regular-400.otf in Resources */,
 				8FF6E74422B82ECA00F6D398 /* Montserrat-SemiBold.ttf in Resources */,
 				8FF6E74A22B82F3600F6D398 /* Montserrat-ExtraBold.ttf in Resources */,
 				8FD84E6D2270E732009D563D /* Main.storyboard in Resources */,
 				8FF6E73F22B6B67A00F6D398 /* InsuranceProtection.storyboard in Resources */,
-				8F6BCA2922F73250004B887E /* Font Awesome 5 Brands-Regular-400.otf in Resources */,
+				8F6BCA3922F73CBF004B887E /* Font Awesome 5 Pro-Solid-900.otf in Resources */,
 				8FF6E74822B82EFB00F6D398 /* OpenSans-Regular.ttf in Resources */,
 				8FF6E72B22B0331000F6D398 /* InsuranceTableViewCell.xib in Resources */,
 				8F63C30F22C8CE5300CFE334 /* InsuranceCostTableViewCell.xib in Resources */,
+				8F6BCA3B22F73CBF004B887E /* Font Awesome 5 Pro-Regular-400.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
