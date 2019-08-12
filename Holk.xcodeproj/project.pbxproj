@@ -195,16 +195,23 @@
 			path = Generated;
 			sourceTree = "<group>";
 		};
+		8F654669230195840053B3F8 /* Transition */ = {
+			isa = PBXGroup;
+			children = (
+				8F6BCA2022EF61EF004B887E /* InsuranceDetailTransition.swift */,
+			);
+			path = Transition;
+			sourceTree = "<group>";
+		};
 		8F9C83D822A313EE005BB336 /* InsuranceOverview */ = {
 			isa = PBXGroup;
 			children = (
 				8F63C31022E44A7A00CFE334 /* InsuranceDetailCoordinator.swift */,
-				8F6BCA2022EF61EF004B887E /* InsuranceDetailTransition.swift */,
+				8FF6E75522BCF9CA00F6D398 /* InsuranceDetailViewController.swift */,
 				8FF6E72922B02CBB00F6D398 /* Cells */,
 				8F9C83D922A3140B005BB336 /* InsuranceOverviewViewController.swift */,
 				8FF6E72722B026DB00F6D398 /* InsurancesViewController.swift */,
 				8FF6E73722B6B39800F6D398 /* InsuranceCostViewController.swift */,
-				8FF6E75522BCF9CA00F6D398 /* InsuranceDetailViewController.swift */,
 				8F9C83DB22A31658005BB336 /* InsuranceOverview.storyboard */,
 			);
 			path = InsuranceOverview;
@@ -246,6 +253,7 @@
 				8FF6E73222B534F800F6D398 /* Main */,
 				8FF6E72522AC0D2800F6D398 /* Color.swift */,
 				8FF6E74222B82D9A00F6D398 /* Fonts */,
+				8F654669230195840053B3F8 /* Transition */,
 				8FF6E73122B534E000F6D398 /* Onboarding */,
 				8F9C83D822A313EE005BB336 /* InsuranceOverview */,
 				8FF6E75822C8C95D00F6D398 /* InsuranceOutGoing */,
