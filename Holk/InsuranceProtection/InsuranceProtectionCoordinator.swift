@@ -22,7 +22,8 @@ final class InsuranceProtectionCoordinator: Coordinator, BackNavigation {
         let vc = StoryboardScene.InsuranceProtection.insuranceProtectionViewController.instantiate()
         vc.coordinator = self
         navController.tabBarItem = UITabBarItem(title: "Ditt skydd", image: UIImage(), tag: 1)
-        navController.isNavigationBarHidden = true
+        navController.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navController.navigationBar.shadowImage = UIImage()
         navController.pushViewController(vc, animated: true)
     }
     

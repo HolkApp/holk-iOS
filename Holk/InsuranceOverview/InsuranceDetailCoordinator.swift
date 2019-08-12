@@ -26,7 +26,8 @@ class InsuranceDetailCoordinator: NSObject, Coordinator, BackNavigation, UINavig
     }
     
     func start() {
-        navController.isNavigationBarHidden = true
+        navController.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navController.navigationBar.shadowImage = UIImage()
         navController.delegate = self
     }
     

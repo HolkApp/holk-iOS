@@ -31,7 +31,8 @@ class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
         
         let vc = StoryboardScene.InsuranceOverview.insuranceOverviewViewController.instantiate()
         navController.tabBarItem = UITabBarItem(title: "Översikt", image: UIImage(named: "OverView"), tag: 0)
-        navController.isNavigationBarHidden = true
+        navController.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navController.navigationBar.shadowImage = UIImage()
         navController.delegate = self
         navController.pushViewController(vc, animated: true)
     }

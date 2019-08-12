@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;Översikt&gt;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ocl-Dy-QTf">
-                                <rect key="frame" x="34" y="122" width="85" height="21"/>
+                                <rect key="frame" x="34" y="104" width="85" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -32,7 +32,7 @@
                                 </constraints>
                             </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="frn-wO-OR7" customClass="HolkSegmentedControl" customModule="Holk" customModuleProvider="target">
-                                <rect key="frame" x="34" y="167" width="346" height="39"/>
+                                <rect key="frame" x="34" y="164" width="346" height="39"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="38" id="KPY-Ys-2tq"/>
@@ -43,31 +43,33 @@
                                 </segments>
                             </segmentedControl>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bV8-Se-BnN">
-                                <rect key="frame" x="25" y="235" width="364" height="627"/>
+                                <rect key="frame" x="25" y="222" width="364" height="640"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Zf4-82-GBi" firstAttribute="top" secondItem="pU4-PL-ccR" secondAttribute="top" constant="60" id="9PD-b2-9FA"/>
-                            <constraint firstItem="frn-wO-OR7" firstAttribute="top" secondItem="ocl-Dy-QTf" secondAttribute="bottom" constant="24" id="FD9-Il-kdJ"/>
+                            <constraint firstItem="Zf4-82-GBi" firstAttribute="top" secondItem="ocl-Dy-QTf" secondAttribute="top" id="4Z3-gf-b2V"/>
                             <constraint firstItem="pU4-PL-ccR" firstAttribute="trailing" secondItem="bV8-Se-BnN" secondAttribute="trailing" constant="25" id="Lyu-nT-KvM"/>
                             <constraint firstItem="frn-wO-OR7" firstAttribute="leading" secondItem="pU4-PL-ccR" secondAttribute="leading" constant="34" id="S5r-f7-aK5"/>
+                            <constraint firstItem="frn-wO-OR7" firstAttribute="top" secondItem="pU4-PL-ccR" secondAttribute="top" constant="120" id="Vox-ZS-a5V"/>
                             <constraint firstItem="pU4-PL-ccR" firstAttribute="trailing" secondItem="Zf4-82-GBi" secondAttribute="trailing" constant="30" id="eGr-rx-F90"/>
                             <constraint firstItem="pU4-PL-ccR" firstAttribute="trailing" secondItem="frn-wO-OR7" secondAttribute="trailing" constant="34" id="fy6-ja-kjJ"/>
-                            <constraint firstItem="ocl-Dy-QTf" firstAttribute="top" secondItem="pU4-PL-ccR" secondAttribute="top" constant="78" id="hxH-CE-qZB"/>
+                            <constraint firstItem="ocl-Dy-QTf" firstAttribute="top" secondItem="pU4-PL-ccR" secondAttribute="top" constant="60" id="hxH-CE-qZB"/>
                             <constraint firstItem="pU4-PL-ccR" firstAttribute="bottom" secondItem="bV8-Se-BnN" secondAttribute="bottom" id="jzU-9G-hOh"/>
                             <constraint firstItem="ocl-Dy-QTf" firstAttribute="leading" secondItem="pU4-PL-ccR" secondAttribute="leading" constant="34" id="l6u-cl-j9j"/>
                             <constraint firstItem="bV8-Se-BnN" firstAttribute="leading" secondItem="pU4-PL-ccR" secondAttribute="leading" constant="25" id="p0v-fG-aQD"/>
-                            <constraint firstItem="bV8-Se-BnN" firstAttribute="top" secondItem="frn-wO-OR7" secondAttribute="bottom" constant="30" id="sLv-CB-bBW"/>
+                            <constraint firstItem="bV8-Se-BnN" firstAttribute="top" secondItem="frn-wO-OR7" secondAttribute="bottom" constant="20" id="sLv-CB-bBW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="pU4-PL-ccR"/>
                     </view>
                     <connections>
                         <outlet property="containerView" destination="bV8-Se-BnN" id="vSw-G8-9pu"/>
                         <outlet property="headerLabel" destination="ocl-Dy-QTf" id="t9V-fE-u9N"/>
+                        <outlet property="headerLabelTopConstraint" destination="hxH-CE-qZB" id="MXx-ZE-peD"/>
                         <outlet property="profileButton" destination="Zf4-82-GBi" id="uAK-WB-ae8"/>
                         <outlet property="segmentedControl" destination="frn-wO-OR7" id="lGf-rf-3FZ"/>
+                        <outlet property="segmentedControlTopConstraint" destination="Vox-ZS-a5V" id="WP5-dg-30h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UfA-0z-XUC" userLabel="First Responder" sceneMemberID="firstResponder"/>

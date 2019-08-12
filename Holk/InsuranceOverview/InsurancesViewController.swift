@@ -8,15 +8,20 @@
 
 import UIKit
 
+protocol InsurancesViewControllerDelegate: AnyObject {
+    func InsurancesViewController(_ viewController: InsurancesViewController, didScroll scrollView: UIScrollView)
+}
+
 final class InsurancesViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     
+    weak var delegate: InsurancesViewControllerDelegate?
     private enum Section: Int, CaseIterable {
         case insurance
         case addMore
     }
     
-    private var numberOfInsurances = 1
+    private var numberOfInsurances = 2
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,6 +37,7 @@ final class InsurancesViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
+        tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
         tableView.showsVerticalScrollIndicator = false
         tableView.alwaysBounceVertical = false
         
@@ -89,6 +95,12 @@ extension InsurancesViewController: UITableViewDelegate {
             tableView.reloadData()
         default:
             return
+        }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentSize.height > view.frame.height {
+            delegate?.InsurancesViewController(self, didScroll: scrollView)
         }
     }
 }

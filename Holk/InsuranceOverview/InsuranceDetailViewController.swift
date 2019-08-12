@@ -21,5 +21,11 @@ final class InsuranceDetailViewController: UIViewController {
         delegate?.controllerDismissed(insuranceDetailViewController: self)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationItem.setHidesBackButton(true, animated: animated)
+    }
+    
     weak var delegate: InsuranceDetailViewControllerDelegate?
 }

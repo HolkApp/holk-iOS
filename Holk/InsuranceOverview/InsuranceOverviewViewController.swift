@@ -14,10 +14,54 @@ final class InsuranceOverviewViewController: UIViewController {
     @IBOutlet private weak var segmentedControl: HolkSegmentedControl!
     @IBOutlet private weak var profileButton: UIButton!
     @IBOutlet private weak var containerView: UIView!
+    @IBOutlet private weak var headerLabelTopConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var segmentedControlTopConstraint: NSLayoutConstraint!
     
-    var childSegmentViewControllers: [UIViewController] = []
-    var insuranceOvewviewDetailViewController: UIViewController?
     var currentChildSegmentViewController: UIViewController?
+    
+    private var childSegmentViewControllers: [UIViewController] = []
+    lazy private var insurancesViewController: InsurancesViewController = {
+        let insurancesViewController = StoryboardScene.InsuranceOverview.insurancesViewController.instantiate()
+        insurancesViewController.delegate = self
+        return insurancesViewController
+    }()
+    lazy private var insuranceCostViewController: InsuranceCostViewController = {
+        let insuranceCostViewController = StoryboardScene.InsuranceOverview.insuranceCostViewController.instantiate()
+        insuranceCostViewController.delegate = self
+        return insuranceCostViewController
+    }()
+    
+    private var animating: Bool = false
+    private var childViewScrollViewOffset: CGFloat = 0 {
+        didSet {
+            guard !animating else { return }
+            if childViewScrollViewOffset > 20, oldValue <= 20 {
+                animating = true
+                UIView.animate(withDuration: 0.2, animations: {
+                    self.headerLabel.alpha = 0
+                    self.profileButton.alpha = 0
+                    self.navigationItem.title = self.headerLabel.text
+                    self.headerLabelTopConstraint.constant = 0
+                    self.segmentedControlTopConstraint.constant = 10
+                    self.view.layoutIfNeeded()
+                }) { _ in
+                    self.animating = false
+                }
+            } else if childViewScrollViewOffset <= 0, oldValue > 0 {
+                animating = true
+                UIView.animate(withDuration: 0.1, animations: {
+                    self.headerLabel.alpha = 1
+                    self.profileButton.alpha = 1
+                    self.navigationItem.title = String()
+                    self.headerLabelTopConstraint.constant = 60
+                    self.segmentedControlTopConstraint.constant = 120
+                    self.view.layoutIfNeeded()
+                }) { _ in
+                    self.animating = false
+                }
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,8 +71,8 @@ final class InsuranceOverviewViewController: UIViewController {
     
     private func setup() {
         childSegmentViewControllers = [
-            StoryboardScene.InsuranceOverview.insurancesViewController.instantiate(),
-            StoryboardScene.InsuranceOverview.insuranceCostViewController.instantiate()
+            insurancesViewController,
+            insuranceCostViewController
         ]
         view.backgroundColor = Color.mainBackgroundColor
         containerView.backgroundColor = .clear
@@ -80,5 +124,17 @@ final class InsuranceOverviewViewController: UIViewController {
             containerView.rightAnchor.constraint(equalTo: childSegmentViewController.view.rightAnchor)
             ])
         currentChildSegmentViewController = childSegmentViewController
+    }
+}
+
+extension InsuranceOverviewViewController: InsurancesViewControllerDelegate {
+    func InsurancesViewController(_ viewController: InsurancesViewController, didScroll scrollView: UIScrollView) {
+        childViewScrollViewOffset = scrollView.contentOffset.y
+    }
+}
+
+extension InsuranceOverviewViewController: InsuranceCostViewControllerDelegate {
+    func insuranceCostViewController(_ viewController: InsuranceCostViewController, didScroll scrollView: UIScrollView) {
+        childViewScrollViewOffset = scrollView.contentOffset.y
     }
 }

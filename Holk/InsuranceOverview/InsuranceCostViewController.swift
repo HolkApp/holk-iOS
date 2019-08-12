@@ -8,10 +8,15 @@
 
 import UIKit
 
+protocol InsuranceCostViewControllerDelegate: AnyObject {
+    func insuranceCostViewController(_ viewController: InsuranceCostViewController, didScroll scrollView: UIScrollView)
+}
+
 final class InsuranceCostViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    weak var delegate: InsuranceCostViewControllerDelegate?
     var insuranceDetailCoordinator: InsuranceDetailCoordinator?
     
     override func viewDidLoad() {
@@ -29,15 +34,16 @@ final class InsuranceCostViewController: UIViewController {
         tableView.estimatedRowHeight = 224
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
+        tableView.alwaysBounceVertical = false
         registerForPreviewing(with: self, sourceView: tableView)
         
         let insuranceCostTableViewCell = UINib(nibName: InsuranceCostTableViewCell.identifier, bundle: nil)
         tableView.register(insuranceCostTableViewCell, forCellReuseIdentifier: InsuranceCostTableViewCell.identifier)
         
-        let navController = navigationController ?? UINavigationController()
-        insuranceDetailCoordinator = InsuranceDetailCoordinator(navController: navController)
+        insuranceDetailCoordinator = InsuranceDetailCoordinator(navController: navigationController ?? UINavigationController())
         insuranceDetailCoordinator?.start()
     }
 }
@@ -45,14 +51,19 @@ final class InsuranceCostViewController: UIViewController {
 // MARK: - UITableViewDelegate
 extension InsuranceCostViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // TODO: Use coordinator
         insuranceDetailCoordinator?.showDetail()
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentSize.height > view.frame.height {
+            delegate?.insuranceCostViewController(self, didScroll: scrollView)
+        }
     }
 }
 
 extension InsuranceCostViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
