@@ -33,6 +33,7 @@ class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
         navController.tabBarItem = UITabBarItem(title: "Översikt", image: UIImage(named: "OverView"), tag: 0)
         navController.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navController.navigationBar.shadowImage = UIImage()
+        navController.navigationBar.tintColor = .black
         navController.delegate = self
         navController.pushViewController(vc, animated: true)
     }

@@ -20,15 +20,18 @@ final class InsuranceOverviewViewController: UIViewController {
     var currentChildSegmentViewController: UIViewController?
     
     private var childSegmentViewControllers: [UIViewController] = []
-    lazy private var insurancesViewController: InsurancesViewController = {
+    private lazy var insurancesViewController: InsurancesViewController = {
         let insurancesViewController = StoryboardScene.InsuranceOverview.insurancesViewController.instantiate()
         insurancesViewController.delegate = self
         return insurancesViewController
     }()
-    lazy private var insuranceCostViewController: InsuranceCostViewController = {
+    private lazy var insuranceCostViewController: InsuranceCostViewController = {
         let insuranceCostViewController = StoryboardScene.InsuranceOverview.insuranceCostViewController.instantiate()
         insuranceCostViewController.delegate = self
         return insuranceCostViewController
+    }()
+    private lazy var profileBarButtonItem: UIBarButtonItem = {
+        UIBarButtonItem(image: profileButton.imageView?.image, style: .plain, target: self, action: nil)
     }()
     
     private var animating: Bool = false
@@ -41,6 +44,7 @@ final class InsuranceOverviewViewController: UIViewController {
                     self.headerLabel.alpha = 0
                     self.profileButton.alpha = 0
                     self.navigationItem.title = self.headerLabel.text
+                    self.navigationItem.rightBarButtonItem = self.profileBarButtonItem
                     self.headerLabelTopConstraint.constant = 0
                     self.segmentedControlTopConstraint.constant = 10
                     self.view.layoutIfNeeded()
@@ -53,6 +57,7 @@ final class InsuranceOverviewViewController: UIViewController {
                     self.headerLabel.alpha = 1
                     self.profileButton.alpha = 1
                     self.navigationItem.title = String()
+                    self.navigationItem.rightBarButtonItem = nil
                     self.headerLabelTopConstraint.constant = 60
                     self.segmentedControlTopConstraint.constant = 120
                     self.view.layoutIfNeeded()
