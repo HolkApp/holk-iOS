@@ -38,28 +38,28 @@ final class InsuranceOverviewViewController: UIViewController {
     private var childViewScrollViewOffset: CGFloat = 0 {
         didSet {
             guard !animating else { return }
-            if childViewScrollViewOffset > 20, oldValue <= 20 {
+            if childViewScrollViewOffset > 0, oldValue <= 0 {
                 animating = true
                 UIView.animate(withDuration: 0.2, animations: {
                     self.headerLabel.alpha = 0
                     self.profileButton.alpha = 0
                     self.navigationItem.title = self.headerLabel.text
                     self.navigationItem.rightBarButtonItem = self.profileBarButtonItem
-                    self.headerLabelTopConstraint.constant = 0
+                    self.headerLabelTopConstraint.constant = -10
                     self.segmentedControlTopConstraint.constant = 10
                     self.view.layoutIfNeeded()
                 }) { _ in
                     self.animating = false
                 }
-            } else if childViewScrollViewOffset <= 0, oldValue > 0 {
+            } else if childViewScrollViewOffset <= -20, oldValue > -20 {
                 animating = true
                 UIView.animate(withDuration: 0.1, animations: {
                     self.headerLabel.alpha = 1
                     self.profileButton.alpha = 1
                     self.navigationItem.title = String()
                     self.navigationItem.rightBarButtonItem = nil
-                    self.headerLabelTopConstraint.constant = 60
-                    self.segmentedControlTopConstraint.constant = 120
+                    self.headerLabelTopConstraint.constant = 20
+                    self.segmentedControlTopConstraint.constant = 100
                     self.view.layoutIfNeeded()
                 }) { _ in
                     self.animating = false
