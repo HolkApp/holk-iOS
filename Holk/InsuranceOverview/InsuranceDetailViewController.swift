@@ -17,8 +17,15 @@ final class InsuranceDetailViewController: UIViewController {
     @IBOutlet private weak var container: UIView!
     @IBOutlet private weak var typeLabel: UILabel!
     
-    @IBAction func backTapped(_ sender: UIButton) {
+    @objc private func backTapped(_ sender: UIButton) {
         delegate?.controllerDismissed(insuranceDetailViewController: self)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "RoundedClose").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(backTapped(_:)))
     }
     
     override func viewWillAppear(_ animated: Bool) {

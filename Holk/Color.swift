@@ -18,11 +18,15 @@ enum Color {
     }
     
     static var mainForegroundColor: UIColor {
-        return UIColor.black
+        return UIColor(red: 15/255, green: 15/255, blue: 15/255, alpha: 1)
     }
     
     static var secondaryForegroundColor: UIColor {
         return UIColor(red: 66/255, green: 65/255, blue: 65/255, alpha: 1)
+    }
+    
+    static var onBoardingBackgroundColor: UIColor {
+        return UIColor(red: 222/255, green: 222/255, blue: 222/255, alpha: 1)
     }
     
     static var tabbarBackgroundColor: UIColor {
@@ -31,5 +35,9 @@ enum Color {
     
     static var lightBorderColor: UIColor {
         return UIColor(red: 241/255, green: 226/255, blue: 226/255, alpha: 1)
+    }
+    
+    static var mainButtonBackgroundColor: UIColor {
+        return UIColor(red: 242/255, green: 178/255, blue: 164/255, alpha: 1)
     }
 }

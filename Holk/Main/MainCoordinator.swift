@@ -24,7 +24,7 @@ class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
     
     // MARK: - Public Methods
     func start() {
-//        Should present the landing page
+        // TODO: Should present the landing page
 //        let vc = StoryboardScene.Main.landingViewController.instantiate()
 //        vc.tabBarItem = UITabBarItem(title: "Översikt", image: UIImage(named: "OverView"), tag: 0)
 //        vc.coordinator = self

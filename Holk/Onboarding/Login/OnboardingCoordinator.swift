@@ -25,8 +25,10 @@ final class OnboardingCoordinator: NSObject, Coordinator, BackNavigation, UINavi
     func start() {
         let vc = StoryboardScene.Main.onboardingLoginViewController.instantiate()
         vc.coordinator = self
-        navController.isNavigationBarHidden = true
+        navController.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navController.navigationBar.shadowImage = UIImage()
         navController.delegate = self
+        navController.navigationBar.tintColor = .black
         navController.pushViewController(vc, animated: true)
     }
     
