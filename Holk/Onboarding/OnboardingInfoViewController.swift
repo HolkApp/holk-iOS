@@ -11,4 +11,9 @@ import UIKit
 class OnboardingInfoViewController: UIViewController {
     
     weak var coordinator: BackNavigation?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationController?.isNavigationBarHidden = false
+    }
 }

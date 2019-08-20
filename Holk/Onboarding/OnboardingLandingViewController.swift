@@ -1,5 +1,5 @@
 //
-//  OnboardingLoginViewController.swift
+//  OnboardingLandingViewController.swift
 //  Holk
 //
 //  Created by 张梦皓 on 2019-04-30.
@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-final class OnboardingLoginViewController: UIViewController {
+final class OnboardingLandingViewController: UIViewController {
     
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var loginButton: UIButton!
@@ -23,18 +23,25 @@ final class OnboardingLoginViewController: UIViewController {
         setup()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.isNavigationBarHidden = true
+    }
+    
     @IBAction func infoButtonTapped(_ sender: UIButton) {
         coordinator?.displayOnBoradingInfo()
     }
     
     @IBAction func loginTapped(_ sender: UIButton) {
-        
-    }
-    
-    @IBAction func signUpTapped(_ sender: UIButton) {
         if let window = UIApplication.shared.delegate?.window {
             window?.rootViewController = TabBarController()
         }
+
+    }
+    
+    @IBAction func signUpTapped(_ sender: UIButton) {
+        
     }
     
     private func setup() {

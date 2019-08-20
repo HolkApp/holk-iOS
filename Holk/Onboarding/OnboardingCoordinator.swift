@@ -23,7 +23,7 @@ final class OnboardingCoordinator: NSObject, Coordinator, BackNavigation, UINavi
     
     // MARK: - Public Methods
     func start() {
-        let vc = StoryboardScene.Main.onboardingLoginViewController.instantiate()
+        let vc = StoryboardScene.Main.onboardingLandingViewController.instantiate()
         vc.coordinator = self
         navController.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navController.navigationBar.shadowImage = UIImage()

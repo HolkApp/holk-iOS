@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  OnboardingSignupViewController.swift
 //  Holk
 //
 //  Created by 张梦皓 on 2019-04-24.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LandingViewController: UIViewController {
+class OnboardingSignupViewController: UIViewController {
 
     weak var coordinator: MainCoordinator?
     
