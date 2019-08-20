@@ -14,7 +14,7 @@ class InsuranceDetailCoordinator: NSObject, Coordinator, BackNavigation, UINavig
     lazy var insuranceDetailViewController: InsuranceDetailViewController = {
         let vc = StoryboardScene.InsuranceOverview
             .insuranceDetailViewController.instantiate()
-        vc.delegate = self
+        vc.coordinator = self
         return vc
     }()
     

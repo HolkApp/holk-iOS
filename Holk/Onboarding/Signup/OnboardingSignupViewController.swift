@@ -10,11 +10,26 @@ import UIKit
 
 class OnboardingSignupViewController: UIViewController {
 
-    weak var coordinator: MainCoordinator?
+    weak var coordinator: OnboardingCoordinator?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        navigationController?.isNavigationBarHidden = false
+        navigationItem.setHidesBackButton(true, animated: false)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "RoundedClose").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(backTapped(_:)))
+        
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationItem.setHidesBackButton(true, animated: animated)
+    }
+    
+    @objc private func backTapped(_ sender: UIButton) {
+        coordinator?.back()
     }
 
 

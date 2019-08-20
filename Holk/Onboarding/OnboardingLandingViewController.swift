@@ -41,7 +41,7 @@ final class OnboardingLandingViewController: UIViewController {
     }
     
     @IBAction func signUpTapped(_ sender: UIButton) {
-        
+        coordinator?.signup()
     }
     
     private func setup() {

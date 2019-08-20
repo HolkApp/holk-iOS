@@ -17,9 +17,7 @@ final class InsuranceDetailViewController: UIViewController {
     @IBOutlet private weak var container: UIView!
     @IBOutlet private weak var typeLabel: UILabel!
     
-    @objc private func backTapped(_ sender: UIButton) {
-        delegate?.controllerDismissed(insuranceDetailViewController: self)
-    }
+    weak var coordinator: InsuranceDetailCoordinator?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,5 +32,8 @@ final class InsuranceDetailViewController: UIViewController {
         navigationItem.setHidesBackButton(true, animated: animated)
     }
     
-    weak var delegate: InsuranceDetailViewControllerDelegate?
+    @objc private func backTapped(_ sender: UIButton) {
+        coordinator?.back()
+    }
+    
 }

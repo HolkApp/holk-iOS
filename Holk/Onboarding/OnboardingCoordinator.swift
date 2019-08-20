@@ -32,10 +32,10 @@ final class OnboardingCoordinator: NSObject, Coordinator, BackNavigation, UINavi
         navController.pushViewController(vc, animated: true)
     }
     
-    // MARK: - BackNavigation
-    func back() {
-        // In case the navbar is hidden and handle the back nav programmaticlly
-        navController.popViewController(animated: true)
+    func signup() {
+        let vc = StoryboardScene.Main.onboardingSignupViewController.instantiate()
+        vc.coordinator = self
+        navController.pushViewController(vc, animated: true)
     }
     
     // MARK: - OnBoardingInfo
@@ -43,6 +43,13 @@ final class OnboardingCoordinator: NSObject, Coordinator, BackNavigation, UINavi
         let vc = StoryboardScene.Main.onboardingInfoViewController.instantiate()
         vc.coordinator = self
         navController.pushViewController(vc, animated: true)
+    }
+    
+    
+    // MARK: - BackNavigation
+    func back() {
+        // In case the navbar is hidden and handle the back nav programmaticlly
+        navController.popViewController(animated: true)
     }
     
     // MARK: - UINavigationControllerDelegate
