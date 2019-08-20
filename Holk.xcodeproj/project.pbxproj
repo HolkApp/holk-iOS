@@ -20,6 +20,7 @@
 		8F63C30E22C8CE5300CFE334 /* InsuranceCostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F63C30C22C8CE5300CFE334 /* InsuranceCostTableViewCell.swift */; };
 		8F63C30F22C8CE5300CFE334 /* InsuranceCostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8F63C30D22C8CE5300CFE334 /* InsuranceCostTableViewCell.xib */; };
 		8F63C31122E44A7A00CFE334 /* InsuranceDetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F63C31022E44A7A00CFE334 /* InsuranceDetailCoordinator.swift */; };
+		8F65466C230C78990053B3F8 /* HolkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F65466B230C78990053B3F8 /* HolkButton.swift */; };
 		8F6BCA2122EF61EF004B887E /* InsuranceDetailTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6BCA2022EF61EF004B887E /* InsuranceDetailTransition.swift */; };
 		8F6BCA3922F73CBF004B887E /* Font Awesome 5 Pro-Solid-900.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8F6BCA3422F73CBF004B887E /* Font Awesome 5 Pro-Solid-900.otf */; };
 		8F6BCA3A22F73CBF004B887E /* Font Awesome 5 Brands-Regular-400.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8F6BCA3522F73CBF004B887E /* Font Awesome 5 Brands-Regular-400.otf */; };
@@ -88,6 +89,7 @@
 		8F63C30C22C8CE5300CFE334 /* InsuranceCostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceCostTableViewCell.swift; sourceTree = "<group>"; };
 		8F63C30D22C8CE5300CFE334 /* InsuranceCostTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InsuranceCostTableViewCell.xib; sourceTree = "<group>"; };
 		8F63C31022E44A7A00CFE334 /* InsuranceDetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceDetailCoordinator.swift; sourceTree = "<group>"; };
+		8F65466B230C78990053B3F8 /* HolkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolkButton.swift; sourceTree = "<group>"; };
 		8F6BCA2022EF61EF004B887E /* InsuranceDetailTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceDetailTransition.swift; sourceTree = "<group>"; };
 		8F6BCA3422F73CBF004B887E /* Font Awesome 5 Pro-Solid-900.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Font Awesome 5 Pro-Solid-900.otf"; sourceTree = "<group>"; };
 		8F6BCA3522F73CBF004B887E /* Font Awesome 5 Brands-Regular-400.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Font Awesome 5 Brands-Regular-400.otf"; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				8FF6E75322B9634400F6D398 /* HolkSegmentedControl.swift */,
+				8F65466B230C78990053B3F8 /* HolkButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -341,8 +344,8 @@
 		8FF6E73222B534F800F6D398 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				8F9807E82276F10E00584BA9 /* MainCoordinator.swift */,
 				8F5B5A3A22783D0200E79A40 /* TabBarController.swift */,
+				8F9807E82276F10E00584BA9 /* MainCoordinator.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -595,6 +598,7 @@
 				8FF6E74122B82D1100F6D398 /* Font.swift in Sources */,
 				8F5B5A3922771ED400E79A40 /* StoryboardsScenes.swift in Sources */,
 				8F9C83DA22A3140B005BB336 /* InsuranceOverviewViewController.swift in Sources */,
+				8F65466C230C78990053B3F8 /* HolkButton.swift in Sources */,
 				8FF6E72D22B0333000F6D398 /* InsuranceTableViewCell.swift in Sources */,
 				8F5B5A3B22783D0200E79A40 /* TabBarController.swift in Sources */,
 				8F2D246222F462C900B7839E /* User.swift in Sources */,
