@@ -18,19 +18,54 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Nothing here" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y57-ju-PMf">
-                                <rect key="frame" x="157.5" y="442.5" width="99.5" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Skapa användare" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y57-ju-PMf">
+                                <rect key="frame" x="40" y="84" width="334" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ange en e-post adress och ett valfritt lösenord." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eJ2-PT-pER">
+                                <rect key="frame" x="40" y="119.5" width="334" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dpx-yO-hCY" customClass="HolkTextField" customModule="Holk" customModuleProvider="target">
+                                <rect key="frame" x="40" y="295.5" width="334" height="35"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="ga0-Fa-LQk"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vYx-VQ-TXI" customClass="HolkTextField" customModule="Holk" customModuleProvider="target">
+                                <rect key="frame" x="40" y="210.5" width="334" height="35"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="9YT-Tg-GeW"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Y57-ju-PMf" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="PLB-LQ-ILh"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Y57-ju-PMf" secondAttribute="trailing" constant="40" id="2Qn-hC-NCE"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="eJ2-PT-pER" secondAttribute="trailing" constant="40" id="Frw-YD-AnK"/>
+                            <constraint firstItem="Y57-ju-PMf" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="MnF-sx-A2S"/>
+                            <constraint firstItem="Y57-ju-PMf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="Qiw-2Z-nXU"/>
+                            <constraint firstItem="eJ2-PT-pER" firstAttribute="top" secondItem="Y57-ju-PMf" secondAttribute="bottom" constant="15" id="TDO-ae-bC8"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="dpx-yO-hCY" secondAttribute="trailing" constant="40" id="exY-jd-A77"/>
+                            <constraint firstItem="vYx-VQ-TXI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="fEQ-EX-3tt"/>
+                            <constraint firstItem="vYx-VQ-TXI" firstAttribute="top" secondItem="eJ2-PT-pER" secondAttribute="bottom" constant="50" id="iYN-LH-dBr"/>
+                            <constraint firstItem="eJ2-PT-pER" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="jhL-GS-D8j"/>
+                            <constraint firstItem="dpx-yO-hCY" firstAttribute="top" secondItem="vYx-VQ-TXI" secondAttribute="bottom" constant="50" id="mC3-9C-Mv5"/>
+                            <constraint firstItem="dpx-yO-hCY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="mbY-MH-A8T"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="vYx-VQ-TXI" secondAttribute="trailing" constant="40" id="ybo-YC-s0v"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="vYx-VQ-TXI" id="ppo-qv-eub"/>
+                        <outlet property="passwordTextField" destination="dpx-yO-hCY" id="jmb-NM-Xwp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

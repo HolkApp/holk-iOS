@@ -17,6 +17,10 @@ enum Color {
         return UIColor.white
     }
     
+    static var placeHolderTextColor: UIColor {
+        return UIColor(red: 151/255, green: 151/255, blue: 151/255, alpha: 1)
+    }
+    
     static var mainForegroundColor: UIColor {
         return UIColor(red: 15/255, green: 15/255, blue: 15/255, alpha: 1)
     }
