@@ -1,5 +1,5 @@
 //
-//  MainCoordinator.swift
+//  InsuranceCoordinator.swift
 //  Holk
 //
 //  Created by 张梦皓 on 2019-04-29.
@@ -13,7 +13,7 @@ protocol Coordinator {
     func start()
 }
 
-class MainCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
+class InsuranceCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
     // MARK: - Public Properties
     var navController: UINavigationController
     

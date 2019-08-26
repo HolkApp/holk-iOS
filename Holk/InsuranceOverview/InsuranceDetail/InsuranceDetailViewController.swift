@@ -8,10 +8,6 @@
 
 import UIKit
 
-protocol InsuranceDetailViewControllerDelegate: class {
-    func controllerDismissed(insuranceDetailViewController: InsuranceDetailViewController)
-}
-
 final class InsuranceDetailViewController: UIViewController {
     
     @IBOutlet private weak var container: UIView!

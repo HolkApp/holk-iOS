@@ -43,20 +43,12 @@ class InsuranceDetailCoordinator: NSObject, Coordinator, BackNavigation, UINavig
     // MARK: - UINavigationControllerDelegate
     func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         if let insuranceOverviewViewController = fromVC as? InsuranceOverviewViewController,
-            let fromInsuranceCostViewController = insuranceOverviewViewController.currentChildSegmentViewController as? InsuranceCostViewController,
-            let toInsuranceDetailViewController = toVC as? InsuranceDetailViewController {
-            if let selectedIndexPath = fromInsuranceCostViewController.tableView.indexPathForSelectedRow {
-                return InsuranceDetailTransition()
-            }
+            insuranceOverviewViewController.currentChildSegmentViewController is InsuranceCostViewController,
+            toVC is InsuranceDetailViewController {
+            return InsuranceDetailTransition()
+        } else if fromVC is InsuranceDetailViewController, toVC is InsuranceOverviewViewController {
+            // back navigation transition
         }
         return nil
-    }
-}
-
-extension InsuranceDetailCoordinator: InsuranceDetailViewControllerDelegate {
-    func controllerDismissed(insuranceDetailViewController: InsuranceDetailViewController) {
-        if navController.topViewController == insuranceDetailViewController {
-            navController.popViewController(animated: true)
-        }
     }
 }

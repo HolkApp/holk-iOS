@@ -16,8 +16,8 @@ final class InsuranceCostViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
-    weak var delegate: InsuranceCostViewControllerDelegate?
     var insuranceDetailCoordinator: InsuranceDetailCoordinator?
+    weak var delegate: InsuranceCostViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()

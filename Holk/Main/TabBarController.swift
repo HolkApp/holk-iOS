@@ -10,14 +10,14 @@ import UIKit
 
 class TabBarController: UITabBarController {
     
-    let mainCoordinator = MainCoordinator(navController: UINavigationController())
+    let insuranceCoordinator = InsuranceCoordinator(navController: UINavigationController())
     let protectionCoordinator = InsuranceProtectionCoordinator(navController: UINavigationController())
     
     override func viewDidLoad() {
-        mainCoordinator.start()
+        insuranceCoordinator.start()
         protectionCoordinator.start()
         viewControllers = [
-            mainCoordinator.navController,
+            insuranceCoordinator.navController,
             protectionCoordinator.navController
         ]
         
