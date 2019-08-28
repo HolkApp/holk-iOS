@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 class OnboardingSignupViewController: UIViewController {
 
@@ -17,6 +19,7 @@ class OnboardingSignupViewController: UIViewController {
     private var textView = UITextView()
     private var doneButton = HolkButton()
     private var doneButtonBottomConstraint: NSLayoutConstraint!
+    private var bag = DisposeBag()
     
     weak var coordinator: OnboardingCoordinator?
     
@@ -70,8 +73,16 @@ class OnboardingSignupViewController: UIViewController {
         doneButton.backgroundColor = Color.mainButtonBackgroundColor
         doneButton.titleLabel?.font = Font.semibold(.subtitle)
         doneButton.tintColor = Color.mainForegroundColor
+        doneButton.isEnabled = false
         doneButton.setTitleColor(Color.mainForegroundColor, for: UIControl.State())
         doneButton.addTarget(self, action: #selector(submit(_:)), for: .touchUpInside)
+
+        Observable.combineLatest(emailTextField.rx.text, passwordTextField.rx.text) { (emailText, passwordText) -> Bool in
+            guard let emailText = emailText, let passwordText = passwordText else {
+                return false
+            }
+            return !emailText.isEmpty && !passwordText.isEmpty
+        }.bind(to: doneButton.rx.isEnabled).disposed(by: bag)
         
         NSLayoutConstraint.activate([
             textView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 45),
