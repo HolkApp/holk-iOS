@@ -34,10 +34,8 @@ final class OnboardingLandingViewController: UIViewController {
     }
     
     @IBAction func loginTapped(_ sender: UIButton) {
-        if let window = UIApplication.shared.delegate?.window {
-            window?.rootViewController = TabBarController()
-        }
-
+        // TODO: login
+        coordinator?.login()
     }
     
     @IBAction func signUpTapped(_ sender: UIButton) {

@@ -1,19 +1,20 @@
 //
-//  OnboardingSignupViewController.swift
+//  OnboardingLoginViewController.swift
 //  Holk
 //
-//  Created by 张梦皓 on 2019-04-24.
+//  Created by 张梦皓 on 2019-08-28.
 //  Copyright © 2019 Holk. All rights reserved.
 //
 
 import UIKit
 
-class OnboardingSignupViewController: UIViewController {
-
+class OnboardingLoginViewController: UIViewController {
+    
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var subtitleLabel: UILabel!
     @IBOutlet private weak var emailTextField: HolkTextField!
     @IBOutlet private weak var passwordTextField: HolkTextField!
+    
     private var textView = UITextView()
     private var doneButton = HolkButton()
     private var doneButtonBottomConstraint: NSLayoutConstraint!
@@ -41,7 +42,7 @@ class OnboardingSignupViewController: UIViewController {
         view.addSubview(textView)
         view.addSubview(doneButton)
         
-        titleLabel.text = "Skapa användare"
+        titleLabel.text = "Logga in"
         titleLabel.font = Font.extraBold(.secondHeader)
         subtitleLabel.text = "Ange en e-post adress och ett valfritt lösenord."
         subtitleLabel.font = Font.light(.subtitle)
@@ -66,7 +67,7 @@ class OnboardingSignupViewController: UIViewController {
         
         doneButton.translatesAutoresizingMaskIntoConstraints = false
         doneButtonBottomConstraint = doneButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
-        doneButton.setTitle("Skapa konot", for: UIControl.State())
+        doneButton.setTitle("Logga in", for: UIControl.State())
         doneButton.backgroundColor = Color.mainButtonBackgroundColor
         doneButton.titleLabel?.font = Font.semibold(.subtitle)
         doneButton.tintColor = Color.mainForegroundColor
@@ -100,7 +101,7 @@ class OnboardingSignupViewController: UIViewController {
     }
 }
 
-extension OnboardingSignupViewController: UITextFieldDelegate {
+extension OnboardingLoginViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         doneButtonBottomConstraint.constant = -300
     }

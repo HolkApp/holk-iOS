@@ -221,8 +221,7 @@ private extension HolkTextField {
         addTarget(self, action: #selector(didChangeText(_:)), for: .editingChanged)
     }
     
-    @objc
-    func didChangeText(_ sender: Any) {
+    @objc func didChangeText(_ sender: Any) {
         updatePlaceholderLayer()
     }
     

@@ -32,6 +32,12 @@ final class OnboardingCoordinator: NSObject, Coordinator, BackNavigation, UINavi
         navController.pushViewController(vc, animated: true)
     }
     
+    func login() {
+        let vc = StoryboardScene.Main.onboardingLoginViewController.instantiate()
+        vc.coordinator = self
+        navController.pushViewController(vc, animated: true)
+    }
+    
     func signup() {
         let vc = StoryboardScene.Main.onboardingSignupViewController.instantiate()
         vc.coordinator = self

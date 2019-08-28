@@ -18,30 +18,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Skapa användare" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y57-ju-PMf">
-                                <rect key="frame" x="40" y="84" width="334" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Skapa användare" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y57-ju-PMf">
+                                <rect key="frame" x="40" y="74" width="334" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ange en e-post adress och ett valfritt lösenord." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eJ2-PT-pER">
-                                <rect key="frame" x="40" y="119.5" width="334" height="41"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ange en e-post adress och ett valfritt lösenord." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eJ2-PT-pER">
+                                <rect key="frame" x="40" y="104.5" width="334" height="41"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dpx-yO-hCY" customClass="HolkTextField" customModule="Holk" customModuleProvider="target">
-                                <rect key="frame" x="40" y="295.5" width="334" height="35"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="ga0-Fa-LQk"/>
-                                </constraints>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vYx-VQ-TXI" customClass="HolkTextField" customModule="Holk" customModuleProvider="target">
-                                <rect key="frame" x="40" y="210.5" width="334" height="35"/>
+                                <rect key="frame" x="40" y="185.5" width="334" height="35"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="9YT-Tg-GeW"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dpx-yO-hCY" customClass="HolkTextField" customModule="Holk" customModuleProvider="target">
+                                <rect key="frame" x="40" y="270.5" width="334" height="35"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="ga0-Fa-LQk"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -49,12 +49,12 @@
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Y57-ju-PMf" secondAttribute="trailing" constant="40" id="2Qn-hC-NCE"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="eJ2-PT-pER" secondAttribute="trailing" constant="40" id="Frw-YD-AnK"/>
-                            <constraint firstItem="Y57-ju-PMf" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="MnF-sx-A2S"/>
+                            <constraint firstItem="Y57-ju-PMf" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="30" id="MnF-sx-A2S"/>
                             <constraint firstItem="Y57-ju-PMf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="Qiw-2Z-nXU"/>
-                            <constraint firstItem="eJ2-PT-pER" firstAttribute="top" secondItem="Y57-ju-PMf" secondAttribute="bottom" constant="15" id="TDO-ae-bC8"/>
+                            <constraint firstItem="eJ2-PT-pER" firstAttribute="top" secondItem="Y57-ju-PMf" secondAttribute="bottom" constant="10" id="TDO-ae-bC8"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="dpx-yO-hCY" secondAttribute="trailing" constant="40" id="exY-jd-A77"/>
                             <constraint firstItem="vYx-VQ-TXI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="fEQ-EX-3tt"/>
-                            <constraint firstItem="vYx-VQ-TXI" firstAttribute="top" secondItem="eJ2-PT-pER" secondAttribute="bottom" constant="50" id="iYN-LH-dBr"/>
+                            <constraint firstItem="vYx-VQ-TXI" firstAttribute="top" secondItem="eJ2-PT-pER" secondAttribute="bottom" constant="40" id="iYN-LH-dBr"/>
                             <constraint firstItem="eJ2-PT-pER" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="jhL-GS-D8j"/>
                             <constraint firstItem="dpx-yO-hCY" firstAttribute="top" secondItem="vYx-VQ-TXI" secondAttribute="bottom" constant="50" id="mC3-9C-Mv5"/>
                             <constraint firstItem="dpx-yO-hCY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="mbY-MH-A8T"/>
@@ -65,6 +65,8 @@
                     <connections>
                         <outlet property="emailTextField" destination="vYx-VQ-TXI" id="ppo-qv-eub"/>
                         <outlet property="passwordTextField" destination="dpx-yO-hCY" id="jmb-NM-Xwp"/>
+                        <outlet property="subtitleLabel" destination="eJ2-PT-pER" id="Wsz-81-C9v"/>
+                        <outlet property="titleLabel" destination="Y57-ju-PMf" id="oXF-YC-nSO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -172,6 +174,69 @@ försäkringar</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SHu-wE-FYu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-688" y="114"/>
+        </scene>
+        <!--Onboarding Login View Controller-->
+        <scene sceneID="L9K-ik-bSU">
+            <objects>
+                <viewController storyboardIdentifier="OnboardingLoginViewController" id="fNJ-rc-crj" customClass="OnboardingLoginViewController" customModule="Holk" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="iCP-Yl-ptA">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Logga in" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="naG-9x-MD8">
+                                <rect key="frame" x="40" y="74" width="334" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ange en e-post adress och ett valfritt lösenord." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B0F-C5-4ak">
+                                <rect key="frame" x="40" y="104.5" width="334" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lB1-Is-s5e" customClass="HolkTextField" customModule="Holk" customModuleProvider="target">
+                                <rect key="frame" x="40" y="185.5" width="334" height="35"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="nyx-1f-WiF"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2eu-gH-Xwq" customClass="HolkTextField" customModule="Holk" customModuleProvider="target">
+                                <rect key="frame" x="40" y="270.5" width="334" height="35"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="hg4-ex-uzl"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="naG-9x-MD8" firstAttribute="top" secondItem="hiY-lf-XtR" secondAttribute="top" constant="30" id="3A0-bO-DpQ"/>
+                            <constraint firstItem="naG-9x-MD8" firstAttribute="leading" secondItem="hiY-lf-XtR" secondAttribute="leading" constant="40" id="8J9-WI-pOB"/>
+                            <constraint firstItem="2eu-gH-Xwq" firstAttribute="top" secondItem="lB1-Is-s5e" secondAttribute="bottom" constant="50" id="AXi-QU-S7T"/>
+                            <constraint firstItem="2eu-gH-Xwq" firstAttribute="leading" secondItem="hiY-lf-XtR" secondAttribute="leading" constant="40" id="Gz0-pH-XG3"/>
+                            <constraint firstItem="hiY-lf-XtR" firstAttribute="trailing" secondItem="lB1-Is-s5e" secondAttribute="trailing" constant="40" id="Hrh-Au-NGO"/>
+                            <constraint firstItem="lB1-Is-s5e" firstAttribute="leading" secondItem="hiY-lf-XtR" secondAttribute="leading" constant="40" id="KNT-cA-aBo"/>
+                            <constraint firstItem="hiY-lf-XtR" firstAttribute="trailing" secondItem="naG-9x-MD8" secondAttribute="trailing" constant="40" id="KrZ-Op-ave"/>
+                            <constraint firstItem="hiY-lf-XtR" firstAttribute="trailing" secondItem="B0F-C5-4ak" secondAttribute="trailing" constant="40" id="L56-P5-Rg6"/>
+                            <constraint firstItem="B0F-C5-4ak" firstAttribute="leading" secondItem="hiY-lf-XtR" secondAttribute="leading" constant="40" id="OFm-3u-w2U"/>
+                            <constraint firstItem="lB1-Is-s5e" firstAttribute="top" secondItem="B0F-C5-4ak" secondAttribute="bottom" constant="40" id="w1F-qb-7sL"/>
+                            <constraint firstItem="B0F-C5-4ak" firstAttribute="top" secondItem="naG-9x-MD8" secondAttribute="bottom" constant="10" id="wNG-2B-J8J"/>
+                            <constraint firstItem="hiY-lf-XtR" firstAttribute="trailing" secondItem="2eu-gH-Xwq" secondAttribute="trailing" constant="40" id="xEn-SK-sfw"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="hiY-lf-XtR"/>
+                    </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="lB1-Is-s5e" id="9Vh-l4-6Zk"/>
+                        <outlet property="passwordTextField" destination="2eu-gH-Xwq" id="s0y-Su-rZN"/>
+                        <outlet property="subtitleLabel" destination="B0F-C5-4ak" id="W6e-Lu-OK0"/>
+                        <outlet property="titleLabel" destination="naG-9x-MD8" id="byS-oY-hnC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wIk-0X-G8u" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="951" y="114"/>
         </scene>
     </scenes>
 </document>
