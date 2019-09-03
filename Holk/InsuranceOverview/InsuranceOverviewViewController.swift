@@ -88,6 +88,7 @@ final class InsuranceOverviewViewController: UIViewController {
         profileButton.setTitle("", for: UIControl.State())
         profileButton.setImage(UIImage(named: "Profile"), for: UIControl.State())
         profileButton.tintColor = Color.mainForegroundColor
+        profileButton.addTarget(self, action: #selector(profileTapped(sender:)), for: .touchUpInside)
         
         segmentedControl.removeAllSegments()
         segmentedControl.insertSegment(withTitle: "Försäkringar", at: 0, animated: false)
@@ -129,6 +130,14 @@ final class InsuranceOverviewViewController: UIViewController {
             containerView.rightAnchor.constraint(equalTo: childSegmentViewController.view.rightAnchor)
             ])
         currentChildSegmentViewController = childSegmentViewController
+    }
+    
+    @objc private func profileTapped(sender: UIButton) {
+        // Temp hack
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            appDelegate.coordinator?.start()
+            UIApplication.shared.keyWindow?.rootViewController = appDelegate.coordinator?.navController
+        }
     }
 }
 

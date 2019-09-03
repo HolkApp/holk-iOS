@@ -15,10 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var coordinator: OnboardingCoordinator?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        let navVC = UINavigationController()
         // TODO: Use main coordinator to check the token first
-        coordinator = OnboardingCoordinator(navController: navVC)
+        coordinator = OnboardingCoordinator(navController: UINavigationController())
         coordinator?.start()
         
         window = UIWindow(frame: UIScreen.main.bounds)
