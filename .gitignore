@@ -43,6 +43,8 @@ playground.xcworkspace
 .build/
 
 # CocoaPods - Refactored to standalone file
+Pods/
+*.xcworkspace
 
 # Carthage - Refactored to standalone file
 

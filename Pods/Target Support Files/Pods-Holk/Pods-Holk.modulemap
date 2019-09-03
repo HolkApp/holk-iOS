@@ -1,6 +1,0 @@
-framework module Pods_Holk {
-  umbrella header "Pods-Holk-umbrella.h"
-
-  export *
-  module * { export * }
-}
