@@ -51,11 +51,13 @@ final class OnboardingLandingViewController: UIViewController {
         loginButton.backgroundColor = Color.mainButtonBackgroundColor
         loginButton.titleLabel?.font = Font.semibold(.subtitle)
         loginButton.tintColor = Color.mainForegroundColor
+        loginButton.setTitle("Logga in", for: UIControl.State())
         signupButton.layer.borderWidth = 1
         signupButton.layer.borderColor = Color.mainForegroundColor.cgColor
         signupButton.layer.cornerRadius = 7
         signupButton.titleLabel?.font = Font.semibold(.subtitle)
         signupButton.tintColor = Color.mainForegroundColor
+        signupButton.setTitle("Skapa konto", for: UIControl.State())
         onBoardingButton.contentEdgeInsets = UIEdgeInsets(top: 10, left: 15, bottom: 10, right: 15)
         onBoardingButton.backgroundColor = Color.secondaryBackgroundColor
         onBoardingButton.layer.cornerRadius = 17.5

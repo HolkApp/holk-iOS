@@ -19,30 +19,25 @@ class APIStoreBase {
     
     private let sessionManager = Alamofire.SessionManager(configuration: .default)
     
-    func httpRequest<Value: Codable>(method: Alamofire.HTTPMethod, url: URL, headers: [String: String]?, parameters: [String: AnyObject]?) -> Observable<Result<Value>> {
+    func httpRequest<Value: Codable>(method: Alamofire.HTTPMethod, url: URL, headers: [String: String] = [:], parameters: [String: AnyObject]?) -> Observable<Result<Value>> {
         
         let encoding: Alamofire.ParameterEncoding = (method == .get ? URLEncoding.default : JSONEncoding.default)
         
-        var httpHeaders = authorizationHeader
-        if let headers = headers {
-            headers.forEach { (key, value) in
-                httpHeaders.updateValue(value, forKey: key)
-            }
-        }
-        httpHeaders["Accept"] = "application/json"
+        let httpHeaders = updateHeaders(with: headers)
+        
         // TODO: Update this with correct encoding
         let requestObservable = sessionManager.rx.request(method, url, parameters: parameters, encoding: URLEncoding.default, headers: httpHeaders)
         let dataObservable = requestObservable.flatMap {
             $0.rx.responseData()
             }.map({ (response, data) -> Result<Value> in
-                if !(200..<300 ~= response.statusCode) {
-                    throw NSError(domain: "Holk", code: response.statusCode)
-                }
                 let token = response.allHeaderFields.first(where: { (key, value) -> Bool in
                     (key as? String) == "token"
                 })?.value
                 if let t = token {
                     // check the token, do something(refresh token)
+                }
+                if !(200..<300 ~= response.statusCode) {
+                    return .failure(APIError.errorCode(code: response.statusCode))
                 }
                 do {
                     let data = try JSONDecoder().decode(Value.self, from: data)
@@ -53,6 +48,15 @@ class APIStoreBase {
                 }
             })
         return dataObservable
+    }
+    
+    private func updateHeaders(with initialHeaders: [String: String]) -> [String: String] {
+        var httpHeaders = initialHeaders.merging(authorizationHeader) { (_, new) -> String in
+            return new
+        }
+        httpHeaders["Accept"] = "application/json"
+        
+        return httpHeaders
     }
     
     private var authorizationHeader: [String: String] {
