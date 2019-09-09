@@ -34,6 +34,9 @@
 		8F9C83DA22A3140B005BB336 /* InsuranceOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9C83D922A3140B005BB336 /* InsuranceOverviewViewController.swift */; };
 		8F9C83DC22A31658005BB336 /* InsuranceOverview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F9C83DB22A31658005BB336 /* InsuranceOverview.storyboard */; };
 		8FCEE9AC231EE85000F75FB8 /* OnboardingSignupConfirmedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCEE9AB231EE85000F75FB8 /* OnboardingSignupConfirmedViewController.swift */; };
+		8FCEE9AE23254AAC00F75FB8 /* KeyboardEventObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCEE9AD23254AAC00F75FB8 /* KeyboardEventObserver.swift */; };
+		8FCEE9B123254B6C00F75FB8 /* KeyboardEventContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCEE9B023254B6C00F75FB8 /* KeyboardEventContext.swift */; };
+		8FCEE9B323254C2D00F75FB8 /* KeyboardEventFloatingViewHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCEE9B223254C2D00F75FB8 /* KeyboardEventFloatingViewHandler.swift */; };
 		8FD84E682270E732009D563D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD84E672270E732009D563D /* AppDelegate.swift */; };
 		8FD84E6A2270E732009D563D /* OnboardingSignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD84E692270E732009D563D /* OnboardingSignupViewController.swift */; };
 		8FD84E6D2270E732009D563D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FD84E6B2270E732009D563D /* Main.storyboard */; };
@@ -106,6 +109,9 @@
 		8F9C83D922A3140B005BB336 /* InsuranceOverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceOverviewViewController.swift; sourceTree = "<group>"; };
 		8F9C83DB22A31658005BB336 /* InsuranceOverview.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = InsuranceOverview.storyboard; sourceTree = "<group>"; };
 		8FCEE9AB231EE85000F75FB8 /* OnboardingSignupConfirmedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSignupConfirmedViewController.swift; sourceTree = "<group>"; };
+		8FCEE9AD23254AAC00F75FB8 /* KeyboardEventObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardEventObserver.swift; sourceTree = "<group>"; };
+		8FCEE9B023254B6C00F75FB8 /* KeyboardEventContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardEventContext.swift; sourceTree = "<group>"; };
+		8FCEE9B223254C2D00F75FB8 /* KeyboardEventFloatingViewHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardEventFloatingViewHandler.swift; sourceTree = "<group>"; };
 		8FD84E642270E732009D563D /* Holk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Holk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FD84E672270E732009D563D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8FD84E692270E732009D563D /* OnboardingSignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSignupViewController.swift; sourceTree = "<group>"; };
@@ -246,10 +252,19 @@
 				8FF6E75322B9634400F6D398 /* HolkSegmentedControl.swift */,
 				8F65466B230C78990053B3F8 /* HolkButton.swift */,
 				8F65466E230DC4CC0053B3F8 /* HolkTextField.swift */,
+				8FCEE9AF23254B5700F75FB8 /* KeyboardEvent */,
 			);
 			path = CustomView;
 			sourceTree = "<group>";
 		};
+		8FCEE9AF23254B5700F75FB8 /* KeyboardEvent */ = {
+			isa = PBXGroup;
+			children = (
+				8FCEE9AD23254AAC00F75FB8 /* KeyboardEventObserver.swift */,
+				8FCEE9B023254B6C00F75FB8 /* KeyboardEventContext.swift */,
+				8FCEE9B223254C2D00F75FB8 /* KeyboardEventFloatingViewHandler.swift */,
+			);
+			path = KeyboardEvent;
 			sourceTree = "<group>";
 		};
 		8FD84E5B2270E732009D563D = {
@@ -583,6 +598,7 @@
 				8F9807E722722D5E00584BA9 /* APIStore.swift in Sources */,
 				8FF6E75422B9634400F6D398 /* HolkSegmentedControl.swift in Sources */,
 				8FF6E73D22B6B59B00F6D398 /* InsuranceProtectionCoordinator.swift in Sources */,
+				8FCEE9B123254B6C00F75FB8 /* KeyboardEventContext.swift in Sources */,
 				8FF6E72622AC0D2800F6D398 /* Color.swift in Sources */,
 				8FD84E892271B157009D563D /* APIStoreBase.swift in Sources */,
 				8F63C31122E44A7A00CFE334 /* InsuranceDetailCoordinator.swift in Sources */,
@@ -601,10 +617,12 @@
 				8FD84E6A2270E732009D563D /* OnboardingSignupViewController.swift in Sources */,
 				8FF6E72422A70F6600F6D398 /* Then.swift in Sources */,
 				8FF6E73622B6A88100F6D398 /* InsuranceAddMoreCell.swift in Sources */,
+				8FCEE9B323254C2D00F75FB8 /* KeyboardEventFloatingViewHandler.swift in Sources */,
 				8FCEE9AC231EE85000F75FB8 /* OnboardingSignupConfirmedViewController.swift in Sources */,
 				8F5B5A3722771ED400E79A40 /* StoryboardsSegues.swift in Sources */,
 				8FF6E73B22B6B55800F6D398 /* InsuranceProtectionViewController.swift in Sources */,
 				8FF6E73422B57DA800F6D398 /* UITableViewCell+extension.swift in Sources */,
+				8FCEE9AE23254AAC00F75FB8 /* KeyboardEventObserver.swift in Sources */,
 				8FD84E682270E732009D563D /* AppDelegate.swift in Sources */,
 				8FF6E74122B82D1100F6D398 /* Font.swift in Sources */,
 				8F5B5A3922771ED400E79A40 /* StoryboardsScenes.swift in Sources */,

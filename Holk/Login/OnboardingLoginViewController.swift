@@ -21,6 +21,7 @@ class OnboardingLoginViewController: UIViewController {
     private var doneButton = HolkButton()
     private var doneButtonBottomConstraint: NSLayoutConstraint!
     private var bag = DisposeBag()
+    private var keyboardEventObserver: KeyboardEventObserver?
     
     weak var coordinator: OnboardingCoordinator?
     
@@ -54,13 +55,11 @@ class OnboardingLoginViewController: UIViewController {
         emailTextField.placeholder = "E-post adress"
         emailTextField.tintColor = Color.mainForegroundColor
         emailTextField.placeholderTextColor = Color.placeHolderTextColor
-        emailTextField.delegate = self
         passwordTextField.helpColor = Color.placeHolderTextColor
         passwordTextField.tintColor = Color.mainForegroundColor
         passwordTextField.placeholder = "Ange ett lösenord"
         passwordTextField.placeholderTextColor = Color.placeHolderTextColor
         passwordTextField.isSecureTextEntry = true
-        passwordTextField.delegate = self
         
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.textColor = Color.mainForegroundColor
@@ -69,7 +68,7 @@ class OnboardingLoginViewController: UIViewController {
         textView.isScrollEnabled = false
         
         doneButton.translatesAutoresizingMaskIntoConstraints = false
-        doneButtonBottomConstraint = doneButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
+        doneButtonBottomConstraint = view.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: doneButton.bottomAnchor, constant: 0)
         doneButton.setTitle("Logga in", for: UIControl.State())
         doneButton.backgroundColor = Color.mainButtonBackgroundColor
         doneButton.titleLabel?.font = Font.semibold(.subtitle)
@@ -94,6 +93,8 @@ class OnboardingLoginViewController: UIViewController {
             doneButton.heightAnchor.constraint(equalToConstant: 80),
             doneButtonBottomConstraint
             ])
+        let keyboardEventFloatingViewHandler = KeyboardEventFloatingViewHandler(floatingView: doneButton, view: view, bottomConstraint: doneButtonBottomConstraint)
+        keyboardEventObserver = KeyboardEventObserver(handler: keyboardEventFloatingViewHandler)
     }
     
     @objc private func backTapped(_ sender: UIButton) {
@@ -110,14 +111,3 @@ class OnboardingLoginViewController: UIViewController {
         }
     }
 }
-
-extension OnboardingLoginViewController: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        doneButtonBottomConstraint.constant = -300
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        doneButtonBottomConstraint.constant = 0
-    }
-}
-
