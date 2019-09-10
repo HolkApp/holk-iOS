@@ -1,5 +1,5 @@
 //
-//  APIStoreBase.swift
+//  APIBaseStore.swift
 //  Holk
 //
 //  Created by 张梦皓 on 2019-04-25.
@@ -10,7 +10,7 @@ import Alamofire
 import RxSwift
 import RxAlamofire
 
-class APIStoreBase {
+class APIBaseStore {
     
     private struct Constants {
         static let basicAuthUsername = "SampleClientId"

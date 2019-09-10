@@ -43,7 +43,7 @@
 		8FD84E6F2270E736009D563D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8FD84E6E2270E736009D563D /* Assets.xcassets */; };
 		8FD84E722270E736009D563D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FD84E702270E736009D563D /* LaunchScreen.storyboard */; };
 		8FD84E7D2270E736009D563D /* HolkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD84E7C2270E736009D563D /* HolkTests.swift */; };
-		8FD84E892271B157009D563D /* APIStoreBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD84E882271B157009D563D /* APIStoreBase.swift */; };
+		8FD84E892271B157009D563D /* APIBaseStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD84E882271B157009D563D /* APIBaseStore.swift */; };
 		8FF6E72422A70F6600F6D398 /* Then.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF6E72322A70F6600F6D398 /* Then.swift */; };
 		8FF6E72622AC0D2800F6D398 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF6E72522AC0D2800F6D398 /* Color.swift */; };
 		8FF6E72822B026DB00F6D398 /* InsurancesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF6E72722B026DB00F6D398 /* InsurancesViewController.swift */; };
@@ -122,7 +122,7 @@
 		8FD84E782270E736009D563D /* HolkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HolkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FD84E7C2270E736009D563D /* HolkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolkTests.swift; sourceTree = "<group>"; };
 		8FD84E7E2270E736009D563D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8FD84E882271B157009D563D /* APIStoreBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIStoreBase.swift; sourceTree = "<group>"; };
+		8FD84E882271B157009D563D /* APIBaseStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIBaseStore.swift; sourceTree = "<group>"; };
 		8FF6E72322A70F6600F6D398 /* Then.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Then.swift; sourceTree = "<group>"; };
 		8FF6E72522AC0D2800F6D398 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		8FF6E72722B026DB00F6D398 /* InsurancesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsurancesViewController.swift; sourceTree = "<group>"; };
@@ -323,7 +323,7 @@
 			isa = PBXGroup;
 			children = (
 				8F0D403E227A0AD4000BD840 /* APIError.swift */,
-				8FD84E882271B157009D563D /* APIStoreBase.swift */,
+				8FD84E882271B157009D563D /* APIBaseStore.swift */,
 				8F9807E622722D5E00584BA9 /* APIStore.swift */,
 			);
 			path = API;
@@ -600,7 +600,7 @@
 				8FF6E73D22B6B59B00F6D398 /* InsuranceProtectionCoordinator.swift in Sources */,
 				8FCEE9B123254B6C00F75FB8 /* KeyboardEventContext.swift in Sources */,
 				8FF6E72622AC0D2800F6D398 /* Color.swift in Sources */,
-				8FD84E892271B157009D563D /* APIStoreBase.swift in Sources */,
+				8FD84E892271B157009D563D /* APIBaseStore.swift in Sources */,
 				8F63C31122E44A7A00CFE334 /* InsuranceDetailCoordinator.swift in Sources */,
 				8F9807E92276F10E00584BA9 /* InsuranceCoordinator.swift in Sources */,
 				8FF6E73822B6B39800F6D398 /* InsuranceCostViewController.swift in Sources */,

@@ -13,7 +13,7 @@ protocol APIStoreType {
     func login(username: String, password: String) -> Observable<Result<LoginToken>>
 }
 
-class APIStore: APIStoreBase, APIStoreType {
+final class APIStore: APIBaseStore, APIStoreType {
     func login(username: String, password: String) -> Observable<Result<LoginToken>> {
         var httpHeaders = [String: String]()
         
