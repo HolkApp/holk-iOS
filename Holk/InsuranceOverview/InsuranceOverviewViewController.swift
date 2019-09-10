@@ -31,7 +31,7 @@ final class InsuranceOverviewViewController: UIViewController {
         return insuranceCostViewController
     }()
     private lazy var profileBarButtonItem: UIBarButtonItem = {
-        UIBarButtonItem(image: profileButton.imageView?.image, style: .plain, target: self, action: nil)
+        UIBarButtonItem(image: profileButton.imageView?.image, style: .plain, target: self, action: #selector(profileTapped(sender:)))
     }()
     
     private var animating: Bool = false
@@ -40,7 +40,7 @@ final class InsuranceOverviewViewController: UIViewController {
             guard !animating else { return }
             if childViewScrollViewOffset > 0, oldValue <= 0 {
                 animating = true
-                UIView.animate(withDuration: 0.2, animations: {
+                UIView.animate(withDuration: 0.1, animations: {
                     self.headerLabel.alpha = 0
                     self.profileButton.alpha = 0
                     self.navigationItem.title = self.headerLabel.text
@@ -96,13 +96,13 @@ final class InsuranceOverviewViewController: UIViewController {
         segmentedControl.setDividerImage(UIImage(), forLeftSegmentState: UIControl.State(), rightSegmentState:
             UIControl.State(), barMetrics: .default)
         segmentedControl.setTitleTextAttributes([
-            NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.42),
-            NSAttributedString.Key.font: Font.light(.label)
-            ], for: UIControl.State.normal)
+                NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.42),
+                NSAttributedString.Key.font: Font.light(.label)],
+            for: UIControl.State.normal)
         segmentedControl.setTitleTextAttributes([
-            NSAttributedString.Key.foregroundColor: UIColor.black,
-            NSAttributedString.Key.font: Font.light(.label)
-            ], for: UIControl.State.selected)
+                NSAttributedString.Key.foregroundColor: UIColor.black,
+                NSAttributedString.Key.font: Font.light(.label)],
+            for: UIControl.State.selected)
         
         segmentedControl.setBackgroundImage(UIImage(), for: UIControl.State.normal, barMetrics: .default)
         segmentedControl.setBackgroundImage(UIImage(), for: UIControl.State.selected, barMetrics: .default)
@@ -123,13 +123,13 @@ final class InsuranceOverviewViewController: UIViewController {
         childSegmentViewController.view.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(childSegmentViewController.view)
         childSegmentViewController.didMove(toParent: self)
+        currentChildSegmentViewController = childSegmentViewController
         NSLayoutConstraint.activate([
             containerView.topAnchor.constraint(equalTo: childSegmentViewController.view.topAnchor),
             containerView.bottomAnchor.constraint(equalTo: childSegmentViewController.view.bottomAnchor),
             containerView.leftAnchor.constraint(equalTo: childSegmentViewController.view.leftAnchor),
             containerView.rightAnchor.constraint(equalTo: childSegmentViewController.view.rightAnchor)
             ])
-        currentChildSegmentViewController = childSegmentViewController
     }
     
     @objc private func profileTapped(sender: UIButton) {
