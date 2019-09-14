@@ -71,8 +71,8 @@ final class OnboardingLandingViewController: UIViewController {
             .subscribe(onNext: { event in
                 switch event {
                 case .success(let value):
-                    User.sharedInstance.accessToken = value.access_token
-                    User.sharedInstance.refreshToken = value.refresh_token
+                    User.sharedInstance.accessToken = value.accessToken
+                    User.sharedInstance.refreshToken = value.refreshToken
                 case .failure(let error):
                     print("server error here")
                     print(error)

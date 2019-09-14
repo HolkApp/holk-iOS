@@ -66,6 +66,8 @@ class OnboardingLoginViewController: UIViewController {
         textView.font = Font.regular(.description)
         textView.text = "Genom att skapa ett konto godkänner du användarvilkoren."
         textView.isScrollEnabled = false
+        textView.backgroundColor = .clear
+        textView.isEditable = false
         
         doneButton.translatesAutoresizingMaskIntoConstraints = false
         doneButtonBottomConstraint = view.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: doneButton.bottomAnchor, constant: 0)
