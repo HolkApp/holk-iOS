@@ -9,6 +9,21 @@
 import RxSwift
 import Alamofire
 
+enum Endpoints {
+    case login
+    
+    var baseURL: String {
+        return "http://localhost:8080"
+    }
+    
+    var url: URL {
+        switch self {
+        case .login:
+            return URL(string: baseURL + "/authorize/oauth/token")!
+        }
+    }
+}
+
 protocol APIStoreType {
     func login(username: String, password: String) -> Observable<Result<LoginToken>>
 }
@@ -23,9 +38,10 @@ final class APIStore: APIBaseStore, APIStoreType {
                           "username": username,
                           "password": password] as [String: AnyObject]
         return httpRequest(method: .post,
-                    url: URL(string: "http://localhost:8080/authorize/oauth/token")!,
-                    headers: httpHeaders,
-                    parameters: postParams)
+                           url: Endpoints.login.url,
+                           headers: httpHeaders,
+                           parameters: postParams
+        )
     }
     
     static let sharedInstance = APIStore()
