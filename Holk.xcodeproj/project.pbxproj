@@ -33,6 +33,7 @@
 		8F9807E92276F10E00584BA9 /* InsuranceCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9807E82276F10E00584BA9 /* InsuranceCoordinator.swift */; };
 		8F9C83DA22A3140B005BB336 /* InsuranceOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9C83D922A3140B005BB336 /* InsuranceOverviewViewController.swift */; };
 		8F9C83DC22A31658005BB336 /* InsuranceOverview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F9C83DB22A31658005BB336 /* InsuranceOverview.storyboard */; };
+		8FA8F10E232D377F00670471 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8FA8F10D232D377F00670471 /* Color.xcassets */; };
 		8FCEE9AC231EE85000F75FB8 /* OnboardingSignupConfirmedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCEE9AB231EE85000F75FB8 /* OnboardingSignupConfirmedViewController.swift */; };
 		8FCEE9AE23254AAC00F75FB8 /* KeyboardEventObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCEE9AD23254AAC00F75FB8 /* KeyboardEventObserver.swift */; };
 		8FCEE9B123254B6C00F75FB8 /* KeyboardEventContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCEE9B023254B6C00F75FB8 /* KeyboardEventContext.swift */; };
@@ -108,6 +109,7 @@
 		8F9807E82276F10E00584BA9 /* InsuranceCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceCoordinator.swift; sourceTree = "<group>"; };
 		8F9C83D922A3140B005BB336 /* InsuranceOverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceOverviewViewController.swift; sourceTree = "<group>"; };
 		8F9C83DB22A31658005BB336 /* InsuranceOverview.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = InsuranceOverview.storyboard; sourceTree = "<group>"; };
+		8FA8F10D232D377F00670471 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		8FCEE9AB231EE85000F75FB8 /* OnboardingSignupConfirmedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSignupConfirmedViewController.swift; sourceTree = "<group>"; };
 		8FCEE9AD23254AAC00F75FB8 /* KeyboardEventObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardEventObserver.swift; sourceTree = "<group>"; };
 		8FCEE9B023254B6C00F75FB8 /* KeyboardEventContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardEventContext.swift; sourceTree = "<group>"; };
@@ -304,6 +306,7 @@
 				8F5B5A3322771EBF00E79A40 /* Generated */,
 				8FD84E872270E7C9009D563D /* API */,
 				8FD84E6E2270E736009D563D /* Assets.xcassets */,
+				8FA8F10D232D377F00670471 /* Color.xcassets */,
 				8FD84E702270E736009D563D /* LaunchScreen.storyboard */,
 				8FD84E732270E736009D563D /* Info.plist */,
 			);
@@ -520,6 +523,7 @@
 				8FF6E72B22B0331000F6D398 /* InsuranceTableViewCell.xib in Resources */,
 				8F63C30F22C8CE5300CFE334 /* InsuranceCostTableViewCell.xib in Resources */,
 				8F6BCA3B22F73CBF004B887E /* Font Awesome 5 Pro-Regular-400.otf in Resources */,
+				8FA8F10E232D377F00670471 /* Color.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
