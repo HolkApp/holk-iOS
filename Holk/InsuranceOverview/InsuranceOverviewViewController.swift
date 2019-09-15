@@ -93,19 +93,16 @@ final class InsuranceOverviewViewController: UIViewController {
         segmentedControl.removeAllSegments()
         segmentedControl.insertSegment(withTitle: "Försäkringar", at: 0, animated: false)
         segmentedControl.insertSegment(withTitle: "Kostnader", at: 1, animated: false)
-        segmentedControl.setDividerImage(UIImage(), forLeftSegmentState: UIControl.State(), rightSegmentState:
-            UIControl.State(), barMetrics: .default)
+        
         segmentedControl.setTitleTextAttributes([
-                NSAttributedString.Key.foregroundColor: UIColor.black.withAlphaComponent(0.42),
+                NSAttributedString.Key.foregroundColor: Color.mainForegroundColor.withAlphaComponent(0.42),
                 NSAttributedString.Key.font: Font.light(.label)],
             for: UIControl.State.normal)
         segmentedControl.setTitleTextAttributes([
-                NSAttributedString.Key.foregroundColor: UIColor.black,
+                NSAttributedString.Key.foregroundColor: Color.mainForegroundColor,
                 NSAttributedString.Key.font: Font.light(.label)],
             for: UIControl.State.selected)
-        
-        segmentedControl.setBackgroundImage(UIImage(), for: UIControl.State.normal, barMetrics: .default)
-        segmentedControl.setBackgroundImage(UIImage(), for: UIControl.State.selected, barMetrics: .default)
+    
         segmentedControl.tintColor = .white
         segmentedControl.addTarget(self, action: #selector(segmentChanged(sender:)), for: .valueChanged)
         

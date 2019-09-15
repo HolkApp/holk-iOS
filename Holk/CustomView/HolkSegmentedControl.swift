@@ -31,6 +31,16 @@ final class HolkSegmentedControl: UISegmentedControl {
     }
     
     private func setup() {
+        self.setDividerImage(
+            UIImage(),
+            forLeftSegmentState: UIControl.State(),
+            rightSegmentState: UIControl.State(),
+            barMetrics: .default
+        )
+        
+        self.setBackgroundImage(UIImage(), for: UIControl.State.normal, barMetrics: .default)
+        self.setBackgroundImage(UIImage(), for: UIControl.State.selected, barMetrics: .default)
+        
         imageLayer.frame = CGRect(x: 0, y: 0, width: frame.width / CGFloat(numberOfSegments), height: frame.height)
         imageLayer.cornerRadius = 20
         imageLayer.backgroundColor = Color.secondaryBackgroundColor.cgColor
