@@ -47,14 +47,18 @@ class OnboardingSignupViewController: UIViewController {
         
         titleLabel.text = "Skapa användare"
         titleLabel.font = Font.extraBold(.secondHeader)
+        titleLabel.textColor = Color.mainForegroundColor
         subtitleLabel.text = "Ange en e-post adress och ett valfritt lösenord."
         subtitleLabel.font = Font.light(.subtitle)
+        subtitleLabel.textColor = Color.mainForegroundColor
         
         emailTextField.helpColor = Color.placeHolderTextColor
         emailTextField.placeholder = "E-post adress"
+        emailTextField.textColor = Color.mainForegroundColor
         emailTextField.tintColor = Color.mainForegroundColor
         emailTextField.placeholderTextColor = Color.placeHolderTextColor
         passwordTextField.helpColor = Color.placeHolderTextColor
+        passwordTextField.textColor = Color.mainForegroundColor
         passwordTextField.tintColor = Color.mainForegroundColor
         passwordTextField.placeholder = "Ange ett lösenord"
         passwordTextField.placeholderTextColor = Color.placeHolderTextColor

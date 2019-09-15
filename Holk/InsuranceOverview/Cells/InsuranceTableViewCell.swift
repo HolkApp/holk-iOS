@@ -31,13 +31,19 @@ final class InsuranceTableViewCell: UITableViewCell {
         super.awakeFromNib()
         
         titleLabel.font = Font.semibold(.title)
+        titleLabel.textColor = Color.mainForegroundColor
         addressLabel.font = Font.regular(.subtitle)
+        addressLabel.textColor = Color.mainForegroundColor
         
         hintValueLabel.font = Font.semibold(.title)
+        hintValueLabel.textColor = Color.mainForegroundColor
         hintLabel.font = Font.regular(.description)
+        hintLabel.textColor = Color.mainForegroundColor
         
         ideaValueLabel.font = Font.semibold(.title)
+        ideaValueLabel.textColor = Color.mainForegroundColor
         ideaLabel.font = Font.regular(.description)
+        ideaLabel.textColor = Color.mainForegroundColor
         
         backgroundColor = .clear
         contentView.backgroundColor = .clear

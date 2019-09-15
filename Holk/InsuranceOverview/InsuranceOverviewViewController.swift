@@ -79,11 +79,16 @@ final class InsuranceOverviewViewController: UIViewController {
             insurancesViewController,
             insuranceCostViewController
         ]
+        
+        navigationController?.navigationBar.titleTextAttributes = [
+            NSAttributedString.Key.foregroundColor: Color.mainForegroundColor
+        ]
         view.backgroundColor = Color.mainBackgroundColor
         containerView.backgroundColor = .clear
         
         headerLabel.text = "Översikt"
         headerLabel.font = Font.extraBold(.header)
+        headerLabel.textColor = Color.mainForegroundColor
         
         profileButton.setTitle("", for: UIControl.State())
         profileButton.setImage(UIImage(named: "Profile"), for: UIControl.State())
