@@ -7,41 +7,47 @@
 //
 
 import UIKit
-
 enum Color {
+    static func makeColor(asset name: String) -> UIColor {
+        guard let color = UIColor(named: name) else {
+            fatalError("No asset found with name " + name)
+        }
+        return color
+    }
+    
     static var mainBackgroundColor: UIColor {
-        return UIColor(named: #function)!
+        return makeColor(asset: #function)
     }
     
     static var secondaryBackgroundColor: UIColor {
-        return UIColor(named: #function)!
+        return makeColor(asset: #function)
     }
     
     static var placeHolderTextColor: UIColor {
-        return UIColor(named: #function)!
+        return makeColor(asset: #function)
     }
     
     static var mainForegroundColor: UIColor {
-        return UIColor(named: #function)!
+        return makeColor(asset: #function)
     }
     
     static var secondaryForegroundColor: UIColor {
-        return UIColor(named: #function)!
+        return makeColor(asset: #function)
     }
     
     static var onBoardingBackgroundColor: UIColor {
-        return UIColor(named: #function)!
+        return makeColor(asset: #function)
     }
     
     static var tabbarBackgroundColor: UIColor {
-        return UIColor(named: #function)!
+        return makeColor(asset: #function)
     }
     
     static var lightBorderColor: UIColor {
-        return UIColor(named: #function)!
+        return makeColor(asset: #function)
     }
     
     static var mainButtonBackgroundColor: UIColor {
-        return UIColor(named: #function)!
+        return makeColor(asset: #function)
     }
 }
