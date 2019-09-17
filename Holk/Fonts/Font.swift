@@ -7,7 +7,7 @@
 //
 import UIKit
 
-public enum Font {
+enum Font {
     enum Weight {
         case light
         case regular
@@ -16,7 +16,7 @@ public enum Font {
         case extraBold
     }
     
-    public enum Size: UInt {
+    enum Size: UInt {
         /// 35
         case header = 35
         
@@ -50,23 +50,23 @@ public enum Font {
         
     }
     
-    public static func light(_ size: Size) -> UIFont {
+    static func light(_ size: Size) -> UIFont {
         return font(weight: .light, size: size)
     }
     
-    public static func regular(_ size: Size) -> UIFont {
+    static func regular(_ size: Size) -> UIFont {
         return font(weight: .regular, size: size)
     }
     
-    public static func semibold(_ size: Size) -> UIFont {
+    static func semibold(_ size: Size) -> UIFont {
         return font(weight: .semibold, size: size)
     }
     
-    public static func bold(_ size: Size) -> UIFont {
+    static func bold(_ size: Size) -> UIFont {
         return font(weight: .bold, size: size)
     }
     
-    public static func extraBold(_ size: Size) -> UIFont {
+    static func extraBold(_ size: Size) -> UIFont {
         return font(weight: .extraBold, size: size)
     }
     
