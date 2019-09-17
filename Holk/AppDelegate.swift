@@ -15,6 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var coordinator: OnboardingCoordinator?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        Font.registerFontAwsomePro()
+        
         // TODO: Use main coordinator to check the token first
         coordinator = OnboardingCoordinator(navController: UINavigationController())
         coordinator?.start()

@@ -34,6 +34,7 @@
 		8F9C83DA22A3140B005BB336 /* InsuranceOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9C83D922A3140B005BB336 /* InsuranceOverviewViewController.swift */; };
 		8F9C83DC22A31658005BB336 /* InsuranceOverview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F9C83DB22A31658005BB336 /* InsuranceOverview.storyboard */; };
 		8FA8F10E232D377F00670471 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8FA8F10D232D377F00670471 /* Color.xcassets */; };
+		8FA8F1122330148300670471 /* Font+FontAwesome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA8F1112330148300670471 /* Font+FontAwesome.swift */; };
 		8FCEE9AC231EE85000F75FB8 /* OnboardingSignupConfirmedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCEE9AB231EE85000F75FB8 /* OnboardingSignupConfirmedViewController.swift */; };
 		8FCEE9AE23254AAC00F75FB8 /* KeyboardEventObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCEE9AD23254AAC00F75FB8 /* KeyboardEventObserver.swift */; };
 		8FCEE9B123254B6C00F75FB8 /* KeyboardEventContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCEE9B023254B6C00F75FB8 /* KeyboardEventContext.swift */; };
@@ -110,6 +111,7 @@
 		8F9C83D922A3140B005BB336 /* InsuranceOverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceOverviewViewController.swift; sourceTree = "<group>"; };
 		8F9C83DB22A31658005BB336 /* InsuranceOverview.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = InsuranceOverview.storyboard; sourceTree = "<group>"; };
 		8FA8F10D232D377F00670471 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
+		8FA8F1112330148300670471 /* Font+FontAwesome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+FontAwesome.swift"; sourceTree = "<group>"; };
 		8FCEE9AB231EE85000F75FB8 /* OnboardingSignupConfirmedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingSignupConfirmedViewController.swift; sourceTree = "<group>"; };
 		8FCEE9AD23254AAC00F75FB8 /* KeyboardEventObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardEventObserver.swift; sourceTree = "<group>"; };
 		8FCEE9B023254B6C00F75FB8 /* KeyboardEventContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardEventContext.swift; sourceTree = "<group>"; };
@@ -411,6 +413,7 @@
 				8F6BCA3622F73CBF004B887E /* Font Awesome 5 Pro-Regular-400.otf */,
 				8F6BCA3422F73CBF004B887E /* Font Awesome 5 Pro-Solid-900.otf */,
 				8FF6E74022B82D1100F6D398 /* Font.swift */,
+				8FA8F1112330148300670471 /* Font+FontAwesome.swift */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -610,6 +613,7 @@
 				8FF6E73822B6B39800F6D398 /* InsuranceCostViewController.swift in Sources */,
 				8FF6E72822B026DB00F6D398 /* InsurancesViewController.swift in Sources */,
 				8F0D4041227A0D68000BD840 /* OnboardingInfoViewController.swift in Sources */,
+				8FA8F1122330148300670471 /* Font+FontAwesome.swift in Sources */,
 				8F2D246322F462C900B7839E /* LoginToken.swift in Sources */,
 				8F5B5A3822771ED400E79A40 /* StringConstants.swift in Sources */,
 				8F2D246622F462D900B7839E /* OnboardingLandingViewController.swift in Sources */,
