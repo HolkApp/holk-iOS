@@ -8,11 +8,11 @@
 
 import UIKit
 
-public class HolkTextField: UITextField {
+ class HolkTextField: UITextField {
     
     private let underlineLayer = CAShapeLayer()
     private let placeholderLayer = CATextLayer()
-    override public var placeholder: String? {
+    override  var placeholder: String? {
         didSet {
             placeholderLayer.string = placeholder
         }
@@ -20,7 +20,7 @@ public class HolkTextField: UITextField {
     
     private let helpLabel = UILabel()
     
-    public var placeholderTextColor: UIColor! {
+     var placeholderTextColor: UIColor! {
         set {
             placeholderLayer.foregroundColor = newValue.cgColor
             underlineLayer.backgroundColor = newValue.cgColor
@@ -30,43 +30,43 @@ public class HolkTextField: UITextField {
         }
     }
     
-    public var string: String? {
+     var string: String? {
         return attributedText?.string ?? text
     }
     
-    public var lineWidth: CGFloat = 2.0 {
+     var lineWidth: CGFloat = 2.0 {
         didSet {
             underlineLayer.lineWidth = lineWidth
         }
     }
     
-    public var heightPadding: CGFloat = 0.0 {
+     var heightPadding: CGFloat = 0.0 {
         didSet {
             invalidateIntrinsicContentSize()
         }
     }
     
     private lazy var prefixLabel = UILabel()
-    public var prefix: String? {
+     var prefix: String? {
         didSet {
             updatePrefix()
         }
     }
     
     private lazy var suffixLabel = UILabel()
-    public var suffix: String? {
+     var suffix: String? {
         didSet {
             updateSuffix()
         }
     }
     
-    public override var text: String? {
+     override var text: String? {
         didSet {
             updatePlaceholderLayer()
         }
     }
     
-    public override var font: UIFont? {
+     override var font: UIFont? {
         didSet {
             if prefix != nil {
                 prefixLabel.font = font
@@ -78,20 +78,20 @@ public class HolkTextField: UITextField {
         }
     }
     
-    public var helpFont: UIFont? {
+     var helpFont: UIFont? {
         didSet {
             helpLabel.font = helpFont
             setNeedsLayout()
         }
     }
     
-    public var helpColor: UIColor? {
+     var helpColor: UIColor? {
         didSet {
             helpLabel.textColor = helpColor
         }
     }
     
-    public var helpText: String? {
+     var helpText: String? {
         didSet {
             helpLabel.text = helpText
             setNeedsLayout()
@@ -108,19 +108,19 @@ public class HolkTextField: UITextField {
         setup()
     }
     
-    required public init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         setup()
     }
     
-    override public func drawPlaceholder(in rect: CGRect) {
+    override func drawPlaceholder(in rect: CGRect) {
         if placeholderLayer.frame.isEmpty {
             placeholderLayer.frame = rect
         }
     }
     
-    public override func layoutSubviews() {
+     override func layoutSubviews() {
         super.layoutSubviews()
         placeholderLayer.frame = placeholderRect(forBounds: bounds)
         
@@ -145,12 +145,12 @@ public class HolkTextField: UITextField {
         }
     }
     
-    public override var canBecomeFirstResponder: Bool {
+     override var canBecomeFirstResponder: Bool {
         return true
     }
     
     @discardableResult
-    public override func becomeFirstResponder() -> Bool {
+     override func becomeFirstResponder() -> Bool {
         let result = super.becomeFirstResponder()
         if result {
             underlineLayer.strokeStart = 0.0
@@ -159,11 +159,11 @@ public class HolkTextField: UITextField {
         return result
     }
     
-    public override var canResignFirstResponder: Bool {
+     override var canResignFirstResponder: Bool {
         return true
     }
     
-    public override func resignFirstResponder() -> Bool {
+     override func resignFirstResponder() -> Bool {
         let result = super.resignFirstResponder()
         if result {
             underlineLayer.strokeStart = 0.5
@@ -172,14 +172,14 @@ public class HolkTextField: UITextField {
         return result
     }
     
-    public override var intrinsicContentSize: CGSize {
+     override var intrinsicContentSize: CGSize {
         var size = super.intrinsicContentSize
         size.height += heightPadding * 2
         size.height = size.height.rounded()
         return size
     }
     
-    public override func deleteBackward() {
+     override func deleteBackward() {
         let wasEmpty = (text ?? "").isEmpty
         super.deleteBackward()
 //        if wasEmpty, (text ?? "").isEmpty {
@@ -187,7 +187,7 @@ public class HolkTextField: UITextField {
 //        }
     }
     
-    public override func tintColorDidChange() {
+     override func tintColorDidChange() {
         super.tintColorDidChange()
         
         underlineLayer.strokeColor = tintColor.cgColor
