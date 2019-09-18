@@ -13,9 +13,9 @@ final class InsuranceTableViewCell: UITableViewCell {
     @IBOutlet private weak var containerView: UIView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var addressLabel: UILabel!
-    @IBOutlet private weak var hintValueLabel: UILabel!
+    @IBOutlet private weak var hintValueLabel: HolkillustrationLabel!
     @IBOutlet private weak var hintLabel: UILabel!
-    @IBOutlet private weak var ideaValueLabel: UILabel!
+    @IBOutlet private weak var ideaValueLabel: HolkillustrationLabel!
     @IBOutlet private weak var ideaLabel: UILabel!
     @IBOutlet private weak var logoImageView: UIImageView!
     
@@ -35,12 +35,12 @@ final class InsuranceTableViewCell: UITableViewCell {
         addressLabel.font = Font.regular(.subtitle)
         addressLabel.textColor = Color.mainForegroundColor
         
-        hintValueLabel.font = Font.semibold(.title)
+        hintValueLabel.font = Font.semibold(.header)
         hintValueLabel.textColor = Color.mainForegroundColor
         hintLabel.font = Font.regular(.description)
         hintLabel.textColor = Color.mainForegroundColor
         
-        ideaValueLabel.font = Font.semibold(.title)
+        ideaValueLabel.font = Font.semibold(.header)
         ideaValueLabel.textColor = Color.mainForegroundColor
         ideaLabel.font = Font.regular(.description)
         ideaLabel.textColor = Color.mainForegroundColor
