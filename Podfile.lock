@@ -1,17 +1,18 @@
 PODS:
-  - Alamofire (4.8.1)
-  - FontAwesome.swift (1.7.0)
-  - RxAlamofire (4.3.0):
-    - RxAlamofire/Core (= 4.3.0)
-  - RxAlamofire/Core (4.3.0):
-    - Alamofire (~> 4.5)
-    - RxSwift (~> 4)
-  - RxAtomic (4.4.1)
-  - RxCocoa (4.4.1):
-    - RxSwift (~> 4.0)
-  - RxSwift (4.4.1):
-    - RxAtomic (~> 4.4)
-  - SwiftLint (0.30.1)
+  - Alamofire (4.9.0)
+  - FontAwesome.swift (1.8.2)
+  - RxAlamofire (5.0.0):
+    - RxAlamofire/Core (= 5.0.0)
+  - RxAlamofire/Core (5.0.0):
+    - Alamofire (~> 4.8)
+    - RxSwift (~> 5.0)
+  - RxCocoa (5.0.0):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxRelay (5.0.0):
+    - RxSwift (~> 5)
+  - RxSwift (5.0.0)
+  - SwiftLint (0.35.0)
 
 DEPENDENCIES:
   - Alamofire
@@ -26,19 +27,19 @@ SPEC REPOS:
     - Alamofire
     - FontAwesome.swift
     - RxAlamofire
-    - RxAtomic
     - RxCocoa
+    - RxRelay
     - RxSwift
     - SwiftLint
 
 SPEC CHECKSUMS:
-  Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
-  FontAwesome.swift: 9f377615aa61381796dca143cddfd2a388723ea1
-  RxAlamofire: 09624d0f2d48ed8b686e4eb4cf68e28cbd2df556
-  RxAtomic: f8d6adc1ccb87a767811269e4875887bc74dbf19
-  RxCocoa: 2f35a76bf8887872e28a1914112395b11b8e0e64
-  RxSwift: 92fcf68dfef21f3e2ab1965363d9e7b3d787597e
-  SwiftLint: a54bf1fe12b55c68560eb2a7689dfc81458508f7
+  Alamofire: afc3e7c6db61476cb45cdd23fed06bad03bbc321
+  FontAwesome.swift: 7938d6a03113ff3f39001bde7f50be8a0903d605
+  RxAlamofire: e7875a012aff55345672d0f70a2a9cd6aeb0f211
+  RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
+  RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
+  RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
+  SwiftLint: 5553187048b900c91aa03552807681bb6b027846
 
 PODFILE CHECKSUM: 512ec9e001569bb746668ecb06c6b8598c13c283
 
