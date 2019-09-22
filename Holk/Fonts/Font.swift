@@ -81,3 +81,9 @@ enum Font {
     }
 }
 
+extension Font {
+    static func fontAwesome(style: FontAwesomeStyle, size: Size) -> UIFont {
+        UIFont.loadFontAwesome(ofStyle: style)
+        return UIFont.fontAwesome(ofSize: size.pointSize, style: style)
+    }
+}
