@@ -50,4 +50,8 @@ enum Color {
     static var mainButtonBackgroundColor: UIColor {
         return makeColor(asset: #function)
     }
+    
+    static var mainHighlightColor: UIColor {
+        return makeColor(asset: #function)
+    }
 }
