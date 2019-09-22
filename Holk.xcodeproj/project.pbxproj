@@ -305,8 +305,8 @@
 			isa = PBXGroup;
 			children = (
 				8FD84E672270E732009D563D /* AppDelegate.swift */,
-				8FF6E73222B534F800F6D398 /* Main */,
 				8FF6E72522AC0D2800F6D398 /* Color.swift */,
+				8FF6E73222B534F800F6D398 /* Main */,
 				8FF6E74222B82D9A00F6D398 /* Fonts */,
 				8FF6E73122B534E000F6D398 /* Onboarding */,
 				8F9C83D822A313EE005BB336 /* InsuranceOverview */,

@@ -44,8 +44,6 @@ final class HolkSegmentedControl: UISegmentedControl {
         imageLayer.frame = CGRect(x: 0, y: 0, width: frame.width / CGFloat(numberOfSegments), height: frame.height)
         imageLayer.cornerRadius = 20
         imageLayer.backgroundColor = Color.secondaryBackgroundColor.cgColor
-        imageLayer.borderWidth = 1
-        imageLayer.borderColor = Color.lightBorderColor.cgColor
         layer.addSublayer(imageLayer)
     }
     

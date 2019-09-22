@@ -13,9 +13,9 @@ final class InsuranceTableViewCell: UITableViewCell {
     @IBOutlet private weak var containerView: UIView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var addressLabel: UILabel!
-    @IBOutlet private weak var hintValueLabel: HolkillustrationLabel!
+    @IBOutlet private weak var hintValueLabel: HolkIllustrationLabel!
     @IBOutlet private weak var hintLabel: UILabel!
-    @IBOutlet private weak var ideaValueLabel: HolkillustrationLabel!
+    @IBOutlet private weak var ideaValueLabel: HolkIllustrationLabel!
     @IBOutlet private weak var ideaLabel: UILabel!
     @IBOutlet private weak var logoImageView: UIImageView!
     
@@ -37,11 +37,15 @@ final class InsuranceTableViewCell: UITableViewCell {
         
         hintValueLabel.font = Font.semibold(.header)
         hintValueLabel.textColor = Color.mainForegroundColor
+        hintValueLabel.suffixColor = Color.mainHighlightColor
+        hintValueLabel.suffixFont = Font.fontAwesome(style: .light, size: .subtitle)
         hintLabel.font = Font.regular(.description)
         hintLabel.textColor = Color.mainForegroundColor
         
         ideaValueLabel.font = Font.semibold(.header)
         ideaValueLabel.textColor = Color.mainForegroundColor
+        ideaValueLabel.suffixColor = Color.mainWarningColor
+        ideaValueLabel.suffixFont = Font.fontAwesome(style: .light, size: .subtitle)
         ideaLabel.font = Font.regular(.description)
         ideaLabel.textColor = Color.mainForegroundColor
         
@@ -68,8 +72,10 @@ final class InsuranceTableViewCell: UITableViewCell {
         titleLabel.text = "Hemförsäkring"
         addressLabel.text = "Sveavägen 140, 1 trp"
         hintValueLabel.text = "3"
+        hintValueLabel.suffixText = String.fontAwesomeIcon(name: .lightbulbOn)
         hintLabel.text = "Tänk på"
         ideaValueLabel.text = "2"
+        ideaValueLabel.suffixText = String.fontAwesomeIcon(name: .bell)
         ideaLabel.text = "Luckor"
         
         logoImageView.image = UIImage(named: "Folksam")
