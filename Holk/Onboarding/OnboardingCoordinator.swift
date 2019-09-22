@@ -23,7 +23,7 @@ final class OnboardingCoordinator: NSObject, Coordinator, BackNavigation, UINavi
     
     // MARK: - Public Methods
     func start() {
-        let vc = StoryboardScene.Main.onboardingLandingViewController.instantiate()
+        let vc = StoryboardScene.Onboarding.onboardingLandingViewController.instantiate()
         vc.coordinator = self
         navController.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navController.navigationBar.shadowImage = UIImage()
@@ -33,20 +33,20 @@ final class OnboardingCoordinator: NSObject, Coordinator, BackNavigation, UINavi
     }
     
     func login() {
-        let vc = StoryboardScene.Main.onboardingLoginViewController.instantiate()
+        let vc = StoryboardScene.Onboarding.onboardingLoginViewController.instantiate()
         vc.coordinator = self
         navController.pushViewController(vc, animated: true)
     }
     
     func signup() {
-        let vc = StoryboardScene.Main.onboardingSignupViewController.instantiate()
+        let vc = StoryboardScene.Onboarding.onboardingSignupViewController.instantiate()
         vc.coordinator = self
         navController.pushViewController(vc, animated: true)
     }
     
     // MARK: - OnBoardingInfo
     func displayOnBoradingInfo() {
-        let vc = StoryboardScene.Main.onboardingInfoViewController.instantiate()
+        let vc = StoryboardScene.Onboarding.onboardingInfoViewController.instantiate()
         vc.coordinator = self
         navController.pushViewController(vc, animated: true)
     }

@@ -33,18 +33,18 @@ internal enum StoryboardScene {
 
     internal static let initialScene = InitialSceneType<UIKit.UIViewController>(storyboard: LaunchScreen.self)
   }
-  internal enum Main: StoryboardType {
-    internal static let storyboardName = "Main"
+  internal enum Onboarding: StoryboardType {
+    internal static let storyboardName = "Onboarding"
 
-    internal static let onboardingInfoViewController = SceneType<OnboardingInfoViewController>(storyboard: Main.self, identifier: "OnboardingInfoViewController")
+    internal static let onboardingInfoViewController = SceneType<OnboardingInfoViewController>(storyboard: Onboarding.self, identifier: "OnboardingInfoViewController")
 
-    internal static let onboardingLandingViewController = SceneType<OnboardingLandingViewController>(storyboard: Main.self, identifier: "OnboardingLandingViewController")
+    internal static let onboardingLandingViewController = SceneType<OnboardingLandingViewController>(storyboard: Onboarding.self, identifier: "OnboardingLandingViewController")
 
-    internal static let onboardingLoginViewController = SceneType<OnboardingLoginViewController>(storyboard: Main.self, identifier: "OnboardingLoginViewController")
+    internal static let onboardingLoginViewController = SceneType<OnboardingLoginViewController>(storyboard: Onboarding.self, identifier: "OnboardingLoginViewController")
 
-    internal static let onboardingSignupConfirmedViewController = SceneType<OnboardingSignupConfirmedViewController>(storyboard: Main.self, identifier: "OnboardingSignupConfirmedViewController")
+    internal static let onboardingSignupConfirmedViewController = SceneType<OnboardingSignupConfirmedViewController>(storyboard: Onboarding.self, identifier: "OnboardingSignupConfirmedViewController")
 
-    internal static let onboardingSignupViewController = SceneType<OnboardingSignupViewController>(storyboard: Main.self, identifier: "OnboardingSignupViewController")
+    internal static let onboardingSignupViewController = SceneType<OnboardingSignupViewController>(storyboard: Onboarding.self, identifier: "OnboardingSignupViewController")
   }
 }
 // swiftlint:enable explicit_type_interface identifier_name line_length type_body_length type_name

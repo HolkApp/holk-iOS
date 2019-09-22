@@ -25,7 +25,7 @@ class InsuranceCoordinator: NSObject, Coordinator, UINavigationControllerDelegat
     // MARK: - Public Methods
     func start() {
         // TODO: Should present the landing page
-//        let vc = StoryboardScene.Main.landingViewController.instantiate()
+//        let vc = StoryboardScene.MaOnboardingin.landingViewController.instantiate()
 //        vc.tabBarItem = UITabBarItem(title: "Översikt", image: UIImage(named: "OverView"), tag: 0)
 //        vc.coordinator = self
         
