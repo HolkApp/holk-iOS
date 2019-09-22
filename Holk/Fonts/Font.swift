@@ -47,7 +47,6 @@ enum Font {
         var pointSize: CGFloat {
             return CGFloat(rawValue)
         }
-        
     }
     
     static func light(_ size: Size) -> UIFont {
@@ -82,6 +81,8 @@ enum Font {
 }
 
 extension Font {
+    static let tabBarIconSize = CGSize.init(width: 30, height: 30)
+    
     static func fontAwesome(style: FontAwesomeStyle, size: Size) -> UIFont {
         UIFont.loadFontAwesome(ofStyle: style)
         return UIFont.fontAwesome(ofSize: size.pointSize, style: style)

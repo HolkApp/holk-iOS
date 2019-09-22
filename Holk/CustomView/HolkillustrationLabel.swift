@@ -36,8 +36,8 @@ class HolkillustrationLabel: UILabel {
     
     private func setup() {
         suffixLabel.font = Font.fontAwesome(style: .light, size: .subtitle)
-        suffixLabel.text = String.fontAwesomeIcon(name: .lightbulb)
-        suffixLabel.textColor = .black
+        suffixLabel.text = String.fontAwesomeIcon(name: .lightbulbOn)
+        suffixLabel.textColor = Color.mainHighlightColor
         suffixLabel.sizeToFit()
         
         suffixLabel.frame.origin = CGPoint(x: self.bounds.width - suffixLabel.frame.width, y: 0)
