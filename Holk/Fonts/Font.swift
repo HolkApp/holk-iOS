@@ -82,6 +82,7 @@ enum Font {
 
 extension Font {
     static let tabBarIconSize = CGSize.init(width: 30, height: 30)
+    static let iconSize = CGSize.init(width: 45, height: 45)
     
     static func fontAwesome(style: FontAwesomeStyle, size: Size) -> UIFont {
         UIFont.loadFontAwesome(ofStyle: style)
