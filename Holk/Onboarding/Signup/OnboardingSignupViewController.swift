@@ -46,7 +46,7 @@ class OnboardingSignupViewController: UIViewController {
         view.addSubview(doneButton)
         
         titleLabel.text = "Skapa användare"
-        titleLabel.font = Font.extraBold(.secondHeader)
+        titleLabel.font = Font.extraBold(.subHeader)
         titleLabel.textColor = Color.mainForegroundColor
         subtitleLabel.text = "Ange en e-post adress och ett valfritt lösenord."
         subtitleLabel.font = Font.light(.subtitle)

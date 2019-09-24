@@ -51,7 +51,7 @@ class InsuranceCostTableViewCell: UITableViewCell {
         typeLabel.textColor = Color.mainForegroundColor
         costLabel.font = Font.regular(.description)
         costLabel.textColor = Color.secondaryForegroundColor
-        costValueLabel.font = Font.regular(.secondHeader)
+        costValueLabel.font = Font.regular(.subHeader)
         costValueLabel.textColor = Color.mainForegroundColor
         lightFeedbackGenerator.prepare()
     }

@@ -21,13 +21,16 @@ enum Font {
         case header = 35
         
         /// 30
-        case secondHeader = 30
+        case subHeader = 30
         
         /// 27
         case title = 27
         
         /// 25
         case cellTitle = 25
+        
+        /// 21
+        case caption = 21
         
         /// 19
         case subtitle = 19

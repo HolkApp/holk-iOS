@@ -47,7 +47,7 @@ class OnboardingLoginViewController: UIViewController {
         view.addSubview(doneButton)
         
         titleLabel.text = "Logga in"
-        titleLabel.font = Font.extraBold(.secondHeader)
+        titleLabel.font = Font.extraBold(.subHeader)
         titleLabel.textColor = Color.mainForegroundColor
         subtitleLabel.text = "Ange en e-post adress och ett valfritt lösenord."
         subtitleLabel.font = Font.light(.subtitle)
