@@ -35,6 +35,9 @@ enum Font {
         /// 19
         case subtitle = 19
         
+        /// 16
+        case largeDescription = 16
+        
         /// 14
         case description = 14
         
@@ -84,7 +87,11 @@ enum Font {
 }
 
 extension Font {
+    /// 22
+    static let smallIconSize = CGSize.init(width: 22, height: 22)
+    /// 30
     static let tabBarIconSize = CGSize.init(width: 30, height: 30)
+    /// 45
     static let iconSize = CGSize.init(width: 45, height: 45)
     
     static func fontAwesome(style: FontAwesomeStyle, size: Size) -> UIFont {

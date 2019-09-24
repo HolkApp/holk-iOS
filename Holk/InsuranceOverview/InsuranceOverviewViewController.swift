@@ -100,12 +100,14 @@ final class InsuranceOverviewViewController: UIViewController {
         segmentedControl.insertSegment(withTitle: "Kostnader", at: 1, animated: false)
         
         segmentedControl.setTitleTextAttributes([
-                NSAttributedString.Key.foregroundColor: Color.mainForegroundColor.withAlphaComponent(0.42),
-                NSAttributedString.Key.font: Font.light(.description)],
+                NSAttributedString.Key.foregroundColor: Color.mainForegroundColor.withAlphaComponent(0.6),
+                NSAttributedString.Key.font: Font.regular(.largeDescription)
+            ],
             for: UIControl.State.normal)
         segmentedControl.setTitleTextAttributes([
                 NSAttributedString.Key.foregroundColor: Color.mainForegroundColor,
-                NSAttributedString.Key.font: Font.light(.description)],
+                NSAttributedString.Key.font: Font.regular(.largeDescription)
+            ],
             for: UIControl.State.selected)
     
         segmentedControl.tintColor = .white

@@ -30,6 +30,9 @@ class OnboardingInfoViewController: UIViewController {
     }
     
     private func setup() {
+        navigationItem.setHidesBackButton(true, animated: false)
+        let backIcon = UIImage.fontAwesomeIcon(name: .chevronLeft, style: .regular, textColor: Color.mainForegroundColor, size: Font.iconSize)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: backIcon, style: .plain, target: self, action: #selector(back(sender:)))
         navigationController?.isNavigationBarHidden = false
         
         titleLabel.font = Font.extraBold(.title)
@@ -57,7 +60,7 @@ class OnboardingInfoViewController: UIViewController {
         analyseImage.image = .fontAwesomeIcon(name: .bellExclamation, style: .light, textColor: Color.mainForegroundColor, size: Font.iconSize)
     }
     
-    @objc private func back(sender: UIButton) {
+    @objc private func back(sender: Any) {
         coordinator?.back()
     }
 }
