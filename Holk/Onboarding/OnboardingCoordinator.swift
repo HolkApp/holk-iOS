@@ -46,7 +46,7 @@ final class OnboardingCoordinator: NSObject, Coordinator, BackNavigation, UINavi
     
     // MARK: - OnBoardingInfo
     func displayOnBoradingInfo() {
-        let vc = StoryboardScene.Onboarding.onboardingInfoViewController.instantiate()
+        let vc = StoryboardScene.Onboarding.onboardingInfoContainerViewController.instantiate()
         vc.coordinator = self
         navController.pushViewController(vc, animated: true)
     }
