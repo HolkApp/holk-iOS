@@ -38,7 +38,7 @@ final class OnboardingInfoContainerViewController: UIViewController {
         view.bringSubviewToFront(OKButton)
         OKButton.titleLabel?.font = Font.semibold(.caption)
         OKButton.setTitleColor(Color.mainForegroundColor, for: UIControl.State())
-        OKButton.backgroundColor = Color.mainButtonBackgroundColor
+        OKButton.backgroundColor = Color.mainHighlightColor
         OKButton.addTarget(self, action: #selector(back(sender:)), for: .touchUpInside)
     }
     

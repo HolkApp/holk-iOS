@@ -76,7 +76,7 @@ class OnboardingSignupViewController: UIViewController {
         doneButton.translatesAutoresizingMaskIntoConstraints = false
         doneButtonBottomConstraint = view.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: doneButton.bottomAnchor, constant: 0)
         doneButton.setTitle("Skapa konot", for: UIControl.State())
-        doneButton.backgroundColor = Color.mainButtonBackgroundColor
+        doneButton.backgroundColor = Color.mainHighlightColor
         doneButton.titleLabel?.font = Font.semibold(.subtitle)
         doneButton.tintColor = Color.mainForegroundColor
         doneButton.isEnabled = false

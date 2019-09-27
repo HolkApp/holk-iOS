@@ -37,7 +37,7 @@ final class InsuranceTableViewCell: UITableViewCell {
         
         hintValueLabel.font = Font.semibold(.header)
         hintValueLabel.textColor = Color.mainForegroundColor
-        hintValueLabel.suffixColor = Color.mainHighlightColor
+        hintValueLabel.suffixColor = Color.mainAlertColor
         hintValueLabel.suffixFont = Font.fontAwesome(style: .light, size: .subtitle)
         hintLabel.font = Font.regular(.description)
         hintLabel.textColor = Color.mainForegroundColor
