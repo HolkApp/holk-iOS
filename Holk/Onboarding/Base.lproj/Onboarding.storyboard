@@ -117,6 +117,38 @@ då fortsätter vi</string>
             </objects>
             <point key="canvasLocation" x="997" y="114"/>
         </scene>
+        <!--Onboarding Info Container View Controller-->
+        <scene sceneID="q0P-E6-bew">
+            <objects>
+                <viewController storyboardIdentifier="OnboardingInfoContainerViewController" id="XgS-9g-Pzj" customClass="OnboardingInfoContainerViewController" customModule="Holk" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YSc-Hn-DEa">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c29-IS-Bw0" customClass="HolkButton" customModule="Holk" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="787" width="414" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="6hd-N2-3yk"/>
+                                </constraints>
+                                <state key="normal" title="Bra, kör igång"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="QPd-MF-HF4" firstAttribute="trailing" secondItem="c29-IS-Bw0" secondAttribute="trailing" id="JP6-f5-Kbu"/>
+                            <constraint firstItem="c29-IS-Bw0" firstAttribute="leading" secondItem="QPd-MF-HF4" secondAttribute="leading" id="TqO-jg-Wba"/>
+                            <constraint firstItem="QPd-MF-HF4" firstAttribute="bottom" secondItem="c29-IS-Bw0" secondAttribute="bottom" id="YxR-Tj-5TA"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="QPd-MF-HF4"/>
+                    </view>
+                    <connections>
+                        <outlet property="OKButton" destination="c29-IS-Bw0" id="9PB-4a-gy6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QZ6-Gz-M6I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-614" y="-575"/>
+        </scene>
         <!--Onboarding Info View Controller-->
         <scene sceneID="hpJ-nW-5hn">
             <objects>
@@ -126,7 +158,7 @@ då fortsätter vi</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pgN-LK-Jpp">
-                                <rect key="frame" x="0.0" y="44" width="414" height="743"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="48d-Hr-G0E">
                                         <rect key="frame" x="35" y="35" width="344" height="371.5"/>
@@ -224,30 +256,19 @@ frågor om din vardag</string>
                                 <viewLayoutGuide key="contentLayoutGuide" id="mbT-k5-Lz4"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="tDF-vP-5SU"/>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7IL-OC-1uC" customClass="HolkButton" customModule="Holk" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="787" width="414" height="75"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="75" id="hhn-nk-n63"/>
-                                </constraints>
-                                <state key="normal" title="Bra, kör igång"/>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="pgN-LK-Jpp" firstAttribute="leading" secondItem="qZs-W6-oh7" secondAttribute="leading" id="04P-Rc-iNR"/>
                             <constraint firstItem="qZs-W6-oh7" firstAttribute="trailing" secondItem="pgN-LK-Jpp" secondAttribute="trailing" id="CzF-Vu-yc8"/>
-                            <constraint firstItem="7IL-OC-1uC" firstAttribute="top" secondItem="pgN-LK-Jpp" secondAttribute="bottom" id="NIs-Lq-tC1"/>
-                            <constraint firstItem="qZs-W6-oh7" firstAttribute="bottom" secondItem="7IL-OC-1uC" secondAttribute="bottom" id="Qbh-D4-Jcs"/>
                             <constraint firstItem="pgN-LK-Jpp" firstAttribute="top" secondItem="qZs-W6-oh7" secondAttribute="top" id="S0V-Zi-wgy"/>
-                            <constraint firstItem="qZs-W6-oh7" firstAttribute="trailing" secondItem="7IL-OC-1uC" secondAttribute="trailing" id="XF4-xg-fFh"/>
+                            <constraint firstItem="qZs-W6-oh7" firstAttribute="bottom" secondItem="pgN-LK-Jpp" secondAttribute="bottom" id="YaA-vV-ted"/>
                             <constraint firstItem="qZs-W6-oh7" firstAttribute="trailing" secondItem="48d-Hr-G0E" secondAttribute="trailing" constant="35" id="b4u-y6-Vi3"/>
                             <constraint firstItem="48d-Hr-G0E" firstAttribute="leading" secondItem="qZs-W6-oh7" secondAttribute="leading" constant="35" id="itw-n7-P21"/>
-                            <constraint firstItem="7IL-OC-1uC" firstAttribute="leading" secondItem="qZs-W6-oh7" secondAttribute="leading" id="sSA-NA-hMC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qZs-W6-oh7"/>
                     </view>
                     <connections>
-                        <outlet property="OKButton" destination="7IL-OC-1uC" id="hLe-I0-chL"/>
                         <outlet property="analyseImage" destination="vVe-WX-iWO" id="RBX-Yd-Inj"/>
                         <outlet property="analyseLabel" destination="TlW-hK-gB9" id="qXl-jr-tXn"/>
                         <outlet property="answerQuestionImage" destination="GKT-AB-bEI" id="5xU-yj-gVp"/>
@@ -262,7 +283,15 @@ frågor om din vardag</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2QK-mT-Dod" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="137.68115942028987" y="-575.22321428571422"/>
+            <point key="canvasLocation" x="933" y="-575"/>
+        </scene>
+        <!--Onboarding Info Page View Controller-->
+        <scene sceneID="AlR-sE-C7h">
+            <objects>
+                <pageViewController storyboardIdentifier="OnboardingInfoPageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="min" id="Ade-XE-ggF" customClass="OnboardingInfoPageViewController" customModule="Holk" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="daV-MU-Nx7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="138" y="-575"/>
         </scene>
         <!--Onboarding Landing View Controller-->
         <scene sceneID="U7q-DK-1jR">
