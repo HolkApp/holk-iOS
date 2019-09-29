@@ -9,13 +9,13 @@
 import UIKit
 
 final class InsuranceAddMoreCell: UITableViewCell {
-    
-    private var iconImageView: UIImageView!
-    
+    // MARK: - Public variables
     override var reuseIdentifier: String? {
         return InsuranceAddMoreCell.identifier
     }
-    
+    // MARK: - Private variables
+    private var iconImageView: UIImageView!
+    // MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         

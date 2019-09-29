@@ -13,9 +13,9 @@ protocol InsuranceCostViewControllerDelegate: AnyObject {
 }
 
 final class InsuranceCostViewController: UIViewController {
-    
+    // MARK: - IBOutlets
     @IBOutlet weak var tableView: UITableView!
-    
+    // MARK: - Public variables
     var insuranceDetailCoordinator: InsuranceDetailCoordinator?
     weak var delegate: InsuranceCostViewControllerDelegate?
     
@@ -24,7 +24,6 @@ final class InsuranceCostViewController: UIViewController {
         
         setup()
     }
-    
     
     private func setup() {
         view.backgroundColor = Color.mainBackgroundColor

@@ -9,16 +9,16 @@
 import UIKit
 
 final class InsuranceOverviewViewController: UIViewController {
-    
+    // MARK: - IBOutlets
     @IBOutlet private weak var headerLabel: UILabel!
     @IBOutlet private weak var segmentedControl: HolkSegmentedControl!
     @IBOutlet private weak var profileButton: UIButton!
     @IBOutlet private weak var containerView: UIView!
     @IBOutlet private weak var headerLabelTopConstraint: NSLayoutConstraint!
     @IBOutlet private weak var segmentedControlTopConstraint: NSLayoutConstraint!
-    
+    // MARK: - Public variables
     var currentChildSegmentViewController: UIViewController?
-    
+    // MARK: - Private variables
     private var childSegmentViewControllers: [UIViewController] = []
     private lazy var insurancesViewController: InsurancesViewController = {
         let insurancesViewController = StoryboardScene.InsuranceOverview.insurancesViewController.instantiate()
@@ -33,7 +33,6 @@ final class InsuranceOverviewViewController: UIViewController {
     private lazy var profileBarButtonItem: UIBarButtonItem = {
         UIBarButtonItem(image: profileButton.imageView?.image, style: .plain, target: self, action: #selector(profileTapped(sender:)))
     }()
-    
     private var animating: Bool = false
     private var childViewScrollViewOffset: CGFloat = 0 {
         didSet {
@@ -67,7 +66,7 @@ final class InsuranceOverviewViewController: UIViewController {
             }
         }
     }
-    
+    // MARK: Overridden methods
     override func viewDidLoad() {
         super.viewDidLoad()
         

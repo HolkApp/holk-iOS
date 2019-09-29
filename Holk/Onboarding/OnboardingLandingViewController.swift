@@ -10,13 +10,14 @@ import UIKit
 import RxSwift
 
 final class OnboardingLandingViewController: UIViewController {
-    
+    // MARK: - IBOutlets
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var loginButton: UIButton!
     @IBOutlet private weak var signupButton: UIButton!
     @IBOutlet private weak var onBoardingButton: UIButton!
+    // MARK: - Public variables
     weak var coordinator: OnboardingCoordinator?
-    
+    // MARK: - Private variables
     private var bag = DisposeBag()
     
     override func viewDidLoad() {

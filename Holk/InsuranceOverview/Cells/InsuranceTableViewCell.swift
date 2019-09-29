@@ -9,7 +9,7 @@
 import UIKit
 
 final class InsuranceTableViewCell: UITableViewCell {
-    
+    // MARK: - IBOutlets
     @IBOutlet private weak var containerView: UIView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var addressLabel: UILabel!
@@ -18,7 +18,7 @@ final class InsuranceTableViewCell: UITableViewCell {
     @IBOutlet private weak var ideaValueLabel: HolkIllustrationLabel!
     @IBOutlet private weak var ideaLabel: UILabel!
     @IBOutlet private weak var logoImageView: UIImageView!
-    
+    // MARK: - Private variables
     private let lightFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
     
     override func prepareForReuse() {

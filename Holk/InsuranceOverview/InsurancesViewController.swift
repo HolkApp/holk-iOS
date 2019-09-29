@@ -13,14 +13,15 @@ protocol InsurancesViewControllerDelegate: AnyObject {
 }
 
 final class InsurancesViewController: UIViewController {
+    // MARK: - IBOutlets
     @IBOutlet private weak var tableView: UITableView!
-    
+    // MARK: - Public variables
     weak var delegate: InsurancesViewControllerDelegate?
+    // MARK: - Public variables
     private enum Section: Int, CaseIterable {
         case insurance
         case addMore
     }
-    
     private var numberOfInsurances = 2
     override func viewDidLoad() {
         super.viewDidLoad()

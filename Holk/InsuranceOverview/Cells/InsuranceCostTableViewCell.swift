@@ -9,19 +9,19 @@
 import UIKit
 
 class InsuranceCostTableViewCell: UITableViewCell {
-    
+    // MARK: - IBOutlets
     @IBOutlet private weak var containerView: UIView!
     @IBOutlet private weak var insuranceImageView: UIImageView!
     @IBOutlet private weak var illustrationView: UIImageView!
     @IBOutlet private weak var typeLabel: UILabel!
     @IBOutlet private weak var costLabel: UILabel!
     @IBOutlet private weak var costValueLabel: UILabel!
-    
-    private let lightFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
-    
+    // MARK: - Public variables
     override var reuseIdentifier: String? {
         return InsuranceCostTableViewCell.identifier
     }
+    // MARK: - Private variables
+    private let lightFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -11,19 +11,19 @@ import RxCocoa
 import RxSwift
 
 class OnboardingLoginViewController: UIViewController {
-    
+    // MARK: - IBOutlets
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var subtitleLabel: UILabel!
     @IBOutlet private weak var emailTextField: HolkTextField!
     @IBOutlet private weak var passwordTextField: HolkTextField!
-    
+    // MARK: - Public variables
+    weak var coordinator: OnboardingCoordinator?
+    // MARK: - Private variables
     private var textView = UITextView()
     private var doneButton = HolkButton()
     private var doneButtonBottomConstraint: NSLayoutConstraint!
     private var bag = DisposeBag()
     private var keyboardEventObserver: KeyboardEventObserver?
-    
-    weak var coordinator: OnboardingCoordinator?
     
     override func viewDidLoad() {
         super.viewDidLoad()

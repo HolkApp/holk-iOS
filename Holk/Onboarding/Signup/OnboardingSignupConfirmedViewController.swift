@@ -10,6 +10,7 @@ import UIKit
 import Foundation
 
 final class OnboardingSignupConfirmedViewController: UIViewController {
+    // MARK: - IBOutlets
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var labelView: UILabel!
     

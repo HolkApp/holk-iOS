@@ -32,16 +32,22 @@ final class OnboardingCoordinator: NSObject, Coordinator, BackNavigation, UINavi
         navController.pushViewController(vc, animated: true)
     }
     
-    func login() {
+    func login(presentByRoot: Bool = false) {
         let vc = StoryboardScene.Onboarding.onboardingLoginViewController.instantiate()
         vc.coordinator = self
         navController.pushViewController(vc, animated: true)
+        if presentByRoot {
+            popOtherViewControllers()
+        }
     }
     
-    func signup() {
+    func signup(presentByRoot: Bool = false) {
         let vc = StoryboardScene.Onboarding.onboardingSignupViewController.instantiate()
         vc.coordinator = self
         navController.pushViewController(vc, animated: true)
+        if presentByRoot {
+            popOtherViewControllers()
+        }
     }
     
     // MARK: - OnBoardingInfo

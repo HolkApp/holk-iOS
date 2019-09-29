@@ -9,6 +9,7 @@
 import UIKit
 
 class OnboardingInfoViewController: UIViewController {
+    // MARK: - IBOutlets
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var subtitleLabel: UILabel!
     @IBOutlet weak private var headerLabel: UILabel!
@@ -19,8 +20,6 @@ class OnboardingInfoViewController: UIViewController {
     @IBOutlet weak private var analyseImage: UIImageView!
     @IBOutlet weak private var analyseLabel: UILabel!
     @IBOutlet weak private var verticalStackView: UIStackView!
-    
-    weak var coordinator: BackNavigation?
     
     override func viewDidLoad() {
         super.viewDidLoad()

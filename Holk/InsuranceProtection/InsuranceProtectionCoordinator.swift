@@ -11,12 +11,10 @@ import UIKit
 final class InsuranceProtectionCoordinator: Coordinator, BackNavigation {
     // MARK: - Public Properties
     var navController: UINavigationController
-    
     // MARK: - Init
     init(navController: UINavigationController) {
         self.navController = navController
     }
-    
     // MARK: - Public Methods
     func start() {
         let vc = StoryboardScene.InsuranceProtection.insuranceProtectionViewController.instantiate()

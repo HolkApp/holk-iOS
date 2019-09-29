@@ -11,7 +11,18 @@ import UIKit
 protocol Coordinator {
     var navController: UINavigationController { get set }
     func start()
+    func popOtherViewControllers()
 }
+
+extension Coordinator {
+    func popOtherViewControllers() {
+        if let first = navController.viewControllers.first,
+            let last = navController.viewControllers.last, first != last {
+            navController.viewControllers = [first, last]
+        }
+    }
+}
+
 
 class InsuranceCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
     // MARK: - Public Properties

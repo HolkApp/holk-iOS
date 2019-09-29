@@ -1,6 +1,7 @@
 import UIKit
 
 final class OnboardingInfoPageViewController: UIPageViewController {
+    // MARK: - Public Variables
     var orderedViewControllers = [UIViewController]()
     
     override func viewDidLoad() {
