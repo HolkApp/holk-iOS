@@ -87,15 +87,19 @@ enum Font {
 }
 
 extension Font {
+    static func fontAwesome(style: FontAwesomeStyle, size: Size) -> UIFont {
+        UIFont.loadFontAwesome(ofStyle: style)
+        return UIFont.fontAwesome(ofSize: size.pointSize, style: style)
+    }
+}
+
+extension FontAwesome {
     /// 22
     static let smallIconSize = CGSize.init(width: 22, height: 22)
     /// 30
     static let tabBarIconSize = CGSize.init(width: 30, height: 30)
     /// 45
-    static let iconSize = CGSize.init(width: 45, height: 45)
-    
-    static func fontAwesome(style: FontAwesomeStyle, size: Size) -> UIFont {
-        UIFont.loadFontAwesome(ofStyle: style)
-        return UIFont.fontAwesome(ofSize: size.pointSize, style: style)
-    }
+    static let mediumIconSize = CGSize.init(width: 45, height: 45)
+    /// 53
+    static let largeIconSize = CGSize.init(width: 53, height: 53)
 }

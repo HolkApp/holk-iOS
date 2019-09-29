@@ -18,7 +18,7 @@ final class OnboardingInfoContainerViewController: UIViewController {
     
     override func viewDidLoad() {
         navigationItem.setHidesBackButton(true, animated: false)
-        let backIcon = UIImage.fontAwesomeIcon(name: .chevronLeft, style: .regular, textColor: Color.mainForegroundColor, size: Font.iconSize)
+        let backIcon = UIImage.fontAwesomeIcon(name: .chevronLeft, style: .regular, textColor: Color.mainForegroundColor, size: FontAwesome.mediumIconSize)
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: backIcon, style: .plain, target: self, action: #selector(back(sender:)))
         navigationController?.isNavigationBarHidden = false
         

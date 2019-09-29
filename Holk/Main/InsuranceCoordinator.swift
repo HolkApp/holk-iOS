@@ -39,7 +39,7 @@ class InsuranceCoordinator: NSObject, Coordinator, UINavigationControllerDelegat
 //        vc.coordinator = self
         
         let vc = StoryboardScene.InsuranceOverview.insuranceOverviewViewController.instantiate()
-        let tabBarIcon = UIImage.fontAwesomeIcon(name: .clipboardList, style: .light, textColor: .systemBlue, size: Font.tabBarIconSize)
+        let tabBarIcon = UIImage.fontAwesomeIcon(name: .clipboardList, style: .light, textColor: .systemBlue, size: FontAwesome.tabBarIconSize)
         navController.tabBarItem = UITabBarItem(title: "Översikt", image: tabBarIcon, tag: 0)
         navController.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navController.navigationBar.shadowImage = UIImage()

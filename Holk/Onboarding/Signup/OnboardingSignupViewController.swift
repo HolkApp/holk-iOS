@@ -40,7 +40,7 @@ class OnboardingSignupViewController: UIViewController {
     private func setup() {
         navigationController?.isNavigationBarHidden = false
         navigationItem.setHidesBackButton(true, animated: false)
-        let closeIcon = UIImage.fontAwesomeIcon(name: .times, style: .light, textColor: Color.mainForegroundColor, size: Font.iconSize)
+        let closeIcon = UIImage.fontAwesomeIcon(name: .times, style: .light, textColor: Color.mainForegroundColor, size: FontAwesome.mediumIconSize)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: closeIcon, style: .plain, target: self, action: #selector(backTapped(_:)))
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard(_:)))
         view.addGestureRecognizer(tapGestureRecognizer)

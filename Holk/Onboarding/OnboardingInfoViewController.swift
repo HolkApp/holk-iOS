@@ -44,8 +44,8 @@ class OnboardingInfoViewController: UIViewController {
         verticalStackView.setCustomSpacing(35, after: subtitleLabel)
         verticalStackView.setCustomSpacing(30, after: headerLabel)
         
-        loginImage.image = .fontAwesomeIcon(name: .fileCheck, style: .light, textColor: Color.mainForegroundColor, size: Font.iconSize)
-        answerQuestionImage.image = .fontAwesomeIcon(name: .commentAltSmile, style: .light, textColor: Color.mainForegroundColor, size: Font.iconSize)
-        analyseImage.image = .fontAwesomeIcon(name: .bellExclamation, style: .light, textColor: Color.mainForegroundColor, size: Font.iconSize)
+        loginImage.image = .fontAwesomeIcon(name: .fileCheck, style: .light, textColor: Color.mainForegroundColor, size: FontAwesome.mediumIconSize)
+        answerQuestionImage.image = .fontAwesomeIcon(name: .commentAltSmile, style: .light, textColor: Color.mainForegroundColor, size: FontAwesome.mediumIconSize)
+        analyseImage.image = .fontAwesomeIcon(name: .bellExclamation, style: .light, textColor: Color.mainForegroundColor, size: FontAwesome.mediumIconSize)
     }
 }

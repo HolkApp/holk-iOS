@@ -17,7 +17,7 @@ final class OnboardingSignupConfirmedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        imageView.image = #imageLiteral(resourceName: "check")
+        imageView.image = UIImage.fontAwesomeIcon(name: .check, style: .regular, textColor: Color.secondaryBackgroundColor, size: FontAwesome.largeIconSize)
         imageView.layer.cornerRadius = imageView.frame.width / 2
         imageView.layer.borderWidth = 2
         imageView.layer.borderColor = Color.mainForegroundColor.cgColor
