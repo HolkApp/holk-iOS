@@ -14,6 +14,9 @@
 		8F25CA9D233E945100DC3B97 /* OnboardingInfoContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F25CA9C233E945100DC3B97 /* OnboardingInfoContainerViewController.swift */; };
 		8F25CAA1233E981900DC3B97 /* LoginToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F25CA9F233E981800DC3B97 /* LoginToken.swift */; };
 		8F25CAA2233E981900DC3B97 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F25CAA0233E981800DC3B97 /* User.swift */; };
+		8F25CAA523410CB800DC3B97 /* InsuranceProviderTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F25CAA423410CB800DC3B97 /* InsuranceProviderTypeViewController.swift */; };
+		8F25CAA823410D8C00DC3B97 /* InsuranceProviderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F25CAA723410D8C00DC3B97 /* InsuranceProviderType.swift */; };
+		8F25CAAA23410ED200DC3B97 /* InsuranceProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F25CAA923410ED200DC3B97 /* InsuranceProvider.swift */; };
 		8F2BB8E62332D4EB00E8AE4B /* FontLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2BB8E52332D4EB00E8AE4B /* FontLoader.swift */; };
 		8F2D246622F462D900B7839E /* OnboardingLandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2D246422F462D900B7839E /* OnboardingLandingViewController.swift */; };
 		8F2D246722F462D900B7839E /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F2D246522F462D900B7839E /* OnboardingCoordinator.swift */; };
@@ -97,6 +100,9 @@
 		8F25CA9C233E945100DC3B97 /* OnboardingInfoContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingInfoContainerViewController.swift; sourceTree = "<group>"; };
 		8F25CA9F233E981800DC3B97 /* LoginToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginToken.swift; path = Holk/Onboarding/Model/LoginToken.swift; sourceTree = SOURCE_ROOT; };
 		8F25CAA0233E981800DC3B97 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Holk/Onboarding/Model/User.swift; sourceTree = SOURCE_ROOT; };
+		8F25CAA423410CB800DC3B97 /* InsuranceProviderTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceProviderTypeViewController.swift; sourceTree = "<group>"; };
+		8F25CAA723410D8C00DC3B97 /* InsuranceProviderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceProviderType.swift; sourceTree = "<group>"; };
+		8F25CAA923410ED200DC3B97 /* InsuranceProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceProvider.swift; sourceTree = "<group>"; };
 		8F2BB8E52332D4EB00E8AE4B /* FontLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontLoader.swift; sourceTree = "<group>"; };
 		8F2D246422F462D900B7839E /* OnboardingLandingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnboardingLandingViewController.swift; path = Holk/Onboarding/OnboardingLandingViewController.swift; sourceTree = SOURCE_ROOT; };
 		8F2D246522F462D900B7839E /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OnboardingCoordinator.swift; path = Holk/Onboarding/OnboardingCoordinator.swift; sourceTree = SOURCE_ROOT; };
@@ -213,6 +219,24 @@
 			path = ../Login;
 			sourceTree = "<group>";
 		};
+		8F25CAA323410C8400DC3B97 /* InsuranceProvider */ = {
+			isa = PBXGroup;
+			children = (
+				8F25CAA423410CB800DC3B97 /* InsuranceProviderTypeViewController.swift */,
+				8F25CAA623410CBC00DC3B97 /* Model */,
+			);
+			path = InsuranceProvider;
+			sourceTree = "<group>";
+		};
+		8F25CAA623410CBC00DC3B97 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8F25CAA723410D8C00DC3B97 /* InsuranceProviderType.swift */,
+				8F25CAA923410ED200DC3B97 /* InsuranceProvider.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		8F5B5A3322771EBF00E79A40 /* Generated */ = {
 			isa = PBXGroup;
 			children = (
@@ -313,6 +337,7 @@
 				8FF6E73222B534F800F6D398 /* Main */,
 				8FF6E74222B82D9A00F6D398 /* Fonts */,
 				8FF6E73122B534E000F6D398 /* Onboarding */,
+				8F25CAA323410C8400DC3B97 /* InsuranceProvider */,
 				8F9C83D822A313EE005BB336 /* InsuranceOverview */,
 				8FF6E75822C8C95D00F6D398 /* InsuranceOutGoing */,
 				8FF6E73922B6B52200F6D398 /* InsuranceProtection */,
@@ -624,10 +649,13 @@
 				8FF6E75422B9634400F6D398 /* HolkSegmentedControl.swift in Sources */,
 				8FF6E73D22B6B59B00F6D398 /* InsuranceProtectionCoordinator.swift in Sources */,
 				8F25CAA1233E981900DC3B97 /* LoginToken.swift in Sources */,
+				8F25CAA523410CB800DC3B97 /* InsuranceProviderTypeViewController.swift in Sources */,
+				8F25CAAA23410ED200DC3B97 /* InsuranceProvider.swift in Sources */,
 				8FCEE9B123254B6C00F75FB8 /* KeyboardEventContext.swift in Sources */,
 				8FF6E72622AC0D2800F6D398 /* Color.swift in Sources */,
 				8F2BB8E62332D4EB00E8AE4B /* FontLoader.swift in Sources */,
 				8FD84E892271B157009D563D /* APIBaseStore.swift in Sources */,
+				8F25CAA823410D8C00DC3B97 /* InsuranceProviderType.swift in Sources */,
 				8F63C31122E44A7A00CFE334 /* InsuranceDetailCoordinator.swift in Sources */,
 				8F9807E92276F10E00584BA9 /* InsuranceCoordinator.swift in Sources */,
 				8F48BE6723315F49004D79D2 /* HolkIllustrationLabel.swift in Sources */,
