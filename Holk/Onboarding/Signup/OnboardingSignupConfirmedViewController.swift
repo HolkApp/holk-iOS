@@ -17,6 +17,8 @@ final class OnboardingSignupConfirmedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = Color.mainHighlightColor
+        
         imageView.image = UIImage.fontAwesomeIcon(name: .check, style: .regular, textColor: Color.secondaryBackgroundColor, size: FontAwesome.largeIconSize)
         imageView.layer.cornerRadius = imageView.frame.width / 2
         imageView.layer.borderWidth = 2
@@ -25,6 +27,12 @@ final class OnboardingSignupConfirmedViewController: UIViewController {
         labelView.text = "Snyggt, \ndå fortsätter vi"
         labelView.textColor = Color.mainForegroundColor
         labelView.font = Font.extraBold(.header)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            if let window = UIApplication.shared.delegate?.window {
+                window?.rootViewController = TabBarController()
+            }
+        }
     }
     
 }

@@ -132,8 +132,11 @@ class OnboardingSignupViewController: UIViewController {
     }
     
     @objc private func submit(_ sender: UIButton) {
-        if let window = UIApplication.shared.delegate?.window {
-            window?.rootViewController = TabBarController()
-        }
+        let confirmedViewController = StoryboardScene.Onboarding.onboardingSignupConfirmedViewController.instantiate()
+        confirmedViewController.modalPresentationStyle = .overFullScreen
+        present(
+            confirmedViewController,
+            animated: true
+        )
     }
 }
