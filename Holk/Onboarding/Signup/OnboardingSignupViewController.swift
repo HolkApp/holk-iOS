@@ -19,12 +19,14 @@ class OnboardingSignupViewController: UIViewController {
     // MARK: - Public variables
     weak var coordinator: OnboardingCoordinator?
     // MARK: - Private variables
-    private var textView = UITextView()
-    private var doneButton = HolkButton()
+    private let existAccoundButton = UIButton()
+    private let infoTextView = UITextView()
+    private let doneButton = HolkButton()
     private var doneButtonBottomConstraint: NSLayoutConstraint!
     private var bag = DisposeBag()
     private var keyboardEventObserver: KeyboardEventObserver?
     
+    // MARK: - Overridden methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -44,7 +46,8 @@ class OnboardingSignupViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: closeIcon, style: .plain, target: self, action: #selector(backTapped(_:)))
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard(_:)))
         view.addGestureRecognizer(tapGestureRecognizer)
-        view.addSubview(textView)
+        view.addSubview(existAccoundButton)
+        view.addSubview(infoTextView)
         view.addSubview(doneButton)
         
         titleLabel.text = "Skapa användare"
@@ -66,13 +69,20 @@ class OnboardingSignupViewController: UIViewController {
         passwordTextField.placeholderTextColor = Color.placeHolderTextColor
         passwordTextField.isSecureTextEntry = true
         
-        textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.textColor = Color.mainForegroundColor
-        textView.font = Font.regular(.description)
-        textView.text = "Genom att skapa ett konto godkänner du användarvilkoren."
-        textView.isScrollEnabled = false
-        textView.backgroundColor = .clear
-        textView.isEditable = false
+        existAccoundButton.translatesAutoresizingMaskIntoConstraints = false
+        existAccoundButton.contentHorizontalAlignment = .leading
+        existAccoundButton.setTitle("Already has an account? Click here", for: .normal)
+        existAccoundButton.setTitleColor(Color.mainHighlightColor, for: UIControl.State())
+        existAccoundButton.titleLabel?.font = Font.bold(.label)
+        existAccoundButton.addTarget(self, action: #selector(login(_:)), for: .touchUpInside)
+        
+        infoTextView.translatesAutoresizingMaskIntoConstraints = false
+        infoTextView.textColor = Color.mainForegroundColor
+        infoTextView.font = Font.regular(.description)
+        infoTextView.text = "Genom att skapa ett konto godkänner du användarvilkoren."
+        infoTextView.isScrollEnabled = false
+        infoTextView.backgroundColor = .clear
+        infoTextView.isEditable = false
         
         doneButton.translatesAutoresizingMaskIntoConstraints = false
         doneButtonBottomConstraint = view.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: doneButton.bottomAnchor, constant: 0)
@@ -92,9 +102,12 @@ class OnboardingSignupViewController: UIViewController {
         }.bind(to: doneButton.rx.isEnabled).disposed(by: bag)
         
         NSLayoutConstraint.activate([
-            textView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 45),
-            textView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -45),
-            textView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -80),
+            existAccoundButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
+            existAccoundButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
+            existAccoundButton.bottomAnchor.constraint(equalTo: infoTextView.topAnchor),
+            infoTextView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 45),
+            infoTextView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -45),
+            infoTextView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -80),
             
             doneButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             doneButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -108,6 +121,10 @@ class OnboardingSignupViewController: UIViewController {
     
     @objc private func backTapped(_ sender: UIButton) {
         coordinator?.back()
+    }
+    
+    @objc private func login(_ sender: UIButton) {
+        coordinator?.login(presentByRoot: true)
     }
     
     @objc private func hideKeyboard(_ sender: Any) {

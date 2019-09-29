@@ -19,7 +19,7 @@ final class OnboardingInfoContainerViewController: UIViewController {
     override func viewDidLoad() {
         navigationItem.setHidesBackButton(true, animated: false)
         let backIcon = UIImage.fontAwesomeIcon(name: .chevronLeft, style: .regular, textColor: Color.mainForegroundColor, size: FontAwesome.mediumIconSize)
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: backIcon, style: .plain, target: self, action: #selector(back(sender:)))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: backIcon, style: .plain, target: self, action: #selector(back(_:)))
         navigationController?.isNavigationBarHidden = false
         
         let pageViewController = StoryboardScene.Onboarding.onboardingInfoPageViewController.instantiate()
@@ -39,10 +39,14 @@ final class OnboardingInfoContainerViewController: UIViewController {
         OKButton.titleLabel?.font = Font.semibold(.caption)
         OKButton.setTitleColor(Color.mainForegroundColor, for: UIControl.State())
         OKButton.backgroundColor = Color.mainHighlightColor
-        OKButton.addTarget(self, action: #selector(back(sender:)), for: .touchUpInside)
+        OKButton.addTarget(self, action: #selector(signup(_:)), for: .touchUpInside)
     }
     
-    @objc private func back(sender: Any) {
+    @objc private func back(_ sender: Any) {
+        coordinator?.back()
+    }
+    
+    @objc private func signup(_ sender: Any) {
         coordinator?.signup(presentByRoot: true)
     }
 }
