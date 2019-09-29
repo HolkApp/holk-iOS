@@ -9,16 +9,16 @@
 import UIKit
 
  class HolkTextField: UITextField {
-    
+    // MARK: - Private variables
     private let underlineLayer = CAShapeLayer()
     private let placeholderLayer = CATextLayer()
+    private let helpLabel = UILabel()
+    
     override  var placeholder: String? {
         didSet {
             placeholderLayer.string = placeholder
         }
     }
-    
-    private let helpLabel = UILabel()
     
      var placeholderTextColor: UIColor! {
         set {

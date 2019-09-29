@@ -27,12 +27,10 @@ extension Coordinator {
 class InsuranceCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
     // MARK: - Public Properties
     var navController: UINavigationController
-    
     // MARK: - Init
     init(navController: UINavigationController) {
         self.navController = navController
     }
-    
     // MARK: - Public Methods
     func start() {
         // TODO: Should present the landing page
@@ -49,7 +47,6 @@ class InsuranceCoordinator: NSObject, Coordinator, UINavigationControllerDelegat
         navController.delegate = self
         navController.pushViewController(vc, animated: true)
     }
-    
     
     // MARK: - UINavigationControllerDelegate
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {

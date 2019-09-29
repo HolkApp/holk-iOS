@@ -9,9 +9,9 @@
 import UIKit
 
 class TabBarController: UITabBarController {
-    
-    let insuranceCoordinator = InsuranceCoordinator(navController: UINavigationController())
-    let protectionCoordinator = InsuranceProtectionCoordinator(navController: UINavigationController())
+    // MARK: - Private variables
+    private let insuranceCoordinator = InsuranceCoordinator(navController: UINavigationController())
+    private let protectionCoordinator = InsuranceProtectionCoordinator(navController: UINavigationController())
     
     override func viewDidLoad() {
         insuranceCoordinator.start()

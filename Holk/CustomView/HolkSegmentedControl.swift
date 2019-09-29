@@ -9,7 +9,7 @@
 import UIKit
 
 final class HolkSegmentedControl: UISegmentedControl {
-    
+    // MARK: - Private variables
     private var segmentedControlFrames: [CGRect] = []
     private var imageLayer: CAShapeLayer = CAShapeLayer()
     

@@ -9,7 +9,9 @@
 import UIKit
 
 class HolkIllustrationLabel: UILabel {
+    // MARK: - Private variables
     private lazy var suffixLabel = UILabel()
+    // MARK: - Public variables
     var suffixFont: UIFont? {
         didSet {
             guard let suffixFont = suffixFont else { return }
