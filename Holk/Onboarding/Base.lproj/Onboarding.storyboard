@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -71,6 +71,36 @@
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="113.83928571428571"/>
         </scene>
+        <!--Insurance Provider Type View Controller-->
+        <scene sceneID="t3a-qT-ARN">
+            <objects>
+                <viewController storyboardIdentifier="InsuranceProviderTypeViewController" id="PPJ-Ai-Irk" customClass="InsuranceProviderTypeViewController" customModule="Holk" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="CpJ-Yv-fpf">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Vd0-B2-Iia"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="906-ed-cAk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="996" y="114"/>
+        </scene>
+        <!--Insurance Provider View Controller-->
+        <scene sceneID="tze-Ww-jvW">
+            <objects>
+                <viewController storyboardIdentifier="InsuranceProviderViewController" id="wLC-yi-RFl" customClass="InsuranceProviderViewController" customModule="Holk" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="bUp-si-xU3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="EXQ-sN-ZFU"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="248-3y-INu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="996" y="881"/>
+        </scene>
         <!--Onboarding Signup Confirmed View Controller-->
         <scene sceneID="CZv-Bg-8pi">
             <objects>
@@ -115,7 +145,7 @@ då fortsätter vi</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I9U-Rl-DXp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="997" y="114"/>
+            <point key="canvasLocation" x="1799" y="114"/>
         </scene>
         <!--Onboarding Info Container View Controller-->
         <scene sceneID="q0P-E6-bew">
@@ -283,7 +313,7 @@ frågor om din vardag</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2QK-mT-Dod" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="933" y="-575"/>
+            <point key="canvasLocation" x="996" y="-575"/>
         </scene>
         <!--Onboarding Info Page View Controller-->
         <scene sceneID="AlR-sE-C7h">

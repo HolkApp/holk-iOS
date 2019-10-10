@@ -132,11 +132,6 @@ class OnboardingSignupViewController: UIViewController {
     }
     
     @objc private func submit(_ sender: UIButton) {
-        let confirmedViewController = StoryboardScene.Onboarding.onboardingSignupConfirmedViewController.instantiate()
-        confirmedViewController.modalPresentationStyle = .overFullScreen
-        present(
-            confirmedViewController,
-            animated: true
-        )
+        coordinator?.onboarding()
     }
 }

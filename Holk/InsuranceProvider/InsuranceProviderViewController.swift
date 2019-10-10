@@ -1,24 +1,20 @@
 //
-//  InsuranceProviderTypeViewController.swift
+//  InsuranceProviderViewController.swift
 //  Holk
 //
-//  Created by 张梦皓 on 2019-09-29.
+//  Created by 张梦皓 on 2019-09-30.
 //  Copyright © 2019 Holk. All rights reserved.
 //
 
 import UIKit
 
-final class InsuranceProviderTypeViewController: UIViewController {
-    // MARK: - Public variables
-    weak var coordinator: OnboardingCoordinator?
-    
-    // MARK: - Private variables
+final class InsuranceProviderViewController: UIViewController {
     private let tableView = UITableView()
     private let skipButton = HolkButton()
     
     override func viewDidLoad() {
         navigationItem.largeTitleDisplayMode = .always
-        navigationItem.title = "Pick insurance to find gaps in"
+        navigationItem.title = "Pick insurance company"
         
         setup()
     }
@@ -86,22 +82,20 @@ final class InsuranceProviderTypeViewController: UIViewController {
     }
 }
 
-extension InsuranceProviderTypeViewController: UITableViewDelegate {
+extension InsuranceProviderViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let insuranceProviderViewController = StoryboardScene.Onboarding.insuranceProviderViewController.instantiate()
-        insuranceProviderViewController.modalPresentationStyle = .overFullScreen
-        navigationController?.pushViewController(insuranceProviderViewController, animated: true)
+        confirm()
     }
 }
 
-extension InsuranceProviderTypeViewController: UITableViewDataSource {
+extension InsuranceProviderViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return InsuranceProviderType.mockTypeResults.count
+        return InsuranceProvider.mockInsuranceProviderResults.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.text = InsuranceProviderType.mockTypeResults[indexPath.item].rawValue
+        cell.textLabel?.text = InsuranceProvider.mockInsuranceProviderResults[indexPath.item].displayName
         cell.selectionStyle = .none
         return cell
     }

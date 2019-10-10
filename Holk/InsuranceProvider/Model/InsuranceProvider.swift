@@ -16,7 +16,7 @@ struct InsuranceProvider {
 }
 
 extension InsuranceProvider {
-    var mockInsuranceProviderResults: [InsuranceProvider] {
+    static var mockInsuranceProviderResults: [InsuranceProvider] {
         [
             InsuranceProvider(name: "If", displayName: "If", id: "1", types: [.home, .car, .kids]),
             InsuranceProvider(name: "Folksam", displayName: "Folksam", id: "2", types: [.home, .car, .life]),
