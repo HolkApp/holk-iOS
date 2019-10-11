@@ -25,6 +25,13 @@ enum APIError: Error {
 
 extension APIError: Equatable {
     static func == (lhs: APIError, rhs: APIError) -> Bool {
-        return lhs.code == rhs.code
+        switch (lhs, rhs) {
+        case (.decodingError, .decodingError), (.network, .network):
+            return true
+        case (.errorCode(let lhsCode), .errorCode(let rhsCode)):
+            return lhsCode == rhsCode
+        default:
+            return false
+        }
     }
 }
