@@ -65,22 +65,4 @@ final class OnboardingLandingViewController: UIViewController {
         onBoardingButton.titleLabel?.font = Font.semibold(.description)
         onBoardingButton.tintColor = Color.mainForegroundColor
     }
-    
-    private func loginRequest() {
-        APIStore.sharedInstance.login(username: "filip", password: "password")
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { event in
-                switch event {
-                case .success(let value):
-                    User.sharedInstance.accessToken = value.accessToken
-                    User.sharedInstance.refreshToken = value.refreshToken
-                case .failure(let error):
-                    print("server error here")
-                    print(error)
-                }
-            }, onError: { error in
-                print("network error here")
-            }).disposed(by: bag)
-    }
-    
 }

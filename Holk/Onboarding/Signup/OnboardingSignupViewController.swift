@@ -18,6 +18,7 @@ class OnboardingSignupViewController: UIViewController {
     @IBOutlet private weak var passwordTextField: HolkTextField!
     // MARK: - Public variables
     weak var coordinator: OnboardingCoordinator?
+    var storeController: StoreController?
     // MARK: - Private variables
     private let existAccoundButton = UIButton()
     private let infoTextView = UITextView()
@@ -111,7 +112,7 @@ class OnboardingSignupViewController: UIViewController {
             
             doneButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             doneButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            doneButton.heightAnchor.constraint(equalToConstant: 80),
+            doneButton.heightAnchor.constraint(equalToConstant: 75),
             doneButtonBottomConstraint
             ])
         
@@ -132,6 +133,30 @@ class OnboardingSignupViewController: UIViewController {
     }
     
     @objc private func submit(_ sender: UIButton) {
+        signupRequest()
         coordinator?.onboarding()
+    }
+    
+    private func signupRequest() {
+        if let username = emailTextField.text,
+            let password = passwordTextField.text,
+            let storeController = storeController {
+            storeController.authenticationStore
+                .signup(username: username, password: password)
+                .observeOn(MainScheduler.instance)
+                .subscribe(onNext: { event in
+                    switch event {
+                    case .success(let value):
+//                        User.sharedInstance.accessToken = value.accessToken
+//                        User.sharedInstance.refreshToken = value.refreshToken
+                        break
+                    case .failure(let error):
+                        print("server error here")
+                        print(error)
+                    }
+                }, onError: { error in
+                    print("network error here")
+                }).disposed(by: bag)
+        }
     }
 }

@@ -15,10 +15,11 @@ protocol BackNavigation: AnyObject {
 final class OnboardingCoordinator: NSObject, Coordinator, BackNavigation, UINavigationControllerDelegate {
     // MARK: - Public Properties
     var navController: UINavigationController
-    
+    var storeController: StoreController
     // MARK: - Init
     init(navController: UINavigationController) {
         self.navController = navController
+        storeController = StoreController()
     }
     
     // MARK: - Public Methods
@@ -35,6 +36,7 @@ final class OnboardingCoordinator: NSObject, Coordinator, BackNavigation, UINavi
     func login(presentByRoot: Bool = false) {
         let vc = StoryboardScene.Onboarding.onboardingLoginViewController.instantiate()
         vc.coordinator = self
+        vc.storeController = storeController
         navController.pushViewController(vc, animated: true)
         if presentByRoot {
             popOtherViewControllers()
@@ -44,6 +46,7 @@ final class OnboardingCoordinator: NSObject, Coordinator, BackNavigation, UINavi
     func signup(presentByRoot: Bool = false) {
         let vc = StoryboardScene.Onboarding.onboardingSignupViewController.instantiate()
         vc.coordinator = self
+        vc.storeController = storeController
         navController.pushViewController(vc, animated: true)
         if presentByRoot {
             popOtherViewControllers()
