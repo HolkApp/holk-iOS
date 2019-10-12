@@ -133,7 +133,7 @@ class OnboardingSignupViewController: UIViewController {
     }
     
     @objc private func submit(_ sender: UIButton) {
-        signupRequest()
+//        TODO: call signupRequest()
         coordinator?.onboarding()
     }
     

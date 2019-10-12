@@ -80,11 +80,35 @@ final class InsuranceProviderViewController: UIViewController {
             animated: true
         )
     }
+    
+    private func select(_ provider: InsuranceProvider) {
+        BankIDService.sign(redirectLink: "holk:///", successHandler: { [weak self] in
+            guard let self = self else { return }
+            NotificationCenter.default.addObserver(self, selector: #selector(self.willEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+        }) { [weak self] in
+            guard let self = self else { return }
+            let confirmedViewController = StoryboardScene.Onboarding.onboardingSignupConfirmedViewController.instantiate()
+            confirmedViewController.modalPresentationStyle = .overFullScreen
+            self.present(
+                confirmedViewController,
+                animated: true
+            )
+        }
+    }
+    
+    @objc private func willEnterForeground() {
+        let confirmedViewController = StoryboardScene.Onboarding.onboardingSignupConfirmedViewController.instantiate()
+        confirmedViewController.modalPresentationStyle = .overFullScreen
+        present(
+            confirmedViewController,
+            animated: true
+        )
+    }
 }
 
 extension InsuranceProviderViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        confirm()
+        select(InsuranceProvider.mockInsuranceProviderResults[indexPath.item])
     }
 }
 

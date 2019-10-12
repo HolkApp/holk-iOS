@@ -84,13 +84,17 @@ final class InsuranceProviderTypeViewController: UIViewController {
             animated: true
         )
     }
+    
+    private func select(_ providerType: InsuranceProviderType) {
+        let insuranceProviderViewController = StoryboardScene.Onboarding.insuranceProviderViewController.instantiate()
+        insuranceProviderViewController.modalPresentationStyle = .overFullScreen
+        navigationController?.pushViewController(insuranceProviderViewController, animated: true)
+    }
 }
 
 extension InsuranceProviderTypeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let insuranceProviderViewController = StoryboardScene.Onboarding.insuranceProviderViewController.instantiate()
-        insuranceProviderViewController.modalPresentationStyle = .overFullScreen
-        navigationController?.pushViewController(insuranceProviderViewController, animated: true)
+        select(InsuranceProviderType.mockTypeResults[indexPath.item])
     }
 }
 

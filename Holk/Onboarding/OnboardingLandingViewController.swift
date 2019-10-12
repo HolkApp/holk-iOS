@@ -47,7 +47,7 @@ final class OnboardingLandingViewController: UIViewController {
         view.backgroundColor = Color.onBoardingBackgroundColor
         
         titleLabel.numberOfLines = 0
-        titleLabel.tintColor = Color.mainForegroundColor
+        titleLabel.textColor = Color.mainForegroundColor
         titleLabel.font = Font.extraBold(.header)
         loginButton.backgroundColor = Color.mainHighlightColor
         loginButton.titleLabel?.font = Font.semibold(.subtitle)
