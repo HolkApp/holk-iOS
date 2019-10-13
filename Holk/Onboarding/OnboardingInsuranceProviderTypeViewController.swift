@@ -1,5 +1,5 @@
 //
-//  InsuranceProviderTypeViewController.swift
+//  OnboardingInsuranceProviderTypeViewController.swift
 //  Holk
 //
 //  Created by 张梦皓 on 2019-09-29.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class InsuranceProviderTypeViewController: UIViewController {
+final class OnboardingInsuranceProviderTypeViewController: UIViewController {
     // MARK: - Public variables
     weak var coordinator: OnboardingCoordinator?
     
@@ -77,28 +77,24 @@ final class InsuranceProviderTypeViewController: UIViewController {
     }
     
     private func confirm() {
-        let confirmedViewController = StoryboardScene.Onboarding.onboardingSignupConfirmedViewController.instantiate()
-        confirmedViewController.modalPresentationStyle = .overFullScreen
-        present(
-            confirmedViewController,
-            animated: true
-        )
+        coordinator?.confirm()
     }
     
     private func select(_ providerType: InsuranceProviderType) {
-        let insuranceProviderViewController = StoryboardScene.Onboarding.insuranceProviderViewController.instantiate()
+        let insuranceProviderViewController = StoryboardScene.Onboarding.onboardingInsuranceProviderViewController.instantiate()
+        insuranceProviderViewController.coordinator = coordinator
         insuranceProviderViewController.modalPresentationStyle = .overFullScreen
         navigationController?.pushViewController(insuranceProviderViewController, animated: true)
     }
 }
 
-extension InsuranceProviderTypeViewController: UITableViewDelegate {
+extension OnboardingInsuranceProviderTypeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         select(InsuranceProviderType.mockTypeResults[indexPath.item])
     }
 }
 
-extension InsuranceProviderTypeViewController: UITableViewDataSource {
+extension OnboardingInsuranceProviderTypeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return InsuranceProviderType.mockTypeResults.count
     }

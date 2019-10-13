@@ -24,13 +24,13 @@ final class OnboardingCoordinator: NSObject, Coordinator, BackNavigation, UINavi
     
     // MARK: - Public Methods
     func start() {
-        let vc = StoryboardScene.Onboarding.onboardingLandingViewController.instantiate()
-        vc.coordinator = self
+        let onboardingLandingViewController = StoryboardScene.Onboarding.onboardingLandingViewController.instantiate()
+        onboardingLandingViewController.coordinator = self
         navController.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navController.navigationBar.shadowImage = UIImage()
         navController.delegate = self
         navController.navigationBar.tintColor = .black
-        navController.pushViewController(vc, animated: true)
+        navController.pushViewController(onboardingLandingViewController, animated: true)
     }
     
     func login(presentByRoot: Bool = false) {
@@ -54,9 +54,16 @@ final class OnboardingCoordinator: NSObject, Coordinator, BackNavigation, UINavi
     }
     
     func onboarding() {
-        let vc = StoryboardScene.Onboarding.insuranceProviderTypeViewController.instantiate()
+        let vc = StoryboardScene.Onboarding.onboardingInsuranceProviderTypeViewController.instantiate()
         vc.coordinator = self
         navController.pushViewController(vc, animated: true)
+    }
+    
+    func confirm() {
+        let confirmedViewController = StoryboardScene.Onboarding.onboardingSignupConfirmedViewController.instantiate()
+        confirmedViewController.coordinator = self
+        confirmedViewController.modalPresentationStyle = .overFullScreen
+        navController.pushViewController(confirmedViewController, animated: false)
     }
     
     // MARK: - OnBoardingInfo
@@ -85,5 +92,22 @@ final class OnboardingCoordinator: NSObject, Coordinator, BackNavigation, UINavi
         }
         
         // check the fromVC if it is a sepecific VC then handle the navigation back action if needed
+    }
+    
+    // TODO: Move this to SessionCoordinator
+    func coordinatorDidFinishOnboarding() {
+        let tabbarController = TabBarController()
+        tabbarController.modalPresentationStyle = .overFullScreen
+        if navController.presentedViewController != nil {
+                navController.dismiss(animated: true) {
+                    self.navController.present(tabbarController, animated: true) {
+                        self.navController.popToRootViewController(animated: false)
+                    }
+                }
+            } else {
+            navController.present(tabbarController, animated: true) {
+                self.navController.popToRootViewController(animated: false)
+            }
+        }
     }
 }

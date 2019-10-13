@@ -71,10 +71,10 @@
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="113.83928571428571"/>
         </scene>
-        <!--Insurance Provider Type View Controller-->
+        <!--Onboarding Insurance Provider Type View Controller-->
         <scene sceneID="t3a-qT-ARN">
             <objects>
-                <viewController storyboardIdentifier="InsuranceProviderTypeViewController" id="PPJ-Ai-Irk" customClass="InsuranceProviderTypeViewController" customModule="Holk" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OnboardingInsuranceProviderTypeViewController" id="PPJ-Ai-Irk" customClass="OnboardingInsuranceProviderTypeViewController" customModule="Holk" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CpJ-Yv-fpf">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -86,10 +86,10 @@
             </objects>
             <point key="canvasLocation" x="996" y="114"/>
         </scene>
-        <!--Insurance Provider View Controller-->
+        <!--Onboarding Insurance Provider View Controller-->
         <scene sceneID="tze-Ww-jvW">
             <objects>
-                <viewController storyboardIdentifier="InsuranceProviderViewController" id="wLC-yi-RFl" customClass="InsuranceProviderViewController" customModule="Holk" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OnboardingInsuranceProviderViewController" id="wLC-yi-RFl" customClass="OnboardingInsuranceProviderViewController" customModule="Holk" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bUp-si-xU3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

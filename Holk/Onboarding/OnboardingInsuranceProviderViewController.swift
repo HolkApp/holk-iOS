@@ -1,5 +1,5 @@
 //
-//  InsuranceProviderViewController.swift
+//  OnboardingInsuranceProviderViewController.swift
 //  Holk
 //
 //  Created by 张梦皓 on 2019-09-30.
@@ -8,15 +8,21 @@
 
 import UIKit
 
-final class InsuranceProviderViewController: UIViewController {
+final class OnboardingInsuranceProviderViewController: UIViewController {
     private let tableView = UITableView()
     private let skipButton = HolkButton()
+    
+    weak var coordinator: OnboardingCoordinator?
     
     override func viewDidLoad() {
         navigationItem.largeTitleDisplayMode = .always
         navigationItem.title = "Pick insurance company"
         
         setup()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     private func setup() {
@@ -73,46 +79,33 @@ final class InsuranceProviderViewController: UIViewController {
     }
     
     private func confirm() {
-        let confirmedViewController = StoryboardScene.Onboarding.onboardingSignupConfirmedViewController.instantiate()
-        confirmedViewController.modalPresentationStyle = .overFullScreen
-        present(
-            confirmedViewController,
-            animated: true
-        )
+        coordinator?.confirm()
     }
     
     private func select(_ provider: InsuranceProvider) {
         BankIDService.sign(redirectLink: "holk:///", successHandler: { [weak self] in
             guard let self = self else { return }
+            // TODO: Remove this for the temp mock
             NotificationCenter.default.addObserver(self, selector: #selector(self.willEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
         }) { [weak self] in
             guard let self = self else { return }
-            let confirmedViewController = StoryboardScene.Onboarding.onboardingSignupConfirmedViewController.instantiate()
-            confirmedViewController.modalPresentationStyle = .overFullScreen
-            self.present(
-                confirmedViewController,
-                animated: true
-            )
+            self.coordinator?.confirm()
         }
     }
     
+    // TODO: Remove this for the temp mock
     @objc private func willEnterForeground() {
-        let confirmedViewController = StoryboardScene.Onboarding.onboardingSignupConfirmedViewController.instantiate()
-        confirmedViewController.modalPresentationStyle = .overFullScreen
-        present(
-            confirmedViewController,
-            animated: true
-        )
+        coordinator?.confirm()
     }
 }
 
-extension InsuranceProviderViewController: UITableViewDelegate {
+extension OnboardingInsuranceProviderViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         select(InsuranceProvider.mockInsuranceProviderResults[indexPath.item])
     }
 }
 
-extension InsuranceProviderViewController: UITableViewDataSource {
+extension OnboardingInsuranceProviderViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return InsuranceProvider.mockInsuranceProviderResults.count
     }
