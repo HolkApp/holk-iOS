@@ -116,6 +116,7 @@ class OnboardingLoginViewController: UIViewController {
     @objc private func submit(_ sender: UIButton) {
         loginRequest()
         coordinator?.coordinatorDidFinishOnboarding()
+        hideKeyboard(sender)
     }
     
     private func loginRequest() {

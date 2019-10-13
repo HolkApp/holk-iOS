@@ -20,7 +20,7 @@ class OnboardingSignupViewController: UIViewController {
     weak var coordinator: OnboardingCoordinator?
     var storeController: StoreController?
     // MARK: - Private variables
-    private let existAccoundButton = UIButton()
+    private let existAccountButton = UIButton()
     private let infoTextView = UITextView()
     private let doneButton = HolkButton()
     private var doneButtonBottomConstraint: NSLayoutConstraint!
@@ -47,7 +47,7 @@ class OnboardingSignupViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: closeIcon, style: .plain, target: self, action: #selector(backTapped(_:)))
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard(_:)))
         view.addGestureRecognizer(tapGestureRecognizer)
-        view.addSubview(existAccoundButton)
+        view.addSubview(existAccountButton)
         view.addSubview(infoTextView)
         view.addSubview(doneButton)
         
@@ -70,12 +70,12 @@ class OnboardingSignupViewController: UIViewController {
         passwordTextField.placeholderTextColor = Color.placeHolderTextColor
         passwordTextField.isSecureTextEntry = true
         
-        existAccoundButton.translatesAutoresizingMaskIntoConstraints = false
-        existAccoundButton.contentHorizontalAlignment = .leading
-        existAccoundButton.setTitle("Already has an account? Click here", for: .normal)
-        existAccoundButton.setTitleColor(Color.mainHighlightColor, for: UIControl.State())
-        existAccoundButton.titleLabel?.font = Font.bold(.label)
-        existAccoundButton.addTarget(self, action: #selector(login(_:)), for: .touchUpInside)
+        existAccountButton.translatesAutoresizingMaskIntoConstraints = false
+        existAccountButton.contentHorizontalAlignment = .leading
+        existAccountButton.setTitle("Already has an account? Click here", for: .normal)
+        existAccountButton.setTitleColor(Color.mainHighlightColor, for: UIControl.State())
+        existAccountButton.titleLabel?.font = Font.bold(.label)
+        existAccountButton.addTarget(self, action: #selector(existedAccount(_:)), for: .touchUpInside)
         
         infoTextView.translatesAutoresizingMaskIntoConstraints = false
         infoTextView.textColor = Color.mainForegroundColor
@@ -103,9 +103,9 @@ class OnboardingSignupViewController: UIViewController {
         }.bind(to: doneButton.rx.isEnabled).disposed(by: bag)
         
         NSLayoutConstraint.activate([
-            existAccoundButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
-            existAccoundButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
-            existAccoundButton.bottomAnchor.constraint(equalTo: infoTextView.topAnchor),
+            existAccountButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
+            existAccountButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
+            existAccountButton.bottomAnchor.constraint(equalTo: infoTextView.topAnchor),
             infoTextView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 45),
             infoTextView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -45),
             infoTextView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -80),
@@ -124,8 +124,9 @@ class OnboardingSignupViewController: UIViewController {
         coordinator?.back()
     }
     
-    @objc private func login(_ sender: UIButton) {
+    @objc private func existedAccount(_ sender: UIButton) {
         coordinator?.login(presentByRoot: true)
+        hideKeyboard(sender)
     }
     
     @objc private func hideKeyboard(_ sender: Any) {
@@ -135,6 +136,7 @@ class OnboardingSignupViewController: UIViewController {
     @objc private func submit(_ sender: UIButton) {
 //        TODO: call signupRequest()
         coordinator?.onboarding()
+        hideKeyboard(sender)
     }
     
     private func signupRequest() {
