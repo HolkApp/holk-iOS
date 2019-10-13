@@ -115,9 +115,7 @@ class OnboardingLoginViewController: UIViewController {
     
     @objc private func submit(_ sender: UIButton) {
         loginRequest()
-        if let window = UIApplication.shared.delegate?.window {
-            window?.rootViewController = TabBarController()
-        }
+        coordinator?.coordinatorDidFinishOnboarding()
     }
     
     private func loginRequest() {

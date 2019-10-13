@@ -14,6 +14,10 @@ final class OnboardingSignupConfirmedViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var labelView: UILabel!
     
+    // MARK: - Public variables
+    weak var coordinator: OnboardingCoordinator?
+    
+    // MARK: - Overridden methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,10 +32,14 @@ final class OnboardingSignupConfirmedViewController: UIViewController {
         labelView.textColor = Color.mainForegroundColor
         labelView.font = Font.extraBold(.header)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            if let window = UIApplication.shared.delegate?.window {
-                window?.rootViewController = TabBarController()
-            }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
+            self?.coordinator?.coordinatorDidFinishOnboarding()
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationItem.setHidesBackButton(true, animated: animated)
     }
 }

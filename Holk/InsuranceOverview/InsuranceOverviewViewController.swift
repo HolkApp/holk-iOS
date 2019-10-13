@@ -137,10 +137,8 @@ final class InsuranceOverviewViewController: UIViewController {
     
     @objc private func profileTapped(sender: UIButton) {
         // Temp hack
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            appDelegate.coordinator?.start()
-            UIApplication.shared.keyWindow?.rootViewController = appDelegate.coordinator?.navController
-        }
+
+        dismiss(animated: true)
     }
 }
 
