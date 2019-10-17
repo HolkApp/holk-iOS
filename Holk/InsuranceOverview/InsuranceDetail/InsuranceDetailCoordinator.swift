@@ -9,7 +9,7 @@
 import UIKit
 
 
-class InsuranceDetailCoordinator: NSObject, Coordinator, BackNavigation, UINavigationControllerDelegate {
+class InsuranceDetailCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
     
     lazy var insuranceDetailViewController: InsuranceDetailViewController = {
         let vc = StoryboardScene.InsuranceOverview
@@ -33,11 +33,6 @@ class InsuranceDetailCoordinator: NSObject, Coordinator, BackNavigation, UINavig
     
     func showDetail() {
         navController.pushViewController(insuranceDetailViewController, animated: true)
-    }
-    
-    // MARK: - BackNavigation
-    func back() {
-        navController.popViewController(animated: true)
     }
     
     // MARK: - UINavigationControllerDelegate

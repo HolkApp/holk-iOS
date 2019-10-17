@@ -1,5 +1,5 @@
 //
-//  OnboardingSignupViewController.swift
+//  SignupViewController.swift
 //  Holk
 //
 //  Created by 张梦皓 on 2019-04-24.
@@ -10,15 +10,15 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-class OnboardingSignupViewController: UIViewController {
+class SignupViewController: UIViewController {
     // MARK: - IBOutlets
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var subtitleLabel: UILabel!
     @IBOutlet private weak var emailTextField: HolkTextField!
     @IBOutlet private weak var passwordTextField: HolkTextField!
     // MARK: - Public variables
-    weak var coordinator: OnboardingCoordinator?
     var storeController: StoreController?
+    weak var coordinator: SessionCoordinator?
     // MARK: - Private variables
     private let existAccountButton = UIButton()
     private let infoTextView = UITextView()
@@ -125,7 +125,7 @@ class OnboardingSignupViewController: UIViewController {
     }
     
     @objc private func existedAccount(_ sender: UIButton) {
-        coordinator?.login(presentByRoot: true)
+        coordinator?.showLogin(presentByRoot: true)
         hideKeyboard(sender)
     }
     

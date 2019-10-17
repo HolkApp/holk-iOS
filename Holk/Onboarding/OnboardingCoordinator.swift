@@ -8,49 +8,26 @@
 
 import UIKit
 
-protocol BackNavigation: AnyObject {
-    func back()
+protocol OnboardingCoordinatorDelegate: AnyObject {
+    func didFinishOnboarding(coordinator: OnboardingCoordinator)
 }
 
-final class OnboardingCoordinator: NSObject, Coordinator, BackNavigation, UINavigationControllerDelegate {
+final class OnboardingCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
     // MARK: - Public Properties
     var navController: UINavigationController
     var storeController: StoreController
+    weak var delegate: OnboardingCoordinatorDelegate?
     // MARK: - Init
-    init(navController: UINavigationController) {
+    init(navController: UINavigationController, storeController: StoreController) {
         self.navController = navController
-        storeController = StoreController()
+        self.storeController = storeController
     }
     
     // MARK: - Public Methods
     func start() {
-        let onboardingLandingViewController = StoryboardScene.Onboarding.onboardingLandingViewController.instantiate()
-        onboardingLandingViewController.coordinator = self
-        navController.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        navController.navigationBar.shadowImage = UIImage()
-        navController.delegate = self
-        navController.navigationBar.tintColor = .black
-        navController.pushViewController(onboardingLandingViewController, animated: true)
-    }
-    
-    func login(presentByRoot: Bool = false) {
-        let vc = StoryboardScene.Onboarding.onboardingLoginViewController.instantiate()
+        let vc = StoryboardScene.Onboarding.onboardingInsuranceProviderTypeViewController.instantiate()
         vc.coordinator = self
-        vc.storeController = storeController
         navController.pushViewController(vc, animated: true)
-        if presentByRoot {
-            popOtherViewControllers()
-        }
-    }
-    
-    func signup(presentByRoot: Bool = false) {
-        let vc = StoryboardScene.Onboarding.onboardingSignupViewController.instantiate()
-        vc.coordinator = self
-        vc.storeController = storeController
-        navController.pushViewController(vc, animated: true)
-        if presentByRoot {
-            popOtherViewControllers()
-        }
     }
     
     func onboarding() {
@@ -60,24 +37,10 @@ final class OnboardingCoordinator: NSObject, Coordinator, BackNavigation, UINavi
     }
     
     func confirm() {
-        let confirmedViewController = StoryboardScene.Onboarding.onboardingSignupConfirmedViewController.instantiate()
+        let confirmedViewController = StoryboardScene.Onboarding.onboardingConfirmedViewController.instantiate()
         confirmedViewController.coordinator = self
         confirmedViewController.modalPresentationStyle = .overFullScreen
         navController.pushViewController(confirmedViewController, animated: false)
-    }
-    
-    // MARK: - OnBoardingInfo
-    func displayOnBoradingInfo() {
-        let vc = StoryboardScene.Onboarding.onboardingInfoContainerViewController.instantiate()
-        vc.coordinator = self
-        navController.pushViewController(vc, animated: true)
-    }
-    
-    
-    // MARK: - BackNavigation
-    func back() {
-        // In case the navbar is hidden and handle the back nav programmaticlly
-        navController.popViewController(animated: true)
     }
     
     // MARK: - UINavigationControllerDelegate
@@ -94,20 +57,7 @@ final class OnboardingCoordinator: NSObject, Coordinator, BackNavigation, UINavi
         // check the fromVC if it is a sepecific VC then handle the navigation back action if needed
     }
     
-    // TODO: Move this to SessionCoordinator
-    func coordinatorDidFinishOnboarding() {
-        let tabbarController = TabBarController()
-        tabbarController.modalPresentationStyle = .overFullScreen
-        if navController.presentedViewController != nil {
-                navController.dismiss(animated: true) {
-                    self.navController.present(tabbarController, animated: true) {
-                        self.navController.popToRootViewController(animated: false)
-                    }
-                }
-            } else {
-            navController.present(tabbarController, animated: true) {
-                self.navController.popToRootViewController(animated: false)
-            }
-        }
+    func finishOnboarding() {
+        delegate?.didFinishOnboarding(coordinator: self)
     }
 }

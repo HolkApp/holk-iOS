@@ -12,7 +12,7 @@ final class OnboardingInfoContainerViewController: UIViewController {
     // MARK: - IBOutlets
     @IBOutlet private weak var OKButton: HolkButton!
     // MARK: - Public variables
-    weak var coordinator: OnboardingCoordinator?
+    weak var coordinator: SessionCoordinator?
     // MARK: - Private variables
     private var pageViewController: UIViewController?
     
@@ -47,6 +47,6 @@ final class OnboardingInfoContainerViewController: UIViewController {
     }
     
     @objc private func signup(_ sender: Any) {
-        coordinator?.signup(presentByRoot: true)
+        coordinator?.showSignup(presentByRoot: true)
     }
 }

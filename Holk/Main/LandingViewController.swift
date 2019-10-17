@@ -1,5 +1,5 @@
 //
-//  OnboardingLandingViewController.swift
+//  LandingViewController.swift
 //  Holk
 //
 //  Created by 张梦皓 on 2019-04-30.
@@ -9,14 +9,14 @@
 import UIKit
 import RxSwift
 
-final class OnboardingLandingViewController: UIViewController {
+final class LandingViewController: UIViewController {
     // MARK: - IBOutlets
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var loginButton: UIButton!
     @IBOutlet private weak var signupButton: UIButton!
     @IBOutlet private weak var onBoardingButton: UIButton!
     // MARK: - Public variables
-    weak var coordinator: OnboardingCoordinator?
+    weak var coordinator: SessionCoordinator?
     // MARK: - Private variables
     private var bag = DisposeBag()
     
@@ -36,11 +36,11 @@ final class OnboardingLandingViewController: UIViewController {
     
     @IBAction func loginTapped(_ sender: UIButton) {
         // TODO: login
-        coordinator?.login()
+        coordinator?.showLogin()
     }
     
     @IBAction func signUpTapped(_ sender: UIButton) {
-        coordinator?.signup()
+        coordinator?.showSignup()
     }
     
     private func setup() {

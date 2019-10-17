@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class InsuranceProtectionCoordinator: Coordinator, BackNavigation {
+final class InsuranceProtectionCoordinator: Coordinator {
     // MARK: - Public Properties
     var navController: UINavigationController
     // MARK: - Init
@@ -24,10 +24,5 @@ final class InsuranceProtectionCoordinator: Coordinator, BackNavigation {
         navController.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navController.navigationBar.shadowImage = UIImage()
         navController.pushViewController(vc, animated: true)
-    }
-    
-    // MARK: - BackNavigation
-    func back() {
-        navController.popViewController(animated: true)
     }
 }

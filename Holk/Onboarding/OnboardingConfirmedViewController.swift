@@ -1,5 +1,5 @@
 //
-//  OnboardingSignupConfirmedViewController.swift
+//  OnboardingConfirmedViewController.swift
 //  Holk
 //
 //  Created by 张梦皓 on 2019-09-03.
@@ -9,7 +9,7 @@ import UIKit
 
 import Foundation
 
-final class OnboardingSignupConfirmedViewController: UIViewController {
+final class OnboardingConfirmedViewController: UIViewController {
     // MARK: - IBOutlets
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var labelView: UILabel!
@@ -33,7 +33,7 @@ final class OnboardingSignupConfirmedViewController: UIViewController {
         labelView.font = Font.extraBold(.header)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
-            self?.coordinator?.coordinatorDidFinishOnboarding()
+            self?.coordinator?.finishOnboarding()
         }
     }
     

@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Onboarding Signup View Controller-->
+        <!--Signup View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="OnboardingSignupViewController" id="BYZ-38-t0r" customClass="OnboardingSignupViewController" customModule="Holk" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignupViewController" id="BYZ-38-t0r" customClass="SignupViewController" customModule="Holk" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -101,10 +101,10 @@
             </objects>
             <point key="canvasLocation" x="996" y="881"/>
         </scene>
-        <!--Onboarding Signup Confirmed View Controller-->
+        <!--Onboarding Confirmed View Controller-->
         <scene sceneID="CZv-Bg-8pi">
             <objects>
-                <viewController storyboardIdentifier="OnboardingSignupConfirmedViewController" id="Ovg-Q7-l86" customClass="OnboardingSignupConfirmedViewController" customModule="Holk" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OnboardingConfirmedViewController" id="Ovg-Q7-l86" customClass="OnboardingConfirmedViewController" customModule="Holk" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rpF-v5-Jjp">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -323,10 +323,10 @@ frågor om din vardag</string>
             </objects>
             <point key="canvasLocation" x="138" y="-575"/>
         </scene>
-        <!--Onboarding Landing View Controller-->
+        <!--Landing View Controller-->
         <scene sceneID="U7q-DK-1jR">
             <objects>
-                <viewController storyboardIdentifier="OnboardingLandingViewController" id="b8F-z0-ees" customClass="OnboardingLandingViewController" customModule="Holk" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LandingViewController" id="b8F-z0-ees" customClass="LandingViewController" customModule="Holk" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9EK-L3-sbz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -398,10 +398,10 @@ försäkringar</string>
             </objects>
             <point key="canvasLocation" x="-688" y="114"/>
         </scene>
-        <!--Onboarding Login View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="L9K-ik-bSU">
             <objects>
-                <viewController storyboardIdentifier="OnboardingLoginViewController" id="fNJ-rc-crj" customClass="OnboardingLoginViewController" customModule="Holk" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="fNJ-rc-crj" customClass="LoginViewController" customModule="Holk" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iCP-Yl-ptA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

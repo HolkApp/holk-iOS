@@ -36,6 +36,12 @@ internal enum StoryboardScene {
   internal enum Onboarding: StoryboardType {
     internal static let storyboardName = "Onboarding"
 
+    internal static let landingViewController = SceneType<LandingViewController>(storyboard: Onboarding.self, identifier: "LandingViewController")
+
+    internal static let loginViewController = SceneType<LoginViewController>(storyboard: Onboarding.self, identifier: "LoginViewController")
+
+    internal static let onboardingConfirmedViewController = SceneType<OnboardingConfirmedViewController>(storyboard: Onboarding.self, identifier: "OnboardingConfirmedViewController")
+
     internal static let onboardingInfoContainerViewController = SceneType<OnboardingInfoContainerViewController>(storyboard: Onboarding.self, identifier: "OnboardingInfoContainerViewController")
 
     internal static let onboardingInfoPageViewController = SceneType<OnboardingInfoPageViewController>(storyboard: Onboarding.self, identifier: "OnboardingInfoPageViewController")
@@ -46,13 +52,7 @@ internal enum StoryboardScene {
 
     internal static let onboardingInsuranceProviderViewController = SceneType<OnboardingInsuranceProviderViewController>(storyboard: Onboarding.self, identifier: "OnboardingInsuranceProviderViewController")
 
-    internal static let onboardingLandingViewController = SceneType<OnboardingLandingViewController>(storyboard: Onboarding.self, identifier: "OnboardingLandingViewController")
-
-    internal static let onboardingLoginViewController = SceneType<OnboardingLoginViewController>(storyboard: Onboarding.self, identifier: "OnboardingLoginViewController")
-
-    internal static let onboardingSignupConfirmedViewController = SceneType<OnboardingSignupConfirmedViewController>(storyboard: Onboarding.self, identifier: "OnboardingSignupConfirmedViewController")
-
-    internal static let onboardingSignupViewController = SceneType<OnboardingSignupViewController>(storyboard: Onboarding.self, identifier: "OnboardingSignupViewController")
+    internal static let signupViewController = SceneType<SignupViewController>(storyboard: Onboarding.self, identifier: "SignupViewController")
   }
 }
 // swiftlint:enable explicit_type_interface identifier_name line_length type_body_length type_name
