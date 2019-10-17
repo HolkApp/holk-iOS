@@ -12,6 +12,5 @@ class User {
     static let sharedInstance = User()
     private init() {}
     
-    var accessToken: String?
-    var refreshToken: String?
+    var loginToken: LoginToken?
 }

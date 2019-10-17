@@ -128,9 +128,8 @@ class LoginViewController: UIViewController {
                 .observeOn(MainScheduler.instance)
                 .subscribe(onNext: { event in
                     switch event {
-                    case .success(let value):
-                        User.sharedInstance.accessToken = value?.accessToken
-                        User.sharedInstance.refreshToken = value?.refreshToken
+                    case .success(let loginToken):
+                        User.sharedInstance.loginToken = loginToken
                     case .failure(let error):
                         print("server error here")
                         print(error)

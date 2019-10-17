@@ -437,12 +437,12 @@
 		8FF6E73222B534F800F6D398 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				8F2D246422F462D900B7839E /* LandingViewController.swift */,
-				8F5B5A3A22783D0200E79A40 /* TabBarController.swift */,
 				8FA94156235904BA00844D97 /* Coordinator.swift */,
 				8FA941542353ADC200844D97 /* SessionCoordinator.swift */,
+				8F2D246422F462D900B7839E /* LandingViewController.swift */,
 				8F6546702316FE190053B3F8 /* LoginViewController.swift */,
 				8FD84E692270E732009D563D /* SignupViewController.swift */,
+				8F5B5A3A22783D0200E79A40 /* TabBarController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";

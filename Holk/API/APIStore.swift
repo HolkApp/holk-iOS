@@ -63,7 +63,7 @@ class APIStore {
     }
     
     private var authorizationHeader: [String: String] {
-        if let token = User.sharedInstance.accessToken {
+        if let token = User.sharedInstance.loginToken?.accessToken {
             return ["Authorization": "Bearer " + token]
         } else {
             // Use the basic auth for /authorize/oauth/token, public endpoint
