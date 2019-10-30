@@ -33,7 +33,7 @@ final class InsuranceCostViewController: UIViewController {
         tableView.estimatedRowHeight = 224
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
         tableView.alwaysBounceVertical = false

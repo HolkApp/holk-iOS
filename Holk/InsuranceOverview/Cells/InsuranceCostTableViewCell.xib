@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,14 +14,14 @@
             <rect key="frame" x="0.0" y="0.0" width="369" height="237"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="369" height="236.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="369" height="237"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uaw-XN-3SY">
-                        <rect key="frame" x="0.0" y="10" width="369" height="216.5"/>
+                        <rect key="frame" x="20" y="10" width="329" height="217"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Folksam" translatesAutoresizingMaskIntoConstraints="NO" id="Ueu-2b-D2v">
-                                <rect key="frame" x="247" y="20" width="102" height="34"/>
+                                <rect key="frame" x="207" y="20" width="102" height="34"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Goal" translatesAutoresizingMaskIntoConstraints="NO" id="pgF-Gk-vSc">
                                 <rect key="frame" x="20" y="35" width="75" height="84"/>
@@ -35,7 +33,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sjm-Uz-4Xd">
-                                <rect key="frame" x="22" y="158" width="318" height="1"/>
+                                <rect key="frame" x="22" y="158" width="278" height="1"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="kVO-0V-fnR"/>
@@ -48,7 +46,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="263,00 kr" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="djj-3D-baK">
-                                <rect key="frame" x="260" y="169" width="74" height="21"/>
+                                <rect key="frame" x="220" y="169" width="74" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -77,8 +75,8 @@
                 <constraints>
                     <constraint firstItem="uaw-XN-3SY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="LYK-Th-iik"/>
                     <constraint firstAttribute="bottom" secondItem="uaw-XN-3SY" secondAttribute="bottom" constant="10" id="a0U-et-JdE"/>
-                    <constraint firstAttribute="trailing" secondItem="uaw-XN-3SY" secondAttribute="trailing" id="oie-Z7-VEb"/>
-                    <constraint firstItem="uaw-XN-3SY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="yg9-hI-Ldd"/>
+                    <constraint firstAttribute="trailing" secondItem="uaw-XN-3SY" secondAttribute="trailing" constant="20" id="oie-Z7-VEb"/>
+                    <constraint firstItem="uaw-XN-3SY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="yg9-hI-Ldd"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

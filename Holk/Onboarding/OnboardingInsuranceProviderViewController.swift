@@ -9,9 +9,12 @@
 import UIKit
 
 final class OnboardingInsuranceProviderViewController: UIViewController {
+    // MARK: Private Variables
     private let tableView = UITableView()
     private let skipButton = HolkButton()
     
+    // MARK: Public Variables
+    var providerType: InsuranceProviderType?
     weak var coordinator: OnboardingCoordinator?
     
     override func viewDidLoad() {
@@ -89,7 +92,7 @@ final class OnboardingInsuranceProviderViewController: UIViewController {
             NotificationCenter.default.addObserver(self, selector: #selector(self.willEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
         }) { [weak self] in
             guard let self = self else { return }
-            self.coordinator?.confirm()
+            self.coordinator?.confirm(providerType: self.providerType, provider: provider)
         }
     }
     

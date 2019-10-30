@@ -83,6 +83,7 @@ final class OnboardingInsuranceProviderTypeViewController: UIViewController {
     private func select(_ providerType: InsuranceProviderType) {
         let insuranceProviderViewController = StoryboardScene.Onboarding.onboardingInsuranceProviderViewController.instantiate()
         insuranceProviderViewController.coordinator = coordinator
+        insuranceProviderViewController.providerType = providerType
         insuranceProviderViewController.modalPresentationStyle = .overFullScreen
         navigationController?.pushViewController(insuranceProviderViewController, animated: true)
     }

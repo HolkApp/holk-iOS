@@ -36,9 +36,11 @@ final class OnboardingCoordinator: NSObject, Coordinator, UINavigationController
         navController.pushViewController(vc, animated: true)
     }
     
-    func confirm() {
+    func confirm(providerType: InsuranceProviderType? = nil, provider: InsuranceProvider? = nil) {
         let confirmedViewController = StoryboardScene.Onboarding.onboardingConfirmedViewController.instantiate()
         confirmedViewController.coordinator = self
+        confirmedViewController.providerType = providerType
+        confirmedViewController.provider = provider
         confirmedViewController.modalPresentationStyle = .overFullScreen
         navController.pushViewController(confirmedViewController, animated: false)
     }

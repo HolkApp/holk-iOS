@@ -58,7 +58,7 @@ final class InsuranceOverviewViewController: UIViewController {
                     self.navigationItem.title = String()
                     self.navigationItem.rightBarButtonItem = nil
                     self.headerLabelTopConstraint.constant = 20
-                    self.segmentedControlTopConstraint.constant = 100
+                    self.segmentedControlTopConstraint.constant = 75
                     self.view.layoutIfNeeded()
                 }) { _ in
                     self.animating = false
@@ -74,11 +74,6 @@ final class InsuranceOverviewViewController: UIViewController {
     }
     
     private func setup() {
-        childSegmentViewControllers = [
-            insurancesViewController,
-            insuranceCostViewController
-        ]
-        
         navigationController?.navigationBar.titleTextAttributes = [
             NSAttributedString.Key.foregroundColor: Color.mainForegroundColor
         ]
@@ -94,21 +89,32 @@ final class InsuranceOverviewViewController: UIViewController {
         profileButton.tintColor = Color.mainForegroundColor
         profileButton.addTarget(self, action: #selector(profileTapped(sender:)), for: .touchUpInside)
         
+        setupSegmentedControl()
+    }
+    
+    private func setupSegmentedControl() {
+        childSegmentViewControllers = [
+            insurancesViewController,
+            insuranceCostViewController
+        ]
+        
         segmentedControl.removeAllSegments()
         segmentedControl.insertSegment(withTitle: "Försäkringar", at: 0, animated: false)
         segmentedControl.insertSegment(withTitle: "Kostnader", at: 1, animated: false)
         
-        segmentedControl.setTitleTextAttributes([
+        segmentedControl.setTitleTextAttributes(
+            [
                 NSAttributedString.Key.foregroundColor: Color.mainForegroundColor.withAlphaComponent(0.6),
                 NSAttributedString.Key.font: Font.regular(.largeDescription)
             ],
             for: UIControl.State.normal)
-        segmentedControl.setTitleTextAttributes([
+        segmentedControl.setTitleTextAttributes(
+            [
                 NSAttributedString.Key.foregroundColor: Color.mainForegroundColor,
                 NSAttributedString.Key.font: Font.regular(.largeDescription)
             ],
             for: UIControl.State.selected)
-    
+        
         segmentedControl.tintColor = .white
         segmentedControl.addTarget(self, action: #selector(segmentChanged(sender:)), for: .valueChanged)
         
@@ -132,12 +138,12 @@ final class InsuranceOverviewViewController: UIViewController {
             containerView.bottomAnchor.constraint(equalTo: childSegmentViewController.view.bottomAnchor),
             containerView.leftAnchor.constraint(equalTo: childSegmentViewController.view.leftAnchor),
             containerView.rightAnchor.constraint(equalTo: childSegmentViewController.view.rightAnchor)
-            ])
+        ])
     }
     
     @objc private func profileTapped(sender: UIButton) {
         // Temp hack
-
+        
         dismiss(animated: true)
     }
 }
