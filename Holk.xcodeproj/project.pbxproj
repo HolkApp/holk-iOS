@@ -50,6 +50,7 @@
 		8FA8F1122330148300670471 /* FontAwesome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA8F1112330148300670471 /* FontAwesome.swift */; };
 		8FA941552353ADC200844D97 /* SessionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA941542353ADC200844D97 /* SessionCoordinator.swift */; };
 		8FA94157235904BA00844D97 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA94156235904BA00844D97 /* Coordinator.swift */; };
+		8FBE4165236A4AA000DA8A74 /* HolkLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBE4164236A4AA000DA8A74 /* HolkLoadingView.swift */; };
 		8FCEE9AC231EE85000F75FB8 /* OnboardingConfirmedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCEE9AB231EE85000F75FB8 /* OnboardingConfirmedViewController.swift */; };
 		8FCEE9AE23254AAC00F75FB8 /* KeyboardEventObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCEE9AD23254AAC00F75FB8 /* KeyboardEventObserver.swift */; };
 		8FCEE9B123254B6C00F75FB8 /* KeyboardEventContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCEE9B023254B6C00F75FB8 /* KeyboardEventContext.swift */; };
@@ -142,6 +143,7 @@
 		8FA8F1112330148300670471 /* FontAwesome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontAwesome.swift; sourceTree = "<group>"; };
 		8FA941542353ADC200844D97 /* SessionCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCoordinator.swift; sourceTree = "<group>"; };
 		8FA94156235904BA00844D97 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		8FBE4164236A4AA000DA8A74 /* HolkLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolkLoadingView.swift; sourceTree = "<group>"; };
 		8FCEE9AB231EE85000F75FB8 /* OnboardingConfirmedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingConfirmedViewController.swift; sourceTree = "<group>"; };
 		8FCEE9AD23254AAC00F75FB8 /* KeyboardEventObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardEventObserver.swift; sourceTree = "<group>"; };
 		8FCEE9B023254B6C00F75FB8 /* KeyboardEventContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardEventContext.swift; sourceTree = "<group>"; };
@@ -305,6 +307,7 @@
 				8F65466B230C78990053B3F8 /* HolkButton.swift */,
 				8F65466E230DC4CC0053B3F8 /* HolkTextField.swift */,
 				8F48BE6623315F49004D79D2 /* HolkIllustrationLabel.swift */,
+				8FBE4164236A4AA000DA8A74 /* HolkLoadingView.swift */,
 				8FCEE9AF23254B5700F75FB8 /* KeyboardEvent */,
 			);
 			path = CustomView;
@@ -677,6 +680,7 @@
 				8F9807E92276F10E00584BA9 /* InsuranceCoordinator.swift in Sources */,
 				8F48BE6723315F49004D79D2 /* HolkIllustrationLabel.swift in Sources */,
 				8FF6E73822B6B39800F6D398 /* InsuranceCostViewController.swift in Sources */,
+				8FBE4165236A4AA000DA8A74 /* HolkLoadingView.swift in Sources */,
 				8FA94157235904BA00844D97 /* Coordinator.swift in Sources */,
 				8FF6E72822B026DB00F6D398 /* InsurancesViewController.swift in Sources */,
 				8F7C442A23511C1200B54A36 /* AuthenticationStore.swift in Sources */,
@@ -697,6 +701,7 @@
 				8FF6E75622BCF9CA00F6D398 /* InsuranceDetailViewController.swift in Sources */,
 				8F63C30E22C8CE5300CFE334 /* InsuranceCostTableViewCell.swift in Sources */,
 				8FD84E6A2270E732009D563D /* SignupViewController.swift in Sources */,
+				8FBE416323624BC500DA8A74 /* OverviewViewController.swift in Sources */,
 				8FF6E72422A70F6600F6D398 /* Then.swift in Sources */,
 				8FF6E73622B6A88100F6D398 /* InsuranceAddMoreCell.swift in Sources */,
 				8FCEE9B323254C2D00F75FB8 /* KeyboardEventFloatingViewHandler.swift in Sources */,
