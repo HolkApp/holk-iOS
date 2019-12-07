@@ -135,24 +135,42 @@ class SignupViewController: UIViewController {
     
     @objc private func submit(_ sender: UIButton) {
 //        TODO: call
-//        signupRequest()
+        signup()
         coordinator?.onboarding()
         hideKeyboard(sender)
     }
     
-    private func signupRequest() {
+    private func signup() {
         if let username = emailTextField.text,
             let password = passwordTextField.text,
             let storeController = storeController {
             storeController.authenticationStore
                 .signup(username: username, password: password)
                 .observeOn(MainScheduler.instance)
-                .subscribe(onNext: { event in
+                .subscribe(onNext: { [weak self] event in
                     switch event {
-                    case .success(let result):
-//                        User.sharedInstance.accessToken = result.accessToken
-//                        User.sharedInstance.refreshToken = result.refreshToken
-                        break
+                    case .success:
+                        self?.token(username: username, password: password)
+                    case .failure(let error):
+                        // TODO: Error handling
+                        print(error)
+                    }
+                }, onError: { error in
+                    // TODO: Error handling
+                    print(error)
+                }).disposed(by: bag)
+        }
+    }
+    
+    private func token(username: String, password: String) {
+        if let storeController = storeController {
+            storeController.authenticationStore
+                .login(username: username, password: password)
+                .observeOn(MainScheduler.instance)
+                .subscribe(onNext: { [weak self] event in
+                    switch event {
+                    case .success(let loginToken):
+                        self?.storeController?.user.loginToken = loginToken
                     case .failure(let error):
                         // TODO: Error handling
                         print(error)

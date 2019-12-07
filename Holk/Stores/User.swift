@@ -9,8 +9,7 @@
 import Foundation
 
 class User {
-    static let sharedInstance = User()
-    private init() {}
+    private var keyChainService = KeychainService()
     
     var loginToken: LoginToken?
 }

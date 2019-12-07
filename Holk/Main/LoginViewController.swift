@@ -114,28 +114,29 @@ class LoginViewController: UIViewController {
     }
     
     @objc private func submit(_ sender: UIButton) {
-        loginRequest()
+        login()
         coordinator?.showSession()
         hideKeyboard(sender)
     }
     
-    private func loginRequest() {
+    private func login() {
         if let username = emailTextField.text,
             let password = passwordTextField.text,
             let storeController = storeController {
             storeController.authenticationStore
                 .login(username: username, password: password)
                 .observeOn(MainScheduler.instance)
-                .subscribe(onNext: { event in
+                .subscribe(onNext: { [weak self] event in
                     switch event {
                     case .success(let loginToken):
-                        User.sharedInstance.loginToken = loginToken
+                        self?.storeController?.user.loginToken = loginToken
                     case .failure(let error):
-                        print("server error here")
+                        // TODO: Error handling
                         print(error)
                     }
                 }, onError: { error in
-                    print("network error here")
+                    // TODO: Error handling
+                    print(error)
                 }).disposed(by: bag)
         }
     }
