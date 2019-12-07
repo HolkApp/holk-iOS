@@ -142,8 +142,8 @@ final class InsuranceOverviewViewController: UIViewController {
     }
     
     @objc private func profileTapped(sender: UIButton) {
-        // Temp hack
-        
+        // FIXME: Temp solution
+        // Since this is presented(not pushed) by the the navigation view controller, dismiss will show the landing screen
         dismiss(animated: true)
     }
 }

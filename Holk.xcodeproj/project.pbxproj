@@ -351,15 +351,13 @@
 				8FF6E74222B82D9A00F6D398 /* Fonts */,
 				8FF6E72522AC0D2800F6D398 /* Color.swift */,
 				8FF6E73122B534E000F6D398 /* Onboarding */,
-				8F25CAA323410C8400DC3B97 /* InsuranceProvider */,
-				8F9C83D822A313EE005BB336 /* InsuranceOverview */,
-				8FF6E75822C8C95D00F6D398 /* InsuranceOutGoing */,
-				8FF6E73922B6B52200F6D398 /* InsuranceProtection */,
+				8FE52F06239BB0EE001A77F5 /* Insurance */,
 				8F9C83DD22A6E316005BB336 /* CustomView */,
 				8F654669230195840053B3F8 /* Transition */,
+				8FE52F05239BB0CD001A77F5 /* Stores */,
+				8FD84E872270E7C9009D563D /* API */,
 				8FF6E72222A70F5000F6D398 /* Extensions */,
 				8F5B5A3322771EBF00E79A40 /* Generated */,
-				8FD84E872270E7C9009D563D /* API */,
 				8FD84E6E2270E736009D563D /* Assets.xcassets */,
 				8FA8F10D232D377F00670471 /* Color.xcassets */,
 				8FD84E702270E736009D563D /* LaunchScreen.storyboard */,
@@ -382,11 +380,29 @@
 			children = (
 				8F0D403E227A0AD4000BD840 /* APIError.swift */,
 				8F7C442B23511C5900B54A36 /* APIEndpoint.swift */,
-				8F9807E622722D5E00584BA9 /* StoreController.swift */,
 				8FD84E882271B157009D563D /* APIStore.swift */,
-				8F7C442923511C1200B54A36 /* AuthenticationStore.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		8FE52F05239BB0CD001A77F5 /* Stores */ = {
+			isa = PBXGroup;
+			children = (
+				8F9807E622722D5E00584BA9 /* StoreController.swift */,
+				8F7C442923511C1200B54A36 /* AuthenticationStore.swift */,
+			);
+			path = Stores;
+			sourceTree = "<group>";
+		};
+		8FE52F06239BB0EE001A77F5 /* Insurance */ = {
+			isa = PBXGroup;
+			children = (
+				8F25CAA323410C8400DC3B97 /* InsuranceProvider */,
+				8F9C83D822A313EE005BB336 /* InsuranceOverview */,
+				8FF6E75822C8C95D00F6D398 /* InsuranceOutGoing */,
+				8FF6E73922B6B52200F6D398 /* InsuranceProtection */,
+			);
+			path = Insurance;
 			sourceTree = "<group>";
 		};
 		8FF6E72222A70F5000F6D398 /* Extensions */ = {

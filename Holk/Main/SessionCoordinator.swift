@@ -74,6 +74,7 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
                 }
             } else {
             navController.present(tabbarController, animated: true) {
+                // Pop out all the onboarding view controllers and leave the landing screen
                 self.navController.popToRootViewController(animated: false)
             }
         }

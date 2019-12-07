@@ -134,7 +134,8 @@ class SignupViewController: UIViewController {
     }
     
     @objc private func submit(_ sender: UIButton) {
-//        TODO: call signupRequest()
+//        TODO: call
+//        signupRequest()
         coordinator?.onboarding()
         hideKeyboard(sender)
     }
@@ -148,16 +149,17 @@ class SignupViewController: UIViewController {
                 .observeOn(MainScheduler.instance)
                 .subscribe(onNext: { event in
                     switch event {
-                    case .success(let value):
-//                        User.sharedInstance.accessToken = value.accessToken
-//                        User.sharedInstance.refreshToken = value.refreshToken
+                    case .success(let result):
+//                        User.sharedInstance.accessToken = result.accessToken
+//                        User.sharedInstance.refreshToken = result.refreshToken
                         break
                     case .failure(let error):
-                        print("server error here")
+                        // TODO: Error handling
                         print(error)
                     }
                 }, onError: { error in
-                    print("network error here")
+                    // TODO: Error handling
+                    print(error)
                 }).disposed(by: bag)
         }
     }
