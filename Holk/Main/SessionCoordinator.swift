@@ -65,6 +65,7 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
     // TODO: Pass the token or session
     func showSession() {
         let tabbarController = TabBarController()
+        tabbarController.coordinator = self
         tabbarController.modalPresentationStyle = .overFullScreen
         if navController.presentedViewController != nil {
                 navController.dismiss(animated: true) {
@@ -78,6 +79,10 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
                 self.navController.popToRootViewController(animated: false)
             }
         }
+    }
+    
+    func logout() {
+        storeController.user.reset()
     }
 }
 

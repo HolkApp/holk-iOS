@@ -17,10 +17,10 @@ protocol AuthenticationClient {
 final class AuthenticationStore: APIStore, AuthenticationClient {
     private let queue: DispatchQueue
     
-    init(queue: DispatchQueue) {
+    init(queue: DispatchQueue, user: User) {
         self.queue = queue
         
-        super.init()
+        super.init(user: user)
     }
     
     func signup(username: String, password: String) -> Observable<Swift.Result<String?, APIError>> {
@@ -51,7 +51,4 @@ final class AuthenticationStore: APIStore, AuthenticationClient {
                            parameters: postParams as [String: AnyObject]
         )
     }
-    
-    
-    
 }

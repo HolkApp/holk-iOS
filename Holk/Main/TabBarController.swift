@@ -9,12 +9,16 @@
 import UIKit
 
 class TabBarController: UITabBarController {
+    // MARK: - Public variables
+    weak var coordinator: SessionCoordinator?
+    
     // MARK: - Private variables
     private let insuranceCoordinator = InsuranceCoordinator(navController: UINavigationController())
     private let protectionCoordinator = InsuranceProtectionCoordinator(navController: UINavigationController())
     
     override func viewDidLoad() {
         insuranceCoordinator.start()
+        insuranceCoordinator.delegate = self
         protectionCoordinator.start()
         viewControllers = [
             insuranceCoordinator.navController,
@@ -22,5 +26,12 @@ class TabBarController: UITabBarController {
         ]
         
         tabBar.barTintColor = Color.tabbarBackgroundColor
+    }
+}
+
+// TODO: Change this when have a real profile
+extension TabBarController: InsuranceCoordinatorDelegate {
+    func logout(_ coordinator: InsuranceCoordinator) {
+        self.coordinator?.logout()
     }
 }

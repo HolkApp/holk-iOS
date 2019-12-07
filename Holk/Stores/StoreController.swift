@@ -16,6 +16,6 @@ final class StoreController {
     private let queue = DispatchQueue(label: "se.holk.store.controller", qos: .utility)
     
     init() {
-        authenticationStore = AuthenticationStore(queue: queue)
+        authenticationStore = AuthenticationStore(queue: queue, user: user)
     }
 }

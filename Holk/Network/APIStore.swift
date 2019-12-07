@@ -16,6 +16,11 @@ class APIStore {
         static let basicAuthPassword = "secret"
     }
     
+    init(user: User) {
+        self.user = user
+    }
+    
+    let user: User
     private let sessionManager = Alamofire.SessionManager(configuration: .default)
     
     func httpRequest<Value: Codable>(
@@ -63,7 +68,7 @@ class APIStore {
     }
     
     private var authorizationHeader: [String: String] {
-        if let token = User.sharedInstance.loginToken?.accessToken {
+        if let token = user.accessToken {
             return ["Authorization": "Bearer " + token]
         } else {
             // Use the basic auth for /authorize/oauth/token, public endpoint

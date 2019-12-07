@@ -18,6 +18,7 @@ final class InsuranceOverviewViewController: UIViewController {
     @IBOutlet private weak var segmentedControlTopConstraint: NSLayoutConstraint!
     // MARK: - Public variables
     var currentChildSegmentViewController: UIViewController?
+    weak var coordinator: InsuranceCoordinator?
     // MARK: - Private variables
     private var childSegmentViewControllers: [UIViewController] = []
     private lazy var insurancesViewController: InsurancesViewController = {
@@ -144,7 +145,7 @@ final class InsuranceOverviewViewController: UIViewController {
     @objc private func profileTapped(sender: UIButton) {
         // FIXME: Temp solution
         // Since this is presented(not pushed) by the the navigation view controller, dismiss will show the landing screen
-        dismiss(animated: true)
+        coordinator?.logout()
     }
 }
 

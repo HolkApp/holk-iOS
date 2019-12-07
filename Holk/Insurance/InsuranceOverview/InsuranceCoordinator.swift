@@ -8,28 +8,35 @@
 
 import UIKit
 
+protocol InsuranceCoordinatorDelegate: AnyObject {
+    func logout(_ coordinator: InsuranceCoordinator)
+}
+
 class InsuranceCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
     // MARK: - Public Properties
     var navController: UINavigationController
+    weak var delegate: InsuranceCoordinatorDelegate?
     // MARK: - Init
     init(navController: UINavigationController) {
         self.navController = navController
     }
     // MARK: - Public Methods
     func start() {
-        // TODO: Should present the landing page
-//        let vc = StoryboardScene.MaOnboardingin.landingViewController.instantiate()
-//        vc.tabBarItem = UITabBarItem(title: "Översikt", image: UIImage(named: "OverView"), tag: 0)
-//        vc.coordinator = self
-        
         let vc = StoryboardScene.InsuranceOverview.insuranceOverviewViewController.instantiate()
         let tabBarIcon = UIImage.fontAwesomeIcon(name: .clipboardList, style: .light, textColor: .systemBlue, size: FontAwesome.tabBarIconSize)
+        // TODO: Change this when have a real profile
+        vc.coordinator = self
         navController.tabBarItem = UITabBarItem(title: "Översikt", image: tabBarIcon, tag: 0)
         navController.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navController.navigationBar.shadowImage = UIImage()
         navController.navigationBar.tintColor = .black
         navController.delegate = self
         navController.pushViewController(vc, animated: true)
+    }
+    
+    func logout() {
+        navController.dismiss(animated: true)
+        delegate?.logout(self)
     }
     
     // MARK: - UINavigationControllerDelegate
