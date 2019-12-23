@@ -180,7 +180,7 @@ import UIKit
     }
     
      override func deleteBackward() {
-        let wasEmpty = (text ?? "").isEmpty
+//        let wasEmpty = (text ?? "").isEmpty
         super.deleteBackward()
 //        if wasEmpty, (text ?? "").isEmpty {
 //            sendActions(for: .editingDidDeleteOnEmpty)
