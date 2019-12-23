@@ -38,12 +38,15 @@ class APIStore {
         let dataObservable = requestObservable.flatMap {
                 $0.rx.responseData()
             }.map({ (response, data) -> Swift.Result<Value?, APIError> in
-                let token = response.allHeaderFields.first(where: { (key, value) -> Bool in
-                    (key as? String) == "token"
-                })?.value
-                if let t = token {
-                    // check the token, do something(refresh token)
-                }
+                // TODO: check the token, do something(refresh token)
+//                let token = response.allHeaderFields.first(where: { (key, value) -> Bool in
+//                    (key as? String) == "token"
+//                })?.value
+//                if let accessToken = token, let storedAccessToken = user.accessToken {
+//                    if storedAccessToken != accessToken {
+//                        user.accessToken = accessToken
+//                    }
+//                }
                 if !(200..<300 ~= response.statusCode) {
                     return .failure(.errorCode(code: response.statusCode))
                 }
