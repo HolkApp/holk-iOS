@@ -82,7 +82,7 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
     }
     
     func logout() {
-        storeController.user.reset()
+        storeController.resetSession()
     }
 }
 

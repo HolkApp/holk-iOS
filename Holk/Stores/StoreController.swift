@@ -9,15 +9,39 @@
 import RxSwift
 import Alamofire
 
+protocol StoreControllerDelegate: AnyObject {
+    func storeControllerAccessTokenUpdated()
+    func storeControllerRefreshTokenExpired()
+}
+
 final class StoreController {
+    weak var delegate: StoreControllerDelegate?
+    
     let authenticationStore: AuthenticationStore
     let insuranceStore: InsuranceStore
-    let user = User()
     
+    private let sessionStore: SessionStore
     private let queue = DispatchQueue(label: "se.holk.store.controller", qos: .utility)
     
     init() {
-        authenticationStore = AuthenticationStore(queue: queue, user: user)
-        insuranceStore = InsuranceStore(queue: queue, user: user)
+        sessionStore = SessionStore(queue: queue, user: User())
+        authenticationStore = AuthenticationStore(queue: queue, sessionStore: sessionStore)
+        insuranceStore = InsuranceStore(queue: queue, sessionStore: sessionStore)
+        
+        sessionStore.delegate = self
+    }
+    
+    func resetSession() {
+        sessionStore.reset()
+    }
+}
+
+extension StoreController: SessionStoreDelegate {
+    func sessionStoreAccessTokenUpdated() {
+        delegate?.storeControllerAccessTokenUpdated()
+    }
+    
+    func sessionStoreRefreshTokenExpired() {
+        delegate?.storeControllerRefreshTokenExpired()
     }
 }

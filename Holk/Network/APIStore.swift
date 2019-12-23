@@ -11,23 +11,13 @@ import RxSwift
 import RxAlamofire
 
 class APIStore {
-    private struct Constants {
-        static let basicAuthUsername = "SampleClientId"
-        static let basicAuthPassword = "secret"
-    }
-    
-    init(user: User) {
-        self.user = user
-    }
-    
-    let user: User
     private let sessionManager = Alamofire.SessionManager(configuration: .default)
     
     func httpRequest<Value: Codable>(
         method: Alamofire.HTTPMethod,
         url: URL,
         encoding: Alamofire.ParameterEncoding? = nil,
-        headers: [String: String] = ["Content-Type": "application/json"],
+        headers: [String: String] = [:],
         parameters: [String: AnyObject]? = nil
     ) -> Observable<Swift.Result<Value?, APIError>> {
         
@@ -38,15 +28,6 @@ class APIStore {
         let dataObservable = requestObservable.flatMap {
                 $0.rx.responseData()
             }.map({ (response, data) -> Swift.Result<Value?, APIError> in
-                // TODO: check the token, do something(refresh token)
-//                let token = response.allHeaderFields.first(where: { (key, value) -> Bool in
-//                    (key as? String) == "token"
-//                })?.value
-//                if let accessToken = token, let storedAccessToken = user.accessToken {
-//                    if storedAccessToken != accessToken {
-//                        user.accessToken = accessToken
-//                    }
-//                }
                 if !(200..<300 ~= response.statusCode) {
                     return .failure(.errorCode(code: response.statusCode))
                 }
@@ -62,23 +43,13 @@ class APIStore {
     }
     
     private func updateHeaders(with initialHeaders: [String: String]) -> [String: String] {
-        var httpHeaders = initialHeaders.merging(authorizationHeader) { (_, new) -> String in
-            return new
+        var httpHeaders = initialHeaders
+        
+        if httpHeaders["Content-Type"] == nil {
+            httpHeaders["Content-Type"] = "application/json"
         }
         httpHeaders["Accept"] = "application/json"
         
         return httpHeaders
-    }
-    
-    private var authorizationHeader: [String: String] {
-        if let token = user.accessToken {
-            return ["Authorization": "Bearer " + token]
-        } else {
-            // Use the basic auth for /authorize/oauth/token, public endpoint
-            let authString = String(format: "%@:%@", Constants.basicAuthUsername, Constants.basicAuthPassword)
-            let authData = authString.data(using: String.Encoding.utf8)!
-            let base64AuthString = authData.base64EncodedString()
-            return ["Authorization": "Basic " + base64AuthString]
-        }
     }
 }
