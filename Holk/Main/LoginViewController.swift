@@ -39,6 +39,24 @@ class LoginViewController: UIViewController {
     }
     
     private func setup() {
+        if let storeController = storeController {
+            storeController.authenticationStore
+                .refresh()
+                .observeOn(MainScheduler.instance)
+                .subscribe(onNext: { event in
+                    switch event {
+                    case .success:
+                        print("login response")
+                    case .failure(let error):
+                        // TODO: Error handling
+                        print(error)
+                    }
+                    }, onError: { error in
+                        // TODO: Error handling
+                        print(error)
+                }).disposed(by: bag)
+        }
+        
         navigationController?.isNavigationBarHidden = false
         navigationItem.setHidesBackButton(true, animated: false)
         let closeIcon = UIImage.fontAwesomeIcon(name: .times, style: .light, textColor: Color.mainForegroundColor, size: FontAwesome.mediumIconSize)
@@ -126,10 +144,10 @@ class LoginViewController: UIViewController {
             storeController.authenticationStore
                 .login(username: username, password: password)
                 .observeOn(MainScheduler.instance)
-                .subscribe(onNext: { [weak self] event in
+                .subscribe(onNext: { event in
                     switch event {
-                    case .success(let loginToken):
-                        self?.storeController?.user.loginToken = loginToken
+                    case .success:
+                        print("login response")
                     case .failure(let error):
                         // TODO: Error handling
                         print(error)

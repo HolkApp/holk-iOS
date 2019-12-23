@@ -15,11 +15,13 @@ protocol InsuranceClient {
 
 final class InsuranceStore: APIStore, InsuranceClient {
     private let queue: DispatchQueue
+    private let sessionStore: SessionStore
     
-    init(queue: DispatchQueue, user: User) {
+    init(queue: DispatchQueue, sessionStore: SessionStore) {
         self.queue = queue
+        self.sessionStore = sessionStore
         
-        super.init(user: user)
+        super.init()
     }
     
     

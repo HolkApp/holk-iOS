@@ -10,61 +10,52 @@ import RxSwift
 import Alamofire
 
 protocol AuthenticationClient {
-    func signup(username: String, password: String) -> Observable<Swift.Result<String?, APIError>>
-    func login(username: String, password: String) -> Observable<Swift.Result<LoginToken?, APIError>>
+    func signup(username: String, password: String) -> Observable<Swift.Result<Void, APIError>>
+    func login(username: String, password: String) -> Observable<Swift.Result<Void, APIError>>
+    func refresh() -> Observable<Swift.Result<Void, APIError>>
 }
 
 final class AuthenticationStore: APIStore, AuthenticationClient {
     private let queue: DispatchQueue
+    private let sessionStore: SessionStore
     
-    init(queue: DispatchQueue, user: User) {
+    init(queue: DispatchQueue, sessionStore: SessionStore) {
         self.queue = queue
+        self.sessionStore = sessionStore
         
-        super.init(user: user)
+        super.init()
     }
     
-    func signup(username: String, password: String) -> Observable<Swift.Result<String?, APIError>> {
-        let postParams = [
-            "username": username,
-            "password": password
-        ]
-        
-        return httpRequest(method: .post,
-                           url: Endpoint.signup.url,
-                           parameters: postParams as [String: AnyObject]
-        )
+    func signup(username: String, password: String) -> Observable<Swift.Result<Void, APIError>> {
+        sessionStore.signup(username: username, password: password).map { result -> Swift.Result<Void, APIError> in
+            switch result {
+            case .success:
+                return .success(())
+            case .failure(let error):
+                return .failure(error)
+            }
+        }
     }
     
-    func login(username: String, password: String) -> Observable<Swift.Result<LoginToken?, APIError>> {
-        let httpHeaders = [
-            "Content-Type": "application/x-www-form-urlencoded"
-        ]
-        let postParams = [
-            "grant_type": "password",
-            "username": username,
-            "password": password
-        ]
-        return httpRequest(method: .post,
-                           url: Endpoint.login.url,
-                           encoding: URLEncoding.default,
-                           headers: httpHeaders,
-                           parameters: postParams as [String: AnyObject]
-        )
+    func login(username: String, password: String) -> Observable<Swift.Result<Void, APIError>> {
+        return sessionStore.login(username: username, password: password).map { result -> Swift.Result<Void, APIError> in
+            switch result {
+            case .success:
+                return .success(())
+            case .failure(let error):
+                return .failure(error)
+            }
+        }
     }
     
-    func refresh(_ refreshToken: String) -> Observable<Swift.Result<LoginToken?, APIError>> {
-        let httpHeaders = [
-            "Content-Type": "application/x-www-form-urlencoded"
-        ]
-        let postParams = [
-            "grant_type": "refresh_token",
-            "refresh_token": refreshToken
-        ]
-        return httpRequest(method: .post,
-                           url: Endpoint.login.url,
-                           encoding: URLEncoding.default,
-                           headers: httpHeaders,
-                           parameters: postParams as [String: AnyObject]
-        )
+    func refresh() -> Observable<Swift.Result<Void, APIError>> {
+        return sessionStore.refresh().map { result -> Swift.Result<Void, APIError> in
+            switch result {
+            case .success:
+                return .success(())
+            case .failure(let error):
+                return .failure(error)
+            }
+        }
     }
 }

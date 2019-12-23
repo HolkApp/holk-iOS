@@ -167,10 +167,10 @@ class SignupViewController: UIViewController {
             storeController.authenticationStore
                 .login(username: username, password: password)
                 .observeOn(MainScheduler.instance)
-                .subscribe(onNext: { [weak self] event in
+                .subscribe(onNext: { event in
                     switch event {
-                    case .success(let loginToken):
-                        self?.storeController?.user.loginToken = loginToken
+                    case .success:
+                        print("signup response")
                     case .failure(let error):
                         // TODO: Error handling
                         print(error)
