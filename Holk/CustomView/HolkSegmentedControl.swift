@@ -16,6 +16,7 @@ final class HolkSegmentedControl: UISegmentedControl {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        removeAllSegments()
         setup()
     }
     

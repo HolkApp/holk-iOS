@@ -51,7 +51,7 @@ class User {
         }
         set {
             if let token = newValue, !token.isEmpty {
-                KeychainService.set(password: token, account: kHolkAccountName, service: kHolkServiceAccessToken)
+                KeychainService.set(password: token, account: kHolkAccountName, service: kHolkServiceRefreshToken)
             } else {
                 KeychainService.delete(account: kHolkAccountName, service: kHolkServiceRefreshToken)
                 _refreshToken = nil
