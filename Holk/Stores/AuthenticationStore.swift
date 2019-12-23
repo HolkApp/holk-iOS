@@ -51,4 +51,20 @@ final class AuthenticationStore: APIStore, AuthenticationClient {
                            parameters: postParams as [String: AnyObject]
         )
     }
+    
+    func refresh(_ refreshToken: String) -> Observable<Swift.Result<LoginToken?, APIError>> {
+        let httpHeaders = [
+            "Content-Type": "application/x-www-form-urlencoded"
+        ]
+        let postParams = [
+            "grant_type": "refresh_token",
+            "refresh_token": refreshToken
+        ]
+        return httpRequest(method: .post,
+                           url: Endpoint.login.url,
+                           encoding: URLEncoding.default,
+                           headers: httpHeaders,
+                           parameters: postParams as [String: AnyObject]
+        )
+    }
 }
