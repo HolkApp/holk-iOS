@@ -8,7 +8,7 @@
 
 import Foundation
 
-var API_URL = "http://localhost:8080/"
+var API_URL = "https://dev.holk.app/"
 
 enum Endpoint: String {
     case signup = "authorize/user/register"
