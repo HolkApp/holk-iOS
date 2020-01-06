@@ -15,9 +15,9 @@ protocol SessionStoreDelegate: AnyObject {
 }
 
 protocol SessionStoreClient {
-    func signup(username: String, password: String) -> Observable<Swift.Result<String?, APIError>>
-    func login(username: String, password: String) -> Observable<Swift.Result<LoginToken?, APIError>>
-    func refresh() -> Observable<Swift.Result<LoginToken?, APIError>>
+    func signup(username: String, password: String) -> Observable<Swift.Result<LoginToken, APIError>>
+    func login(username: String, password: String) -> Observable<Swift.Result<LoginToken, APIError>>
+    func refresh() -> Observable<Swift.Result<LoginToken, APIError>>
 }
 
 final class SessionStore: APIStore, SessionStoreClient {
@@ -29,6 +29,9 @@ final class SessionStore: APIStore, SessionStoreClient {
     // MARK: Public Variables
     // TODO: Maybe use combine or Rx to remove the delegate
     weak var delegate: SessionStoreDelegate?
+    
+    let user: User
+    
     var authorizationHeader: [String: String] {
         authorizationBearerHeader ?? authorizationBasicHeader
     }
@@ -47,7 +50,6 @@ final class SessionStore: APIStore, SessionStoreClient {
     }
     
     private let queue: DispatchQueue
-    private let user: User
     
     init(queue: DispatchQueue, user: User) {
         self.queue = queue
@@ -56,21 +58,34 @@ final class SessionStore: APIStore, SessionStoreClient {
         super.init()
     }
     
-    func signup(username: String, password: String) -> Observable<Swift.Result<String?, APIError>> {
+    func signup(username: String, password: String) -> Observable<Swift.Result<LoginToken, APIError>> {
         let postParams = [
             "username": username,
             "password": password
         ]
         let httpHeaders = authorizationBasicHeader
         
-        return httpRequest(method: .post,
-                           url: Endpoint.signup.url,
-                           headers: httpHeaders,
-                           parameters: postParams as [String: AnyObject]
-        )
+        let observable: Observable<Swift.Result<RegisterUserResponse, APIError>> =
+            httpRequest(method: .post,
+                url: Endpoint.signup.url,
+                headers: httpHeaders,
+                parameters: postParams as [String: AnyObject]
+            )
+        
+        let mappedObservable = observable.flatMap { [weak self] result -> Observable<Swift.Result<LoginToken, APIError>> in
+            guard let self = self else { fatalError("Self is nil") }
+            switch result {
+            case .success(let response):
+                return self.login(username: response.userId, password: password)
+            case .failure(let error):
+                return .just(.failure(error))
+            }
+        }
+        
+        return mappedObservable
     }
     
-    func login(username: String, password: String) -> Observable<Swift.Result<LoginToken?, APIError>> {
+    func login(username: String, password: String) -> Observable<Swift.Result<LoginToken, APIError>> {
         var httpHeaders = [
             "Content-Type": "application/x-www-form-urlencoded"
         ]
@@ -84,7 +99,7 @@ final class SessionStore: APIStore, SessionStoreClient {
             "password": password
         ]
         
-        let observable: Observable<Swift.Result<LoginToken?, APIError>> =
+        let observable: Observable<Swift.Result<LoginToken, APIError>> =
             httpRequest(
                 method: .post,
                 url: Endpoint.login.url,
@@ -93,7 +108,7 @@ final class SessionStore: APIStore, SessionStoreClient {
                 parameters: postParams as [String: AnyObject]
             )
         
-        return observable.map { [weak self] result -> Swift.Result<LoginToken?, APIError> in
+        return observable.map { [weak self] result -> Swift.Result<LoginToken, APIError> in
             if let loginToken = try? result.get() {
                 self?.user.loginToken = loginToken
             }
@@ -101,7 +116,7 @@ final class SessionStore: APIStore, SessionStoreClient {
         }
     }
     
-    func refresh() -> Observable<Swift.Result<LoginToken?, APIError>> {
+    func refresh() -> Observable<Swift.Result<LoginToken, APIError>> {
         // TODO: Error handling for not found refresh token in device, should probably log out.
         guard let refreshToken = user.refreshToken else { return .just(.failure(.errorCode(code: 404))) }
         var httpHeaders = [
@@ -116,7 +131,7 @@ final class SessionStore: APIStore, SessionStoreClient {
             "refresh_token": refreshToken
         ]
         
-        let observable: Observable<Swift.Result<LoginToken?, APIError>> =
+        let observable: Observable<Swift.Result<LoginToken, APIError>> =
             httpRequest(
                 method: .post,
                 url: Endpoint.login.url,
@@ -125,7 +140,7 @@ final class SessionStore: APIStore, SessionStoreClient {
                 parameters: postParams as [String: AnyObject]
         )
         
-        return observable.map { [weak self] result -> Swift.Result<LoginToken?, APIError> in
+        return observable.map { [weak self] result -> Swift.Result<LoginToken, APIError> in
             if let loginToken = try? result.get() {
                 self?.user.loginToken = loginToken
             }

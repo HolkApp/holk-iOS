@@ -19,7 +19,7 @@ class APIStore {
         encoding: Alamofire.ParameterEncoding? = nil,
         headers: [String: String] = [:],
         parameters: [String: AnyObject]? = nil
-    ) -> Observable<Swift.Result<Value?, APIError>> {
+    ) -> Observable<Swift.Result<Value, APIError>> {
         
         let encoding: Alamofire.ParameterEncoding = encoding ?? (method == .get ? URLEncoding.default : JSONEncoding.default)
         let httpHeaders = updateHeaders(with: headers)
@@ -27,12 +27,12 @@ class APIStore {
         let requestObservable = sessionManager.rx.request(method, url, parameters: parameters, encoding: encoding, headers: httpHeaders)
         let dataObservable = requestObservable.flatMap {
                 $0.rx.responseData()
-            }.map({ (response, data) -> Swift.Result<Value?, APIError> in
+            }.map({ (response, data) -> Swift.Result<Value, APIError> in
                 if !(200..<300 ~= response.statusCode) {
                     return .failure(.errorCode(code: response.statusCode))
                 }
                 do {
-                    guard !data.isEmpty else { return .success(.none) }
+                    guard !data.isEmpty else { fatalError("Received empty response") }
                     let data = try JSONDecoder().decode(Value.self, from: data)
                     return .success(data)
                 } catch {

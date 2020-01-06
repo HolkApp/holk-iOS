@@ -14,11 +14,28 @@ protocol StoreControllerDelegate: AnyObject {
     func storeControllerRefreshTokenExpired()
 }
 
+enum SessionState {
+    case updated
+    case shouldRefresh
+    case newSession
+}
+
 final class StoreController {
     weak var delegate: StoreControllerDelegate?
     
     let authenticationStore: AuthenticationStore
     let insuranceStore: InsuranceStore
+    
+    var sessionState: SessionState {
+        guard let expirationDate = sessionStore.user.expirationDate else { return .newSession }
+        let fiveMintuesLater = Date().addingTimeInterval(300)
+        switch expirationDate.compare(fiveMintuesLater) {
+        case .orderedAscending:
+            return .shouldRefresh
+        default:
+            return .updated
+        }
+    }
     
     private let sessionStore: SessionStore
     private let queue = DispatchQueue(label: "se.holk.store.controller", qos: .utility)

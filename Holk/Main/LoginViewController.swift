@@ -38,7 +38,7 @@ class LoginViewController: UIViewController {
         navigationItem.setHidesBackButton(true, animated: animated)
     }
     
-    private func setup() {
+    private func setup() {        
         navigationController?.isNavigationBarHidden = false
         navigationItem.setHidesBackButton(true, animated: false)
         let closeIcon = UIImage.fontAwesomeIcon(name: .times, style: .light, textColor: Color.mainForegroundColor, size: FontAwesome.mediumIconSize)
