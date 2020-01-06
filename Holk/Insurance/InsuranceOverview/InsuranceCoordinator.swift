@@ -35,7 +35,6 @@ class InsuranceCoordinator: NSObject, Coordinator, UINavigationControllerDelegat
     }
     
     func logout() {
-        navController.dismiss(animated: true)
         delegate?.logout(self)
     }
     
