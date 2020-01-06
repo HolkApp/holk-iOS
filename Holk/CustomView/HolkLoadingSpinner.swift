@@ -1,6 +1,6 @@
 import UIKit
 
-final class HolkLoadingView: UIView {
+final class HolkLoadingSpinner: UIView {
     private enum AnimationState {
         case starting
         case stopping
@@ -84,7 +84,7 @@ final class HolkLoadingView: UIView {
     }
 }
 
-extension HolkLoadingView {
+extension HolkLoadingSpinner {
     /// Starts the animation of the progress indicator.
     func startAnimating() {
         #if DEBUG
@@ -102,14 +102,6 @@ extension HolkLoadingView {
         #endif
         DispatchQueue.main.async {
             self.shouldBeAnimating = false
-        }
-    }
-    
-    func setAnimating(_ animating: Bool) {
-        if animating {
-            startAnimating()
-        } else {
-            stopAnimating()
         }
     }
     
