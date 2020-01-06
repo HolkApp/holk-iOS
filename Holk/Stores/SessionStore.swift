@@ -143,6 +143,7 @@ final class SessionStore: APIStore, SessionStoreClient {
         return observable.map { [weak self] result -> Swift.Result<LoginToken, APIError> in
             if let loginToken = try? result.get() {
                 self?.user.loginToken = loginToken
+                self?.delegate?.sessionStoreAccessTokenUpdated()
             } else {
                 // TODO: Only logout for now, but should only logout when receiving 401
                 self?.reset()
