@@ -11,19 +11,46 @@ import Foundation
 private let kHolkAccountName = "holk.token"
 private let kHolkServiceAccessToken = "access.token"
 private let kHolkServiceRefreshToken = "refresh.token"
+private let kHolkServiceExpirationDate = "expiration.date"
 
 class User {
+    private let dateFormatter = DateFormatter().then {
+        $0.dateFormat = "yyyy-MM-dd HH:mm:ss"
+    }
+    
     var loginToken: LoginToken? {
         didSet {
             if let loginToken = loginToken {
                 accessToken = loginToken.accessToken
                 refreshToken = loginToken.refreshToken
+                let expiresInSeconds = loginToken.expiresInSeconds
+                expirationDate = Calendar.current.date(byAdding: .second, value: expiresInSeconds, to: Date())
             }
         }
     }
     
     private var _accessToken: String?
     private var _refreshToken: String?
+    private var _expirationDateString: String?
+    
+    private(set) var expirationDate: Date? {
+        get {
+            if _expirationDateString == nil {
+                _expirationDateString = KeychainService.get(account: kHolkAccountName, service: kHolkServiceExpirationDate)
+            }
+            return _expirationDateString.flatMap { dateFormatter.date(from: $0)
+            }
+        }
+        set {
+            if let date = newValue {
+                let dateString = dateFormatter.string(from: date)
+                KeychainService.set(password: dateString, account: kHolkAccountName, service: kHolkServiceExpirationDate)
+            } else {
+                KeychainService.delete(account: kHolkAccountName, service: kHolkServiceExpirationDate)
+                _expirationDateString = nil
+            }
+        }
+    }
     
     private(set) var accessToken: String? {
         get {
@@ -62,5 +89,6 @@ class User {
     func reset() {
         accessToken = nil
         refreshToken = nil
+        expirationDate = nil
     }
 }
