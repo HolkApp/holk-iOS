@@ -106,6 +106,25 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
         }
     }
     
+    func showLoading() {
+        let loadingViewController = LoadingViewController()
+        loadingViewController.modalPresentationStyle = .overFullScreen
+        if navController.viewControllers.isEmpty {
+            navController.pushViewController(loadingViewController, animated: true)
+        } else if navController.presentedViewController != nil {
+                navController.dismiss(animated: true) {
+                    self.navController.present(loadingViewController, animated: true) {
+                        self.navController.popToRootViewController(animated: false)
+                    }
+                }
+        } else {
+            navController.present(loadingViewController, animated: true) {
+                // Pop out all the onboarding view controllers and leave the landing screen
+                self.navController.popToRootViewController(animated: false)
+            }
+        }
+    }
+    
     func logout() {
         storeController.resetSession()
         start()
