@@ -1,9 +1,9 @@
 //
-//  InsuranceProviderType.swift
+//  MockType.swift
 //  Holk
 //
-//  Created by 张梦皓 on 2019-09-29.
-//  Copyright © 2019 Holk. All rights reserved.
+//  Created by 张梦皓 on 2020-01-08.
+//  Copyright © 2020 Holk. All rights reserved.
 //
 
 import Foundation
@@ -20,3 +20,4 @@ extension InsuranceProviderType {
         [.home, .car, .life, .kids]
     }
 }
+
