@@ -35,17 +35,7 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
         navController.navigationBar.tintColor = .black
         switch storeController.sessionState {
         case .newSession:
-            let landingViewController = StoryboardScene.Onboarding.landingViewController.instantiate()
-            landingViewController.coordinator = self
-            if navController.presentedViewController != nil {
-                navController.dismiss(animated: true) {
-                    if !(self.navController.topViewController is LandingViewController) {
-                        self.navController.pushViewController(landingViewController, animated: true)
-                    }
-                }
-            } else {
-                navController.pushViewController(landingViewController, animated: false)
-            }
+            showLandingScreen()
         case .shouldRefresh:
             showLoading()
             storeController.authenticationStore.refresh().subscribe().disposed(by: bag)
@@ -85,20 +75,32 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
         navController.pushViewController(vc, animated: true)
     }
     
-    // TODO: Pass the token or session
-    func showSession() {
+    func showLandingScreen() {
+        let landingViewController = StoryboardScene.Onboarding.landingViewController.instantiate()
+        landingViewController.coordinator = self
+        if navController.presentedViewController != nil {
+            if !(self.navController.topViewController is LandingViewController) {
+                self.navController.setViewControllers([landingViewController], animated: true)
+            }
+            navController.dismiss(animated: true)
+        } else {
+            navController.pushViewController(landingViewController, animated: false)
+        }
+    }
+    
+    func showSession(presentByRoot: Bool = false) {
         let tabbarController = TabBarController()
         tabbarController.coordinator = self
         tabbarController.modalPresentationStyle = .overFullScreen
         if navController.viewControllers.isEmpty {
             navController.pushViewController(tabbarController, animated: true)
         } else if navController.presentedViewController != nil {
-                navController.dismiss(animated: true) {
-                    self.navController.present(tabbarController, animated: true) {
-                        self.navController.popToRootViewController(animated: false)
-                    }
+            navController.dismiss(animated: true) {
+                self.navController.present(tabbarController, animated: true) {
+                    self.navController.popToRootViewController(animated: false)
                 }
-            } else {
+            }
+        } else {
             navController.present(tabbarController, animated: true) {
                 // Pop out all the onboarding view controllers and leave the landing screen
                 self.navController.popToRootViewController(animated: false)
@@ -112,11 +114,11 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
         if navController.viewControllers.isEmpty {
             navController.pushViewController(loadingViewController, animated: true)
         } else if navController.presentedViewController != nil {
-                navController.dismiss(animated: true) {
-                    self.navController.present(loadingViewController, animated: true) {
-                        self.navController.popToRootViewController(animated: false)
-                    }
+            navController.dismiss(animated: true) {
+                self.navController.present(loadingViewController, animated: true) {
+                    self.navController.popToRootViewController(animated: false)
                 }
+            }
         } else {
             navController.present(loadingViewController, animated: true) {
                 // Pop out all the onboarding view controllers and leave the landing screen
