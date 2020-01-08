@@ -14,13 +14,7 @@ protocol SessionStoreDelegate: AnyObject {
     func sessionStoreRefreshTokenExpired()
 }
 
-protocol SessionStoreClient {
-    func signup(username: String, password: String) -> Observable<Swift.Result<LoginToken, APIError>>
-    func login(username: String, password: String) -> Observable<Swift.Result<LoginToken, APIError>>
-    func refresh() -> Observable<Swift.Result<LoginToken, APIError>>
-}
-
-final class SessionStore: APIStore, SessionStoreClient {
+final class SessionStore: APIStore {
     private struct Constants {
         static let basicAuthUsername = "SampleClientId"
         static let basicAuthPassword = "secret"

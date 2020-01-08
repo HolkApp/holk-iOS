@@ -7,15 +7,21 @@
 //
 
 import RxSwift
+import RxRelay
 import Alamofire
 
-protocol InsuranceClient {
-    
+enum RequestState<T: Codable, U:Error> {
+    case loaded(value: T)
+    case loading
+    case error(error: U)
 }
 
-final class InsuranceStore: APIStore, InsuranceClient {
+final class InsuranceStore: APIStore {
     private let queue: DispatchQueue
     private let sessionStore: SessionStore
+    private let bag = DisposeBag()
+    
+    var insuranceIssuerList = BehaviorRelay<RequestState<InsuranceIssuerList, APIError>>.init(value: .loading)
     
     init(queue: DispatchQueue, sessionStore: SessionStore) {
         self.queue = queue
@@ -24,6 +30,60 @@ final class InsuranceStore: APIStore, InsuranceClient {
         super.init()
     }
     
+    func loadInsuranceIssuers() {
+//        insuranceProviders().subscribe { result in
+//            switch result {
+//            case .next(let value):
+//                if let response = try? value.get() {
+//                    print(response)
+//                } else {
+//                    print("error")
+//                }
+//            case .error(let error):
+//                print(error)
+//            case .completed:
+//                print("completed")
+//            }
+//        }.disposed(by: bag)
+        
+        switch insuranceIssuerList.value {
+        case .loading:
+            break
+        default:
+            insuranceIssuerList.accept(.loading)
+        }
+        
+        insuranceIssuers()
+        .bind { [weak self] result in
+            switch result {
+            case .success(let list):
+                self?.insuranceIssuerList.accept(.loaded(value: list))
+            case .failure(let error):
+                self?.insuranceIssuerList.accept(.error(error: error))
+            }
+        }
+        .disposed(by: bag)
+    }
+    
+    private func insuranceIssuers() -> Observable<Swift.Result<InsuranceIssuerList, APIError>> {
+        let httpHeaders = sessionStore.authorizationHeader
+        
+        return httpRequest(
+            method: .get,
+            url: Endpoint.insurancesIssuers.url,
+            headers: httpHeaders
+        )
+    }
+    
+    private func insuranceProviders() -> Observable<Swift.Result<InsuranceProvierList, APIError>> {
+        let httpHeaders = sessionStore.authorizationHeader
+        
+        return httpRequest(
+            method: .get,
+            url: Endpoint.allInsurances.url,
+            headers: httpHeaders
+        )
+    }
     
     
 }

@@ -9,13 +9,7 @@
 import RxSwift
 import Alamofire
 
-protocol AuthenticationClient {
-    func signup(username: String, password: String) -> Observable<Swift.Result<Void, APIError>>
-    func login(username: String, password: String) -> Observable<Swift.Result<Void, APIError>>
-    func refresh() -> Observable<Swift.Result<Void, APIError>>
-}
-
-final class AuthenticationStore: APIStore, AuthenticationClient {
+final class AuthenticationStore: APIStore {
     private let queue: DispatchQueue
     private let sessionStore: SessionStore
     
