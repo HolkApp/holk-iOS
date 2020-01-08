@@ -48,9 +48,6 @@ internal enum StoryboardScene {
 
     internal static let onboardingInfoViewController = SceneType<OnboardingInfoViewController>(storyboard: Onboarding.self, identifier: "OnboardingInfoViewController")
 
-    internal static let onboardingInsuranceProviderTypeViewController = SceneType<OnboardingInsuranceProviderTypeViewController>(storyboard: Onboarding.self, identifier: "OnboardingInsuranceProviderTypeViewController")
-
-    internal static let onboardingInsuranceProviderViewController = SceneType<OnboardingInsuranceProviderViewController>(storyboard: Onboarding.self, identifier: "OnboardingInsuranceProviderViewController")
 
     internal static let signupViewController = SceneType<SignupViewController>(storyboard: Onboarding.self, identifier: "SignupViewController")
   }

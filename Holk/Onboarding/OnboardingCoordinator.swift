@@ -25,22 +25,16 @@ final class OnboardingCoordinator: NSObject, Coordinator, UINavigationController
     
     // MARK: - Public Methods
     func start() {
-        let vc = StoryboardScene.Onboarding.onboardingInsuranceProviderTypeViewController.instantiate()
+        let vc = OnboardingInsuranceProviderIssuerViewController(storeController: storeController)
         vc.coordinator = self
         navController.pushViewController(vc, animated: true)
     }
     
-    func onboarding() {
-        let vc = StoryboardScene.Onboarding.onboardingInsuranceProviderTypeViewController.instantiate()
-        vc.coordinator = self
-        navController.pushViewController(vc, animated: true)
-    }
-    
-    func confirm(providerType: InsuranceProviderType? = nil, provider: InsuranceProvider? = nil) {
+    func confirm(issuer: InsuranceIssuer? = nil, providerType: InsuranceProviderType? = nil) {
         let confirmedViewController = StoryboardScene.Onboarding.onboardingConfirmedViewController.instantiate()
         confirmedViewController.coordinator = self
-        confirmedViewController.providerType = providerType
-        confirmedViewController.provider = provider
+        confirmedViewController.insuranceIssuer = issuer
+        confirmedViewController.insuranceProviderType = providerType
         confirmedViewController.modalPresentationStyle = .overFullScreen
         navController.pushViewController(confirmedViewController, animated: false)
     }

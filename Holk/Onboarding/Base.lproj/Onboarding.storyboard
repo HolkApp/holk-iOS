@@ -71,36 +71,6 @@
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="113.83928571428571"/>
         </scene>
-        <!--Onboarding Insurance Provider Type View Controller-->
-        <scene sceneID="t3a-qT-ARN">
-            <objects>
-                <viewController storyboardIdentifier="OnboardingInsuranceProviderTypeViewController" id="PPJ-Ai-Irk" customClass="OnboardingInsuranceProviderTypeViewController" customModule="Holk" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="CpJ-Yv-fpf">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="Vd0-B2-Iia"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="906-ed-cAk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="996" y="114"/>
-        </scene>
-        <!--Onboarding Insurance Provider View Controller-->
-        <scene sceneID="tze-Ww-jvW">
-            <objects>
-                <viewController storyboardIdentifier="OnboardingInsuranceProviderViewController" id="wLC-yi-RFl" customClass="OnboardingInsuranceProviderViewController" customModule="Holk" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="bUp-si-xU3">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="EXQ-sN-ZFU"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="248-3y-INu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="996" y="881"/>
-        </scene>
         <!--Onboarding Confirmed View Controller-->
         <scene sceneID="CZv-Bg-8pi">
             <objects>
