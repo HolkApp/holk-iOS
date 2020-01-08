@@ -15,8 +15,8 @@ final class OnboardingConfirmedViewController: UIViewController {
     @IBOutlet weak var labelView: UILabel!
     
     // MARK: - Public variables
-    var providerType: InsuranceProviderType?
-    var provider: InsuranceProvider?
+    var insuranceIssuer: InsuranceIssuer?
+    var insuranceProviderType: InsuranceProviderType?
     weak var coordinator: OnboardingCoordinator?
     
     // MARK: - Overridden methods
@@ -30,8 +30,8 @@ final class OnboardingConfirmedViewController: UIViewController {
         imageView.layer.borderWidth = 2
         imageView.layer.borderColor = Color.mainForegroundColor.cgColor
         
-        if let providerType = providerType, let provider = provider {
-            labelView.text = "Snyggt, \n\(provider.displayName) \(providerType.rawValue) insurance\n has been added"
+        if let insuranceIssuer = insuranceIssuer, let insuranceProviderType = insuranceProviderType {
+            labelView.text = "Snyggt, \n\(insuranceIssuer.name) \(insuranceProviderType) insurance\n has been added"
         } else {
             labelView.text = "Snyggt, \ndå fortsätter vi"
         }

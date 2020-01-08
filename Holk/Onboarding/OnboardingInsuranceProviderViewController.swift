@@ -1,5 +1,5 @@
 //
-//  OnboardingInsuranceProviderViewController.swift
+//  OnboardingInsuranceProviderTypeViewController.swift
 //  Holk
 //
 //  Created by 张梦皓 on 2019-09-30.
@@ -8,18 +8,30 @@
 
 import UIKit
 
-final class OnboardingInsuranceProviderViewController: UIViewController {
+final class OnboardingInsuranceProviderTypeViewController: UIViewController {
     // MARK: Private Variables
     private let tableView = UITableView()
     private let skipButton = HolkButton()
+    private var storeController: StoreController
+    private var insuranceIssuer: InsuranceIssuer
     
     // MARK: Public Variables
-    var providerType: InsuranceProviderType?
     weak var coordinator: OnboardingCoordinator?
+    
+    init(insuranceIssuer: InsuranceIssuer, storeController: StoreController) {
+        self.storeController = storeController
+        self.insuranceIssuer = insuranceIssuer
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         navigationItem.largeTitleDisplayMode = .always
-        navigationItem.title = "Pick insurance company"
+        navigationItem.title = "Pick insurance to find gaps in"
         
         setup()
     }
@@ -47,6 +59,8 @@ final class OnboardingInsuranceProviderViewController: UIViewController {
         
         view.addSubview(tableView)
         view.addSubview(skipButton)
+        view.backgroundColor = .white
+        
         tableView.translatesAutoresizingMaskIntoConstraints = false
         skipButton.translatesAutoresizingMaskIntoConstraints = false
         skipButton.addTarget(self, action: #selector(confirmSkip(_:)), for: .touchUpInside)
@@ -85,14 +99,14 @@ final class OnboardingInsuranceProviderViewController: UIViewController {
         coordinator?.confirm()
     }
     
-    private func select(_ provider: InsuranceProvider) {
+    private func select(_ issuer: InsuranceIssuer, providerType: InsuranceProviderType) {
         BankIDService.sign(redirectLink: "holk:///", successHandler: { [weak self] in
             guard let self = self else { return }
             // TODO: Remove this for the temp mock
             NotificationCenter.default.addObserver(self, selector: #selector(self.willEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
         }) { [weak self] in
             guard let self = self else { return }
-            self.coordinator?.confirm(providerType: self.providerType, provider: provider)
+            self.coordinator?.confirm(issuer: issuer, providerType: providerType)
         }
     }
     
@@ -102,20 +116,21 @@ final class OnboardingInsuranceProviderViewController: UIViewController {
     }
 }
 
-extension OnboardingInsuranceProviderViewController: UITableViewDelegate {
+extension OnboardingInsuranceProviderTypeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        select(InsuranceProvider.mockInsuranceProviderResults[indexPath.item])
+        let providerType = InsuranceProviderType.mockTypeResults[indexPath.item]
+        select(insuranceIssuer, providerType: providerType)
     }
 }
 
-extension OnboardingInsuranceProviderViewController: UITableViewDataSource {
+extension OnboardingInsuranceProviderTypeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return InsuranceProvider.mockInsuranceProviderResults.count
+        return InsuranceProviderType.mockTypeResults.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.text = InsuranceProvider.mockInsuranceProviderResults[indexPath.item].displayName
+        cell.textLabel?.text = InsuranceProviderType.mockTypeResults[indexPath.item].rawValue
         cell.selectionStyle = .none
         return cell
     }
