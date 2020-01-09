@@ -15,7 +15,7 @@ enum Endpoint: String {
     case login = "authorize/oauth/token"
     case insurancesIssuers = "insurance/scraping/status"
     case allInsurances = "insurance/insurance/"
-    
+    case addInsurance = "insurance/scraping/%@/ssn/%@/scrape"
     
     var url: URL {
         return URL(string: API_URL + self.rawValue)!

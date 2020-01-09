@@ -31,21 +31,6 @@ final class InsuranceStore: APIStore {
     }
     
     func loadInsuranceIssuers() {
-//        insuranceProviders().subscribe { result in
-//            switch result {
-//            case .next(let value):
-//                if let response = try? value.get() {
-//                    print(response)
-//                } else {
-//                    print("error")
-//                }
-//            case .error(let error):
-//                print(error)
-//            case .completed:
-//                print("completed")
-//            }
-//        }.disposed(by: bag)
-        
         switch insuranceIssuerList.value {
         case .loading:
             break
