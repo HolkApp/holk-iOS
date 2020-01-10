@@ -24,6 +24,10 @@ final class LandingViewController: UIViewController {
         setup()
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        .lightContent
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -44,20 +48,20 @@ final class LandingViewController: UIViewController {
     }
     
     private func setup() {
-        view.backgroundColor = Color.onBoardingBackgroundColor
+        view.backgroundColor = Color.landingBackgroundColor
         
         titleLabel.numberOfLines = 0
-        titleLabel.textColor = Color.mainForegroundColor
+        titleLabel.textColor = Color.landingMainColor
         titleLabel.font = Font.extraBold(.header)
-        loginButton.backgroundColor = Color.mainHighlightColor
+        loginButton.backgroundColor = Color.landingMainColor
         loginButton.titleLabel?.font = Font.semibold(.subtitle)
         loginButton.tintColor = Color.mainForegroundColor
         loginButton.setTitle("Logga in", for: UIControl.State())
         signupButton.layer.borderWidth = 1
-        signupButton.layer.borderColor = Color.mainForegroundColor.cgColor
+        signupButton.layer.borderColor = Color.landingMainColor.cgColor
         signupButton.layer.cornerRadius = 7
         signupButton.titleLabel?.font = Font.semibold(.subtitle)
-        signupButton.tintColor = Color.mainForegroundColor
+        signupButton.tintColor = Color.landingMainColor
         signupButton.setTitle("Skapa konto", for: UIControl.State())
         onBoardingButton.contentEdgeInsets = UIEdgeInsets(top: 10, left: 15, bottom: 10, right: 15)
         onBoardingButton.backgroundColor = Color.secondaryBackgroundColor
