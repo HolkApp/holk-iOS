@@ -126,18 +126,18 @@ då fortsätter vi</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c29-IS-Bw0" customClass="HolkButton" customModule="Holk" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="787" width="414" height="75"/>
+                                <rect key="frame" x="0.0" y="806" width="414" height="90"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="75" id="6hd-N2-3yk"/>
+                                    <constraint firstAttribute="height" constant="90" id="6hd-N2-3yk"/>
                                 </constraints>
                                 <state key="normal" title="Bra, kör igång"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="c29-IS-Bw0" secondAttribute="bottom" id="ISy-1k-NJ5"/>
                             <constraint firstItem="QPd-MF-HF4" firstAttribute="trailing" secondItem="c29-IS-Bw0" secondAttribute="trailing" id="JP6-f5-Kbu"/>
                             <constraint firstItem="c29-IS-Bw0" firstAttribute="leading" secondItem="QPd-MF-HF4" secondAttribute="leading" id="TqO-jg-Wba"/>
-                            <constraint firstItem="QPd-MF-HF4" firstAttribute="bottom" secondItem="c29-IS-Bw0" secondAttribute="bottom" id="YxR-Tj-5TA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="QPd-MF-HF4"/>
                     </view>
@@ -147,7 +147,7 @@ då fortsätter vi</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QZ6-Gz-M6I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-614" y="-575"/>
+            <point key="canvasLocation" x="-614.49275362318849" y="-575.22321428571422"/>
         </scene>
         <!--Onboarding Info View Controller-->
         <scene sceneID="hpJ-nW-5hn">
@@ -311,7 +311,7 @@ försäkringar</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kE1-xf-pyy" userLabel="Signup">
-                                <rect key="frame" x="25" y="697" width="364" height="65"/>
+                                <rect key="frame" x="25" y="716" width="364" height="65"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="65" id="u60-BL-8qc"/>
                                 </constraints>
@@ -321,9 +321,9 @@ försäkringar</string>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2TK-Gd-zId" customClass="HolkButton" customModule="Holk" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="787" width="414" height="75"/>
+                                <rect key="frame" x="0.0" y="806" width="414" height="90"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="75" id="a2k-XZ-HmK"/>
+                                    <constraint firstAttribute="height" constant="90" id="a2k-XZ-HmK"/>
                                 </constraints>
                                 <state key="normal" title="Login"/>
                                 <connections>
@@ -350,10 +350,10 @@ försäkringar</string>
                             <constraint firstItem="eUf-eY-uLT" firstAttribute="top" secondItem="LKG-BB-kPV" secondAttribute="top" constant="10" id="MWC-6b-CdT"/>
                             <constraint firstItem="vPA-QX-YyG" firstAttribute="top" secondItem="eUf-eY-uLT" secondAttribute="bottom" constant="70" id="Tzi-bj-PG3"/>
                             <constraint firstItem="LKG-BB-kPV" firstAttribute="trailing" secondItem="vPA-QX-YyG" secondAttribute="trailing" constant="35" id="ZVT-2U-ooJ"/>
+                            <constraint firstAttribute="bottom" secondItem="2TK-Gd-zId" secondAttribute="bottom" id="ePs-Ju-1bO"/>
                             <constraint firstItem="LKG-BB-kPV" firstAttribute="trailing" secondItem="eUf-eY-uLT" secondAttribute="trailing" constant="20" id="g8Y-YK-ErR"/>
                             <constraint firstItem="eUf-eY-uLT" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="LKG-BB-kPV" secondAttribute="leading" constant="20" id="onS-6z-Kig"/>
                             <constraint firstItem="LKG-BB-kPV" firstAttribute="trailing" secondItem="kE1-xf-pyy" secondAttribute="trailing" constant="25" id="r4p-DT-Jfe"/>
-                            <constraint firstItem="LKG-BB-kPV" firstAttribute="bottom" secondItem="2TK-Gd-zId" secondAttribute="bottom" id="sk4-PG-ydf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="LKG-BB-kPV"/>
                     </view>
@@ -366,7 +366,7 @@ försäkringar</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SHu-wE-FYu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-688" y="114"/>
+            <point key="canvasLocation" x="-688.40579710144937" y="113.83928571428571"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="L9K-ik-bSU">

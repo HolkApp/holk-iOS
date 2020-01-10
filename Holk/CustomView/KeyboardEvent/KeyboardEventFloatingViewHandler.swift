@@ -39,7 +39,7 @@ final class KeyboardEventFloatingViewHandler: KeyboardEventHandler {
         let inset = context.frame.height
         let offset = context.frame.maxY - viewFrame.maxY
         
-        bottomConstraint.constant = inset - offset - view.safeAreaInsets.bottom
+        bottomConstraint.constant = inset - offset
         
         UIView.animate(withDuration: context.duration, animations: {
             self.view.layoutIfNeeded()

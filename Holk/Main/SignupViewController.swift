@@ -86,12 +86,11 @@ class SignupViewController: UIViewController {
         infoTextView.isEditable = false
         
         doneButton.translatesAutoresizingMaskIntoConstraints = false
-        doneButtonBottomConstraint = view.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: doneButton.bottomAnchor, constant: 0)
+        doneButtonBottomConstraint = view.bottomAnchor.constraint(equalTo: doneButton.bottomAnchor, constant: 0)
         doneButton.setTitle("Skapa konot", for: UIControl.State())
         doneButton.backgroundColor = Color.mainHighlightColor
         doneButton.titleLabel?.font = Font.semibold(.subtitle)
         doneButton.tintColor = Color.mainForegroundColor
-        doneButton.isEnabled = false
         doneButton.setTitleColor(Color.mainForegroundColor, for: UIControl.State())
         doneButton.addTarget(self, action: #selector(submit(_:)), for: .touchUpInside)
 
@@ -99,8 +98,10 @@ class SignupViewController: UIViewController {
             guard let emailText = emailText, let passwordText = passwordText else {
                 return false
             }
-            return !emailText.isEmpty && !passwordText.isEmpty
-        }.bind(to: doneButton.rx.isEnabled).disposed(by: bag)
+            return emailText.isEmpty || passwordText.isEmpty
+        }
+        .bind(to: doneButton.rx.isHidden)
+        .disposed(by: bag)
         
         NSLayoutConstraint.activate([
             existAccountButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
@@ -112,7 +113,7 @@ class SignupViewController: UIViewController {
             
             doneButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             doneButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            doneButton.heightAnchor.constraint(equalToConstant: 75),
+            doneButton.heightAnchor.constraint(equalToConstant: 90),
             doneButtonBottomConstraint
             ])
         

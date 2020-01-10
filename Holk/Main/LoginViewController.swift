@@ -76,7 +76,7 @@ class LoginViewController: UIViewController {
         textView.isEditable = false
         
         doneButton.translatesAutoresizingMaskIntoConstraints = false
-        doneButtonBottomConstraint = view.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: doneButton.bottomAnchor, constant: 0)
+        doneButtonBottomConstraint = view.bottomAnchor.constraint(equalTo: doneButton.bottomAnchor, constant: 0)
         doneButton.setTitle("Logga in", for: UIControl.State())
         doneButton.backgroundColor = Color.mainHighlightColor
         doneButton.titleLabel?.font = Font.semibold(.subtitle)
@@ -88,8 +88,10 @@ class LoginViewController: UIViewController {
             guard let emailText = emailText, let passwordText = passwordText else {
                 return false
             }
-            return !emailText.isEmpty && !passwordText.isEmpty
-            }.bind(to: doneButton.rx.isEnabled).disposed(by: bag)
+            return emailText.isEmpty || passwordText.isEmpty
+        }
+        .bind(to: doneButton.rx.isHidden)
+        .disposed(by: bag)
         
         NSLayoutConstraint.activate([
             textView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 45),
@@ -98,7 +100,7 @@ class LoginViewController: UIViewController {
             
             doneButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             doneButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            doneButton.heightAnchor.constraint(equalToConstant: 75),
+            doneButton.heightAnchor.constraint(equalToConstant: 90),
             doneButtonBottomConstraint
             ])
         let keyboardEventFloatingViewHandler = KeyboardEventFloatingViewHandler(floatingView: doneButton, view: view, bottomConstraint: doneButtonBottomConstraint)
