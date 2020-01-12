@@ -70,7 +70,11 @@ final class InsuranceOverviewViewController: UIViewController {
     
     // MARK: Overridden variables
     override var preferredStatusBarStyle: UIStatusBarStyle {
-        .default
+        if #available(iOS 13.0, *) {
+            return .darkContent
+        } else {
+            return .default
+        }
     }
     
     // MARK: Overridden methods
