@@ -33,8 +33,8 @@ class APIStore {
                 }
                 do {
                     guard !data.isEmpty else { fatalError("Received empty response") }
-                    let data = try JSONDecoder().decode(Value.self, from: data)
-                    return .success(data)
+                    let parsedData = try JSONDecoder().decode(Value.self, from: data)
+                    return .success(parsedData)
                 } catch {
                     return .failure(.decodingError)
                 }

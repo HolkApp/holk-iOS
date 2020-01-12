@@ -13,7 +13,7 @@ var API_URL = "https://dev.holk.app/"
 enum Endpoint: String {
     case signup = "authorize/user/register"
     case login = "authorize/oauth/token"
-    case insurancesIssuers = "insurance/scraping/status"
+    case insurancesIssuers = "insurance/scraping/provider/status"
     case allInsurances = "insurance/insurance/"
     case addInsurance = "insurance/scraping/%@/ssn/%@/scrape"
     
