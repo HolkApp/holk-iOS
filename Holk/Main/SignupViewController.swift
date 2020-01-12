@@ -77,6 +77,7 @@ class SignupViewController: UIViewController {
         existAccountButton.titleLabel?.font = Font.bold(.label)
         existAccountButton.addTarget(self, action: #selector(existedAccount(_:)), for: .touchUpInside)
         
+        // TODO: Update the google with actual user agreement page
         infoTextView.translatesAutoresizingMaskIntoConstraints = false
         infoTextView.attributedText = Parser.parse(
             markdownString: "Genom att skapa ett konto godkänner du [användarvilkoren](https://www.google.com).",

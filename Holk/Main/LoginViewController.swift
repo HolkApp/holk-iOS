@@ -67,6 +67,7 @@ class LoginViewController: UIViewController {
         passwordTextField.placeholderTextColor = Color.placeHolderTextColor
         passwordTextField.isSecureTextEntry = true
         
+        // TODO: Update the google with actual change password page
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.attributedText = Parser.parse(
             markdownString: "[Har du glömt ditt lösenord?](https://www.google.com)",
