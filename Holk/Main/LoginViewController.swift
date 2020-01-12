@@ -50,7 +50,7 @@ class LoginViewController: UIViewController {
         
         titleLabel.text = "Logga in"
         titleLabel.font = Font.extraBold(.subHeader)
-        titleLabel.textColor = Color.mainForegroundColor
+        titleLabel.textColor = Color.mainHighlightTextColor
         subtitleLabel.text = "Ange en e-post adress och ett valfritt lösenord."
         subtitleLabel.font = Font.light(.subtitle)
         subtitleLabel.textColor = Color.mainForegroundColor
@@ -68,9 +68,15 @@ class LoginViewController: UIViewController {
         passwordTextField.isSecureTextEntry = true
         
         textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.textColor = Color.mainForegroundColor
-        textView.font = Font.regular(.description)
-        textView.text = "Genom att skapa ett konto godkänner du användarvilkoren."
+        textView.attributedText = Parser.parse(
+            markdownString: "[Har du glömt ditt lösenord?](https://www.google.com)",
+            font: Font.bold(.label),
+            textColor: Color.mainForegroundColor
+        )
+        // Seems there is an issue with the library for parsing
+        textView.linkTextAttributes = [
+            NSAttributedString.Key.foregroundColor: Color.mainHighlightTextColor
+        ]
         textView.isScrollEnabled = false
         textView.backgroundColor = .clear
         textView.isEditable = false

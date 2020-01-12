@@ -53,7 +53,7 @@ class SignupViewController: UIViewController {
         
         titleLabel.text = "Skapa användare"
         titleLabel.font = Font.extraBold(.subHeader)
-        titleLabel.textColor = Color.mainForegroundColor
+        titleLabel.textColor = Color.mainHighlightTextColor
         subtitleLabel.text = "Ange en e-post adress och ett valfritt lösenord."
         subtitleLabel.font = Font.light(.subtitle)
         subtitleLabel.textColor = Color.mainForegroundColor
@@ -73,14 +73,20 @@ class SignupViewController: UIViewController {
         existAccountButton.translatesAutoresizingMaskIntoConstraints = false
         existAccountButton.contentHorizontalAlignment = .leading
         existAccountButton.setTitle("Already has an account? Click here", for: .normal)
-        existAccountButton.setTitleColor(Color.mainHighlightColor, for: UIControl.State())
+        existAccountButton.setTitleColor(Color.mainHighlightTextColor, for: UIControl.State())
         existAccountButton.titleLabel?.font = Font.bold(.label)
         existAccountButton.addTarget(self, action: #selector(existedAccount(_:)), for: .touchUpInside)
         
         infoTextView.translatesAutoresizingMaskIntoConstraints = false
-        infoTextView.textColor = Color.mainForegroundColor
-        infoTextView.font = Font.regular(.description)
-        infoTextView.text = "Genom att skapa ett konto godkänner du användarvilkoren."
+        infoTextView.attributedText = Parser.parse(
+            markdownString: "Genom att skapa ett konto godkänner du [användarvilkoren](https://www.google.com).",
+            font: Font.bold(.label),
+            textColor: Color.mainForegroundColor
+        )
+        // Seems there is an issue with the library for parsing
+        infoTextView.linkTextAttributes = [
+            NSAttributedString.Key.foregroundColor: Color.mainHighlightTextColor
+        ]
         infoTextView.isScrollEnabled = false
         infoTextView.backgroundColor = .clear
         infoTextView.isEditable = false
