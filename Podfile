@@ -6,6 +6,7 @@ target 'Holk' do
   use_frameworks!
   pod 'Alamofire'
   pod 'SwiftLint'
+  pod "MarkdownKit"
 
   # Reactive Programming
   pod 'RxSwift'

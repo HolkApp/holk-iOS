@@ -46,6 +46,7 @@
 		8F7C442A23511C1200B54A36 /* AuthenticationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7C442923511C1200B54A36 /* AuthenticationStore.swift */; };
 		8F7C442C23511C5900B54A36 /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7C442B23511C5900B54A36 /* APIEndpoint.swift */; };
 		8F7C44302351336E00B54A36 /* BankIDService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7C442F2351336E00B54A36 /* BankIDService.swift */; };
+		8F858A4723CB377B006B416A /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F858A4623CB377B006B416A /* Parser.swift */; };
 		8F9807E722722D5E00584BA9 /* StoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9807E622722D5E00584BA9 /* StoreController.swift */; };
 		8F9807E92276F10E00584BA9 /* InsuranceCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9807E82276F10E00584BA9 /* InsuranceCoordinator.swift */; };
 		8F9C83DA22A3140B005BB336 /* InsuranceOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9C83D922A3140B005BB336 /* InsuranceOverviewViewController.swift */; };
@@ -145,6 +146,7 @@
 		8F7C442923511C1200B54A36 /* AuthenticationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationStore.swift; sourceTree = "<group>"; };
 		8F7C442B23511C5900B54A36 /* APIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
 		8F7C442F2351336E00B54A36 /* BankIDService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankIDService.swift; sourceTree = "<group>"; };
+		8F858A4623CB377B006B416A /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		8F9807E622722D5E00584BA9 /* StoreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreController.swift; sourceTree = "<group>"; };
 		8F9807E82276F10E00584BA9 /* InsuranceCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceCoordinator.swift; sourceTree = "<group>"; };
 		8F9C83D922A3140B005BB336 /* InsuranceOverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceOverviewViewController.swift; sourceTree = "<group>"; };
@@ -306,6 +308,16 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
+		8F858A4523CB376B006B416A /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				8FF6E72322A70F6600F6D398 /* Then.swift */,
+				8FF6E73322B57DA800F6D398 /* UITableViewCell+extension.swift */,
+				8FF6E75122B960B300F6D398 /* UIImage+extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		8F9C83D822A313EE005BB336 /* InsuranceOverview */ = {
 			isa = PBXGroup;
 			children = (
@@ -372,13 +384,12 @@
 				8FF6E72522AC0D2800F6D398 /* Color.swift */,
 				8FF6E73122B534E000F6D398 /* Onboarding */,
 				8FE52F06239BB0EE001A77F5 /* Insurance */,
-				8F9C83DD22A6E316005BB336 /* CustomView */,
 				8F654669230195840053B3F8 /* Transition */,
 				8FE52F05239BB0CD001A77F5 /* Stores */,
 				8FE52F07239BBDD6001A77F5 /* Services */,
 				8FF6E73022B5340900F6D398 /* Model */,
 				8FD84E872270E7C9009D563D /* Network */,
-				8FF6E72222A70F5000F6D398 /* Extensions */,
+				8FF6E72222A70F5000F6D398 /* Custom */,
 				8F5B5A3322771EBF00E79A40 /* Generated */,
 				8FD84E6E2270E736009D563D /* Assets.xcassets */,
 				8FA8F10D232D377F00670471 /* Color.xcassets */,
@@ -438,14 +449,14 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
-		8FF6E72222A70F5000F6D398 /* Extensions */ = {
+		8FF6E72222A70F5000F6D398 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
-				8FF6E72322A70F6600F6D398 /* Then.swift */,
-				8FF6E73322B57DA800F6D398 /* UITableViewCell+extension.swift */,
-				8FF6E75122B960B300F6D398 /* UIImage+extension.swift */,
+				8F9C83DD22A6E316005BB336 /* CustomView */,
+				8F858A4523CB376B006B416A /* Extension */,
+				8F858A4623CB377B006B416A /* Parser.swift */,
 			);
-			path = Extensions;
+			path = Custom;
 			sourceTree = "<group>";
 		};
 		8FF6E72922B02CBB00F6D398 /* Cells */ = {
@@ -752,6 +763,7 @@
 				8F48BE6C2332C7C7004D79D2 /* FontAwsomeEnum.swift in Sources */,
 				8F7C442C23511C5900B54A36 /* APIEndpoint.swift in Sources */,
 				8FE52F09239BBDEF001A77F5 /* KeychainService.swift in Sources */,
+				8F858A4723CB377B006B416A /* Parser.swift in Sources */,
 				8FF6E75622BCF9CA00F6D398 /* InsuranceDetailViewController.swift in Sources */,
 				8F63C30E22C8CE5300CFE334 /* InsuranceCostTableViewCell.swift in Sources */,
 				8FD84E6A2270E732009D563D /* SignupViewController.swift in Sources */,

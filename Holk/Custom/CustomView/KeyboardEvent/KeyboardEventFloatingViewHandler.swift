@@ -21,7 +21,6 @@ final class KeyboardEventFloatingViewHandler: KeyboardEventHandler {
         assert(floatingView.superview === view)
         
         self.bottomConstraint = bottomConstraint
-        self.bottomConstraint.isActive = true
         floatingButtonBottomMargin = bottomConstraint.constant
         
         floatingView.translatesAutoresizingMaskIntoConstraints = false
