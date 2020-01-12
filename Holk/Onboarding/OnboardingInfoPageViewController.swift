@@ -9,6 +9,12 @@ final class OnboardingInfoPageViewController: UIPageViewController {
     var orderedViewControllers = [UIViewController]()
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setup()
+    }
+    
+    private func setup() {
         dataSource = self
         delegate = self
         
@@ -20,12 +26,11 @@ final class OnboardingInfoPageViewController: UIPageViewController {
         orderedViewControllers = [infoViewController, secondViewController, thirdViewController]
         setViewControllers([infoViewController], direction: .forward, animated: true, completion: nil)
         
+        view.addSubview(pageControl)
         pageControl.numberOfPages = orderedViewControllers.count
         pageControl.frame = CGRect(origin: .zero, size: pageControl.size(forNumberOfPages: orderedViewControllers.count))
         pageControl.currentPageIndicatorTintColor = Color.mainHighlightColor
         pageControl.pageIndicatorTintColor = Color.mainForegroundColor
-        view.addSubview(pageControl)
-        
         pageControl.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
