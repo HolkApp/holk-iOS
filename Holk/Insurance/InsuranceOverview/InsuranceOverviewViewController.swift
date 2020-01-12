@@ -67,6 +67,12 @@ final class InsuranceOverviewViewController: UIViewController {
             }
         }
     }
+    
+    // MARK: Overridden variables
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        .default
+    }
+    
     // MARK: Overridden methods
     override func viewDidLoad() {
         super.viewDidLoad()

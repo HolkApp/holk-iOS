@@ -161,7 +161,7 @@ då fortsätter vi</string>
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="48d-Hr-G0E">
-                                        <rect key="frame" x="35" y="35" width="344" height="371.5"/>
+                                        <rect key="frame" x="35" y="60" width="344" height="371.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Så här funkar det" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zlO-mZ-OmQ">
                                                 <rect key="frame" x="0.0" y="0.0" width="344" height="20.5"/>
@@ -251,7 +251,7 @@ frågor om din vardag</string>
                                     <constraint firstItem="48d-Hr-G0E" firstAttribute="leading" secondItem="pgN-LK-Jpp" secondAttribute="leading" constant="35" id="2JK-rU-Yty"/>
                                     <constraint firstAttribute="trailing" secondItem="48d-Hr-G0E" secondAttribute="trailing" constant="35" id="78n-Ig-RyM"/>
                                     <constraint firstAttribute="bottom" secondItem="48d-Hr-G0E" secondAttribute="bottom" id="ZA9-DG-7rY"/>
-                                    <constraint firstItem="48d-Hr-G0E" firstAttribute="top" secondItem="pgN-LK-Jpp" secondAttribute="top" constant="35" id="hoq-TK-fAq"/>
+                                    <constraint firstItem="48d-Hr-G0E" firstAttribute="top" secondItem="pgN-LK-Jpp" secondAttribute="top" constant="60" id="hoq-TK-fAq"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="mbT-k5-Lz4"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="tDF-vP-5SU"/>
