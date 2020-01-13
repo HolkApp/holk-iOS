@@ -66,7 +66,7 @@ final class LandingViewController: UIViewController {
         onBoardingButton.contentEdgeInsets = UIEdgeInsets(top: 10, left: 15, bottom: 10, right: 15)
         onBoardingButton.backgroundColor = Color.secondaryBackgroundColor
         onBoardingButton.layer.cornerRadius = 17.5
-        onBoardingButton.titleLabel?.font = Font.semibold(.description)
+        onBoardingButton.titleLabel?.font = Font.semibold(.label)
         onBoardingButton.tintColor = Color.mainForegroundColor
     }
 }

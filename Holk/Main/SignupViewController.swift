@@ -74,14 +74,14 @@ class SignupViewController: UIViewController {
         existAccountButton.contentHorizontalAlignment = .leading
         existAccountButton.setTitle("Already has an account? Click here", for: .normal)
         existAccountButton.setTitleColor(Color.mainHighlightTextColor, for: UIControl.State())
-        existAccountButton.titleLabel?.font = Font.bold(.label)
+        existAccountButton.titleLabel?.font = Font.semibold(.label)
         existAccountButton.addTarget(self, action: #selector(existedAccount(_:)), for: .touchUpInside)
         
         // TODO: Update the google with actual user agreement page
         infoTextView.translatesAutoresizingMaskIntoConstraints = false
         infoTextView.attributedText = Parser.parse(
             markdownString: "Genom att skapa ett konto godkänner du [användarvilkoren](https://www.google.com).",
-            font: Font.bold(.label),
+            font: Font.semibold(.label),
             textColor: Color.mainForegroundColor
         )
         // Seems there is an issue with the library for parsing

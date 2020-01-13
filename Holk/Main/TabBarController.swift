@@ -26,6 +26,7 @@ class TabBarController: UITabBarController {
         ]
         
         tabBar.barTintColor = Color.tabbarBackgroundColor
+        tabBar.tintColor = Color.mainForegroundColor
     }
 }
 

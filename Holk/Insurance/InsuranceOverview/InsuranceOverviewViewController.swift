@@ -116,13 +116,13 @@ final class InsuranceOverviewViewController: UIViewController {
         segmentedControl.setTitleTextAttributes(
             [
                 NSAttributedString.Key.foregroundColor: Color.mainForegroundColor.withAlphaComponent(0.6),
-                NSAttributedString.Key.font: Font.regular(.largeDescription)
+                NSAttributedString.Key.font: Font.regular(.subtitle)
             ],
             for: UIControl.State.normal)
         segmentedControl.setTitleTextAttributes(
             [
                 NSAttributedString.Key.foregroundColor: Color.mainForegroundColor,
-                NSAttributedString.Key.font: Font.regular(.largeDescription)
+                NSAttributedString.Key.font: Font.regular(.subtitle)
             ],
             for: UIControl.State.selected)
         

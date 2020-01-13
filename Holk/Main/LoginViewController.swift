@@ -71,7 +71,7 @@ class LoginViewController: UIViewController {
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.attributedText = Parser.parse(
             markdownString: "[Har du glömt ditt lösenord?](https://www.google.com)",
-            font: Font.bold(.label),
+            font: Font.semibold(.label),
             textColor: Color.mainForegroundColor
         )
         // Seems there is an issue with the library for parsing

@@ -8,8 +8,6 @@
 
 import Foundation
 
-var API_URL = "https://dev.holk.app/"
-
 enum Endpoint: String {
     case signup = "authorize/user/register"
     case login = "authorize/oauth/token"
@@ -17,7 +15,15 @@ enum Endpoint: String {
     case allInsurances = "insurance/insurance/"
     case addInsurance = "insurance/scraping/%@/ssn/%@/scrape"
     
+    var baseUrl: String {
+        "https://dev.holk.app/"
+    }
+    
     var url: URL {
-        return URL(string: API_URL + self.rawValue)!
+        return URL(string: baseUrl + self.rawValue)!
+    }
+    
+    var text: String {
+        return baseUrl + self.rawValue
     }
 }
