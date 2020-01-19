@@ -36,6 +36,10 @@ final class OnboardingCoordinator: NSObject, Coordinator, UINavigationController
     }
     
     func confirm(issuer: InsuranceIssuer? = nil, providerType: InsuranceProviderType? = nil) {
+        if let issuer = issuer {
+            storeController.insuranceStore.addInsurance(issuer: issuer, personalNumber: "199208253915")
+        }
+        
         let confirmedViewController = StoryboardScene.Onboarding.onboardingConfirmedViewController.instantiate()
         confirmedViewController.coordinator = self
         confirmedViewController.insuranceIssuer = issuer
