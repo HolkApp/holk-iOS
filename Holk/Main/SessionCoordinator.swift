@@ -9,7 +9,6 @@
 import UIKit
 import RxSwift
 
-// TODO: Use SessionCoordinator instead of OnboardingCoordinator for the login, signup check
 final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
     // MARK: - Public Properties
     var navController: UINavigationController
@@ -22,7 +21,7 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
     init(navController: UINavigationController) {
         self.navController = navController
         self.storeController = StoreController()
-        onboardingCoordinator = OnboardingCoordinator(navController: navController, storeController: storeController)
+        onboardingCoordinator = OnboardingCoordinator(navController: UINavigationController(), storeController: storeController)
         super.init()
         
         storeController.delegate = self
@@ -33,14 +32,26 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
         navController.navigationBar.shadowImage = UIImage()
         navController.delegate = self
         navController.navigationBar.tintColor = .black
-        switch storeController.sessionState {
-        case .newSession:
-            showLandingScreen()
-        case .shouldRefresh:
-            showLoading()
-            storeController.authenticationStore.refresh().subscribe().disposed(by: bag)
-        case .updated:
-            showSession()
+        showInitialScreen()
+    }
+    
+    func showSession(presentByRoot: Bool = false) {
+        let tabbarController = TabBarController()
+        tabbarController.coordinator = self
+        tabbarController.modalPresentationStyle = .overFullScreen
+        if navController.viewControllers.isEmpty {
+            navController.pushViewController(tabbarController, animated: true)
+        } else if navController.presentedViewController != nil {
+            navController.dismiss(animated: true) {
+                self.navController.present(tabbarController, animated: true) {
+                    self.navController.popToRootViewController(animated: false)
+                }
+            }
+        } else {
+            navController.present(tabbarController, animated: true) {
+                // Pop out all the onboarding view controllers and leave the landing screen
+                self.navController.popToRootViewController(animated: false)
+            }
         }
     }
     
@@ -67,45 +78,29 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
     func onboarding() {
         onboardingCoordinator.start()
         onboardingCoordinator.delegate = self
-    }
-    
-    func displayOnBoradingInfo() {
-        let vc = StoryboardScene.Onboarding.onboardingInfoContainerViewController.instantiate()
-        vc.coordinator = self
-        navController.pushViewController(vc, animated: true)
-    }
-    
-    func showLandingScreen() {
-        let landingViewController = StoryboardScene.Onboarding.landingViewController.instantiate()
-        landingViewController.coordinator = self
-        if navController.presentedViewController != nil {
-            if !(self.navController.topViewController is LandingViewController) {
-                self.navController.setViewControllers([landingViewController], animated: true)
-            }
-            navController.dismiss(animated: true)
-        } else {
-            navController.pushViewController(landingViewController, animated: false)
-        }
-    }
-    
-    func showSession(presentByRoot: Bool = false) {
-        let tabbarController = TabBarController()
-        tabbarController.coordinator = self
-        tabbarController.modalPresentationStyle = .overFullScreen
+        
+        let onBoardingFlow = onboardingCoordinator.navController
+        onBoardingFlow.modalPresentationStyle = .overFullScreen
         if navController.viewControllers.isEmpty {
-            navController.pushViewController(tabbarController, animated: true)
+            navController.pushViewController(onBoardingFlow, animated: true)
         } else if navController.presentedViewController != nil {
             navController.dismiss(animated: true) {
-                self.navController.present(tabbarController, animated: true) {
+                self.navController.present(onBoardingFlow, animated: true) {
                     self.navController.popToRootViewController(animated: false)
                 }
             }
         } else {
-            navController.present(tabbarController, animated: true) {
+            navController.present(onBoardingFlow, animated: true) {
                 // Pop out all the onboarding view controllers and leave the landing screen
                 self.navController.popToRootViewController(animated: false)
             }
         }
+    }
+    
+    func displayOnboradingInfo() {
+        let vc = StoryboardScene.Onboarding.onboardingInfoContainerViewController.instantiate()
+        vc.coordinator = self
+        navController.pushViewController(vc, animated: true)
     }
     
     func showLoading() {
@@ -130,6 +125,31 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
     func logout() {
         storeController.resetSession()
         start()
+    }
+    
+    private func showInitialScreen() {
+        switch storeController.sessionState {
+        case .newSession:
+            showLandingScreen()
+        case .shouldRefresh:
+            showLoading()
+            storeController.authenticationStore.refresh().subscribe().disposed(by: bag)
+        case .updated:
+            showSession()
+        }
+    }
+    
+    private func showLandingScreen() {
+        let landingViewController = StoryboardScene.Onboarding.landingViewController.instantiate()
+        landingViewController.coordinator = self
+        if navController.presentedViewController != nil {
+            if !(self.navController.topViewController is LandingViewController) {
+                self.navController.setViewControllers([landingViewController], animated: true)
+            }
+            navController.dismiss(animated: true)
+        } else {
+            navController.pushViewController(landingViewController, animated: false)
+        }
     }
 }
 
