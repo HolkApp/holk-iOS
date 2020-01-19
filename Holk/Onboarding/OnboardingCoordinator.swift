@@ -25,6 +25,11 @@ final class OnboardingCoordinator: NSObject, Coordinator, UINavigationController
     
     // MARK: - Public Methods
     func start() {
+        navController.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navController.navigationBar.shadowImage = UIImage()
+        navController.delegate = self
+        navController.navigationBar.tintColor = .black
+        
         let vc = OnboardingInsuranceProviderIssuerViewController(storeController: storeController)
         vc.coordinator = self
         navController.pushViewController(vc, animated: true)

@@ -25,11 +25,11 @@ extension InsuranceProvierList {
 }
 
 struct InsuranceProvider: Codable {
-    let endDate: String
+    let endDate: Date
     let id: String
     let insuranceType: String
     let issuerReference: String
     let ssn: String
-    let startDate: String
+    let startDate: Date
     let taker: String
 }

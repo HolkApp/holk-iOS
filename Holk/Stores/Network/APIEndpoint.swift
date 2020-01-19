@@ -9,21 +9,21 @@
 import Foundation
 
 enum Endpoint: String {
+    static let baseUrl = "https://dev.holk.app/"
+    
     case signup = "authorize/user/register"
     case login = "authorize/oauth/token"
     case insurancesIssuers = "insurance/scraping/provider/status"
     case allInsurances = "insurance/insurance/"
     case addInsurance = "insurance/scraping/%@/ssn/%@/scrape"
-    
-    var baseUrl: String {
-        "https://dev.holk.app/"
-    }
+    case scrapingStatus = "insurance/scraping/status/id/%@"
     
     var url: URL {
-        return URL(string: baseUrl + self.rawValue)!
+        return URL(string: Endpoint.baseUrl + self.rawValue)!
     }
     
-    var text: String {
-        return baseUrl + self.rawValue
+    func url(_ variables: String...) -> URL {
+        let string = String(format: self.rawValue, variables)
+        return URL(string: string)!
     }
 }

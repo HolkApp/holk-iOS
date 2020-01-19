@@ -147,7 +147,7 @@ extension OnboardingInsuranceProviderIssuerViewController: UITableViewDataSource
         let list = storeController.insuranceStore.insuranceIssuerList.value
         switch list {
         case .loaded(let insuranceIssuerList):
-            cell.textLabel?.text = insuranceIssuerList.insuranceIssuers[indexPath.item].name
+            cell.textLabel?.text = insuranceIssuerList.insuranceIssuers[indexPath.item].displayName
             cell.selectionStyle = .none
         case .loading:
             cell.textLabel?.text = "loading"

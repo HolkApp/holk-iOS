@@ -35,7 +35,7 @@ final class LandingViewController: UIViewController {
     }
     
     @IBAction func infoButtonTapped(_ sender: UIButton) {
-        coordinator?.displayOnBoradingInfo()
+        coordinator?.displayOnboradingInfo()
     }
     
     @IBAction func loginTapped(_ sender: UIButton) {

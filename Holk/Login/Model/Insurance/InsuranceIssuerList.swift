@@ -30,19 +30,20 @@ struct InsuranceIssuer: Codable {
             switch value.uppercased() {
             case "AVAILABLE":
                 self = .available
-            case "UNAVAILABLE":
-                self = .unavailable
+            case "UNDER_IMPLEMENTATION":
+                self = .underImplementation
             default:
                 self = .unknown
             }
         }
         
         case available
-        case unavailable
+        case underImplementation
         case unknown
     }
     
-    let name: String
+    let displayName: String
     let insuranceIssuerStatus: String
     let websiteUrl: URL
+    let internalName: String
 }

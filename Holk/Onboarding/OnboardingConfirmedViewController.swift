@@ -31,7 +31,7 @@ final class OnboardingConfirmedViewController: UIViewController {
         imageView.layer.borderColor = Color.mainForegroundColor.cgColor
         
         if let insuranceIssuer = insuranceIssuer, let insuranceProviderType = insuranceProviderType {
-            labelView.text = "Snyggt, \n\(insuranceIssuer.name) \(insuranceProviderType) insurance\n has been added"
+            labelView.text = "Snyggt, \n\(insuranceIssuer.displayName) \(insuranceProviderType) insurance\n has been added"
         } else {
             labelView.text = "Snyggt, \ndå fortsätter vi"
         }
