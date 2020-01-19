@@ -49,6 +49,8 @@
 		8F858A4723CB377B006B416A /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F858A4623CB377B006B416A /* Parser.swift */; };
 		8F858A4B23CD1470006B416A /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F858A4A23CD1470006B416A /* Poppins-Regular.ttf */; };
 		8F858A4D23CD16FD006B416A /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F858A4C23CD16FC006B416A /* Poppins-SemiBold.ttf */; };
+		8F858A5323CE6381006B416A /* PollingTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F858A5223CE6381006B416A /* PollingTask.swift */; };
+		8F858A5523CE6C8C006B416A /* ScrapingStatusResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F858A5423CE6C8C006B416A /* ScrapingStatusResponse.swift */; };
 		8F9807E722722D5E00584BA9 /* StoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9807E622722D5E00584BA9 /* StoreController.swift */; };
 		8F9807E92276F10E00584BA9 /* InsuranceCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9807E82276F10E00584BA9 /* InsuranceCoordinator.swift */; };
 		8F9C83DA22A3140B005BB336 /* InsuranceOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9C83D922A3140B005BB336 /* InsuranceOverviewViewController.swift */; };
@@ -149,6 +151,8 @@
 		8F858A4623CB377B006B416A /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		8F858A4A23CD1470006B416A /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		8F858A4C23CD16FC006B416A /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
+		8F858A5223CE6381006B416A /* PollingTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollingTask.swift; sourceTree = "<group>"; };
+		8F858A5423CE6C8C006B416A /* ScrapingStatusResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapingStatusResponse.swift; sourceTree = "<group>"; };
 		8F9807E622722D5E00584BA9 /* StoreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreController.swift; sourceTree = "<group>"; };
 		8F9807E82276F10E00584BA9 /* InsuranceCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceCoordinator.swift; sourceTree = "<group>"; };
 		8F9C83D922A3140B005BB336 /* InsuranceOverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceOverviewViewController.swift; sourceTree = "<group>"; };
@@ -295,17 +299,8 @@
 			isa = PBXGroup;
 			children = (
 				8FD84E672270E732009D563D /* AppDelegate.swift */,
-				8F7C442E2351335A00B54A36 /* Service */,
 			);
 			path = Application;
-			sourceTree = "<group>";
-		};
-		8F7C442E2351335A00B54A36 /* Service */ = {
-			isa = PBXGroup;
-			children = (
-				8F7C442F2351336E00B54A36 /* BankIDService.swift */,
-			);
-			path = Service;
 			sourceTree = "<group>";
 		};
 		8F858A4523CB376B006B416A /* Extension */ = {
@@ -316,6 +311,14 @@
 				8FF6E75122B960B300F6D398 /* UIImage+extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		8F858A5123CE6370006B416A /* Task */ = {
+			isa = PBXGroup;
+			children = (
+				8F858A5223CE6381006B416A /* PollingTask.swift */,
+			);
+			path = Task;
 			sourceTree = "<group>";
 		};
 		8F9C83D822A313EE005BB336 /* InsuranceOverview */ = {
@@ -388,7 +391,6 @@
 				8FE52F05239BB0CD001A77F5 /* Stores */,
 				8FE52F07239BBDD6001A77F5 /* Services */,
 				8FF6E73022B5340900F6D398 /* Model */,
-				8FD84E872270E7C9009D563D /* Network */,
 				8FF6E72222A70F5000F6D398 /* Custom */,
 				8F5B5A3322771EBF00E79A40 /* Generated */,
 				8FD84E6E2270E736009D563D /* Assets.xcassets */,
@@ -421,8 +423,10 @@
 		8FE52F05239BB0CD001A77F5 /* Stores */ = {
 			isa = PBXGroup;
 			children = (
-				8F25CAA0233E981800DC3B97 /* User.swift */,
+				8FD84E872270E7C9009D563D /* Network */,
+				8F858A5123CE6370006B416A /* Task */,
 				8F9807E622722D5E00584BA9 /* StoreController.swift */,
+				8F25CAA0233E981800DC3B97 /* User.swift */,
 				8F66F2F923B0F3E60083DC3A /* SessionStore.swift */,
 				8F7C442923511C1200B54A36 /* AuthenticationStore.swift */,
 				8FA5F374239D832C00083430 /* InsuranceStore.swift */,
@@ -445,6 +449,7 @@
 			isa = PBXGroup;
 			children = (
 				8FE52F08239BBDEF001A77F5 /* KeychainService.swift */,
+				8F7C442F2351336E00B54A36 /* BankIDService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -476,6 +481,7 @@
 			children = (
 				8F25CA9F233E981800DC3B97 /* LoginToken.swift */,
 				8F66F2FB23BBFB580083DC3A /* RegisterUserResponse.swift */,
+				8F858A5423CE6C8C006B416A /* ScrapingStatusResponse.swift */,
 				8F5AF02023C6679E00690373 /* Insurance */,
 			);
 			name = Model;
@@ -760,6 +766,7 @@
 				8F0D403F227A0AD4000BD840 /* APIError.swift in Sources */,
 				8F66F2FC23BBFB580083DC3A /* RegisterUserResponse.swift in Sources */,
 				8F25CA9B233E8CCE00DC3B97 /* OnboardingInfoPageViewController.swift in Sources */,
+				8F858A5523CE6C8C006B416A /* ScrapingStatusResponse.swift in Sources */,
 				8F48BE6C2332C7C7004D79D2 /* FontAwsomeEnum.swift in Sources */,
 				8F7C442C23511C5900B54A36 /* APIEndpoint.swift in Sources */,
 				8FE52F09239BBDEF001A77F5 /* KeychainService.swift in Sources */,
@@ -775,6 +782,7 @@
 				8FF6E73B22B6B55800F6D398 /* InsuranceProtectionViewController.swift in Sources */,
 				8FF6E73422B57DA800F6D398 /* UITableViewCell+extension.swift in Sources */,
 				8FCEE9AE23254AAC00F75FB8 /* KeyboardEventObserver.swift in Sources */,
+				8F858A5323CE6381006B416A /* PollingTask.swift in Sources */,
 				8FD84E682270E732009D563D /* AppDelegate.swift in Sources */,
 				8F25CA9D233E945100DC3B97 /* OnboardingInfoContainerViewController.swift in Sources */,
 				8FF6E74122B82D1100F6D398 /* Font.swift in Sources */,
