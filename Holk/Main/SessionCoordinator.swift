@@ -35,7 +35,7 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
         showInitialScreen()
     }
     
-    func showSession(presentByRoot: Bool = false) {
+    func showSession(initialScreen: Bool = false) {
         let tabbarController = TabBarController()
         tabbarController.coordinator = self
         tabbarController.modalPresentationStyle = .overFullScreen
@@ -75,6 +75,12 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
         }
     }
     
+    func displayOnboradingInfo() {
+        let vc = StoryboardScene.Onboarding.onboardingInfoContainerViewController.instantiate()
+        vc.coordinator = self
+        navController.pushViewController(vc, animated: true)
+    }
+    
     func onboarding() {
         onboardingCoordinator.start()
         onboardingCoordinator.delegate = self
@@ -97,18 +103,10 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
         }
     }
     
-    func displayOnboradingInfo() {
-        let vc = StoryboardScene.Onboarding.onboardingInfoContainerViewController.instantiate()
-        vc.coordinator = self
-        navController.pushViewController(vc, animated: true)
-    }
-    
-    func showLoading() {
+    func showLoading(initialScreen: Bool = false) {
         let loadingViewController = LoadingViewController()
         loadingViewController.modalPresentationStyle = .overFullScreen
-        if navController.viewControllers.isEmpty {
-            navController.pushViewController(loadingViewController, animated: true)
-        } else if navController.presentedViewController != nil {
+        if initialScreen || navController.presentedViewController != nil {
             navController.dismiss(animated: true) {
                 self.navController.present(loadingViewController, animated: true) {
                     self.navController.popToRootViewController(animated: false)
@@ -130,26 +128,22 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
     private func showInitialScreen() {
         switch storeController.sessionState {
         case .newSession:
-            showLandingScreen()
+            showLandingScreen(initialScreen: true)
         case .shouldRefresh:
-            showLoading()
+            showLoading(initialScreen: true)
             storeController.authenticationStore.refresh().subscribe().disposed(by: bag)
         case .updated:
-            showSession()
+            showSession(initialScreen: true)
         }
     }
     
-    private func showLandingScreen() {
+    private func showLandingScreen(initialScreen: Bool = false) {
         let landingViewController = StoryboardScene.Onboarding.landingViewController.instantiate()
         landingViewController.coordinator = self
-        if navController.presentedViewController != nil {
-            if !(self.navController.topViewController is LandingViewController) {
-                self.navController.setViewControllers([landingViewController], animated: true)
-            }
-            navController.dismiss(animated: true)
-        } else {
-            navController.pushViewController(landingViewController, animated: false)
+        if !(self.navController.topViewController is LandingViewController) {
+            self.navController.setViewControllers([landingViewController], animated: true)
         }
+        navController.dismiss(animated: true)
     }
 }
 

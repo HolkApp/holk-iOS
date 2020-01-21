@@ -34,7 +34,7 @@ final class OnboardingInfoPageViewController: UIPageViewController {
         pageControl.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            pageControl.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -166)
+            pageControl.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100)
         ])
     }
 }
