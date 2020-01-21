@@ -19,6 +19,8 @@ enum RequestState<T: Codable, U:Error> {
 final class InsuranceStore: APIStore {
     // MARK: - Public variables
     var insuranceIssuerList = BehaviorRelay<RequestState<InsuranceIssuerList, APIError>>.init(value: .loading)
+    // TODO: should be an array of insurance
+    var insuranceState = BehaviorRelay<RequestState<String, APIError>>.init(value: .loading)
     
     // MARK: - Private variables
     private let queue: DispatchQueue
@@ -35,6 +37,7 @@ final class InsuranceStore: APIStore {
     }
     
     func loadInsuranceIssuers() {
+        // TODO: should be able to reload the insurance issuer list
         switch insuranceIssuerList.value {
         case .loading:
             break
@@ -56,16 +59,39 @@ final class InsuranceStore: APIStore {
     
     func addInsurance(issuer: InsuranceIssuer, personalNumber: String) {
         addInsurance(issuerName: "FOLKSAM", personalNumber: personalNumber)
-            .subscribe { result in
+            .map { [weak self] result in
+                guard let self = self else { return }
                 switch result {
-                case .next(let value):
-                    self.pollingTask.poll(self.insuranceStatus(sessionId: "123")).subscribe().disposed(by: self.bag)
-                case .error(let error):
+                case .success(let sessionId):
+                    self.pollingTask.poll(self.insuranceStatus(sessionId: sessionId))
+                        .map({ responseResult -> Swift.Result<String, APIError> in
+                            switch responseResult {
+                            case .success(let scrapingResponse):
+                                return .success(scrapingResponse.scrapingStatus)
+                            case .failure(let error):
+                                return .failure(error)
+                            }
+                        })
+                        .bind(onNext: { scrapingStatus in
+                            switch scrapingStatus {
+                            case .success(let status):
+                                if status == "COMPLETED" {
+                                    self.insuranceState.accept(.loaded(value: status))
+                                } else {
+                                    self.insuranceState.accept(.loading)
+                                }
+                            case .failure(let error):
+                                self.insuranceState.accept(.error(error: error))
+                            }
+                        })
+                        .disposed(by: self.bag)
+                case .failure(let error):
+                    // TODO: Error handling
                     print(error)
-                case .completed:
-                    break
                 }
-        }.disposed(by: bag)
+        }
+        .subscribe()
+        .disposed(by: bag)
     }
     
     private func insuranceIssuers() -> Observable<Swift.Result<InsuranceIssuerList, APIError>> {
@@ -89,7 +115,7 @@ final class InsuranceStore: APIStore {
         )
     }
     
-    private func addInsurance(issuerName: String, personalNumber: String) -> Observable<Swift.Result<InsuranceProvierList, APIError>> {
+    private func addInsurance(issuerName: String, personalNumber: String) -> Observable<Swift.Result<String, APIError>> {
         let httpHeaders = sessionStore.authorizationHeader
         
         return httpRequest(

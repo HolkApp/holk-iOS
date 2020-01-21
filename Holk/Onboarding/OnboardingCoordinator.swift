@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 protocol OnboardingCoordinatorDelegate: AnyObject {
     func didFinishOnboarding(coordinator: OnboardingCoordinator)
@@ -17,6 +18,8 @@ final class OnboardingCoordinator: NSObject, Coordinator, UINavigationController
     var navController: UINavigationController
     var storeController: StoreController
     weak var delegate: OnboardingCoordinatorDelegate?
+    
+    private var bag = DisposeBag()
     // MARK: - Init
     init(navController: UINavigationController, storeController: StoreController) {
         self.navController = navController
@@ -32,20 +35,41 @@ final class OnboardingCoordinator: NSObject, Coordinator, UINavigationController
         
         let vc = OnboardingInsuranceProviderIssuerViewController(storeController: storeController)
         vc.coordinator = self
-        navController.pushViewController(vc, animated: true)
+        navController.setViewControllers([vc], animated: true)
     }
     
     func confirm(issuer: InsuranceIssuer? = nil, providerType: InsuranceProviderType? = nil) {
-        if let issuer = issuer {
-            storeController.insuranceStore.addInsurance(issuer: issuer, personalNumber: "199208253915")
-        }
-        
         let confirmedViewController = StoryboardScene.Onboarding.onboardingConfirmedViewController.instantiate()
         confirmedViewController.coordinator = self
         confirmedViewController.insuranceIssuer = issuer
         confirmedViewController.insuranceProviderType = providerType
         confirmedViewController.modalPresentationStyle = .overFullScreen
-        navController.pushViewController(confirmedViewController, animated: false)
+        
+        if let issuer = issuer {
+            let loadingViewController = LoadingViewController()
+            loadingViewController.modalPresentationStyle = .overFullScreen
+            navController.present(loadingViewController, animated: true)
+            
+            storeController.insuranceStore.addInsurance(issuer: issuer, personalNumber: "199208253915")
+            storeController.insuranceStore.insuranceState
+                .subscribe({ [weak self] event in
+                    switch event {
+                    case .next(let state):
+                        switch state {
+                        case .loaded, .error:
+                            self?.navController.pushViewController(confirmedViewController, animated: false)
+                            self?.navController.dismiss(animated: true)
+                        case .loading:
+                            break
+                        }
+                    default:
+                        break
+                    }
+                })
+                .disposed(by: bag)
+        } else {
+            navController.pushViewController(confirmedViewController, animated: false)
+        }
     }
     
     // MARK: - UINavigationControllerDelegate
