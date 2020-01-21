@@ -124,7 +124,6 @@ class LoginViewController: UIViewController {
     
     @objc private func submit(_ sender: UIButton) {
         login()
-        coordinator?.showSession()
         hideKeyboard(sender)
     }
     
@@ -135,10 +134,10 @@ class LoginViewController: UIViewController {
             storeController.authenticationStore
                 .login(username: username, password: password)
                 .observeOn(MainScheduler.instance)
-                .subscribe(onNext: { event in
+                .subscribe(onNext: { [weak self] event in
                     switch event {
                     case .success:
-                        print("login response")
+                        self?.coordinator?.showSession()
                     case .failure(let error):
                         // TODO: Error handling
                         print(error)

@@ -101,6 +101,14 @@ final class OnboardingInsuranceProviderTypeViewController: UIViewController {
     
     private func select(_ issuer: InsuranceIssuer, providerType: InsuranceProviderType) {
         coordinator?.confirm(issuer: issuer, providerType: providerType)
+        BankIDService.sign(redirectLink: "holk:///", successHandler: { [weak self] in
+            guard let self = self else { return }
+            // TODO: Remove this for the temp mock
+            NotificationCenter.default.addObserver(self, selector: #selector(self.willEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+        }) { [weak self] in
+//            guard let self = self else { return }
+//            self.coordinator?.confirm(issuer: issuer, providerType: providerType)
+        }
     }
     
     // TODO: Remove this for the temp mock

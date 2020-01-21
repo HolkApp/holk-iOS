@@ -9,6 +9,9 @@
 import RxSwift
 import Alamofire
 
+let hardCodedUserID = "e146f083-fd5a-4a3a-ba2f-3313139ef738"
+let hardCodedPassword = "1"
+
 final class AuthenticationStore: APIStore {
     private let queue: DispatchQueue
     private let sessionStore: SessionStore
@@ -32,7 +35,7 @@ final class AuthenticationStore: APIStore {
     }
     
     func login(username: String, password: String) -> Observable<Swift.Result<Void, APIError>> {
-        return sessionStore.login(username: username, password: password).map { result -> Swift.Result<Void, APIError> in
+        return sessionStore.login(username: hardCodedUserID, password: hardCodedPassword).map { result -> Swift.Result<Void, APIError> in
             switch result {
             case .success:
                 return .success(())
