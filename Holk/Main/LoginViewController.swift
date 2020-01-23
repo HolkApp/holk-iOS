@@ -137,10 +137,11 @@ class LoginViewController: UIViewController {
                 .subscribe(onNext: { [weak self] event in
                     switch event {
                     case .success:
-                        self?.coordinator?.showSession()
+                        self?.coordinator?.onboarding()
                     case .failure(let error):
                         // TODO: Error handling
                         print(error)
+                        self?.coordinator?.onboarding()
                     }
                 }, onError: { error in
                     // TODO: Error handling

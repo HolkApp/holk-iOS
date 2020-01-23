@@ -7,8 +7,28 @@
 //
 
 import Foundation
-
-struct ScrapingStatusResponse: Codable {
-    var scrapingStatus: String
+enum ScrapingStatus: String, Codable {
+    case unintiated = "UNINITIATED"
+    case initiated = "INITIATED"
+    case loggedin = "LOGGED_IN"
+    case completed = "COMPLETED"
+    case failed = "FAILED"
 }
 
+struct ScrapingStatusResponse: Codable {
+    var scrapingStatus: ScrapingStatus
+    
+    private enum CodingKeys: String, CodingKey {
+        case scrapingStatus = "scrapingStatus"
+    }
+}
+
+extension ScrapingStatusResponse {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        let scrapingStatusString = try container.decode(String.self, forKey: .scrapingStatus)
+        guard let status = ScrapingStatus(rawValue: scrapingStatusString) else { fatalError("Cannot parse ScrapingStatus \(scrapingStatusString)") }
+        scrapingStatus = status
+    }
+}

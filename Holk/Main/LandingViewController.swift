@@ -39,7 +39,6 @@ final class LandingViewController: UIViewController {
     }
     
     @IBAction func loginTapped(_ sender: UIButton) {
-        // TODO: login
         coordinator?.showLogin()
     }
     

@@ -23,7 +23,7 @@ class ScrapingStatusPollingTask {
             case .success(let scrapingStatusResponse):
                 print(scrapingStatusResponse.scrapingStatus)
                 switch scrapingStatusResponse.scrapingStatus {
-                case "COMPLETED", "FAILED":
+                case .completed, .failed:
                     return true
                 default:
                     return false

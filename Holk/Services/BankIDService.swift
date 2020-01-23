@@ -14,7 +14,7 @@ final class BankIDService {
         start(url, successHandler, failureHandler)
     }
     
-    static func sign(redirectLink: String, successHandler: @escaping () -> Void, failureHandler: @escaping () -> Void) {
+    static func sign(redirectLink: String, successHandler: @escaping () -> Void, failureHandler: @escaping () -> Void = {}) {
         guard let url = URL(string: "bankid:///?redirect=\(redirectLink)") else { return failureHandler() }
         start(url, successHandler, failureHandler)
     }
