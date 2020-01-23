@@ -112,8 +112,7 @@ final class InsuranceStore: APIStore {
         
         return httpRequest(
             method: .get,
-            // TODO: FIX this after update the xcode
-            url: URL(string: Endpoint.baseUrl + String(format: Endpoint.scrapingStatus.rawValue, sessionId))!,
+            url: Endpoint.scrapingStatus.url([sessionId]),
             headers: httpHeaders
         )
     }
@@ -140,8 +139,7 @@ final class InsuranceStore: APIStore {
         
         return httpRequest(
             method: .post,
-            // TODO: FIX this after update the xcode
-            url: URL(string: Endpoint.baseUrl + String(format: Endpoint.addInsurance.rawValue, issuerName, personalNumber))!,
+            url: Endpoint.addInsurance.url([issuerName, personalNumber]),
             encoding: URLEncoding.default,
             headers: httpHeaders
         )

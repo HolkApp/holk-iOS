@@ -22,8 +22,8 @@ enum Endpoint: String {
         return URL(string: Endpoint.baseUrl + self.rawValue)!
     }
     
-    func url(_ variables: String...) -> URL {
-        let string = String(format: self.rawValue, variables)
+    func url(_ arguments: [String]) -> URL {
+        let string = String(format: Endpoint.baseUrl + self.rawValue, arguments: arguments)
         return URL(string: string)!
     }
 }

@@ -73,7 +73,6 @@ final class OnboardingCoordinator: NSObject, Coordinator, UINavigationController
     }
     
     // MARK: - UINavigationControllerDelegate
-    
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
         guard let fromViewController = navigationController.transitionCoordinator?.viewController(forKey: .from) else {
             return
