@@ -12,6 +12,15 @@ import RxSwift
 class ScrapingStatusPollingTask {
     private var retryInterval: Int = 2
     
+    func poll<T: Codable, E: Error>(_ observable: Observable<Result<T, E>>, pollingUntil: @escaping (Result<T, E>) -> Bool) -> Observable<Result<T, E>> {
+        let interval = Observable<Int>.interval(.seconds(retryInterval), scheduler: MainScheduler.instance)
+        // 3. Interval subscription
+        let subscription = interval.flatMapLatest { index in
+            observable
+        }.takeUntil(.inclusive, predicate: pollingUntil)
+        return subscription
+    }
+    
     // TODO: Make this generic
     func poll(_ observable: Observable<Result<ScrapingStatusResponse, APIError>>) -> Observable<Result<ScrapingStatusResponse, APIError>> {
         let interval = Observable<Int>.interval(.seconds(retryInterval), scheduler: MainScheduler.instance)
