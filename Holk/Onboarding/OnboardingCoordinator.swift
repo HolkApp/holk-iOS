@@ -44,32 +44,32 @@ final class OnboardingCoordinator: NSObject, Coordinator, UINavigationController
         confirmedViewController.insuranceIssuer = issuer
         confirmedViewController.insuranceProviderType = providerType
         confirmedViewController.modalPresentationStyle = .overFullScreen
+        guard let issuer = issuer else {
+            navController.pushViewController(confirmedViewController, animated: false)
+            return
+        }
         
-        if let issuer = issuer {
-            let loadingViewController = LoadingViewController()
-            loadingViewController.modalPresentationStyle = .overFullScreen
-            navController.present(loadingViewController, animated: true)
-            
-            storeController.insuranceStore.addInsurance(issuer: issuer, personalNumber: "199208253915")
-            storeController.insuranceStore.insuranceState
-                .subscribe({ [weak self] event in
-                    switch event {
-                    case .next(let state):
-                        switch state {
-                        case .loaded, .error:
-                            self?.navController.pushViewController(confirmedViewController, animated: false)
-                            self?.navController.dismiss(animated: true)
-                        case .loading:
-                            break
-                        }
-                    default:
+        let loadingViewController = LoadingViewController()
+        loadingViewController.modalPresentationStyle = .overFullScreen
+        navController.present(loadingViewController, animated: true)
+        
+        storeController.insuranceStore.addInsurance(issuer: issuer, personalNumber: "199208253915")
+        storeController.insuranceStore.insuranceState
+            .subscribe({ [weak self] event in
+                switch event {
+                case .next(let state):
+                    switch state {
+                    case .loaded, .error:
+                        self?.navController.pushViewController(confirmedViewController, animated: false)
+                        self?.navController.dismiss(animated: true)
+                    case .loading:
                         break
                     }
-                })
-                .disposed(by: bag)
-        } else {
-            navController.pushViewController(confirmedViewController, animated: false)
-        }
+                default:
+                    break
+                }
+            })
+            .disposed(by: bag)
     }
     
     // MARK: - UINavigationControllerDelegate
