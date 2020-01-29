@@ -55,6 +55,7 @@
 		8F9807E92276F10E00584BA9 /* InsuranceCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9807E82276F10E00584BA9 /* InsuranceCoordinator.swift */; };
 		8F9C83DA22A3140B005BB336 /* InsuranceOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9C83D922A3140B005BB336 /* InsuranceOverviewViewController.swift */; };
 		8F9C83DC22A31658005BB336 /* InsuranceOverview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F9C83DB22A31658005BB336 /* InsuranceOverview.storyboard */; };
+		8F9F6D9A23DA41A900B1727E /* HolkProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9F6D9923DA41A900B1727E /* HolkProgressBarView.swift */; };
 		8FA5F375239D832C00083430 /* InsuranceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA5F374239D832C00083430 /* InsuranceStore.swift */; };
 		8FA8F10E232D377F00670471 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8FA8F10D232D377F00670471 /* Color.xcassets */; };
 		8FA8F1122330148300670471 /* FontAwesome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA8F1112330148300670471 /* FontAwesome.swift */; };
@@ -157,6 +158,7 @@
 		8F9807E82276F10E00584BA9 /* InsuranceCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceCoordinator.swift; sourceTree = "<group>"; };
 		8F9C83D922A3140B005BB336 /* InsuranceOverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceOverviewViewController.swift; sourceTree = "<group>"; };
 		8F9C83DB22A31658005BB336 /* InsuranceOverview.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = InsuranceOverview.storyboard; sourceTree = "<group>"; };
+		8F9F6D9923DA41A900B1727E /* HolkProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolkProgressBarView.swift; sourceTree = "<group>"; };
 		8FA5F374239D832C00083430 /* InsuranceStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceStore.swift; sourceTree = "<group>"; };
 		8FA8F10D232D377F00670471 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		8FA8F1112330148300670471 /* FontAwesome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontAwesome.swift; sourceTree = "<group>"; };
@@ -343,6 +345,7 @@
 				8F65466E230DC4CC0053B3F8 /* HolkTextField.swift */,
 				8F48BE6623315F49004D79D2 /* HolkIllustrationLabel.swift */,
 				8FBE4164236A4AA000DA8A74 /* HolkLoadingSpinner.swift */,
+				8F9F6D9923DA41A900B1727E /* HolkProgressBarView.swift */,
 				8FCEE9AF23254B5700F75FB8 /* KeyboardEvent */,
 			);
 			path = CustomView;
@@ -775,6 +778,7 @@
 				8F63C30E22C8CE5300CFE334 /* InsuranceCostTableViewCell.swift in Sources */,
 				8FD84E6A2270E732009D563D /* SignupViewController.swift in Sources */,
 				8FF6E72422A70F6600F6D398 /* Then.swift in Sources */,
+				8F9F6D9A23DA41A900B1727E /* HolkProgressBarView.swift in Sources */,
 				8FF6E73622B6A88100F6D398 /* InsuranceAddMoreCell.swift in Sources */,
 				8FCEE9B323254C2D00F75FB8 /* KeyboardEventFloatingViewHandler.swift in Sources */,
 				8FCEE9AC231EE85000F75FB8 /* OnboardingConfirmedViewController.swift in Sources */,
