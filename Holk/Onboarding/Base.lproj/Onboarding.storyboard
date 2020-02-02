@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -116,38 +116,6 @@ då fortsätter vi</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I9U-Rl-DXp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1799" y="114"/>
-        </scene>
-        <!--Onboarding Info Container View Controller-->
-        <scene sceneID="q0P-E6-bew">
-            <objects>
-                <viewController storyboardIdentifier="OnboardingInfoContainerViewController" id="XgS-9g-Pzj" customClass="OnboardingInfoContainerViewController" customModule="Holk" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="YSc-Hn-DEa">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c29-IS-Bw0" customClass="HolkButton" customModule="Holk" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="806" width="414" height="90"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="90" id="6hd-N2-3yk"/>
-                                </constraints>
-                                <state key="normal" title="Bra, kör igång"/>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstAttribute="bottom" secondItem="c29-IS-Bw0" secondAttribute="bottom" id="ISy-1k-NJ5"/>
-                            <constraint firstItem="QPd-MF-HF4" firstAttribute="trailing" secondItem="c29-IS-Bw0" secondAttribute="trailing" id="JP6-f5-Kbu"/>
-                            <constraint firstItem="c29-IS-Bw0" firstAttribute="leading" secondItem="QPd-MF-HF4" secondAttribute="leading" id="TqO-jg-Wba"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="QPd-MF-HF4"/>
-                    </view>
-                    <connections>
-                        <outlet property="OKButton" destination="c29-IS-Bw0" id="9PB-4a-gy6"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="QZ6-Gz-M6I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-614.49275362318849" y="-575.22321428571422"/>
         </scene>
         <!--Onboarding Info View Controller-->
         <scene sceneID="hpJ-nW-5hn">
@@ -284,89 +252,6 @@ frågor om din vardag</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2QK-mT-Dod" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="996" y="-575"/>
-        </scene>
-        <!--Onboarding Info Page View Controller-->
-        <scene sceneID="AlR-sE-C7h">
-            <objects>
-                <pageViewController storyboardIdentifier="OnboardingInfoPageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="min" id="Ade-XE-ggF" customClass="OnboardingInfoPageViewController" customModule="Holk" customModuleProvider="target" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="daV-MU-Nx7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="138" y="-575"/>
-        </scene>
-        <!--Landing View Controller-->
-        <scene sceneID="U7q-DK-1jR">
-            <objects>
-                <viewController storyboardIdentifier="LandingViewController" id="b8F-z0-ees" customClass="LandingViewController" customModule="Holk" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="9EK-L3-sbz">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vPA-QX-YyG">
-                                <rect key="frame" x="35" y="154" width="344" height="61"/>
-                                <string key="text">Förstå och hitta
-luckorna i dina
-försäkringar</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kE1-xf-pyy" userLabel="Signup">
-                                <rect key="frame" x="25" y="716" width="364" height="65"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="65" id="u60-BL-8qc"/>
-                                </constraints>
-                                <state key="normal" title="SignUp"/>
-                                <connections>
-                                    <action selector="signUpTapped:" destination="b8F-z0-ees" eventType="touchUpInside" id="I23-JT-OPH"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2TK-Gd-zId" customClass="HolkButton" customModule="Holk" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="806" width="414" height="90"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="90" id="a2k-XZ-HmK"/>
-                                </constraints>
-                                <state key="normal" title="Login"/>
-                                <connections>
-                                    <action selector="loginTapped:" destination="b8F-z0-ees" eventType="touchUpInside" id="p9n-u3-Q0D"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eUf-eY-uLT">
-                                <rect key="frame" x="276" y="54" width="118" height="30"/>
-                                <state key="normal" title="Så här funkar det"/>
-                                <connections>
-                                    <action selector="infoButtonTapped:" destination="b8F-z0-ees" eventType="touchUpInside" id="Do5-eX-VKv"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" red="0.87058001756668091" green="0.87058264017105103" blue="0.87058854103088379" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        <constraints>
-                            <constraint firstItem="2TK-Gd-zId" firstAttribute="top" relation="greaterThanOrEqual" secondItem="kE1-xf-pyy" secondAttribute="bottom" constant="15" id="4sU-Cl-RuD"/>
-                            <constraint firstItem="LKG-BB-kPV" firstAttribute="trailing" secondItem="2TK-Gd-zId" secondAttribute="trailing" id="7UQ-id-foz"/>
-                            <constraint firstItem="kE1-xf-pyy" firstAttribute="leading" secondItem="LKG-BB-kPV" secondAttribute="leading" constant="25" id="Ayd-Lh-AJF"/>
-                            <constraint firstItem="2TK-Gd-zId" firstAttribute="leading" secondItem="LKG-BB-kPV" secondAttribute="leading" id="CNM-pq-rxD"/>
-                            <constraint firstItem="vPA-QX-YyG" firstAttribute="leading" secondItem="LKG-BB-kPV" secondAttribute="leading" constant="35" id="GSE-cT-6h3"/>
-                            <constraint firstItem="kE1-xf-pyy" firstAttribute="top" relation="greaterThanOrEqual" secondItem="vPA-QX-YyG" secondAttribute="bottom" constant="40" id="Imt-Kw-pDf"/>
-                            <constraint firstItem="2TK-Gd-zId" firstAttribute="top" secondItem="kE1-xf-pyy" secondAttribute="bottom" priority="750" constant="25" id="J6b-7b-k8U"/>
-                            <constraint firstItem="eUf-eY-uLT" firstAttribute="top" secondItem="LKG-BB-kPV" secondAttribute="top" constant="10" id="MWC-6b-CdT"/>
-                            <constraint firstItem="vPA-QX-YyG" firstAttribute="top" secondItem="eUf-eY-uLT" secondAttribute="bottom" constant="70" id="Tzi-bj-PG3"/>
-                            <constraint firstItem="LKG-BB-kPV" firstAttribute="trailing" secondItem="vPA-QX-YyG" secondAttribute="trailing" constant="35" id="ZVT-2U-ooJ"/>
-                            <constraint firstAttribute="bottom" secondItem="2TK-Gd-zId" secondAttribute="bottom" id="ePs-Ju-1bO"/>
-                            <constraint firstItem="LKG-BB-kPV" firstAttribute="trailing" secondItem="eUf-eY-uLT" secondAttribute="trailing" constant="20" id="g8Y-YK-ErR"/>
-                            <constraint firstItem="eUf-eY-uLT" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="LKG-BB-kPV" secondAttribute="leading" constant="20" id="onS-6z-Kig"/>
-                            <constraint firstItem="LKG-BB-kPV" firstAttribute="trailing" secondItem="kE1-xf-pyy" secondAttribute="trailing" constant="25" id="r4p-DT-Jfe"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="LKG-BB-kPV"/>
-                    </view>
-                    <connections>
-                        <outlet property="loginButton" destination="2TK-Gd-zId" id="HOY-ph-Eln"/>
-                        <outlet property="onBoardingButton" destination="eUf-eY-uLT" id="7dI-aa-6Om"/>
-                        <outlet property="signupButton" destination="kE1-xf-pyy" id="PmD-Ge-wba"/>
-                        <outlet property="titleLabel" destination="vPA-QX-YyG" id="LQG-XI-77F"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SHu-wE-FYu" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-688.40579710144937" y="113.83928571428571"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="L9K-ik-bSU">

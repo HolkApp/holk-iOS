@@ -75,12 +75,6 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
         }
     }
     
-    func displayOnboradingInfo() {
-        let vc = StoryboardScene.Onboarding.onboardingInfoContainerViewController.instantiate()
-        vc.coordinator = self
-        navController.pushViewController(vc, animated: true)
-    }
-    
     func onboarding() {
         onboardingCoordinator.start()
         onboardingCoordinator.delegate = self
@@ -138,10 +132,10 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
     }
     
     private func showLandingScreen(initialScreen: Bool = false) {
-        let landingViewController = StoryboardScene.Onboarding.landingViewController.instantiate()
-        landingViewController.coordinator = self
-        if !(self.navController.topViewController is LandingViewController) {
-            self.navController.setViewControllers([landingViewController], animated: true)
+        let landingPageViewController = LandingPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
+        landingPageViewController.coordinator = self
+        if !(self.navController.topViewController is LandingPageViewController) {
+            self.navController.setViewControllers([landingPageViewController], animated: true)
         }
         navController.dismiss(animated: true)
     }
