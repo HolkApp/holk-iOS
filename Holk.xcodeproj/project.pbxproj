@@ -58,7 +58,10 @@
 		8FA8F1122330148300670471 /* FontAwesome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA8F1112330148300670471 /* FontAwesome.swift */; };
 		8FA941552353ADC200844D97 /* SessionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA941542353ADC200844D97 /* SessionCoordinator.swift */; };
 		8FA94157235904BA00844D97 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA94156235904BA00844D97 /* Coordinator.swift */; };
+		8FACE89623E767A900DCE741 /* UIButton+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FACE89523E767A900DCE741 /* UIButton+extension.swift */; };
 		8FBE4165236A4AA000DA8A74 /* HolkLoadingSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBE4164236A4AA000DA8A74 /* HolkLoadingSpinner.swift */; };
+		8FC296BB23E237D0002A39D1 /* LandingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC296BA23E237D0002A39D1 /* LandingPageViewController.swift */; };
+		8FC296BE23E7614D002A39D1 /* LandingInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC296BD23E7614D002A39D1 /* LandingInfoViewController.swift */; };
 		8FCEE9AC231EE85000F75FB8 /* OnboardingConfirmedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCEE9AB231EE85000F75FB8 /* OnboardingConfirmedViewController.swift */; };
 		8FCEE9AE23254AAC00F75FB8 /* KeyboardEventObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCEE9AD23254AAC00F75FB8 /* KeyboardEventObserver.swift */; };
 		8FCEE9B123254B6C00F75FB8 /* KeyboardEventContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCEE9B023254B6C00F75FB8 /* KeyboardEventContext.swift */; };
@@ -158,7 +161,10 @@
 		8FA8F1112330148300670471 /* FontAwesome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontAwesome.swift; sourceTree = "<group>"; };
 		8FA941542353ADC200844D97 /* SessionCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCoordinator.swift; sourceTree = "<group>"; };
 		8FA94156235904BA00844D97 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		8FACE89523E767A900DCE741 /* UIButton+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+extension.swift"; sourceTree = "<group>"; };
 		8FBE4164236A4AA000DA8A74 /* HolkLoadingSpinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolkLoadingSpinner.swift; sourceTree = "<group>"; };
+		8FC296BA23E237D0002A39D1 /* LandingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingPageViewController.swift; sourceTree = "<group>"; };
+		8FC296BD23E7614D002A39D1 /* LandingInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingInfoViewController.swift; sourceTree = "<group>"; };
 		8FCEE9AB231EE85000F75FB8 /* OnboardingConfirmedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingConfirmedViewController.swift; sourceTree = "<group>"; };
 		8FCEE9AD23254AAC00F75FB8 /* KeyboardEventObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardEventObserver.swift; sourceTree = "<group>"; };
 		8FCEE9B023254B6C00F75FB8 /* KeyboardEventContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardEventContext.swift; sourceTree = "<group>"; };
@@ -303,6 +309,7 @@
 			isa = PBXGroup;
 			children = (
 				8FF6E72322A70F6600F6D398 /* Then.swift */,
+				8FACE89523E767A900DCE741 /* UIButton+extension.swift */,
 				8FF6E73322B57DA800F6D398 /* UITableViewCell+extension.swift */,
 				8FF6E75122B960B300F6D398 /* UIImage+extension.swift */,
 			);
@@ -343,6 +350,16 @@
 				8FCEE9AF23254B5700F75FB8 /* KeyboardEvent */,
 			);
 			path = CustomView;
+			sourceTree = "<group>";
+		};
+		8FC296BC23E75D08002A39D1 /* LandingPage */ = {
+			isa = PBXGroup;
+			children = (
+				8FC296BA23E237D0002A39D1 /* LandingPageViewController.swift */,
+				8FC296BD23E7614D002A39D1 /* LandingInfoViewController.swift */,
+				8F0D4040227A0D68000BD840 /* OnboardingInfoViewController.swift */,
+			);
+			path = LandingPage;
 			sourceTree = "<group>";
 		};
 		8FCEE9AF23254B5700F75FB8 /* KeyboardEvent */ = {
@@ -728,6 +745,7 @@
 				8F6546712316FE190053B3F8 /* LoginViewController.swift in Sources */,
 				8F9807E722722D5E00584BA9 /* StoreController.swift in Sources */,
 				8FF6E75422B9634400F6D398 /* HolkSegmentedControl.swift in Sources */,
+				8FC296BB23E237D0002A39D1 /* LandingPageViewController.swift in Sources */,
 				8FF6E73D22B6B59B00F6D398 /* InsuranceProtectionCoordinator.swift in Sources */,
 				8F25CAA1233E981900DC3B97 /* LoginToken.swift in Sources */,
 				8F25CAA523410CB800DC3B97 /* OnboardingInsuranceProviderTypeViewController.swift in Sources */,
@@ -758,6 +776,7 @@
 				8F65466F230DC4CC0053B3F8 /* HolkTextField.swift in Sources */,
 				8F0D403F227A0AD4000BD840 /* APIError.swift in Sources */,
 				8F66F2FC23BBFB580083DC3A /* RegisterUserResponse.swift in Sources */,
+				8FACE89623E767A900DCE741 /* UIButton+extension.swift in Sources */,
 				8F858A5523CE6C8C006B416A /* ScrapingStatusResponse.swift in Sources */,
 				8F48BE6C2332C7C7004D79D2 /* FontAwsomeEnum.swift in Sources */,
 				8F7C442C23511C5900B54A36 /* APIEndpoint.swift in Sources */,
@@ -781,6 +800,7 @@
 				8F5B5A3922771ED400E79A40 /* StoryboardsScenes.swift in Sources */,
 				8FA5F375239D832C00083430 /* InsuranceStore.swift in Sources */,
 				8F9C83DA22A3140B005BB336 /* InsuranceOverviewViewController.swift in Sources */,
+				8FC296BE23E7614D002A39D1 /* LandingInfoViewController.swift in Sources */,
 				8F65466C230C78990053B3F8 /* HolkButton.swift in Sources */,
 				8F7C44302351336E00B54A36 /* BankIDService.swift in Sources */,
 				8FF6E72D22B0333000F6D398 /* InsuranceTableViewCell.swift in Sources */,
