@@ -16,6 +16,9 @@ enum Font {
     }
     
     enum Size: UInt {
+        /// 50
+        case hugeHeader = 50
+        
         /// 35
         case header = 37
         

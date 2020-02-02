@@ -19,6 +19,10 @@ enum Color {
         return makeColor(asset: #function)
     }
     
+    static var landingSecondaryBackgroundColor: UIColor {
+        return makeColor(asset: #function)
+    }
+    
     static var landingMainColor: UIColor {
         return makeColor(asset: #function)
     }
