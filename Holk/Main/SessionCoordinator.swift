@@ -114,6 +114,12 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
         }
     }
     
+    func displayInfo() {
+        let vc = StoryboardScene.Onboarding.onboardingInfoViewController.instantiate()
+        vc.coordinator = self
+        navController.pushViewController(vc, animated: true)
+    }
+    
     func logout() {
         storeController.resetSession()
         start()

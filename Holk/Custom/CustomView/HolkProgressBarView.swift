@@ -56,7 +56,9 @@ class HolkProgressBarView: UIView {
     }
     
     var totalSteps: Int {
-        progressLayer.lineDashPattern = progressLayerDashPattern
+        didSet {
+            progressLayer.lineDashPattern = progressLayerDashPattern
+        }
     }
     var currentStep: Int {
         didSet {

@@ -13,6 +13,7 @@ class LandingPageViewController: UIPageViewController {
     private var loginButton = UIButton()
     private var signupButton = UIButton()
     private var pageControl = UIPageControl()
+    private var infoButton = UIButton()
     private var pendingIndex: Int?
     
     // MARK: - Public Variables
@@ -41,7 +42,8 @@ class LandingPageViewController: UIPageViewController {
         signupButton.layer.borderColor = Color.landingMainColor.cgColor
         signupButton.layer.cornerRadius = 7
         signupButton.titleLabel?.font = Font.semibold(.subtitle)
-        signupButton.tintColor = Color.landingMainColor
+        signupButton.setTitleColor(Color.landingMainColor.withAlphaComponent(0.3), for: UIControl.State())
+        signupButton.setTitleColor(Color.landingMainColor, for: .normal)
         signupButton.addTarget(self, action: #selector(signUpTapped(_:)), for: .touchUpInside)
         signupButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(signupButton)
@@ -51,11 +53,23 @@ class LandingPageViewController: UIPageViewController {
         loginButton.tintColor = Color.mainForegroundColor
         loginButton.setImage(UIImage(named: "BankID"), for: UIControl.State())
         loginButton.setTitle("Logga in", for: UIControl.State())
-        loginButton.setTitleColor(Color.mainForegroundColor, for: UIControl.State())
+        loginButton.setTitleColor(Color.mainForegroundColor.withAlphaComponent(0.3), for: UIControl.State())
+        loginButton.setTitleColor(Color.mainForegroundColor, for: .normal)
         loginButton.imageToTheRightOfText()
         loginButton.addTarget(self, action: #selector(loginTapped(_:)), for: .touchUpInside)
         loginButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(loginButton)
+        
+        infoButton.backgroundColor = Color.landingMainColor
+        infoButton.titleLabel?.font = Font.semibold(.label)
+        infoButton.layer.cornerRadius = 18
+        infoButton.contentEdgeInsets = UIEdgeInsets(top: 10, left: 15, bottom: 10, right: 15)
+        infoButton.setTitle("Så här funkar det", for: UIControl.State())
+        infoButton.setTitleColor(Color.mainForegroundColor.withAlphaComponent(0.3), for: UIControl.State())
+        infoButton.setTitleColor(Color.mainForegroundColor, for: .normal)
+        infoButton.addTarget(self, action: #selector(infoTapped(_:)), for: .touchUpInside)
+        infoButton.translatesAutoresizingMaskIntoConstraints = false
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: infoButton)
         
         NSLayoutConstraint.activate([
             signupButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
@@ -100,6 +114,10 @@ class LandingPageViewController: UIPageViewController {
         
     @objc private func signUpTapped(_ sender: UIButton) {
         coordinator?.showSignup()
+    }
+    
+    @objc private func infoTapped(_ sender: UIButton) {
+        coordinator?.displayInfo()
     }
     
     private func setBackgroundColor(_ color: UIColor, animated: Bool) {

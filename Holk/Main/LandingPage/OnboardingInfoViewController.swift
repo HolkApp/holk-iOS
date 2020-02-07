@@ -21,6 +21,8 @@ class OnboardingInfoViewController: UIViewController {
     @IBOutlet weak private var analyseLabel: UILabel!
     @IBOutlet weak private var verticalStackView: UIStackView!
     
+    weak var coordinator: SessionCoordinator?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,6 +30,10 @@ class OnboardingInfoViewController: UIViewController {
     }
     
     private func setup() {
+        navigationItem.setHidesBackButton(true, animated: false)
+        let closeIcon = UIImage.fontAwesomeIcon(name: .times, style: .light, textColor: Color.mainForegroundColor, size: FontAwesome.mediumIconSize)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: closeIcon, style: .plain, target: self, action: #selector(back(_:)))
+        
         titleLabel.font = Font.extraBold(.title)
         titleLabel.textColor = Color.mainForegroundColor
         subtitleLabel.font = Font.regular(.caption)
@@ -47,5 +53,9 @@ class OnboardingInfoViewController: UIViewController {
         loginImage.image = .fontAwesomeIcon(name: .fileCheck, style: .light, textColor: Color.mainForegroundColor, size: FontAwesome.mediumIconSize)
         answerQuestionImage.image = .fontAwesomeIcon(name: .commentAltSmile, style: .light, textColor: Color.mainForegroundColor, size: FontAwesome.mediumIconSize)
         analyseImage.image = .fontAwesomeIcon(name: .bellExclamation, style: .light, textColor: Color.mainForegroundColor, size: FontAwesome.mediumIconSize)
+    }
+    
+    @objc private func back(_ sender: Any) {
+        coordinator?.back()
     }
 }
