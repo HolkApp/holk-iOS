@@ -11,6 +11,7 @@ class HolkProgressBarView: UIView {
     
     private let trackLayer = CAShapeLayer()
     private let progressLayer = CAShapeLayer()
+    private let shapeLayer = CAShapeLayer()
     private var radius: CGFloat {
         return min(bounds.size.width, bounds.size.height) / (2 * CGFloat.pi)
     }
@@ -54,7 +55,9 @@ class HolkProgressBarView: UIView {
         return dashParttern
     }
     
-    var totalSteps: Int
+    var totalSteps: Int {
+        progressLayer.lineDashPattern = progressLayerDashPattern
+    }
     var currentStep: Int {
         didSet {
             progressLayer.lineDashPattern = progressLayerDashPattern
@@ -62,7 +65,7 @@ class HolkProgressBarView: UIView {
                 progressLayerDashPattern == nil ? UIColor.clear.cgColor : progressTintColor?.cgColor
         }
     }
-    var style: Style = .spinner
+    
     var trackTintColor: UIColor? = .red {
         didSet {
             trackLayer.strokeColor = trackTintColor?.cgColor
@@ -75,6 +78,8 @@ class HolkProgressBarView: UIView {
                 progressLayerDashPattern == nil ? UIColor.clear.cgColor : progressTintColor?.cgColor
         }
     }
+    
+    private(set) var style: Style = .spinner
     
     init(totalSteps: Int, currentStep: Int = 0, frame: CGRect) {
         self.totalSteps = totalSteps
@@ -101,17 +106,12 @@ class HolkProgressBarView: UIView {
     func spinnerLoading() {
         guard style == .spinner else { return }
         
-        let animation = CABasicAnimation(keyPath: "transform.rotation.z")
-        animation.fromValue = 0
-        animation.toValue = CGFloat.pi * 2
-        animation.repeatCount = .greatestFiniteMagnitude
-        animation.duration = 1.0
-        animation.isRemovedOnCompletion = false
-        layer.add(animation, forKey: "rotation")
+        posesAnimate()
     }
     
     func endLoading() {
-        layer.removeAnimation(forKey: "rotation")
+        layer.removeAnimation(forKey: "transform.rotation")
+        trackLayer.removeAnimation(forKey: "strokeEnd")
     }
     
     private func toBarAnimation(animated: Bool) {
@@ -159,13 +159,10 @@ class HolkProgressBarView: UIView {
 
         trackLayer.add(trackAnimation, forKey: nil)
         progressLayer.add(progressAnimation, forKey: nil)
-        
-        layer.setAffineTransform(CGAffineTransform(scaleX: 0.5, y: 0.5))
 
         CATransaction.commit()
         CATransaction.setCompletionBlock {
             self.progressLayer.isHidden = true
-            self.currentStep += 1
             self.spinnerLoading()
         }
     }
@@ -178,7 +175,6 @@ class HolkProgressBarView: UIView {
         
         progressLayer.lineWidth = 5
         progressLayer.lineCap = .round
-        // TODO: Simplify this
         progressLayer.strokeColor = progressLayerDashPattern == nil ? UIColor.clear.cgColor : progressTintColor?.cgColor
         progressLayer.fillColor = UIColor.clear.cgColor
         
@@ -189,7 +185,6 @@ class HolkProgressBarView: UIView {
             trackLayer.lineDashPattern = trackLayerDashPartterm
             progressLayer.lineDashPattern = progressLayerDashPattern
             progressLayer.isHidden = true
-            layer.setAffineTransform(CGAffineTransform(scaleX: 0.5, y: 0.5))
         case .bar:
             fromPath = barPath
             progressLayer.isHidden = false
@@ -199,5 +194,70 @@ class HolkProgressBarView: UIView {
         
         layer.addSublayer(trackLayer)
         layer.addSublayer(progressLayer)
+    }
+}
+
+
+extension HolkProgressBarView {
+    struct Pose {
+        let secondsSincePriorPose: CFTimeInterval
+        let start: CGFloat
+        let length: CGFloat
+        init(_ secondsSincePriorPose: CFTimeInterval, _ start: CGFloat, _ length: CGFloat) {
+            self.secondsSincePriorPose = secondsSincePriorPose
+            self.start = start
+            self.length = length
+        }
+    }
+
+    static var poses: [Pose] {
+        get {
+            return [
+                Pose(0.0, 0.000, 0.7),
+                Pose(0.6, 0.500, 0.5),
+                Pose(0.6, 1.000, 0.3),
+                Pose(0.6, 1.500, 0.1),
+                Pose(0.2, 1.875, 0.1),
+                Pose(0.2, 2.250, 0.3),
+                Pose(0.2, 2.625, 0.5),
+                Pose(0.2, 3.000, 0.7),
+            ]
+        }
+    }
+    
+    private func posesAnimate() {
+        var time: CFTimeInterval = 0
+        var times = [CFTimeInterval]()
+        var start: CGFloat = 0
+        var rotations = [CGFloat]()
+        var strokeEnds = [CGFloat]()
+
+        let poses = HolkProgressBarView.poses
+        let totalSeconds = poses.reduce(0) { $0 + $1.secondsSincePriorPose }
+
+        for pose in poses {
+            time += pose.secondsSincePriorPose
+            times.append(time / totalSeconds)
+            start = pose.start
+            rotations.append(start * 2 * .pi)
+            strokeEnds.append(pose.length)
+        }
+
+        times.append(times.last!)
+        rotations.append(rotations[0])
+        strokeEnds.append(strokeEnds[0])
+
+        animate(trackLayer, keyPath: "strokeEnd", duration: totalSeconds, times: times, values: strokeEnds)
+        animate(layer, keyPath: "transform.rotation", duration: totalSeconds, times: times, values: rotations)
+    }
+    
+    private func animate(_ layer: CALayer, keyPath: String, duration: CFTimeInterval, times: [CFTimeInterval], values: [CGFloat]) {
+        let animation = CAKeyframeAnimation(keyPath: keyPath)
+        animation.keyTimes = times as [NSNumber]?
+        animation.values = values
+        animation.calculationMode = .linear
+        animation.duration = duration
+        animation.repeatCount = Float.infinity
+        layer.add(animation, forKey: animation.keyPath)
     }
 }
