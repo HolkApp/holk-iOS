@@ -12,7 +12,6 @@ class LandingPageViewController: UIPageViewController {
     // MARK: - Private Variables
     private var loginButton = UIButton()
     private var signupButton = UIButton()
-    
     private var pageControl = UIPageControl()
     private var pendingIndex: Int?
     
@@ -37,15 +36,15 @@ class LandingPageViewController: UIPageViewController {
     }
     
     private func setup() {
-//        signupButton.setTitle("Bli kund", for: UIControl.State())
-//        signupButton.layer.borderWidth = 1
-//        signupButton.layer.borderColor = Color.landingMainColor.cgColor
-//        signupButton.layer.cornerRadius = 7
-//        signupButton.titleLabel?.font = Font.semibold(.subtitle)
-//        signupButton.tintColor = Color.landingMainColor
-//        signupButton.addTarget(self, action: #selector(signUpTapped(_:)), for: .touchUpInside)
-//        signupButton.translatesAutoresizingMaskIntoConstraints = false
-//        view.addSubview(signupButton)
+        signupButton.setTitle("Bli kund", for: UIControl.State())
+        signupButton.layer.borderWidth = 1
+        signupButton.layer.borderColor = Color.landingMainColor.cgColor
+        signupButton.layer.cornerRadius = 7
+        signupButton.titleLabel?.font = Font.semibold(.subtitle)
+        signupButton.tintColor = Color.landingMainColor
+        signupButton.addTarget(self, action: #selector(signUpTapped(_:)), for: .touchUpInside)
+        signupButton.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(signupButton)
         
         loginButton.backgroundColor = Color.landingMainColor
         loginButton.titleLabel?.font = Font.semibold(.subtitle)
@@ -59,10 +58,10 @@ class LandingPageViewController: UIPageViewController {
         view.addSubview(loginButton)
         
         NSLayoutConstraint.activate([
-//            signupButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
-//            signupButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
-//            signupButton.heightAnchor.constraint(equalToConstant: 65),
-//            signupButton.bottomAnchor.constraint(equalTo: loginBu1tton.topAnchor, constant: -25),
+            signupButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
+            signupButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
+            signupButton.heightAnchor.constraint(equalToConstant: 65),
+            signupButton.bottomAnchor.constraint(equalTo: loginButton.topAnchor, constant: -25),
             
             loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -99,9 +98,9 @@ class LandingPageViewController: UIPageViewController {
         coordinator?.showLogin()
     }
         
-//    @objc private func signUpTapped(_ sender: UIButton) {
-//        coordinator?.showSignup()
-//    }
+    @objc private func signUpTapped(_ sender: UIButton) {
+        coordinator?.showSignup()
+    }
     
     private func setBackgroundColor(_ color: UIColor, animated: Bool) {
         if animated {
