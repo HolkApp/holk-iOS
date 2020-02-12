@@ -27,6 +27,9 @@ final class OnboardingConfirmedViewController: UIViewController {
         
         imageView.image = UIImage.fontAwesomeIcon(name: .check, style: .regular, textColor: Color.secondaryBackgroundColor, size: FontAwesome.largeIconSize)
         imageView.layer.cornerRadius = imageView.frame.width / 2
+        if #available(iOS 13.0, *) {
+            imageView.layer.cornerCurve = .continuous
+        }
         imageView.layer.borderWidth = 2
         imageView.layer.borderColor = Color.mainForegroundColor.cgColor
         

@@ -1,8 +1,8 @@
 //
-//  SignupViewController.swift
+//  LoginViewController.swift
 //  Holk
 //
-//  Created by 张梦皓 on 2019-04-24.
+//  Created by 张梦皓 on 2019-08-28.
 //  Copyright © 2019 Holk. All rights reserved.
 //
 
@@ -10,24 +10,22 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-class SignupViewController: UIViewController {
+class LoginViewController: UIViewController {
     // MARK: - IBOutlets
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var subtitleLabel: UILabel!
     @IBOutlet private weak var emailTextField: HolkTextField!
-    @IBOutlet private weak var passwordTextField: HolkTextField!
+    
     // MARK: - Public variables
-    var storeController: StoreController?
     weak var coordinator: SessionCoordinator?
+    var storeController: StoreController?
     // MARK: - Private variables
-    private let existAccountButton = UIButton()
-    private let infoTextView = UITextView()
-    private let doneButton = HolkButton()
+    private var textView = UITextView()
+    private var doneButton = HolkButton()
     private var doneButtonBottomConstraint: NSLayoutConstraint!
     private var bag = DisposeBag()
     private var keyboardEventObserver: KeyboardEventObserver?
     
-    // MARK: - Overridden methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,89 +38,63 @@ class SignupViewController: UIViewController {
         navigationItem.setHidesBackButton(true, animated: animated)
     }
     
-    private func setup() {
+    private func setup() {        
         navigationItem.setHidesBackButton(true, animated: false)
         let closeIcon = UIImage.fontAwesomeIcon(name: .times, style: .light, textColor: Color.mainForegroundColor, size: FontAwesome.mediumIconSize)
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: closeIcon, style: .plain, target: self, action: #selector(backTapped(_:)))
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard(_:)))
         view.addGestureRecognizer(tapGestureRecognizer)
-        view.addSubview(existAccountButton)
-        view.addSubview(infoTextView)
+        view.addSubview(textView)
         view.addSubview(doneButton)
         
-        titleLabel.text = "Skapa användare"
+        titleLabel.text = "Logga in"
         titleLabel.font = Font.extraBold(.subHeader)
         titleLabel.textColor = Color.mainHighlightTextColor
         subtitleLabel.text = "Ange en e-post adress och ett valfritt lösenord."
         subtitleLabel.font = Font.light(.subtitle)
         subtitleLabel.textColor = Color.mainForegroundColor
         
-        emailTextField.helpColor = Color.placeHolderTextColor
+        emailTextField.helpColor = Color.placeHolderColor
         emailTextField.placeholder = "E-post adress"
         emailTextField.textColor = Color.mainForegroundColor
         emailTextField.tintColor = Color.mainForegroundColor
-        emailTextField.placeholderTextColor = Color.placeHolderTextColor
-        passwordTextField.helpColor = Color.placeHolderTextColor
-        passwordTextField.textColor = Color.mainForegroundColor
-        passwordTextField.tintColor = Color.mainForegroundColor
-        passwordTextField.placeholder = "Ange ett lösenord"
-        passwordTextField.placeholderTextColor = Color.placeHolderTextColor
-        passwordTextField.isSecureTextEntry = true
+        emailTextField.placeholderTextColor = Color.placeHolderColor
         
-        existAccountButton.translatesAutoresizingMaskIntoConstraints = false
-        existAccountButton.contentHorizontalAlignment = .leading
-        existAccountButton.setTitle("Already has an account? Click here", for: .normal)
-        existAccountButton.setTitleColor(Color.mainHighlightTextColor, for: UIControl.State())
-        existAccountButton.titleLabel?.font = Font.semibold(.label)
-        existAccountButton.addTarget(self, action: #selector(existedAccount(_:)), for: .touchUpInside)
-        
-        // TODO: Update the google with actual user agreement page
-        infoTextView.translatesAutoresizingMaskIntoConstraints = false
-        infoTextView.attributedText = Parser.parse(
-            markdownString: "Genom att skapa ett konto godkänner du [användarvilkoren](https://www.google.com).",
+        // TODO: Update the google with actual change password page
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        textView.attributedText = Parser.parse(
+            markdownString: "[Har du glömt ditt lösenord?](https://www.google.com)",
             font: Font.semibold(.label),
             textColor: Color.mainForegroundColor
         )
         // Seems there is an issue with the library for parsing
-        infoTextView.linkTextAttributes = [
+        textView.linkTextAttributes = [
             NSAttributedString.Key.foregroundColor: Color.mainHighlightTextColor
         ]
-        infoTextView.isScrollEnabled = false
-        infoTextView.backgroundColor = .clear
-        infoTextView.isEditable = false
+        textView.isScrollEnabled = false
+        textView.backgroundColor = .clear
+        textView.isEditable = false
         
         doneButton.translatesAutoresizingMaskIntoConstraints = false
         doneButtonBottomConstraint = view.bottomAnchor.constraint(equalTo: doneButton.bottomAnchor, constant: 0)
-        doneButton.setTitle("Skapa konot", for: UIControl.State())
+        doneButton.setTitle("Logga in", for: UIControl.State())
         doneButton.backgroundColor = Color.mainHighlightColor
         doneButton.titleLabel?.font = Font.semibold(.subtitle)
         doneButton.tintColor = Color.mainForegroundColor
         doneButton.setTitleColor(Color.mainForegroundColor, for: UIControl.State())
         doneButton.addTarget(self, action: #selector(submit(_:)), for: .touchUpInside)
-
-        Observable.combineLatest(emailTextField.rx.text, passwordTextField.rx.text) { (emailText, passwordText) -> Bool in
-            guard let emailText = emailText, let passwordText = passwordText else {
-                return false
-            }
-            return emailText.isEmpty || passwordText.isEmpty
-        }
-        .bind(to: doneButton.rx.isHidden)
-        .disposed(by: bag)
+        emailTextField.rx.text.map { $0?.isEmpty ?? false }.bind(to: doneButton.rx.isHidden).dispose()
         
         NSLayoutConstraint.activate([
-            existAccountButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
-            existAccountButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
-            existAccountButton.bottomAnchor.constraint(equalTo: infoTextView.topAnchor),
-            infoTextView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 45),
-            infoTextView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -45),
-            infoTextView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -80),
+            textView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 45),
+            textView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -45),
+            textView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -80),
             
             doneButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             doneButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             doneButton.heightAnchor.constraint(equalToConstant: 90),
             doneButtonBottomConstraint
             ])
-        
         let keyboardEventFloatingViewHandler = KeyboardEventFloatingViewHandler(floatingView: doneButton, view: view, bottomConstraint: doneButtonBottomConstraint)
         keyboardEventObserver = KeyboardEventObserver(handler: keyboardEventFloatingViewHandler)
     }
@@ -131,26 +103,22 @@ class SignupViewController: UIViewController {
         coordinator?.back()
     }
     
-    @objc private func existedAccount(_ sender: UIButton) {
-        coordinator?.showLogin(presentByRoot: true)
-        hideKeyboard(sender)
-    }
-    
     @objc private func hideKeyboard(_ sender: Any) {
         view.endEditing(true)
     }
     
     @objc private func submit(_ sender: UIButton) {
-        signup()
+        addEmail()
         hideKeyboard(sender)
     }
     
-    private func signup() {
+    private func addEmail() {
+        
+        // TODO: Update when have new authentication endpoint
         if let username = emailTextField.text,
-            let password = passwordTextField.text,
             let storeController = storeController {
             storeController.authenticationStore
-                .signup(username: username, password: password)
+                .login(username: username)
                 .observeOn(MainScheduler.instance)
                 .subscribe(onNext: { [weak self] event in
                     switch event {
@@ -162,7 +130,7 @@ class SignupViewController: UIViewController {
                         self?.coordinator?.onboarding()
                     }
                 }, onError: { error in
-                    // TODO: Network error handling
+                    // TODO: Error handling
                     print(error)
                 }).disposed(by: bag)
         }

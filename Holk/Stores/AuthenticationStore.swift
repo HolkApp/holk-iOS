@@ -34,7 +34,7 @@ final class AuthenticationStore: APIStore {
         }
     }
     
-    func login(username: String, password: String) -> Observable<Swift.Result<Void, APIError>> {
+    func login(username: String) -> Observable<Swift.Result<Void, APIError>> {
         return sessionStore.login(username: hardCodedUserID, password: hardCodedPassword).map { result -> Swift.Result<Void, APIError> in
             switch result {
             case .success:

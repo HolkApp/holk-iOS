@@ -7,30 +7,12 @@
     {
       "idiom" : "universal",
       "color" : {
-        "color-space" : "extended-linear-srgb",
+        "color-space" : "srgb",
         "components" : {
-          "red" : "254",
+          "red" : "1.000",
           "alpha" : "1.000",
-          "blue" : "0",
-          "green" : "204"
-        }
-      }
-    },
-    {
-      "idiom" : "universal",
-      "appearances" : [
-        {
-          "appearance" : "luminosity",
-          "value" : "light"
-        }
-      ],
-      "color" : {
-        "color-space" : "extended-linear-srgb",
-        "components" : {
-          "red" : "0.996",
-          "alpha" : "1.000",
-          "blue" : "0.000",
-          "green" : "0.800"
+          "blue" : "1.000",
+          "green" : "1.000"
         }
       }
     },
@@ -43,74 +25,12 @@
         }
       ],
       "color" : {
-        "color-space" : "extended-linear-srgb",
+        "color-space" : "srgb",
         "components" : {
-          "red" : "0.996",
+          "red" : "1.000",
           "alpha" : "1.000",
-          "blue" : "0.000",
-          "green" : "0.800"
-        }
-      }
-    },
-    {
-      "idiom" : "universal",
-      "appearances" : [
-        {
-          "appearance" : "contrast",
-          "value" : "high"
-        }
-      ],
-      "color" : {
-        "color-space" : "extended-linear-srgb",
-        "components" : {
-          "red" : "0.996",
-          "alpha" : "1.000",
-          "blue" : "0.000",
-          "green" : "0.800"
-        }
-      }
-    },
-    {
-      "idiom" : "universal",
-      "appearances" : [
-        {
-          "appearance" : "luminosity",
-          "value" : "light"
-        },
-        {
-          "appearance" : "contrast",
-          "value" : "high"
-        }
-      ],
-      "color" : {
-        "color-space" : "extended-linear-srgb",
-        "components" : {
-          "red" : "0.996",
-          "alpha" : "1.000",
-          "blue" : "0.000",
-          "green" : "0.800"
-        }
-      }
-    },
-    {
-      "idiom" : "universal",
-      "appearances" : [
-        {
-          "appearance" : "luminosity",
-          "value" : "dark"
-        },
-        {
-          "appearance" : "contrast",
-          "value" : "high"
-        }
-      ],
-      "color" : {
-        "color-space" : "extended-linear-srgb",
-        "components" : {
-          "red" : "0.996",
-          "alpha" : "1.000",
-          "blue" : "0.000",
-          "green" : "0.800"
+          "blue" : "1.000",
+          "green" : "1.000"
         }
       }
     }

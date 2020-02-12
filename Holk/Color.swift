@@ -23,10 +23,6 @@ enum Color {
         return makeColor(asset: #function)
     }
     
-    static var landingMainColor: UIColor {
-        return makeColor(asset: #function)
-    }
-    
     static var mainBackgroundColor: UIColor {
         return makeColor(asset: #function)
     }
@@ -35,7 +31,7 @@ enum Color {
         return makeColor(asset: #function)
     }
     
-    static var placeHolderTextColor: UIColor {
+    static var placeHolderColor: UIColor {
         return makeColor(asset: #function)
     }
     

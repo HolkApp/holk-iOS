@@ -55,6 +55,9 @@ final class InsuranceTableViewCell: UITableViewCell {
         
         selectionStyle = .none
         containerView.layer.cornerRadius = 6
+        if #available(iOS 13.0, *) {
+            containerView.layer.cornerCurve = .continuous
+        }
     }
     
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
