@@ -17,7 +17,7 @@ class HolkProgressBarView: UIView {
     }
     
     private var dashLength: CGFloat {
-       2 * radius * CGFloat.pi / CGFloat(totalSteps)
+       bounds.size.width / CGFloat(totalSteps)
     }
     
     private var spinnerPath: UIBezierPath {
@@ -32,8 +32,8 @@ class HolkProgressBarView: UIView {
 
     private var barPath: UIBezierPath {
         let barPath = UIBezierPath()
-        barPath.move(to: CGPoint(x: bounds.minX, y: bounds.midY))
-        barPath.addLine(to: CGPoint(x: bounds.maxX, y: bounds.midY))
+        barPath.move(to: CGPoint(x: bounds.minX + dashLength / 8, y: bounds.midY))
+        barPath.addLine(to: CGPoint(x: bounds.maxX + dashLength / 8, y: bounds.midY))
         return barPath
     }
     
@@ -76,12 +76,15 @@ class HolkProgressBarView: UIView {
     
     var progressTintColor: UIColor? = .black {
         didSet {
-            progressLayer.strokeColor =
-                progressLayerDashPattern == nil ? UIColor.clear.cgColor : progressTintColor?.cgColor
+            progressLayer.strokeColor = progressTintColor?.cgColor
         }
     }
     
     private(set) var style: Style = .spinner
+    
+    convenience init() {
+        self.init(totalSteps: 1, frame: .zero)
+    }
     
     init(totalSteps: Int, currentStep: Int = 0, frame: CGRect) {
         self.totalSteps = totalSteps
@@ -95,31 +98,47 @@ class HolkProgressBarView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func update(_ style: Style, animated: Bool = true) {
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        setup()
+    }
+    
+    func update(_ style: Style, animated: Bool = true, completion: (() -> Void)? = nil) {
         self.style = style
         switch style {
         case .spinner:
-            toSpinnerAnimation(animated: animated)
+            toSpinnerAnimation(animated: animated, completion: completion)
         case .bar:
-            toBarAnimation(animated: animated)
+            toBarAnimation(animated: animated, completion: completion)
         }
     }
     
-    func spinnerLoading() {
+    func setLoading(_ loading: Bool) {
+        if loading {
+            spinnerLoading()
+        } else {
+            endLoading()
+        }
+    }
+    
+    private func spinnerLoading() {
         guard style == .spinner else { return }
         
         posesAnimate()
     }
     
-    func endLoading() {
+    private func endLoading() {
         layer.removeAnimation(forKey: "transform.rotation")
         trackLayer.removeAnimation(forKey: "strokeEnd")
     }
     
-    private func toBarAnimation(animated: Bool) {
+    private func toBarAnimation(animated: Bool, completion: (() -> Void)? = nil) {
         endLoading()
         trackLayer.path = barPath.cgPath
         progressLayer.path = barPath.cgPath
+        trackLayer.lineDashPattern = trackLayerDashPartterm
+        progressLayer.lineDashPattern = progressLayerDashPattern
 
         let trackAnimation = CABasicAnimation(keyPath: "path")
         trackAnimation.fromValue = spinnerPath.cgPath
@@ -130,7 +149,7 @@ class HolkProgressBarView: UIView {
         progressAnimation.toValue = barPath.cgPath
         
         CATransaction.begin()
-        CATransaction.setAnimationDuration(0.2)
+        CATransaction.setAnimationDuration(0.3)
 
         trackLayer.add(trackAnimation, forKey: nil)
         progressLayer.add(progressAnimation, forKey: nil)
@@ -139,14 +158,20 @@ class HolkProgressBarView: UIView {
 
         CATransaction.commit()
         CATransaction.setCompletionBlock {
-            self.progressLayer.isHidden = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                self.progressLayer.isHidden = false
+                completion?()
+            }
         }
     }
     
-    private func toSpinnerAnimation(animated: Bool) {
+    private func toSpinnerAnimation(animated: Bool, completion: (() -> Void)? = nil) {
         endLoading()
+        progressLayer.isHidden = true
         trackLayer.path = spinnerPath.cgPath
         progressLayer.path = spinnerPath.cgPath
+        trackLayer.lineDashPattern = nil
+        progressLayer.lineDashPattern = nil
 
         let trackAnimation = CABasicAnimation(keyPath: "path")
         trackAnimation.fromValue = barPath.cgPath
@@ -157,15 +182,15 @@ class HolkProgressBarView: UIView {
         progressAnimation.toValue = spinnerPath.cgPath
         
         CATransaction.begin()
-        CATransaction.setAnimationDuration(0.2)
+        CATransaction.setAnimationDuration(0.3)
 
         trackLayer.add(trackAnimation, forKey: nil)
         progressLayer.add(progressAnimation, forKey: nil)
 
         CATransaction.commit()
         CATransaction.setCompletionBlock {
-            self.progressLayer.isHidden = true
             self.spinnerLoading()
+            completion?()
         }
     }
     
@@ -184,11 +209,13 @@ class HolkProgressBarView: UIView {
         switch style {
         case .spinner:
             fromPath = spinnerPath
-            trackLayer.lineDashPattern = trackLayerDashPartterm
-            progressLayer.lineDashPattern = progressLayerDashPattern
+            trackLayer.lineDashPattern = nil
+            progressLayer.lineDashPattern = nil
             progressLayer.isHidden = true
         case .bar:
             fromPath = barPath
+            trackLayer.lineDashPattern = trackLayerDashPartterm
+            progressLayer.lineDashPattern = progressLayerDashPattern
             progressLayer.isHidden = false
         }
         trackLayer.path = fromPath.cgPath
