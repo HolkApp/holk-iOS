@@ -55,22 +55,36 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
         }
     }
     
-    func showLogin(presentByRoot: Bool = false) {
-        let vc = StoryboardScene.Onboarding.loginViewController.instantiate()
-        vc.coordinator = self
-        vc.storeController = storeController
-        navController.pushViewController(vc, animated: true)
-        if presentByRoot {
-            popOtherViewControllers()
+    func startAuthentication() {
+        BankIDService.sign(redirectLink: "holk:///", successHandler: {
+            NotificationCenter.default.addObserver(forName: UIApplication.willEnterForegroundNotification, object: nil, queue: .main) { [weak self] _ in
+                guard let self = self else { return }
+                self.checkAuthenticationStatus()
+            }
+        }) { [weak self] in
+            // TODO: Should show some alert for downloading BankID
+            guard let self = self else { return }
+            self.checkAuthenticationStatus()
         }
     }
     
-    func showSignup(presentByRoot: Bool = false) {
-        let vc = StoryboardScene.Onboarding.signupViewController.instantiate()
+    func checkAuthenticationStatus() {
+        showLoading()
+        // TODO: Update this when have real endpoint
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.showNewUser(shouldPopOtherViews: true)
+        }
+        // TODO: Directly show insurance if not new user
+    }
+    
+    func showNewUser(shouldPopOtherViews: Bool = false) {
+        let vc = StoryboardScene.Onboarding.newUserViewController.instantiate()
         vc.coordinator = self
         vc.storeController = storeController
         navController.pushViewController(vc, animated: true)
-        if presentByRoot {
+        // TODO: Refactor the navigation for loading since we have new flow
+        navController.dismiss(animated: true)
+        if shouldPopOtherViews {
             popOtherViewControllers()
         }
     }
@@ -95,6 +109,10 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
                 self.navController.popToRootViewController(animated: false)
             }
         }
+    }
+    
+    func newUserEmailAdded() {
+        onboardingCoordinator.loadingFinished()
     }
     
     func showLoading(initialScreen: Bool = false) {

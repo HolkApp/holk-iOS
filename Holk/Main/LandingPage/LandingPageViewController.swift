@@ -11,7 +11,6 @@ import UIKit
 class LandingPageViewController: UIPageViewController {
     // MARK: - Private Variables
     private var loginButton = UIButton()
-    private var signupButton = UIButton()
     private var pageControl = UIPageControl()
     private var infoButton = UIButton()
     private var pendingIndex: Int?
@@ -37,18 +36,7 @@ class LandingPageViewController: UIPageViewController {
     }
     
     private func setup() {
-        signupButton.setTitle("Bli kund", for: UIControl.State())
-        signupButton.layer.borderWidth = 1
-        signupButton.layer.borderColor = Color.landingMainColor.cgColor
-        signupButton.layer.cornerRadius = 7
-        signupButton.titleLabel?.font = Font.semibold(.subtitle)
-        signupButton.setTitleColor(Color.landingMainColor.withAlphaComponent(0.3), for: UIControl.State())
-        signupButton.setTitleColor(Color.landingMainColor, for: .normal)
-        signupButton.addTarget(self, action: #selector(signUpTapped(_:)), for: .touchUpInside)
-        signupButton.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(signupButton)
-        
-        loginButton.backgroundColor = Color.landingMainColor
+        loginButton.backgroundColor = Color.mainBackgroundColor
         loginButton.titleLabel?.font = Font.semibold(.subtitle)
         loginButton.tintColor = Color.mainForegroundColor
         loginButton.setImage(UIImage(named: "BankID"), for: UIControl.State())
@@ -60,9 +48,12 @@ class LandingPageViewController: UIPageViewController {
         loginButton.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(loginButton)
         
-        infoButton.backgroundColor = Color.landingMainColor
+        infoButton.backgroundColor = Color.mainBackgroundColor
         infoButton.titleLabel?.font = Font.semibold(.label)
         infoButton.layer.cornerRadius = 18
+        if #available(iOS 13.0, *) {
+            infoButton.layer.cornerCurve = .continuous
+        }
         infoButton.contentEdgeInsets = UIEdgeInsets(top: 10, left: 15, bottom: 10, right: 15)
         infoButton.setTitle("Så här funkar det", for: UIControl.State())
         infoButton.setTitleColor(Color.mainForegroundColor.withAlphaComponent(0.3), for: UIControl.State())
@@ -72,11 +63,6 @@ class LandingPageViewController: UIPageViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: infoButton)
         
         NSLayoutConstraint.activate([
-            signupButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
-            signupButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
-            signupButton.heightAnchor.constraint(equalToConstant: 65),
-            signupButton.bottomAnchor.constraint(equalTo: loginButton.topAnchor, constant: -25),
-            
             loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             loginButton.heightAnchor.constraint(equalToConstant: 90),
@@ -100,7 +86,7 @@ class LandingPageViewController: UIPageViewController {
         pageControl.numberOfPages = orderedViewControllers.count
         pageControl.frame = CGRect(origin: .zero, size: pageControl.size(forNumberOfPages: orderedViewControllers.count))
         pageControl.currentPageIndicatorTintColor = Color.mainForegroundColor
-        pageControl.pageIndicatorTintColor = Color.landingMainColor
+        pageControl.pageIndicatorTintColor = Color.mainBackgroundColor
         pageControl.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -109,11 +95,7 @@ class LandingPageViewController: UIPageViewController {
     }
     
     @objc private func loginTapped(_ sender: UIButton) {
-        coordinator?.showLogin()
-    }
-        
-    @objc private func signUpTapped(_ sender: UIButton) {
-        coordinator?.showSignup()
+        coordinator?.startAuthentication()
     }
     
     @objc private func infoTapped(_ sender: UIButton) {

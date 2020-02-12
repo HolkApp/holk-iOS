@@ -19,7 +19,10 @@ final class OnboardingCoordinator: NSObject, Coordinator, UINavigationController
     var storeController: StoreController
     weak var delegate: OnboardingCoordinatorDelegate?
     
+    // MARK: - Private Properties
     private var bag = DisposeBag()
+    private var onboardingContainerViewController: OnboardingContainerViewController?
+    
     // MARK: - Init
     init(navController: UINavigationController, storeController: StoreController) {
         self.navController = navController
@@ -32,10 +35,14 @@ final class OnboardingCoordinator: NSObject, Coordinator, UINavigationController
         navController.navigationBar.shadowImage = UIImage()
         navController.delegate = self
         navController.navigationBar.tintColor = .black
-        
-        let vc = OnboardingInsuranceProviderIssuerViewController(storeController: storeController)
-        vc.coordinator = self
-        navController.setViewControllers([vc], animated: true)
+        let onboardingContainerViewController = OnboardingContainerViewController(storeController: storeController)
+        onboardingContainerViewController.coordinator = self
+        self.onboardingContainerViewController = onboardingContainerViewController
+        navController.setViewControllers([onboardingContainerViewController], animated: true)
+    }
+    
+    func loadingFinished() {
+        onboardingContainerViewController?.loadingFinished()
     }
     
     func confirm(issuer: InsuranceIssuer? = nil, providerType: InsuranceProviderType? = nil) {

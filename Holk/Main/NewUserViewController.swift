@@ -10,7 +10,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-class LoginViewController: UIViewController {
+class NewUserViewController: UIViewController {
     // MARK: - IBOutlets
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var subtitleLabel: UILabel!
@@ -83,7 +83,7 @@ class LoginViewController: UIViewController {
         doneButton.tintColor = Color.mainForegroundColor
         doneButton.setTitleColor(Color.mainForegroundColor, for: UIControl.State())
         doneButton.addTarget(self, action: #selector(submit(_:)), for: .touchUpInside)
-        emailTextField.rx.text.map { $0?.isEmpty ?? false }.bind(to: doneButton.rx.isHidden).dispose()
+        emailTextField.rx.text.orEmpty.map{ $0.isEmpty }.bind(to: doneButton.rx.isHidden).disposed(by: bag)
         
         NSLayoutConstraint.activate([
             textView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 45),
@@ -113,7 +113,7 @@ class LoginViewController: UIViewController {
     }
     
     private func addEmail() {
-        
+        coordinator?.onboarding()
         // TODO: Update when have new authentication endpoint
         if let username = emailTextField.text,
             let storeController = storeController {
@@ -123,15 +123,16 @@ class LoginViewController: UIViewController {
                 .subscribe(onNext: { [weak self] event in
                     switch event {
                     case .success:
-                        self?.coordinator?.onboarding()
+                        self?.coordinator?.newUserEmailAdded()
                     case .failure(let error):
                         // TODO: Error handling
                         print(error)
-                        self?.coordinator?.onboarding()
+                        self?.coordinator?.newUserEmailAdded()
                     }
-                }, onError: { error in
+                }, onError: { [weak self] error in
                     // TODO: Error handling
                     print(error)
+                    self?.coordinator?.newUserEmailAdded()
                 }).disposed(by: bag)
         }
     }

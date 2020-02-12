@@ -147,8 +147,8 @@ final class InsuranceOverviewViewController: UIViewController {
         NSLayoutConstraint.activate([
             containerView.topAnchor.constraint(equalTo: childSegmentViewController.view.topAnchor),
             containerView.bottomAnchor.constraint(equalTo: childSegmentViewController.view.bottomAnchor),
-            containerView.leftAnchor.constraint(equalTo: childSegmentViewController.view.leftAnchor),
-            containerView.rightAnchor.constraint(equalTo: childSegmentViewController.view.rightAnchor)
+            containerView.leadingAnchor.constraint(equalTo: childSegmentViewController.view.leadingAnchor),
+            containerView.trailingAnchor.constraint(equalTo: childSegmentViewController.view.trailingAnchor)
         ])
     }
     
