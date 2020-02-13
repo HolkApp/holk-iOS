@@ -19,5 +19,12 @@ extension InsuranceProviderType {
     static var mockTypeResults: [InsuranceProviderType] {
         [.home, .car, .life, .kids]
     }
+    
+    var isUpcoming: Bool {
+        guard let index = InsuranceProviderType.allCases.firstIndex(of: self) else {
+            return true
+        }
+        return index != 0
+    }
 }
 

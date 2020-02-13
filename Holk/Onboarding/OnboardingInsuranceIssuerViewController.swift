@@ -1,5 +1,5 @@
 //
-//  OnboardingInsuranceProviderIssuerViewController.swift
+//  OnboardingInsuranceIssuerViewController.swift
 //  Holk
 //
 //  Created by 张梦皓 on 2019-09-29.
@@ -9,11 +9,12 @@
 import UIKit
 import RxSwift
 
-final class OnboardingInsuranceProviderIssuerViewController: UIViewController {
+final class OnboardingInsuranceIssuerViewController: UIViewController {
     // MARK: - Public variables
-    weak var coordinator: OnboardingCoordinator?
+    weak var coordinator: OnboardingCoordinating?
     
     // MARK: - Private variables
+    private let headerLabel = UILabel()
     private var storeController: StoreController
     private let tableView = UITableView()
     private let bag = DisposeBag()
@@ -36,27 +37,45 @@ final class OnboardingInsuranceProviderIssuerViewController: UIViewController {
     }
     
     private func setup() {
-        storeController.insuranceStore.insuranceIssuerList
-            .subscribe({ [weak self] _ in self?.tableView.reloadData() })
-            .disposed(by: bag)
+        subscribeInsurnaceIssuerChanges()
         loadInsuranceIssuerListIfNeeded()
+        
+        view.backgroundColor = Color.mainBackgroundColor
+        headerLabel.font = Font.bold(.header)
+        headerLabel.textColor = Color.mainForegroundColor
+        headerLabel.textAlignment = .left
+        headerLabel.text = "Pick Insurance Issuer"
+        headerLabel.numberOfLines = 0
         
         tableView.register(OnboardingInsuranceCell.self, forCellReuseIdentifier: "Cell")
         tableView.alwaysBounceVertical = false
         tableView.delegate = self
         tableView.dataSource = self
         
+        view.addSubview(headerLabel)
         view.addSubview(tableView)
-        view.backgroundColor = .white
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        headerLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        let tableViewHeight: CGFloat = InsuranceProviderType.mockTypeResults.count * 72 > 600 ? 600 : CGFloat(InsuranceProviderType.mockTypeResults.count * 72)
         
         NSLayoutConstraint.activate([
+            headerLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
+            headerLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
+            headerLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
+            
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.heightAnchor.constraint(equalToConstant: tableViewHeight),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
+    }
+    
+    private func subscribeInsurnaceIssuerChanges() {
+        storeController.insuranceStore.insuranceIssuerList
+            .subscribe({ [weak self] _ in self?.tableView.reloadData() })
+            .disposed(by: bag)
     }
     
     private func loadInsuranceIssuerListIfNeeded() {
@@ -69,14 +88,11 @@ final class OnboardingInsuranceProviderIssuerViewController: UIViewController {
     }
     
     private func select(_ insuranceIssuer: InsuranceIssuer) {
-        let insuranceProviderViewController = OnboardingInsuranceProviderTypeViewController(storeController: storeController)
-        insuranceProviderViewController.coordinator = coordinator
-        insuranceProviderViewController.modalPresentationStyle = .overFullScreen
-        navigationController?.pushViewController(insuranceProviderViewController, animated: true)
+        coordinator?.addInsuranceIssuer(insuranceIssuer)
     }
 }
 
-extension OnboardingInsuranceProviderIssuerViewController: UITableViewDelegate {
+extension OnboardingInsuranceIssuerViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let list = storeController.insuranceStore.insuranceIssuerList.value
         switch list {
@@ -88,7 +104,7 @@ extension OnboardingInsuranceProviderIssuerViewController: UITableViewDelegate {
     }
 }
 
-extension OnboardingInsuranceProviderIssuerViewController: UITableViewDataSource {
+extension OnboardingInsuranceIssuerViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let list = storeController.insuranceStore.insuranceIssuerList.value
         switch list {
@@ -106,8 +122,12 @@ extension OnboardingInsuranceProviderIssuerViewController: UITableViewDataSource
         let list = storeController.insuranceStore.insuranceIssuerList.value
         switch list {
         case .loaded(let insuranceIssuerList):
-            cell.textLabel?.text = insuranceIssuerList.insuranceIssuers[indexPath.item].displayName
-            cell.selectionStyle = .none
+            if let onboardingInsuranceCell = cell as? OnboardingInsuranceCell {
+                onboardingInsuranceCell.configure(
+                    title: insuranceIssuerList.insuranceIssuers[indexPath.item].displayName,
+                    image: UIImage(systemName: "circle")?.withRenderingMode(.alwaysTemplate)
+                )
+            }
         case .loading:
             cell.textLabel?.text = "loading"
         case .error:

@@ -1,5 +1,5 @@
 //
-//  OnboardingInsuranceProviderTypeViewController.swift
+//  OnboardingInsuranceTypeViewController.swift
 //  Holk
 //
 //  Created by 张梦皓 on 2019-09-30.
@@ -8,14 +8,14 @@
 
 import UIKit
 
-final class OnboardingInsuranceProviderTypeViewController: UIViewController {
+final class OnboardingInsuranceTypeViewController: UIViewController {
     // MARK: Private Variables
     private let headerLabel = UILabel()
     private let tableView = UITableView(frame: .zero, style: .plain)
     private var storeController: StoreController
     
     // MARK: Public Variables
-    weak var coordinator: OnboardingCoordinator?
+    weak var coordinator: OnboardingCoordinating?
     
     init(storeController: StoreController) {
         self.storeController = storeController
@@ -73,18 +73,19 @@ final class OnboardingInsuranceProviderTypeViewController: UIViewController {
     }
     
     private func select(providerType: InsuranceProviderType) {
-        
+        coordinator?.addInsuranceProviderType(providerType)
     }
 }
 
-extension OnboardingInsuranceProviderTypeViewController: UITableViewDelegate {
+extension OnboardingInsuranceTypeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let providerType = InsuranceProviderType.mockTypeResults[indexPath.item]
+        guard !providerType.isUpcoming else { return }
         select(providerType: providerType)
     }
 }
 
-extension OnboardingInsuranceProviderTypeViewController: UITableViewDataSource {
+extension OnboardingInsuranceTypeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return InsuranceProviderType.mockTypeResults.count
     }
@@ -92,10 +93,11 @@ extension OnboardingInsuranceProviderTypeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         if let onboardingInsuranceCell = cell as? OnboardingInsuranceCell {
-            onboardingInsuranceCell.titleLabel.text = InsuranceProviderType.mockTypeResults[indexPath.item].rawValue
-            if indexPath.item != 0 {
-                onboardingInsuranceCell.isUpcoming = true
-            }
+            onboardingInsuranceCell.configure(
+                title: InsuranceProviderType.mockTypeResults[indexPath.item].rawValue,
+                image: UIImage(systemName: "house")?.withRenderingMode(.alwaysTemplate),
+                isUpcoming: InsuranceProviderType.mockTypeResults[indexPath.item].isUpcoming
+            )
         }
         return cell
     }
