@@ -58,8 +58,6 @@ final class OnboardingInsuranceCell: UITableViewCell {
         contentView.addSubview(iconView)
         stackView.addArrangedSubview(titleLabel)
         
-        iconView.image = UIImage(systemName: "house")?.withRenderingMode(.alwaysTemplate)
-        
         titleLabel.numberOfLines = 0
         titleLabel.font = Font.bold(.cellTitle)
         
@@ -110,5 +108,11 @@ final class OnboardingInsuranceCell: UITableViewCell {
         iconView.tintColor = isUpcoming ? Color.placeHolderColor : Color.mainForegroundColor
         titleLabel.textColor = isUpcoming ? Color.placeHolderColor : Color.mainForegroundColor
         comingUpLabel.textColor = isUpcoming ? Color.placeHolderColor : Color.mainForegroundColor
+    }
+    
+    func configure(title: String, image: UIImage?, isUpcoming: Bool = false) {
+        titleLabel.text = title
+        iconView.image = image
+        self.isUpcoming = isUpcoming
     }
 }

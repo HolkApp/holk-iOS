@@ -6,7 +6,6 @@
 //  Copyright © 2019 Holk. All rights reserved.
 //
 import UIKit
-
 import Foundation
 
 final class OnboardingConfirmedViewController: UIViewController {
@@ -25,7 +24,7 @@ final class OnboardingConfirmedViewController: UIViewController {
         
         view.backgroundColor = Color.mainHighlightColor
         
-        imageView.image = UIImage.fontAwesomeIcon(name: .check, style: .regular, textColor: Color.secondaryBackgroundColor, size: FontAwesome.largeIconSize)
+        imageView.image = UIImage(named: "checkmark")
         imageView.layer.cornerRadius = imageView.frame.width / 2
         if #available(iOS 13.0, *) {
             imageView.layer.cornerCurve = .continuous

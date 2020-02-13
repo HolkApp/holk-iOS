@@ -31,7 +31,7 @@ class OnboardingInfoViewController: UIViewController {
     
     private func setup() {
         navigationItem.setHidesBackButton(true, animated: false)
-        let closeIcon = UIImage.fontAwesomeIcon(name: .times, style: .light, textColor: Color.mainForegroundColor, size: FontAwesome.mediumIconSize)
+        let closeIcon = UIImage(named: "xmark")
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: closeIcon, style: .plain, target: self, action: #selector(back(_:)))
         
         titleLabel.font = Font.extraBold(.title)
