@@ -8,17 +8,26 @@
 
 import UIKit
 
+protocol OnboardingCoordinating: AnyObject {
+    func startLoading()
+    func loadingFinished()
+    func addInsuranceProviderType(_ providerType: InsuranceProviderType)
+    func addInsuranceIssuer(_ insuranceIssuer: InsuranceIssuer)
+}
+
 final class OnboardingContainerViewController: UIViewController {
     // MARK: - Private Variables
     private let progressView = HolkProgressBarView()
     private let childNavigationController = UINavigationController()
-    private var onboardingViewControllers: [UIViewController]
+    private var onboardingViewControllers: [UIViewController] {
+        childNavigationController.viewControllers
+    }
     private var progressViewTopAnchor: NSLayoutConstraint?
     private var progressViewHeightAnchor: NSLayoutConstraint?
+    private var providerType: InsuranceProviderType?
     
     init(storeController: StoreController) {
         self.storeController = storeController
-        onboardingViewControllers = []
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -42,18 +51,17 @@ final class OnboardingContainerViewController: UIViewController {
         view.backgroundColor = Color.mainBackgroundColor
         
         progressView.totalSteps = 4
-        progressView.currentStep = 1
         progressView.progressTintColor = Color.mainHighlightColor
         progressView.trackTintColor = Color.placeHolderColor
         progressView.setLoading(true)
         progressView.translatesAutoresizingMaskIntoConstraints = false
         
-        let insuranceProviderTypeVC = OnboardingInsuranceProviderTypeViewController(storeController: storeController)
-        insuranceProviderTypeVC.navigationItem.setHidesBackButton(true, animated: false)
-        let closeIcon = UIImage.fontAwesomeIcon(name: .times, style: .light, textColor: Color.mainForegroundColor, size: FontAwesome.mediumIconSize)
-        insuranceProviderTypeVC.navigationItem.rightBarButtonItem = UIBarButtonItem(image: closeIcon, style: .plain, target: self, action: #selector(stopOnboarding(_:)))
+        let insuranceProviderTypeViewController = OnboardingInsuranceTypeViewController(storeController: storeController)
+        insuranceProviderTypeViewController.coordinator = self
+        insuranceProviderTypeViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(stopOnboarding(_:)))
         
-        childNavigationController.setViewControllers([insuranceProviderTypeVC], animated: false)
+        childNavigationController.delegate = self
+        childNavigationController.setViewControllers([insuranceProviderTypeViewController], animated: false)
         childNavigationController.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         childNavigationController.navigationBar.tintColor = .black
         childNavigationController.navigationBar.shadowImage = UIImage()
@@ -85,16 +93,46 @@ final class OnboardingContainerViewController: UIViewController {
         ])
     }
     
+    @objc private func stopOnboarding(_ sender: Any) {
+        let alert = UIAlertController(title: "Are you sure you want to cancel", message: nil, preferredStyle: .alert)
+        alert.addAction(
+            UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+                alert.dismiss(animated: true)
+            })
+        )
+        alert.addAction(
+            UIAlertAction(title: "OK", style: .default, handler: { [weak self] _ in
+                self?.coordinator?.back()
+            })
+        )
+        present(alert, animated: true)
+    }
+}
+
+extension OnboardingContainerViewController: OnboardingCoordinating {
+    func startLoading() {
+        progressSpinnerToCenter()
+        childNavigationController.view.isHidden = true
+    }
+    
     func loadingFinished() {
+        storeController.insuranceStore.loadInsuranceIssuers()
         // TODO: Remove the wait after adding real polling
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.progressBarToTop()
         }
     }
     
-    func startLoading() {
-        progressSpinnerToCenter()
-        childNavigationController.view.isHidden = true
+    func addInsuranceProviderType(_ providerType: InsuranceProviderType) {
+        self.providerType = providerType
+        let viewController = OnboardingInsuranceIssuerViewController(storeController: storeController)
+        viewController.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(stopOnboarding(_:)))
+        viewController.coordinator = self
+        childNavigationController.pushViewController(viewController, animated: true)
+    }
+    
+    func addInsuranceIssuer(_ insuranceIssuer: InsuranceIssuer) {
+        startLoading()
     }
     
     private func progressBarToTop() {
@@ -111,26 +149,16 @@ final class OnboardingContainerViewController: UIViewController {
     }
     
     private func progressSpinnerToCenter() {
-        UIView.animate(withDuration: 0.3, animations: {
-            self.progressViewTopAnchor?.constant = self.view.bounds.height / 2 - 100
-            self.progressViewHeightAnchor?.constant = 150
-        }) { _ in
-            self.progressView.update(.spinner)
-        }
+        progressViewTopAnchor?.constant = view.bounds.height / 2 - 100
+        progressViewHeightAnchor?.constant = 150
+        progressView.update(.spinner, animated: false)
     }
-    
-    @objc private func stopOnboarding(_ sender: Any) {
-        let alert = UIAlertController(title: "Are you sure you want to cancel", message: nil, preferredStyle: .alert)
-        alert.addAction(
-            UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
-                alert.dismiss(animated: true)
-            })
-        )
-        alert.addAction(
-            UIAlertAction(title: "OK", style: .default, handler: { [weak self] _ in
-                self?.coordinator?.back()
-            })
-        )
-        present(alert, animated: true)
+}
+
+extension OnboardingContainerViewController: UINavigationControllerDelegate {
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        if let currentIndex = onboardingViewControllers.firstIndex(where: { viewController == $0 }) {
+            progressView.currentStep = currentIndex + 1
+        }
     }
 }
