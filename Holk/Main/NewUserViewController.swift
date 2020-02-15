@@ -60,7 +60,7 @@ class NewUserViewController: UIViewController {
         emailTextField.tintColor = Color.mainForegroundColor
         emailTextField.placeholderTextColor = Color.placeHolderColor
         
-        // TODO: Update the google with actual change password page
+        // TODO: Replace the google link to an actual change password page
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.attributedText = Parser.parse(
             markdownString: "[Har du glömt ditt lösenord?](https://www.google.com)",
@@ -69,7 +69,7 @@ class NewUserViewController: UIViewController {
         )
         // Seems there is an issue with the library for parsing
         textView.linkTextAttributes = [
-            NSAttributedString.Key.foregroundColor: Color.mainHighlightTextColor
+            .foregroundColor: Color.mainHighlightTextColor
         ]
         textView.isScrollEnabled = false
         textView.backgroundColor = .clear

@@ -28,9 +28,10 @@ final class OnboardingInsuranceTypeViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        navigationItem.largeTitleDisplayMode = .always
-        navigationItem.title = "Start finding your gaps"
+        super.viewDidLoad()
         
+        navigationItem.title = "Start finding your gaps"
+
         setup()
     }
     
@@ -52,6 +53,10 @@ final class OnboardingInsuranceTypeViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
+        setupConstraints()
+    }
+    
+    private func setupConstraints() {
         view.addSubview(tableView)
         view.addSubview(headerLabel)
         

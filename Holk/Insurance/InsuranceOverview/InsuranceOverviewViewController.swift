@@ -86,7 +86,7 @@ final class InsuranceOverviewViewController: UIViewController {
     
     private func setup() {
         navigationController?.navigationBar.titleTextAttributes = [
-            NSAttributedString.Key.foregroundColor: Color.mainForegroundColor
+            .foregroundColor: Color.mainForegroundColor
         ]
         view.backgroundColor = Color.mainBackgroundColor
         containerView.backgroundColor = .clear
@@ -115,16 +115,16 @@ final class InsuranceOverviewViewController: UIViewController {
         
         segmentedControl.setTitleTextAttributes(
             [
-                NSAttributedString.Key.foregroundColor: Color.mainForegroundColor.withAlphaComponent(0.6),
-                NSAttributedString.Key.font: Font.regular(.subtitle)
+                .foregroundColor: Color.mainForegroundColor.withAlphaComponent(0.6),
+                .font: Font.regular(.subtitle)
             ],
-            for: UIControl.State.normal)
+            for: .normal)
         segmentedControl.setTitleTextAttributes(
             [
-                NSAttributedString.Key.foregroundColor: Color.mainForegroundColor,
-                NSAttributedString.Key.font: Font.regular(.subtitle)
+                .foregroundColor: Color.mainForegroundColor,
+                .font: Font.regular(.subtitle)
             ],
-            for: UIControl.State.selected)
+            for: .selected)
         
         segmentedControl.tintColor = .white
         segmentedControl.addTarget(self, action: #selector(segmentChanged(sender:)), for: .valueChanged)

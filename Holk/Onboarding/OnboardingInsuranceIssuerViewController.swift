@@ -30,7 +30,8 @@ final class OnboardingInsuranceIssuerViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        navigationItem.largeTitleDisplayMode = .always
+        super.viewDidLoad()
+        
         navigationItem.title = "Start finding your gaps"
         
         setup()
@@ -41,6 +42,7 @@ final class OnboardingInsuranceIssuerViewController: UIViewController {
         loadInsuranceIssuerListIfNeeded()
         
         view.backgroundColor = Color.mainBackgroundColor
+        
         headerLabel.font = Font.bold(.header)
         headerLabel.textColor = Color.mainForegroundColor
         headerLabel.textAlignment = .left
@@ -49,16 +51,27 @@ final class OnboardingInsuranceIssuerViewController: UIViewController {
         
         tableView.register(OnboardingInsuranceCell.self, forCellReuseIdentifier: "Cell")
         tableView.alwaysBounceVertical = false
+        tableView.separatorColor = Color.secondaryForegroundColor
         tableView.delegate = self
         tableView.dataSource = self
         
+        setupConstraints()
+    }
+    
+    private func setupConstraints() {
         view.addSubview(headerLabel)
         view.addSubview(tableView)
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
         headerLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        let tableViewHeight: CGFloat = InsuranceProviderType.mockTypeResults.count * 72 > 600 ? 600 : CGFloat(InsuranceProviderType.mockTypeResults.count * 72)
+        let tableViewHeight: CGFloat
+        switch storeController.insuranceIssuerStore.insuranceIssuerList.value {
+        case .loaded(let insuranceIssuerList):
+            tableViewHeight = insuranceIssuerList.insuranceIssuers.count * 72 > 600 ? 600 : CGFloat(insuranceIssuerList.insuranceIssuers.count * 72)
+        default:
+            tableViewHeight = 0
+        }
         
         NSLayoutConstraint.activate([
             headerLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
@@ -73,15 +86,15 @@ final class OnboardingInsuranceIssuerViewController: UIViewController {
     }
     
     private func subscribeInsurnaceIssuerChanges() {
-        storeController.insuranceStore.insuranceIssuerList
+        storeController.insuranceIssuerStore.insuranceIssuerList
             .subscribe({ [weak self] _ in self?.tableView.reloadData() })
             .disposed(by: bag)
     }
     
     private func loadInsuranceIssuerListIfNeeded() {
-        switch storeController.insuranceStore.insuranceIssuerList.value {
+        switch storeController.insuranceIssuerStore.insuranceIssuerList.value {
         case .loading, .error:
-            storeController.insuranceStore.loadInsuranceIssuers()
+            storeController.insuranceIssuerStore.loadInsuranceIssuers()
         default:
             break
         }
@@ -94,7 +107,7 @@ final class OnboardingInsuranceIssuerViewController: UIViewController {
 
 extension OnboardingInsuranceIssuerViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let list = storeController.insuranceStore.insuranceIssuerList.value
+        let list = storeController.insuranceIssuerStore.insuranceIssuerList.value
         switch list {
         case .loaded(let insuranceIssuerList):
             select(insuranceIssuerList.insuranceIssuers[indexPath.item])
@@ -106,20 +119,20 @@ extension OnboardingInsuranceIssuerViewController: UITableViewDelegate {
 
 extension OnboardingInsuranceIssuerViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let list = storeController.insuranceStore.insuranceIssuerList.value
+        let list = storeController.insuranceIssuerStore.insuranceIssuerList.value
         switch list {
         case .loaded(let insuranceIssuerList):
             return insuranceIssuerList.insuranceIssuers.count
         case .loading:
             return 1
-        case .error:
+        case .error, .unintiated:
             return 0
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        let list = storeController.insuranceStore.insuranceIssuerList.value
+        let list = storeController.insuranceIssuerStore.insuranceIssuerList.value
         switch list {
         case .loaded(let insuranceIssuerList):
             if let onboardingInsuranceCell = cell as? OnboardingInsuranceCell {
@@ -130,9 +143,10 @@ extension OnboardingInsuranceIssuerViewController: UITableViewDataSource {
             }
         case .loading:
             cell.textLabel?.text = "loading"
-        case .error:
+        case .error, .unintiated:
             break
         }
         return cell
     }
 }
+    
