@@ -1,26 +1,19 @@
 //
-//  InsuranceStore.swift
+//  InsuranceCredentialStore.swift
 //  Holk
 //
-//  Created by 张梦皓 on 2019-12-08.
-//  Copyright © 2019 Holk. All rights reserved.
+//  Created by 张梦皓 on 2020-02-15.
+//  Copyright © 2020 Holk. All rights reserved.
 //
 
 import RxSwift
-import RxRelay
 import Alamofire
+import RxRelay
 
-enum RequestState<T: Codable, U:Error> {
-    case loaded(value: T)
-    case loading
-    case error(_ error: U)
-}
-
-final class InsuranceStore: APIStore {
+final class InsuranceCredentialStore: APIStore {
     // MARK: - Public variables
-    var insuranceIssuerList = BehaviorRelay<RequestState<InsuranceIssuerList, APIError>>.init(value: .loading)
     // TODO: should be an array of insurance
-    var insuranceState = BehaviorRelay<RequestState<ScrapingStatus, APIError>>.init(value: .loading)
+    var insuranceState = BehaviorRelay<RequestState<ScrapingStatus, APIError>>.init(value: .unintiated)
     
     // MARK: - Private variables
     private let queue: DispatchQueue
@@ -36,28 +29,8 @@ final class InsuranceStore: APIStore {
         super.init()
     }
     
-    func loadInsuranceIssuers() {
-        // TODO: should be able to reload the insurance issuer list
-        switch insuranceIssuerList.value {
-        case .loading:
-            break
-        default:
-            insuranceIssuerList.accept(.loading)
-        }
-        
-        getInsuranceIssuers()
-        .bind { [weak self] result in
-            switch result {
-            case .success(let list):
-                self?.insuranceIssuerList.accept(.loaded(value: list))
-            case .failure(let error):
-                self?.insuranceIssuerList.accept(.error(error))
-            }
-        }
-        .disposed(by: bag)
-    }
-    
     func addInsurance(issuer: InsuranceIssuer, personalNumber: String) {
+        insuranceState.accept(.loading)
         integrateInsurance(issuerName: "FOLKSAM", personalNumber: personalNumber)
             .map { [weak self] result in
                 guard let self = self else { return }
@@ -80,7 +53,7 @@ final class InsuranceStore: APIStore {
                             if status == .completed {
                                 self.insuranceState.accept(.loaded(value: status))
                             } else if status == .failed {
-//                                self.insuranceState.accept(.error(error))
+                                //                                self.insuranceState.accept(.error(error))
                             } else {
                                 self.insuranceState.accept(.loading)
                             }
@@ -97,16 +70,7 @@ final class InsuranceStore: APIStore {
         .disposed(by: bag)
     }
     
-    private func getInsuranceIssuers() -> Observable<Swift.Result<InsuranceIssuerList, APIError>> {
-        let httpHeaders = sessionStore.authorizationHeader
         
-        return httpRequest(
-            method: .get,
-            url: Endpoint.insurancesIssuers.url,
-            headers: httpHeaders
-        )
-    }
-    
     private func getInsuranceStatus(_ sessionId: String) -> Observable<Swift.Result<ScrapingStatusResponse, APIError>> {
         let httpHeaders = sessionStore.authorizationHeader
         
@@ -144,4 +108,5 @@ final class InsuranceStore: APIStore {
             headers: httpHeaders
         )
     }
+
 }

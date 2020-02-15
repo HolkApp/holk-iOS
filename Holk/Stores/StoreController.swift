@@ -24,7 +24,8 @@ final class StoreController {
     weak var delegate: StoreControllerDelegate?
     
     let authenticationStore: AuthenticationStore
-    let insuranceStore: InsuranceStore
+    let insuranceIssuerStore: InsuranceIssuerStore
+    let insuranceCredentialStore: InsuranceCredentialStore
     
     var sessionState: SessionState {
         guard let expirationDate = sessionStore.user.expirationDate else { return .newSession }
@@ -43,7 +44,8 @@ final class StoreController {
     init() {
         sessionStore = SessionStore(queue: queue, user: User())
         authenticationStore = AuthenticationStore(queue: queue, sessionStore: sessionStore)
-        insuranceStore = InsuranceStore(queue: queue, sessionStore: sessionStore)
+        insuranceIssuerStore = InsuranceIssuerStore(queue: queue, sessionStore: sessionStore)
+        insuranceCredentialStore = InsuranceCredentialStore(queue: queue, sessionStore: sessionStore)
         
         sessionStore.delegate = self
     }
