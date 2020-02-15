@@ -7,16 +7,20 @@
 //
 
 import UIKit
+import RxSwift
 
 protocol OnboardingCoordinating: AnyObject {
     func startLoading()
     func loadingFinished()
+    func startOnboarding()
     func addInsuranceProviderType(_ providerType: InsuranceProviderType)
     func addInsuranceIssuer(_ insuranceIssuer: InsuranceIssuer)
+    func aggregateInsurance(_ providerType: InsuranceProviderType, insuranceIssuer: InsuranceIssuer)
 }
 
 final class OnboardingContainerViewController: UIViewController {
     // MARK: - Private Variables
+    private var bag = DisposeBag()
     private let progressView = HolkProgressBarView()
     private let childNavigationController = UINavigationController()
     private var onboardingViewControllers: [UIViewController] {
@@ -25,6 +29,7 @@ final class OnboardingContainerViewController: UIViewController {
     private var progressViewTopAnchor: NSLayoutConstraint?
     private var progressViewHeightAnchor: NSLayoutConstraint?
     private var providerType: InsuranceProviderType?
+    private var insuranceIssuer: InsuranceIssuer?
     
     init(storeController: StoreController) {
         self.storeController = storeController
@@ -54,29 +59,29 @@ final class OnboardingContainerViewController: UIViewController {
         progressView.progressTintColor = Color.mainHighlightColor
         progressView.trackTintColor = Color.placeHolderColor
         progressView.setLoading(true)
-        progressView.translatesAutoresizingMaskIntoConstraints = false
-        
-        let insuranceProviderTypeViewController = OnboardingInsuranceTypeViewController(storeController: storeController)
-        insuranceProviderTypeViewController.coordinator = self
-        insuranceProviderTypeViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(stopOnboarding(_:)))
         
         childNavigationController.delegate = self
-        childNavigationController.setViewControllers([insuranceProviderTypeViewController], animated: false)
         childNavigationController.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         childNavigationController.navigationBar.tintColor = .black
         childNavigationController.navigationBar.shadowImage = UIImage()
         
+        setupConstraints()
+        startOnboarding()
+    }
+    
+    private func setupConstraints() {
+        progressView.translatesAutoresizingMaskIntoConstraints = false
         childNavigationController.view.translatesAutoresizingMaskIntoConstraints = false
+        
         addChild(childNavigationController)
         view.addSubview(childNavigationController.view)
         childNavigationController.didMove(toParent: self)
         childNavigationController.view.isHidden = true
         
         view.addSubview(progressView)
-        
         let progressViewTopAnchor = progressView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: view.bounds.height / 2 - 100)
         let progressViewHeightAnchor = progressView.heightAnchor.constraint(equalToConstant: 150)
-    
+        
         self.progressViewTopAnchor = progressViewTopAnchor
         self.progressViewHeightAnchor = progressViewHeightAnchor
         NSLayoutConstraint.activate([
@@ -116,11 +121,18 @@ extension OnboardingContainerViewController: OnboardingCoordinating {
     }
     
     func loadingFinished() {
-        storeController.insuranceStore.loadInsuranceIssuers()
+        storeController.insuranceIssuerStore.loadInsuranceIssuers()
         // TODO: Remove the wait after adding real polling
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.progressBarToTop()
         }
+    }
+    
+    func startOnboarding() {
+        let insuranceProviderTypeViewController = OnboardingInsuranceTypeViewController(storeController: storeController)
+        insuranceProviderTypeViewController.coordinator = self
+        insuranceProviderTypeViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(stopOnboarding(_:)))
+        childNavigationController.setViewControllers([insuranceProviderTypeViewController], animated: false)
     }
     
     func addInsuranceProviderType(_ providerType: InsuranceProviderType) {
@@ -132,7 +144,36 @@ extension OnboardingContainerViewController: OnboardingCoordinating {
     }
     
     func addInsuranceIssuer(_ insuranceIssuer: InsuranceIssuer) {
+        guard let providerType = providerType else { fatalError("No providerType selected") }
+        self.insuranceIssuer = insuranceIssuer
+        let onboardingConsentViewController = OnboardingConsentViewController(storeController: storeController, insuranceIssuer: insuranceIssuer, providerType: providerType)
+        onboardingConsentViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(stopOnboarding(_:)))
+        onboardingConsentViewController.coordinator = self
+        childNavigationController.pushViewController(onboardingConsentViewController, animated: true)
+    }
+    
+    func aggregateInsurance(_ providerType: InsuranceProviderType, insuranceIssuer: InsuranceIssuer) {
         startLoading()
+        storeController.insuranceCredentialStore.addInsurance(issuer: insuranceIssuer, personalNumber: "199208253915")
+        storeController.insuranceCredentialStore.insuranceState
+            .subscribe({ [weak self] event in
+                switch event {
+                case .next(let state):
+                    switch state {
+                    case .loaded(let scrapingStatus):
+                        print(scrapingStatus)
+                        self?.loadingFinished()
+                    case .error:
+                        // TOOD: Error handling
+                        print(state)
+                    case .loading, .unintiated:
+                        break
+                    }
+                default:
+                    break
+                }
+            })
+            .disposed(by: bag)
     }
     
     private func progressBarToTop() {
