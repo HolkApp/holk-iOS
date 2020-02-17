@@ -32,14 +32,11 @@ final class OnboardingInsuranceIssuerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "Start finding your gaps"
-        
         setup()
     }
     
     private func setup() {
-        subscribeInsurnaceIssuerChanges()
-        loadInsuranceIssuerListIfNeeded()
+        navigationItem.title = "Start finding your gaps"
         
         view.backgroundColor = Color.mainBackgroundColor
         
@@ -54,6 +51,9 @@ final class OnboardingInsuranceIssuerViewController: UIViewController {
         tableView.separatorColor = Color.secondaryForegroundColor
         tableView.delegate = self
         tableView.dataSource = self
+        
+        subscribeInsurnaceIssuerChanges()
+        loadInsuranceIssuerListIfNeeded()
         
         setupConstraints()
     }
@@ -149,4 +149,3 @@ extension OnboardingInsuranceIssuerViewController: UITableViewDataSource {
         return cell
     }
 }
-    

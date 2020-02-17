@@ -29,13 +29,13 @@ final class OnboardingInsuranceTypeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        navigationItem.title = "Start finding your gaps"
 
         setup()
     }
     
     private func setup() {
+        navigationItem.title = "Start finding your gaps"
+        
         view.backgroundColor = Color.mainBackgroundColor
         
         headerLabel.font = Font.bold(.header)

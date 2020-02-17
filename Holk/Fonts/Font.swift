@@ -18,7 +18,7 @@ enum Font {
     
     enum Size: UInt {
         /// 50
-        case hugeHeader = 50
+        case promptHeader = 50
         
         /// 40
         case header = 40
@@ -29,8 +29,11 @@ enum Font {
         /// 27
         case title = 27
         
+        /// 25
+        case caption = 25
+        
         /// 21
-        case caption = 21
+        case label = 21
         
         /// 19
         case cellTitle = 19
@@ -42,13 +45,13 @@ enum Font {
         case description = 14
         
         /// 12
-        case label = 12
+        case body = 12
         
         /// 10
         case tabBarLabel = 10
         
         /// 9
-        case pico = 9
+        case micro = 9
         
         var pointSize: CGFloat {
             return CGFloat(rawValue)
@@ -94,12 +97,10 @@ extension Font {
 }
 
 extension FontAwesome {
-    /// 22
-    static let smallIconSize = CGSize.init(width: 22, height: 22)
     /// 30
     static let tabBarIconSize = CGSize.init(width: 30, height: 30)
     /// 45
     static let mediumIconSize = CGSize.init(width: 45, height: 45)
-    /// 53
-    static let largeIconSize = CGSize.init(width: 53, height: 53)
+    /// 50
+    static let largeIconSize = CGSize.init(width: 55, height: 55)
 }

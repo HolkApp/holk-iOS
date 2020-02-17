@@ -43,10 +43,6 @@ enum Color {
         return makeColor(asset: #function)
     }
     
-    static var onBoardingBackgroundColor: UIColor {
-        return makeColor(asset: #function)
-    }
-    
     static var tabbarBackgroundColor: UIColor {
         return makeColor(asset: #function)
     }
@@ -68,6 +64,10 @@ enum Color {
     }
     
     static var mainWarningColor: UIColor {
+        return makeColor(asset: #function)
+    }
+    
+    static var successColor: UIColor {
         return makeColor(asset: #function)
     }
 }
