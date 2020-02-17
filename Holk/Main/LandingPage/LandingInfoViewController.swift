@@ -45,7 +45,7 @@ final class LandingInfoViewController: UIViewController {
     
     private func setup() {
         textLabel.text = text
-        textLabel.font = Font.extraBold(.hugeHeader)
+        textLabel.font = Font.extraBold(.promptHeader)
         textLabel.textColor = textColor
         textLabel.numberOfLines = 0
         

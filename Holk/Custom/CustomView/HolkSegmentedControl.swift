@@ -37,8 +37,8 @@ final class HolkSegmentedControl: UISegmentedControl {
     private func setup() {
         self.setDividerImage(
             UIImage(),
-            forLeftSegmentState: UIControl.State(),
-            rightSegmentState: UIControl.State(),
+            forLeftSegmentState: .normal,
+            rightSegmentState: .normal,
             barMetrics: .default
         )
         

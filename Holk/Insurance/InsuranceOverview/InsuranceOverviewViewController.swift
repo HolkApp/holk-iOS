@@ -95,8 +95,8 @@ final class InsuranceOverviewViewController: UIViewController {
         headerLabel.font = Font.extraBold(.header)
         headerLabel.textColor = Color.mainForegroundColor
         
-        profileButton.setTitle("", for: UIControl.State())
-        profileButton.setImage(UIImage(named: "Profile"), for: UIControl.State())
+        profileButton.setTitle("", for: .normal)
+        profileButton.setImage(UIImage(named: "Profile"), for: .normal)
         profileButton.tintColor = Color.mainForegroundColor
         profileButton.addTarget(self, action: #selector(profileTapped(sender:)), for: .touchUpInside)
         

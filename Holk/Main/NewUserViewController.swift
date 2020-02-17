@@ -18,7 +18,7 @@ class NewUserViewController: UIViewController {
     
     // MARK: - Public variables
     weak var coordinator: SessionCoordinator?
-    var storeController: StoreController?
+    
     // MARK: - Private variables
     private var textView = UITextView()
     private var doneButton = HolkButton()
@@ -40,8 +40,12 @@ class NewUserViewController: UIViewController {
     
     private func setup() {        
         navigationItem.setHidesBackButton(true, animated: false)
-        let closeIcon = UIImage(named: "xmark")
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: closeIcon, style: .plain, target: self, action: #selector(backTapped(_:)))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: UIImage(systemName: "xmark")?.withSymbolWeightConfiguration(.medium),
+            style: .plain,
+            target: self,
+            action: #selector(backTapped(_:))
+        )
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard(_:)))
         view.addGestureRecognizer(tapGestureRecognizer)
         view.addSubview(textView)
@@ -64,7 +68,7 @@ class NewUserViewController: UIViewController {
         textView.translatesAutoresizingMaskIntoConstraints = false
         textView.attributedText = Parser.parse(
             markdownString: "[Har du glömt ditt lösenord?](https://www.google.com)",
-            font: Font.semibold(.label),
+            font: Font.semibold(.body),
             textColor: Color.mainForegroundColor
         )
         // Seems there is an issue with the library for parsing
@@ -76,12 +80,11 @@ class NewUserViewController: UIViewController {
         textView.isEditable = false
         
         doneButton.translatesAutoresizingMaskIntoConstraints = false
-        doneButtonBottomConstraint = view.bottomAnchor.constraint(equalTo: doneButton.bottomAnchor, constant: 0)
-        doneButton.setTitle("Logga in", for: UIControl.State())
+        doneButtonBottomConstraint = view.bottomAnchor.constraint(equalTo: doneButton.bottomAnchor)
+        doneButton.setTitle("Logga in", for: .normal)
         doneButton.backgroundColor = Color.mainHighlightColor
         doneButton.titleLabel?.font = Font.semibold(.subtitle)
-        doneButton.tintColor = Color.mainForegroundColor
-        doneButton.setTitleColor(Color.mainForegroundColor, for: UIControl.State())
+        doneButton.set(color: Color.mainForegroundColor)
         doneButton.addTarget(self, action: #selector(submit(_:)), for: .touchUpInside)
         emailTextField.rx.text.orEmpty.map{ $0.isEmpty }.bind(to: doneButton.rx.isHidden).disposed(by: bag)
         
@@ -113,27 +116,8 @@ class NewUserViewController: UIViewController {
     }
     
     private func addEmail() {
-        coordinator?.onboarding()
-        // TODO: Update when have new authentication endpoint
-        if let username = emailTextField.text,
-            let storeController = storeController {
-            storeController.authenticationStore
-                .login(username: username)
-                .observeOn(MainScheduler.instance)
-                .subscribe(onNext: { [weak self] event in
-                    switch event {
-                    case .success:
-                        self?.coordinator?.newUserEmailAdded()
-                    case .failure(let error):
-                        // TODO: Error handling
-                        print(error)
-                        self?.coordinator?.newUserEmailAdded()
-                    }
-                }, onError: { [weak self] error in
-                    // TODO: Error handling
-                    print(error)
-                    self?.coordinator?.newUserEmailAdded()
-                }).disposed(by: bag)
+        if let username = emailTextField.text {
+            coordinator?.startOnboarding(username)
         }
     }
 }

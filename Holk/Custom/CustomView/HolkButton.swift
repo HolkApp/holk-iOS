@@ -20,5 +20,13 @@ class HolkButton: UIButton {
             }
         }
     }
+    
+    func set(color: UIColor, image: UIImage? = nil) {
+        setImage(image, for: .normal)
+        setImage(image?.withTintColor((color.withAlphaComponent(0.3))), for: .highlighted)
+        tintColor = color
+        setTitleColor(color, for: .normal)
+        setTitleColor(color.withAlphaComponent(0.3), for: .highlighted)
+    }
 }
 

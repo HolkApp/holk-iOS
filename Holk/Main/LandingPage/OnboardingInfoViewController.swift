@@ -31,12 +31,15 @@ class OnboardingInfoViewController: UIViewController {
     
     private func setup() {
         navigationItem.setHidesBackButton(true, animated: false)
-        let closeIcon = UIImage(named: "xmark")
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: closeIcon, style: .plain, target: self, action: #selector(back(_:)))
-        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: UIImage(systemName: "xmark")?.withSymbolWeightConfiguration(.medium),
+            style: .plain,
+            target: self,
+            action: #selector(back(_:))
+        )
         titleLabel.font = Font.extraBold(.title)
         titleLabel.textColor = Color.mainForegroundColor
-        subtitleLabel.font = Font.regular(.caption)
+        subtitleLabel.font = Font.regular(.label)
         subtitleLabel.textColor = Color.mainForegroundColor
         headerLabel.font = Font.semibold(.title)
         headerLabel.textColor = Color.mainForegroundColor

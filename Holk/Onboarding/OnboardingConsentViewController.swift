@@ -22,7 +22,7 @@ final class OnboardingConsentViewController: UIViewController {
     private let headerLabel = UILabel()
     private let descriptionTextView = UITextView()
     private let bankIDIconView = UIImageView()
-    private let nextButton = UIButton()
+    private let nextButton = HolkButton()
     
     init(storeController: StoreController, insuranceIssuer: InsuranceIssuer, providerType: InsuranceProviderType) {
         self.storeController = storeController
@@ -39,13 +39,14 @@ final class OnboardingConsentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "Start finding your gaps"
-        
         setup()
     }
     
     private func setup() {
-        view.layoutMargins = .init(top: 0, left: 40, bottom: 0, right: 40)
+        navigationItem.title = "Start finding your gaps"
+        
+        view.layoutMargins.left = 40
+        view.layoutMargins.right = 40
         view.backgroundColor = Color.mainBackgroundColor
         
         headerLabel.font = Font.bold(.header)
@@ -64,7 +65,7 @@ final class OnboardingConsentViewController: UIViewController {
         let descriptionText = String(format: text, insuranceIssuer.displayName)
         descriptionTextView.attributedText = Parser.parse(
             markdownString: descriptionText,
-            font: Font.regular(.caption),
+            font: Font.regular(.label),
             textColor: Color.mainForegroundColor
         )
         
@@ -73,10 +74,9 @@ final class OnboardingConsentViewController: UIViewController {
         
         nextButton.contentVerticalAlignment = .fill
         nextButton.contentHorizontalAlignment = .fill
-        nextButton.tintColor = Color.mainForegroundColor
-        nextButton.setImage(
-            UIImage(systemName: "arrow.right.circle")?.withRenderingMode(.alwaysTemplate).withSymbolWeightConfiguration(.ultraLight),
-            for: .normal
+        nextButton.set(
+            color: Color.mainForegroundColor,
+            image: UIImage(systemName: "arrow.right.circle")?.withSymbolWeightConfiguration(.ultraLight)
         )
         nextButton.addTarget(self, action: #selector(nextButtonTapped(_:)), for: .touchUpInside)
         

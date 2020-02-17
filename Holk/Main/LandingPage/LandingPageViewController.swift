@@ -10,9 +10,9 @@ import UIKit
 
 class LandingPageViewController: UIPageViewController {
     // MARK: - Private Variables
-    private var loginButton = UIButton()
+    private var loginButton = HolkButton()
     private var pageControl = UIPageControl()
-    private var infoButton = UIButton()
+    private var infoButton = HolkButton()
     private var pendingIndex: Int?
     
     // MARK: - Public Variables
@@ -37,37 +37,23 @@ class LandingPageViewController: UIPageViewController {
     
     private func setup() {
         loginButton.backgroundColor = Color.mainBackgroundColor
+        loginButton.setTitle("Logga in", for: .normal)
         loginButton.titleLabel?.font = Font.semibold(.subtitle)
-        loginButton.tintColor = Color.mainForegroundColor
-        loginButton.setImage(UIImage(named: "BankID"), for: UIControl.State())
-        loginButton.setTitle("Logga in", for: UIControl.State())
-        loginButton.setTitleColor(Color.mainForegroundColor.withAlphaComponent(0.3), for: UIControl.State())
-        loginButton.setTitleColor(Color.mainForegroundColor, for: .normal)
+        loginButton.set(color: Color.mainForegroundColor, image: UIImage(named: "BankID"))
         loginButton.imageToTheRightOfText()
         loginButton.addTarget(self, action: #selector(loginTapped(_:)), for: .touchUpInside)
-        loginButton.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(loginButton)
         
         infoButton.backgroundColor = Color.mainBackgroundColor
-        infoButton.titleLabel?.font = Font.semibold(.label)
+        infoButton.titleLabel?.font = Font.semibold(.body)
         infoButton.layer.cornerRadius = 18
         if #available(iOS 13.0, *) {
             infoButton.layer.cornerCurve = .continuous
         }
         infoButton.contentEdgeInsets = UIEdgeInsets(top: 10, left: 15, bottom: 10, right: 15)
-        infoButton.setTitle("Så här funkar det", for: UIControl.State())
-        infoButton.setTitleColor(Color.mainForegroundColor.withAlphaComponent(0.3), for: UIControl.State())
-        infoButton.setTitleColor(Color.mainForegroundColor, for: .normal)
+        infoButton.setTitle("Så här funkar det", for: .normal)
+        infoButton.set(color: Color.mainForegroundColor)
         infoButton.addTarget(self, action: #selector(infoTapped(_:)), for: .touchUpInside)
-        infoButton.translatesAutoresizingMaskIntoConstraints = false
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: infoButton)
-        
-        NSLayoutConstraint.activate([
-            loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            loginButton.heightAnchor.constraint(equalToConstant: 90),
-            loginButton.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
         
         dataSource = self
         delegate = self
@@ -82,13 +68,25 @@ class LandingPageViewController: UIPageViewController {
         // First set only the next visible view controller
         setViewControllers([firstViewController], direction: .forward, animated: true, completion: nil)
         
-        view.addSubview(pageControl)
         pageControl.numberOfPages = orderedViewControllers.count
         pageControl.frame = CGRect(origin: .zero, size: pageControl.size(forNumberOfPages: orderedViewControllers.count))
         pageControl.currentPageIndicatorTintColor = Color.mainForegroundColor
         pageControl.pageIndicatorTintColor = Color.mainBackgroundColor
+        
+        setupCosntraints()
+    }
+    
+    private func setupCosntraints() {
+        loginButton.translatesAutoresizingMaskIntoConstraints = false
         pageControl.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(pageControl)
+        view.addSubview(loginButton)
         NSLayoutConstraint.activate([
+            loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            loginButton.heightAnchor.constraint(equalToConstant: 90),
+            loginButton.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
             pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             pageControl.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100)
         ])
