@@ -9,21 +9,28 @@
 import UIKit
 import RxSwift
 
+protocol OnboardingContainerCoordinating: AnyObject {
+    func startOnboarding(_ username: String)
+    func finishOnboarding(coordinator: OnboardingContainerViewController)
+}
+
 final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
     // MARK: - Public Properties
     var navController: UINavigationController
     var storeController: StoreController
     
-    private var onboardingCoordinator: OnboardingCoordinator
+    private var onboardingContainerViewController: OnboardingContainerViewController
     private let bag = DisposeBag()
     
     // MARK: - Init
     init(navController: UINavigationController) {
         self.navController = navController
         self.storeController = StoreController()
-        onboardingCoordinator = OnboardingCoordinator(navController: UINavigationController(), storeController: storeController)
+        self.onboardingContainerViewController = OnboardingContainerViewController(storeController: storeController)
+        
         super.init()
         
+        onboardingContainerViewController.coordinator = self
         storeController.delegate = self
     }
     
@@ -62,9 +69,13 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
                 self.checkAuthenticationStatus()
             }
         }) { [weak self] in
+            #if targetEnvironment(simulator)
             // TODO: Should show some alert for downloading BankID
             guard let self = self else { return }
             self.checkAuthenticationStatus()
+            #else
+            
+            #endif
         }
     }
     
@@ -80,7 +91,7 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
     func showNewUser(shouldPopOtherViews: Bool = false) {
         let vc = StoryboardScene.Onboarding.newUserViewController.instantiate()
         vc.coordinator = self
-        vc.storeController = storeController
+
         navController.pushViewController(vc, animated: true)
         // TODO: Refactor the navigation for loading since we have new flow
         navController.dismiss(animated: true)
@@ -90,29 +101,22 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
     }
     
     func onboarding() {
-        onboardingCoordinator.start()
-        onboardingCoordinator.delegate = self
-        
-        let onBoardingFlow = onboardingCoordinator.navController
-        onBoardingFlow.modalPresentationStyle = .overFullScreen
+        onboardingContainerViewController.modalPresentationStyle = .overFullScreen
         if navController.viewControllers.isEmpty {
-            navController.pushViewController(onBoardingFlow, animated: true)
+            navController.pushViewController(onboardingContainerViewController, animated: true)
         } else if navController.presentedViewController != nil {
-            navController.dismiss(animated: true) {
-                self.navController.present(onBoardingFlow, animated: true) {
+            navController.dismiss(animated: true) { [weak self] in
+                guard let self = self else { return }
+                self.navController.present(self.onboardingContainerViewController, animated: true) {
                     self.navController.popToRootViewController(animated: false)
                 }
             }
         } else {
-            navController.present(onBoardingFlow, animated: true) {
+            navController.present(onboardingContainerViewController, animated: false) {
                 // Pop out all the onboarding view controllers and leave the landing screen
                 self.navController.popToRootViewController(animated: false)
             }
         }
-    }
-    
-    func newUserEmailAdded() {
-        onboardingCoordinator.loadingFinished()
     }
     
     func showLoading(initialScreen: Bool = false) {
@@ -163,6 +167,10 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
         }
         navController.dismiss(animated: true)
     }
+    
+    private func newUserEmailAdded() {
+        onboardingContainerViewController.loadingFinished()
+    }
 }
 
 extension SessionCoordinator: StoreControllerDelegate {
@@ -175,8 +183,31 @@ extension SessionCoordinator: StoreControllerDelegate {
     }
 }
 
-extension SessionCoordinator: OnboardingCoordinatorDelegate {
-    func didFinishOnboarding(coordinator: OnboardingCoordinator) {
+// MARK: - SessionCoordinating
+extension SessionCoordinator: OnboardingContainerCoordinating {
+    func startOnboarding(_ username: String) {
+        storeController.authenticationStore
+            .login(username: username)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] event in
+                switch event {
+                case .success:
+                    self?.newUserEmailAdded()
+                case .failure(let error):
+                    // TODO: Error handling
+                    print(error)
+                    self?.newUserEmailAdded()
+                }
+                }, onError: { [weak self] error in
+                    // TODO: Error handling
+                    print(error)
+                    self?.newUserEmailAdded()
+            }).disposed(by: bag)
+        
+        onboarding()
+    }
+    
+    func finishOnboarding(coordinator: OnboardingContainerViewController) {
         showSession()
     }
 }
