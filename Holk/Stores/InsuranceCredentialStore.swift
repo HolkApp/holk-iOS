@@ -108,5 +108,4 @@ final class InsuranceCredentialStore: APIStore {
             headers: httpHeaders
         )
     }
-
 }

@@ -16,7 +16,7 @@ enum ScrapingStatus: String, Codable {
 }
 
 struct ScrapingStatusResponse: Codable {
-    var scrapingStatus: ScrapingStatus
+    let scrapingStatus: ScrapingStatus
     
     private enum CodingKeys: String, CodingKey {
         case scrapingStatus = "scrapingStatus"

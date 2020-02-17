@@ -14,7 +14,7 @@ enum Endpoint: String {
     case signup = "authorize/user/register"
     case login = "authorize/oauth/token"
     case insurancesIssuers = "insurance/scraping/provider/status"
-    case allInsurances = "insurance/insurance/"
+    case allInsurances = "insurance/user"
     case addInsurance = "insurance/scraping/%@/ssn/%@/scrape"
     case scrapingStatus = "insurance/scraping/status/id/%@"
     
@@ -22,8 +22,15 @@ enum Endpoint: String {
         return URL(string: Endpoint.baseUrl + self.rawValue)!
     }
     
-    func url(_ arguments: [String]) -> URL {
-        let string = String(format: Endpoint.baseUrl + self.rawValue, arguments: arguments)
+    func url(_ parameter: [String]) -> URL {
+        let string = String(format: Endpoint.baseUrl + self.rawValue, arguments: parameter)
         return URL(string: string)!
+    }
+    
+    func url(_ queryItems: [String: String]) -> URL {
+        let queryItems = queryItems.map { URLQueryItem(name: $0.key, value: $0.value) }
+        var urlComponent = URLComponents(string: Endpoint.baseUrl + self.rawValue)!
+        urlComponent.queryItems = queryItems
+        return urlComponent.url!
     }
 }

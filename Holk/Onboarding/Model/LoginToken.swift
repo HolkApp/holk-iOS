@@ -9,12 +9,12 @@
 import Foundation
 
 struct LoginToken: Codable {
-    var accessToken: String
-    var refreshToken: String
-    var tokenType: String
-    var scope: String
-    var jti: String
-    var expiresInSeconds: Int
+    let accessToken: String
+    let refreshToken: String
+    let tokenType: String
+    let scope: String
+    let jti: String
+    let expiresInSeconds: Int
     
     private enum CodingKeys: String, CodingKey {
         case accessToken = "access_token"
