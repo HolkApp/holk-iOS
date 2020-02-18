@@ -93,8 +93,8 @@ final class OnboardingContainerViewController: UIViewController {
             
             childNavigationController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             childNavigationController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            childNavigationController.view.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            childNavigationController.view.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            childNavigationController.view.topAnchor.constraint(equalTo: view.topAnchor),
+            childNavigationController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
     

@@ -15,6 +15,7 @@ final class KeyboardEventFloatingViewHandler: KeyboardEventHandler {
     private var bottomConstraint: NSLayoutConstraint
     private let floatingButtonBottomMargin: CGFloat
     
+    // bottomConstraint needs to have a positive constant
     public init(floatingView: UIView, view: UIView, bottomConstraint: NSLayoutConstraint) {
         self.floatingView = floatingView
         self.view = view
