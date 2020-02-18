@@ -111,7 +111,7 @@ final class OnboardingConsentViewController: UIViewController {
             nextButton.widthAnchor.constraint(equalToConstant: 80),
             nextButton.heightAnchor.constraint(equalToConstant: 80),
             nextButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            nextButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -40)
+            view.bottomAnchor.constraint(equalTo: nextButton.bottomAnchor, constant: 40)
         ])
     }
     

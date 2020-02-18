@@ -52,7 +52,7 @@ final class OnboardingConfirmationViewController: UIViewController {
         descriptionLabel.numberOfLines = 0
         descriptionLabel.text = String(format: "We found your insurance at %@", insuranceIssuer.displayName)
         
-        doneButton.setTitle("Logga in", for: .normal)
+        doneButton.setTitle("Add to Holk", for: .normal)
         doneButton.backgroundColor = Color.mainHighlightColor
         doneButton.titleLabel?.font = Font.semibold(.subtitle)
         doneButton.set(color: Color.mainForegroundColor)

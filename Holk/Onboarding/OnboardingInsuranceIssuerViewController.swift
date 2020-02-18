@@ -43,7 +43,7 @@ final class OnboardingInsuranceIssuerViewController: UIViewController {
         headerLabel.font = Font.bold(.header)
         headerLabel.textColor = Color.mainForegroundColor
         headerLabel.textAlignment = .left
-        headerLabel.text = "Pick Insurance Issuer"
+        headerLabel.text = "Pick insurance company"
         headerLabel.numberOfLines = 0
         
         tableView.register(OnboardingInsuranceCell.self, forCellReuseIdentifier: "Cell")

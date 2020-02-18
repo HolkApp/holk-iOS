@@ -11,20 +11,27 @@ import RxCocoa
 import RxSwift
 
 class NewUserViewController: UIViewController {
-    // MARK: - IBOutlets
-    @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var subtitleLabel: UILabel!
-    @IBOutlet private weak var emailTextField: HolkTextField!
-    
     // MARK: - Public variables
     weak var coordinator: SessionCoordinator?
     
     // MARK: - Private variables
-    private var textView = UITextView()
+    private let stackView = UIStackView()
+    private let titleLabel = UILabel()
+    private let subtitleLabel = UILabel()
+    private let descriptionLabel = UILabel()
+    private let emailTextField = HolkTextField()
     private var doneButton = HolkButton()
     private var doneButtonBottomConstraint: NSLayoutConstraint!
     private var bag = DisposeBag()
     private var keyboardEventObserver: KeyboardEventObserver?
+    
+    init() {
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +45,10 @@ class NewUserViewController: UIViewController {
         navigationItem.setHidesBackButton(true, animated: animated)
     }
     
-    private func setup() {        
+    private func setup() {
+        view.layoutMargins = .init(top: 20, left: 40, bottom: 20, right: 40)
+        view.backgroundColor = Color.mainBackgroundColor
+        
         navigationItem.setHidesBackButton(true, animated: false)
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: UIImage(systemName: "xmark")?.withSymbolWeightConfiguration(.medium),
@@ -48,15 +58,37 @@ class NewUserViewController: UIViewController {
         )
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard(_:)))
         view.addGestureRecognizer(tapGestureRecognizer)
-        view.addSubview(textView)
+        
+        view.addSubview(stackView)
+        stackView.addArrangedSubview(titleLabel)
+        stackView.setCustomSpacing(16, after: titleLabel)
+        stackView.addArrangedSubview(subtitleLabel)
+        stackView.setCustomSpacing(24, after: subtitleLabel)
+        stackView.addArrangedSubview(descriptionLabel)
+        stackView.setCustomSpacing(32, after: descriptionLabel)
+        stackView.addArrangedSubview(emailTextField)
         view.addSubview(doneButton)
         
-        titleLabel.text = "Logga in"
-        titleLabel.font = Font.extraBold(.subHeader)
-        titleLabel.textColor = Color.mainHighlightTextColor
-        subtitleLabel.text = "Ange en e-post adress och ett valfritt lösenord."
-        subtitleLabel.font = Font.light(.subtitle)
+        stackView.axis = .vertical
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        titleLabel.text = "Hi Peter,"
+        titleLabel.font = Font.extraBold(.header)
+        titleLabel.textColor = Color.mainForegroundColor
+        titleLabel.numberOfLines = 0
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        subtitleLabel.text = "Great to see that you want to sign up for Holk"
+        subtitleLabel.font = Font.regular(.title)
         subtitleLabel.textColor = Color.mainForegroundColor
+        subtitleLabel.numberOfLines = 0
+        subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        descriptionLabel.text = "Enter your mail adress in order to complete your account"
+        descriptionLabel.font = Font.light(.subtitle)
+        descriptionLabel.textColor = Color.mainForegroundColor
+        descriptionLabel.numberOfLines = 0
+        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         
         emailTextField.helpColor = Color.placeHolderColor
         emailTextField.placeholder = "E-post adress"
@@ -64,39 +96,30 @@ class NewUserViewController: UIViewController {
         emailTextField.tintColor = Color.mainForegroundColor
         emailTextField.placeholderTextColor = Color.placeHolderColor
         
-        // TODO: Replace the google link to an actual change password page
-        textView.translatesAutoresizingMaskIntoConstraints = false
-        textView.attributedText = Parser.parse(
-            markdownString: "[Har du glömt ditt lösenord?](https://www.google.com)",
-            font: Font.semibold(.body),
-            textColor: Color.mainForegroundColor
+        doneButton.contentVerticalAlignment = .fill
+        doneButton.contentHorizontalAlignment = .fill
+        doneButton.set(
+            color: Color.mainForegroundColor,
+            image: UIImage(systemName: "arrow.right.circle")?.withSymbolWeightConfiguration(.ultraLight)
         )
-        // Seems there is an issue with the library for parsing
-        textView.linkTextAttributes = [
-            .foregroundColor: Color.mainHighlightTextColor
-        ]
-        textView.isScrollEnabled = false
-        textView.backgroundColor = .clear
-        textView.isEditable = false
-        
         doneButton.translatesAutoresizingMaskIntoConstraints = false
-        doneButtonBottomConstraint = view.bottomAnchor.constraint(equalTo: doneButton.bottomAnchor)
-        doneButton.setTitle("Logga in", for: .normal)
-        doneButton.backgroundColor = Color.mainHighlightColor
-        doneButton.titleLabel?.font = Font.semibold(.subtitle)
-        doneButton.set(color: Color.mainForegroundColor)
         doneButton.addTarget(self, action: #selector(submit(_:)), for: .touchUpInside)
-        emailTextField.rx.text.orEmpty.map{ $0.isEmpty }.bind(to: doneButton.rx.isHidden).disposed(by: bag)
+        emailTextField.rx.text.orEmpty.map{ !$0.isEmpty }.bind(to: doneButton.rx.isEnabled).disposed(by: bag)
+        
+        doneButtonBottomConstraint = view.bottomAnchor.constraint(equalTo: doneButton.bottomAnchor, constant: 40)
+        let stackViewTopConstraint = stackView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor)
+        stackViewTopConstraint.priority = .defaultLow
         
         NSLayoutConstraint.activate([
-            textView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 45),
-            textView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -45),
-            textView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -80),
+            stackView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+            stackViewTopConstraint,
+            stackView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
             
-            doneButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            doneButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            doneButton.heightAnchor.constraint(equalToConstant: 90),
-            doneButtonBottomConstraint
+            doneButton.topAnchor.constraint(greaterThanOrEqualTo: stackView.bottomAnchor, constant: 24),
+            doneButtonBottomConstraint,
+            doneButton.widthAnchor.constraint(equalToConstant: 80),
+            doneButton.heightAnchor.constraint(equalToConstant: 80),
+            doneButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             ])
         let keyboardEventFloatingViewHandler = KeyboardEventFloatingViewHandler(floatingView: doneButton, view: view, bottomConstraint: doneButtonBottomConstraint)
         keyboardEventObserver = KeyboardEventObserver(handler: keyboardEventFloatingViewHandler)

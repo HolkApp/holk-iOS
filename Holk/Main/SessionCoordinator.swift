@@ -89,7 +89,7 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
     }
     
     func showNewUser(shouldPopOtherViews: Bool = false) {
-        let vc = StoryboardScene.Onboarding.newUserViewController.instantiate()
+        let vc = NewUserViewController()
         vc.coordinator = self
 
         navController.pushViewController(vc, animated: true)
