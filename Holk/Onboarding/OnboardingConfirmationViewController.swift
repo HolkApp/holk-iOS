@@ -13,6 +13,11 @@ final class OnboardingConfirmationViewController: UIViewController {
     private let imageView = UIImageView()
     private let titleLabel = UILabel()
     private let descriptionLabel = UILabel()
+    private let cardView = UIView()
+    private let cardContentView = UIView()
+    private let insuranceLabel = UILabel()
+    private let addressLabel = UILabel()
+    private let badgeLabel = UILabel()
     private let doneButton = HolkButton()
     
     private let insuranceIssuer: InsuranceIssuer
@@ -52,6 +57,32 @@ final class OnboardingConfirmationViewController: UIViewController {
         descriptionLabel.numberOfLines = 0
         descriptionLabel.text = String(format: "We found your insurance at %@", insuranceIssuer.displayName)
         
+        cardView.backgroundColor = .clear
+        cardView.layer.shadowRadius = 15
+        cardView.layer.shadowOffset = CGSize(width: 0, height: 8)
+        cardView.layer.shadowColor = UIColor.black.cgColor
+        cardView.layer.shadowOpacity = 0.08
+        cardView.layoutMargins = .init(top: 16, left: 32, bottom: 16, right: 32)
+        
+        cardContentView.backgroundColor = Color.mainBackgroundColor
+        
+        insuranceLabel.font = Font.regular(.caption)
+        insuranceLabel.textColor = Color.mainForegroundColor
+        insuranceLabel.numberOfLines = 0
+        insuranceLabel.text = insuranceIssuer.displayName
+        
+        addressLabel.font = Font.regular(.cellTitle)
+        addressLabel.textColor = Color.mainForegroundColor
+        addressLabel.numberOfLines = 0
+        addressLabel.text = "address"
+        
+        badgeLabel.font = Font.regular(.cellTitle)
+        badgeLabel.textAlignment = .center
+        badgeLabel.textColor = Color.mainBackgroundColor
+        badgeLabel.layer.cornerRadius = 16
+        badgeLabel.layer.backgroundColor = UIColor.red.cgColor
+        badgeLabel.text = "7"
+        
         doneButton.setTitle("Add to Holk", for: .normal)
         doneButton.backgroundColor = Color.mainHighlightColor
         doneButton.titleLabel?.font = Font.semibold(.subtitle)
@@ -65,18 +96,31 @@ final class OnboardingConfirmationViewController: UIViewController {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        cardView.translatesAutoresizingMaskIntoConstraints = false
+        cardContentView.translatesAutoresizingMaskIntoConstraints = false
+        insuranceLabel.translatesAutoresizingMaskIntoConstraints = false
+        addressLabel.translatesAutoresizingMaskIntoConstraints = false
+        badgeLabel.translatesAutoresizingMaskIntoConstraints = false
         doneButton.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(imageView)
         view.addSubview(titleLabel)
         view.addSubview(descriptionLabel)
+        view.addSubview(cardView)
+        cardView.addSubview(cardContentView)
+        cardContentView.addSubview(insuranceLabel)
+        cardContentView.addSubview(addressLabel)
+        cardView.addSubview(badgeLabel)
         view.addSubview(doneButton)
+        
+        let cardViewBottomConstraint = cardView.bottomAnchor.constraint(lessThanOrEqualTo: doneButton.topAnchor)
+            cardViewBottomConstraint.priority = .defaultHigh
         
         NSLayoutConstraint.activate([
             imageView.widthAnchor.constraint(equalToConstant: 80),
             imageView.heightAnchor.constraint(equalToConstant: 80),
             imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
-            imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
+            imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 80),
             
             titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 20),
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
@@ -85,6 +129,30 @@ final class OnboardingConfirmationViewController: UIViewController {
             descriptionLabel.topAnchor.constraint(equalTo: titleLabel.lastBaselineAnchor, constant: 20),
             descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
             descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
+            
+            cardView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 56),
+            cardView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            cardView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            cardViewBottomConstraint,
+            
+            cardContentView.leadingAnchor.constraint(equalTo: cardView.layoutMarginsGuide.leadingAnchor),
+            cardContentView.topAnchor.constraint(equalTo: cardView.layoutMarginsGuide.topAnchor),
+            cardContentView.trailingAnchor.constraint(equalTo: cardView.layoutMarginsGuide.trailingAnchor),
+            cardContentView.bottomAnchor.constraint(equalTo: cardView.layoutMarginsGuide.bottomAnchor),
+            
+            insuranceLabel.leadingAnchor.constraint(equalTo: cardContentView.leadingAnchor, constant: 24),
+            insuranceLabel.topAnchor.constraint(equalTo: cardContentView.topAnchor, constant: 24),
+            insuranceLabel.trailingAnchor.constraint(equalTo: cardContentView.trailingAnchor, constant: -24),
+            
+            addressLabel.leadingAnchor.constraint(equalTo: cardContentView.leadingAnchor, constant: 24),
+            addressLabel.topAnchor.constraint(equalTo: insuranceLabel.lastBaselineAnchor, constant: 8),
+            addressLabel.trailingAnchor.constraint(equalTo: cardContentView.trailingAnchor, constant: -24),
+            addressLabel.lastBaselineAnchor.constraint(equalTo: cardContentView.bottomAnchor, constant: -32),
+            
+            badgeLabel.widthAnchor.constraint(equalToConstant: 32),
+            badgeLabel.heightAnchor.constraint(equalToConstant: 32),
+            badgeLabel.centerYAnchor.constraint(equalTo: cardContentView.topAnchor),
+            badgeLabel.trailingAnchor.constraint(equalTo: cardContentView.trailingAnchor, constant: -40),
             
             doneButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             doneButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
