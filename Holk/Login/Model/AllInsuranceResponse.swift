@@ -35,6 +35,9 @@ struct Insurance: Codable {
     let startDate: Date
     let endDate: Date
     let username: String
+    var address: String {
+        "Sveavägen 140"
+    }
     
     private enum CodingKeys: String, CodingKey {
         case id = "id"
