@@ -101,6 +101,7 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
     }
     
     func onboarding() {
+        onboardingContainerViewController.startOnboarding()
         onboardingContainerViewController.modalPresentationStyle = .overFullScreen
         if navController.viewControllers.isEmpty {
             navController.pushViewController(onboardingContainerViewController, animated: true)

@@ -66,7 +66,6 @@ final class OnboardingContainerViewController: UIViewController {
         childNavigationController.navigationBar.shadowImage = UIImage()
         
         setupConstraints()
-        startOnboarding()
     }
     
     private func setupConstraints() {
@@ -200,9 +199,27 @@ extension OnboardingContainerViewController: OnboardingCoordinating {
     }
     
     private func showInsuranceAggregatedConfirmation(_ insuranceIssuer: InsuranceIssuer) {
-        let confirmationViewController = OnboardingConfirmationViewController(insuranceIssuer: insuranceIssuer)
+        storeController.insuranceStore.getAllInsurance()
+        let confirmationViewController = OnboardingConfirmationViewController()
         confirmationViewController.coordinator = self
-        childNavigationController.pushViewController(confirmationViewController, animated: true)
+        childNavigationController.setViewControllers([confirmationViewController], animated: true)
+        storeController.insuranceStore.allInsurance.takeUntil(.inclusive) { (requestState) -> Bool in
+            if case .loaded = requestState {
+                return true
+            }
+            return false
+        }.subscribe(onNext: { [weak self] requestState in
+            switch requestState {
+            case .loaded(let allInsurance):
+                self?.loadingFinished()
+                confirmationViewController.allInsurance = allInsurance
+            case .error:
+                // TODO: error handling
+                break
+            default:
+                break
+            }
+            }).disposed(by: bag)
     }
     
     private func progressBarToTop() {
