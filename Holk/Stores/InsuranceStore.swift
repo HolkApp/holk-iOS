@@ -8,9 +8,11 @@
 
 import Alamofire
 import RxSwift
-
+import RxRelay
 
 final class InsuranceStore: APIStore {
+    // MARK: - Public variables
+    var allInsurance = BehaviorRelay<RequestState<AllInsuranceResponse, APIError>>.init(value: .unintiated)
     // MARK: - Private variables
     private let queue: DispatchQueue
     private let sessionStore: SessionStore
@@ -24,9 +26,20 @@ final class InsuranceStore: APIStore {
     }
     
     func getAllInsurance() {
+        switch allInsurance.value {
+        case .loading:
+            return
+        default:
+            allInsurance.accept(.loading)
+        }
         allInsurances().subscribe(onNext: { result in
-            let text = try? result.get()
-            
+            switch result {
+            case .success(let insurances):
+                self.allInsurance.accept(.loaded(value: insurances))
+            case .failure:
+                // TODO: Error handling
+                break
+            }
         }).disposed(by: bag)
     }
     
