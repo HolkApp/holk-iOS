@@ -29,6 +29,7 @@ struct AllInsuranceResponse: Codable {
 struct Insurance: Codable {
     let id: String
 //    let insuranceProvider: InsuranceIssuer
+    let insuranceProvider: String
     let insuranceType: String
     let issuerReference: String
     let ssn: String
@@ -41,7 +42,7 @@ struct Insurance: Codable {
     
     private enum CodingKeys: String, CodingKey {
         case id = "id"
-//        case insuranceProvider = "insuranceProvider"
+        case insuranceProvider = "insuranceProvider"
         case insuranceType = "insuranceType"
         case issuerReference = "issuerReference"
         case startDate = "startDate"
@@ -56,6 +57,7 @@ extension Insurance {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         id = try container.decode(String.self, forKey: .id)
+        insuranceProvider = try container.decode(String.self, forKey: .insuranceProvider)
         insuranceType = try container.decode(String.self, forKey: .insuranceType)
         issuerReference = try container.decode(String.self, forKey: .issuerReference)
         let startDateString = try container.decode(String.self, forKey: .startDate)
