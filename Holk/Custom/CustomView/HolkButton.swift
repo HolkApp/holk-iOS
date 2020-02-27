@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HolkButton: UIButton {
+final class HolkButton: UIButton {
     override var isEnabled: Bool {
         didSet {
             guard let backgroundColor = backgroundColor, isEnabled != oldValue else { return }

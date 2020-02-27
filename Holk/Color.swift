@@ -59,10 +59,6 @@ enum Color {
         return makeColor(asset: #function)
     }
     
-    static var mainHighlightTextColor: UIColor {
-        return makeColor(asset: #function)
-    }
-    
     static var mainWarningColor: UIColor {
         return makeColor(asset: #function)
     }

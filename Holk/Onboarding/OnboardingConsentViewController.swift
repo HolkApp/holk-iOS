@@ -58,7 +58,7 @@ final class OnboardingConsentViewController: UIViewController {
         descriptionTextView.isScrollEnabled = false
         descriptionTextView.isEditable = false
         descriptionTextView.linkTextAttributes = [
-            .foregroundColor: Color.mainHighlightTextColor,
+            .foregroundColor: Color.landingBackgroundColor,
             .underlineStyle: NSUnderlineStyle.single.rawValue
         ]
         let text = "We will fetch your insurance from %@. \n[Our terms and policies](http://google.com)"

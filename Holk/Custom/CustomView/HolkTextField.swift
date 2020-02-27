@@ -8,7 +8,7 @@
 
 import UIKit
 
- class HolkTextField: UITextField {
+final class HolkTextField: UITextField {
     // MARK: - Private variables
     private let underlineLayer = CAShapeLayer()
     private let placeholderLayer = CATextLayer()

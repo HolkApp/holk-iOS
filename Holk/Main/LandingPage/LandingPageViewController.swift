@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LandingPageViewController: UIPageViewController {
+final class LandingPageViewController: UIPageViewController {
     // MARK: - Private Variables
     private var loginButton = HolkButton()
     private var pageControl = UIPageControl()
