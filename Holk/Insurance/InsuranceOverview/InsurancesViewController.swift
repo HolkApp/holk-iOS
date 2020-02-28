@@ -29,11 +29,10 @@ final class InsurancesViewController: UIViewController {
         setup()
     }
     
-    
     private func setup() {
         view.backgroundColor = .clear
         tableView.backgroundColor = .clear
-        
+
         tableView.estimatedRowHeight = 340
         tableView.delegate = self
         tableView.dataSource = self
@@ -41,7 +40,7 @@ final class InsurancesViewController: UIViewController {
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         tableView.showsVerticalScrollIndicator = false
         tableView.alwaysBounceVertical = false
-        
+
         tableView.register(InsuranceTableViewCell.self, forCellReuseIdentifier: InsuranceTableViewCell.identifier)
         tableView.register(InsuranceAddMoreCell.self, forCellReuseIdentifier: InsuranceAddMoreCell.identifier)
     }

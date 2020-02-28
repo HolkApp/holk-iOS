@@ -26,34 +26,62 @@ final class InsuranceTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+
+        selectionStyle = .none
+        backgroundColor = .clear
+
+        contentView.backgroundColor = .clear
+        contentView.layer.shadowOffset = CGSize(width: 0, height: 8)
+        contentView.layer.shadowColor = UIColor.black.cgColor
+        contentView.layer.shadowOpacity = 0.08
+
         titleLabel.font = Font.semibold(.title)
         titleLabel.textColor = Color.mainForegroundColor
-        addressLabel.font = Font.regular(.subtitle)
-        addressLabel.textColor = Color.mainForegroundColor
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        subtitleLabel.font = Font.regular(.subtitle)
+        subtitleLabel.textColor = Color.mainForegroundColor
+        subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        insurancePartsLabel.font = Font.semibold(.title)
+        insurancePartsLabel.textColor = Color.mainForegroundColor
+        insurancePartsLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        insuranceTextLabel.font = Font.regular(.subtitle)
+        insuranceTextLabel.textColor = Color.mainForegroundColor
+        insuranceTextLabel.translatesAutoresizingMaskIntoConstraints = false
         
         hintValueLabel.font = Font.semibold(.header)
         hintValueLabel.textColor = Color.mainForegroundColor
         hintValueLabel.suffixColor = Color.mainAlertColor
         hintValueLabel.suffixFont = Font.fontAwesome(style: .light, size: .subtitle)
+        hintValueLabel.translatesAutoresizingMaskIntoConstraints = false
+
         hintLabel.font = Font.regular(.description)
         hintLabel.textColor = Color.mainForegroundColor
+        hintLabel.translatesAutoresizingMaskIntoConstraints = false
         
         ideaValueLabel.font = Font.semibold(.header)
         ideaValueLabel.textColor = Color.mainForegroundColor
         ideaValueLabel.suffixColor = Color.mainWarningColor
         ideaValueLabel.suffixFont = Font.fontAwesome(style: .light, size: .subtitle)
+        ideaValueLabel.translatesAutoresizingMaskIntoConstraints = false
+
         ideaLabel.font = Font.regular(.description)
         ideaLabel.textColor = Color.mainForegroundColor
-        
-        backgroundColor = .clear
-        contentView.backgroundColor = .clear
-        containerView.backgroundColor = Color.secondaryBackgroundColor
-        
-        selectionStyle = .none
+        ideaLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        ringChart.dataSource = self
+
+        ringChart.translatesAutoresizingMaskIntoConstraints = false
+
+        contentView.addSubview(containerView)
+
+        containerView.addSubview(ringChart)
+
         containerView.layer.cornerRadius = 6
-        if #available(iOS 13.0, *) {
-            containerView.layer.cornerCurve = .continuous
-        }
+        containerView.layer.cornerCurve = .continuous
+        containerView.backgroundColor = Color.secondaryBackgroundColor
     }
     
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
@@ -62,21 +90,33 @@ final class InsuranceTableViewCell: UITableViewCell {
             self.transform = scaleTransform
         }
         animator.startAnimation()
-        
-        lightFeedbackGenerator.impactOccurred()
+
+        if highlighted {
+            lightFeedbackGenerator.impactOccurred()
+        }
     }
     
-    func configureCell() {
+    func configureCell(_ insurance: Insurance) {
         // TODO: Create a model
-        titleLabel.text = "Hemförsäkring"
-        addressLabel.text = "Sveavägen 140, 1 trp"
+        self.insurance = insurance
+
+        titleLabel.text = insurance.insuranceType
+        subtitleLabel.text = insurance.insuranceProvider
         hintValueLabel.text = "3"
         hintValueLabel.suffixText = String.fontAwesomeIcon(name: .lightbulbOn)
         hintLabel.text = "Tänk på"
         ideaValueLabel.text = "2"
         ideaValueLabel.suffixText = String.fontAwesomeIcon(name: .bell)
         ideaLabel.text = "Luckor"
-        
-        logoImageView.image = UIImage(named: "Folksam")
+    }
+}
+
+extension InsuranceTableViewCell: HolkRingChartDataSource {
+    func ringChart(_ pieChart: HolkRingChart, sizeForSegmentAt index: Int) -> CGFloat {
+        return CGFloat(insurance?.insuranceParts.count ?? 1)
+    }
+
+    func numberOfSegments(_ pieChart: HolkRingChart) -> Int {
+        return insurance?.insuranceParts.count ?? 1
     }
 }

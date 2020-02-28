@@ -39,6 +39,13 @@ struct Insurance: Codable {
     var address: String {
         "Sveavägen 140"
     }
+    var insuranceParts: [String] {
+        [
+            "Travel",
+            "Home",
+            "Pets"
+        ]
+    }
     
     private enum CodingKeys: String, CodingKey {
         case id = "id"
