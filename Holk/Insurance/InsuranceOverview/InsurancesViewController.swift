@@ -42,8 +42,7 @@ final class InsurancesViewController: UIViewController {
         tableView.showsVerticalScrollIndicator = false
         tableView.alwaysBounceVertical = false
         
-        let insuranceTableViewCell = UINib(nibName: InsuranceTableViewCell.identifier, bundle: nil)
-        tableView.register(insuranceTableViewCell, forCellReuseIdentifier: InsuranceTableViewCell.identifier)
+        tableView.register(InsuranceTableViewCell.self, forCellReuseIdentifier: InsuranceTableViewCell.identifier)
         tableView.register(InsuranceAddMoreCell.self, forCellReuseIdentifier: InsuranceAddMoreCell.identifier)
     }
 }

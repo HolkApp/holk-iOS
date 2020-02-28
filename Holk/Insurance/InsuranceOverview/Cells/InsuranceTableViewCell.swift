@@ -10,26 +10,22 @@ import UIKit
 
 final class InsuranceTableViewCell: UITableViewCell {
     // MARK: - IBOutlets
-    @IBOutlet private weak var containerView: UIView!
-    @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var addressLabel: UILabel!
-    @IBOutlet private weak var hintValueLabel: HolkIllustrationLabel!
-    @IBOutlet private weak var hintLabel: UILabel!
-    @IBOutlet private weak var ideaValueLabel: HolkIllustrationLabel!
-    @IBOutlet private weak var ideaLabel: UILabel!
-    @IBOutlet private weak var logoImageView: UIImageView!
+    private let containerView = UIView()
+    private let titleLabel = UILabel()
+    private let subtitleLabel = UILabel()
+    private let insurancePartsLabel = UILabel()
+    private let insuranceTextLabel = UILabel()
+    private let hintValueLabel = HolkIllustrationLabel()
+    private let hintLabel = UILabel()
+    private let ideaValueLabel = HolkIllustrationLabel()
+    private let ideaLabel = UILabel()
+    private let ringChart = HolkRingChart()
+    var insurance: Insurance?
     // MARK: - Private variables
     private let lightFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        
-        logoImageView.image = nil
-    }
-    
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         titleLabel.font = Font.semibold(.title)
         titleLabel.textColor = Color.mainForegroundColor
         addressLabel.font = Font.regular(.subtitle)

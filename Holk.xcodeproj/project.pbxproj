@@ -84,7 +84,6 @@
 		8FF6E72422A70F6600F6D398 /* Then.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF6E72322A70F6600F6D398 /* Then.swift */; };
 		8FF6E72622AC0D2800F6D398 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF6E72522AC0D2800F6D398 /* Color.swift */; };
 		8FF6E72822B026DB00F6D398 /* InsurancesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF6E72722B026DB00F6D398 /* InsurancesViewController.swift */; };
-		8FF6E72B22B0331000F6D398 /* InsuranceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8FF6E72A22B0331000F6D398 /* InsuranceTableViewCell.xib */; };
 		8FF6E72D22B0333000F6D398 /* InsuranceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF6E72C22B0333000F6D398 /* InsuranceTableViewCell.swift */; };
 		8FF6E73422B57DA800F6D398 /* UITableViewCell+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF6E73322B57DA800F6D398 /* UITableViewCell+extension.swift */; };
 		8FF6E73622B6A88100F6D398 /* InsuranceAddMoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF6E73522B6A88100F6D398 /* InsuranceAddMoreCell.swift */; };
@@ -198,7 +197,6 @@
 		8FF6E72322A70F6600F6D398 /* Then.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Then.swift; sourceTree = "<group>"; };
 		8FF6E72522AC0D2800F6D398 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		8FF6E72722B026DB00F6D398 /* InsurancesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsurancesViewController.swift; sourceTree = "<group>"; };
-		8FF6E72A22B0331000F6D398 /* InsuranceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InsuranceTableViewCell.xib; sourceTree = "<group>"; };
 		8FF6E72C22B0333000F6D398 /* InsuranceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceTableViewCell.swift; sourceTree = "<group>"; };
 		8FF6E73322B57DA800F6D398 /* UITableViewCell+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+extension.swift"; sourceTree = "<group>"; };
 		8FF6E73522B6A88100F6D398 /* InsuranceAddMoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceAddMoreCell.swift; sourceTree = "<group>"; };
@@ -500,7 +498,6 @@
 		8FF6E72922B02CBB00F6D398 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				8FF6E72A22B0331000F6D398 /* InsuranceTableViewCell.xib */,
 				8FF6E72C22B0333000F6D398 /* InsuranceTableViewCell.swift */,
 				8FF6E73522B6A88100F6D398 /* InsuranceAddMoreCell.swift */,
 				8F63C30D22C8CE5300CFE334 /* InsuranceCostTableViewCell.xib */,
@@ -685,7 +682,6 @@
 				8FF6E73F22B6B67A00F6D398 /* InsuranceProtection.storyboard in Resources */,
 				8F6BCA3922F73CBF004B887E /* Font Awesome 5 Pro-Solid-900.otf in Resources */,
 				8FF6E74822B82EFB00F6D398 /* OpenSans-Regular.ttf in Resources */,
-				8FF6E72B22B0331000F6D398 /* InsuranceTableViewCell.xib in Resources */,
 				8F63C30F22C8CE5300CFE334 /* InsuranceCostTableViewCell.xib in Resources */,
 				8F6BCA3B22F73CBF004B887E /* Font Awesome 5 Pro-Regular-400.otf in Resources */,
 				8FA8F10E232D377F00670471 /* Color.xcassets in Resources */,
