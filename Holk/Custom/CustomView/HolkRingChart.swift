@@ -171,10 +171,10 @@ final class HolkRingChart: UIView {
         super.layoutSubviews()
         
         let size = intrinsicContentSize
-        containerView.frame = CGRect(x: (bounds.width - size.width) / 2,
-                                     y: (bounds.height - size.height) / 2,
-                                     width: size.width,
-                                     height: size.height)
+//        containerView.frame = CGRect(x: (bounds.width - size.width) / 2,
+//                                     y: (bounds.height - size.height) / 2,
+//                                     width: size.width,
+//                                     height: size.height)
         
         for segment in segments {
             segment.frame = containerView.bounds
@@ -219,10 +219,17 @@ extension HolkRingChart {
 extension HolkRingChart {
     private func setup() {
         titleView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+
         addSubview(titleView)
         addSubview(containerView)
         
         NSLayoutConstraint.activate([
+            containerView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            containerView.topAnchor.constraint(equalTo: topAnchor),
+            containerView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            containerView.bottomAnchor.constraint(equalTo: bottomAnchor),
+
             titleView.centerXAnchor.constraint(equalTo: centerXAnchor),
             titleView.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
