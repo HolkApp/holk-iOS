@@ -13,7 +13,8 @@ final class HolkSegmentedControl: UISegmentedControl {
     private var segmentedControlFrames: [CGRect] = []
     private var imageLayer: CAShapeLayer = CAShapeLayer()
     private var imageLayerSize: CGSize {
-        CGSize(width: frame.width / CGFloat(numberOfSegments) - 10, height: 2)
+        let validNumberOfSegments = max(numberOfSegments, 1)
+        return CGSize(width: frame.width / CGFloat(validNumberOfSegments) - 10, height: 2)
     }
     
     override init(frame: CGRect) {
