@@ -13,9 +13,22 @@ class TabBarController: UITabBarController {
     weak var coordinator: SessionCoordinator?
     
     // MARK: - Private variables
-    private let insuranceCoordinator = InsuranceCoordinator(navController: UINavigationController())
-    private let protectionCoordinator = InsuranceProtectionCoordinator(navController: UINavigationController())
-    
+    private let insuranceCoordinator: InsuranceCoordinator
+    private let protectionCoordinator: InsuranceProtectionCoordinator
+    private var storeController: StoreController
+
+    init(storeController: StoreController) {
+        self.storeController = storeController
+        insuranceCoordinator = InsuranceCoordinator(navController: UINavigationController(), storeController: storeController)
+        protectionCoordinator = InsuranceProtectionCoordinator(navController: UINavigationController())
+
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func viewDidLoad() {
         insuranceCoordinator.start()
         insuranceCoordinator.delegate = self

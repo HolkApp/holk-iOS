@@ -43,12 +43,10 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
     }
     
     func showSession(initialScreen: Bool = false) {
-        let tabbarController = TabBarController()
+        let tabbarController = TabBarController(storeController: storeController)
         tabbarController.coordinator = self
         tabbarController.modalPresentationStyle = .overFullScreen
-        if navController.viewControllers.isEmpty {
-            navController.pushViewController(tabbarController, animated: true)
-        } else if navController.presentedViewController != nil {
+        if navController.presentedViewController != nil {
             navController.dismiss(animated: true) {
                 self.navController.present(tabbarController, animated: true) {
                     self.navController.popToRootViewController(animated: false)
@@ -123,7 +121,9 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
     func showLoading(initialScreen: Bool = false) {
         let loadingViewController = LoadingViewController()
         loadingViewController.modalPresentationStyle = .overFullScreen
-        if initialScreen || navController.presentedViewController != nil {
+        if navController.viewControllers.isEmpty {
+            navController.setViewControllers([loadingViewController], animated: false)
+        } else if initialScreen || navController.presentedViewController != nil {
             navController.dismiss(animated: true) {
                 self.navController.present(loadingViewController, animated: true) {
                     self.navController.popToRootViewController(animated: false)
@@ -149,6 +149,7 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
     }
     
     private func showInitialScreen() {
+        showLoading(initialScreen: true)
         switch storeController.sessionState {
         case .newSession:
             showLandingScreen(initialScreen: true)
@@ -156,7 +157,9 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
             showLoading(initialScreen: true)
             storeController.authenticationStore.refresh().subscribe().disposed(by: bag)
         case .updated:
-            showSession(initialScreen: true)
+            DispatchQueue.main.async {
+                self.showSession(initialScreen: true)
+            }
         }
     }
     
