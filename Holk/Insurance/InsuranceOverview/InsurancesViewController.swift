@@ -9,19 +9,31 @@
 import UIKit
 
 protocol InsurancesViewControllerDelegate: AnyObject {
-    func InsurancesViewController(_ viewController: InsurancesViewController, didScroll scrollView: UIScrollView)
+    func insurancesViewController(_ viewController: InsurancesViewController, didScroll scrollView: UIScrollView)
 }
 
 final class InsurancesViewController: UIViewController {
     // MARK: - IBOutlets
-    @IBOutlet private weak var tableView: UITableView!
+    private let tableView = UITableView()
     // MARK: - Public variables
+    var storeController: StoreController
     weak var delegate: InsurancesViewControllerDelegate?
     // MARK: - Public variables
     private enum Section: Int, CaseIterable {
         case insurance
         case addMore
     }
+
+    init(storeController: StoreController) {
+        self.storeController = storeController
+
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     private var numberOfInsurances = 2
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,18 +43,30 @@ final class InsurancesViewController: UIViewController {
     
     private func setup() {
         view.backgroundColor = .clear
-        tableView.backgroundColor = .clear
+        view.layoutMargins = .init(top: 8, left: 8, bottom: 0, right: 8)
 
+        tableView.backgroundColor = .clear
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 340
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        tableView.contentInset = .zero
         tableView.showsVerticalScrollIndicator = false
         tableView.alwaysBounceVertical = false
+        tableView.translatesAutoresizingMaskIntoConstraints = false
 
         tableView.register(InsuranceTableViewCell.self, forCellReuseIdentifier: InsuranceTableViewCell.identifier)
         tableView.register(InsuranceAddMoreCell.self, forCellReuseIdentifier: InsuranceAddMoreCell.identifier)
+
+        view.addSubview(tableView)
+
+        NSLayoutConstraint.activate([
+            tableView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+            tableView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor)
+        ])
     }
 }
 
@@ -64,24 +88,14 @@ extension InsurancesViewController: UITableViewDataSource {
         switch indexPath.section {
         case Section.insurance.rawValue:
             let cell = tableView.dequeueReusableCell(withIdentifier: InsuranceTableViewCell.identifier, for: indexPath)
+            // TODO: Configure this
             if let insuranceTableViewCell = cell as? InsuranceTableViewCell {
-                insuranceTableViewCell.configureCell()
+//                insuranceTableViewCell.configureCell(pro)
             }
             return cell
         case Section.addMore.rawValue:
             return tableView.dequeueReusableCell(withIdentifier: InsuranceAddMoreCell.identifier, for: indexPath)
         default: return UITableViewCell()
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch indexPath.section {
-        case Section.insurance.rawValue:
-            return 340
-        case Section.addMore.rawValue:
-            return 145
-        default:
-            return 0
         }
     }
 }
@@ -99,7 +113,7 @@ extension InsurancesViewController: UITableViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentSize.height > view.frame.height {
-            delegate?.InsurancesViewController(self, didScroll: scrollView)
+            delegate?.insurancesViewController(self, didScroll: scrollView)
         }
     }
 }

@@ -15,23 +15,24 @@ protocol InsuranceCoordinatorDelegate: AnyObject {
 class InsuranceCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
     // MARK: - Public Properties
     var navController: UINavigationController
+    var storeController: StoreController
     weak var delegate: InsuranceCoordinatorDelegate?
     // MARK: - Init
-    init(navController: UINavigationController) {
+    init(navController: UINavigationController, storeController: StoreController) {
         self.navController = navController
+        self.storeController = storeController
     }
     // MARK: - Public Methods
     func start() {
-        let vc = StoryboardScene.InsuranceOverview.insuranceOverviewViewController.instantiate()
+        let insuranceOverviewViewController = InsuranceOverviewViewController(storeController: storeController)
         let tabBarIcon = UIImage.fontAwesomeIcon(name: .clipboardList, style: .light, textColor: .systemBlue, size: FontAwesome.tabBarIconSize)
-        // TODO: Change this when have a real profile
-        vc.coordinator = self
+        insuranceOverviewViewController.coordinator = self
         navController.tabBarItem = UITabBarItem(title: "Översikt", image: tabBarIcon, tag: 0)
         navController.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navController.navigationBar.shadowImage = UIImage()
         navController.navigationBar.tintColor = .black
         navController.delegate = self
-        navController.pushViewController(vc, animated: true)
+        navController.pushViewController(insuranceOverviewViewController, animated: true)
     }
     
     func logout() {

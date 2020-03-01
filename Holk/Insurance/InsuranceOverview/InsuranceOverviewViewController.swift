@@ -10,19 +10,21 @@ import UIKit
 
 final class InsuranceOverviewViewController: UIViewController {
     // MARK: - IBOutlets
-    @IBOutlet private weak var headerLabel: UILabel!
-    @IBOutlet private weak var segmentedControl: HolkSegmentedControl!
-    @IBOutlet private weak var profileButton: UIButton!
-    @IBOutlet private weak var containerView: UIView!
-    @IBOutlet private weak var headerLabelTopConstraint: NSLayoutConstraint!
-    @IBOutlet private weak var segmentedControlTopConstraint: NSLayoutConstraint!
+    private let headerLabel = UILabel()
+    private let segmentedControl = HolkSegmentedControl()
+    private let profileButton = UIButton()
+    private let containerView = UIView()
+    private var headerLabelTopConstraint: NSLayoutConstraint?
+    private var segmentedControlTopConstraint: NSLayoutConstraint!
+
     // MARK: - Public variables
+    var storeController: StoreController
     var currentChildSegmentViewController: UIViewController?
     weak var coordinator: InsuranceCoordinator?
     // MARK: - Private variables
     private var childSegmentViewControllers: [UIViewController] = []
     private lazy var insurancesViewController: InsurancesViewController = {
-        let insurancesViewController = StoryboardScene.InsuranceOverview.insurancesViewController.instantiate()
+        let insurancesViewController = InsurancesViewController(storeController: storeController)
         insurancesViewController.delegate = self
         return insurancesViewController
     }()
@@ -45,7 +47,7 @@ final class InsuranceOverviewViewController: UIViewController {
                     self.profileButton.alpha = 0
                     self.navigationItem.title = self.headerLabel.text
                     self.navigationItem.rightBarButtonItem = self.profileBarButtonItem
-                    self.headerLabelTopConstraint.constant = -10
+                    self.headerLabelTopConstraint?.constant = -10
                     self.segmentedControlTopConstraint.constant = 10
                     self.view.layoutIfNeeded()
                 }) { _ in
@@ -58,7 +60,7 @@ final class InsuranceOverviewViewController: UIViewController {
                     self.profileButton.alpha = 1
                     self.navigationItem.title = String()
                     self.navigationItem.rightBarButtonItem = nil
-                    self.headerLabelTopConstraint.constant = 20
+                    self.headerLabelTopConstraint?.constant = 20
                     self.segmentedControlTopConstraint.constant = 75
                     self.view.layoutIfNeeded()
                 }) { _ in
@@ -76,7 +78,17 @@ final class InsuranceOverviewViewController: UIViewController {
             return .default
         }
     }
-    
+
+    init(storeController: StoreController) {
+        self.storeController = storeController
+
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     // MARK: Overridden methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,11 +106,45 @@ final class InsuranceOverviewViewController: UIViewController {
         headerLabel.text = "Översikt"
         headerLabel.font = Font.extraBold(.header)
         headerLabel.textColor = Color.mainForegroundColor
+        headerLabel.translatesAutoresizingMaskIntoConstraints = false
         
         profileButton.setTitle("", for: .normal)
         profileButton.setImage(UIImage(named: "Profile"), for: .normal)
         profileButton.tintColor = Color.mainForegroundColor
         profileButton.addTarget(self, action: #selector(profileTapped(sender:)), for: .touchUpInside)
+        profileButton.translatesAutoresizingMaskIntoConstraints = false
+        let headerLabelTopConstraint = headerLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20)
+        self.headerLabelTopConstraint = headerLabelTopConstraint
+        let segmentedControlTopConstraint = segmentedControl.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 72)
+        self.segmentedControlTopConstraint = segmentedControlTopConstraint
+
+        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+
+        view.addSubview(headerLabel)
+        view.addSubview(profileButton)
+        view.addSubview(segmentedControl)
+        view.addSubview(containerView)
+
+        NSLayoutConstraint.activate([
+            headerLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 36),
+            headerLabelTopConstraint,
+
+            profileButton.topAnchor.constraint(equalTo: headerLabel.topAnchor),
+            profileButton.widthAnchor.constraint(equalToConstant: 48),
+            profileButton.heightAnchor.constraint(equalToConstant: 48),
+            profileButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -36),
+
+            segmentedControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 36),
+            segmentedControlTopConstraint,
+            segmentedControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -36),
+            segmentedControl.heightAnchor.constraint(equalToConstant: 36),
+
+            containerView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 20),
+            containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
         
         setupSegmentedControl()
     }
@@ -158,7 +204,7 @@ final class InsuranceOverviewViewController: UIViewController {
 }
 
 extension InsuranceOverviewViewController: InsurancesViewControllerDelegate {
-    func InsurancesViewController(_ viewController: InsurancesViewController, didScroll scrollView: UIScrollView) {
+    func insurancesViewController(_ viewController: InsurancesViewController, didScroll scrollView: UIScrollView) {
         childViewScrollViewOffset = scrollView.contentOffset.y
     }
 }
