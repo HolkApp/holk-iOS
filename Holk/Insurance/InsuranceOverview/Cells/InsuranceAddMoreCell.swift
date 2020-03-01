@@ -38,18 +38,20 @@ final class InsuranceAddMoreCell: UITableViewCell {
         backgroundColor = .clear
         contentView.backgroundColor = .clear
         selectionStyle = .none
-        
-        let image = UIImage(named: "AddMore")
+
+        let image = UIImage(systemName: "plus.circle")?.withRenderingMode(.alwaysTemplate).withSymbolWeightConfiguration(.thin)
         
         iconImageView = UIImageView(image: image)
+        iconImageView.tintColor = Color.mainForegroundColor
         iconImageView.translatesAutoresizingMaskIntoConstraints = false
         
         contentView.addSubview(iconImageView)
         NSLayoutConstraint.activate([
+            iconImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            iconImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             iconImageView.heightAnchor.constraint(equalToConstant: 55),
             iconImageView.widthAnchor.constraint(equalToConstant: 55),
             iconImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            iconImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
-            ])
+        ])
     }
 }
