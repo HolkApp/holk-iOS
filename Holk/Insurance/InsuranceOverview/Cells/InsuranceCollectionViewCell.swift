@@ -16,7 +16,7 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
     private let containerView = UIView()
     private let titleLabel = UILabel()
     private let subtitleLabel = UILabel()
-    private let insurancePartsLabel = UILabel()
+    private let insuranceSubNumberLabel = UILabel()
     private let insuranceTextLabel = UILabel()
     private let labelStackView = UIStackView()
     private let hintStackView = UIStackView()
@@ -26,6 +26,7 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
     private let ideaValueLabel = UILabel()
     private let ideaLabel = UILabel()
     private let ringChart = HolkRingChart()
+    private let ringChartLabelsStackView = UIStackView()
     
     private let lightFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
 
@@ -72,8 +73,11 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         contentView.backgroundColor = .clear
 
         // TODO: remove this
+
         titleLabel.text = "insurance.insuranceType"
         subtitleLabel.text = "insurance.insuranceProvider"
+        insuranceSubNumberLabel.text = "4"
+        insuranceTextLabel.text = "insurance"
         hintValueLabel.text = "3"
         hintLabel.text = "Tänk på"
         ideaValueLabel.text = "2"
@@ -94,17 +98,23 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         subtitleLabel.numberOfLines = 0
         subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
 
+        insuranceSubNumberLabel.font = Font.semibold(.header)
+        insuranceSubNumberLabel.textColor = Color.mainForegroundColor
+        insuranceSubNumberLabel.numberOfLines = 0
+        insuranceSubNumberLabel.textAlignment = .center
+        insuranceSubNumberLabel.translatesAutoresizingMaskIntoConstraints = false
+
         insuranceTextLabel.font = Font.regular(.subtitle)
         insuranceTextLabel.textColor = Color.mainForegroundColor
         insuranceTextLabel.numberOfLines = 0
         insuranceTextLabel.textAlignment = .center
         insuranceTextLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        insurancePartsLabel.font = Font.semibold(.title)
-        insurancePartsLabel.textColor = Color.mainForegroundColor
-        insurancePartsLabel.numberOfLines = 0
-        insurancePartsLabel.textAlignment = .center
-        insurancePartsLabel.translatesAutoresizingMaskIntoConstraints = false
+        ringChartLabelsStackView.axis = .vertical
+        ringChartLabelsStackView.spacing = 20
+        ringChartLabelsStackView.isBaselineRelativeArrangement = true
+        ringChartLabelsStackView.backgroundColor = .green
+        ringChartLabelsStackView.translatesAutoresizingMaskIntoConstraints = false
 
         labelStackView.spacing = 16
         labelStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -148,8 +158,12 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         containerView.addSubview(titleLabel)
         containerView.addSubview(subtitleLabel)
         containerView.addSubview(ringChart)
-        //        containerView.addSubview(insuranceTextLabel)
-        //        containerView.addSubview(insurancePartsLabel)
+
+        ringChartLabelsStackView.addArrangedSubview(insuranceSubNumberLabel)
+        ringChartLabelsStackView.addArrangedSubview(insuranceTextLabel)
+        ringChart.addSubview(ringChartLabelsStackView)
+        ringChartLabelsStackView.backgroundColor = .green
+        ringChart.titleView = ringChartLabelsStackView
 
         containerView.addSubview(labelStackView)
         labelStackView.addArrangedSubview(hintStackView)
@@ -159,7 +173,6 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         hintStackView.addArrangedSubview(hintLabel)
         ideaStackView.addArrangedSubview(ideaValueLabel)
         ideaStackView.addArrangedSubview(ideaLabel)
-
 
         let containerBottomConstraint = containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -24)
         containerBottomConstraint.priority = .defaultHigh

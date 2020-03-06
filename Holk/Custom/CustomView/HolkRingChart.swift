@@ -10,12 +10,23 @@ import UIKit
 
 private enum Constants {
     static let maxNumberOfSegments = 10
-    static let ringChartWidth: CGFloat = 24
+    static let defaultRingChartWidth: CGFloat = 16
 }
 
 final class HolkRingChart: UIView {
-    var titleView = UIView()
-    var containerView = UIView()
+    var titleView = UIView() {
+        didSet {
+            NSLayoutConstraint.activate([
+                titleView.leadingAnchor.constraint(equalTo: titleContainerView.leadingAnchor),
+                titleView.topAnchor.constraint(equalTo: titleContainerView.topAnchor),
+                titleView.trailingAnchor.constraint(equalTo: titleContainerView.trailingAnchor),
+                titleView.bottomAnchor.constraint(equalTo: titleContainerView.bottomAnchor),
+            ])
+            setNeedsLayout()
+        }
+    }
+    private(set) var containerView = UIView()
+    private var titleContainerView = UIView()
     var radius: CGFloat {
         min(bounds.width/2, bounds.height/2)
     }
@@ -43,7 +54,7 @@ final class HolkRingChart: UIView {
         }
     }
     
-    var ringChartWidth: CGFloat = Constants.ringChartWidth {
+    var ringChartWidth: CGFloat = Constants.defaultRingChartWidth {
         didSet {
             setNeedsLayout()
         }
@@ -99,7 +110,7 @@ final class HolkRingChart: UIView {
         
         let baseColor = tintColor ?? .clear
         let numberOfSegments = dataSource?.numberOfSegments(self) ?? Constants.maxNumberOfSegments
-        segments = (0..<numberOfSegments).map { _ in HolkRingChartLayer(ringChartWidth: Constants.ringChartWidth, baseColor: baseColor) }
+        segments = (0..<numberOfSegments).map { _ in HolkRingChartLayer(ringChartWidth: ringChartWidth, baseColor: baseColor) }
         for segment in segments {
             containerView.layer.addSublayer(segment)
         }
@@ -170,12 +181,6 @@ final class HolkRingChart: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        let size = intrinsicContentSize
-//        containerView.frame = CGRect(x: (bounds.width - size.width) / 2,
-//                                     y: (bounds.height - size.height) / 2,
-//                                     width: size.width,
-//                                     height: size.height)
-        
         for segment in segments {
             segment.frame = containerView.bounds
         }
@@ -220,9 +225,11 @@ extension HolkRingChart {
     private func setup() {
         titleView.translatesAutoresizingMaskIntoConstraints = false
         containerView.translatesAutoresizingMaskIntoConstraints = false
+        titleContainerView.translatesAutoresizingMaskIntoConstraints = false
 
-        addSubview(titleView)
         addSubview(containerView)
+        addSubview(titleView)
+        addSubview(titleContainerView)
         
         NSLayoutConstraint.activate([
             containerView.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -230,8 +237,10 @@ extension HolkRingChart {
             containerView.trailingAnchor.constraint(equalTo: trailingAnchor),
             containerView.bottomAnchor.constraint(equalTo: bottomAnchor),
 
-            titleView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            titleView.centerYAnchor.constraint(equalTo: centerYAnchor)
+            titleContainerView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+            titleContainerView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor, constant: -12),
+            titleContainerView.heightAnchor.constraint(lessThanOrEqualTo: containerView.heightAnchor, constant: -ringChartWidth - 8),
+            titleContainerView.widthAnchor.constraint(lessThanOrEqualTo: containerView.widthAnchor, constant: -ringChartWidth - 8)
         ])
         
         setupMaskLayer()
