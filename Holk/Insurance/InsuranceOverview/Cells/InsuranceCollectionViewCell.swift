@@ -40,8 +40,35 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+        let layoutAttributes = super.preferredLayoutAttributesFitting(layoutAttributes)
+        layoutIfNeeded()
+        layoutAttributes.frame.size = systemLayoutSizeFitting(UIView.layoutFittingCompressedSize, withHorizontalFittingPriority: .required, verticalFittingPriority: .fittingSizeLevel)
+        return layoutAttributes
+    }
+
+    override var isHighlighted: Bool {
+        didSet {
+            let scaleTransform = isHighlighted ? CGAffineTransform(scaleX: 0.95, y: 0.95) : .identity
+            let animator = UIViewPropertyAnimator(duration: 0.1, curve: .easeOut) {
+                self.transform = scaleTransform
+            }
+            animator.startAnimation()
+
+            if isHighlighted {
+                lightFeedbackGenerator.impactOccurred()
+            }
+        }
+    }
+
     private func setup() {
         backgroundColor = .clear
+        layer.shadowOffset = CGSize(width: 0, height: 2)
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 0.15
+        layer.cornerRadius = 8
+        layer.cornerCurve = .continuous
+        
         contentView.backgroundColor = .clear
 
         // TODO: remove this
@@ -52,13 +79,9 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         ideaValueLabel.text = "2"
         ideaLabel.text = "Luckor"
 
-        layer.shadowOffset = CGSize(width: 0, height: 2)
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOpacity = 0.1
-        layer.cornerRadius = 6
-        layer.cornerCurve = .continuous
-
         containerView.backgroundColor = Color.mainBackgroundColor
+        containerView.layer.cornerRadius = 8
+        containerView.layer.cornerCurve = .continuous
         containerView.translatesAutoresizingMaskIntoConstraints = false
 
         titleLabel.font = Font.semibold(.title)
@@ -138,44 +161,39 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         ideaStackView.addArrangedSubview(ideaLabel)
 
 
+        let containerBottomConstraint = containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -24)
+        containerBottomConstraint.priority = .defaultHigh
+
+        let ringChartLeadingConstraint = ringChart.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 36)
+        ringChartLeadingConstraint.priority = .defaultHigh
+        let ringChartTrailingConstraint = ringChart.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -36)
+        ringChartTrailingConstraint.priority = .defaultHigh
+
         NSLayoutConstraint.activate([
             containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
-            containerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
+            containerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 24),
             containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
-            containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor
-                , constant: -16),
+            containerBottomConstraint,
 
+            titleLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 8),
             titleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24),
             titleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -24),
-            titleLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 16),
 
             subtitleLabel.topAnchor.constraint(equalTo: titleLabel.lastBaselineAnchor, constant: 8),
             subtitleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24),
             subtitleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -20),
 
+            ringChart.widthAnchor.constraint(lessThanOrEqualToConstant: 224),
             ringChart.topAnchor.constraint(equalTo: subtitleLabel.lastBaselineAnchor, constant: 16),
-            ringChart.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24),
-            ringChart.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -24),
+            ringChartLeadingConstraint,
+            ringChartTrailingConstraint,
+            ringChart.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
             ringChart.heightAnchor.constraint(equalTo: ringChart.widthAnchor),
 
-            labelStackView.topAnchor.constraint(equalTo: ringChart.bottomAnchor, constant: 16),
+            labelStackView.topAnchor.constraint(equalTo: ringChart.bottomAnchor, constant: 8),
             labelStackView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24),
             labelStackView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -24)
         ])
-    }
-
-    override var isHighlighted: Bool {
-        didSet {
-            let scaleTransform = isHighlighted ? CGAffineTransform(scaleX: 0.95, y: 0.95) : .identity
-            let animator = UIViewPropertyAnimator(duration: 0.1, curve: .easeOut) {
-                self.transform = scaleTransform
-            }
-            animator.startAnimation()
-
-            if isHighlighted {
-                lightFeedbackGenerator.impactOccurred()
-            }
-        }
     }
     
     func configureCell(_ insurance: Insurance) {
@@ -190,7 +208,7 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
     }
 }
 
-extension InsuranceTableViewCell: HolkRingChartDataSource {
+extension InsuranceCollectionViewCell: HolkRingChartDataSource {
     func ringChart(_ pieChart: HolkRingChart, sizeForSegmentAt index: Int) -> CGFloat {
         return 1 / CGFloat(insurance?.insuranceParts.count ?? 1)
     }
