@@ -12,7 +12,8 @@ import RxRelay
 
 final class InsuranceStore: APIStore {
     // MARK: - Public variables
-    var allInsurance = BehaviorRelay<RequestState<AllInsuranceResponse, APIError>>.init(value: .unintiated)
+    var allInsurance = BehaviorRelay<AllInsuranceResponse?>.init(value: nil)
+    var allInsuranceResult = BehaviorRelay<RequestState<AllInsuranceResponse, APIError>>.init(value: .unintiated)
     // MARK: - Private variables
     private let queue: DispatchQueue
     private let sessionStore: SessionStore
@@ -26,16 +27,17 @@ final class InsuranceStore: APIStore {
     }
     
     func getAllInsurance() {
-        switch allInsurance.value {
+        switch allInsuranceResult.value {
         case .loading:
             return
         default:
-            allInsurance.accept(.loading)
+            allInsuranceResult.accept(.loading)
         }
         allInsurances().subscribe(onNext: { result in
             switch result {
             case .success(let insurances):
-                self.allInsurance.accept(.loaded(value: insurances))
+                self.allInsurance.accept(insurances)
+                self.allInsuranceResult.accept(.loaded(value: insurances))
             case .failure:
                 // TODO: Error handling
                 break
