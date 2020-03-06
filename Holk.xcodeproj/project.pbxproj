@@ -57,6 +57,7 @@
 		8F858A4D23CD16FD006B416A /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F858A4C23CD16FC006B416A /* Poppins-SemiBold.ttf */; };
 		8F858A5323CE6381006B416A /* PollingTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F858A5223CE6381006B416A /* PollingTask.swift */; };
 		8F858A5523CE6C8C006B416A /* ScrapingStatusResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F858A5423CE6C8C006B416A /* ScrapingStatusResponse.swift */; };
+		8F91FD68240F185600FCA162 /* DynamicHeightCollectionFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F91FD67240F185600FCA162 /* DynamicHeightCollectionFlowLayout.swift */; };
 		8F9807E722722D5E00584BA9 /* StoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9807E622722D5E00584BA9 /* StoreController.swift */; };
 		8F9807E92276F10E00584BA9 /* InsuranceCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9807E82276F10E00584BA9 /* InsuranceCoordinator.swift */; };
 		8F9C83DA22A3140B005BB336 /* InsuranceOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9C83D922A3140B005BB336 /* InsuranceOverviewViewController.swift */; };
@@ -84,7 +85,7 @@
 		8FF6E72422A70F6600F6D398 /* Then.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF6E72322A70F6600F6D398 /* Then.swift */; };
 		8FF6E72622AC0D2800F6D398 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF6E72522AC0D2800F6D398 /* Color.swift */; };
 		8FF6E72822B026DB00F6D398 /* InsurancesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF6E72722B026DB00F6D398 /* InsurancesViewController.swift */; };
-		8FF6E72D22B0333000F6D398 /* InsuranceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF6E72C22B0333000F6D398 /* InsuranceTableViewCell.swift */; };
+		8FF6E72D22B0333000F6D398 /* InsuranceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF6E72C22B0333000F6D398 /* InsuranceCollectionViewCell.swift */; };
 		8FF6E73422B57DA800F6D398 /* UITableViewCell+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF6E73322B57DA800F6D398 /* UITableViewCell+extension.swift */; };
 		8FF6E73622B6A88100F6D398 /* InsuranceAddMoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF6E73522B6A88100F6D398 /* InsuranceAddMoreCell.swift */; };
 		8FF6E73822B6B39800F6D398 /* InsuranceCostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF6E73722B6B39800F6D398 /* InsuranceCostViewController.swift */; };
@@ -166,6 +167,7 @@
 		8F858A4C23CD16FC006B416A /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
 		8F858A5223CE6381006B416A /* PollingTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollingTask.swift; sourceTree = "<group>"; };
 		8F858A5423CE6C8C006B416A /* ScrapingStatusResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapingStatusResponse.swift; sourceTree = "<group>"; };
+		8F91FD67240F185600FCA162 /* DynamicHeightCollectionFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicHeightCollectionFlowLayout.swift; sourceTree = "<group>"; };
 		8F9807E622722D5E00584BA9 /* StoreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreController.swift; sourceTree = "<group>"; };
 		8F9807E82276F10E00584BA9 /* InsuranceCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceCoordinator.swift; sourceTree = "<group>"; };
 		8F9C83D922A3140B005BB336 /* InsuranceOverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceOverviewViewController.swift; sourceTree = "<group>"; };
@@ -197,7 +199,7 @@
 		8FF6E72322A70F6600F6D398 /* Then.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Then.swift; sourceTree = "<group>"; };
 		8FF6E72522AC0D2800F6D398 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		8FF6E72722B026DB00F6D398 /* InsurancesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsurancesViewController.swift; sourceTree = "<group>"; };
-		8FF6E72C22B0333000F6D398 /* InsuranceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceTableViewCell.swift; sourceTree = "<group>"; };
+		8FF6E72C22B0333000F6D398 /* InsuranceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceCollectionViewCell.swift; sourceTree = "<group>"; };
 		8FF6E73322B57DA800F6D398 /* UITableViewCell+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+extension.swift"; sourceTree = "<group>"; };
 		8FF6E73522B6A88100F6D398 /* InsuranceAddMoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceAddMoreCell.swift; sourceTree = "<group>"; };
 		8FF6E73722B6B39800F6D398 /* InsuranceCostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceCostViewController.swift; sourceTree = "<group>"; };
@@ -491,6 +493,7 @@
 				8F9C83DD22A6E316005BB336 /* CustomView */,
 				8F858A4523CB376B006B416A /* Extension */,
 				8F858A4623CB377B006B416A /* Parser.swift */,
+				8F91FD67240F185600FCA162 /* DynamicHeightCollectionFlowLayout.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -498,7 +501,7 @@
 		8FF6E72922B02CBB00F6D398 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				8FF6E72C22B0333000F6D398 /* InsuranceTableViewCell.swift */,
+				8FF6E72C22B0333000F6D398 /* InsuranceCollectionViewCell.swift */,
 				8FF6E73522B6A88100F6D398 /* InsuranceAddMoreCell.swift */,
 				8F63C30D22C8CE5300CFE334 /* InsuranceCostTableViewCell.xib */,
 				8F63C30C22C8CE5300CFE334 /* InsuranceCostTableViewCell.swift */,
@@ -770,6 +773,7 @@
 				8FCEE9B123254B6C00F75FB8 /* KeyboardEventContext.swift in Sources */,
 				8FF6E72622AC0D2800F6D398 /* Color.swift in Sources */,
 				8F5AF01F23C513C200690373 /* InsuranceIssuerList.swift in Sources */,
+				8F91FD68240F185600FCA162 /* DynamicHeightCollectionFlowLayout.swift in Sources */,
 				8F2BB8E62332D4EB00E8AE4B /* FontLoader.swift in Sources */,
 				8F3C7DAE23F4AB63002EDA57 /* OnboardingConsentViewController.swift in Sources */,
 				8F5AF02423C6759C00690373 /* MockType.swift in Sources */,
@@ -827,7 +831,7 @@
 				8FC296BE23E7614D002A39D1 /* LandingInfoViewController.swift in Sources */,
 				8F65466C230C78990053B3F8 /* HolkButton.swift in Sources */,
 				8F7C44302351336E00B54A36 /* BankIDService.swift in Sources */,
-				8FF6E72D22B0333000F6D398 /* InsuranceTableViewCell.swift in Sources */,
+				8FF6E72D22B0333000F6D398 /* InsuranceCollectionViewCell.swift in Sources */,
 				8F5B5A3B22783D0200E79A40 /* TabBarController.swift in Sources */,
 				8F5A5C9423EE0D4E00ADFB4E /* OnboardingContainerViewController.swift in Sources */,
 				8F3C7DB023F82865002EDA57 /* InsuranceCredentialStore.swift in Sources */,

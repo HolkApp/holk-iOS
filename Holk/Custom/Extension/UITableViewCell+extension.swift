@@ -14,3 +14,10 @@ extension UITableViewCell {
         return String(describing: self)
     }
 }
+
+extension UICollectionViewCell {
+    /// Static variable to return the string represantion of the current class
+    static var identifier: String {
+        return String(describing: self)
+    }
+}

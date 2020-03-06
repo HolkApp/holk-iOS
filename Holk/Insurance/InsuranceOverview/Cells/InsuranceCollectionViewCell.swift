@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class InsuranceTableViewCell: UITableViewCell {
+final class InsuranceCollectionViewCell: UICollectionViewCell {
     // MARK: - IBOutlets
     
     var insurance: Insurance?
@@ -29,8 +29,8 @@ final class InsuranceTableViewCell: UITableViewCell {
     
     private let lightFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
 
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: .default, reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
 
         setup()
         setupConstraints()
@@ -41,7 +41,6 @@ final class InsuranceTableViewCell: UITableViewCell {
     }
 
     private func setup() {
-        selectionStyle = .none
         backgroundColor = .clear
         contentView.backgroundColor = .clear
 
@@ -165,16 +164,17 @@ final class InsuranceTableViewCell: UITableViewCell {
         ])
     }
 
-    
-    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
-        let scaleTransform = highlighted ? CGAffineTransform(scaleX: 0.95, y: 0.95) : .identity
-        let animator = UIViewPropertyAnimator(duration: 0.1, curve: .easeOut) {
-            self.transform = scaleTransform
-        }
-        animator.startAnimation()
+    override var isHighlighted: Bool {
+        didSet {
+            let scaleTransform = isHighlighted ? CGAffineTransform(scaleX: 0.95, y: 0.95) : .identity
+            let animator = UIViewPropertyAnimator(duration: 0.1, curve: .easeOut) {
+                self.transform = scaleTransform
+            }
+            animator.startAnimation()
 
-        if highlighted {
-            lightFeedbackGenerator.impactOccurred()
+            if isHighlighted {
+                lightFeedbackGenerator.impactOccurred()
+            }
         }
     }
     
