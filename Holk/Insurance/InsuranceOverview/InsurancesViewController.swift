@@ -13,16 +13,16 @@ protocol InsurancesViewControllerDelegate: AnyObject {
 }
 
 final class InsurancesViewController: UIViewController {
-    // MARK: - IBOutlets
-    private let tableView = UITableView()
     // MARK: - Public variables
     var storeController: StoreController
     weak var delegate: InsurancesViewControllerDelegate?
-    // MARK: - Public variables
+
     private enum Section: Int, CaseIterable {
         case insurance
         case addMore
     }
+    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+    private let layout = DynamicHeightCollectionFlowLayout()
 
     init(storeController: StoreController) {
         self.storeController = storeController
@@ -43,69 +43,75 @@ final class InsurancesViewController: UIViewController {
     
     private func setup() {
         view.backgroundColor = .clear
-        view.layoutMargins = .init(top: 8, left: 8, bottom: 0, right: 8)
+        view.layoutMargins = .zero
 
-        tableView.backgroundColor = .clear
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 340
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.separatorStyle = .none
-        tableView.contentInset = .zero
-        tableView.showsVerticalScrollIndicator = false
-        tableView.alwaysBounceVertical = false
-        tableView.translatesAutoresizingMaskIntoConstraints = false
+        layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 0
+        layout.minimumInteritemSpacing = 0
+        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
 
-        tableView.register(InsuranceTableViewCell.self, forCellReuseIdentifier: InsuranceTableViewCell.identifier)
-        tableView.register(InsuranceAddMoreCell.self, forCellReuseIdentifier: InsuranceAddMoreCell.identifier)
+        collectionView.backgroundColor = .clear
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.isPagingEnabled = true
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
 
-        view.addSubview(tableView)
+        collectionView.register(InsuranceCollectionViewCell.self, forCellWithReuseIdentifier: InsuranceCollectionViewCell.identifier)
+        collectionView.register(InsuranceAddMoreCell.self, forCellWithReuseIdentifier: InsuranceAddMoreCell.identifier)
+
+        view.addSubview(collectionView)
 
         NSLayoutConstraint.activate([
-            tableView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
-            tableView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor)
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -24)
         ])
     }
 }
 
 // MARK: - UITableViewDataSource
-extension InsurancesViewController: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
+extension InsurancesViewController: UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return Section.allCases.count
     }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
         case Section.insurance.rawValue: return numberOfInsurances
         case Section.addMore.rawValue: return 1
         default: return 0
         }
     }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch indexPath.section {
-        case Section.insurance.rawValue:
-            let cell = tableView.dequeueReusableCell(withIdentifier: InsuranceTableViewCell.identifier, for: indexPath)
-            // TODO: Configure this
-            if let insuranceTableViewCell = cell as? InsuranceTableViewCell {
-//                insuranceTableViewCell.configureCell(pro)
-            }
-            return cell
-        case Section.addMore.rawValue:
-            return tableView.dequeueReusableCell(withIdentifier: InsuranceAddMoreCell.identifier, for: indexPath)
-        default: return UITableViewCell()
-        }
+                case Section.insurance.rawValue:
+                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier:
+                        InsuranceCollectionViewCell.identifier, for: indexPath)
+                    // TODO: Configure this
+                    if let insuranceTableViewCell = cell as? InsuranceCollectionViewCell {
+        //                insuranceTableViewCell.configureCell(pro)
+                    }
+                    return cell
+                case Section.addMore.rawValue:
+                    return collectionView.dequeueReusableCell(withReuseIdentifier:
+                    InsuranceAddMoreCell.identifier, for: indexPath)
+                default: return UICollectionViewCell()
+                }
     }
+
+    
 }
 
-extension InsurancesViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+extension InsurancesViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch indexPath.section {
         case Section.addMore.rawValue:
             numberOfInsurances += 1
-            tableView.reloadData()
+            collectionView.reloadData()
         default:
             return
         }

@@ -101,6 +101,7 @@ final class InsuranceOverviewViewController: UIViewController {
             .foregroundColor: Color.mainForegroundColor
         ]
         view.backgroundColor = Color.mainBackgroundColor
+        containerView.layoutMargins = .zero
         containerView.backgroundColor = .clear
         
         headerLabel.text = "Översikt"
@@ -140,7 +141,7 @@ final class InsuranceOverviewViewController: UIViewController {
             segmentedControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -36),
             segmentedControl.heightAnchor.constraint(equalToConstant: 36),
 
-            containerView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 20),
+            containerView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 8),
             containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
