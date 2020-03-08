@@ -231,15 +231,41 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
 }
 
 extension InsuranceCollectionViewCell: HolkRingChartDataSource {
-    func ringChart(_ pieChart: HolkRingChart, sizeForSegmentAt index: Int) -> CGFloat {
-        return 1 / CGFloat(insurance?.insuranceParts.count ?? 1)
+    private var mockNumberOfSegments: Int {
+        return insurance?.insuranceParts.count ?? 4
+    }
+    func ringChart(_ ringChart: HolkRingChart, sizeForSegmentAt index: Int) -> CGFloat {
+        return 1 / CGFloat(mockNumberOfSegments)
     }
 
-    func numberOfSegments(_ pieChart: HolkRingChart) -> Int {
-        return insurance?.insuranceParts.count ?? 1
+    func numberOfSegments(_ ringChart: HolkRingChart) -> Int {
+        return mockNumberOfSegments
     }
 
-    func ringChart(_ pieChart: HolkRingChart, colorForSegmentAt index: Int) -> UIColor? {
-        return .red
+    func ringChart(_ ringChart: HolkRingChart, colorForSegmentAt index: Int) -> UIColor? {
+        if index == 0 {
+            return .red
+        } else if index == 1 {
+            return .blue
+        } else if index == 2 {
+            return .orange
+        } else if index == 3 {
+            return .green
+        } else {
+            return .cyan
+        }
+    }
+
+    func ringChart(_ ringChart: HolkRingChart, iconForSegmentAt index: Int) -> UIImage? {
+        if index == 0 {
+            return UIImage(systemName: "pencil")?.withRenderingMode(.alwaysTemplate)
+        } else if index == 1 {
+            return UIImage(systemName: "flame")?.withRenderingMode(.alwaysTemplate)
+        } else if index == 2{
+            return UIImage(systemName: "person")?.withRenderingMode(.alwaysTemplate)
+        } else {
+            return UIImage(systemName: "bolt")?.withRenderingMode(.alwaysTemplate)
+        }
+
     }
 }
