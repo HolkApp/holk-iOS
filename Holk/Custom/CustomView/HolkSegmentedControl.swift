@@ -9,6 +9,11 @@
 import UIKit
 
 final class HolkSegmentedControl: UISegmentedControl {
+    var selectionForegroundColor: UIColor? = Color.mainForegroundColor {
+        didSet {
+            imageLayer.backgroundColor = selectionForegroundColor?.cgColor
+        }
+    }
     // MARK: - Private variables
     private var segmentedControlFrames: [CGRect] = []
     private var imageLayer: CAShapeLayer = CAShapeLayer()
@@ -47,7 +52,7 @@ final class HolkSegmentedControl: UISegmentedControl {
         self.setBackgroundImage(UIImage(), for: UIControl.State.selected, barMetrics: .default)
         
         imageLayer.frame = CGRect(origin: CGPoint(x: 5, y: frame.height - 2), size: imageLayerSize)
-        imageLayer.backgroundColor = Color.mainForegroundColor.cgColor
+        imageLayer.backgroundColor = selectionForegroundColor?.cgColor
         layer.addSublayer(imageLayer)
     }
     
