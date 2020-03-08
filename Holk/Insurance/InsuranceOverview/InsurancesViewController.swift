@@ -18,6 +18,7 @@ final class InsurancesViewController: UIViewController {
     }
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     private let layout = DynamicHeightCollectionFlowLayout()
+    private let pageControl = UIPageControl()
 
     init(storeController: StoreController) {
         self.storeController = storeController
@@ -45,6 +46,11 @@ final class InsurancesViewController: UIViewController {
         layout.minimumInteritemSpacing = 0
         layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
 
+        pageControl.numberOfPages = numberOfInsurances + 1
+        pageControl.currentPageIndicatorTintColor = Color.mainForegroundColor
+        pageControl.pageIndicatorTintColor = Color.secondaryBackgroundColor
+        pageControl.translatesAutoresizingMaskIntoConstraints = false
+
         collectionView.backgroundColor = .clear
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -57,12 +63,16 @@ final class InsurancesViewController: UIViewController {
         collectionView.register(InsuranceAddMoreCell.self, forCellWithReuseIdentifier: InsuranceAddMoreCell.identifier)
 
         view.addSubview(collectionView)
+        view.addSubview(pageControl)
 
         NSLayoutConstraint.activate([
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            collectionView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -24)
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -24),
+
+            pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            pageControl.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -12)
         ])
     }
 }
@@ -106,9 +116,23 @@ extension InsurancesViewController: UICollectionViewDelegate {
         switch indexPath.section {
         case Section.addMore.rawValue:
             numberOfInsurances += 1
+            pageControl.numberOfPages = numberOfInsurances + 1
             collectionView.reloadData()
         default:
             return
+        }
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let scrollViewCenter = CGPoint(x: scrollView.contentOffset.x + (scrollView.frame.width / 2), y: (scrollView.frame.height / 2))
+
+        if let indexPath = collectionView.indexPathForItem(at: scrollViewCenter) {
+            switch indexPath.section {
+            case Section.addMore.rawValue:
+                pageControl.currentPage = numberOfInsurances + 1
+            default:
+                pageControl.currentPage = indexPath.item
+            }
         }
     }
 }
