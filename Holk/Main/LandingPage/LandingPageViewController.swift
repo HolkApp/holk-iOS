@@ -69,7 +69,6 @@ final class LandingPageViewController: UIPageViewController {
         setViewControllers([firstViewController], direction: .forward, animated: true, completion: nil)
         
         pageControl.numberOfPages = orderedViewControllers.count
-        pageControl.frame = CGRect(origin: .zero, size: pageControl.size(forNumberOfPages: orderedViewControllers.count))
         pageControl.currentPageIndicatorTintColor = Color.mainForegroundColor
         pageControl.pageIndicatorTintColor = Color.mainBackgroundColor
         

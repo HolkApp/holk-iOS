@@ -9,7 +9,6 @@
 import UIKit
 
 final class InsuranceAddMoreCell: UICollectionViewCell {
-    // MARK: - Public variables
     // MARK: - Private variables
     private var iconImageView: UIImageView!
     // MARK: - Init
@@ -45,19 +44,24 @@ final class InsuranceAddMoreCell: UICollectionViewCell {
         contentView.backgroundColor = .clear
 
         let image = UIImage(systemName: "plus.circle")?.withRenderingMode(.alwaysTemplate).withSymbolWeightConfiguration(.thin)
-        
+
         iconImageView = UIImageView(image: image)
         iconImageView.tintColor = Color.mainForegroundColor
         iconImageView.translatesAutoresizingMaskIntoConstraints = false
         
         contentView.addSubview(iconImageView)
-        let iconHeightConstraint = iconImageView.heightAnchor.constraint(equalToConstant: 55)
+        let iconWidthConstraint = iconImageView.widthAnchor.constraint(equalToConstant: 64)
+        let iconHeightConstraint = iconImageView.heightAnchor.constraint(equalToConstant: 64)
         iconHeightConstraint.priority = .defaultHigh
+        let iconTopConstraint = iconImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 200)
+        iconTopConstraint.priority = .defaultHigh
+        let iconBottomConstraint = iconImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -200)
+        iconBottomConstraint.priority = .defaultHigh
         NSLayoutConstraint.activate([
-            iconImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            iconImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            iconTopConstraint,
+            iconBottomConstraint,
             iconHeightConstraint,
-            iconImageView.widthAnchor.constraint(equalToConstant: 55),
+            iconWidthConstraint,
             iconImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
         ])
     }

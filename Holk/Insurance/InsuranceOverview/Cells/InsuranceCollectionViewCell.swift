@@ -140,7 +140,7 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         hintLabel.translatesAutoresizingMaskIntoConstraints = false
 
         ideaValueLabel.font = Font.semibold(.header)
-        ideaValueLabel.textColor = Color.mainForegroundColor
+        ideaValueLabel.textColor = Color.warningColor
         ideaValueLabel.numberOfLines = 0
         ideaValueLabel.textAlignment = .center
         ideaValueLabel.translatesAutoresizingMaskIntoConstraints = false

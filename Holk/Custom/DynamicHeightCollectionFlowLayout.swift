@@ -9,16 +9,17 @@
 import UIKit
 
 final class DynamicHeightCollectionFlowLayout: UICollectionViewFlowLayout {
-
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         let layoutAttributesObjects = super.layoutAttributesForElements(in: rect)
-        layoutAttributesObjects?.forEach({ layoutAttributes in
-            if layoutAttributes.representedElementCategory == .cell {
+        layoutAttributesObjects?
+            .filter { $0.representedElementCategory == .cell }
+            .forEach({ layoutAttributes in
                 if let newFrame = layoutAttributesForItem(at: layoutAttributes.indexPath)?.frame {
                     layoutAttributes.frame = newFrame
+                    layoutAttributes.frame = layoutAttributes.frame.offsetBy(dx: 0, dy: sectionInset.top - layoutAttributes.frame.minY)
                 }
-            }
         })
+
         return layoutAttributesObjects
     }
 
