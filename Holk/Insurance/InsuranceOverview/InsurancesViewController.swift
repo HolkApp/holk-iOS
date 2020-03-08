@@ -8,14 +8,9 @@
 
 import UIKit
 
-protocol InsurancesViewControllerDelegate: AnyObject {
-    func insurancesViewController(_ viewController: InsurancesViewController, didScroll scrollView: UIScrollView)
-}
-
 final class InsurancesViewController: UIViewController {
     // MARK: - Public variables
     var storeController: StoreController
-    weak var delegate: InsurancesViewControllerDelegate?
 
     private enum Section: Int, CaseIterable {
         case insurance
@@ -114,12 +109,6 @@ extension InsurancesViewController: UICollectionViewDelegate {
             collectionView.reloadData()
         default:
             return
-        }
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.contentSize.height > view.frame.height {
-            delegate?.insurancesViewController(self, didScroll: scrollView)
         }
     }
 }

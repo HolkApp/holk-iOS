@@ -9,9 +9,10 @@
 import UIKit
 
 protocol HolkRingChartDataSource: AnyObject {
-    func numberOfSegments(_ pieChart: HolkRingChart) -> Int
+    func numberOfSegments(_ ringChart: HolkRingChart) -> Int
     func ringChart(_ ringChart: HolkRingChart, sizeForSegmentAt index: Int) -> CGFloat
     func ringChart(_ ringChart: HolkRingChart, colorForSegmentAt index: Int) -> UIColor?
+    func ringChart(_ ringChart: HolkRingChart, iconForSegmentAt index: Int) -> UIImage?
 }
 
 extension HolkRingChartDataSource {
@@ -35,6 +36,6 @@ extension HolkRingChartDelegate {
     func ringChart(_ ringChart: HolkRingChart, didHighlightSegmentAt index: Int) { }
     func ringChart(_ ringChart: HolkRingChart, didUnhighlightSegmentAt index: Int) { }
     func ringChart(_ ringChart: HolkRingChart, shouldHighlightRowAt index: Int) -> Bool {
-        return true
+        return false
     }
 }
