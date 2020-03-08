@@ -71,7 +71,7 @@ enum Font {
     }
     
     static func bold(_ size: Size) -> UIFont {
-        return font(weight: .semibold, size: size)
+        return font(weight: .bold, size: size)
     }
     
     static func extraBold(_ size: Size) -> UIFont {

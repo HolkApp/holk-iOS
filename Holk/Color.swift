@@ -42,6 +42,10 @@ enum Color {
     static var secondaryForegroundColor: UIColor {
         return makeColor(asset: #function)
     }
+
+    static var secondaryHighlightColor: UIColor {
+        return makeColor(asset: #function)
+    }
     
     static var tabbarBackgroundColor: UIColor {
         return makeColor(asset: #function)
