@@ -31,12 +31,13 @@ final class HolkRingChartIconView: UIView {
     }
 
     func setup() {
-        imageView.contentMode = .center
+        imageView.contentMode = .scaleAspectFill
         addSubview(imageView)
     }
 
-    func update(image: UIImage) {
+    func update(image: UIImage?, color: UIColor?) {
         imageView.image = image
+        imageView.tintColor = color
 
         setNeedsLayout()
     }

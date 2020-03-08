@@ -14,6 +14,7 @@ private enum Constants {
 }
 
 final class HolkRingChart: UIView {
+    // TODO: Change how to set the title view
     var titleView = UIView() {
         didSet {
             NSLayoutConstraint.activate([
@@ -25,8 +26,10 @@ final class HolkRingChart: UIView {
             setNeedsLayout()
         }
     }
-    private(set) var containerView = UIView()
-    private var titleContainerView = UIView()
+    let containerView = UIView()
+    private let titleContainerView = UIView()
+    public let iconsView = HolkRingChartIconsView()
+
     var radius: CGFloat {
         min(bounds.width/2, bounds.height/2)
     }
@@ -114,6 +117,21 @@ final class HolkRingChart: UIView {
         for segment in segments {
             containerView.layer.addSublayer(segment)
         }
+
+        reloadSegments()
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        iconsView.frame = containerView.frame
+
+        for segment in segments {
+            segment.frame = containerView.bounds
+        }
+
+        updateMaskLayer(animated: shouldAnimateMask)
+        iconsView.layout()
     }
     
     func reloadSegments(animated: Bool = false) {
@@ -129,8 +147,6 @@ final class HolkRingChart: UIView {
         let numberOfSegments = dataSource?.numberOfSegments(self) ?? 0
         assert(numberOfSegments <= Constants.maxNumberOfSegments, "Too many segments!")
         
-        unhighlightAndDeselectSegmentIfNeeded(notifyDelegate: false)
-        
         var previousValue: CGFloat = 0
         for (offset, segment) in segments.enumerated() {
             let value: CGFloat
@@ -145,78 +161,16 @@ final class HolkRingChart: UIView {
             previousValue += value
         }
     }
-    
-    func selectSegment(at index: Int) {
-        indexForSelectedSegment = index
-        
-        for (offset, segment) in segments.enumerated() {
-            segment.opacity = index == offset ? 1.0 : 0.0
-        }
-    }
-    
-    func deselectSegment(at index: Int) {
-        indexForSelectedSegment = nil
-        
-        for segment in segments {
-            segment.opacity = 1.0
-        }
-    }
-    
-    func highlightSegment(at index: Int) {
-        indexForHighlightedSegment = index
-        
-        for (offset, segment) in segments.enumerated() {
-            segment.opacity = index == offset ? 1.0 : 0.5
-        }
-    }
-    
-    func unhighlightSegment(at index: Int) {
-        indexForHighlightedSegment = nil
-        
-        for segment in segments {
-            segment.opacity = 1.0
-        }
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        for segment in segments {
-            segment.frame = containerView.bounds
-        }
-        
-        updateMaskLayer(animated: shouldAnimateMask)
-    }
-}
 
-// MARK: - Input Handling
-extension HolkRingChart {
-    override  func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-        
-        guard let point = touches.first?.location(in: containerView) else { return }
-        handleTouch(at: point, type: .began)
+    func isPoint(_ pts: CGPoint, within radius: CGFloat) -> Bool {
+        return pts.x * pts.x + pts.y * pts.y <= radius * radius
     }
-    
-    override  func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesMoved(touches, with: event)
-        
-        guard let point = touches.first?.location(in: containerView) else { return }
-        handleTouch(at: point, type: .moved)
-    }
-    
-    override  func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesEnded(touches, with: event)
-        
-        guard let point = touches.first?.location(in: containerView) else { return }
-        handleTouch(at: point, type: .ended)
-    }
-    
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesCancelled(touches, with: event)
-        
-        guard let point = touches.first?.location(in: containerView) else { return }
-        handleTouch(at: point, type: .cancelled)
+
+    func indexForSegment(at angle: CGFloat) -> Int? {
+        let offset: CGFloat = (.pi / 2.0)
+        return segments.firstIndex(where: {
+            angle > ($0.startAngle + offset) && angle < ($0.endAngle + offset)
+        })
     }
 }
 
@@ -230,6 +184,9 @@ extension HolkRingChart {
         addSubview(containerView)
         addSubview(titleView)
         addSubview(titleContainerView)
+
+        iconsView.ringChart = self
+        addSubview(iconsView)
         
         NSLayoutConstraint.activate([
             containerView.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -242,7 +199,7 @@ extension HolkRingChart {
             titleContainerView.heightAnchor.constraint(lessThanOrEqualTo: containerView.heightAnchor, constant: -ringChartWidth - 8),
             titleContainerView.widthAnchor.constraint(lessThanOrEqualTo: containerView.widthAnchor, constant: -ringChartWidth - 8)
         ])
-        
+
         setupMaskLayer()
     }
     
@@ -272,87 +229,6 @@ extension HolkRingChart {
             CATransaction.setDisableActions(true)
             maskLayer.path = path.cgPath
             CATransaction.commit()
-        }
-    }
-    
-    private func isPoint(_ pts: CGPoint, within radius: CGFloat) -> Bool {
-        return pts.x * pts.x + pts.y * pts.y <= radius * radius
-    }
-    
-    private func indexForSegment(at angle: CGFloat) -> Int? {
-        let offset: CGFloat = (.pi / 2.0)
-        return segments.firstIndex(where: {
-            angle > ($0.startAngle + offset) && angle < ($0.endAngle + offset)
-        })
-    }
-    
-    private func angleForPoint(_ point: CGPoint) -> CGFloat {
-        let offset: CGFloat = (.pi / 2.0)
-        let angle = atan2(point.y, point.x) + offset
-        
-        // Normalize
-        return (angle > 0 ? angle : angle + .pi * 2)
-    }
-    
-    private enum TouchKind {
-        case began
-        case moved
-        case ended
-        case cancelled
-    }
-    
-    private func handleTouch(at point: CGPoint, type: TouchKind) {
-        let radius = intrinsicContentSize.width / 2
-        let relativePoint = CGPoint(x: point.x - radius, y: point.y - radius)
-        
-        let angle = angleForPoint(relativePoint)
-        
-        guard isPoint(relativePoint, within: radius), let index = indexForSegment(at: angle) else {
-            unhighlightAndDeselectSegmentIfNeeded(notifyDelegate: true)
-            return
-        }
-        
-        let shouldHighlight = delegate?.ringChart(self, shouldHighlightRowAt: index) ?? false
-        guard shouldHighlight else {
-            unhighlightAndDeselectSegmentIfNeeded(notifyDelegate: true)
-            return
-        }
-        
-        switch type {
-        case .began:
-            unhighlightAndDeselectSegmentIfNeeded(notifyDelegate: true)
-            highlightSegment(at: index)
-            delegate?.ringChart(self, didHighlightSegmentAt: index)
-        case .moved:
-            if index != indexForHighlightedSegment {
-                unhighlightAndDeselectSegmentIfNeeded(notifyDelegate: true)
-                highlightSegment(at: index)
-                delegate?.ringChart(self, didHighlightSegmentAt: index)
-            }
-        case .ended:
-            if let highlightedIndex = indexForHighlightedSegment {
-                unhighlightSegment(at: highlightedIndex)
-                delegate?.ringChart(self, didUnhighlightSegmentAt: highlightedIndex)
-            }
-            selectSegment(at: index)
-            delegate?.ringChart(self, didSelectSegmentAt: index)
-        case .cancelled:
-            unhighlightAndDeselectSegmentIfNeeded(notifyDelegate: true)
-        }
-    }
-    
-    func unhighlightAndDeselectSegmentIfNeeded(notifyDelegate: Bool) {
-        if let highlightedIndex = indexForHighlightedSegment {
-            unhighlightSegment(at: highlightedIndex)
-            if notifyDelegate {
-                delegate?.ringChart(self, didUnhighlightSegmentAt: highlightedIndex)
-            }
-        }
-        if let selectedIndex = indexForSelectedSegment {
-            deselectSegment(at: selectedIndex)
-            if notifyDelegate {
-                delegate?.ringChart(self, didDeselectSegmentAt: selectedIndex)
-            }
         }
     }
 }
