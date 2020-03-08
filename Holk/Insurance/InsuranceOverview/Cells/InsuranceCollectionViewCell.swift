@@ -67,15 +67,13 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         layer.shadowOffset = CGSize(width: 0, height: 2)
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOpacity = 0.15
-        layer.cornerRadius = 8
         layer.cornerCurve = .continuous
         
         contentView.backgroundColor = .clear
 
         // TODO: remove this
-
-        titleLabel.text = "insurance.insuranceType"
-        subtitleLabel.text = "insurance.insuranceProvider"
+        titleLabel.text = "Home insurace"
+        subtitleLabel.text = "Folksam bas"
         insuranceSubNumberLabel.text = "4"
         insuranceTextLabel.text = "insurance"
         hintValueLabel.text = "3"
@@ -83,12 +81,12 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         ideaValueLabel.text = "2"
         ideaLabel.text = "Luckor"
 
-        containerView.backgroundColor = Color.mainBackgroundColor
-        containerView.layer.cornerRadius = 8
+        containerView.backgroundColor = Color.secondaryBackgroundColor
+        containerView.layer.cornerRadius = 16
         containerView.layer.cornerCurve = .continuous
         containerView.translatesAutoresizingMaskIntoConstraints = false
 
-        titleLabel.font = Font.semibold(.title)
+        titleLabel.font = Font.extraBold(.title)
         titleLabel.textColor = Color.mainForegroundColor
         titleLabel.numberOfLines = 0
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -118,8 +116,12 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
 
         labelStackView.spacing = 16
         labelStackView.translatesAutoresizingMaskIntoConstraints = false
+        hintStackView.spacing = 16
+        hintStackView.isBaselineRelativeArrangement = true
         hintStackView.axis = .vertical
         hintStackView.translatesAutoresizingMaskIntoConstraints = false
+        ideaStackView.spacing = 16
+        ideaStackView.isBaselineRelativeArrangement = true
         ideaStackView.axis = .vertical
         ideaStackView.translatesAutoresizingMaskIntoConstraints = false
 
@@ -188,7 +190,7 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
             containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
             containerBottomConstraint,
 
-            titleLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 8),
+            titleLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 16),
             titleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24),
             titleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -24),
 
@@ -197,15 +199,15 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
             subtitleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -20),
 
             ringChart.widthAnchor.constraint(lessThanOrEqualToConstant: 224),
-            ringChart.topAnchor.constraint(equalTo: subtitleLabel.lastBaselineAnchor, constant: 16),
+            ringChart.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: 48),
             ringChartLeadingConstraint,
             ringChartTrailingConstraint,
             ringChart.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
             ringChart.heightAnchor.constraint(equalTo: ringChart.widthAnchor),
 
-            labelStackView.topAnchor.constraint(equalTo: ringChart.bottomAnchor, constant: 8),
+            labelStackView.topAnchor.constraint(equalTo: ringChart.bottomAnchor, constant: 48),
             labelStackView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24),
-            labelStackView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -24)
+            labelStackView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -16)
         ])
     }
     
