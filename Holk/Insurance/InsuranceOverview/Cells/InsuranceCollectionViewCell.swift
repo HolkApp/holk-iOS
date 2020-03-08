@@ -25,6 +25,7 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
     private let ideaStackView = UIStackView()
     private let ideaValueLabel = UILabel()
     private let ideaLabel = UILabel()
+    private let insuranceImageView = UIImageView()
     private let ringChart = HolkRingChart()
     private let ringChartLabelsStackView = UIStackView()
     
@@ -80,6 +81,7 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         hintLabel.text = "Tänk på"
         ideaValueLabel.text = "2"
         ideaLabel.text = "Luckor"
+        insuranceImageView.image = UIImage(named: "Folksam")
 
         containerView.backgroundColor = Color.secondaryBackgroundColor
         containerView.layer.cornerRadius = 16
@@ -149,8 +151,9 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         ideaLabel.textAlignment = .center
         ideaLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        ringChart.dataSource = self
+        insuranceImageView.translatesAutoresizingMaskIntoConstraints = false
 
+        ringChart.dataSource = self
         ringChart.translatesAutoresizingMaskIntoConstraints = false
     }
 
@@ -160,6 +163,7 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         containerView.addSubview(titleLabel)
         containerView.addSubview(subtitleLabel)
         containerView.addSubview(ringChart)
+        containerView.addSubview(insuranceImageView)
 
         ringChartLabelsStackView.addArrangedSubview(insuranceSubNumberLabel)
         ringChartLabelsStackView.addArrangedSubview(insuranceTextLabel)
@@ -207,7 +211,10 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
 
             labelStackView.topAnchor.constraint(equalTo: ringChart.bottomAnchor, constant: 48),
             labelStackView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24),
-            labelStackView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -16)
+            labelStackView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -16),
+
+            insuranceImageView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -24),
+            insuranceImageView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -16)
         ])
     }
     
