@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 
 protocol OnboardingContainerCoordinating: AnyObject {
-    func startOnboarding(_ username: String)
+    func addUserEmail(_ email: String)
     func finishOnboarding(coordinator: OnboardingContainerViewController)
 }
 
@@ -189,9 +189,10 @@ extension SessionCoordinator: StoreControllerDelegate {
 
 // MARK: - SessionCoordinating
 extension SessionCoordinator: OnboardingContainerCoordinating {
-    func startOnboarding(_ username: String) {
+    func addUserEmail(_ email: String) {
+        storeController.insuranceIssuerStore.loadInsuranceIssuers()
         storeController.authenticationStore
-            .login(username: username)
+            .login(username: email)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] event in
                 switch event {
@@ -207,8 +208,6 @@ extension SessionCoordinator: OnboardingContainerCoordinating {
                     print(error)
                     self?.newUserEmailAdded()
             }).disposed(by: bag)
-        
-        onboarding()
     }
     
     func finishOnboarding(coordinator: OnboardingContainerViewController) {

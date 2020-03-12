@@ -139,8 +139,8 @@ class NewUserViewController: UIViewController {
     }
     
     private func addEmail() {
-        if let username = emailTextField.text {
-            coordinator?.startOnboarding(username)
+        if let email = emailTextField.text {
+            coordinator?.addUserEmail(email)
         }
     }
 }

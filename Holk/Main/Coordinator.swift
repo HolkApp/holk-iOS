@@ -12,18 +12,10 @@ protocol Coordinator {
     var navController: UINavigationController { get set }
     func start()
     func back()
-    func popOtherViewControllers()
 }
 
 extension Coordinator {
     func back() {
         navController.popViewController(animated: true)
-    }
-    
-    func popOtherViewControllers() {
-        if let first = navController.viewControllers.first,
-            let last = navController.viewControllers.last, first != last {
-            navController.viewControllers = [first, last]
-        }
     }
 }
