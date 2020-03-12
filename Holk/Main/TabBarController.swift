@@ -41,6 +41,18 @@ class TabBarController: UITabBarController {
         tabBar.barTintColor = Color.tabbarBackgroundColor
         tabBar.tintColor = Color.mainForegroundColor
     }
+
+    override public func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+
+    override public func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        navigationController?.setNavigationBarHidden(false, animated: false)
+    }
 }
 
 // TODO: Change this when have a real profile

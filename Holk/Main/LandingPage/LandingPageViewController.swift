@@ -96,7 +96,7 @@ final class LandingPageViewController: UIPageViewController {
     }
     
     @objc private func infoTapped(_ sender: UIButton) {
-        coordinator?.displayInfo()
+        coordinator?.showInfoGuide()
     }
     
     private func setBackgroundColor(_ color: UIColor, animated: Bool) {

@@ -49,6 +49,7 @@ final class OnboardingInsuranceIssuerViewController: UIViewController {
         tableView.register(OnboardingInsuranceCell.self, forCellReuseIdentifier: "Cell")
         tableView.alwaysBounceVertical = false
         tableView.separatorColor = Color.secondaryForegroundColor
+        tableView.backgroundColor = Color.mainBackgroundColor
         tableView.delegate = self
         tableView.dataSource = self
         

@@ -48,6 +48,8 @@ final class OnboardingInsuranceCell: UITableViewCell {
     private func setup() {
         layoutMargins = .init(top: 12, left: 36, bottom: 12, right: 36)
         selectionStyle = .none
+        backgroundColor = Color.mainBackgroundColor
+        contentView.backgroundColor = .clear
         
         let image = UIImage(systemName: "chevron.right")?.withRenderingMode(.alwaysTemplate)
         let detailDisclosureView = UIImageView(image: image)

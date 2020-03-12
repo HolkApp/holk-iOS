@@ -54,7 +54,8 @@ final class OnboardingConsentViewController: UIViewController {
         headerLabel.textAlignment = .left
         headerLabel.text = "Add your insurance"
         headerLabel.numberOfLines = 0
-        
+
+        descriptionTextView.backgroundColor = .clear
         descriptionTextView.isScrollEnabled = false
         descriptionTextView.isEditable = false
         descriptionTextView.linkTextAttributes = [

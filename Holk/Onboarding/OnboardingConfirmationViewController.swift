@@ -48,6 +48,7 @@ final class OnboardingConfirmationViewController: UIViewController {
     
     private func setup() {
         navigationItem.title = "Start finding your gaps"
+        navigationItem.hidesBackButton = true
         
         imageView.image = UIImage(systemName: "checkmark.circle")?.withSymbolWeightConfiguration(.thin)
         imageView.tintColor = Color.successColor

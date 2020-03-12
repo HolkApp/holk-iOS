@@ -202,7 +202,7 @@ extension OnboardingContainerViewController: OnboardingCoordinating {
         storeController.insuranceStore.getAllInsurance()
         let confirmationViewController = OnboardingConfirmationViewController()
         confirmationViewController.coordinator = self
-        childNavigationController.setViewControllers([confirmationViewController], animated: true)
+        childNavigationController.pushViewController(confirmationViewController, animated: true)
         storeController.insuranceStore.allInsuranceResult.takeUntil(.inclusive) { (requestState) -> Bool in
             if case .loaded = requestState {
                 return true
