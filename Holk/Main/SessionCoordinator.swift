@@ -39,28 +39,22 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
         navController.navigationBar.shadowImage = UIImage()
         navController.delegate = self
         navController.navigationBar.tintColor = .black
-        showInitialScreen()
+        setupViewController()
     }
     
-    func showSession(initialScreen: Bool = false) {
+    func showSession() {
         let tabbarController = TabBarController(storeController: storeController)
+        tabbarController.navigationItem.hidesBackButton = true
         tabbarController.coordinator = self
         tabbarController.modalPresentationStyle = .overFullScreen
+        navController.setViewControllers([tabbarController], animated: false)
         if navController.presentedViewController != nil {
-            navController.dismiss(animated: true) {
-                self.navController.present(tabbarController, animated: true) {
-                    self.navController.popToRootViewController(animated: false)
-                }
-            }
-        } else {
-            navController.present(tabbarController, animated: true) {
-                // Pop out all the onboarding view controllers and leave the landing screen
-                self.navController.popToRootViewController(animated: false)
-            }
+            navController.dismiss(animated: true)
         }
     }
     
     func startAuthentication() {
+        showLoading()
         BankIDService.sign(redirectLink: "holk:///", successHandler: {
             NotificationCenter.default.addObserver(forName: UIApplication.willEnterForegroundNotification, object: nil, queue: .main) { [weak self] _ in
                 guard let self = self else { return }
@@ -68,67 +62,34 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
             }
         }) { [weak self] in
             #if targetEnvironment(simulator)
-            // TODO: Should show some alert for downloading BankID
             guard let self = self else { return }
-            self.checkAuthenticationStatus()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.checkAuthenticationStatus()
+            }
             #else
-            
+            // TODO: Should show some alert for downloading BankID on device
             #endif
         }
     }
     
     func checkAuthenticationStatus() {
-        showLoading()
-        // TODO: Update this when have real endpoint
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            self.showNewUser(shouldPopOtherViews: true)
-        }
+        showAddNewUser()
         // TODO: Directly show insurance if not new user
     }
     
-    func showNewUser(shouldPopOtherViews: Bool = false) {
-        let vc = NewUserViewController()
-        vc.coordinator = self
-
-        navController.pushViewController(vc, animated: true)
-        // TODO: Refactor the navigation for loading since we have new flow
+    func showAddNewUser() {
+        let newUserViewController = NewUserViewController()
+        newUserViewController.coordinator = self
+        navController.pushViewController(newUserViewController, animated: false)
+        navController.popMiddleViewControllers()
         navController.dismiss(animated: true)
-        if shouldPopOtherViews {
-            popOtherViewControllers()
-        }
     }
     
-    func onboarding() {
-        onboardingContainerViewController.startOnboarding()
-        onboardingContainerViewController.modalPresentationStyle = .overFullScreen
-        if navController.viewControllers.isEmpty {
-            navController.pushViewController(onboardingContainerViewController, animated: true)
-        } else if navController.presentedViewController != nil {
-            navController.dismiss(animated: true) { [weak self] in
-                guard let self = self else { return }
-                self.navController.present(self.onboardingContainerViewController, animated: true) {
-                    self.navController.popToRootViewController(animated: false)
-                }
-            }
-        } else {
-            navController.present(onboardingContainerViewController, animated: false) {
-                // Pop out all the onboarding view controllers and leave the landing screen
-                self.navController.popToRootViewController(animated: false)
-            }
-        }
-    }
-    
-    func showLoading(initialScreen: Bool = false) {
+    func showLoading() {
         let loadingViewController = LoadingViewController()
         loadingViewController.modalPresentationStyle = .overFullScreen
         if navController.viewControllers.isEmpty {
             navController.setViewControllers([loadingViewController], animated: false)
-        } else if initialScreen || navController.presentedViewController != nil {
-            navController.dismiss(animated: true) {
-                self.navController.present(loadingViewController, animated: true) {
-                    self.navController.popToRootViewController(animated: false)
-                }
-            }
         } else {
             navController.present(loadingViewController, animated: true) {
                 // Pop out all the onboarding view controllers and leave the landing screen
@@ -137,7 +98,7 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
         }
     }
     
-    func displayInfo() {
+    func showInfoGuide() {
         let vc = StoryboardScene.Onboarding.onboardingInfoViewController.instantiate()
         vc.coordinator = self
         navController.pushViewController(vc, animated: true)
@@ -145,34 +106,42 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
     
     func logout() {
         storeController.resetSession()
-        start()
+        showLandingScreen()
     }
     
-    private func showInitialScreen() {
-        showLoading(initialScreen: true)
+    private func setupViewController() {
         switch storeController.sessionState {
         case .newSession:
-            showLandingScreen(initialScreen: true)
+            showLandingScreen()
         case .shouldRefresh:
-            showLoading(initialScreen: true)
+            showLoading()
             storeController.authenticationStore.refresh().subscribe().disposed(by: bag)
         case .updated:
+            showLoading()
             DispatchQueue.main.async {
-                self.showSession(initialScreen: true)
+                self.showSession()
             }
         }
     }
     
-    private func showLandingScreen(initialScreen: Bool = false) {
+    private func showLandingScreen() {
         let landingPageViewController = LandingPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
         landingPageViewController.coordinator = self
-        if !(self.navController.topViewController is LandingPageViewController) {
-            self.navController.setViewControllers([landingPageViewController], animated: true)
-        }
-        navController.dismiss(animated: true)
+        navController.setViewControllers([landingPageViewController], animated: false)
+        navController.dismiss(animated: false)
     }
-    
+
+    private func showOnboardingFlow() {
+        onboardingContainerViewController.startOnboarding()
+        onboardingContainerViewController.modalPresentationStyle = .overFullScreen
+        navController.present(onboardingContainerViewController, animated: false) {
+            // Pop out all the onboarding view controllers and leave the landing screen
+            self.navController.popToRootViewController(animated: false)
+        }
+    }
+
     private func newUserEmailAdded() {
+        showOnboardingFlow()
         onboardingContainerViewController.loadingFinished()
     }
 }
