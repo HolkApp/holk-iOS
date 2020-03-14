@@ -140,28 +140,25 @@ class HolkProgressBarView: UIView {
         trackLayer.lineDashPattern = trackLayerDashPartterm
         progressLayer.lineDashPattern = progressLayerDashPattern
 
-        let trackAnimation = CABasicAnimation(keyPath: "path")
-        trackAnimation.fromValue = spinnerPath.cgPath
-        trackAnimation.toValue = barPath.cgPath
-
-        let progressAnimation = CABasicAnimation(keyPath: "path")
-        progressAnimation.fromValue = spinnerPath.cgPath
-        progressAnimation.toValue = barPath.cgPath
-        
-        CATransaction.begin()
-        CATransaction.setAnimationDuration(0.3)
-
-        trackLayer.add(trackAnimation, forKey: nil)
-        progressLayer.add(progressAnimation, forKey: nil)
-        
-        layer.setAffineTransform(CGAffineTransform(scaleX: 1, y: 1))
-
-        CATransaction.commit()
         CATransaction.setCompletionBlock {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
-                self.progressLayer.isHidden = false
+            self.progressLayer.isHidden = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                 completion?()
             }
+        }
+
+        if animated {
+            let trackAnimation = CABasicAnimation(keyPath: "path")
+            trackAnimation.fromValue = spinnerPath.cgPath
+            trackAnimation.toValue = barPath.cgPath
+
+            let progressAnimation = CABasicAnimation(keyPath: "path")
+            progressAnimation.fromValue = spinnerPath.cgPath
+            progressAnimation.toValue = barPath.cgPath
+
+            trackLayer.add(trackAnimation, forKey: nil)
+            progressLayer.add(progressAnimation, forKey: nil)
+            layer.setAffineTransform(CGAffineTransform(scaleX: 1, y: 1))
         }
     }
     
@@ -173,24 +170,22 @@ class HolkProgressBarView: UIView {
         trackLayer.lineDashPattern = nil
         progressLayer.lineDashPattern = nil
 
-        let trackAnimation = CABasicAnimation(keyPath: "path")
-        trackAnimation.fromValue = barPath.cgPath
-        trackAnimation.toValue = spinnerPath.cgPath
-
-        let progressAnimation = CABasicAnimation(keyPath: "path")
-        progressAnimation.fromValue = barPath.cgPath
-        progressAnimation.toValue = spinnerPath.cgPath
-        
-        CATransaction.begin()
-        CATransaction.setAnimationDuration(0.3)
-
-        trackLayer.add(trackAnimation, forKey: nil)
-        progressLayer.add(progressAnimation, forKey: nil)
-
-        CATransaction.commit()
         CATransaction.setCompletionBlock {
             self.spinnerLoading()
             completion?()
+        }
+
+        if animated {
+            let trackAnimation = CABasicAnimation(keyPath: "path")
+            trackAnimation.fromValue = barPath.cgPath
+            trackAnimation.toValue = spinnerPath.cgPath
+
+            let progressAnimation = CABasicAnimation(keyPath: "path")
+            progressAnimation.fromValue = barPath.cgPath
+            progressAnimation.toValue = spinnerPath.cgPath
+
+            trackLayer.add(trackAnimation, forKey: nil)
+            progressLayer.add(progressAnimation, forKey: nil)
         }
     }
     
