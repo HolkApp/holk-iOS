@@ -19,8 +19,7 @@ final class InsuranceProtectionCoordinator: Coordinator {
     func start() {
         let vc = StoryboardScene.InsuranceProtection.insuranceProtectionViewController.instantiate()
         vc.coordinator = self
-        let tabBarIcon = UIImage.fontAwesomeIcon(name: .gameBoard, style: .light, textColor: .systemBlue, size: FontAwesome.tabBarIconSize)
-        navController.tabBarItem = UITabBarItem(title: "Ditt skydd", image: tabBarIcon, tag: 1)
+        navController.tabBarItem = UITabBarItem(title: "Ditt skydd", image: UIImage(systemName: "bell"), tag: 1)
         navController.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navController.navigationBar.shadowImage = UIImage()
         navController.pushViewController(vc, animated: true)
