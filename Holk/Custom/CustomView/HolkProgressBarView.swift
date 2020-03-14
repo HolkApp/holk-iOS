@@ -6,55 +6,6 @@ class HolkProgressBarView: UIView {
         case spinner
     }
     
-    private var trackViews = [UIView]()
-    private var progressView = [UIView]()
-    
-    private let trackLayer = CAShapeLayer()
-    private let progressLayer = CAShapeLayer()
-    private let shapeLayer = CAShapeLayer()
-    private var radius: CGFloat {
-        return min(bounds.size.width, bounds.size.height) / (2 * CGFloat.pi)
-    }
-    
-    private var dashLength: CGFloat {
-       bounds.size.width / CGFloat(totalSteps)
-    }
-    
-    private var spinnerPath: UIBezierPath {
-        UIBezierPath(
-            arcCenter: CGPoint(x: bounds.midX, y: bounds.midY),
-            radius: radius,
-            startAngle: CGFloat.pi,
-            endAngle: -CGFloat.pi,
-            clockwise: false
-        )
-    }
-
-    private var barPath: UIBezierPath {
-        let barPath = UIBezierPath()
-        barPath.move(to: CGPoint(x: bounds.minX + dashLength / 8, y: bounds.midY))
-        barPath.addLine(to: CGPoint(x: bounds.maxX + dashLength / 8, y: bounds.midY))
-        return barPath
-    }
-    
-    private var trackLayerDashPartterm: [NSNumber] {
-        [NSNumber(value: Double(dashLength * 3 / 4)), NSNumber(value: Double(dashLength / 4))]
-    }
-    
-    private var progressLayerDashPattern: [NSNumber]? {
-        guard currentStep != 0 else { return nil }
-        var dashParttern = [NSNumber]()
-        for i in 1 ... currentStep {
-            dashParttern.append(NSNumber(value: Double(dashLength * 3 / 4)))
-            if i != currentStep {
-                dashParttern.append(NSNumber(value: Double(dashLength / 4)))
-            } else {
-                dashParttern.append(NSNumber(value: Double(dashLength * CGFloat(totalSteps - i) + dashLength / 4)))
-            }
-        }
-        return dashParttern
-    }
-    
     var totalSteps: Int {
         didSet {
             progressLayer.lineDashPattern = progressLayerDashPattern
@@ -68,19 +19,73 @@ class HolkProgressBarView: UIView {
         }
     }
     
-    var trackTintColor: UIColor? = .red {
+    var trackTintColor: UIColor? = .systemGray {
         didSet {
             trackLayer.strokeColor = trackTintColor?.cgColor
         }
     }
     
-    var progressTintColor: UIColor? = .black {
+    var progressTintColor: UIColor? = .systemGray {
         didSet {
             progressLayer.strokeColor = progressTintColor?.cgColor
         }
     }
+
+    var spinnerRadius: CGFloat? {
+        didSet {
+            setup()
+        }
+    }
     
     private(set) var style: Style = .spinner
+    private var trackViews = [UIView]()
+    private var progressView = [UIView]()
+
+    private let trackLayer = CAShapeLayer()
+    private let progressLayer = CAShapeLayer()
+    private let shapeLayer = CAShapeLayer()
+    private var radius: CGFloat {
+        return min(bounds.size.width, bounds.size.height) / (2 * CGFloat.pi)
+    }
+
+    private var dashLength: CGFloat {
+       bounds.size.width / CGFloat(totalSteps)
+    }
+
+    private var spinnerPath: UIBezierPath {
+        UIBezierPath(
+            arcCenter: CGPoint(x: bounds.midX, y: bounds.midY),
+            radius: spinnerRadius ?? radius,
+            startAngle: CGFloat.pi,
+            endAngle: -CGFloat.pi,
+            clockwise: false
+        )
+    }
+
+    private var barPath: UIBezierPath {
+        let barPath = UIBezierPath()
+        barPath.move(to: CGPoint(x: bounds.minX + dashLength / 8, y: bounds.midY))
+        barPath.addLine(to: CGPoint(x: bounds.maxX + dashLength / 8, y: bounds.midY))
+        return barPath
+    }
+
+    private var trackLayerDashPartterm: [NSNumber] {
+        [NSNumber(value: Double(dashLength * 3 / 4)), NSNumber(value: Double(dashLength / 4))]
+    }
+
+    private var progressLayerDashPattern: [NSNumber]? {
+        guard currentStep != 0 else { return nil }
+        var dashParttern = [NSNumber]()
+        for i in 1 ... currentStep {
+            dashParttern.append(NSNumber(value: Double(dashLength * 3 / 4)))
+            if i != currentStep {
+                dashParttern.append(NSNumber(value: Double(dashLength / 4)))
+            } else {
+                dashParttern.append(NSNumber(value: Double(dashLength * CGFloat(totalSteps - i) + dashLength / 4)))
+            }
+        }
+        return dashParttern
+    }
     
     convenience init() {
         self.init(totalSteps: 1, frame: .zero)
@@ -215,9 +220,13 @@ class HolkProgressBarView: UIView {
         }
         trackLayer.path = fromPath.cgPath
         progressLayer.path = fromPath.cgPath
-        
-        layer.addSublayer(trackLayer)
-        layer.addSublayer(progressLayer)
+
+        if trackLayer.superlayer == nil {
+            layer.addSublayer(trackLayer)
+        }
+        if progressLayer.superlayer == nil {
+            layer.addSublayer(progressLayer)
+        }
     }
 }
 
