@@ -104,7 +104,8 @@ extension InsurancesViewController: UICollectionViewDataSource {
                 case Section.addMore.rawValue:
                     return collectionView.dequeueReusableCell(withReuseIdentifier:
                     InsuranceAddMoreCell.identifier, for: indexPath)
-                default: return UICollectionViewCell()
+                default:
+                    return UICollectionViewCell()
                 }
     }
 
@@ -117,12 +118,14 @@ extension InsurancesViewController: UICollectionViewDelegate {
         case Section.addMore.rawValue:
             numberOfInsurances += 1
             pageControl.numberOfPages = numberOfInsurances + 1
+            pageControl.currentPage = 0
             collectionView.reloadData()
         default:
             return
         }
     }
 
+    // TODO: Update this
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let scrollViewCenter = CGPoint(x: scrollView.contentOffset.x + (scrollView.frame.width / 2), y: (scrollView.frame.height / 2))
 

@@ -2,18 +2,25 @@ import Foundation
 import UIKit
 
 final class LoadingViewController: UIViewController {
-    private let loadingSpinner = HolkLoadingSpinner()
+    private struct Constants {
+        static let loadingSpinnerSize: CGFloat = 48
+    }
+
+    private let loadingSpinner = HolkProgressBarView()
     private let textLabel = UILabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
-        
         setup()
     }
     
     private func setup() {
+        loadingSpinner.update(.spinner)
+        loadingSpinner.trackTintColor = Color.placeHolderColor
+        loadingSpinner.spinnerRadius = Constants.loadingSpinnerSize / 2
+
+        view.backgroundColor = .white
         view.addSubview(loadingSpinner)
         view.addSubview(textLabel)
         
@@ -25,15 +32,13 @@ final class LoadingViewController: UIViewController {
         textLabel.numberOfLines = 0
         
         NSLayoutConstraint.activate([
-            loadingSpinner.widthAnchor.constraint(equalToConstant: 40),
-            loadingSpinner.heightAnchor.constraint(equalToConstant: 40),
+            loadingSpinner.widthAnchor.constraint(equalToConstant: Constants.loadingSpinnerSize),
+            loadingSpinner.heightAnchor.constraint(equalToConstant: Constants.loadingSpinnerSize),
             loadingSpinner.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             loadingSpinner.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             
             textLabel.topAnchor.constraint(equalTo: loadingSpinner.bottomAnchor, constant: 20),
             textLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
-        
-        loadingSpinner.startAnimating()
     }
 }
