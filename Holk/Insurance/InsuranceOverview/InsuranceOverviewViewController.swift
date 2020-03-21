@@ -90,19 +90,19 @@ final class InsuranceOverviewViewController: UIViewController {
 
         NSLayoutConstraint.activate([
             headerLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 36),
-            headerLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            headerLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 4),
 
             profileButton.topAnchor.constraint(equalTo: headerLabel.topAnchor),
             profileButton.widthAnchor.constraint(equalToConstant: 48),
             profileButton.heightAnchor.constraint(equalToConstant: 48),
-            profileButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -36),
+            profileButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
 
-            segmentedControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 36),
-            segmentedControl.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: 12),
-            segmentedControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -36),
+            segmentedControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 18),
+            segmentedControl.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: 4),
+            segmentedControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -18),
             segmentedControl.heightAnchor.constraint(equalToConstant: 36),
 
-            containerView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 20),
+            containerView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor),
             containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),

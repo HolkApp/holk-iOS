@@ -19,7 +19,8 @@ final class HolkSegmentedControl: UISegmentedControl {
     private var imageLayer: CAShapeLayer = CAShapeLayer()
     private var imageLayerSize: CGSize {
         let validNumberOfSegments = max(numberOfSegments, 1)
-        return CGSize(width: frame.width / CGFloat(validNumberOfSegments) - 10, height: 2)
+        // Have 12 paddings around to remove the border corner radius
+        return CGSize(width: (frame.width - 12) / CGFloat(validNumberOfSegments), height: 2)
     }
     
     override init(frame: CGRect) {
@@ -50,8 +51,7 @@ final class HolkSegmentedControl: UISegmentedControl {
         
         self.setBackgroundImage(UIImage(), for: UIControl.State.normal, barMetrics: .default)
         self.setBackgroundImage(UIImage(), for: UIControl.State.selected, barMetrics: .default)
-        
-        imageLayer.frame = CGRect(origin: CGPoint(x: 5, y: frame.height - 2), size: imageLayerSize)
+
         imageLayer.backgroundColor = selectionForegroundColor?.cgColor
         layer.addSublayer(imageLayer)
     }
@@ -60,7 +60,7 @@ final class HolkSegmentedControl: UISegmentedControl {
         super.layoutSubviews()
         
         // Update the frame of imageLayer, since there are some cases that the image size is not updated properly
-        let imageLayerX = CGFloat(selectedSegmentIndex) * imageLayerSize.width + 5
+        let imageLayerX = CGFloat(selectedSegmentIndex) * imageLayerSize.width + 6
         imageLayer.frame = CGRect(origin: CGPoint(x: imageLayerX, y: frame.height - 2),
                                   size: imageLayerSize)
     }

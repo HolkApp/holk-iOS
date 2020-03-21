@@ -180,7 +180,7 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         ideaStackView.addArrangedSubview(ideaValueLabel)
         ideaStackView.addArrangedSubview(ideaLabel)
 
-        let containerBottomConstraint = containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -24)
+        let containerBottomConstraint = containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12)
         containerBottomConstraint.priority = .defaultHigh
 
         let ringChartLeadingConstraint = ringChart.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 36)
@@ -190,7 +190,7 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
 
         NSLayoutConstraint.activate([
             containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
-            containerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 24),
+            containerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
             containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
             containerBottomConstraint,
 
@@ -231,6 +231,7 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
 }
 
 extension InsuranceCollectionViewCell: HolkRingChartDataSource {
+    
     private var mockNumberOfSegments: Int {
         return insurance?.insuranceParts.count ?? 4
     }
