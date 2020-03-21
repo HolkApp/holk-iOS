@@ -15,8 +15,7 @@ final class DynamicHeightCollectionFlowLayout: UICollectionViewFlowLayout {
             .filter { $0.representedElementCategory == .cell }
             .forEach({ layoutAttributes in
                 if let newFrame = layoutAttributesForItem(at: layoutAttributes.indexPath)?.frame {
-                    layoutAttributes.frame = newFrame
-                    layoutAttributes.frame = layoutAttributes.frame.offsetBy(dx: 0, dy: sectionInset.top - layoutAttributes.frame.minY)
+                    layoutAttributes.frame = newFrame.offsetBy(dx: 0, dy: sectionInset.top - layoutAttributes.frame.minY)
                 }
         })
 
