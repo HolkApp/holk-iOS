@@ -51,35 +51,17 @@ final class SessionStore: APIStore {
         
         super.init()
     }
-    
-    func signup(username: String, password: String) -> Observable<Swift.Result<LoginToken, APIError>> {
-        let postParams = [
-            "username": username,
-            "password": password
-        ]
-        let httpHeaders = authorizationBasicHeader
-        
-        let observable: Observable<Swift.Result<RegisterUserResponse, APIError>> =
-            httpRequest(method: .post,
-                url: Endpoint.signup.url,
-                headers: httpHeaders,
-                parameters: postParams as [String: AnyObject]
-            )
-        
-        let mappedObservable = observable.flatMap { [weak self] result -> Observable<Swift.Result<LoginToken, APIError>> in
-            guard let self = self else { fatalError("Self is nil") }
-            switch result {
-            case .success(let response):
-                return self.login(username: response.userId, password: password)
-            case .failure(let error):
-                return .just(.failure(error))
-            }
-        }
-        
-        return mappedObservable
+
+    func authenticate() -> Observable<Swift.Result<BankIDAuthenticationResponse, APIError>> {
+        return httpRequest(
+            method: .post,
+            url: Endpoint.authenticate.url,
+            encoding: JSONEncoding.default,
+            headers: authorizationBasicHeader
+        )
     }
     
-    func login(username: String, password: String) -> Observable<Swift.Result<LoginToken, APIError>> {
+    func token(orderRef: String) -> Observable<Swift.Result<OauthAuthenticationResponse, APIError>> {
         var httpHeaders = [
             "Content-Type": "application/x-www-form-urlencoded"
         ]
@@ -88,31 +70,30 @@ final class SessionStore: APIStore {
         }
         
         let postParams = [
-            "grant_type": "password",
-            "username": username,
-            "password": password
+            "grant_type": "bank-id",
+            "order_ref": orderRef
         ]
         
-        let observable: Observable<Swift.Result<LoginToken, APIError>> =
+        let observable: Observable<Swift.Result<OauthAuthenticationResponse, APIError>> =
             httpRequest(
                 method: .post,
-                url: Endpoint.login.url,
+                url: Endpoint.token.url,
                 encoding: URLEncoding.default,
                 headers: httpHeaders,
                 parameters: postParams as [String: AnyObject]
             )
         
-        return observable.map { [weak self] result -> Swift.Result<LoginToken, APIError> in
-            if let loginToken = try? result.get() {
-                self?.user.loginToken = loginToken
+        return observable.map { [weak self] result -> Swift.Result<OauthAuthenticationResponse, APIError> in
+            if let oauthAuthenticationResponse = try? result.get() {
+                self?.user.oauthAuthenticationResponse = oauthAuthenticationResponse
             }
             return result
         }
     }
     
-    func refresh() -> Observable<Swift.Result<LoginToken, APIError>> {
+    func refresh() -> Observable<Swift.Result<OauthAuthenticationResponse, APIError>> {
         // TODO: Error handling for not found refresh token in device, should probably log out.
-        guard let refreshToken = user.refreshToken else { return .just(.failure(.errorCode(code: 404))) }
+        guard let refreshToken = user.refreshToken else { fatalError("Refresh token not found") }
         var httpHeaders = [
             "Content-Type": "application/x-www-form-urlencoded"
         ]
@@ -125,18 +106,18 @@ final class SessionStore: APIStore {
             "refresh_token": refreshToken
         ]
         
-        let observable: Observable<Swift.Result<LoginToken, APIError>> =
+        let observable: Observable<Swift.Result<OauthAuthenticationResponse, APIError>> =
             httpRequest(
                 method: .post,
-                url: Endpoint.login.url,
+                url: Endpoint.token.url,
                 encoding: URLEncoding.default,
                 headers: httpHeaders,
                 parameters: postParams as [String: AnyObject]
         )
         
-        return observable.map { [weak self] result -> Swift.Result<LoginToken, APIError> in
-            if let loginToken = try? result.get() {
-                self?.user.loginToken = loginToken
+        return observable.map { [weak self] result -> Swift.Result<OauthAuthenticationResponse, APIError> in
+            if let oauthAuthenticationResponse = try? result.get() {
+                self?.user.oauthAuthenticationResponse = oauthAuthenticationResponse
                 self?.delegate?.sessionStoreAccessTokenUpdated()
             } else {
                 // TODO: Only logout for now, but should only logout when receiving 401

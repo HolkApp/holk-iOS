@@ -54,30 +54,73 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
     }
     
     func startAuthentication() {
-        showLoading()
-        BankIDService.sign(redirectLink: "holk:///", successHandler: {
-            NotificationCenter.default.addObserver(forName: UIApplication.willEnterForegroundNotification, object: nil, queue: .main) { [weak self] _ in
-                guard let self = self else { return }
-                self.checkAuthenticationStatus()
+        showOnboardingFlow()
+        storeController.authenticationStore.authenticate()
+            .observeOn(MainScheduler.instance)
+            .catchErrorJustReturn(.failure(APIError.network))
+            .map({ [weak self] result in
+                self?.handleAuthenticationUpdate(result)
+            })
+            .subscribe()
+            .disposed(by: bag)
+    }
+
+    func showInfoGuide() {
+        let vc = StoryboardScene.Onboarding.onboardingInfoViewController.instantiate()
+        vc.coordinator = self
+        navController.pushViewController(vc, animated: true)
+    }
+
+    func logout() {
+        storeController.resetSession()
+        showLandingScreen()
+    }
+
+    private func handleAuthenticationUpdate(_ result: Result<BankIDAuthenticationResponse, APIError>) {
+        switch result {
+        case .success(let authenticationResponse):
+            checkAuthenticationStatus(orderRef: authenticationResponse.orderRef)
+
+            BankIDService.autostart(autoStart: authenticationResponse.autoStartToken, redirectLink: "holk://", successHandler: {
+                // nothing
+            }) {
+                #if targetEnvironment(simulator)
+                // TODO: Should show some alert for downloading BankID on device
+                #else
+                // TODO: Should show some alert for downloading BankID on device
+                #endif
             }
-        }) { [weak self] in
-            #if targetEnvironment(simulator)
-            guard let self = self else { return }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                self.checkAuthenticationStatus()
-            }
-            #else
-            // TODO: Should show some alert for downloading BankID on device
-            #endif
+        case .failure(let error):
+            // TODO: Error handling
+            print(error)
         }
     }
     
-    func checkAuthenticationStatus() {
-        showAddNewUser()
-        // TODO: Directly show insurance if not new user
+    private func checkAuthenticationStatus(orderRef: String) {
+        storeController
+            .authenticationStore
+            .token(orderRef: orderRef)
+            .badNetworkRetrier()
+            .map({ [weak self] result in
+                guard let self = self else { return }
+                switch result {
+                case .success:
+                    if self.storeController.newUser {
+                        self.showAddNewUser()
+                    } else {
+                        self.onboardingContainerViewController.loadingFinished()
+                    }
+                    self.storeController.insuranceIssuerStore.loadInsuranceIssuers()
+                case .failure(let error):
+                    // TODO: Error handling
+                    print(error)
+                }
+            })
+            .subscribe()
+            .disposed(by: bag)
     }
     
-    func showAddNewUser() {
+    private func showAddNewUser() {
         let newUserViewController = NewUserViewController()
         newUserViewController.coordinator = self
         navController.pushViewController(newUserViewController, animated: false)
@@ -85,7 +128,7 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
         navController.dismiss(animated: true)
     }
     
-    func showLoading() {
+    private func showLoading() {
         let loadingViewController = LoadingViewController()
         loadingViewController.modalPresentationStyle = .overFullScreen
         if navController.viewControllers.isEmpty {
@@ -96,17 +139,6 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
                 self.navController.popToRootViewController(animated: false)
             }
         }
-    }
-    
-    func showInfoGuide() {
-        let vc = StoryboardScene.Onboarding.onboardingInfoViewController.instantiate()
-        vc.coordinator = self
-        navController.pushViewController(vc, animated: true)
-    }
-    
-    func logout() {
-        storeController.resetSession()
-        showLandingScreen()
     }
     
     private func setupViewController() {
@@ -139,11 +171,6 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
             self.navController.popToRootViewController(animated: false)
         }
     }
-
-    private func newUserEmailAdded() {
-        showOnboardingFlow()
-        onboardingContainerViewController.loadingFinished()
-    }
 }
 
 extension SessionCoordinator: StoreControllerDelegate {
@@ -159,24 +186,13 @@ extension SessionCoordinator: StoreControllerDelegate {
 // MARK: - SessionCoordinating
 extension SessionCoordinator: OnboardingContainerCoordinating {
     func addUserEmail(_ email: String) {
+        showOnboardingFlow()
         storeController.insuranceIssuerStore.loadInsuranceIssuers()
-        storeController.authenticationStore
-            .login(username: email)
-            .observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] event in
-                switch event {
-                case .success:
-                    self?.newUserEmailAdded()
-                case .failure(let error):
-                    // TODO: Error handling
-                    print(error)
-                    self?.newUserEmailAdded()
-                }
-                }, onError: { [weak self] error in
-                    // TODO: Error handling
-                    print(error)
-                    self?.newUserEmailAdded()
-            }).disposed(by: bag)
+        // TODO: call to register the email with real endpoint and when success to the following
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.onboardingContainerViewController.loadingFinished()
+        }
+
     }
     
     func finishOnboarding(coordinator: OnboardingContainerViewController) {

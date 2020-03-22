@@ -18,12 +18,13 @@ class User {
         $0.dateFormat = "yyyy-MM-dd HH:mm:ss"
     }
     
-    var loginToken: LoginToken? {
+    var oauthAuthenticationResponse: OauthAuthenticationResponse? {
         didSet {
-            if let loginToken = loginToken {
-                accessToken = loginToken.accessToken
-                refreshToken = loginToken.refreshToken
-                let expiresInSeconds = loginToken.expiresInSeconds
+            if let oauthAuthenticationResponse = oauthAuthenticationResponse {
+                newUser = oauthAuthenticationResponse.newUser
+                accessToken = oauthAuthenticationResponse.accessToken
+                refreshToken = oauthAuthenticationResponse.refreshToken
+                let expiresInSeconds = oauthAuthenticationResponse.expiresInSeconds
                 expirationDate = Calendar.current.date(byAdding: .second, value: expiresInSeconds, to: Date())
             }
         }
@@ -32,6 +33,8 @@ class User {
     private var _accessToken: String?
     private var _refreshToken: String?
     private var _expirationDateString: String?
+
+    private(set) var newUser: Bool = true
     
     private(set) var expirationDate: Date? {
         get {
