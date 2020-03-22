@@ -180,7 +180,7 @@ extension LandingPageViewController: UIPageViewControllerDelegate {
         if completed {
             if let index = pendingIndex {
                 let color = viewControllersColors[index]
-                setBackgroundColor(color, animated: true)
+                setBackgroundColor(color, animated: false)
                 pageControl.currentPage = index
             }
         }

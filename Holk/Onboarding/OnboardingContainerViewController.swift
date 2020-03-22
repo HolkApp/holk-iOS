@@ -53,6 +53,9 @@ final class OnboardingContainerViewController: UIViewController {
     }
     
     private func setup() {
+        NotificationCenter.default.addObserver(self, selector: #selector(resumeLoading), name: UIApplication.willEnterForegroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(pauseLoading), name: UIApplication.didEnterBackgroundNotification, object: nil)
+
         navigationController?.isNavigationBarHidden = true
         view.backgroundColor = Color.mainBackgroundColor
         
@@ -122,9 +125,7 @@ extension OnboardingContainerViewController: OnboardingCoordinating {
     }
     
     func loadingFinished() {
-        storeController.insuranceIssuerStore.loadInsuranceIssuers()
-        // TODO: Remove the wait after adding real polling
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        DispatchQueue.main.async {
             self.progressBarToTop()
         }
     }
@@ -239,6 +240,16 @@ extension OnboardingContainerViewController: OnboardingCoordinating {
         progressViewTopAnchor?.constant = view.bounds.height / 2 - 100
         progressViewHeightAnchor?.constant = 150
         progressView.update(.spinner, animated: false)
+    }
+
+    @objc private func pauseLoading() {
+        guard !progressView.isHidden else { return }
+        progressView.setLoading(false)
+    }
+
+    @objc private func resumeLoading() {
+        guard !progressView.isHidden else { return }
+        progressView.setLoading(true)
     }
 }
 

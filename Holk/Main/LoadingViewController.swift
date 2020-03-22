@@ -16,6 +16,9 @@ final class LoadingViewController: UIViewController {
     }
     
     private func setup() {
+        NotificationCenter.default.addObserver(self, selector: #selector(resumeLoading), name: UIApplication.willEnterForegroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(pauseLoading), name: UIApplication.didEnterBackgroundNotification, object: nil)
+
         loadingSpinner.update(.spinner)
         loadingSpinner.trackTintColor = Color.placeHolderColor
         loadingSpinner.spinnerRadius = Constants.loadingSpinnerSize / 2
@@ -40,5 +43,13 @@ final class LoadingViewController: UIViewController {
             textLabel.topAnchor.constraint(equalTo: loadingSpinner.bottomAnchor, constant: 20),
             textLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
+    }
+
+    @objc private func pauseLoading() {
+        loadingSpinner.setLoading(false)
+    }
+
+    @objc private func resumeLoading() {
+        loadingSpinner.setLoading(true)
     }
 }

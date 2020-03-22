@@ -9,7 +9,7 @@
 import UIKit
 
 final class BankIDService {
-    static func autostart(token: String, redirectLink: String, successHandler: @escaping () -> Void, failureHandler: @escaping () -> Void) {
+    static func autostart(autoStart token: String, redirectLink: String, successHandler: @escaping () -> Void, failureHandler: @escaping () -> Void) {
         guard let url = URL(string: "bankid:///?autostartToken=\(token)&redirect=\(redirectLink)") else { return failureHandler() }
         start(url, successHandler, failureHandler)
     }
@@ -20,16 +20,18 @@ final class BankIDService {
     }
     
     private static func start(_ url: URL, _ successHandler: @escaping () -> Void, _ failureHandler: @escaping () -> Void) {
-        if UIApplication.shared.canOpenURL(url) {
-            UIApplication.shared.open(url, options: [:]) { success in
-                if success {
-                    successHandler()
-                } else {
-                    failureHandler()
+        DispatchQueue.main.async {
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url, options: [:]) { success in
+                    if success {
+                        successHandler()
+                    } else {
+                        failureHandler()
+                    }
                 }
+            } else {
+                failureHandler()
             }
-        } else {
-            failureHandler()
         }
     }
 }
