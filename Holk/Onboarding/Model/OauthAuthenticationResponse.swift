@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct LoginToken: Codable {
+struct OauthAuthenticationResponse: Codable {
     let accessToken: String
     let refreshToken: String
     let tokenType: String
@@ -26,7 +26,7 @@ struct LoginToken: Codable {
     }
 }
 
-extension LoginToken {
+extension OauthAuthenticationResponse {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         

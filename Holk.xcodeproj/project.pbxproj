@@ -10,7 +10,7 @@
 		8F0D403F227A0AD4000BD840 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0D403E227A0AD4000BD840 /* APIError.swift */; };
 		8F0D4041227A0D68000BD840 /* OnboardingInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0D4040227A0D68000BD840 /* OnboardingInfoViewController.swift */; };
 		8F25CA992337AAC100DC3B97 /* FontAwsome+UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F25CA982337AAC100DC3B97 /* FontAwsome+UIExtensions.swift */; };
-		8F25CAA1233E981900DC3B97 /* LoginToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F25CA9F233E981800DC3B97 /* LoginToken.swift */; };
+		8F25CAA1233E981900DC3B97 /* OauthAuthenticationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F25CA9F233E981800DC3B97 /* OauthAuthenticationResponse.swift */; };
 		8F25CAA2233E981900DC3B97 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F25CAA0233E981800DC3B97 /* User.swift */; };
 		8F25CAA523410CB800DC3B97 /* OnboardingInsuranceIssuerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F25CAA423410CB800DC3B97 /* OnboardingInsuranceIssuerViewController.swift */; };
 		8F25CAAC23429F7100DC3B97 /* OnboardingInsuranceTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F25CAAB23429F7100DC3B97 /* OnboardingInsuranceTypeViewController.swift */; };
@@ -45,7 +45,7 @@
 		8F65466F230DC4CC0053B3F8 /* HolkTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F65466E230DC4CC0053B3F8 /* HolkTextField.swift */; };
 		8F6546712316FE190053B3F8 /* NewUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6546702316FE190053B3F8 /* NewUserViewController.swift */; };
 		8F66F2FA23B0F3E60083DC3A /* SessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F66F2F923B0F3E60083DC3A /* SessionStore.swift */; };
-		8F66F2FC23BBFB580083DC3A /* RegisterUserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F66F2FB23BBFB580083DC3A /* RegisterUserResponse.swift */; };
+		8F66F2FC23BBFB580083DC3A /* BankIDAuthenticationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F66F2FB23BBFB580083DC3A /* BankIDAuthenticationResponse.swift */; };
 		8F66F2FE23BC04F90083DC3A /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F66F2FD23BC04F90083DC3A /* LoadingViewController.swift */; };
 		8F6BCA2122EF61EF004B887E /* InsuranceDetailTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6BCA2022EF61EF004B887E /* InsuranceDetailTransition.swift */; };
 		8F6BCA3922F73CBF004B887E /* Font Awesome 5 Pro-Solid-900.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8F6BCA3422F73CBF004B887E /* Font Awesome 5 Pro-Solid-900.otf */; };
@@ -124,7 +124,7 @@
 		8F0D403E227A0AD4000BD840 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		8F0D4040227A0D68000BD840 /* OnboardingInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingInfoViewController.swift; sourceTree = "<group>"; };
 		8F25CA982337AAC100DC3B97 /* FontAwsome+UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FontAwsome+UIExtensions.swift"; sourceTree = "<group>"; };
-		8F25CA9F233E981800DC3B97 /* LoginToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoginToken.swift; path = Holk/Onboarding/Model/LoginToken.swift; sourceTree = SOURCE_ROOT; };
+		8F25CA9F233E981800DC3B97 /* OauthAuthenticationResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OauthAuthenticationResponse.swift; path = Holk/Onboarding/Model/OauthAuthenticationResponse.swift; sourceTree = SOURCE_ROOT; };
 		8F25CAA0233E981800DC3B97 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Holk/Stores/User.swift; sourceTree = SOURCE_ROOT; };
 		8F25CAA423410CB800DC3B97 /* OnboardingInsuranceIssuerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingInsuranceIssuerViewController.swift; sourceTree = "<group>"; };
 		8F25CAAB23429F7100DC3B97 /* OnboardingInsuranceTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingInsuranceTypeViewController.swift; sourceTree = "<group>"; };
@@ -159,7 +159,7 @@
 		8F65466E230DC4CC0053B3F8 /* HolkTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolkTextField.swift; sourceTree = "<group>"; };
 		8F6546702316FE190053B3F8 /* NewUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserViewController.swift; sourceTree = "<group>"; };
 		8F66F2F923B0F3E60083DC3A /* SessionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStore.swift; sourceTree = "<group>"; };
-		8F66F2FB23BBFB580083DC3A /* RegisterUserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RegisterUserResponse.swift; path = Holk/Stores/RegisterUserResponse.swift; sourceTree = SOURCE_ROOT; };
+		8F66F2FB23BBFB580083DC3A /* BankIDAuthenticationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BankIDAuthenticationResponse.swift; path = Holk/Stores/BankIDAuthenticationResponse.swift; sourceTree = SOURCE_ROOT; };
 		8F66F2FD23BC04F90083DC3A /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		8F6BCA2022EF61EF004B887E /* InsuranceDetailTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceDetailTransition.swift; sourceTree = "<group>"; };
 		8F6BCA3422F73CBF004B887E /* Font Awesome 5 Pro-Solid-900.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Font Awesome 5 Pro-Solid-900.otf"; sourceTree = "<group>"; };
@@ -523,8 +523,8 @@
 		8FF6E73022B5340900F6D398 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				8F25CA9F233E981800DC3B97 /* LoginToken.swift */,
-				8F66F2FB23BBFB580083DC3A /* RegisterUserResponse.swift */,
+				8F25CA9F233E981800DC3B97 /* OauthAuthenticationResponse.swift */,
+				8F66F2FB23BBFB580083DC3A /* BankIDAuthenticationResponse.swift */,
 				8F858A5423CE6C8C006B416A /* ScrapingStatusResponse.swift */,
 				8F3305A123FB3A8100E9B443 /* AllInsuranceResponse.swift */,
 				8F5AF02023C6679E00690373 /* InsuranceIssuer */,
@@ -781,7 +781,7 @@
 				8FF6E75422B9634400F6D398 /* HolkSegmentedControl.swift in Sources */,
 				8FC296BB23E237D0002A39D1 /* LandingPageViewController.swift in Sources */,
 				8FF6E73D22B6B59B00F6D398 /* InsuranceProtectionCoordinator.swift in Sources */,
-				8F25CAA1233E981900DC3B97 /* LoginToken.swift in Sources */,
+				8F25CAA1233E981900DC3B97 /* OauthAuthenticationResponse.swift in Sources */,
 				8F25CAA523410CB800DC3B97 /* OnboardingInsuranceIssuerViewController.swift in Sources */,
 				8FCEE9B123254B6C00F75FB8 /* KeyboardEventContext.swift in Sources */,
 				8F4965DD2412F70100DEAFC1 /* HolkRingChartIconsView.swift in Sources */,
@@ -812,7 +812,7 @@
 				8F25CA992337AAC100DC3B97 /* FontAwsome+UIExtensions.swift in Sources */,
 				8F65466F230DC4CC0053B3F8 /* HolkTextField.swift in Sources */,
 				8F0D403F227A0AD4000BD840 /* APIError.swift in Sources */,
-				8F66F2FC23BBFB580083DC3A /* RegisterUserResponse.swift in Sources */,
+				8F66F2FC23BBFB580083DC3A /* BankIDAuthenticationResponse.swift in Sources */,
 				8FACE89623E767A900DCE741 /* UIButton+extension.swift in Sources */,
 				8F858A5523CE6C8C006B416A /* ScrapingStatusResponse.swift in Sources */,
 				8F48BE6C2332C7C7004D79D2 /* FontAwsomeEnum.swift in Sources */,
@@ -1013,6 +1013,7 @@
 			baseConfigurationReference = 97E98E517D78DF88FA66A5F6 /* Pods-Holk.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = B6L4JUFKP9;
@@ -1036,10 +1037,10 @@
 			baseConfigurationReference = 8BE4C8D20BBE4A002F7E3A10 /* Pods-Holk.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = B6L4JUFKP9;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Holk/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1049,7 +1050,7 @@
 				MARKETING_VERSION = 0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.holk.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "App Store";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
