@@ -1,5 +1,5 @@
 //
-//  LoginToken.swift
+//  OauthAuthenticationResponse.swift
 //  Holk
 //
 //  Created by 张梦皓 on 2019-05-10.
@@ -14,6 +14,7 @@ struct OauthAuthenticationResponse: Codable {
     let tokenType: String
     let scope: String
     let jti: String
+    let newUser: Bool
     let expiresInSeconds: Int
     
     private enum CodingKeys: String, CodingKey {
@@ -22,6 +23,7 @@ struct OauthAuthenticationResponse: Codable {
         case tokenType = "token_type"
         case scope = "scope"
         case jti = "jti"
+        case newUser = "newUser"
         case expiresInSeconds = "expires_in"
     }
 }
@@ -35,6 +37,7 @@ extension OauthAuthenticationResponse {
         tokenType = try container.decode(String.self, forKey: .tokenType)
         scope = try container.decode(String.self, forKey: .scope)
         jti = try container.decode(String.self, forKey: .jti)
+        newUser = try container.decode(Bool.self, forKey: .newUser)
         expiresInSeconds = try container.decode(Int.self, forKey: .expiresInSeconds)
     }
 }

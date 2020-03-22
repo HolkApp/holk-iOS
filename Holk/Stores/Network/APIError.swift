@@ -10,13 +10,13 @@ import Foundation
 
 enum APIError: Error {
     case decodingError
-    case errorCode(code: Int)
+    case response(error: NSError)
     case network
     
     var code: Int {
         switch self {
-        case let .errorCode(code):
-            return code
+        case .response(let error):
+            return error.code
         default:
             return 500
         }
@@ -28,7 +28,7 @@ extension APIError: Equatable {
         switch (lhs, rhs) {
         case (.decodingError, .decodingError), (.network, .network):
             return true
-        case (.errorCode(let lhsCode), .errorCode(let rhsCode)):
+        case (.response(let lhsCode), .response(let rhsCode)):
             return lhsCode == rhsCode
         default:
             return false

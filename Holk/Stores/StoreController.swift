@@ -38,6 +38,10 @@ final class StoreController {
             return .updated
         }
     }
+
+    var newUser: Bool {
+        return sessionStore.user.newUser
+    }
     
     private let sessionStore: SessionStore
     private let queue = DispatchQueue(label: "se.holk.store.queue", qos: .utility)

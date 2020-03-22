@@ -10,9 +10,10 @@ import Foundation
 
 enum Endpoint: String {
     static let baseUrl = "https://dev.holk.app/"
-    
-    case signup = "authorize/user/register"
-    case login = "authorize/oauth/token"
+
+    case authenticate = "authorize/bank-id/auth"
+    case token = "authorize/oauth/token"
+    case user = "user"
     case insurancesIssuers = "insurance/scraping/provider/status"
     case allInsurances = "insurance/user"
     case addInsurance = "insurance/scraping/%@/ssn/%@/scrape"
