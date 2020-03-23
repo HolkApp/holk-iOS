@@ -110,14 +110,13 @@ class OnboardingInfoViewController: UIViewController {
         verticalStackView.addArrangedSubview(childrenStackView)
 
         let loginStackView = UIStackView(arrangedSubviews: [loginImage, loginLabel])
-        loginStackView.distribution = .fill
-        loginStackView.spacing = 32
+        loginStackView.spacing = 24
 
         let answerQuestionStackView = UIStackView(arrangedSubviews: [answerQuestionImage, answerQuestionLabel])
-        answerQuestionStackView.spacing = 32
+        answerQuestionStackView.spacing = 24
 
         let analyseStackView = UIStackView(arrangedSubviews: [analyseImage, analyseLabel])
-        analyseStackView.spacing = 32
+        analyseStackView.spacing = 24
 
         childrenStackView.spacing = 24
         childrenStackView.axis = .vertical
