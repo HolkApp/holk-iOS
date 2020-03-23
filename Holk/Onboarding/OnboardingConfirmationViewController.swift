@@ -95,10 +95,10 @@ final class OnboardingConfirmationViewController: UIViewController {
         doneButton.set(color: Color.mainForegroundColor)
         doneButton.addTarget(self, action: #selector(submit(_:)), for: .touchUpInside)
         
-        setupConstraints()
+        setupLayout()
     }
     
-    private func setupConstraints() {
+    private func setupLayout() {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false

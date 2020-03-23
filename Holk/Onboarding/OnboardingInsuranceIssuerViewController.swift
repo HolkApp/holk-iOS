@@ -56,10 +56,10 @@ final class OnboardingInsuranceIssuerViewController: UIViewController {
         subscribeInsurnaceIssuerChanges()
         loadInsuranceIssuerListIfNeeded()
         
-        setupConstraints()
+        setupLayout()
     }
     
-    private func setupConstraints() {
+    private func setupLayout() {
         view.addSubview(headerLabel)
         view.addSubview(tableView)
         

@@ -81,10 +81,10 @@ final class OnboardingConsentViewController: UIViewController {
         )
         nextButton.addTarget(self, action: #selector(nextButtonTapped(_:)), for: .touchUpInside)
         
-        setupConstraints()
+        setupLayout()
     }
     
-    private func setupConstraints() {
+    private func setupLayout() {
         view.addSubview(headerLabel)
         view.addSubview(descriptionTextView)
         view.addSubview(bankIDIconView)

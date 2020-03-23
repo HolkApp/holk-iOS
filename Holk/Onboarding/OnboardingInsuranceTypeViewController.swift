@@ -53,10 +53,10 @@ final class OnboardingInsuranceTypeViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        setupConstraints()
+        setupLayout()
     }
     
-    private func setupConstraints() {
+    private func setupLayout() {
         view.addSubview(tableView)
         view.addSubview(headerLabel)
         

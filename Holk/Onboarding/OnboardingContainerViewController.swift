@@ -68,10 +68,10 @@ final class OnboardingContainerViewController: UIViewController {
         childNavigationController.navigationBar.tintColor = .black
         childNavigationController.navigationBar.shadowImage = UIImage()
         
-        setupConstraints()
+        setupLayout()
     }
     
-    private func setupConstraints() {
+    private func setupLayout() {
         progressView.translatesAutoresizingMaskIntoConstraints = false
         childNavigationController.view.translatesAutoresizingMaskIntoConstraints = false
         

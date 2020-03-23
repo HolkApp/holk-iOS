@@ -35,7 +35,7 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
 
         setup()
-        setupConstraints()
+        setupLayout()
     }
 
     required init?(coder: NSCoder) {
@@ -157,7 +157,7 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         ringChart.translatesAutoresizingMaskIntoConstraints = false
     }
 
-    private func setupConstraints() {
+    private func setupLayout() {
         contentView.addSubview(containerView)
 
         containerView.addSubview(titleLabel)
