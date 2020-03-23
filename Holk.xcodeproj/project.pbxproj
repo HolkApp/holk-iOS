@@ -79,7 +79,6 @@
 		8FCEE9B123254B6C00F75FB8 /* KeyboardEventContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCEE9B023254B6C00F75FB8 /* KeyboardEventContext.swift */; };
 		8FCEE9B323254C2D00F75FB8 /* KeyboardEventFloatingViewHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCEE9B223254C2D00F75FB8 /* KeyboardEventFloatingViewHandler.swift */; };
 		8FD84E682270E732009D563D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD84E672270E732009D563D /* AppDelegate.swift */; };
-		8FD84E6D2270E732009D563D /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FD84E6B2270E732009D563D /* Onboarding.storyboard */; };
 		8FD84E6F2270E736009D563D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8FD84E6E2270E736009D563D /* Assets.xcassets */; };
 		8FD84E722270E736009D563D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FD84E702270E736009D563D /* LaunchScreen.storyboard */; };
 		8FD84E7D2270E736009D563D /* HolkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD84E7C2270E736009D563D /* HolkTests.swift */; };
@@ -194,7 +193,6 @@
 		8FCEE9B223254C2D00F75FB8 /* KeyboardEventFloatingViewHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardEventFloatingViewHandler.swift; sourceTree = "<group>"; };
 		8FD84E642270E732009D563D /* Holk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Holk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FD84E672270E732009D563D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8FD84E6C2270E732009D563D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Onboarding.storyboard; sourceTree = "<group>"; };
 		8FD84E6E2270E736009D563D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8FD84E712270E736009D563D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8FD84E732270E736009D563D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -536,7 +534,6 @@
 		8FF6E73122B534E000F6D398 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				8FD84E6B2270E732009D563D /* Onboarding.storyboard */,
 				8F5A5C9323EE0D4E00ADFB4E /* OnboardingContainerViewController.swift */,
 				8F25CAAB23429F7100DC3B97 /* OnboardingInsuranceTypeViewController.swift */,
 				8F25CAA423410CB800DC3B97 /* OnboardingInsuranceIssuerViewController.swift */,
@@ -693,7 +690,6 @@
 				8F9C83DC22A31658005BB336 /* InsuranceOverview.storyboard in Resources */,
 				8F6BCA3A22F73CBF004B887E /* Font Awesome 5 Brands-Regular-400.otf in Resources */,
 				8FF6E74A22B82F3600F6D398 /* Montserrat-ExtraBold.ttf in Resources */,
-				8FD84E6D2270E732009D563D /* Onboarding.storyboard in Resources */,
 				8FF6E73F22B6B67A00F6D398 /* InsuranceProtection.storyboard in Resources */,
 				8F6BCA3922F73CBF004B887E /* Font Awesome 5 Pro-Solid-900.otf in Resources */,
 				8FF6E74822B82EFB00F6D398 /* OpenSans-Regular.ttf in Resources */,
@@ -873,14 +869,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		8FD84E6B2270E732009D563D /* Onboarding.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8FD84E6C2270E732009D563D /* Base */,
-			);
-			name = Onboarding.storyboard;
-			sourceTree = "<group>";
-		};
 		8FD84E702270E736009D563D /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
