@@ -10,9 +10,13 @@ import UIKit
 import RxCocoa
 import RxSwift
 
+protocol NewUserViewControllerDelegate: AnyObject {
+    func newUserViewController(_ viewController: NewUserViewController, add email: String)
+}
+
 class NewUserViewController: UIViewController {
     // MARK: - Public variables
-    weak var coordinator: SessionCoordinator?
+    weak var delegate: NewUserViewControllerDelegate?
     
     // MARK: - Private variables
     private let stackView = UIStackView()
@@ -39,23 +43,10 @@ class NewUserViewController: UIViewController {
         setup()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        navigationItem.setHidesBackButton(true, animated: animated)
-    }
-    
     private func setup() {
         view.layoutMargins = .init(top: 20, left: 40, bottom: 20, right: 40)
         view.backgroundColor = Color.mainBackgroundColor
         
-        navigationItem.setHidesBackButton(true, animated: false)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-            image: UIImage(systemName: "xmark")?.withSymbolWeightConfiguration(.medium),
-            style: .plain,
-            target: self,
-            action: #selector(backTapped(_:))
-        )
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard(_:)))
         view.addGestureRecognizer(tapGestureRecognizer)
         
@@ -125,10 +116,6 @@ class NewUserViewController: UIViewController {
         keyboardEventObserver = KeyboardEventObserver(handler: keyboardEventFloatingViewHandler)
     }
     
-    @objc private func backTapped(_ sender: UIButton) {
-        coordinator?.back()
-    }
-    
     @objc private func hideKeyboard(_ sender: Any) {
         view.endEditing(true)
     }
@@ -140,7 +127,7 @@ class NewUserViewController: UIViewController {
     
     private func addEmail() {
         if let email = emailTextField.text {
-            coordinator?.addUserEmail(email)
+            delegate?.newUserViewController(self, add: email)
         }
     }
 }

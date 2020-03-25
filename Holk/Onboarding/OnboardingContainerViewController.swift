@@ -10,9 +10,7 @@ import UIKit
 import RxSwift
 
 protocol OnboardingCoordinating: AnyObject {
-    func startLoading()
-    func loadingFinished()
-    func startOnboarding()
+    func startOnboarding(_ isNewUser: Bool)
     func addInsuranceProviderType(_ providerType: InsuranceProviderType)
     func addInsuranceIssuer(_ insuranceIssuer: InsuranceIssuer)
     func aggregateInsurance(_ providerType: InsuranceProviderType, insuranceIssuer: InsuranceIssuer)
@@ -53,8 +51,8 @@ final class OnboardingContainerViewController: UIViewController {
     }
     
     private func setup() {
-        NotificationCenter.default.addObserver(self, selector: #selector(resumeLoading), name: UIApplication.willEnterForegroundNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(pauseLoading), name: UIApplication.didEnterBackgroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(resumeLoadingAnimation), name: UIApplication.willEnterForegroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(pauseLoadingAnimation), name: UIApplication.didEnterBackgroundNotification, object: nil)
 
         navigationController?.isNavigationBarHidden = true
         view.backgroundColor = Color.mainBackgroundColor
@@ -78,7 +76,6 @@ final class OnboardingContainerViewController: UIViewController {
         addChild(childNavigationController)
         view.addSubview(childNavigationController.view)
         childNavigationController.didMove(toParent: self)
-        childNavigationController.view.isHidden = true
         
         view.addSubview(progressView)
         let progressViewTopAnchor = progressView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: view.bounds.height / 2 - 100)
@@ -87,16 +84,16 @@ final class OnboardingContainerViewController: UIViewController {
         self.progressViewTopAnchor = progressViewTopAnchor
         self.progressViewHeightAnchor = progressViewHeightAnchor
         NSLayoutConstraint.activate([
+            childNavigationController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            childNavigationController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            childNavigationController.view.topAnchor.constraint(equalTo: view.topAnchor),
+            childNavigationController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+
             progressView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             progressViewTopAnchor,
             progressViewHeightAnchor,
             progressView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
-            progressView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
-            
-            childNavigationController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            childNavigationController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            childNavigationController.view.topAnchor.constraint(equalTo: view.topAnchor),
-            childNavigationController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            progressView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40)
         ])
     }
     
@@ -119,27 +116,41 @@ final class OnboardingContainerViewController: UIViewController {
 }
 
 extension OnboardingContainerViewController: OnboardingCoordinating {
-    func startLoading() {
-        progressSpinnerToCenter()
-        childNavigationController.view.isHidden = true
-    }
-    
-    func loadingFinished() {
-        DispatchQueue.main.async {
-            self.progressBarToTop()
+    func startOnboarding(_ isNewUser: Bool) {
+        storeController.insuranceIssuerStore.loadInsuranceIssuers()
+        progressView.isHidden = true
+        if isNewUser {
+            showAddNewUser()
+        } else {
+            progressBarToTop(animated: false, completion: { [weak self] in
+                self?.showInsuranceType()
+            })
         }
     }
-    
-    func startOnboarding() {
-        startLoading()
-        let insuranceProviderTypeViewController = OnboardingInsuranceTypeViewController(storeController: storeController)
-        insuranceProviderTypeViewController.coordinator = self
-        insuranceProviderTypeViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(
+
+    private func showAddNewUser() {
+        let newUserViewController = NewUserViewController()
+        newUserViewController.delegate = self
+        let barButton = UIBarButtonItem(
             image: UIImage(systemName: "xmark")?.withSymbolWeightConfiguration(.medium),
             style: .plain,
             target: self,
             action: #selector(stopOnboarding(_:))
         )
+        newUserViewController.navigationItem.rightBarButtonItem = barButton
+        childNavigationController.setViewControllers([newUserViewController], animated: true)
+    }
+
+    private func showInsuranceType() {
+        let insuranceProviderTypeViewController = OnboardingInsuranceTypeViewController(storeController: storeController)
+        insuranceProviderTypeViewController.coordinator = self
+        let barButton = UIBarButtonItem(
+            image: UIImage(systemName: "xmark")?.withSymbolWeightConfiguration(.medium),
+            style: .plain,
+            target: self,
+            action: #selector(stopOnboarding(_:))
+        )
+        insuranceProviderTypeViewController.navigationItem.rightBarButtonItem = barButton
         childNavigationController.setViewControllers([insuranceProviderTypeViewController], animated: false)
     }
     
@@ -171,7 +182,7 @@ extension OnboardingContainerViewController: OnboardingCoordinating {
     }
     
     func aggregateInsurance(_ providerType: InsuranceProviderType, insuranceIssuer: InsuranceIssuer) {
-        startLoading()
+        progressSpinnerToCenter()
         storeController.insuranceCredentialStore.addInsurance(issuer: insuranceIssuer, personalNumber: "199208253915")
         storeController.insuranceCredentialStore.insuranceState
             .subscribe({ [weak self] event in
@@ -181,7 +192,7 @@ extension OnboardingContainerViewController: OnboardingCoordinating {
                     case .loaded(let scrapingStatus):
                         print(scrapingStatus)
                         self?.showInsuranceAggregatedConfirmation(insuranceIssuer)
-                        self?.loadingFinished()
+                        self?.progressBarToTop()
                     case .error:
                         // TOOD: Error handling
                         print(state)
@@ -196,7 +207,7 @@ extension OnboardingContainerViewController: OnboardingCoordinating {
     }
     
     func finishOnboarding() {
-        coordinator?.finishOnboarding(coordinator: self)
+        coordinator?.onboardingFinished(coordinator: self)
     }
     
     private func showInsuranceAggregatedConfirmation(_ insuranceIssuer: InsuranceIssuer) {
@@ -212,8 +223,8 @@ extension OnboardingContainerViewController: OnboardingCoordinating {
         }.subscribe(onNext: { [weak self] requestState in
             switch requestState {
             case .loaded(let allInsurance):
-                self?.loadingFinished()
                 confirmationViewController.allInsurance = allInsurance
+                self?.progressBarToTop()
             case .error:
                 // TODO: error handling
                 break
@@ -223,33 +234,68 @@ extension OnboardingContainerViewController: OnboardingCoordinating {
             }).disposed(by: bag)
     }
     
-    private func progressBarToTop() {
-        progressView.update(.bar, animated: true) { [weak self] in
+    private func progressBarToTop(animated: Bool = true, completion: (() -> Void)? = nil) {
+        DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
-            UIView.animate(withDuration: 0.3, animations: {
-                self.progressViewTopAnchor?.constant = 40
-                self.progressViewHeightAnchor?.constant = 40
-                self.view.layoutIfNeeded()
-            }) { _ in
-                self.childNavigationController.view.isHidden = false
+            self.progressView.update(.bar, animated: animated) {
+                if animated {
+                    UIView.animate(withDuration: 0.3, animations: {
+                        self.progressViewTopAnchor?.constant = 40
+                        self.progressViewHeightAnchor?.constant = 40
+                        self.view.layoutIfNeeded()
+                    }) { _ in
+                        self.childNavigationController.view.isHidden = false
+                        self.progressView.isHidden = false
+                        completion?()
+                    }
+                } else {
+                    self.progressViewTopAnchor?.constant = 40
+                    self.progressViewHeightAnchor?.constant = 40
+                    self.childNavigationController.view.isHidden = false
+                    self.progressView.isHidden = false
+                    completion?()
+                }
             }
         }
     }
     
     private func progressSpinnerToCenter() {
-        progressViewTopAnchor?.constant = view.bounds.height / 2 - 100
-        progressViewHeightAnchor?.constant = 150
-        progressView.update(.spinner, animated: false)
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.progressViewTopAnchor?.constant = self.view.bounds.height / 2 - 100
+            self.progressViewHeightAnchor?.constant = 150
+            self.progressView.update(.spinner, animated: false)
+            self.childNavigationController.view.isHidden = true
+        }
     }
 
-    @objc private func pauseLoading() {
+    @objc private func pauseLoadingAnimation() {
         guard !progressView.isHidden else { return }
         progressView.setLoading(false)
     }
 
-    @objc private func resumeLoading() {
+    @objc private func resumeLoadingAnimation() {
         guard !progressView.isHidden else { return }
         progressView.setLoading(true)
+    }
+}
+
+extension OnboardingContainerViewController: NewUserViewControllerDelegate {
+    func newUserViewController(_ viewController: NewUserViewController, add email: String) {
+        // TODO: update this
+        progressView.setLoading(true)
+        childNavigationController.view.isHidden = true
+        progressView.isHidden = false
+
+        storeController.authenticationStore.addUser(email)
+            .catchErrorJustReturn(.failure(APIError.network))
+            .subscribe(onNext: { [weak self] result in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    self?.showInsuranceType()
+                    self?.progressBarToTop()
+                }
+            })
+            .disposed(by: bag)
     }
 }
 

@@ -92,11 +92,11 @@ final class LandingPageViewController: UIPageViewController {
     }
     
     @objc private func loginTapped(_ sender: UIButton) {
-        coordinator?.startAuthentication()
+        coordinator?.authenticate()
     }
     
     @objc private func infoTapped(_ sender: UIButton) {
-        coordinator?.showInfoGuide()
+        coordinator?.information()
     }
     
     private func setBackgroundColor(_ color: UIColor, animated: Bool) {
@@ -185,5 +185,4 @@ extension LandingPageViewController: UIPageViewControllerDelegate {
             }
         }
     }
-    
 }

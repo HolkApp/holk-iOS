@@ -10,8 +10,7 @@ import UIKit
 import RxSwift
 
 protocol OnboardingContainerCoordinating: AnyObject {
-    func addUserEmail(_ email: String)
-    func finishOnboarding(coordinator: OnboardingContainerViewController)
+    func onboardingFinished(coordinator: OnboardingContainerViewController)
 }
 
 final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
@@ -19,18 +18,16 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
     var navController: UINavigationController
     var storeController: StoreController
     
-    private var onboardingContainerViewController: OnboardingContainerViewController
     private let bag = DisposeBag()
+    private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
     
     // MARK: - Init
     init(navController: UINavigationController) {
         self.navController = navController
         self.storeController = StoreController()
-        self.onboardingContainerViewController = OnboardingContainerViewController(storeController: storeController)
         
         super.init()
-        
-        onboardingContainerViewController.coordinator = self
+
         storeController.delegate = self
     }
     
@@ -42,19 +39,8 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
         setupViewController()
     }
     
-    func showSession() {
-        let tabbarController = TabBarController(storeController: storeController)
-        tabbarController.navigationItem.hidesBackButton = true
-        tabbarController.coordinator = self
-        tabbarController.modalPresentationStyle = .overFullScreen
-        navController.setViewControllers([tabbarController], animated: false)
-        if navController.presentedViewController != nil {
-            navController.dismiss(animated: true)
-        }
-    }
-    
-    func startAuthentication() {
-        showOnboardingFlow()
+    func authenticate() {
+        showLoading()
         storeController.authenticationStore.authenticate()
             .observeOn(MainScheduler.instance)
             .catchErrorJustReturn(.failure(APIError.network))
@@ -65,7 +51,7 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
             .disposed(by: bag)
     }
 
-    func showInfoGuide() {
+    func information() {
         let onboardingInfoViewController = OnboardingInfoViewController()
         onboardingInfoViewController.coordinator = self
         navController.pushViewController(onboardingInfoViewController, animated: true)
@@ -79,16 +65,17 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
     private func handleAuthenticationUpdate(_ result: Result<BankIDAuthenticationResponse, APIError>) {
         switch result {
         case .success(let authenticationResponse):
-            checkAuthenticationStatus(orderRef: authenticationResponse.orderRef)
-
-            BankIDService.autostart(autoStart: authenticationResponse.autoStartToken, redirectLink: "holk://", successHandler: {
-                // nothing
+            BankIDService.autostart(autoStart: authenticationResponse.autoStartToken, redirectLink: "holk://", successHandler: { [weak self] in
+                guard let self = self else { return }
+                self.backgroundTask = UIApplication.shared.beginBackgroundTask(expirationHandler: {
+                    UIApplication.shared.endBackgroundTask(self.backgroundTask)
+                })
+                self.checkAuthenticationStatus(orderRef: authenticationResponse.orderRef)
             }) {
                 #if targetEnvironment(simulator)
-                // TODO: Should show some alert for downloading BankID on device
                 #else
-                // TODO: Should show some alert for downloading BankID on device
                 #endif
+                // TODO: Should show some alert for downloading BankID on device
             }
         case .failure(let error):
             // TODO: Error handling
@@ -100,17 +87,14 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
         storeController
             .authenticationStore
             .token(orderRef: orderRef)
-            .badNetworkRetrier()
             .map({ [weak self] result in
                 guard let self = self else { return }
+                UIApplication.shared.endBackgroundTask(self.backgroundTask)
+                self.backgroundTask = .invalid
+
                 switch result {
                 case .success:
-                    if self.storeController.newUser {
-                        self.showAddNewUser()
-                    } else {
-                        self.onboardingContainerViewController.loadingFinished()
-                    }
-                    self.storeController.insuranceIssuerStore.loadInsuranceIssuers()
+                    self.showOnboardingFlow(isNewUser: self.storeController.newUser)
                 case .failure(let error):
                     // TODO: Error handling
                     print(error)
@@ -118,27 +102,6 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
             })
             .subscribe()
             .disposed(by: bag)
-    }
-    
-    private func showAddNewUser() {
-        let newUserViewController = NewUserViewController()
-        newUserViewController.coordinator = self
-        navController.pushViewController(newUserViewController, animated: false)
-        navController.popMiddleViewControllers()
-        navController.dismiss(animated: true)
-    }
-    
-    private func showLoading() {
-        let loadingViewController = LoadingViewController()
-        loadingViewController.modalPresentationStyle = .overFullScreen
-        if navController.viewControllers.isEmpty {
-            navController.setViewControllers([loadingViewController], animated: false)
-        } else {
-            navController.present(loadingViewController, animated: true) {
-                // Pop out all the onboarding view controllers and leave the landing screen
-                self.navController.popToRootViewController(animated: false)
-            }
-        }
     }
     
     private func setupViewController() {
@@ -155,20 +118,39 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
             }
         }
     }
+
+    private func showLoading() {
+        let loadingViewController = LoadingViewController()
+        loadingViewController.modalPresentationStyle = .overFullScreen
+        navController.setViewControllers([loadingViewController], animated: false)
+    }
     
     private func showLandingScreen() {
         let landingPageViewController = LandingPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
         landingPageViewController.coordinator = self
         navController.setViewControllers([landingPageViewController], animated: false)
-        navController.dismiss(animated: false)
     }
 
-    private func showOnboardingFlow() {
-        onboardingContainerViewController.startOnboarding()
+    private func showOnboardingFlow(isNewUser: Bool) {
+        let onboardingContainerViewController = OnboardingContainerViewController(storeController: storeController)
+        onboardingContainerViewController.coordinator = self
+        onboardingContainerViewController.startOnboarding(isNewUser)
         onboardingContainerViewController.modalPresentationStyle = .overFullScreen
         navController.present(onboardingContainerViewController, animated: false) {
             // Pop out all the onboarding view controllers and leave the landing screen
             self.navController.popToRootViewController(animated: false)
+            self.showLandingScreen()
+        }
+    }
+
+    private func showSession() {
+        let tabbarController = TabBarController(storeController: storeController)
+        tabbarController.navigationItem.hidesBackButton = true
+        tabbarController.coordinator = self
+        tabbarController.modalPresentationStyle = .overFullScreen
+        navController.setViewControllers([tabbarController], animated: false)
+        if navController.presentedViewController != nil {
+            navController.dismiss(animated: true)
         }
     }
 }
@@ -185,17 +167,7 @@ extension SessionCoordinator: StoreControllerDelegate {
 
 // MARK: - SessionCoordinating
 extension SessionCoordinator: OnboardingContainerCoordinating {
-    func addUserEmail(_ email: String) {
-        showOnboardingFlow()
-        storeController.insuranceIssuerStore.loadInsuranceIssuers()
-        // TODO: call to register the email with real endpoint and when success to the following
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.onboardingContainerViewController.loadingFinished()
-        }
-
-    }
-    
-    func finishOnboarding(coordinator: OnboardingContainerViewController) {
+    func onboardingFinished(coordinator: OnboardingContainerViewController) {
         showSession()
     }
 }
