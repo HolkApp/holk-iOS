@@ -28,13 +28,16 @@ class APIStore {
         let dataObservable = requestObservable.flatMap {
                 $0.rx.responseData()
             }.map({ (response, data) -> Swift.Result<Value, APIError> in
-                if !(200..<300 ~= response.statusCode) {
+                guard 200..<300 ~= response.statusCode else {
                     return .failure(.response(error: NSError(domain: String(data: data, encoding: .ascii) ?? "", code: response.statusCode)))
                 }
                 do {
-                    guard !data.isEmpty else { fatalError("Received empty response") }
-                    let parsedData = try JSONDecoder().decode(Value.self, from: data)
-                    return .success(parsedData)
+                    if let data = data as? Value {
+                        return .success(data)
+                    } else {
+                        let parsedData = try JSONDecoder().decode(Value.self, from: data)
+                        return .success(parsedData)
+                    }
                 } catch {
                     return .failure(.decodingError)
                 }

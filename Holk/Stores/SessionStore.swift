@@ -106,14 +106,13 @@ final class SessionStore: APIStore {
             "refresh_token": refreshToken
         ]
         
-        let observable: Observable<Swift.Result<OauthAuthenticationResponse, APIError>> =
-            httpRequest(
+        let observable: Observable<Swift.Result<OauthAuthenticationResponse, APIError>> = httpRequest(
                 method: .post,
                 url: Endpoint.token.url,
                 encoding: URLEncoding.default,
                 headers: httpHeaders,
                 parameters: postParams as [String: AnyObject]
-        )
+            )
         
         return observable.map { [weak self] result -> Swift.Result<OauthAuthenticationResponse, APIError> in
             if let oauthAuthenticationResponse = try? result.get() {

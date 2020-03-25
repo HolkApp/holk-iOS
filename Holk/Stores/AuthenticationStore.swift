@@ -12,10 +12,12 @@ import Alamofire
 final class AuthenticationStore: APIStore {
     private let queue: DispatchQueue
     private let sessionStore: SessionStore
+    private let pollingTask: ScrapingStatusPollingTask
     
     init(queue: DispatchQueue, sessionStore: SessionStore) {
         self.queue = queue
         self.sessionStore = sessionStore
+        self.pollingTask = ScrapingStatusPollingTask()
         
         super.init()
     }
@@ -28,7 +30,7 @@ final class AuthenticationStore: APIStore {
         return sessionStore.token(orderRef: orderRef).map { result -> Swift.Result<Void, APIError> in
             switch result {
             case .success:
-                return .success(())
+                return .success
             case .failure(let error):
                 return .failure(error)
             }
@@ -39,7 +41,26 @@ final class AuthenticationStore: APIStore {
         return sessionStore.refresh().map { result -> Swift.Result<Void, APIError> in
             switch result {
             case .success:
-                return .success(())
+                return .success
+            case .failure(let error):
+                return .failure(error)
+            }
+        }
+    }
+
+    func addUser(_ email: String) -> Observable<Swift.Result<Void, APIError>> {
+        let postParams = ["email": email]
+
+        let observable: Observable<Swift.Result<Data, APIError>> = httpRequest(
+            method: .post,
+            url: Endpoint.addEmail.url,
+            headers: sessionStore.authorizationHeader,
+            parameters: postParams as [String: AnyObject]
+        )
+        return observable.map { result in
+            switch result {
+            case .success:
+                return .success
             case .failure(let error):
                 return .failure(error)
             }

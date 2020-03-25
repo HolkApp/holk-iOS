@@ -24,7 +24,7 @@ final class ScrapingStatusPollingTask {
 }
 
 extension ObservableType {
-    func badNetworkRetrier(_ maxAttemptCount: Int = Int.max,
+    func retrier(_ maxAttemptCount: Int = Int.max,
                  shouldRetry: @escaping (Error) -> Bool = { ($0 as NSError).code == -1005 }) -> Observable<Element> {
         return retryWhen { (errors: Observable<Error>) in
             return errors.enumerated().flatMap { attempt, error -> Observable<Void> in

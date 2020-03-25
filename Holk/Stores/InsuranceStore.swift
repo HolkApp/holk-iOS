@@ -50,7 +50,7 @@ final class InsuranceStore: APIStore {
         
         return httpRequest(
             method: .get,
-            url: Endpoint.allInsurances.url(["name": "hardCodedUserID"]),
+            url: Endpoint.allInsurances.url,
             headers: httpHeaders
         )
     }
