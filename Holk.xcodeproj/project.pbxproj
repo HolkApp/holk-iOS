@@ -31,6 +31,7 @@
 		8F4965DD2412F70100DEAFC1 /* HolkRingChartIconsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4965DC2412F70100DEAFC1 /* HolkRingChartIconsView.swift */; };
 		8F4965DF24130EA200DEAFC1 /* FloatingPoint+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4965DE24130EA200DEAFC1 /* FloatingPoint+extension.swift */; };
 		8F4965E124154DC800DEAFC1 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F4965E024154DC800DEAFC1 /* Montserrat-Bold.ttf */; };
+		8F54C244242C07E000D72FD7 /* Result+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F54C243242C07E000D72FD7 /* Result+extension.swift */; };
 		8F5A5C9423EE0D4E00ADFB4E /* OnboardingContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5A5C9323EE0D4E00ADFB4E /* OnboardingContainerViewController.swift */; };
 		8F5AF01F23C513C200690373 /* InsuranceIssuerList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5AF01E23C513C200690373 /* InsuranceIssuerList.swift */; };
 		8F5AF02423C6759C00690373 /* MockType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5AF02323C6759C00690373 /* MockType.swift */; };
@@ -144,6 +145,7 @@
 		8F4965DC2412F70100DEAFC1 /* HolkRingChartIconsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolkRingChartIconsView.swift; sourceTree = "<group>"; };
 		8F4965DE24130EA200DEAFC1 /* FloatingPoint+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FloatingPoint+extension.swift"; sourceTree = "<group>"; };
 		8F4965E024154DC800DEAFC1 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
+		8F54C243242C07E000D72FD7 /* Result+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+extension.swift"; sourceTree = "<group>"; };
 		8F5A5C9323EE0D4E00ADFB4E /* OnboardingContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContainerViewController.swift; sourceTree = "<group>"; };
 		8F5AF01E23C513C200690373 /* InsuranceIssuerList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InsuranceIssuerList.swift; path = Holk/Login/Model/InsuranceIssuer/InsuranceIssuerList.swift; sourceTree = SOURCE_ROOT; };
 		8F5AF02323C6759C00690373 /* MockType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockType.swift; sourceTree = "<group>"; };
@@ -334,6 +336,7 @@
 				8F3305A323FB3EEA00E9B443 /* DateFormatter+extension.swift */,
 				8F4965DE24130EA200DEAFC1 /* FloatingPoint+extension.swift */,
 				8FF0BEFE241AF4E800BB5A6A /* UINavigationController+extension.swift */,
+				8F54C243242C07E000D72FD7 /* Result+extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -794,6 +797,7 @@
 				8FF6E73822B6B39800F6D398 /* InsuranceCostViewController.swift in Sources */,
 				8FA94157235904BA00844D97 /* Coordinator.swift in Sources */,
 				8FF6E72822B026DB00F6D398 /* InsurancesViewController.swift in Sources */,
+				8F54C244242C07E000D72FD7 /* Result+extension.swift in Sources */,
 				8F7C442A23511C1200B54A36 /* AuthenticationStore.swift in Sources */,
 				8FA941552353ADC200844D97 /* SessionCoordinator.swift in Sources */,
 				8F0D4041227A0D68000BD840 /* OnboardingInfoViewController.swift in Sources */,

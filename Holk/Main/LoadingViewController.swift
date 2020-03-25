@@ -16,8 +16,8 @@ final class LoadingViewController: UIViewController {
     }
     
     private func setup() {
-        NotificationCenter.default.addObserver(self, selector: #selector(resumeLoading), name: UIApplication.willEnterForegroundNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(pauseLoading), name: UIApplication.didEnterBackgroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(resumeLoadingAnimation), name: UIApplication.willEnterForegroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(pauseLoadingAnimation), name: UIApplication.didEnterBackgroundNotification, object: nil)
 
         loadingSpinner.update(.spinner)
         loadingSpinner.trackTintColor = Color.placeHolderColor
@@ -45,11 +45,11 @@ final class LoadingViewController: UIViewController {
         ])
     }
 
-    @objc private func pauseLoading() {
+    @objc private func pauseLoadingAnimation() {
         loadingSpinner.setLoading(false)
     }
 
-    @objc private func resumeLoading() {
+    @objc private func resumeLoadingAnimation() {
         loadingSpinner.setLoading(true)
     }
 }
