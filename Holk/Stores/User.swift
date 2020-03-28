@@ -29,13 +29,29 @@ class User {
             }
         }
     }
+
+    var userInfoResponse: UserInfoResponse?
     
     private var _accessToken: String?
     private var _refreshToken: String?
     private var _expirationDateString: String?
 
+    var userName: String {
+        userInfoResponse?.fullName ?? String()
+    }
+    var givenName: String {
+        userInfoResponse?.givenName ?? String()
+    }
+    var surName: String {
+        userInfoResponse?.surName ?? String()
+    }
+    var userID: String {
+        userInfoResponse?.userId ?? String()
+    }
+    var email: String {
+        userInfoResponse?.email ?? String()
+    }
     private(set) var newUser: Bool = true
-    
     private(set) var expirationDate: Date? {
         get {
             if _expirationDateString == nil {
@@ -90,6 +106,8 @@ class User {
     }
     
     func reset() {
+        userInfoResponse = nil
+        oauthAuthenticationResponse = nil
         accessToken = nil
         refreshToken = nil
         expirationDate = nil
