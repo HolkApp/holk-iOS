@@ -94,7 +94,7 @@ final class OnboardingInsuranceIssuerViewController: UIViewController {
     
     private func loadInsuranceIssuerListIfNeeded() {
         switch storeController.insuranceIssuerStore.insuranceIssuerList.value {
-        case .loading, .error:
+        case .error:
             storeController.insuranceIssuerStore.loadInsuranceIssuers()
         default:
             break

@@ -94,11 +94,15 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
 
                 switch result {
                 case .success:
-                    self.showOnboardingFlow(isNewUser: self.storeController.newUser)
+                    self.showOnboardingFlow()
                 case .failure(let error):
                     // TODO: Error handling
                     print(error)
                 }
+            })
+            .flatMap(weak: self, selector: { (obj, result) -> Observable<Swift.Result<UserInfoResponse, APIError>> in
+                obj.storeController.insuranceIssuerStore.loadInsuranceIssuers()
+                return obj.storeController.authenticationStore.userInfo()
             })
             .subscribe()
             .disposed(by: bag)
@@ -131,10 +135,10 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
         navController.setViewControllers([landingPageViewController], animated: false)
     }
 
-    private func showOnboardingFlow(isNewUser: Bool) {
+    private func showOnboardingFlow() {
         let onboardingContainerViewController = OnboardingContainerViewController(storeController: storeController)
         onboardingContainerViewController.coordinator = self
-        onboardingContainerViewController.startOnboarding(isNewUser)
+        onboardingContainerViewController.startOnboarding(storeController.user)
         onboardingContainerViewController.modalPresentationStyle = .overFullScreen
         navController.present(onboardingContainerViewController, animated: false) {
             // Pop out all the onboarding view controllers and leave the landing screen

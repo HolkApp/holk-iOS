@@ -21,7 +21,7 @@ class User {
     var oauthAuthenticationResponse: OauthAuthenticationResponse? {
         didSet {
             if let oauthAuthenticationResponse = oauthAuthenticationResponse {
-                newUser = oauthAuthenticationResponse.newUser
+                isNewUser = oauthAuthenticationResponse.newUser
                 accessToken = oauthAuthenticationResponse.accessToken
                 refreshToken = oauthAuthenticationResponse.refreshToken
                 let expiresInSeconds = oauthAuthenticationResponse.expiresInSeconds
@@ -51,7 +51,7 @@ class User {
     var email: String {
         userInfoResponse?.email ?? String()
     }
-    private(set) var newUser: Bool = true
+    private(set) var isNewUser: Bool = true
     private(set) var expirationDate: Date? {
         get {
             if _expirationDateString == nil {

@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 
 protocol OnboardingCoordinating: AnyObject {
-    func startOnboarding(_ isNewUser: Bool)
+    func startOnboarding(_ user: User)
     func addInsuranceProviderType(_ providerType: InsuranceProviderType)
     func addInsuranceIssuer(_ insuranceIssuer: InsuranceIssuer)
     func aggregateInsurance(_ providerType: InsuranceProviderType, insuranceIssuer: InsuranceIssuer)
@@ -116,11 +116,10 @@ final class OnboardingContainerViewController: UIViewController {
 }
 
 extension OnboardingContainerViewController: OnboardingCoordinating {
-    func startOnboarding(_ isNewUser: Bool) {
-        storeController.insuranceIssuerStore.loadInsuranceIssuers()
+    func startOnboarding(_ user: User) {
         progressView.isHidden = true
-        if isNewUser {
-            showAddNewUser()
+        if user.isNewUser {
+            showAddNewUser(user)
         } else {
             progressBarToTop(animated: false, completion: { [weak self] in
                 self?.showInsuranceType()
@@ -128,8 +127,8 @@ extension OnboardingContainerViewController: OnboardingCoordinating {
         }
     }
 
-    private func showAddNewUser() {
-        let newUserViewController = NewUserViewController()
+    private func showAddNewUser(_ user: User) {
+        let newUserViewController = NewUserViewController(user: user)
         newUserViewController.delegate = self
         let barButton = UIBarButtonItem(
             image: UIImage(systemName: "xmark")?.withSymbolWeightConfiguration(.medium),
