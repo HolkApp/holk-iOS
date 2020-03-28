@@ -48,6 +48,14 @@ final class AuthenticationStore: APIStore {
         }
     }
 
+    func userInfo() -> Observable<Swift.Result<UserInfoResponse, APIError>> {
+        return httpRequest(
+            method: .get,
+            url: Endpoint.user.url,
+            headers: sessionStore.authorizationHeader
+        )
+    }
+
     func addUser(_ email: String) -> Observable<Swift.Result<Void, APIError>> {
         let postParams = ["email": email]
 

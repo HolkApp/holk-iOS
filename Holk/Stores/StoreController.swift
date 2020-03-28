@@ -39,8 +39,8 @@ final class StoreController {
         }
     }
 
-    var newUser: Bool {
-        return sessionStore.user.newUser
+    var user: User {
+        return sessionStore.user
     }
     
     private let sessionStore: SessionStore

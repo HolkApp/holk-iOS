@@ -24,7 +24,7 @@ final class SessionStore: APIStore {
     // TODO: Maybe use combine or Rx to remove the delegate
     weak var delegate: SessionStoreDelegate?
     
-    let user: User
+    var user: User
     
     var authorizationHeader: [String: String] {
         authorizationBearerHeader ?? authorizationBasicHeader
@@ -56,7 +56,6 @@ final class SessionStore: APIStore {
         return httpRequest(
             method: .post,
             url: Endpoint.authenticate.url,
-            encoding: JSONEncoding.default,
             headers: authorizationBasicHeader
         )
     }

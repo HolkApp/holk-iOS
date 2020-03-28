@@ -28,8 +28,10 @@ class NewUserViewController: UIViewController {
     private var doneButtonBottomConstraint: NSLayoutConstraint!
     private var bag = DisposeBag()
     private var keyboardEventObserver: KeyboardEventObserver?
+    private var user: User
     
-    init() {
+    init(user: User) {
+        self.user = user
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -63,7 +65,7 @@ class NewUserViewController: UIViewController {
         stackView.axis = .vertical
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
-        titleLabel.text = "Hi Peter,"
+        titleLabel.text = "Hi \(user.givenName),"
         titleLabel.font = Font.extraBold(.header)
         titleLabel.textColor = Color.mainForegroundColor
         titleLabel.numberOfLines = 0
