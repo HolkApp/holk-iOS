@@ -17,7 +17,7 @@ final class InsuranceProtectionCoordinator: Coordinator {
     }
     // MARK: - Public Methods
     func start() {
-        let vc = StoryboardScene.InsuranceProtection.insuranceProtectionViewController.instantiate()
+        let vc = InsuranceProtectionViewController()
         vc.coordinator = self
         navController.tabBarItem = UITabBarItem(title: "Ditt skydd", image: UIImage(systemName: "bell"), tag: 1)
         navController.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)

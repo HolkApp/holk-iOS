@@ -9,10 +9,13 @@
 import UIKit
 
 final class InsuranceCostViewController: UIViewController {
-    // MARK: - IBOutlets
-    @IBOutlet weak var tableView: UITableView!
     // MARK: - Public variables
     var insuranceDetailCoordinator: InsuranceDetailCoordinator?
+    var tableView: UITableView!
+
+    convenience init() {
+        self.init(nibName: nil, bundle: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,10 +34,19 @@ final class InsuranceCostViewController: UIViewController {
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
         tableView.alwaysBounceVertical = false
-        
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+
         let insuranceCostTableViewCell = UINib(nibName: InsuranceCostTableViewCell.identifier, bundle: nil)
         tableView.register(insuranceCostTableViewCell, forCellReuseIdentifier: InsuranceCostTableViewCell.identifier)
-        
+
+        view.addSubview(tableView)
+        NSLayoutConstraint.activate([
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+
         insuranceDetailCoordinator = InsuranceDetailCoordinator(navController: navigationController ?? UINavigationController())
         insuranceDetailCoordinator?.start()
     }

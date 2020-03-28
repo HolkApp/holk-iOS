@@ -97,7 +97,6 @@
 		8FF6E73822B6B39800F6D398 /* InsuranceCostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF6E73722B6B39800F6D398 /* InsuranceCostViewController.swift */; };
 		8FF6E73B22B6B55800F6D398 /* InsuranceProtectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF6E73A22B6B55800F6D398 /* InsuranceProtectionViewController.swift */; };
 		8FF6E73D22B6B59B00F6D398 /* InsuranceProtectionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF6E73C22B6B59B00F6D398 /* InsuranceProtectionCoordinator.swift */; };
-		8FF6E73F22B6B67A00F6D398 /* InsuranceProtection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FF6E73E22B6B67A00F6D398 /* InsuranceProtection.storyboard */; };
 		8FF6E74122B82D1100F6D398 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF6E74022B82D1100F6D398 /* Font.swift */; };
 		8FF6E74822B82EFB00F6D398 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8FF6E74722B82EFA00F6D398 /* OpenSans-Regular.ttf */; };
 		8FF6E74A22B82F3600F6D398 /* Montserrat-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8FF6E74922B82F3600F6D398 /* Montserrat-ExtraBold.ttf */; };
@@ -217,7 +216,6 @@
 		8FF6E73722B6B39800F6D398 /* InsuranceCostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceCostViewController.swift; sourceTree = "<group>"; };
 		8FF6E73A22B6B55800F6D398 /* InsuranceProtectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceProtectionViewController.swift; sourceTree = "<group>"; };
 		8FF6E73C22B6B59B00F6D398 /* InsuranceProtectionCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceProtectionCoordinator.swift; sourceTree = "<group>"; };
-		8FF6E73E22B6B67A00F6D398 /* InsuranceProtection.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = InsuranceProtection.storyboard; sourceTree = "<group>"; };
 		8FF6E74022B82D1100F6D398 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		8FF6E74722B82EFA00F6D398 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		8FF6E74922B82F3600F6D398 /* Montserrat-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-ExtraBold.ttf"; sourceTree = "<group>"; };
@@ -571,7 +569,6 @@
 			children = (
 				8FF6E73C22B6B59B00F6D398 /* InsuranceProtectionCoordinator.swift */,
 				8FF6E73A22B6B55800F6D398 /* InsuranceProtectionViewController.swift */,
-				8FF6E73E22B6B67A00F6D398 /* InsuranceProtection.storyboard */,
 			);
 			path = InsuranceProtection;
 			sourceTree = "<group>";
@@ -699,7 +696,6 @@
 				8F9C83DC22A31658005BB336 /* InsuranceOverview.storyboard in Resources */,
 				8F6BCA3A22F73CBF004B887E /* Font Awesome 5 Brands-Regular-400.otf in Resources */,
 				8FF6E74A22B82F3600F6D398 /* Montserrat-ExtraBold.ttf in Resources */,
-				8FF6E73F22B6B67A00F6D398 /* InsuranceProtection.storyboard in Resources */,
 				8F6BCA3922F73CBF004B887E /* Font Awesome 5 Pro-Solid-900.otf in Resources */,
 				8FF6E74822B82EFB00F6D398 /* OpenSans-Regular.ttf in Resources */,
 				8F4965E124154DC800DEAFC1 /* Montserrat-Bold.ttf in Resources */,

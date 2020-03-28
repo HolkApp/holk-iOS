@@ -10,4 +10,8 @@ import UIKit
 
 final class InsuranceProtectionViewController: UIViewController {
     weak var coordinator: InsuranceProtectionCoordinator?
+
+    convenience init() {
+        self.init(nibName: nil, bundle: nil)
+    }
 }

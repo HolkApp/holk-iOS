@@ -22,7 +22,7 @@ final class InsuranceOverviewViewController: UIViewController {
     // MARK: - Private variables
     private var childSegmentViewControllers: [UIViewController] = []
     private lazy var insurancesViewController = InsurancesViewController(storeController: storeController)
-    private lazy var insuranceCostViewController = StoryboardScene.InsuranceOverview.insuranceCostViewController.instantiate()
+    private lazy var insuranceCostViewController = InsuranceCostViewController()
     
     // MARK: Overridden variables
     override var preferredStatusBarStyle: UIStatusBarStyle {
