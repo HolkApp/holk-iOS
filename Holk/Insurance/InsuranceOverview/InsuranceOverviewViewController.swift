@@ -21,8 +21,6 @@ final class InsuranceOverviewViewController: UIViewController {
     weak var coordinator: InsuranceCoordinator?
     // MARK: - Private variables
     private var childSegmentViewControllers: [UIViewController] = []
-    private lazy var insurancesViewController = InsurancesViewController(storeController: storeController)
-    private lazy var insuranceCostViewController = InsuranceCostViewController()
     
     // MARK: Overridden variables
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -110,6 +108,11 @@ final class InsuranceOverviewViewController: UIViewController {
     }
     
     private func setupSegmentedControl() {
+        let insurancesViewController = InsurancesViewController(storeController: storeController)
+        insurancesViewController.coordinator = coordinator
+
+        let insuranceCostViewController = InsuranceCostViewController()
+
         childSegmentViewControllers = [
             insurancesViewController,
             insuranceCostViewController

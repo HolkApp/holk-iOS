@@ -12,6 +12,8 @@ final class InsurancesViewController: UIViewController {
     // MARK: - Public variables
     var storeController: StoreController
 
+    weak var coordinator: InsuranceCoordinator?
+    // MARK: - Private variables
     private enum Section: Int, CaseIterable {
         case insurance
         case addMore
@@ -120,6 +122,9 @@ extension InsurancesViewController: UICollectionViewDelegate {
             pageControl.numberOfPages = numberOfInsurances + 1
             pageControl.currentPage = 0
             collectionView.reloadData()
+        case Section.insurance.rawValue:
+            let insurance = Insurance(id: "1", insuranceProvider: "1", insuranceType: "1", issuerReference: "", ssn: "", startDate: Date(), endDate: Date(), username: "")
+            coordinator?.showInsurnaceDetail(insurance)
         default:
             return
         }

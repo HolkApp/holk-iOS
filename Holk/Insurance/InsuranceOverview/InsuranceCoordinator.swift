@@ -33,7 +33,13 @@ class InsuranceCoordinator: NSObject, Coordinator, UINavigationControllerDelegat
         navController.delegate = self
         navController.pushViewController(insuranceOverviewViewController, animated: true)
     }
-    
+
+    func showInsurnaceDetail(_ insurance: Insurance) {
+        let insurancesDetailViewController = InsurancesDetailViewController(insurance: insurance)
+        insurancesDetailViewController.coordinator = self
+        navController.pushViewController(insurancesDetailViewController, animated: true)
+    }
+
     func logout() {
         delegate?.logout(self)
     }

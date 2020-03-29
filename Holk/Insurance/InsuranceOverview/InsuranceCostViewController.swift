@@ -11,7 +11,7 @@ import UIKit
 final class InsuranceCostViewController: UIViewController {
     // MARK: - Public variables
     var insuranceDetailCoordinator: InsuranceDetailCoordinator?
-    var tableView: UITableView!
+    var tableView = UITableView()
 
     convenience init() {
         self.init(nibName: nil, bundle: nil)
@@ -59,6 +59,7 @@ extension InsuranceCostViewController: UITableViewDelegate {
     }
 }
 
+// MARK: - UITableViewDataSource
 extension InsuranceCostViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
