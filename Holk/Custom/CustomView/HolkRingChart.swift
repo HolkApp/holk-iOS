@@ -10,7 +10,7 @@ import UIKit
 
 private enum Constants {
     static let maxNumberOfSegments = 10
-    static let defaultRingChartWidth: CGFloat = 16
+    static let defaultRingChartWidth: CGFloat = 4
 }
 
 final class HolkRingChart: UIView {
@@ -57,11 +57,10 @@ final class HolkRingChart: UIView {
         }
     }
     
-    var ringChartWidth: CGFloat = Constants.defaultRingChartWidth {
-        didSet {
-            setNeedsLayout()
-        }
+    private var ringChartWidth: CGFloat {
+        maxRingChartWidth ?? Constants.defaultRingChartWidth
     }
+    private var maxRingChartWidth: CGFloat?
     
     weak var delegate: HolkRingChartDelegate?
     weak var dataSource: HolkRingChartDataSource?
@@ -113,7 +112,11 @@ final class HolkRingChart: UIView {
         
         let baseColor = tintColor ?? .clear
         let numberOfSegments = dataSource?.numberOfSegments(self) ?? Constants.maxNumberOfSegments
-        segments = (0..<numberOfSegments).map { _ in HolkRingChartLayer(ringChartWidth: ringChartWidth, baseColor: baseColor) }
+        segments = (0..<numberOfSegments).map { index in
+            let segmentChartWidth = dataSource?.ringChart(self, ringChartWidthAt: index) ?? Constants.defaultRingChartWidth
+            maxRingChartWidth = (maxRingChartWidth?.isLess(than: segmentChartWidth) ?? true) ? segmentChartWidth : maxRingChartWidth
+            return HolkRingChartLayer(ringChartWidth: segmentChartWidth, baseColor: baseColor)
+        }
         for segment in segments {
             containerView.layer.addSublayer(segment)
         }

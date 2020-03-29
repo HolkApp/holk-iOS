@@ -11,12 +11,21 @@ import UIKit
 protocol HolkRingChartDataSource: AnyObject {
     func numberOfSegments(_ ringChart: HolkRingChart) -> Int
     func ringChart(_ ringChart: HolkRingChart, sizeForSegmentAt index: Int) -> CGFloat
+    func ringChart(_ ringChart: HolkRingChart, ringChartWidthAt index: Int) -> CGFloat?
     func ringChart(_ ringChart: HolkRingChart, colorForSegmentAt index: Int) -> UIColor?
     func ringChart(_ ringChart: HolkRingChart, iconForSegmentAt index: Int) -> UIImage?
 }
 
 extension HolkRingChartDataSource {
+    func ringChart(_ ringChart: HolkRingChart, ringChartWidthAt index: Int) -> CGFloat? {
+        return nil
+    }
+
     func ringChart(_ ringChart: HolkRingChart, colorForSegmentAt index: Int) -> UIColor? {
+        return nil
+    }
+
+    func ringChart(_ ringChart: HolkRingChart, iconForSegmentAt index: Int) -> UIImage? {
         return nil
     }
 }
