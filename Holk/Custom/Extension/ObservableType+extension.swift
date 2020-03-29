@@ -9,8 +9,8 @@
 import RxSwift
 
 extension ObservableType {
-    func flatMap<A: AnyObject, O: ObservableType>(weak obj: A, selector: @escaping (A, Self.E) throws -> O) -> Observable<O.E> {
-        return flatMap { [weak obj] value -> Observable<O.E> in
+    func flatMap<A: AnyObject, O: ObservableType>(weak obj: A, selector: @escaping (A, Self.Element) throws -> O) -> Observable<O.Element> {
+        return flatMap { [weak obj] value -> Observable<O.Element> in
             try obj.map { try selector($0, value).asObservable() } ?? .empty()
         }
     }

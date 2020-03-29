@@ -35,8 +35,10 @@ class InsuranceCostTableViewCell: UITableViewCell {
             self.transform = scaleTransform
         }
         animator.startAnimation()
-        
-        lightFeedbackGenerator.impactOccurred()
+
+        if highlighted {
+            lightFeedbackGenerator.impactOccurred()
+        }
     }
     
     private func setup() {
@@ -55,7 +57,6 @@ class InsuranceCostTableViewCell: UITableViewCell {
         costLabel.textColor = Color.secondaryForegroundColor
         costValueLabel.font = Font.regular(.subHeader)
         costValueLabel.textColor = Color.mainForegroundColor
-        lightFeedbackGenerator.prepare()
     }
     
 }

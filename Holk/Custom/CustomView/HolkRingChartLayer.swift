@@ -92,8 +92,7 @@ final class HolkRingChartLayer: CAShapeLayer {
             "strokeEnd": NSNull(),
             "opacity": NSNull()
         ]
-        
-        lineCap = .round
+
         fillColor = UIColor.clear.cgColor
         backgroundColor = UIColor.clear.cgColor
         strokeColor = baseColor.cgColor

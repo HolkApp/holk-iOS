@@ -203,11 +203,11 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
             subtitleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -20),
 
             ringChart.widthAnchor.constraint(lessThanOrEqualToConstant: 224),
+            ringChart.heightAnchor.constraint(equalTo: ringChart.widthAnchor),
             ringChart.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: 48),
             ringChartLeadingConstraint,
             ringChartTrailingConstraint,
             ringChart.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
-            ringChart.heightAnchor.constraint(equalTo: ringChart.widthAnchor),
 
             labelStackView.topAnchor.constraint(equalTo: ringChart.bottomAnchor, constant: 48),
             labelStackView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24),
@@ -231,16 +231,16 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
 }
 
 extension InsuranceCollectionViewCell: HolkRingChartDataSource {
-    
     private var mockNumberOfSegments: Int {
         return insurance?.insuranceParts.count ?? 4
-    }
-    func ringChart(_ ringChart: HolkRingChart, sizeForSegmentAt index: Int) -> CGFloat {
-        return 1 / CGFloat(mockNumberOfSegments)
     }
 
     func numberOfSegments(_ ringChart: HolkRingChart) -> Int {
         return mockNumberOfSegments
+    }
+
+    func ringChart(_ ringChart: HolkRingChart, sizeForSegmentAt index: Int) -> CGFloat {
+        return 1 / CGFloat(numberOfSegments(ringChart))
     }
 
     func ringChart(_ ringChart: HolkRingChart, colorForSegmentAt index: Int) -> UIColor? {
