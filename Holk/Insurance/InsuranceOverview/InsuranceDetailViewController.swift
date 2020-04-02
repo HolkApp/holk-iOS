@@ -1,5 +1,5 @@
 //
-//  InsurancesDetailViewController.swift
+//  InsuranceDetailViewController.swift
 //  Holk
 //
 //  Created by 张梦皓 on 2020-03-29.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class InsurancesDetailViewController: UIViewController {
+class InsuranceDetailViewController: UIViewController {
     // MARK: - Public variables
     var tableView = UITableView()
     var insurance: Insurance
@@ -32,7 +32,7 @@ class InsurancesDetailViewController: UIViewController {
     }
 
     private func setup() {
-        view.backgroundColor = Color.mainBackgroundColor
+        view.backgroundColor = Color.secondaryBackgroundColor
 
         tableView.backgroundColor = .clear
         tableView.estimatedRowHeight = 224
@@ -57,18 +57,22 @@ class InsurancesDetailViewController: UIViewController {
 }
 
 // MARK: - UITableViewDelegate
-extension InsurancesDetailViewController: UITableViewDelegate {
+extension InsuranceDetailViewController: UITableViewDelegate {
     
 }
 
 // MARK: - UITableViewDataSource
-extension InsurancesDetailViewController: UITableViewDataSource {
+extension InsuranceDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return insurance.insuranceParts.count
+        return insurance.segments.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: InsuranceDetailTableViewCell.identifier, for: indexPath)
+        let segment = insurance.segments[indexPath.item]
+        if let cell = cell as? InsuranceDetailTableViewCell {
+            cell.configure(with: segment)
+        }
         return cell
     }
 }

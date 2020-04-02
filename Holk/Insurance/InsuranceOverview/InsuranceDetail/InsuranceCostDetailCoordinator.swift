@@ -9,11 +9,11 @@
 import UIKit
 
 
-class InsuranceDetailCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
+class InsuranceCostDetailCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
     
-    lazy var insuranceDetailViewController: InsuranceDetailViewController = {
+    lazy var insuranceCostDetailViewController: InsuranceCostDetailViewController = {
         let vc = StoryboardScene.InsuranceOverview
-            .insuranceDetailViewController.instantiate()
+            .insuranceCostDetailViewController.instantiate()
         vc.coordinator = self
         return vc
     }()
@@ -32,16 +32,16 @@ class InsuranceDetailCoordinator: NSObject, Coordinator, UINavigationControllerD
     }
     
     func showDetail() {
-        navController.pushViewController(insuranceDetailViewController, animated: true)
+        navController.pushViewController(insuranceCostDetailViewController, animated: true)
     }
     
     // MARK: - UINavigationControllerDelegate
     func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         if let insuranceOverviewViewController = fromVC as? InsuranceOverviewViewController,
             insuranceOverviewViewController.currentChildSegmentViewController is InsuranceCostViewController,
-            toVC is InsuranceDetailViewController {
+            toVC is InsuranceCostDetailViewController {
             return InsuranceDetailTransition()
-        } else if fromVC is InsuranceDetailViewController, toVC is InsuranceOverviewViewController {
+        } else if fromVC is InsuranceCostDetailViewController, toVC is InsuranceOverviewViewController {
             // back navigation transition
         }
         return nil

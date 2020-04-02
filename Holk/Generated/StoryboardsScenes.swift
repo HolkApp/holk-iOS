@@ -15,7 +15,7 @@ internal enum StoryboardScene {
   internal enum InsuranceOverview: StoryboardType {
     internal static let storyboardName = "InsuranceOverview"
 
-    internal static let insuranceDetailViewController = SceneType<InsuranceDetailViewController>(storyboard: InsuranceOverview.self, identifier: "InsuranceDetailViewController")
+    internal static let insuranceCostDetailViewController = SceneType<InsuranceCostDetailViewController>(storyboard: InsuranceOverview.self, identifier: "InsuranceCostDetailViewController")
 
   }
   internal enum LaunchScreen: StoryboardType {

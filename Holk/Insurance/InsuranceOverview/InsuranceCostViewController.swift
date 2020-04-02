@@ -10,7 +10,7 @@ import UIKit
 
 final class InsuranceCostViewController: UIViewController {
     // MARK: - Public variables
-    var insuranceDetailCoordinator: InsuranceDetailCoordinator?
+    var insuranceCostDetailCoordinator: InsuranceCostDetailCoordinator?
     var tableView = UITableView()
 
     convenience init() {
@@ -47,15 +47,15 @@ final class InsuranceCostViewController: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
 
-        insuranceDetailCoordinator = InsuranceDetailCoordinator(navController: navigationController ?? UINavigationController())
-        insuranceDetailCoordinator?.start()
+        insuranceCostDetailCoordinator = InsuranceCostDetailCoordinator(navController: navigationController ?? UINavigationController())
+        insuranceCostDetailCoordinator?.start()
     }
 }
 
 // MARK: - UITableViewDelegate
 extension InsuranceCostViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        insuranceDetailCoordinator?.showDetail()
+        insuranceCostDetailCoordinator?.showDetail()
     }
 }
 

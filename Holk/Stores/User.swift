@@ -64,6 +64,7 @@ class User {
             if let date = newValue {
                 let dateString = dateFormatter.string(from: date)
                 KeychainService.set(password: dateString, account: kHolkAccountName, service: kHolkServiceExpirationDate)
+                _expirationDateString = dateString
             } else {
                 KeychainService.delete(account: kHolkAccountName, service: kHolkServiceExpirationDate)
                 _expirationDateString = nil

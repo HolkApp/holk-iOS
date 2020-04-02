@@ -35,9 +35,9 @@ class InsuranceCoordinator: NSObject, Coordinator, UINavigationControllerDelegat
     }
 
     func showInsurnaceDetail(_ insurance: Insurance) {
-        let insurancesDetailViewController = InsurancesDetailViewController(insurance: insurance)
-        insurancesDetailViewController.coordinator = self
-        navController.pushViewController(insurancesDetailViewController, animated: true)
+        let insuranceDetailViewController = InsuranceDetailViewController(insurance: insurance)
+        insuranceDetailViewController.coordinator = self
+        navController.pushViewController(insuranceDetailViewController, animated: true)
     }
 
     func logout() {
@@ -45,16 +45,14 @@ class InsuranceCoordinator: NSObject, Coordinator, UINavigationControllerDelegat
     }
     
     // MARK: - UINavigationControllerDelegate
-    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
-        guard let fromViewController = navigationController.transitionCoordinator?.viewController(forKey: .from) else {
-            return
+    func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        if let insuranceOverviewViewController = fromVC as? InsuranceOverviewViewController,
+            insuranceOverviewViewController.currentChildSegmentViewController is InsurancesViewController,
+            toVC is InsuranceDetailViewController {
+            return InsuranceDetailTransition()
+        } else if fromVC is InsuranceDetailViewController, toVC is InsuranceOverviewViewController {
+            // back navigation transition
         }
-        
-        if navigationController.viewControllers.contains(fromViewController) {
-            return
-        }
-        
-        // check the fromVC if it is a sepecific VC then handle the navigation back action if needed
-        
+        return nil
     }
 }

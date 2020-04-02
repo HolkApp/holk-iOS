@@ -18,7 +18,7 @@ final class InsurancesViewController: UIViewController {
         case insurance
         case addMore
     }
-    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     private let layout = DynamicHeightCollectionFlowLayout()
     private let pageControl = UIPageControl()
 
@@ -100,7 +100,7 @@ extension InsurancesViewController: UICollectionViewDataSource {
                         InsuranceCollectionViewCell.identifier, for: indexPath)
                     // TODO: Configure this
                     if let insuranceTableViewCell = cell as? InsuranceCollectionViewCell {
-        //                insuranceTableViewCell.configureCell(pro)
+        //                insuranceTableViewCell.configureCell(provider)
                     }
                     return cell
                 case Section.addMore.rawValue:
@@ -123,6 +123,7 @@ extension InsurancesViewController: UICollectionViewDelegate {
             pageControl.currentPage = 0
             collectionView.reloadData()
         case Section.insurance.rawValue:
+            // TODO: Use real insurance
             let insurance = Insurance(id: "1", insuranceProvider: "1", insuranceType: "1", issuerReference: "", ssn: "", startDate: Date(), endDate: Date(), username: "")
             coordinator?.showInsurnaceDetail(insurance)
         default:
