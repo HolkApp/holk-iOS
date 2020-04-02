@@ -35,6 +35,14 @@ class InsuranceDetailTableViewCell: UITableViewCell {
         setup()
     }
 
+    func configure(with insuranceSegment: Insurance.Segment) {
+        tintColor = Color.color(insuranceSegment)
+        titleLabel.text = insuranceSegment.kind.rawValue
+        descriptionLabel.text = insuranceSegment.description
+
+        ringChart.reloadSegments()
+    }
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -49,7 +57,7 @@ class InsuranceDetailTableViewCell: UITableViewCell {
         layer.cornerCurve = .continuous
 
         contentView.backgroundColor = .clear
-        containerView.backgroundColor = Color.secondaryBackgroundColor
+        containerView.backgroundColor = Color.mainBackgroundColor
         containerView.layer.cornerRadius = 16
         containerView.layer.cornerCurve = .continuous
         containerView.translatesAutoresizingMaskIntoConstraints = false
@@ -114,7 +122,7 @@ extension InsuranceDetailTableViewCell: HolkRingChartDataSource {
 
     func ringChart(_ ringChart: HolkRingChart, colorForSegmentAt index: Int) -> UIColor? {
         if index == 0 {
-            return Color.mainHighlightColor
+            return tintColor ?? Color.mainHighlightColor
         } else {
             return Color.placeHolderColor
         }

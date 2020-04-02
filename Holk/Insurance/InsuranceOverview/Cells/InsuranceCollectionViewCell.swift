@@ -218,7 +218,7 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         ])
     }
     
-    func configureCell(_ insurance: Insurance) {
+    func configure(_ insurance: Insurance) {
         self.insurance = insurance
 
         titleLabel.text = insurance.insuranceType
@@ -232,7 +232,7 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
 
 extension InsuranceCollectionViewCell: HolkRingChartDataSource {
     private var mockNumberOfSegments: Int {
-        return insurance?.insuranceParts.count ?? 4
+        return insurance?.segments.count ?? 4
     }
 
     func numberOfSegments(_ ringChart: HolkRingChart) -> Int {
