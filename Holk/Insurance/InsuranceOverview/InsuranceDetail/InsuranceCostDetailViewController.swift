@@ -1,5 +1,5 @@
 //
-//  InsuranceDetailViewController.swift
+//  InsuranceCostDetailViewController.swift
 //  Holk
 //
 //  Created by 张梦皓 on 2019-06-21.
@@ -8,12 +8,12 @@
 
 import UIKit
 
-final class InsuranceDetailViewController: UIViewController {
+final class InsuranceCostDetailViewController: UIViewController {
     
     @IBOutlet private weak var container: UIView!
     @IBOutlet private weak var typeLabel: UILabel!
     
-    weak var coordinator: InsuranceDetailCoordinator?
+    weak var coordinator: InsuranceCostDetailCoordinator?
     
     override func viewDidLoad() {
         super.viewDidLoad()
