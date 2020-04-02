@@ -71,3 +71,16 @@ enum Color {
         return makeColor(asset: #function)
     }
 }
+
+extension Color {
+    static func color(_ insuranceSegments: Insurance.Segment) -> UIColor {
+        switch insuranceSegments.kind {
+        case .home:
+            return Color.mainForegroundColor
+        case .pets:
+            return Color.mainHighlightColor
+        case .travel:
+            return Color.successColor
+        }
+    }
+}
