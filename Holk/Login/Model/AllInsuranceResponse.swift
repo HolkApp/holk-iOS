@@ -27,6 +27,17 @@ struct AllInsuranceResponse: Codable {
 }
 
 struct Insurance: Codable {
+    struct Segment {
+        let kind: Kind
+        let description: String
+
+        enum Kind: String {
+            case travel
+            case home
+            case pets
+        }
+    }
+
     let id: String
 //    let insuranceProvider: InsuranceIssuer
     let insuranceProvider: String
@@ -39,11 +50,11 @@ struct Insurance: Codable {
     var address: String {
         "Sveavägen 140"
     }
-    var insuranceParts: [String] {
-        [
-            "Travel",
-            "Home",
-            "Pets"
+    var segments: [Segment] {
+        return [
+            Segment(kind: .home, description: "This is home segment"),
+            Segment(kind: .travel, description: "This is travel segment"),
+            Segment(kind: .pets, description: "This is pets segment")
         ]
     }
     
