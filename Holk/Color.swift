@@ -77,9 +77,9 @@ extension Color {
         switch insuranceSegments.kind {
         case .home:
             return Color.mainForegroundColor
-        case .pets:
-            return Color.mainHighlightColor
         case .travel:
+            return Color.mainHighlightColor
+        case .pets:
             return Color.successColor
         }
     }

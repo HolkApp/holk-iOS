@@ -74,6 +74,8 @@
 		8F9C83DC22A31658005BB336 /* InsuranceOverview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8F9C83DB22A31658005BB336 /* InsuranceOverview.storyboard */; };
 		8F9F6D9A23DA41A900B1727E /* HolkProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9F6D9923DA41A900B1727E /* HolkProgressBarView.swift */; };
 		8FA5F375239D832C00083430 /* InsuranceIssuerStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA5F374239D832C00083430 /* InsuranceIssuerStore.swift */; };
+		8FA766C82440F729007EB2A2 /* HolkRoundBackgroundLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA766C72440F729007EB2A2 /* HolkRoundBackgroundLabel.swift */; };
+		8FA766CB24411265007EB2A2 /* UIScrollView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA766CA24411265007EB2A2 /* UIScrollView+extension.swift */; };
 		8FA8F10E232D377F00670471 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8FA8F10D232D377F00670471 /* Color.xcassets */; };
 		8FA8F1122330148300670471 /* FontAwesome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA8F1112330148300670471 /* FontAwesome.swift */; };
 		8FA941552353ADC200844D97 /* SessionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA941542353ADC200844D97 /* SessionCoordinator.swift */; };
@@ -192,6 +194,8 @@
 		8F9C83DB22A31658005BB336 /* InsuranceOverview.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = InsuranceOverview.storyboard; sourceTree = "<group>"; };
 		8F9F6D9923DA41A900B1727E /* HolkProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolkProgressBarView.swift; sourceTree = "<group>"; };
 		8FA5F374239D832C00083430 /* InsuranceIssuerStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceIssuerStore.swift; sourceTree = "<group>"; };
+		8FA766C72440F729007EB2A2 /* HolkRoundBackgroundLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolkRoundBackgroundLabel.swift; sourceTree = "<group>"; };
+		8FA766CA24411265007EB2A2 /* UIScrollView+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+extension.swift"; sourceTree = "<group>"; };
 		8FA8F10D232D377F00670471 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		8FA8F1112330148300670471 /* FontAwesome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontAwesome.swift; sourceTree = "<group>"; };
 		8FA941542353ADC200844D97 /* SessionCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCoordinator.swift; sourceTree = "<group>"; };
@@ -340,6 +344,7 @@
 			children = (
 				8FF6E72322A70F6600F6D398 /* Then.swift */,
 				8FACE89523E767A900DCE741 /* UIButton+extension.swift */,
+				8FA766CA24411265007EB2A2 /* UIScrollView+extension.swift */,
 				8FF6E73322B57DA800F6D398 /* UITableViewCell+UICollectionViewCell+extension.swift */,
 				8FF6E75122B960B300F6D398 /* UIImage+extension.swift */,
 				8F3305A323FB3EEA00E9B443 /* DateFormatter+extension.swift */,
@@ -381,15 +386,24 @@
 				8F65466B230C78990053B3F8 /* HolkButton.swift */,
 				8F65466E230DC4CC0053B3F8 /* HolkTextField.swift */,
 				8F48BE6623315F49004D79D2 /* HolkIllustrationLabel.swift */,
+				8FA766C72440F729007EB2A2 /* HolkRoundBackgroundLabel.swift */,
 				8F9F6D9923DA41A900B1727E /* HolkProgressBarView.swift */,
+				8FA766C92440F8F0007EB2A2 /* HolkRingChart */,
+				8FCEE9AF23254B5700F75FB8 /* KeyboardEvent */,
+			);
+			path = CustomView;
+			sourceTree = "<group>";
+		};
+		8FA766C92440F8F0007EB2A2 /* HolkRingChart */ = {
+			isa = PBXGroup;
+			children = (
 				8F3305A52401ECD400E9B443 /* HolkRingChart.swift */,
 				8F4965DA2412F17E00DEAFC1 /* HolkRingChartIconView.swift */,
 				8F4965DC2412F70100DEAFC1 /* HolkRingChartIconsView.swift */,
 				8F3305A72401F27300E9B443 /* HolkRingChartLayer.swift */,
 				8F3305A924029CBF00E9B443 /* HolkRingChartDataSource+Delegate.swift */,
-				8FCEE9AF23254B5700F75FB8 /* KeyboardEvent */,
 			);
-			path = CustomView;
+			path = HolkRingChart;
 			sourceTree = "<group>";
 		};
 		8FC296BC23E75D08002A39D1 /* LandingPage */ = {
@@ -801,6 +815,7 @@
 				8F54C24B242FD76E00D72FD7 /* InsuranceDetailTableViewCell.swift in Sources */,
 				8FF6E73822B6B39800F6D398 /* InsuranceCostViewController.swift in Sources */,
 				8FA94157235904BA00844D97 /* Coordinator.swift in Sources */,
+				8FA766CB24411265007EB2A2 /* UIScrollView+extension.swift in Sources */,
 				8FF6E72822B026DB00F6D398 /* InsurancesViewController.swift in Sources */,
 				8F54C249242CFA7D00D72FD7 /* ObservableType+extension.swift in Sources */,
 				8F54C244242C07E000D72FD7 /* Result+extension.swift in Sources */,
@@ -835,6 +850,7 @@
 				8F9F6D9A23DA41A900B1727E /* HolkProgressBarView.swift in Sources */,
 				8FF6E73622B6A88100F6D398 /* InsuranceAddMoreCell.swift in Sources */,
 				8FCEE9B323254C2D00F75FB8 /* KeyboardEventFloatingViewHandler.swift in Sources */,
+				8FA766C82440F729007EB2A2 /* HolkRoundBackgroundLabel.swift in Sources */,
 				8F5B5A3722771ED400E79A40 /* StoryboardsSegues.swift in Sources */,
 				8FF0BEFF241AF4E800BB5A6A /* UINavigationController+extension.swift in Sources */,
 				8FF6E73B22B6B55800F6D398 /* InsuranceProtectionViewController.swift in Sources */,

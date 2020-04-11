@@ -35,6 +35,12 @@ extension FloatingPoint {
     }
 }
 
+extension Comparable {
+    func clamped(min lower: Self, max upper: Self) -> Self {
+        return min(max(self, lower), upper)
+    }
+}
+
 extension CGPoint {
     func distance(to point: CGPoint) -> CGFloat {
         return sqrt(pow(self.x - point.x, 2) + pow(self.y - point.y, 2))
