@@ -9,9 +9,10 @@
 import UIKit
 
 final class InsuranceCollectionViewCell: UICollectionViewCell {
-    // MARK: - IBOutlets
-    
+    // MARK: - Public variables
     var insurance: Insurance?
+    let ringChart = HolkRingChart()
+
     // MARK: - Private variables
     private let containerView = UIView()
     private let titleLabel = UILabel()
@@ -22,11 +23,11 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
     private let hintStackView = UIStackView()
     private let hintValueLabel = UILabel()
     private let hintLabel = UILabel()
-    private let ideaStackView = UIStackView()
-    private let ideaValueLabel = UILabel()
-    private let ideaLabel = UILabel()
+    private let reminderStackView = UIStackView()
+    private let reminderValueLabel = UILabel()
+    private let reminderLabel = UILabel()
     private let insuranceImageView = UIImageView()
-    private let ringChart = HolkRingChart()
+
     private let ringChartLabelsStackView = UIStackView()
     
     private let lightFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
@@ -79,8 +80,8 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         insuranceTextLabel.text = "insurance"
         hintValueLabel.text = "3"
         hintLabel.text = "Tänk på"
-        ideaValueLabel.text = "2"
-        ideaLabel.text = "Luckor"
+        reminderValueLabel.text = "2"
+        reminderLabel.text = "Luckor"
         insuranceImageView.image = UIImage(named: "Folksam")
 
         containerView.backgroundColor = Color.secondaryBackgroundColor
@@ -122,10 +123,10 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         hintStackView.isBaselineRelativeArrangement = true
         hintStackView.axis = .vertical
         hintStackView.translatesAutoresizingMaskIntoConstraints = false
-        ideaStackView.spacing = 16
-        ideaStackView.isBaselineRelativeArrangement = true
-        ideaStackView.axis = .vertical
-        ideaStackView.translatesAutoresizingMaskIntoConstraints = false
+        reminderStackView.spacing = 16
+        reminderStackView.isBaselineRelativeArrangement = true
+        reminderStackView.axis = .vertical
+        reminderStackView.translatesAutoresizingMaskIntoConstraints = false
 
         hintValueLabel.font = Font.semibold(.header)
         hintValueLabel.textColor = Color.mainForegroundColor
@@ -139,17 +140,17 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         hintLabel.textAlignment = .center
         hintLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        ideaValueLabel.font = Font.semibold(.header)
-        ideaValueLabel.textColor = Color.warningColor
-        ideaValueLabel.numberOfLines = 0
-        ideaValueLabel.textAlignment = .center
-        ideaValueLabel.translatesAutoresizingMaskIntoConstraints = false
+        reminderValueLabel.font = Font.semibold(.header)
+        reminderValueLabel.textColor = Color.warningColor
+        reminderValueLabel.numberOfLines = 0
+        reminderValueLabel.textAlignment = .center
+        reminderValueLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        ideaLabel.font = Font.regular(.description)
-        ideaLabel.textColor = Color.mainForegroundColor
-        ideaLabel.numberOfLines = 0
-        ideaLabel.textAlignment = .center
-        ideaLabel.translatesAutoresizingMaskIntoConstraints = false
+        reminderLabel.font = Font.regular(.description)
+        reminderLabel.textColor = Color.mainForegroundColor
+        reminderLabel.numberOfLines = 0
+        reminderLabel.textAlignment = .center
+        reminderLabel.translatesAutoresizingMaskIntoConstraints = false
 
         insuranceImageView.translatesAutoresizingMaskIntoConstraints = false
 
@@ -168,17 +169,16 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         ringChartLabelsStackView.addArrangedSubview(insuranceSubNumberLabel)
         ringChartLabelsStackView.addArrangedSubview(insuranceTextLabel)
         ringChart.addSubview(ringChartLabelsStackView)
-        ringChartLabelsStackView.backgroundColor = .green
         ringChart.titleView = ringChartLabelsStackView
 
         containerView.addSubview(labelStackView)
         labelStackView.addArrangedSubview(hintStackView)
-        labelStackView.addArrangedSubview(ideaStackView)
+        labelStackView.addArrangedSubview(reminderStackView)
 
         hintStackView.addArrangedSubview(hintValueLabel)
         hintStackView.addArrangedSubview(hintLabel)
-        ideaStackView.addArrangedSubview(ideaValueLabel)
-        ideaStackView.addArrangedSubview(ideaLabel)
+        reminderStackView.addArrangedSubview(reminderValueLabel)
+        reminderStackView.addArrangedSubview(reminderLabel)
 
         let containerBottomConstraint = containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12)
         containerBottomConstraint.priority = .defaultHigh
@@ -225,14 +225,14 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         subtitleLabel.text = insurance.insuranceProvider
         hintValueLabel.text = "3"
         hintLabel.text = "Tänk på"
-        ideaValueLabel.text = "2"
-        ideaLabel.text = "Luckor"
+        reminderValueLabel.text = "2"
+        reminderLabel.text = "Luckor"
     }
 }
 
 extension InsuranceCollectionViewCell: HolkRingChartDataSource {
     private var mockNumberOfSegments: Int {
-        return insurance?.segments.count ?? 4
+        return insurance?.segments.count ?? 6
     }
 
     func numberOfSegments(_ ringChart: HolkRingChart) -> Int {
@@ -243,15 +243,21 @@ extension InsuranceCollectionViewCell: HolkRingChartDataSource {
         return 1 / CGFloat(numberOfSegments(ringChart))
     }
 
+    func ringChart(_ ringChart: HolkRingChart, ringChartWidthAt index: Int) -> CGFloat? {
+        return 12
+    }
+
     func ringChart(_ ringChart: HolkRingChart, colorForSegmentAt index: Int) -> UIColor? {
         if index == 0 {
-            return .red
+            return Color.mainForegroundColor
         } else if index == 1 {
-            return .blue
+            return Color.mainHighlightColor
         } else if index == 2 {
-            return .orange
+            return Color.successColor
         } else if index == 3 {
             return .green
+        } else if index == 4 {
+            return .red
         } else {
             return .cyan
         }
@@ -267,6 +273,5 @@ extension InsuranceCollectionViewCell: HolkRingChartDataSource {
         } else {
             return UIImage(systemName: "bolt")?.withRenderingMode(.alwaysTemplate)
         }
-
     }
 }
