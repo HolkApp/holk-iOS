@@ -12,10 +12,14 @@ class InsuranceDetailTableViewCell: UITableViewCell {
     // MARK: - Private variables
     private let lightFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
     private let containerView = UIView()
+    private let hintValueLabel = HolkRoundBackgroundLabel()
+    private let hintLabel = UILabel()
+    private let reminderValueLabel = HolkRoundBackgroundLabel()
+    private let reminderLabel = UILabel()
+    private let subInsuranceIconView = UIImageView()
     private let ringChart = HolkRingChart()
     private let titleLabel = UILabel()
     private let descriptionLabel = UILabel()
-    private let labelsStackView = UIStackView()
 
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         let scaleTransform = highlighted ? CGAffineTransform(scaleX: 0.95, y: 0.95) : .identity
@@ -47,6 +51,12 @@ class InsuranceDetailTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override var tintColor: UIColor! {
+        didSet {
+            subInsuranceIconView.tintColor = tintColor ?? Color.mainHighlightColor
+        }
+    }
+
     private func setup() {
         selectionStyle = .none
         
@@ -56,33 +66,77 @@ class InsuranceDetailTableViewCell: UITableViewCell {
         layer.shadowOpacity = 0.15
         layer.cornerCurve = .continuous
 
+        // TODO: Update this
+        hintValueLabel.text = "3"
+        let hintImageAttachment = NSTextAttachment()
+        hintImageAttachment.image = UIImage(systemName: "bell")
+        hintLabel.attributedText = NSAttributedString(attachment: hintImageAttachment)
+        reminderValueLabel.text = "2"
+        let reminderImageAttachment = NSTextAttachment()
+        reminderImageAttachment.image = UIImage(systemName: "exclamationmark.triangle")
+        reminderLabel.attributedText = NSAttributedString(attachment: reminderImageAttachment)
+        subInsuranceIconView.image = UIImage(systemName: "paperplane")?.withRenderingMode(.alwaysTemplate)
+
         contentView.backgroundColor = .clear
-        containerView.backgroundColor = Color.mainBackgroundColor
+        containerView.backgroundColor = Color.secondaryBackgroundColor
         containerView.layer.cornerRadius = 16
         containerView.layer.cornerCurve = .continuous
         containerView.translatesAutoresizingMaskIntoConstraints = false
 
+        hintValueLabel.font = Font.regular(.label)
+        hintValueLabel.backgroundColor = Color.mainBackgroundColor
+        hintValueLabel.textColor = Color.mainForegroundColor
+        hintValueLabel.textAlignment = .center
+        hintValueLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        hintLabel.font = Font.regular(.description)
+        hintLabel.textColor = Color.mainForegroundColor
+        hintLabel.numberOfLines = 0
+        hintLabel.textAlignment = .center
+        hintLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        reminderValueLabel.font = Font.regular(.label)
+        reminderValueLabel.backgroundColor = Color.mainBackgroundColor
+        reminderValueLabel.textColor = Color.warningColor
+        reminderValueLabel.textAlignment = .center
+        reminderValueLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        reminderLabel.font = Font.regular(.description)
+        reminderLabel.textColor = Color.mainForegroundColor
+        reminderLabel.numberOfLines = 0
+        reminderLabel.textAlignment = .center
+        reminderLabel.translatesAutoresizingMaskIntoConstraints = false
+
         ringChart.dataSource = self
         ringChart.translatesAutoresizingMaskIntoConstraints = false
 
-        titleLabel.text = "Lösöre"
+        subInsuranceIconView.tintColor = tintColor ?? Color.mainHighlightColor
+        subInsuranceIconView.translatesAutoresizingMaskIntoConstraints = false
+
+        titleLabel.numberOfLines = 0
         titleLabel.textColor = Color.mainForegroundColor
-        titleLabel.font = Font.semibold(.cellTitle)
-        descriptionLabel.text = "Din ersättning vid tex brand eller stöld"
-        descriptionLabel.font = Font.regular(.body)
+        titleLabel.font = Font.semibold(.title)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        descriptionLabel.numberOfLines = 0
+        descriptionLabel.font = Font.regular(.description)
         descriptionLabel.textColor = Color.mainForegroundColor
-        labelsStackView.translatesAutoresizingMaskIntoConstraints = false
+        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
 
         setupLayout()
     }
 
     private func setupLayout() {
         contentView.addSubview(containerView)
+
         containerView.addSubview(ringChart)
-        containerView.addSubview(labelsStackView)
-        labelsStackView.axis = .vertical
-        labelsStackView.addArrangedSubview(titleLabel)
-        labelsStackView.addArrangedSubview(descriptionLabel)
+        containerView.addSubview(hintValueLabel)
+        containerView.addSubview(hintLabel)
+        containerView.addSubview(reminderValueLabel)
+        containerView.addSubview(reminderLabel)
+
+        containerView.addSubview(subInsuranceIconView)
+        containerView.addSubview(titleLabel)
+        containerView.addSubview(descriptionLabel)
 
         NSLayoutConstraint.activate([
             containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
@@ -92,13 +146,35 @@ class InsuranceDetailTableViewCell: UITableViewCell {
 
             ringChart.widthAnchor.constraint(equalToConstant: 60),
             ringChart.heightAnchor.constraint(equalTo: ringChart.widthAnchor),
-            ringChart.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 8),
+            ringChart.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 24),
             ringChart.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -8),
 
-            labelsStackView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24),
-            labelsStackView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -24),
-            labelsStackView.topAnchor.constraint(equalTo: ringChart.bottomAnchor, constant: 8),
-            labelsStackView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -8),
+            titleLabel.topAnchor.constraint(equalTo: subInsuranceIconView.bottomAnchor, constant: 8),
+            titleLabel.leadingAnchor.constraint(equalTo: subInsuranceIconView.leadingAnchor),
+            titleLabel.trailingAnchor.constraint(equalTo: ringChart.trailingAnchor),
+
+            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.lastBaselineAnchor, constant: 8),
+            descriptionLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
+            descriptionLabel.trailingAnchor.constraint(lessThanOrEqualTo: hintValueLabel.leadingAnchor, constant: -8),
+            descriptionLabel.trailingAnchor.constraint(lessThanOrEqualTo: reminderValueLabel.leadingAnchor, constant: -8),
+            descriptionLabel.bottomAnchor.constraint(lessThanOrEqualTo: containerView.bottomAnchor, constant: -8),
+
+            hintValueLabel.topAnchor.constraint(equalTo: descriptionLabel.topAnchor),
+            hintValueLabel.centerYAnchor.constraint(equalTo: hintLabel.centerYAnchor),
+            hintValueLabel.trailingAnchor.constraint(equalTo: hintLabel.leadingAnchor, constant: -8),
+
+            hintLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -8),
+            hintLabel.centerXAnchor.constraint(equalTo: reminderLabel.centerXAnchor),
+
+            reminderValueLabel.topAnchor.constraint(equalTo: hintValueLabel.bottomAnchor, constant: 4),
+            reminderValueLabel.centerYAnchor.constraint(equalTo: reminderLabel.centerYAnchor),
+            reminderValueLabel.trailingAnchor.constraint(equalTo: reminderLabel.leadingAnchor, constant: -8),
+            reminderValueLabel.bottomAnchor.constraint(lessThanOrEqualTo: containerView.bottomAnchor, constant: -8),
+
+            subInsuranceIconView.topAnchor.constraint(equalTo: ringChart.topAnchor),
+            subInsuranceIconView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24),
+            subInsuranceIconView.widthAnchor.constraint(equalTo: subInsuranceIconView.heightAnchor),
+            subInsuranceIconView.bottomAnchor.constraint(equalTo: ringChart.bottomAnchor),
         ])
     }
 }
@@ -113,11 +189,7 @@ extension InsuranceDetailTableViewCell: HolkRingChartDataSource {
     }
 
     func ringChart(_ ringChart: HolkRingChart, ringChartWidthAt index: Int) -> CGFloat? {
-        if index == 0 {
-            return 8
-        } else {
-            return 4
-        }
+        return 8
     }
 
     func ringChart(_ ringChart: HolkRingChart, colorForSegmentAt index: Int) -> UIColor? {

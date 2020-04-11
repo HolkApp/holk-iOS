@@ -10,7 +10,8 @@ import UIKit
 
 class InsuranceDetailViewController: UIViewController {
     // MARK: - Public variables
-    var tableView = UITableView()
+    let tableView = UITableView()
+    let ringChart = HolkRingChart()
     var insurance: Insurance
     
     weak var coordinator: InsuranceCoordinator?
@@ -34,20 +35,31 @@ class InsuranceDetailViewController: UIViewController {
     private func setup() {
         view.backgroundColor = Color.secondaryBackgroundColor
 
+        ringChart.dataSource = self
+        ringChart.translatesAutoresizingMaskIntoConstraints = false
+
         tableView.backgroundColor = .clear
         tableView.estimatedRowHeight = 224
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        tableView.contentInset = .zero
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
         tableView.alwaysBounceVertical = false
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.contentInset.top = 200
+        tableView.setContentOffset(CGPoint(x: 0, y: -200), animated: false)
 
         tableView.register(InsuranceDetailTableViewCell.self, forCellReuseIdentifier: InsuranceDetailTableViewCell.identifier)
 
+        view.addSubview(ringChart)
         view.addSubview(tableView)
         NSLayoutConstraint.activate([
+            ringChart.widthAnchor.constraint(equalToConstant: 100),
+            ringChart.heightAnchor.constraint(equalTo: ringChart.widthAnchor),
+            ringChart.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 48),
+            ringChart.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -58,7 +70,12 @@ class InsuranceDetailViewController: UIViewController {
 
 // MARK: - UITableViewDelegate
 extension InsuranceDetailViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let viewController = UIViewController()
+        viewController.title = "test"
+        viewController.view.backgroundColor = .white
+        present(UINavigationController(rootViewController: viewController), animated: true)
+    }
 }
 
 // MARK: - UITableViewDataSource
@@ -74,5 +91,56 @@ extension InsuranceDetailViewController: UITableViewDataSource {
             cell.configure(with: segment)
         }
         return cell
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let y = (scrollView.adjustedContentOffset.y / 80).clamped(min: 0, max: 1)
+        ringChart.alpha = (1 - y)
+    }
+}
+
+extension InsuranceDetailViewController: HolkRingChartDataSource {
+        private var mockNumberOfSegments: Int {
+        return 6
+    }
+
+    func numberOfSegments(_ ringChart: HolkRingChart) -> Int {
+        return mockNumberOfSegments
+    }
+
+    func ringChart(_ ringChart: HolkRingChart, sizeForSegmentAt index: Int) -> CGFloat {
+        return 1 / CGFloat(numberOfSegments(ringChart))
+    }
+
+    func ringChart(_ ringChart: HolkRingChart, colorForSegmentAt index: Int) -> UIColor? {
+        if index == 0 {
+            return Color.mainForegroundColor
+        } else if index == 1 {
+            return Color.mainHighlightColor
+        } else if index == 2 {
+            return Color.successColor
+        } else if index == 3 {
+            return .green
+        } else if index == 4 {
+            return .red
+        } else {
+            return .cyan
+        }
+    }
+
+    func ringChart(_ ringChart: HolkRingChart, ringChartWidthAt index: Int) -> CGFloat? {
+        return 8
+    }
+
+    func ringChart(_ ringChart: HolkRingChart, iconForSegmentAt index: Int) -> UIImage? {
+        if index == 0 {
+            return UIImage(systemName: "pencil")?.withRenderingMode(.alwaysTemplate)
+        } else if index == 1 {
+            return UIImage(systemName: "flame")?.withRenderingMode(.alwaysTemplate)
+        } else if index == 2{
+            return UIImage(systemName: "person")?.withRenderingMode(.alwaysTemplate)
+        } else {
+            return UIImage(systemName: "bolt")?.withRenderingMode(.alwaysTemplate)
+        }
     }
 }
