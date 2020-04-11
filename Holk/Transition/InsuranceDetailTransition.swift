@@ -14,7 +14,12 @@ final class InsuranceDetailTransition: NSObject, UIViewControllerAnimatedTransit
             let fromViewController = insuranceOverviewViewController.currentChildSegmentViewController as? InsurancesViewController,
             let toViewController = transitionContext.viewController(forKey: .to) as? InsuranceDetailViewController {
             push(transitionContext, fromViewController: fromViewController, toViewController: toViewController)
-
+        } else if let fromViewController = transitionContext.viewController(forKey: .from) as? InsuranceDetailViewController,
+            let insuranceOverviewViewController = transitionContext.viewController(forKey: .to) as? InsuranceOverviewViewController,
+            insuranceOverviewViewController.currentChildSegmentViewController is InsurancesViewController {
+            pop(transitionContext, fromViewController: fromViewController, toViewController: insuranceOverviewViewController)
+        } else {
+            // fallBack
         }
     }
 
@@ -26,21 +31,20 @@ final class InsuranceDetailTransition: NSObject, UIViewControllerAnimatedTransit
         if let selectedIndexPath = fromViewController.collectionView.indexPathsForSelectedItems?.first, let fromCell = fromViewController.collectionView.cellForItem(at: selectedIndexPath) as? InsuranceCollectionViewCell, let toView = toViewController.view {
 
             let containerView = transitionContext.containerView
-            containerView.backgroundColor = .clear
             containerView.addSubview(toViewController.view)
             toViewController.view.alpha = 0
             toViewController.view.layoutIfNeeded()
 
             let temporaryView = UIView()
 
-            temporaryView.frame = fromCell.convert(fromCell.bounds, to: containerView)
+            temporaryView.frame = fromCell.containerView.convert(fromCell.containerView.bounds, to: containerView)
             var a = UIView()
             if let ringChart = fromCell.ringChart.snapshotView(afterScreenUpdates: false) {
                 a = ringChart
-                ringChart.frame = fromCell.ringChart.convert(ringChart.frame, to: temporaryView)
+                ringChart.frame = fromCell.ringChart.convert(ringChart.bounds, to: temporaryView)
                 temporaryView.addSubview(ringChart)
             }
-            temporaryView.backgroundColor = .white
+            temporaryView.backgroundColor = fromCell.containerView.backgroundColor
             containerView.addSubview(temporaryView)
 
             let duration = transitionDuration(using: transitionContext)
@@ -59,6 +63,57 @@ final class InsuranceDetailTransition: NSObject, UIViewControllerAnimatedTransit
                     transitionContext.completeTransition(success)
                     fromViewController.view.alpha = 1
                     fromCell.alpha = 1.0
+                    temporaryView.removeFromSuperview()
+                })
+
+            UIView.animate(
+            withDuration: duration / 4,
+            delay: duration / 2,
+            options: UIView.AnimationOptions.curveEaseInOut,
+            animations: {
+                temporaryView.alpha = 0
+            })
+        }
+    }
+
+    private func pop(_ transitionContext: UIViewControllerContextTransitioning, fromViewController: InsuranceDetailViewController, toViewController: InsuranceOverviewViewController) {
+        if let insurancesViewController = toViewController.currentChildSegmentViewController as? InsurancesViewController,
+            let fromView = fromViewController.view,
+            let selectedIndexPath = insurancesViewController.collectionView.indexPathsForSelectedItems?.first,
+            let toCell = insurancesViewController.collectionView.cellForItem(at: selectedIndexPath) as? InsuranceCollectionViewCell {
+            let containerView = transitionContext.containerView
+            containerView.addSubview(toViewController.view)
+            toViewController.view.alpha = 0
+            toViewController.view.layoutIfNeeded()
+
+            let temporaryView = UIView()
+
+            temporaryView.frame = fromView.convert(fromView.bounds, to: containerView)
+            var a = UIView()
+            if let ringChart = fromViewController.ringChart.snapshotView(afterScreenUpdates: false) {
+                a = ringChart
+                ringChart.frame = fromViewController.ringChart.convert(ringChart.frame, to: temporaryView)
+                temporaryView.addSubview(ringChart)
+            }
+            temporaryView.backgroundColor = fromViewController.view.backgroundColor
+            containerView.addSubview(temporaryView)
+
+            let duration = transitionDuration(using: transitionContext)
+
+            UIView.animate(
+                withDuration: duration / 2,
+                delay: 0,
+                options: UIView.AnimationOptions.curveEaseInOut,
+                animations: {
+                    fromViewController.view.alpha = 0
+                    temporaryView.frame = toCell.containerView.convert(toCell.containerView.bounds, to: toViewController.view)
+                    a.frame = toCell.ringChart.convert(toCell.ringChart.bounds, to: temporaryView)
+                    toViewController.view.alpha = 1.0
+                },
+                completion: { success in
+                    transitionContext.completeTransition(success)
+                    fromViewController.view.alpha = 1
+                    fromView.alpha = 1.0
                     temporaryView.removeFromSuperview()
                 })
 

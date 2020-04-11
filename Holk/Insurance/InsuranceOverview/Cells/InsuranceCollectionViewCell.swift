@@ -11,10 +11,10 @@ import UIKit
 final class InsuranceCollectionViewCell: UICollectionViewCell {
     // MARK: - Public variables
     var insurance: Insurance?
+    let containerView = UIView()
     let ringChart = HolkRingChart()
 
     // MARK: - Private variables
-    private let containerView = UIView()
     private let titleLabel = UILabel()
     private let subtitleLabel = UILabel()
     private let insuranceSubNumberLabel = UILabel()
@@ -244,7 +244,7 @@ extension InsuranceCollectionViewCell: HolkRingChartDataSource {
     }
 
     func ringChart(_ ringChart: HolkRingChart, ringChartWidthAt index: Int) -> CGFloat? {
-        return 12
+        return 16
     }
 
     func ringChart(_ ringChart: HolkRingChart, colorForSegmentAt index: Int) -> UIColor? {

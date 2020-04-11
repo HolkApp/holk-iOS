@@ -51,7 +51,7 @@ class InsuranceCoordinator: NSObject, Coordinator, UINavigationControllerDelegat
             toVC is InsuranceDetailViewController {
             return InsuranceDetailTransition()
         } else if fromVC is InsuranceDetailViewController, toVC is InsuranceOverviewViewController {
-            // back navigation transition
+            return InsuranceDetailTransition()
         }
         return nil
     }
