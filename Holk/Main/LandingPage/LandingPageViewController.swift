@@ -44,7 +44,7 @@ final class LandingPageViewController: UIPageViewController {
         loginButton.addTarget(self, action: #selector(loginTapped(_:)), for: .touchUpInside)
         
         infoButton.backgroundColor = Color.mainBackgroundColor
-        infoButton.titleLabel?.font = Font.semibold(.body)
+        infoButton.titleLabel?.font = Font.semibold(.description)
         infoButton.layer.cornerRadius = 18
         if #available(iOS 13.0, *) {
             infoButton.layer.cornerCurve = .continuous

@@ -58,7 +58,7 @@ final class OnboardingConfirmationViewController: UIViewController {
         titleLabel.numberOfLines = 0
         titleLabel.text = "Great,"
         
-        descriptionLabel.font = Font.regular(.caption)
+        descriptionLabel.font = Font.regular(.title)
         descriptionLabel.textColor = Color.mainForegroundColor
         descriptionLabel.numberOfLines = 0
         descriptionLabel.text = String(format: "We found your insurance at %@", allInsurance?.insuranceList.first?.insuranceProvider ?? "")
@@ -72,17 +72,17 @@ final class OnboardingConfirmationViewController: UIViewController {
         
         cardContentView.backgroundColor = Color.mainBackgroundColor
         
-        insuranceLabel.font = Font.semibold(.caption)
+        insuranceLabel.font = Font.semibold(.title)
         insuranceLabel.textColor = Color.mainForegroundColor
         insuranceLabel.numberOfLines = 0
         insuranceLabel.text = allInsurance?.insuranceList.first?.insuranceType
         
-        addressLabel.font = Font.regular(.cellTitle)
+        addressLabel.font = Font.regular(.label)
         addressLabel.textColor = Color.mainForegroundColor
         addressLabel.numberOfLines = 0
         addressLabel.text = allInsurance?.insuranceList.first?.address
         
-        badgeLabel.font = Font.regular(.cellTitle)
+        badgeLabel.font = Font.regular(.label)
         badgeLabel.textAlignment = .center
         badgeLabel.textColor = Color.mainBackgroundColor
         badgeLabel.layer.cornerRadius = 16

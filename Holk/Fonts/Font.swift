@@ -20,32 +20,26 @@ enum Font {
         /// 50
         case promptHeader = 50
         
-        /// 40
-        case header = 40
+        /// 45
+        case header = 45
         
+        /// 39
+        case subHeader = 39
+
         /// 30
-        case subHeader = 30
-        
-        /// 27
-        case title = 27
+        case sectonHeader = 30
         
         /// 25
-        case caption = 25
+        case title = 25
         
-        /// 21
-        case label = 21
-        
-        /// 19
-        case cellTitle = 19
+        /// 20
+        case label = 20
         
         /// 17
         case subtitle = 17
         
-        /// 14
-        case description = 14
-        
-        /// 12
-        case body = 12
+        /// 13
+        case description = 13
         
         /// 10
         case tabBarLabel = 10
@@ -81,7 +75,7 @@ enum Font {
     private static func font(weight: Weight, size: Size) -> UIFont {
         switch weight {
         case .light: return UIFont(name: "Montserrat-Regular", size: size.pointSize)!
-        case .regular: return UIFont(name: "OpenSans-Regular", size: size.pointSize)!
+        case .regular: return UIFont(name: "Poppins-Regular", size: size.pointSize)!
         case .semibold: return UIFont(name: "Poppins-SemiBold", size: size.pointSize)!
         case .bold: return UIFont(name: "Montserrat-Bold", size: size.pointSize)!
         case .extraBold: return UIFont(name: "Montserrat-ExtraBold", size: size.pointSize)!

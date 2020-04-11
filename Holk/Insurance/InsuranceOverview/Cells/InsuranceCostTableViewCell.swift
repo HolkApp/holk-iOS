@@ -51,7 +51,7 @@ class InsuranceCostTableViewCell: UITableViewCell {
         if #available(iOS 13.0, *) {
             containerView.layer.cornerCurve = .continuous
         }
-        typeLabel.font = Font.light(.cellTitle)
+        typeLabel.font = Font.light(.label)
         typeLabel.textColor = Color.mainForegroundColor
         costLabel.font = Font.regular(.description)
         costLabel.textColor = Color.secondaryForegroundColor

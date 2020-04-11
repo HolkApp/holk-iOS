@@ -9,9 +9,9 @@
 import UIKit
 
 private enum Constants {
-    static let defaultPadding: CGFloat = 36
-    static let iconSize: CGFloat = 12
-    static let minimumDistance: CGFloat = 60
+    static let defaultPadding: CGFloat = 24
+    static let iconSize: CGFloat = 10
+    static let minimumDistance: CGFloat = 30
     static let startOffset: CGFloat = -0.25
 }
 

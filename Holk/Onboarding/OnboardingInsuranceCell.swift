@@ -61,7 +61,7 @@ final class OnboardingInsuranceCell: UITableViewCell {
         stackView.addArrangedSubview(titleLabel)
         
         titleLabel.numberOfLines = 0
-        titleLabel.font = Font.bold(.cellTitle)
+        titleLabel.font = Font.bold(.label)
         
         comingUpLabel.numberOfLines = 0
         comingUpLabel.font = Font.semibold(.description)
