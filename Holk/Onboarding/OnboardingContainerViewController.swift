@@ -118,13 +118,15 @@ final class OnboardingContainerViewController: UIViewController {
 extension OnboardingContainerViewController: OnboardingCoordinating {
     func startOnboarding(_ user: User) {
         progressView.isHidden = true
-        if user.isNewUser {
-            showAddNewUser(user)
-        } else {
-            progressBarToTop(animated: false, completion: { [weak self] in
-                self?.showInsuranceType()
-            })
-        }
+        // TODO: Dont show new user if it is not new
+        showAddNewUser(user)
+//        if user.isNewUser {
+//            showAddNewUser(user)
+//        } else {
+//            progressBarToTop(animated: false, completion: { [weak self] in
+//                self?.showInsuranceType()
+//            })
+//        }
     }
 
     private func showAddNewUser(_ user: User) {

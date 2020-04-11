@@ -27,7 +27,7 @@ final class AuthenticationStore: APIStore {
     }
     
     func token(orderRef: String) -> Observable<Swift.Result<Void, APIError>> {
-        return sessionStore.token(orderRef: orderRef).map { result -> Swift.Result<Void, APIError> in
+        return sessionStore.token(orderRef: orderRef).map { result in
             switch result {
             case .success:
                 return .success
@@ -38,7 +38,7 @@ final class AuthenticationStore: APIStore {
     }
     
     func refresh() -> Observable<Swift.Result<Void, APIError>> {
-        return sessionStore.refresh().map { result -> Swift.Result<Void, APIError> in
+        return sessionStore.refresh().map { result in
             switch result {
             case .success:
                 return .success
@@ -48,12 +48,15 @@ final class AuthenticationStore: APIStore {
         }
     }
 
-    func userInfo() -> Observable<Swift.Result<UserInfoResponse, APIError>> {
-        return httpRequest(
-            method: .get,
-            url: Endpoint.user.url,
-            headers: sessionStore.authorizationHeader
-        )
+    func userInfo() -> Observable<Swift.Result<Void, APIError>> {
+        return sessionStore.userInfo().map { result in
+            switch result {
+            case .success:
+                return .success
+            case .failure(let error):
+                return .failure(error)
+            }
+        }
     }
 
     func addUser(_ email: String) -> Observable<Swift.Result<Void, APIError>> {
@@ -65,6 +68,7 @@ final class AuthenticationStore: APIStore {
             headers: sessionStore.authorizationHeader,
             parameters: postParams as [String: AnyObject]
         )
+
         return observable.map { result in
             switch result {
             case .success:

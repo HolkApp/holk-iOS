@@ -87,6 +87,10 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
         storeController
             .authenticationStore
             .token(orderRef: orderRef)
+            .flatMap(weak: self, selector: { (obj, result) -> Observable<Result<Void, APIError>> in
+                obj.storeController.insuranceIssuerStore.loadInsuranceIssuers()
+                return obj.storeController.authenticationStore.userInfo()
+            })
             .map({ [weak self] result in
                 guard let self = self else { return }
                 UIApplication.shared.endBackgroundTask(self.backgroundTask)
@@ -99,10 +103,6 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
                     // TODO: Error handling
                     print(error)
                 }
-            })
-            .flatMap(weak: self, selector: { (obj, result) -> Observable<Swift.Result<UserInfoResponse, APIError>> in
-                obj.storeController.insuranceIssuerStore.loadInsuranceIssuers()
-                return obj.storeController.authenticationStore.userInfo()
             })
             .subscribe()
             .disposed(by: bag)

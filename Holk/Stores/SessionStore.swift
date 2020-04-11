@@ -82,7 +82,7 @@ final class SessionStore: APIStore {
                 parameters: postParams as [String: AnyObject]
             )
         
-        return observable.map { [weak self] result -> Swift.Result<OauthAuthenticationResponse, APIError> in
+        return observable.map { [weak self] result in
             if let oauthAuthenticationResponse = try? result.get() {
                 self?.user.oauthAuthenticationResponse = oauthAuthenticationResponse
             }
@@ -113,7 +113,7 @@ final class SessionStore: APIStore {
                 parameters: postParams as [String: AnyObject]
             )
         
-        return observable.map { [weak self] result -> Swift.Result<OauthAuthenticationResponse, APIError> in
+        return observable.map { [weak self] result in
             if let oauthAuthenticationResponse = try? result.get() {
                 self?.user.oauthAuthenticationResponse = oauthAuthenticationResponse
                 self?.delegate?.sessionStoreAccessTokenUpdated()
@@ -121,6 +121,21 @@ final class SessionStore: APIStore {
                 // TODO: Only logout for now, but should only logout when receiving 401
                 self?.reset()
                 self?.delegate?.sessionStoreRefreshTokenExpired()
+            }
+            return result
+        }
+    }
+
+    func userInfo() -> Observable<Swift.Result<UserInfoResponse, APIError>> {
+        let observable: Observable<Swift.Result<UserInfoResponse, APIError>> = httpRequest(
+            method: .get,
+            url: Endpoint.user.url,
+            headers: authorizationHeader
+        )
+
+        return observable.map { [weak self] result in
+            if let userInfoResponse = try? result.get() {
+                self?.user.userInfoResponse = userInfoResponse
             }
             return result
         }
