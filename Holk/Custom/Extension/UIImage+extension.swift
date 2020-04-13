@@ -21,3 +21,13 @@ extension UIImage {
         return img
     }
 }
+
+extension UIImage {
+    convenience init?(insuranceSegment: Insurance.Segment) {
+        switch insuranceSegment.kind {
+        case .travel: self.init(named: "Plane")
+        case .home:  self.init(named: "Heart")
+        case .pets: self.init(named: "Shoe")
+        }
+    }
+}

@@ -76,6 +76,8 @@
 		8FA5F375239D832C00083430 /* InsuranceIssuerStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA5F374239D832C00083430 /* InsuranceIssuerStore.swift */; };
 		8FA766C82440F729007EB2A2 /* HolkRoundBackgroundLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA766C72440F729007EB2A2 /* HolkRoundBackgroundLabel.swift */; };
 		8FA766CB24411265007EB2A2 /* UIScrollView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA766CA24411265007EB2A2 /* UIScrollView+extension.swift */; };
+		8FA766CD24433AA3007EB2A2 /* UILabel+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA766CC24433AA3007EB2A2 /* UILabel+extension.swift */; };
+		8FA766CF24435607007EB2A2 /* FontStyleGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA766CE24435607007EB2A2 /* FontStyleGuide.swift */; };
 		8FA8F10E232D377F00670471 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8FA8F10D232D377F00670471 /* Color.xcassets */; };
 		8FA8F1122330148300670471 /* FontAwesome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA8F1112330148300670471 /* FontAwesome.swift */; };
 		8FA941552353ADC200844D97 /* SessionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA941542353ADC200844D97 /* SessionCoordinator.swift */; };
@@ -196,6 +198,8 @@
 		8FA5F374239D832C00083430 /* InsuranceIssuerStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceIssuerStore.swift; sourceTree = "<group>"; };
 		8FA766C72440F729007EB2A2 /* HolkRoundBackgroundLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolkRoundBackgroundLabel.swift; sourceTree = "<group>"; };
 		8FA766CA24411265007EB2A2 /* UIScrollView+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+extension.swift"; sourceTree = "<group>"; };
+		8FA766CC24433AA3007EB2A2 /* UILabel+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+extension.swift"; sourceTree = "<group>"; };
+		8FA766CE24435607007EB2A2 /* FontStyleGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontStyleGuide.swift; sourceTree = "<group>"; };
 		8FA8F10D232D377F00670471 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		8FA8F1112330148300670471 /* FontAwesome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontAwesome.swift; sourceTree = "<group>"; };
 		8FA941542353ADC200844D97 /* SessionCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCoordinator.swift; sourceTree = "<group>"; };
@@ -343,6 +347,7 @@
 			isa = PBXGroup;
 			children = (
 				8FF6E72322A70F6600F6D398 /* Then.swift */,
+				8FA766CC24433AA3007EB2A2 /* UILabel+extension.swift */,
 				8FACE89523E767A900DCE741 /* UIButton+extension.swift */,
 				8FA766CA24411265007EB2A2 /* UIScrollView+extension.swift */,
 				8FF6E73322B57DA800F6D398 /* UITableViewCell+UICollectionViewCell+extension.swift */,
@@ -609,6 +614,7 @@
 				8F6BCA3722F73CBF004B887E /* Font Awesome 5 Pro-Light-300.otf */,
 				8F6BCA3622F73CBF004B887E /* Font Awesome 5 Pro-Regular-400.otf */,
 				8F6BCA3422F73CBF004B887E /* Font Awesome 5 Pro-Solid-900.otf */,
+				8FA766CE24435607007EB2A2 /* FontStyleGuide.swift */,
 				8FF6E74022B82D1100F6D398 /* Font.swift */,
 				8FA8F1112330148300670471 /* FontAwesome.swift */,
 				8F2BB8E52332D4EB00E8AE4B /* FontLoader.swift */,
@@ -820,6 +826,7 @@
 				8F54C249242CFA7D00D72FD7 /* ObservableType+extension.swift in Sources */,
 				8F54C244242C07E000D72FD7 /* Result+extension.swift in Sources */,
 				8F7C442A23511C1200B54A36 /* AuthenticationStore.swift in Sources */,
+				8FA766CD24433AA3007EB2A2 /* UILabel+extension.swift in Sources */,
 				8FA941552353ADC200844D97 /* SessionCoordinator.swift in Sources */,
 				8F0D4041227A0D68000BD840 /* OnboardingInfoViewController.swift in Sources */,
 				8FA8F1122330148300670471 /* FontAwesome.swift in Sources */,
@@ -858,6 +865,7 @@
 				8F3305A223FB3A8100E9B443 /* AllInsuranceResponse.swift in Sources */,
 				8F54C246242C1FDC00D72FD7 /* UserInfoResponse.swift in Sources */,
 				8FCEE9AE23254AAC00F75FB8 /* KeyboardEventObserver.swift in Sources */,
+				8FA766CF24435607007EB2A2 /* FontStyleGuide.swift in Sources */,
 				8F858A5323CE6381006B416A /* PollingTask.swift in Sources */,
 				8FD84E682270E732009D563D /* AppDelegate.swift in Sources */,
 				8F4965DB2412F17E00DEAFC1 /* HolkRingChartIconView.swift in Sources */,
