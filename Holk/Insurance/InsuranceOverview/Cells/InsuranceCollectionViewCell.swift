@@ -99,7 +99,7 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         subtitleLabel.numberOfLines = 0
         subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        insuranceSubNumberLabel.font = Font.semibold(.header)
+        insuranceSubNumberLabel.font = Font.semiBold(.header)
         insuranceSubNumberLabel.textColor = Color.mainForegroundColor
         insuranceSubNumberLabel.numberOfLines = 0
         insuranceSubNumberLabel.textAlignment = .center
@@ -128,7 +128,7 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         reminderStackView.axis = .vertical
         reminderStackView.translatesAutoresizingMaskIntoConstraints = false
 
-        hintValueLabel.font = Font.semibold(.header)
+        hintValueLabel.font = Font.semiBold(.header)
         hintValueLabel.textColor = Color.mainForegroundColor
         hintValueLabel.numberOfLines = 0
         hintValueLabel.textAlignment = .center
@@ -140,7 +140,7 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         hintLabel.textAlignment = .center
         hintLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        reminderValueLabel.font = Font.semibold(.header)
+        reminderValueLabel.font = Font.semiBold(.header)
         reminderValueLabel.textColor = Color.warningColor
         reminderValueLabel.numberOfLines = 0
         reminderValueLabel.textAlignment = .center

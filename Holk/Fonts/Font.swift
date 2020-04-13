@@ -8,10 +8,15 @@
 import UIKit
 
 enum Font {
+    enum Name {
+        case montserrat
+        case poppins
+    }
+
     enum Weight {
-        case light
         case regular
-        case semibold
+        case medium
+        case semiBold
         case bold
         case extraBold
     }
@@ -52,16 +57,12 @@ enum Font {
         }
     }
     
-    static func light(_ size: Size) -> UIFont {
-        return font(weight: .light, size: size)
-    }
-    
     static func regular(_ size: Size) -> UIFont {
         return font(weight: .regular, size: size)
     }
     
-    static func semibold(_ size: Size) -> UIFont {
-        return font(weight: .semibold, size: size)
+    static func semiBold(_ size: Size) -> UIFont {
+        return font(weight: .semiBold, size: size)
     }
     
     static func bold(_ size: Size) -> UIFont {
@@ -71,12 +72,31 @@ enum Font {
     static func extraBold(_ size: Size) -> UIFont {
         return font(weight: .extraBold, size: size)
     }
+
+    static func font(name: Name, weight: Weight, size: CGFloat) -> UIFont {
+        let fontName: String
+        switch name {
+        case .montserrat:
+            fontName = "Montserrat"
+        case .poppins:
+            fontName = "Poppins"
+        }
+        let fontWeight: String
+        switch weight {
+        case .regular: fontWeight = "-Regular"
+        case .medium: fontWeight = "-Medium"
+        case .semiBold: fontWeight = "-SemiBold"
+        case .bold: fontWeight = "-Bold"
+        case .extraBold: fontWeight = "-ExtraBold"
+        }
+        return UIFont(name: fontName + fontWeight, size: size)!
+    }
     
     private static func font(weight: Weight, size: Size) -> UIFont {
         switch weight {
-        case .light: return UIFont(name: "Montserrat-Regular", size: size.pointSize)!
-        case .regular: return UIFont(name: "Poppins-Regular", size: size.pointSize)!
-        case .semibold: return UIFont(name: "Poppins-SemiBold", size: size.pointSize)!
+        case .regular: return UIFont(name: "Montserrat-Regular", size: size.pointSize)!
+        case .medium: return UIFont(name: "Poppins-Medium", size: size.pointSize)!
+        case .semiBold: return UIFont(name: "Poppins-SemiBold", size: size.pointSize)!
         case .bold: return UIFont(name: "Montserrat-Bold", size: size.pointSize)!
         case .extraBold: return UIFont(name: "Montserrat-ExtraBold", size: size.pointSize)!
         }
@@ -91,10 +111,6 @@ extension Font {
 }
 
 extension FontAwesome {
-    /// 30
-    static let tabBarIconSize = CGSize.init(width: 30, height: 30)
     /// 45
     static let mediumIconSize = CGSize.init(width: 45, height: 45)
-    /// 50
-    static let largeIconSize = CGSize.init(width: 55, height: 55)
 }
