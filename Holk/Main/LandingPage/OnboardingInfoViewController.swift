@@ -59,7 +59,7 @@ class OnboardingInfoViewController: UIViewController {
         subtitleLabel.textColor = Color.mainForegroundColor
         subtitleLabel.numberOfLines = 0
         headerLabel.text = "3 enkla steg"
-        headerLabel.font = Font.semibold(.title)
+        headerLabel.font = Font.semiBold(.title)
         headerLabel.textColor = Color.mainForegroundColor
         headerLabel.numberOfLines = 0
         loginLabel.text = "Hämta din försäkring med Bank-ID."

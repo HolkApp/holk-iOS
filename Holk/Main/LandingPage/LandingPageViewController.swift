@@ -38,13 +38,13 @@ final class LandingPageViewController: UIPageViewController {
     private func setup() {
         loginButton.backgroundColor = Color.mainBackgroundColor
         loginButton.setTitle("Logga in", for: .normal)
-        loginButton.titleLabel?.font = Font.semibold(.subtitle)
+        loginButton.titleLabel?.font = Font.semiBold(.subtitle)
         loginButton.set(color: Color.mainForegroundColor, image: UIImage(named: "BankID"))
         loginButton.imageToTheRightOfText()
         loginButton.addTarget(self, action: #selector(loginTapped(_:)), for: .touchUpInside)
         
         infoButton.backgroundColor = Color.mainBackgroundColor
-        infoButton.titleLabel?.font = Font.semibold(.description)
+        infoButton.titleLabel?.font = Font.semiBold(.description)
         infoButton.layer.cornerRadius = 18
         if #available(iOS 13.0, *) {
             infoButton.layer.cornerCurve = .continuous

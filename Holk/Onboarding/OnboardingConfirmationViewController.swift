@@ -72,7 +72,7 @@ final class OnboardingConfirmationViewController: UIViewController {
         
         cardContentView.backgroundColor = Color.mainBackgroundColor
         
-        insuranceLabel.font = Font.semibold(.title)
+        insuranceLabel.font = Font.semiBold(.title)
         insuranceLabel.textColor = Color.mainForegroundColor
         insuranceLabel.numberOfLines = 0
         insuranceLabel.text = allInsurance?.insuranceList.first?.insuranceType
@@ -91,7 +91,7 @@ final class OnboardingConfirmationViewController: UIViewController {
         
         doneButton.setTitle("Add to Holk", for: .normal)
         doneButton.backgroundColor = Color.mainHighlightColor
-        doneButton.titleLabel?.font = Font.semibold(.subtitle)
+        doneButton.titleLabel?.font = Font.semiBold(.subtitle)
         doneButton.set(color: Color.mainForegroundColor)
         doneButton.addTarget(self, action: #selector(submit(_:)), for: .touchUpInside)
         

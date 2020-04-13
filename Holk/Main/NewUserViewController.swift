@@ -78,7 +78,7 @@ class NewUserViewController: UIViewController {
         subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         descriptionLabel.text = "Enter your mail adress in order to complete your account"
-        descriptionLabel.font = Font.light(.subtitle)
+        descriptionLabel.font = Font.regular(.subtitle)
         descriptionLabel.textColor = Color.mainForegroundColor
         descriptionLabel.numberOfLines = 0
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false

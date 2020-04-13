@@ -64,7 +64,7 @@ final class OnboardingInsuranceCell: UITableViewCell {
         titleLabel.font = Font.bold(.label)
         
         comingUpLabel.numberOfLines = 0
-        comingUpLabel.font = Font.semibold(.description)
+        comingUpLabel.font = Font.semiBold(.description)
         comingUpLabel.text = "Coming Soon"
         
         stackView.axis = .vertical
