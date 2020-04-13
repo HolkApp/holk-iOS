@@ -11,8 +11,8 @@ import UIKit
 final class InsurancesViewController: UIViewController {
     // MARK: - Public variables
     var storeController: StoreController
-
     weak var coordinator: InsuranceCoordinator?
+    
     // MARK: - Private variables
     private enum Section: Int, CaseIterable {
         case insurance

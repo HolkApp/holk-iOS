@@ -10,13 +10,11 @@ import UIKit
 
 final class InsuranceDetailTransition: NSObject, UIViewControllerAnimatedTransitioning {
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        if let insuranceOverviewViewController = transitionContext.viewController(forKey: .from) as? InsuranceOverviewViewController,
-            let fromViewController = insuranceOverviewViewController.currentChildSegmentViewController as? InsurancesViewController,
-            let toViewController = transitionContext.viewController(forKey: .to) as? InsuranceDetailViewController {
+        if let insuranceOverviewViewController = transitionContext.viewController(forKey: .from) as? InsuranceOverviewViewController, let toViewController = transitionContext.viewController(forKey: .to) as? InsuranceDetailViewController {
+            let fromViewController = insuranceOverviewViewController.insurancesViewController
             push(transitionContext, fromViewController: fromViewController, toViewController: toViewController)
         } else if let fromViewController = transitionContext.viewController(forKey: .from) as? InsuranceDetailViewController,
-            let insuranceOverviewViewController = transitionContext.viewController(forKey: .to) as? InsuranceOverviewViewController,
-            insuranceOverviewViewController.currentChildSegmentViewController is InsurancesViewController {
+            let insuranceOverviewViewController = transitionContext.viewController(forKey: .to) as? InsuranceOverviewViewController {
             pop(transitionContext, fromViewController: fromViewController, toViewController: insuranceOverviewViewController)
         } else {
             // fallBack
@@ -77,8 +75,8 @@ final class InsuranceDetailTransition: NSObject, UIViewControllerAnimatedTransit
     }
 
     private func pop(_ transitionContext: UIViewControllerContextTransitioning, fromViewController: InsuranceDetailViewController, toViewController: InsuranceOverviewViewController) {
-        if let insurancesViewController = toViewController.currentChildSegmentViewController as? InsurancesViewController,
-            let fromView = fromViewController.view,
+        let insurancesViewController = toViewController.insurancesViewController
+        if let fromView = fromViewController.view,
             let selectedIndexPath = insurancesViewController.collectionView.indexPathsForSelectedItems?.first,
             let toCell = insurancesViewController.collectionView.cellForItem(at: selectedIndexPath) as? InsuranceCollectionViewCell {
             let containerView = transitionContext.containerView

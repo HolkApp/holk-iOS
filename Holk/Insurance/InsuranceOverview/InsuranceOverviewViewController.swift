@@ -11,14 +11,17 @@ import UIKit
 final class InsuranceOverviewViewController: UIViewController {
     // MARK: - IBOutlets
     private let headerLabel = UILabel()
-    private let segmentedControl = HolkSegmentedControl()
     private let profileButton = UIButton()
     private let containerView = UIView()
+    let insurancesViewController: InsurancesViewController
 
     // MARK: - Public variables
     var storeController: StoreController
-    var currentChildSegmentViewController: UIViewController?
-    weak var coordinator: InsuranceCoordinator?
+    weak var coordinator: InsuranceCoordinator? {
+        didSet {
+            insurancesViewController.coordinator = coordinator
+        }
+    }
     // MARK: - Private variables
     private var childSegmentViewControllers: [UIViewController] = []
     
@@ -33,6 +36,7 @@ final class InsuranceOverviewViewController: UIViewController {
 
     init(storeController: StoreController) {
         self.storeController = storeController
+        self.insurancesViewController = InsurancesViewController(storeController: storeController)
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -61,29 +65,29 @@ final class InsuranceOverviewViewController: UIViewController {
     }
     
     private func setup() {
-        view.backgroundColor = Color.mainBackgroundColor
         containerView.layoutMargins = .zero
         containerView.backgroundColor = .clear
-        
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+
         headerLabel.text = "Översikt"
         headerLabel.font = Font.extraBold(.header)
         headerLabel.textColor = Color.mainForegroundColor
         headerLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        profileButton.setTitle("", for: .normal)
+//        profileButton.setTitle("", for: .normal)
         profileButton.setImage(UIImage(named: "Profile"), for: .normal)
         profileButton.tintColor = Color.mainForegroundColor
         profileButton.addTarget(self, action: #selector(profileTapped(sender:)), for: .touchUpInside)
         profileButton.translatesAutoresizingMaskIntoConstraints = false
 
-        setupSegmentedControl()
+        addChild(insurancesViewController)
+        insurancesViewController.view.translatesAutoresizingMaskIntoConstraints = false
+        containerView.addSubview(insurancesViewController.view)
+        insurancesViewController.didMove(toParent: self)
 
-        segmentedControl.translatesAutoresizingMaskIntoConstraints = false
-        containerView.translatesAutoresizingMaskIntoConstraints = false
-
+        view.backgroundColor = Color.mainBackgroundColor
         view.addSubview(headerLabel)
         view.addSubview(profileButton)
-        view.addSubview(segmentedControl)
         view.addSubview(containerView)
 
         NSLayoutConstraint.activate([
@@ -95,70 +99,15 @@ final class InsuranceOverviewViewController: UIViewController {
             profileButton.heightAnchor.constraint(equalToConstant: 48),
             profileButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
 
-            segmentedControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 18),
-            segmentedControl.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: 4),
-            segmentedControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -18),
-            segmentedControl.heightAnchor.constraint(equalToConstant: 36),
-
-            containerView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor),
+            containerView.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: 8),
             containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-        ])
-    }
-    
-    private func setupSegmentedControl() {
-        let insurancesViewController = InsurancesViewController(storeController: storeController)
-        insurancesViewController.coordinator = coordinator
 
-        let insuranceCostViewController = InsuranceCostViewController()
-
-        childSegmentViewControllers = [
-            insurancesViewController,
-            insuranceCostViewController
-        ]
-        
-        segmentedControl.removeAllSegments()
-        segmentedControl.insertSegment(withTitle: "Försäkringar", at: 0, animated: false)
-        segmentedControl.insertSegment(withTitle: "Kostnader", at: 1, animated: false)
-        
-        segmentedControl.setTitleTextAttributes(
-            [
-                .foregroundColor: Color.mainForegroundColor.withAlphaComponent(0.6),
-                .font: Font.regular(.subtitle)
-            ],
-            for: .normal)
-        segmentedControl.setTitleTextAttributes(
-            [
-                .foregroundColor: Color.mainForegroundColor,
-                .font: Font.regular(.subtitle)
-            ],
-            for: .selected)
-        
-//        segmentedControl.tintColor = .white
-        segmentedControl.selectionForegroundColor = Color.secondaryHighlightColor
-        segmentedControl.addTarget(self, action: #selector(segmentChanged(sender:)), for: .valueChanged)
-        
-        segmentedControl.selectedSegmentIndex = 0
-        segmentChanged(sender: segmentedControl)
-    }
-    
-    @objc private func segmentChanged(sender: UISegmentedControl) {
-        if let previousChildViewController = currentChildSegmentViewController {
-            previousChildViewController.removeFromParent()
-            previousChildViewController.view.removeFromSuperview()
-        }
-        let childSegmentViewController = childSegmentViewControllers[sender.selectedSegmentIndex]
-        addChild(childSegmentViewController)
-        childSegmentViewController.view.translatesAutoresizingMaskIntoConstraints = false
-        containerView.addSubview(childSegmentViewController.view)
-        childSegmentViewController.didMove(toParent: self)
-        currentChildSegmentViewController = childSegmentViewController
-        NSLayoutConstraint.activate([
-            containerView.topAnchor.constraint(equalTo: childSegmentViewController.view.topAnchor),
-            containerView.bottomAnchor.constraint(equalTo: childSegmentViewController.view.bottomAnchor),
-            containerView.leadingAnchor.constraint(equalTo: childSegmentViewController.view.leadingAnchor),
-            containerView.trailingAnchor.constraint(equalTo: childSegmentViewController.view.trailingAnchor)
+            containerView.topAnchor.constraint(equalTo: insurancesViewController.view.topAnchor),
+            containerView.bottomAnchor.constraint(equalTo: insurancesViewController.view.bottomAnchor),
+            containerView.leadingAnchor.constraint(equalTo: insurancesViewController.view.leadingAnchor),
+            containerView.trailingAnchor.constraint(equalTo: insurancesViewController.view.trailingAnchor)
         ])
     }
     

@@ -46,9 +46,7 @@ class InsuranceCoordinator: NSObject, Coordinator, UINavigationControllerDelegat
     
     // MARK: - UINavigationControllerDelegate
     func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        if let insuranceOverviewViewController = fromVC as? InsuranceOverviewViewController,
-            insuranceOverviewViewController.currentChildSegmentViewController is InsurancesViewController,
-            toVC is InsuranceDetailViewController {
+        if fromVC is InsuranceOverviewViewController, toVC is InsuranceDetailViewController {
             return InsuranceDetailTransition()
         } else if fromVC is InsuranceDetailViewController, toVC is InsuranceOverviewViewController {
             return InsuranceDetailTransition()
