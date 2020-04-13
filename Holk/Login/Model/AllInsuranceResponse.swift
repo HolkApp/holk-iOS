@@ -52,7 +52,7 @@ struct Insurance: Codable {
     }
     var segments: [Segment] {
         return [
-            Segment(kind: .home, description: "This is basic home segment of your home insurance."),
+            Segment(kind: .home, description: "Decription text for what a subinsurance is about, lore isbm"),
             Segment(kind: .travel, description: "This is travel segment of your home insurance."),
             Segment(kind: .pets, description: "This is pets segment of your home insurance.")
         ]

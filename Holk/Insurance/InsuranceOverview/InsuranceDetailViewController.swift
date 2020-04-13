@@ -134,13 +134,13 @@ extension InsuranceDetailViewController: HolkRingChartDataSource {
 
     func ringChart(_ ringChart: HolkRingChart, iconForSegmentAt index: Int) -> UIImage? {
         if index == 0 {
-            return UIImage(systemName: "pencil")?.withRenderingMode(.alwaysTemplate)
+            return UIImage(named: "Heart")?.withRenderingMode(.alwaysTemplate)
         } else if index == 1 {
-            return UIImage(systemName: "flame")?.withRenderingMode(.alwaysTemplate)
+            return UIImage(named: "Plane")?.withRenderingMode(.alwaysTemplate)
         } else if index == 2{
-            return UIImage(systemName: "person")?.withRenderingMode(.alwaysTemplate)
+            return UIImage(named: "Shoe")?.withRenderingMode(.alwaysTemplate)
         } else {
-            return UIImage(systemName: "bolt")?.withRenderingMode(.alwaysTemplate)
+            return UIImage(named: "Car")?.withRenderingMode(.alwaysTemplate)
         }
     }
 }

@@ -31,7 +31,7 @@ final class HolkRingChartIconView: UIView {
     }
 
     func setup() {
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFit
         addSubview(imageView)
     }
 
