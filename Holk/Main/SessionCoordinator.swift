@@ -94,15 +94,23 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
 
                 switch result {
                 case .success:
-                    self.showOnboardingFlow()
+                    self.storeController.insuranceIssuerStore.loadInsuranceIssuers()
                 case .failure(let error):
                     // TODO: Error handling
                     print(error)
                 }
             })
             .flatMap(weak: self, selector: { (obj, result) -> Observable<Result<Void, APIError>> in
-                obj.storeController.insuranceIssuerStore.loadInsuranceIssuers()
-                return obj.storeController.authenticationStore.userInfo()
+                obj.storeController.authenticationStore.userInfo()
+            })
+            .map({ [weak self] (result) in
+                switch result {
+                case .success:
+                    self?.showOnboardingFlow()
+                case .failure(let error):
+                    // TODO: Error handling
+                    print(error)
+                }
             })
             .subscribe()
             .disposed(by: bag)

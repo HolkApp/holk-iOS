@@ -32,7 +32,8 @@ final class InsuranceIssuerStore: APIStore {
         
         super.init()
     }
-    
+
+    // TODO: Update this simplify it by having return observable and keep a cache for the value.
     func loadInsuranceIssuers() {
         switch insuranceIssuerList.value {
         case .loading:
