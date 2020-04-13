@@ -60,6 +60,10 @@ enum Font {
     static func regular(_ size: Size) -> UIFont {
         return font(weight: .regular, size: size)
     }
+
+    static func medium(_ size: Size) -> UIFont {
+        return font(weight: .medium, size: size)
+    }
     
     static func semiBold(_ size: Size) -> UIFont {
         return font(weight: .semiBold, size: size)

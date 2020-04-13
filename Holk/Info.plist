@@ -58,10 +58,11 @@
 	<array>
 		<string>Montserrat-Regular.ttf</string>
 		<string>Poppins-SemiBold.ttf</string>
+		<string>Poppins-Medium.ttf</string>
+		<string>Poppins-Regular.ttf</string>
 		<string>Montserrat-Bold.ttf</string>
 		<string>Montserrat-ExtraBold.ttf</string>
 		<string>OpenSans-Regular.ttf</string>
-		<string>Poppins-Regular.ttf</string>
 		<string>Font Awesome 5 Pro-Regular-400.otf</string>
 		<string>Font Awesome 5 Pro-Light-300.otf</string>
 		<string>Font Awesome 5 Pro-Solid-900.otf</string>

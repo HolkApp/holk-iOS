@@ -79,7 +79,7 @@ class InsuranceDetailTableViewCell: UITableViewCell {
         containerView.layer.cornerCurve = .continuous
         containerView.translatesAutoresizingMaskIntoConstraints = false
 
-        hintValueLabel.font = Font.regular(.label)
+        hintValueLabel.font = Font.medium(.label)
         hintValueLabel.backgroundColor = Color.mainBackgroundColor
         hintValueLabel.textColor = Color.mainForegroundColor
         hintValueLabel.textAlignment = .center
@@ -88,7 +88,7 @@ class InsuranceDetailTableViewCell: UITableViewCell {
         hintImageView.tintColor = Color.mainForegroundColor.withAlphaComponent(0.35)
         hintImageView.translatesAutoresizingMaskIntoConstraints = false
 
-        reminderValueLabel.font = Font.regular(.label)
+        reminderValueLabel.font = Font.medium(.label)
         reminderValueLabel.backgroundColor = Color.mainBackgroundColor
         reminderValueLabel.textColor = Color.warningColor
         reminderValueLabel.textAlignment = .center

@@ -78,6 +78,7 @@
 		8FA766CB24411265007EB2A2 /* UIScrollView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA766CA24411265007EB2A2 /* UIScrollView+extension.swift */; };
 		8FA766CD24433AA3007EB2A2 /* UILabel+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA766CC24433AA3007EB2A2 /* UILabel+extension.swift */; };
 		8FA766CF24435607007EB2A2 /* FontStyleGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA766CE24435607007EB2A2 /* FontStyleGuide.swift */; };
+		8FA766D124447BD8007EB2A2 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8FA766D024447BD8007EB2A2 /* Poppins-Medium.ttf */; };
 		8FA8F10E232D377F00670471 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8FA8F10D232D377F00670471 /* Color.xcassets */; };
 		8FA8F1122330148300670471 /* FontAwesome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA8F1112330148300670471 /* FontAwesome.swift */; };
 		8FA941552353ADC200844D97 /* SessionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA941542353ADC200844D97 /* SessionCoordinator.swift */; };
@@ -200,6 +201,7 @@
 		8FA766CA24411265007EB2A2 /* UIScrollView+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+extension.swift"; sourceTree = "<group>"; };
 		8FA766CC24433AA3007EB2A2 /* UILabel+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+extension.swift"; sourceTree = "<group>"; };
 		8FA766CE24435607007EB2A2 /* FontStyleGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontStyleGuide.swift; sourceTree = "<group>"; };
+		8FA766D024447BD8007EB2A2 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
 		8FA8F10D232D377F00670471 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		8FA8F1112330148300670471 /* FontAwesome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontAwesome.swift; sourceTree = "<group>"; };
 		8FA941542353ADC200844D97 /* SessionCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCoordinator.swift; sourceTree = "<group>"; };
@@ -608,6 +610,7 @@
 				8FF6E74922B82F3600F6D398 /* Montserrat-ExtraBold.ttf */,
 				8FF6E74722B82EFA00F6D398 /* OpenSans-Regular.ttf */,
 				8F858A4C23CD16FC006B416A /* Poppins-SemiBold.ttf */,
+				8FA766D024447BD8007EB2A2 /* Poppins-Medium.ttf */,
 				8F858A4A23CD1470006B416A /* Poppins-Regular.ttf */,
 				8F6BCA3522F73CBF004B887E /* Font Awesome 5 Brands-Regular-400.otf */,
 				8F6BCA3822F73CBF004B887E /* Font Awesome 5 Duotone-Solid-900.otf */,
@@ -711,6 +714,7 @@
 				8FD84E722270E736009D563D /* LaunchScreen.storyboard in Resources */,
 				8FD84E6F2270E736009D563D /* Assets.xcassets in Resources */,
 				8F858A4B23CD1470006B416A /* Poppins-Regular.ttf in Resources */,
+				8FA766D124447BD8007EB2A2 /* Poppins-Medium.ttf in Resources */,
 				8F6BCA3D22F73CBF004B887E /* Font Awesome 5 Duotone-Solid-900.otf in Resources */,
 				8F858A4D23CD16FD006B416A /* Poppins-SemiBold.ttf in Resources */,
 				8F6BCA3C22F73CBF004B887E /* Font Awesome 5 Pro-Light-300.otf in Resources */,
