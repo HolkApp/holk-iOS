@@ -12,7 +12,7 @@ final class InsurancesViewController: UIViewController {
     // MARK: - Public variables
     var storeController: StoreController
     weak var coordinator: InsuranceCoordinator?
-    
+
     // MARK: - Private variables
     private enum Section: Int, CaseIterable {
         case insurance
@@ -20,7 +20,6 @@ final class InsurancesViewController: UIViewController {
     }
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     private let layout = DynamicHeightCollectionFlowLayout()
-    private let pageControl = UIPageControl()
 
     init(storeController: StoreController) {
         self.storeController = storeController
@@ -32,7 +31,8 @@ final class InsurancesViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private var numberOfInsurances = 2
+    // TODO: Remove the mock
+    private var numberOfInsurances = 1
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,38 +43,28 @@ final class InsurancesViewController: UIViewController {
         view.backgroundColor = .clear
         view.layoutMargins = .zero
 
-        layout.scrollDirection = .horizontal
+        layout.scrollDirection = .vertical
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
         layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-
-        pageControl.numberOfPages = numberOfInsurances + 1
-        pageControl.currentPageIndicatorTintColor = Color.mainForegroundColor
-        pageControl.pageIndicatorTintColor = Color.secondaryBackgroundColor
-        pageControl.translatesAutoresizingMaskIntoConstraints = false
 
         collectionView.backgroundColor = .clear
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
-        collectionView.isPagingEnabled = true
         collectionView.translatesAutoresizingMaskIntoConstraints = false
 
         collectionView.register(InsuranceCollectionViewCell.self, forCellWithReuseIdentifier: InsuranceCollectionViewCell.identifier)
         collectionView.register(InsuranceAddMoreCell.self, forCellWithReuseIdentifier: InsuranceAddMoreCell.identifier)
 
         view.addSubview(collectionView)
-        view.addSubview(pageControl)
 
         NSLayoutConstraint.activate([
             collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -12),
-
-            pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            pageControl.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
     }
 }
@@ -119,8 +109,6 @@ extension InsurancesViewController: UICollectionViewDelegate {
         switch indexPath.section {
         case Section.addMore.rawValue:
             numberOfInsurances += 1
-            pageControl.numberOfPages = numberOfInsurances + 1
-            pageControl.currentPage = 0
             collectionView.reloadData()
         case Section.insurance.rawValue:
             // TODO: Use real insurance
@@ -128,20 +116,6 @@ extension InsurancesViewController: UICollectionViewDelegate {
             coordinator?.showInsurnaceDetail(insurance)
         default:
             return
-        }
-    }
-
-    // TODO: Update this
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let scrollViewCenter = CGPoint(x: scrollView.contentOffset.x + (scrollView.frame.width / 2), y: (scrollView.frame.height / 2))
-
-        if let indexPath = collectionView.indexPathForItem(at: scrollViewCenter) {
-            switch indexPath.section {
-            case Section.addMore.rawValue:
-                pageControl.currentPage = numberOfInsurances + 1
-            default:
-                pageControl.currentPage = indexPath.item
-            }
         }
     }
 }

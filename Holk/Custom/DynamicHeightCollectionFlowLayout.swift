@@ -15,10 +15,14 @@ final class DynamicHeightCollectionFlowLayout: UICollectionViewFlowLayout {
             .filter { $0.representedElementCategory == .cell }
             .forEach({ layoutAttributes in
                 if let newFrame = layoutAttributesForItem(at: layoutAttributes.indexPath)?.frame {
-                    layoutAttributes.frame = newFrame.offsetBy(dx: 0, dy: sectionInset.top - layoutAttributes.frame.minY)
+                    if scrollDirection == .horizontal {
+                        // Align the card to top
+                        layoutAttributes.frame = newFrame.offsetBy(dx: 0, dy: sectionInset.top - layoutAttributes.frame.minY)
+                    } else {
+                        layoutAttributes.frame = newFrame
+                    }
                 }
-        })
-
+            })
         return layoutAttributesObjects
     }
 
