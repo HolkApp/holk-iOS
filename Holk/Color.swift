@@ -51,10 +51,6 @@ enum Color {
         return makeColor(asset: #function)
     }
     
-    static var lightBorderColor: UIColor {
-        return makeColor(asset: #function)
-    }
-    
     static var mainAlertColor: UIColor {
         return makeColor(asset: #function)
     }
