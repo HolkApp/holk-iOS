@@ -79,7 +79,7 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
             }
         case .failure(let error):
             // TODO: Error handling
-            print(error)
+            showError(error, requestName: "authorize/bank-id/auth")
         }
     }
     
@@ -94,10 +94,10 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
 
                 switch result {
                 case .success:
-                    self.storeController.insuranceIssuerStore.loadInsuranceIssuers()
+                    self?.storeController.insuranceIssuerStore.loadInsuranceIssuers()
                 case .failure(let error):
                     // TODO: Error handling
-                    print(error)
+                    self?.showError(error, requestName: "authorize/oauth/token")
                 }
             })
             .flatMap(weak: self, selector: { (obj, result) -> Observable<Result<Void, APIError>> in
@@ -109,11 +109,23 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
                     self?.showOnboardingFlow()
                 case .failure(let error):
                     // TODO: Error handling
-                    print(error)
+                    self.showError(error, requestName: "authorize/user")
                 }
             })
             .subscribe()
             .disposed(by: bag)
+    }
+
+    private func showError(_ error: APIError, requestName: String) {
+        let alert = UIAlertController(title: requestName + " \(error.code)", message: error.localizedDescription, preferredStyle: .alert)
+        alert.addAction(.init(
+            title: "Close",
+            style: .default,
+            handler: { action in
+                alert.dismiss(animated: true)
+            })
+        )
+        navController.present(alert, animated: true)
     }
     
     private func setupViewController() {
