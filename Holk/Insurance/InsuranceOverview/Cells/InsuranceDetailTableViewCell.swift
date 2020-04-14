@@ -125,7 +125,6 @@ class InsuranceDetailTableViewCell: UITableViewCell {
         containerView.addSubview(hintImageView)
         containerView.addSubview(reminderValueLabel)
         containerView.addSubview(reminderImageView)
-
         containerView.addSubview(subInsuranceIconView)
         containerView.addSubview(titleLabel)
         containerView.addSubview(descriptionLabel)
@@ -138,14 +137,14 @@ class InsuranceDetailTableViewCell: UITableViewCell {
 
             ringChart.widthAnchor.constraint(equalToConstant: 60),
             ringChart.heightAnchor.constraint(equalTo: ringChart.widthAnchor),
-            ringChart.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 20),
+            ringChart.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 16),
             ringChart.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
 
-            titleLabel.topAnchor.constraint(equalTo: subInsuranceIconView.bottomAnchor, constant: 8),
+            titleLabel.topAnchor.constraint(equalTo: subInsuranceIconView.bottomAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: subInsuranceIconView.leadingAnchor),
             titleLabel.trailingAnchor.constraint(equalTo: ringChart.trailingAnchor),
 
-            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.lastBaselineAnchor, constant: 6),
+            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.lastBaselineAnchor, constant: 8),
             descriptionLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             descriptionLabel.trailingAnchor.constraint(lessThanOrEqualTo: hintValueLabel.leadingAnchor, constant: -40),
             descriptionLabel.trailingAnchor.constraint(lessThanOrEqualTo: reminderValueLabel.leadingAnchor, constant: -40),
@@ -160,7 +159,7 @@ class InsuranceDetailTableViewCell: UITableViewCell {
             hintImageView.widthAnchor.constraint(equalToConstant: 24),
             hintImageView.heightAnchor.constraint(equalToConstant: 24),
 
-            reminderValueLabel.topAnchor.constraint(equalTo: hintValueLabel.bottomAnchor, constant: 12),
+            reminderValueLabel.topAnchor.constraint(equalTo: hintValueLabel.bottomAnchor, constant: 8),
             reminderValueLabel.centerYAnchor.constraint(equalTo: reminderImageView.centerYAnchor),
             reminderValueLabel.trailingAnchor.constraint(equalTo: reminderImageView.leadingAnchor, constant: -8),
             reminderValueLabel.bottomAnchor.constraint(lessThanOrEqualTo: containerView.bottomAnchor, constant: -10),
@@ -169,8 +168,8 @@ class InsuranceDetailTableViewCell: UITableViewCell {
             reminderImageView.heightAnchor.constraint(equalToConstant: 24),
 
             subInsuranceIconView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24),
-            subInsuranceIconView.widthAnchor.constraint(equalToConstant: 54),
-            subInsuranceIconView.heightAnchor.constraint(equalToConstant: 54),
+            subInsuranceIconView.widthAnchor.constraint(equalToConstant: 58),
+            subInsuranceIconView.heightAnchor.constraint(equalToConstant: 42),
             subInsuranceIconView.bottomAnchor.constraint(equalTo: ringChart.bottomAnchor),
         ])
     }
