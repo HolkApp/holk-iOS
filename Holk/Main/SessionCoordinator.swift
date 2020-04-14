@@ -133,10 +133,12 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
             showLandingScreen()
         case .shouldRefresh:
             showLoading()
-            storeController.authenticationStore.refresh().subscribe().disposed(by: bag)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.storeController.authenticationStore.refresh().subscribe().disposed(by: self.bag)
+            }
         case .updated:
             showLoading()
-            DispatchQueue.main.async {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 self.showSession()
             }
         }
