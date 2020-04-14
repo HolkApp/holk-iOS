@@ -9,8 +9,12 @@
 import UIKit
 
 extension UIImage {
-    func withSymbolWeightConfiguration(_ weight: SymbolWeight) -> UIImage {
-        return self.withConfiguration(SymbolConfiguration(weight: weight))
+    func withSymbolWeightConfiguration(_ weight: SymbolWeight, pointSize: CGFloat? = nil) -> UIImage {
+        if let pointSize = pointSize {
+            return self.withConfiguration(SymbolConfiguration(pointSize: pointSize, weight: weight))
+        } else {
+            return self.withConfiguration(SymbolConfiguration(weight: weight))
+        }
     }
     
     class func imageWith(_ layer: CALayer) -> UIImage? {
