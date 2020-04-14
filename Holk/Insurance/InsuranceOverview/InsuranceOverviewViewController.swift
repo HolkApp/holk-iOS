@@ -11,8 +11,9 @@ import UIKit
 final class InsuranceOverviewViewController: UIViewController {
     // MARK: - IBOutlets
     private let headerLabel = UILabel()
-    private let profileButton = UIButton()
+    private let profileButton = HolkButton()
     private let containerView = UIView()
+    private let addMorebutton = HolkButton()
     let insurancesViewController: InsurancesViewController
 
     // MARK: - Public variables
@@ -73,10 +74,8 @@ final class InsuranceOverviewViewController: UIViewController {
         headerLabel.font = Font.extraBold(.header)
         headerLabel.textColor = Color.mainForegroundColor
         headerLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-//        profileButton.setTitle("", for: .normal)
-        profileButton.setImage(UIImage(named: "Profile"), for: .normal)
-        profileButton.tintColor = Color.mainForegroundColor
+
+        profileButton.set(color: Color.mainForegroundColor, image: UIImage(named: "Profile"))
         profileButton.addTarget(self, action: #selector(profileTapped(sender:)), for: .touchUpInside)
         profileButton.translatesAutoresizingMaskIntoConstraints = false
 
@@ -85,10 +84,18 @@ final class InsuranceOverviewViewController: UIViewController {
         containerView.addSubview(insurancesViewController.view)
         insurancesViewController.didMove(toParent: self)
 
+        addMorebutton.contentMode = .center
+        addMorebutton.imageView?.contentMode = .scaleAspectFit
+        let addMoreImage = UIImage(systemName: "plus.circle")?.withRenderingMode(.alwaysTemplate).withSymbolWeightConfiguration(.thin, pointSize: 48)
+        addMorebutton.set(color: Color.mainForegroundColor, image: addMoreImage)
+        addMorebutton.addTarget(self, action: #selector(addMoreTapped(sender:)), for: .touchUpInside)
+        addMorebutton.translatesAutoresizingMaskIntoConstraints = false
+
         view.backgroundColor = Color.mainBackgroundColor
         view.addSubview(headerLabel)
         view.addSubview(profileButton)
         view.addSubview(containerView)
+        view.addSubview(addMorebutton)
 
         NSLayoutConstraint.activate([
             headerLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 36),
@@ -107,8 +114,17 @@ final class InsuranceOverviewViewController: UIViewController {
             containerView.topAnchor.constraint(equalTo: insurancesViewController.view.topAnchor),
             containerView.bottomAnchor.constraint(equalTo: insurancesViewController.view.bottomAnchor),
             containerView.leadingAnchor.constraint(equalTo: insurancesViewController.view.leadingAnchor),
-            containerView.trailingAnchor.constraint(equalTo: insurancesViewController.view.trailingAnchor)
+            containerView.trailingAnchor.constraint(equalTo: insurancesViewController.view.trailingAnchor),
+
+            addMorebutton.widthAnchor.constraint(equalToConstant: 48),
+            addMorebutton.heightAnchor.constraint(equalToConstant: 48),
+            addMorebutton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24),
+            addMorebutton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -12)
         ])
+    }
+
+    @objc private func addMoreTapped(sender: UIButton) {
+        insurancesViewController.numberOfInsurances += 1
     }
     
     @objc private func profileTapped(sender: UIButton) {

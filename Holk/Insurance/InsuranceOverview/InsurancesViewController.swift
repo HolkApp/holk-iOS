@@ -14,12 +14,15 @@ final class InsurancesViewController: UIViewController {
     weak var coordinator: InsuranceCoordinator?
 
     // MARK: - Private variables
-    private enum Section: Int, CaseIterable {
-        case insurance
-        case addMore
-    }
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     private let layout = DynamicHeightCollectionFlowLayout()
+
+    // TODO: Remove the mock
+    var numberOfInsurances = 1 {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
 
     init(storeController: StoreController) {
         self.storeController = storeController
@@ -31,8 +34,6 @@ final class InsurancesViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // TODO: Remove the mock
-    private var numberOfInsurances = 1
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -72,50 +73,28 @@ final class InsurancesViewController: UIViewController {
 // MARK: - UITableViewDataSource
 extension InsurancesViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return Section.allCases.count
+        return 1
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch section {
-        case Section.insurance.rawValue: return numberOfInsurances
-        case Section.addMore.rawValue: return 1
-        default: return 0
-        }
+        return numberOfInsurances
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        switch indexPath.section {
-                case Section.insurance.rawValue:
-                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier:
-                        InsuranceCollectionViewCell.identifier, for: indexPath)
-                    // TODO: Configure this
-                    if let insuranceTableViewCell = cell as? InsuranceCollectionViewCell {
-        //                insuranceTableViewCell.configureCell(provider)
-                    }
-                    return cell
-                case Section.addMore.rawValue:
-                    return collectionView.dequeueReusableCell(withReuseIdentifier:
-                    InsuranceAddMoreCell.identifier, for: indexPath)
-                default:
-                    return UICollectionViewCell()
-                }
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier:
+            InsuranceCollectionViewCell.identifier, for: indexPath)
+        // TODO: Configure this
+        if let insuranceTableViewCell = cell as? InsuranceCollectionViewCell {
+//            insuranceTableViewCell.configureCell(provider)
+        }
+        return cell
     }
-
-    
 }
 
 extension InsurancesViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        switch indexPath.section {
-        case Section.addMore.rawValue:
-            numberOfInsurances += 1
-            collectionView.reloadData()
-        case Section.insurance.rawValue:
-            // TODO: Use real insurance
-            let insurance = Insurance(id: "1", insuranceProvider: "1", insuranceType: "1", issuerReference: "", ssn: "", startDate: Date(), endDate: Date(), username: "")
-            coordinator?.showInsurnaceDetail(insurance)
-        default:
-            return
-        }
+        // TODO: Use real insurance
+        let insurance = Insurance(id: "1", insuranceProvider: "1", insuranceType: "1", issuerReference: "", ssn: "", startDate: Date(), endDate: Date(), username: "")
+        coordinator?.showInsurnaceDetail(insurance)
     }
 }
