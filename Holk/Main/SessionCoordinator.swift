@@ -88,10 +88,6 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
             .authenticationStore
             .token(orderRef: orderRef)
             .map({ [weak self] result in
-                guard let self = self else { return }
-                UIApplication.shared.endBackgroundTask(self.backgroundTask)
-                self.backgroundTask = .invalid
-
                 switch result {
                 case .success:
                     self?.storeController.insuranceIssuerStore.loadInsuranceIssuers()
@@ -104,9 +100,12 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
                 obj.storeController.authenticationStore.userInfo()
             })
             .map({ [weak self] (result) in
+                guard let self = self else { return }
+                UIApplication.shared.endBackgroundTask(self.backgroundTask)
+                self.backgroundTask = .invalid
                 switch result {
                 case .success:
-                    self?.showOnboardingFlow()
+                    self.showOnboardingFlow()
                 case .failure(let error):
                     // TODO: Error handling
                     self.showError(error, requestName: "authorize/user")
