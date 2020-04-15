@@ -107,6 +107,7 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
                 case .success:
                     self.showOnboardingFlow()
                 case .failure(let error):
+                    self.showOnboardingFlow()
                     // TODO: Error handling
                     self.showError(error, requestName: "authorize/user")
                 }
