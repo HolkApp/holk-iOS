@@ -7,22 +7,47 @@
 //
 
 import UIKit
+import Alamofire
 
 extension UIImage {
+    static func imageWith(_ layer: CALayer) -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(layer.bounds.size, layer.isOpaque, 0.0)
+        layer.render(in: UIGraphicsGetCurrentContext()!)
+        let img = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return img
+    }
+
+    @discardableResult
+    static func imageWithUrl(imageUrlString: String, completion: ((UIImage?) -> Void)? = nil) -> DownloadRequest? {
+        let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0] as NSURL
+        let newPath = path.appendingPathComponent(imageUrlString)
+
+        let destination: DownloadRequest.DownloadFileDestination = { _, _ in
+            return (newPath!, [.removePreviousFile, .createIntermediateDirectories])
+        }
+
+        do { //Use saved file, if possible
+            let data = try Data(contentsOf: newPath!)
+            let image = UIImage(data: data)
+            completion?(image)
+        } catch {
+            return Alamofire.download(imageUrlString, to: destination).validate().responseData { response in
+                if let data = response.result.value {
+                    let image = UIImage(data: data)
+                    completion?(image)
+                }
+            }
+        }
+        return nil
+    }
+
     func withSymbolWeightConfiguration(_ weight: SymbolWeight, pointSize: CGFloat? = nil) -> UIImage {
         if let pointSize = pointSize {
             return self.withConfiguration(SymbolConfiguration(pointSize: pointSize, weight: weight))
         } else {
             return self.withConfiguration(SymbolConfiguration(weight: weight))
         }
-    }
-    
-    class func imageWith(_ layer: CALayer) -> UIImage? {
-        UIGraphicsBeginImageContextWithOptions(layer.bounds.size, layer.isOpaque, 0.0)
-        layer.render(in: UIGraphicsGetCurrentContext()!)
-        let img = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return img
     }
 }
 
