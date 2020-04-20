@@ -8,26 +8,27 @@
 
 import UIKit
 
-final class InsurancesViewController: UIViewController {
+final class InsurancesViewController: UICollectionViewController {
     // MARK: - Public variables
     var storeController: StoreController
+    var selectedIndexPath: IndexPath?
     weak var coordinator: InsuranceCoordinator?
 
     // MARK: - Private variables
-    lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-    private let layout = DynamicHeightCollectionFlowLayout()
+    private let addMorebutton = HolkButton()
 
     // TODO: Remove the mock
     var numberOfInsurances = 1 {
         didSet {
             collectionView.reloadData()
+            collectionView.collectionViewLayout.invalidateLayout()
         }
     }
 
-    init(storeController: StoreController) {
+    init(storeController: StoreController, collectionViewLayout: UICollectionViewLayout) {
         self.storeController = storeController
 
-        super.init(nibName: nil, bundle: nil)
+        super.init(collectionViewLayout: collectionViewLayout)
     }
 
     required init?(coder: NSCoder) {
@@ -41,60 +42,108 @@ final class InsurancesViewController: UIViewController {
     }
     
     private func setup() {
-        view.backgroundColor = .clear
-        view.layoutMargins = .zero
+        title = "Översikt"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "person.crop.circle"), style: .plain, target: self, action: #selector(profileTapped(sender:)))
 
-        layout.scrollDirection = .vertical
-        layout.minimumLineSpacing = 0
-        layout.minimumInteritemSpacing = 0
-        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        view.backgroundColor = Color.mainBackgroundColor
+        view.layoutMargins = .zero
 
         collectionView.backgroundColor = .clear
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-
         collectionView.register(InsuranceCollectionViewCell.self, forCellWithReuseIdentifier: InsuranceCollectionViewCell.identifier)
-        collectionView.register(InsuranceAddMoreCell.self, forCellWithReuseIdentifier: InsuranceAddMoreCell.identifier)
+        collectionView.register(InsuranceReminderCollectionViewCell.self, forCellWithReuseIdentifier: InsuranceReminderCollectionViewCell.identifier)
 
-        view.addSubview(collectionView)
+        let addMoreImage = UIImage(systemName: "plus")?.withSymbolWeightConfiguration(.regular, pointSize: 30)
+        addMorebutton.set(color: Color.mainForegroundColor, image: addMoreImage)
+        addMorebutton.addTarget(self, action: #selector(addMoreTapped(sender:)), for: .touchUpInside)
+        addMorebutton.backgroundColor = Color.mainBackgroundColor
+        addMorebutton.layer.cornerRadius = 26
+        addMorebutton.clipsToBounds = true
+        addMorebutton.translatesAutoresizingMaskIntoConstraints = false
+
+        view.addSubview(addMorebutton)
 
         NSLayoutConstraint.activate([
-            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            addMorebutton.widthAnchor.constraint(equalToConstant: 52),
+            addMorebutton.heightAnchor.constraint(equalToConstant: 52),
+            addMorebutton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            addMorebutton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -12)
         ])
+    }
+
+    // TODO: Trigger add more flow
+    @objc private func addMoreTapped(sender: UIButton) {
+        numberOfInsurances += 1
+    }
+
+    @objc private func profileTapped(sender: UIButton) {
+        coordinator?.logout()
     }
 }
 
 // MARK: - UITableViewDataSource
-extension InsurancesViewController: UICollectionViewDataSource {
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+extension InsurancesViewController {
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 2
     }
 
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return numberOfInsurances
-    }
-
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier:
-            InsuranceCollectionViewCell.identifier, for: indexPath)
-        // TODO: Configure this
-        if let insuranceTableViewCell = cell as? InsuranceCollectionViewCell {
-//            insuranceTableViewCell.configureCell(provider)
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if section == 0 {
+            return 1
+        } else {
+            return numberOfInsurances
         }
-        return cell
+    }
+
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if indexPath.section == 0 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier:
+            InsuranceReminderCollectionViewCell.identifier, for: indexPath)
+            if let insuranceReminderCollectionViewCell = cell as? InsuranceReminderCollectionViewCell {
+                insuranceReminderCollectionViewCell.delegate = self
+            }
+            return cell
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier:
+                        InsuranceCollectionViewCell.identifier, for: indexPath)
+            // TODO: Configure this
+//            if let insuranceTableViewCell = cell as? InsuranceCollectionViewCell {
+//                insuranceTableViewCell.configureCell(provider)
+//            }
+            return cell
+        }
     }
 }
 
-extension InsurancesViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+// MARK: - UICollectionViewDelegate
+extension InsurancesViewController {
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // TODO: Use real insurance
-        let insurance = Insurance(id: "1", insuranceProvider: "1", insuranceType: "1", issuerReference: "", ssn: "", startDate: Date(), endDate: Date(), username: "")
-        coordinator?.showInsurnaceDetail(insurance)
+        if indexPath.section == 0 {
+
+        } else {
+            let insurance = Insurance(id: "1", insuranceProvider: "1", insuranceType: "1", issuerReference: "", ssn: "", startDate: Date(), endDate: Date(), username: "")
+            selectedIndexPath = indexPath
+            coordinator?.showInsurnaceDetail(insurance)
+        }
+    }
+}
+
+extension InsurancesViewController: InsuranceReminderCollectionViewCellDelegate {
+    func thinkOfTapped() {
+        let viewController = UIViewController()
+        viewController.title = "Think Of"
+        viewController.view.backgroundColor = .white
+        present(UINavigationController(rootViewController: viewController), animated: true)
+    }
+
+    func reminderTapped() {
+        let viewController = UIViewController()
+        viewController.title = "Reminder"
+        viewController.view.backgroundColor = .white
+        present(UINavigationController(rootViewController: viewController), animated: true)
     }
 }

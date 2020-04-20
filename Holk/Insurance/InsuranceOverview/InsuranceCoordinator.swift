@@ -24,14 +24,20 @@ class InsuranceCoordinator: NSObject, Coordinator, UINavigationControllerDelegat
     }
     // MARK: - Public Methods
     func start() {
-        let insuranceOverviewViewController = InsuranceOverviewViewController(storeController: storeController)
-        insuranceOverviewViewController.coordinator = self
+
+        let layout = DynamicHeightCollectionFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.minimumInteritemSpacing = 20
+        layout.estimatedItemSize = CGSize(width: UIScreen.main.bounds.size.width, height: 100)
+
+        let insurancesViewController = InsurancesViewController(storeController: storeController, collectionViewLayout: layout)
+        insurancesViewController.coordinator = self
+
         navController.tabBarItem = UITabBarItem(title: "Översikt", image: UIImage(systemName: "square.stack.3d.up"), tag: 0)
-        navController.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        navController.navigationBar.shadowImage = UIImage()
-        navController.navigationBar.tintColor = .black
+        navController.navigationBar.tintColor = Color.mainForegroundColor
+        navController.navigationBar.prefersLargeTitles = true
         navController.delegate = self
-        navController.pushViewController(insuranceOverviewViewController, animated: true)
+        navController.setViewControllers([insurancesViewController], animated: true)
     }
 
     func showInsurnaceDetail(_ insurance: Insurance) {
@@ -46,9 +52,9 @@ class InsuranceCoordinator: NSObject, Coordinator, UINavigationControllerDelegat
     
     // MARK: - UINavigationControllerDelegate
     func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        if fromVC is InsuranceOverviewViewController, toVC is InsuranceDetailViewController {
+        if fromVC is InsurancesViewController, toVC is InsuranceDetailViewController {
             return InsuranceDetailTransition()
-        } else if fromVC is InsuranceDetailViewController, toVC is InsuranceOverviewViewController {
+        } else if fromVC is InsuranceDetailViewController, toVC is InsurancesViewController {
             return InsuranceDetailTransition()
         }
         return nil
