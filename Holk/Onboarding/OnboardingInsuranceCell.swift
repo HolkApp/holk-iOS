@@ -62,6 +62,10 @@ final class OnboardingInsuranceCell: UITableViewCell {
         
         titleLabel.numberOfLines = 0
         titleLabel.font = Font.bold(.label)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        iconView.contentMode = .scaleAspectFit
+        iconView.translatesAutoresizingMaskIntoConstraints = false
         
         comingUpLabel.numberOfLines = 0
         comingUpLabel.font = Font.semiBold(.description)
@@ -69,12 +73,9 @@ final class OnboardingInsuranceCell: UITableViewCell {
         
         stackView.axis = .vertical
         stackView.spacing = -10
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         
         updateColor()
-        
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        iconView.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         let bottomConstraint = iconView.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor)
         bottomConstraint.priority = .defaultHigh

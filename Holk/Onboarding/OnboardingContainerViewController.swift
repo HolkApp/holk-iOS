@@ -12,8 +12,8 @@ import RxSwift
 protocol OnboardingCoordinating: AnyObject {
     func startOnboarding(_ user: User)
     func addInsuranceProviderType(_ providerType: InsuranceProviderType)
-    func addInsuranceIssuer(_ insuranceIssuer: InsuranceIssuer)
-    func aggregateInsurance(_ providerType: InsuranceProviderType, insuranceIssuer: InsuranceIssuer)
+    func addInsuranceIssuer(_ insuranceIssuer: InsuranceProvider)
+    func aggregateInsurance(_ providerType: InsuranceProviderType, insuranceIssuer: InsuranceProvider)
     func finishOnboarding()
 }
 
@@ -28,7 +28,7 @@ final class OnboardingContainerViewController: UIViewController {
     private var progressViewTopAnchor: NSLayoutConstraint?
     private var progressViewHeightAnchor: NSLayoutConstraint?
     private var providerType: InsuranceProviderType?
-    private var insuranceIssuer: InsuranceIssuer?
+    private var insuranceIssuer: InsuranceProvider?
 
     // MARK: - Public Variables
     var storeController: StoreController
@@ -157,7 +157,7 @@ extension OnboardingContainerViewController: OnboardingCoordinating {
     
     func addInsuranceProviderType(_ providerType: InsuranceProviderType) {
         self.providerType = providerType
-        let viewController = OnboardingInsuranceIssuerViewController(storeController: storeController)
+        let viewController = OnboardingInsuranceProviderViewController(storeController: storeController)
         viewController.navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: UIImage(systemName: "xmark")?.withSymbolWeightConfiguration(.medium),
             style: .plain,
@@ -168,7 +168,7 @@ extension OnboardingContainerViewController: OnboardingCoordinating {
         childNavigationController.pushViewController(viewController, animated: true)
     }
     
-    func addInsuranceIssuer(_ insuranceIssuer: InsuranceIssuer) {
+    func addInsuranceIssuer(_ insuranceIssuer: InsuranceProvider) {
         guard let providerType = providerType else { fatalError("No providerType selected") }
         self.insuranceIssuer = insuranceIssuer
         let onboardingConsentViewController = OnboardingConsentViewController(storeController: storeController, insuranceIssuer: insuranceIssuer, providerType: providerType)
@@ -182,7 +182,7 @@ extension OnboardingContainerViewController: OnboardingCoordinating {
         childNavigationController.pushViewController(onboardingConsentViewController, animated: true)
     }
     
-    func aggregateInsurance(_ providerType: InsuranceProviderType, insuranceIssuer: InsuranceIssuer) {
+    func aggregateInsurance(_ providerType: InsuranceProviderType, insuranceIssuer: InsuranceProvider) {
         progressSpinnerToCenter()
         storeController.insuranceCredentialStore.addInsurance(issuer: insuranceIssuer, personalNumber: "199208253915")
         storeController.insuranceCredentialStore.insuranceState
@@ -211,7 +211,7 @@ extension OnboardingContainerViewController: OnboardingCoordinating {
         coordinator?.onboardingFinished(coordinator: self)
     }
     
-    private func showInsuranceAggregatedConfirmation(_ insuranceIssuer: InsuranceIssuer) {
+    private func showInsuranceAggregatedConfirmation(_ insuranceIssuer: InsuranceProvider) {
         storeController.insuranceStore.getAllInsurance()
         let confirmationViewController = OnboardingConfirmationViewController()
         confirmationViewController.coordinator = self

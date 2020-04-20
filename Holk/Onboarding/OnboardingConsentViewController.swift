@@ -16,7 +16,7 @@ final class OnboardingConsentViewController: UIViewController {
     
     // MARK: - Private variables
     private var storeController: StoreController
-    private let insuranceIssuer: InsuranceIssuer
+    private let insuranceIssuer: InsuranceProvider
     private let providerType: InsuranceProviderType
     private let bag = DisposeBag()
     private let headerLabel = UILabel()
@@ -24,7 +24,7 @@ final class OnboardingConsentViewController: UIViewController {
     private let bankIDIconView = UIImageView()
     private let nextButton = HolkButton()
     
-    init(storeController: StoreController, insuranceIssuer: InsuranceIssuer, providerType: InsuranceProviderType) {
+    init(storeController: StoreController, insuranceIssuer: InsuranceProvider, providerType: InsuranceProviderType) {
         self.storeController = storeController
         self.insuranceIssuer = insuranceIssuer
         self.providerType = providerType
