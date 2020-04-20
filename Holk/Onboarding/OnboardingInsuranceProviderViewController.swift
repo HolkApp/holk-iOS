@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-final class OnboardingInsuranceIssuerViewController: UIViewController {
+final class OnboardingInsuranceProviderViewController: UIViewController {
     // MARK: - Public variables
     weak var coordinator: OnboardingCoordinating?
     
@@ -69,7 +69,7 @@ final class OnboardingInsuranceIssuerViewController: UIViewController {
         let tableViewHeight: CGFloat
         switch storeController.insuranceIssuerStore.insuranceIssuerList.value {
         case .loaded(let insuranceIssuerList):
-            tableViewHeight = insuranceIssuerList.insuranceIssuers.count * 72 > 600 ? 600 : CGFloat(insuranceIssuerList.insuranceIssuers.count * 72)
+            tableViewHeight = insuranceIssuerList.providerStatusList.count * 72 > 600 ? 600 : CGFloat(insuranceIssuerList.providerStatusList.count * 72)
         default:
             tableViewHeight = 0
         }
@@ -101,29 +101,29 @@ final class OnboardingInsuranceIssuerViewController: UIViewController {
         }
     }
     
-    private func select(_ insuranceIssuer: InsuranceIssuer) {
+    private func select(_ insuranceIssuer: InsuranceProvider) {
         coordinator?.addInsuranceIssuer(insuranceIssuer)
     }
 }
 
-extension OnboardingInsuranceIssuerViewController: UITableViewDelegate {
+extension OnboardingInsuranceProviderViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let list = storeController.insuranceIssuerStore.insuranceIssuerList.value
         switch list {
         case .loaded(let insuranceIssuerList):
-            select(insuranceIssuerList.insuranceIssuers[indexPath.item])
+            select(insuranceIssuerList.providerStatusList[indexPath.item])
         default:
             break
         }
     }
 }
 
-extension OnboardingInsuranceIssuerViewController: UITableViewDataSource {
+extension OnboardingInsuranceProviderViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let list = storeController.insuranceIssuerStore.insuranceIssuerList.value
         switch list {
         case .loaded(let insuranceIssuerList):
-            return insuranceIssuerList.insuranceIssuers.count
+            return insuranceIssuerList.providerStatusList.count
         case .loading:
             return 1
         case .error, .unintiated:
@@ -137,10 +137,10 @@ extension OnboardingInsuranceIssuerViewController: UITableViewDataSource {
         switch list {
         case .loaded(let insuranceIssuerList):
             if let onboardingInsuranceCell = cell as? OnboardingInsuranceCell {
-                onboardingInsuranceCell.configure(
-                    title: insuranceIssuerList.insuranceIssuers[indexPath.item].displayName,
-                    image: UIImage(systemName: "circle")?.withRenderingMode(.alwaysTemplate)
-                )
+                let provider = insuranceIssuerList.providerStatusList[indexPath.item]
+                UIImage.imageWithUrl(imageUrlString: provider.logoUrl) { image in
+                    onboardingInsuranceCell.configure(title: provider.displayName, image: image)
+                }
             }
         case .loading:
             cell.textLabel?.text = "loading"
