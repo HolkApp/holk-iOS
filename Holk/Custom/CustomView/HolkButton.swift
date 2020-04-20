@@ -20,11 +20,21 @@ final class HolkButton: UIButton {
             }
         }
     }
+
+    override var isHighlighted: Bool {
+        didSet {
+            if isHighlighted {
+                tintColor = tintColor.withAlphaComponent(0.2)
+            } else {
+                tintColor = tintColor.withAlphaComponent(1)
+            }
+        }
+    }
     
     func set(color: UIColor, image: UIImage? = nil) {
         setImage(image, for: .normal)
-        setImage(image?.withTintColor((color.withAlphaComponent(0.2))), for: .highlighted)
         tintColor = color
+
         setTitleColor(color, for: .normal)
         setTitleColor(color.withAlphaComponent(0.2), for: .highlighted)
     }
