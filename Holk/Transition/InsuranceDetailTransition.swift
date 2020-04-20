@@ -10,12 +10,12 @@ import UIKit
 
 final class InsuranceDetailTransition: NSObject, UIViewControllerAnimatedTransitioning {
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        if let insuranceOverviewViewController = transitionContext.viewController(forKey: .from) as? InsuranceOverviewViewController, let toViewController = transitionContext.viewController(forKey: .to) as? InsuranceDetailViewController {
-            let fromViewController = insuranceOverviewViewController.insurancesViewController
+        if let insurancesViewController = transitionContext.viewController(forKey: .from) as? InsurancesViewController, let toViewController = transitionContext.viewController(forKey: .to) as? InsuranceDetailViewController {
+            let fromViewController = insurancesViewController
             push(transitionContext, fromViewController: fromViewController, toViewController: toViewController)
         } else if let fromViewController = transitionContext.viewController(forKey: .from) as? InsuranceDetailViewController,
-            let insuranceOverviewViewController = transitionContext.viewController(forKey: .to) as? InsuranceOverviewViewController {
-            pop(transitionContext, fromViewController: fromViewController, toViewController: insuranceOverviewViewController)
+            let insurancesViewController = transitionContext.viewController(forKey: .to) as? InsurancesViewController {
+            pop(transitionContext, fromViewController: fromViewController, toViewController: insurancesViewController)
         } else {
             // fallBack
         }
@@ -26,7 +26,7 @@ final class InsuranceDetailTransition: NSObject, UIViewControllerAnimatedTransit
     }
 
     private func push(_ transitionContext: UIViewControllerContextTransitioning, fromViewController: InsurancesViewController, toViewController: InsuranceDetailViewController) {
-        if let selectedIndexPath = fromViewController.collectionView.indexPathsForSelectedItems?.first, let fromCell = fromViewController.collectionView.cellForItem(at: selectedIndexPath) as? InsuranceCollectionViewCell, let toView = toViewController.view {
+        if let selectedIndexPath = fromViewController.selectedIndexPath, let fromCell = fromViewController.collectionView.cellForItem(at: selectedIndexPath) as? InsuranceCollectionViewCell, let toView = toViewController.view {
 
             let containerView = transitionContext.containerView
             containerView.addSubview(toViewController.view)
@@ -74,11 +74,10 @@ final class InsuranceDetailTransition: NSObject, UIViewControllerAnimatedTransit
         }
     }
 
-    private func pop(_ transitionContext: UIViewControllerContextTransitioning, fromViewController: InsuranceDetailViewController, toViewController: InsuranceOverviewViewController) {
-        let insurancesViewController = toViewController.insurancesViewController
+    private func pop(_ transitionContext: UIViewControllerContextTransitioning, fromViewController: InsuranceDetailViewController, toViewController: InsurancesViewController) {
         if let fromView = fromViewController.view,
-            let selectedIndexPath = insurancesViewController.collectionView.indexPathsForSelectedItems?.first,
-            let toCell = insurancesViewController.collectionView.cellForItem(at: selectedIndexPath) as? InsuranceCollectionViewCell {
+            let selectedIndexPath = toViewController.selectedIndexPath,
+            let toCell = toViewController.collectionView.cellForItem(at: selectedIndexPath) as? InsuranceCollectionViewCell {
             let containerView = transitionContext.containerView
             containerView.addSubview(toViewController.view)
             toViewController.view.alpha = 0
@@ -87,9 +86,9 @@ final class InsuranceDetailTransition: NSObject, UIViewControllerAnimatedTransit
             let temporaryView = UIView()
 
             temporaryView.frame = fromView.convert(fromView.bounds, to: containerView)
-            var a = UIView()
+            var chartView = UIView()
             if let ringChart = fromViewController.ringChart.snapshotView(afterScreenUpdates: false) {
-                a = ringChart
+                chartView = ringChart
                 ringChart.frame = fromViewController.ringChart.convert(ringChart.frame, to: temporaryView)
                 temporaryView.addSubview(ringChart)
             }
@@ -105,7 +104,7 @@ final class InsuranceDetailTransition: NSObject, UIViewControllerAnimatedTransit
                 animations: {
                     fromViewController.view.alpha = 0
                     temporaryView.frame = toCell.containerView.convert(toCell.containerView.bounds, to: toViewController.view)
-                    a.frame = toCell.ringChart.convert(toCell.ringChart.bounds, to: temporaryView)
+                    chartView.frame = toCell.ringChart.convert(toCell.ringChart.bounds, to: temporaryView)
                     toViewController.view.alpha = 1.0
                 },
                 completion: { success in
