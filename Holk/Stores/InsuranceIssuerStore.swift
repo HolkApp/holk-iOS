@@ -19,7 +19,7 @@ enum RequestState<T: Codable, U:Error> {
 
 final class InsuranceIssuerStore: APIStore {
     // MARK: - Public variables
-    var insuranceIssuerList = BehaviorRelay<RequestState<InsuranceIssuerList, APIError>>.init(value: .unintiated)
+    var insuranceIssuerList = BehaviorRelay<RequestState<ProviderStatusResponse, APIError>>.init(value: .unintiated)
     
     // MARK: - Private variables
     private let queue: DispatchQueue
@@ -47,7 +47,8 @@ final class InsuranceIssuerStore: APIStore {
             .bind { [weak self] result in
                 switch result {
                 case .success(let list):
-                    self?.insuranceIssuerList.accept(.loaded(value: list))
+                    let sortedList = list.providerStatusList.sorted { $0.displayName < $1.displayName }
+                    self?.insuranceIssuerList.accept(.loaded(value: ProviderStatusResponse(providerStatusList: sortedList)))
                 case .failure(let error):
                     self?.insuranceIssuerList.accept(.error(error))
                 }
@@ -55,7 +56,7 @@ final class InsuranceIssuerStore: APIStore {
             .disposed(by: bag)
     }
     
-    private func getInsuranceIssuers() -> Observable<Swift.Result<InsuranceIssuerList, APIError>> {
+    private func getInsuranceIssuers() -> Observable<Swift.Result<ProviderStatusResponse, APIError>> {
         let httpHeaders = sessionStore.authorizationHeader
         
         return httpRequest(

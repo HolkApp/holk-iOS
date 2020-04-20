@@ -13,7 +13,7 @@ import RxRelay
 final class InsuranceCredentialStore: APIStore {
     // MARK: - Public variables
     // TODO: should be an array of insurance
-    var insuranceState = BehaviorRelay<RequestState<ScrapingStatus, APIError>>.init(value: .unintiated)
+    var insuranceState = BehaviorRelay<RequestState<ScrapingStatusResponse.ScrapingStatus, APIError>>.init(value: .unintiated)
     
     // MARK: - Private variables
     private let queue: DispatchQueue
@@ -29,7 +29,7 @@ final class InsuranceCredentialStore: APIStore {
         super.init()
     }
     
-    func addInsurance(issuer: InsuranceIssuer, personalNumber: String) {
+    func addInsurance(issuer: InsuranceProvider, personalNumber: String) {
         insuranceState.accept(.loading)
         integrateInsurance(issuerName: "FOLKSAM", personalNumber: personalNumber)
             .map { [weak self] result in
@@ -39,7 +39,7 @@ final class InsuranceCredentialStore: APIStore {
                     self.pollingTask.poll(self.getInsuranceStatus(sessionId)) { [weak self] in
                         guard let self = self else { return true }
                         return self.insuranceStatusPollingPredicate($0)
-                    }.map({ responseResult -> Swift.Result<ScrapingStatus, APIError> in
+                    }.map({ responseResult -> Swift.Result<ScrapingStatusResponse.ScrapingStatus, APIError> in
                         switch responseResult {
                         case .success(let scrapingResponse):
                             return .success(scrapingResponse.scrapingStatus)

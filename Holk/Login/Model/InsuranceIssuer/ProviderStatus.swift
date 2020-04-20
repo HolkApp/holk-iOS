@@ -9,7 +9,7 @@ import Foundation
 
 
 
-public struct ProviderStatus: Codable {
+public struct InsuranceProvider: Codable {
 
     public enum InsuranceIssuerStatus: String, Codable { 
         case available = "AVAILABLE"
@@ -17,13 +17,13 @@ public struct ProviderStatus: Codable {
         case notImplemented = "NOT_IMPLEMENTED"
     }
     public var _description: String?
-    public var displayName: String?
-    public var insuranceIssuerStatus: InsuranceIssuerStatus?
-    public var internalName: String?
-    public var logoUrl: String?
-    public var websiteUrl: String?
+    public var displayName: String
+    public var insuranceIssuerStatus: InsuranceIssuerStatus
+    public var internalName: String
+    public var logoUrl: String
+    public var websiteUrl: String
 
-    public init(_description: String?, displayName: String?, insuranceIssuerStatus: InsuranceIssuerStatus?, internalName: String?, logoUrl: String?, websiteUrl: String?) {
+    public init(_description: String, displayName: String, insuranceIssuerStatus: InsuranceIssuerStatus, internalName: String, logoUrl: String, websiteUrl: String) {
         self._description = _description
         self.displayName = displayName
         self.insuranceIssuerStatus = insuranceIssuerStatus
@@ -40,7 +40,4 @@ public struct ProviderStatus: Codable {
         case logoUrl
         case websiteUrl
     }
-
-
 }
-
