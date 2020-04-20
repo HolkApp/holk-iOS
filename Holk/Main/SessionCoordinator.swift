@@ -35,7 +35,7 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
         navController.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navController.navigationBar.shadowImage = UIImage()
         navController.delegate = self
-        navController.navigationBar.tintColor = .black
+        navController.navigationBar.tintColor = Color.mainBackgroundColor
         setupViewController()
     }
     
@@ -173,7 +173,6 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
         let tabbarController = TabBarController(storeController: storeController)
         tabbarController.navigationItem.hidesBackButton = true
         tabbarController.coordinator = self
-        tabbarController.modalPresentationStyle = .overFullScreen
         navController.setViewControllers([tabbarController], animated: false)
         if navController.presentedViewController != nil {
             navController.dismiss(animated: true)

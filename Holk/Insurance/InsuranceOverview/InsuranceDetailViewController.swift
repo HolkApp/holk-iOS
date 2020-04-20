@@ -33,6 +33,7 @@ class InsuranceDetailViewController: UIViewController {
     }
 
     private func setup() {
+        navigationItem.largeTitleDisplayMode = .never
         view.backgroundColor = Color.secondaryBackgroundColor
 
         ringChart.dataSource = self
@@ -72,7 +73,7 @@ class InsuranceDetailViewController: UIViewController {
 extension InsuranceDetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let viewController = UIViewController()
-        viewController.title = "test"
+        viewController.title = "Subinsurance Title"
         viewController.view.backgroundColor = .white
         present(UINavigationController(rootViewController: viewController), animated: true)
     }
