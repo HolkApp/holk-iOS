@@ -20,9 +20,9 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
     private let insuranceSubNumberLabel = UILabel()
     private let insuranceTextLabel = UILabel()
     private let labelStackView = UIStackView()
-    private let hintStackView = UIStackView()
-    private let hintValueLabel = UILabel()
-    private let hintLabel = UILabel()
+    private let thinkOfStackView = UIStackView()
+    private let thinkOfValueLabel = UILabel()
+    private let thinkOfLabel = UILabel()
     private let reminderStackView = UIStackView()
     private let reminderValueLabel = UILabel()
     private let reminderLabel = UILabel()
@@ -53,7 +53,7 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
     override var isHighlighted: Bool {
         didSet {
             let scaleTransform = isHighlighted ? CGAffineTransform(scaleX: 0.95, y: 0.95) : .identity
-            let animator = UIViewPropertyAnimator(duration: 0.1, curve: .easeOut) {
+            let animator = UIViewPropertyAnimator(duration: 0.1, curve: .easeInOut) {
                 self.transform = scaleTransform
             }
             animator.startAnimation()
@@ -64,25 +64,31 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         }
     }
 
+    func configure(_ insurance: Insurance?) {
+        // TODO: Update this
+        titleLabel.text = "Home insurace"
+        subtitleLabel.text = "Folksam bas"
+        insuranceSubNumberLabel.text = "4"
+        insuranceTextLabel.text = "insurance"
+        thinkOfValueLabel.text = "3"
+        thinkOfLabel.text = "Tänk på"
+        reminderValueLabel.text = "2"
+        reminderLabel.text = "Luckor"
+        insuranceImageView.image = UIImage(named: "Folksam")
+    }
+
     private func setup() {
         backgroundColor = .clear
         layer.shadowOffset = CGSize(width: 0, height: 2)
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOpacity = 0.15
+        layer.shadowRadius = 30
         layer.cornerCurve = .continuous
         
         contentView.backgroundColor = .clear
 
         // TODO: remove this
-        titleLabel.text = "Home insurace"
-        subtitleLabel.text = "Folksam bas"
-        insuranceSubNumberLabel.text = "4"
-        insuranceTextLabel.text = "insurance"
-        hintValueLabel.text = "3"
-        hintLabel.text = "Tänk på"
-        reminderValueLabel.text = "2"
-        reminderLabel.text = "Luckor"
-        insuranceImageView.image = UIImage(named: "Folksam")
+        configure(nil)
 
         containerView.backgroundColor = Color.secondaryBackgroundColor
         containerView.layer.cornerRadius = 16
@@ -119,26 +125,26 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
 
         labelStackView.spacing = 16
         labelStackView.translatesAutoresizingMaskIntoConstraints = false
-        hintStackView.spacing = 16
-        hintStackView.isBaselineRelativeArrangement = true
-        hintStackView.axis = .vertical
-        hintStackView.translatesAutoresizingMaskIntoConstraints = false
+        thinkOfStackView.spacing = 16
+        thinkOfStackView.isBaselineRelativeArrangement = true
+        thinkOfStackView.axis = .vertical
+        thinkOfStackView.translatesAutoresizingMaskIntoConstraints = false
         reminderStackView.spacing = 16
         reminderStackView.isBaselineRelativeArrangement = true
         reminderStackView.axis = .vertical
         reminderStackView.translatesAutoresizingMaskIntoConstraints = false
 
-        hintValueLabel.font = Font.semiBold(.header)
-        hintValueLabel.textColor = Color.mainForegroundColor
-        hintValueLabel.numberOfLines = 0
-        hintValueLabel.textAlignment = .center
-        hintValueLabel.translatesAutoresizingMaskIntoConstraints = false
+        thinkOfValueLabel.font = Font.semiBold(.header)
+        thinkOfValueLabel.textColor = Color.mainForegroundColor
+        thinkOfValueLabel.numberOfLines = 0
+        thinkOfValueLabel.textAlignment = .center
+        thinkOfValueLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        hintLabel.font = Font.regular(.description)
-        hintLabel.textColor = Color.mainForegroundColor
-        hintLabel.numberOfLines = 0
-        hintLabel.textAlignment = .center
-        hintLabel.translatesAutoresizingMaskIntoConstraints = false
+        thinkOfLabel.font = Font.regular(.description)
+        thinkOfLabel.textColor = Color.mainForegroundColor
+        thinkOfLabel.numberOfLines = 0
+        thinkOfLabel.textAlignment = .center
+        thinkOfLabel.translatesAutoresizingMaskIntoConstraints = false
 
         reminderValueLabel.font = Font.semiBold(.header)
         reminderValueLabel.textColor = Color.warningColor
@@ -172,11 +178,11 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         ringChart.titleView = ringChartLabelsStackView
 
         containerView.addSubview(labelStackView)
-        labelStackView.addArrangedSubview(hintStackView)
+        labelStackView.addArrangedSubview(thinkOfStackView)
         labelStackView.addArrangedSubview(reminderStackView)
 
-        hintStackView.addArrangedSubview(hintValueLabel)
-        hintStackView.addArrangedSubview(hintLabel)
+        thinkOfStackView.addArrangedSubview(thinkOfValueLabel)
+        thinkOfStackView.addArrangedSubview(thinkOfLabel)
         reminderStackView.addArrangedSubview(reminderValueLabel)
         reminderStackView.addArrangedSubview(reminderLabel)
 
@@ -223,8 +229,8 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
 
         titleLabel.text = insurance.insuranceType
         subtitleLabel.text = insurance.insuranceProvider
-        hintValueLabel.text = "3"
-        hintLabel.text = "Tänk på"
+        thinkOfValueLabel.text = "3"
+        thinkOfLabel.text = "Tänk på"
         reminderValueLabel.text = "2"
         reminderLabel.text = "Luckor"
     }

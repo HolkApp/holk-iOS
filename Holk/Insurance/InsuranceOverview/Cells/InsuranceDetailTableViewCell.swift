@@ -12,10 +12,10 @@ class InsuranceDetailTableViewCell: UITableViewCell {
     // MARK: - Private variables
     private let lightFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
     private let containerView = UIView()
-    private let hintValueLabel = HolkRoundBackgroundLabel()
-    private let hintImageView = UIImageView()
     private let reminderValueLabel = HolkRoundBackgroundLabel()
     private let reminderImageView = UIImageView()
+    private let thinkOfValueLabel = HolkRoundBackgroundLabel()
+    private let thinkOfImageView = UIImageView()
     private let subInsuranceIconView = UIImageView()
     private let ringChart = HolkRingChart()
     private let titleLabel = UILabel()
@@ -58,20 +58,26 @@ class InsuranceDetailTableViewCell: UITableViewCell {
         }
     }
 
+    func configure(_ insurance: Insurance?) {
+        // TODO: Update this
+        reminderValueLabel.text = "3"
+        reminderImageView.image = UIImage(systemName: "bell")
+        thinkOfValueLabel.text = "2"
+        thinkOfImageView.image = UIImage(systemName: "exclamationmark.triangle")
+    }
+
     private func setup() {
         selectionStyle = .none
+
+        // TODO: Rmeove this
+        configure(nil)
         
         backgroundColor = .clear
         layer.shadowOffset = CGSize(width: 0, height: 2)
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOpacity = 0.15
+        layer.shadowRadius = 30
         layer.cornerCurve = .continuous
-
-        // TODO: Update this
-        hintValueLabel.text = "3"
-        hintImageView.image = UIImage(systemName: "bell")
-        reminderValueLabel.text = "2"
-        reminderImageView.image = UIImage(systemName: "exclamationmark.triangle")
 
         contentView.backgroundColor = .clear
         containerView.backgroundColor = Color.secondaryBackgroundColor
@@ -79,23 +85,23 @@ class InsuranceDetailTableViewCell: UITableViewCell {
         containerView.layer.cornerCurve = .continuous
         containerView.translatesAutoresizingMaskIntoConstraints = false
 
-        hintValueLabel.font = Font.medium(.label)
-        hintValueLabel.backgroundColor = Color.mainBackgroundColor
-        hintValueLabel.textColor = Color.mainForegroundColor
-        hintValueLabel.textAlignment = .center
-        hintValueLabel.translatesAutoresizingMaskIntoConstraints = false
-
-        hintImageView.tintColor = Color.mainForegroundColor.withAlphaComponent(0.35)
-        hintImageView.translatesAutoresizingMaskIntoConstraints = false
-
         reminderValueLabel.font = Font.medium(.label)
         reminderValueLabel.backgroundColor = Color.mainBackgroundColor
-        reminderValueLabel.textColor = Color.warningColor
+        reminderValueLabel.textColor = Color.mainForegroundColor
         reminderValueLabel.textAlignment = .center
         reminderValueLabel.translatesAutoresizingMaskIntoConstraints = false
 
         reminderImageView.tintColor = Color.mainForegroundColor.withAlphaComponent(0.35)
         reminderImageView.translatesAutoresizingMaskIntoConstraints = false
+
+        thinkOfValueLabel.font = Font.medium(.label)
+        thinkOfValueLabel.backgroundColor = Color.mainBackgroundColor
+        thinkOfValueLabel.textColor = Color.warningColor
+        thinkOfValueLabel.textAlignment = .center
+        thinkOfValueLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        thinkOfImageView.tintColor = Color.mainForegroundColor.withAlphaComponent(0.35)
+        thinkOfImageView.translatesAutoresizingMaskIntoConstraints = false
 
         ringChart.dataSource = self
         ringChart.translatesAutoresizingMaskIntoConstraints = false
@@ -121,10 +127,10 @@ class InsuranceDetailTableViewCell: UITableViewCell {
         contentView.addSubview(containerView)
 
         containerView.addSubview(ringChart)
-        containerView.addSubview(hintValueLabel)
-        containerView.addSubview(hintImageView)
         containerView.addSubview(reminderValueLabel)
         containerView.addSubview(reminderImageView)
+        containerView.addSubview(thinkOfValueLabel)
+        containerView.addSubview(thinkOfImageView)
         containerView.addSubview(subInsuranceIconView)
         containerView.addSubview(titleLabel)
         containerView.addSubview(descriptionLabel)
@@ -146,26 +152,26 @@ class InsuranceDetailTableViewCell: UITableViewCell {
 
             descriptionLabel.topAnchor.constraint(equalTo: titleLabel.lastBaselineAnchor, constant: 8),
             descriptionLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
-            descriptionLabel.trailingAnchor.constraint(lessThanOrEqualTo: hintValueLabel.leadingAnchor, constant: -40),
             descriptionLabel.trailingAnchor.constraint(lessThanOrEqualTo: reminderValueLabel.leadingAnchor, constant: -40),
+            descriptionLabel.trailingAnchor.constraint(lessThanOrEqualTo: thinkOfValueLabel.leadingAnchor, constant: -40),
             descriptionLabel.bottomAnchor.constraint(lessThanOrEqualTo: containerView.bottomAnchor, constant: -10),
 
-            hintValueLabel.topAnchor.constraint(equalTo: descriptionLabel.topAnchor),
-            hintValueLabel.centerYAnchor.constraint(equalTo: hintImageView.centerYAnchor),
-            hintValueLabel.trailingAnchor.constraint(equalTo: hintImageView.leadingAnchor, constant: -8),
-
-            hintImageView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
-            hintImageView.centerXAnchor.constraint(equalTo: reminderImageView.centerXAnchor),
-            hintImageView.widthAnchor.constraint(equalToConstant: 24),
-            hintImageView.heightAnchor.constraint(equalToConstant: 24),
-
-            reminderValueLabel.topAnchor.constraint(equalTo: hintValueLabel.bottomAnchor, constant: 8),
+            reminderValueLabel.topAnchor.constraint(equalTo: descriptionLabel.topAnchor),
             reminderValueLabel.centerYAnchor.constraint(equalTo: reminderImageView.centerYAnchor),
             reminderValueLabel.trailingAnchor.constraint(equalTo: reminderImageView.leadingAnchor, constant: -8),
-            reminderValueLabel.bottomAnchor.constraint(lessThanOrEqualTo: containerView.bottomAnchor, constant: -10),
 
+            reminderImageView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
+            reminderImageView.centerXAnchor.constraint(equalTo: thinkOfImageView.centerXAnchor),
             reminderImageView.widthAnchor.constraint(equalToConstant: 24),
             reminderImageView.heightAnchor.constraint(equalToConstant: 24),
+
+            thinkOfValueLabel.topAnchor.constraint(equalTo: reminderValueLabel.bottomAnchor, constant: 8),
+            thinkOfValueLabel.centerYAnchor.constraint(equalTo: thinkOfImageView.centerYAnchor),
+            thinkOfValueLabel.trailingAnchor.constraint(equalTo: thinkOfImageView.leadingAnchor, constant: -8),
+            thinkOfValueLabel.bottomAnchor.constraint(lessThanOrEqualTo: containerView.bottomAnchor, constant: -10),
+
+            thinkOfImageView.widthAnchor.constraint(equalToConstant: 24),
+            thinkOfImageView.heightAnchor.constraint(equalToConstant: 24),
 
             subInsuranceIconView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24),
             subInsuranceIconView.widthAnchor.constraint(equalToConstant: 58),
