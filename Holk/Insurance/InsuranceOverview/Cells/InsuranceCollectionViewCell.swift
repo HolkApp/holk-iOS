@@ -19,13 +19,6 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
     private let subtitleLabel = UILabel()
     private let insuranceSubNumberLabel = UILabel()
     private let insuranceTextLabel = UILabel()
-    private let labelStackView = UIStackView()
-    private let thinkOfStackView = UIStackView()
-    private let thinkOfValueLabel = UILabel()
-    private let thinkOfLabel = UILabel()
-    private let reminderStackView = UIStackView()
-    private let reminderValueLabel = UILabel()
-    private let reminderLabel = UILabel()
     private let insuranceImageView = UIImageView()
 
     private let ringChartLabelsStackView = UIStackView()
@@ -70,25 +63,18 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         subtitleLabel.text = "Folksam bas"
         insuranceSubNumberLabel.text = "4"
         insuranceTextLabel.text = "insurance"
-        thinkOfValueLabel.text = "3"
-        thinkOfLabel.text = "Tänk på"
-        reminderValueLabel.text = "2"
-        reminderLabel.text = "Luckor"
         insuranceImageView.image = UIImage(named: "Folksam")
     }
 
     private func setup() {
         backgroundColor = .clear
+        contentView.layoutMargins = .init(top: 6, left: 6, bottom: 6, right: 6)
+
         layer.shadowOffset = CGSize(width: 0, height: 2)
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOpacity = 0.15
         layer.shadowRadius = 30
         layer.cornerCurve = .continuous
-        
-        contentView.backgroundColor = .clear
-
-        // TODO: remove this
-        configure(nil)
 
         containerView.backgroundColor = Color.secondaryBackgroundColor
         containerView.layer.cornerRadius = 16
@@ -123,41 +109,7 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         ringChartLabelsStackView.backgroundColor = .green
         ringChartLabelsStackView.translatesAutoresizingMaskIntoConstraints = false
 
-        labelStackView.spacing = 16
-        labelStackView.translatesAutoresizingMaskIntoConstraints = false
-        thinkOfStackView.spacing = 16
-        thinkOfStackView.isBaselineRelativeArrangement = true
-        thinkOfStackView.axis = .vertical
-        thinkOfStackView.translatesAutoresizingMaskIntoConstraints = false
-        reminderStackView.spacing = 16
-        reminderStackView.isBaselineRelativeArrangement = true
-        reminderStackView.axis = .vertical
-        reminderStackView.translatesAutoresizingMaskIntoConstraints = false
-
-        thinkOfValueLabel.font = Font.semiBold(.header)
-        thinkOfValueLabel.textColor = Color.mainForegroundColor
-        thinkOfValueLabel.numberOfLines = 0
-        thinkOfValueLabel.textAlignment = .center
-        thinkOfValueLabel.translatesAutoresizingMaskIntoConstraints = false
-
-        thinkOfLabel.font = Font.regular(.description)
-        thinkOfLabel.textColor = Color.mainForegroundColor
-        thinkOfLabel.numberOfLines = 0
-        thinkOfLabel.textAlignment = .center
-        thinkOfLabel.translatesAutoresizingMaskIntoConstraints = false
-
-        reminderValueLabel.font = Font.semiBold(.header)
-        reminderValueLabel.textColor = Color.warningColor
-        reminderValueLabel.numberOfLines = 0
-        reminderValueLabel.textAlignment = .center
-        reminderValueLabel.translatesAutoresizingMaskIntoConstraints = false
-
-        reminderLabel.font = Font.regular(.description)
-        reminderLabel.textColor = Color.mainForegroundColor
-        reminderLabel.numberOfLines = 0
-        reminderLabel.textAlignment = .center
-        reminderLabel.translatesAutoresizingMaskIntoConstraints = false
-
+        insuranceImageView.contentMode = .scaleAspectFit
         insuranceImageView.translatesAutoresizingMaskIntoConstraints = false
 
         ringChart.dataSource = self
@@ -177,28 +129,16 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         ringChart.addSubview(ringChartLabelsStackView)
         ringChart.titleView = ringChartLabelsStackView
 
-        containerView.addSubview(labelStackView)
-        labelStackView.addArrangedSubview(thinkOfStackView)
-        labelStackView.addArrangedSubview(reminderStackView)
-
-        thinkOfStackView.addArrangedSubview(thinkOfValueLabel)
-        thinkOfStackView.addArrangedSubview(thinkOfLabel)
-        reminderStackView.addArrangedSubview(reminderValueLabel)
-        reminderStackView.addArrangedSubview(reminderLabel)
-
-        let containerBottomConstraint = containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12)
-        containerBottomConstraint.priority = .defaultHigh
-
         let ringChartLeadingConstraint = ringChart.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 36)
         ringChartLeadingConstraint.priority = .defaultHigh
         let ringChartTrailingConstraint = ringChart.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -36)
         ringChartTrailingConstraint.priority = .defaultHigh
 
         NSLayoutConstraint.activate([
-            containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
-            containerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
-            containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
-            containerBottomConstraint,
+            containerView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
+            containerView.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
+            containerView.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
+            containerView.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor),
 
             titleLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 16),
             titleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24),
@@ -215,24 +155,10 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
             ringChartTrailingConstraint,
             ringChart.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
 
-            labelStackView.topAnchor.constraint(equalTo: ringChart.bottomAnchor, constant: 48),
-            labelStackView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24),
-            labelStackView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -16),
-
+            insuranceImageView.topAnchor.constraint(equalTo: ringChart.bottomAnchor, constant: 36),
             insuranceImageView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -24),
             insuranceImageView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -16)
         ])
-    }
-    
-    func configure(_ insurance: Insurance) {
-        self.insurance = insurance
-
-        titleLabel.text = insurance.insuranceType
-        subtitleLabel.text = insurance.insuranceProvider
-        thinkOfValueLabel.text = "3"
-        thinkOfLabel.text = "Tänk på"
-        reminderValueLabel.text = "2"
-        reminderLabel.text = "Luckor"
     }
 }
 
