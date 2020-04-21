@@ -54,7 +54,7 @@ final class InsurancesViewController: UICollectionViewController {
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.register(InsuranceCollectionViewCell.self, forCellWithReuseIdentifier: InsuranceCollectionViewCell.identifier)
-        collectionView.register(InsuranceReminderCollectionViewCell.self, forCellWithReuseIdentifier: InsuranceReminderCollectionViewCell.identifier)
+        collectionView.register(InsuranceHintCardCollectionViewCell.self, forCellWithReuseIdentifier: InsuranceHintCardCollectionViewCell.identifier)
 
         let addMoreImage = UIImage(systemName: "plus")?.withSymbolWeightConfiguration(.regular, pointSize: 30)
         addMorebutton.set(color: Color.mainForegroundColor, image: addMoreImage)
@@ -92,7 +92,7 @@ extension InsurancesViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if section == 0 {
-            return 1
+            return 2
         } else {
             return numberOfInsurances
         }
@@ -101,18 +101,22 @@ extension InsurancesViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier:
-            InsuranceReminderCollectionViewCell.identifier, for: indexPath)
-            if let insuranceReminderCollectionViewCell = cell as? InsuranceReminderCollectionViewCell {
-                insuranceReminderCollectionViewCell.delegate = self
+            InsuranceHintCardCollectionViewCell.identifier, for: indexPath)
+            if let insuranceHintCardCollectionViewCell = cell as? InsuranceHintCardCollectionViewCell {
+                if indexPath.item == 0 {
+                    insuranceHintCardCollectionViewCell.configure(nil, hintType: .reminder)
+                } else {
+                    insuranceHintCardCollectionViewCell.configure(nil, hintType: .thinkOf)
+                }
             }
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier:
                         InsuranceCollectionViewCell.identifier, for: indexPath)
             // TODO: Configure this
-//            if let insuranceTableViewCell = cell as? InsuranceCollectionViewCell {
-//                insuranceTableViewCell.configureCell(provider)
-//            }
+            if let insuranceTableViewCell = cell as? InsuranceCollectionViewCell {
+                insuranceTableViewCell.configure(nil)
+            }
             return cell
         }
     }
@@ -121,29 +125,23 @@ extension InsurancesViewController {
 // MARK: - UICollectionViewDelegate
 extension InsurancesViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // TODO: Use real insurance
+        // TODO: Update this with real insurance
         if indexPath.section == 0 {
-
+            if indexPath.item == 0 {
+                let viewController = UIViewController()
+                viewController.title = "Reminder"
+                viewController.view.backgroundColor = .white
+                present(UINavigationController(rootViewController: viewController), animated: true)
+            } else {
+                let viewController = UIViewController()
+                viewController.title = "Think Of"
+                viewController.view.backgroundColor = .white
+                present(UINavigationController(rootViewController: viewController), animated: true)
+            }
         } else {
             let insurance = Insurance(id: "1", insuranceProvider: "1", insuranceType: "1", issuerReference: "", ssn: "", startDate: Date(), endDate: Date(), username: "")
             selectedIndexPath = indexPath
             coordinator?.showInsurnaceDetail(insurance)
         }
-    }
-}
-
-extension InsurancesViewController: InsuranceReminderCollectionViewCellDelegate {
-    func thinkOfTapped() {
-        let viewController = UIViewController()
-        viewController.title = "Think Of"
-        viewController.view.backgroundColor = .white
-        present(UINavigationController(rootViewController: viewController), animated: true)
-    }
-
-    func reminderTapped() {
-        let viewController = UIViewController()
-        viewController.title = "Reminder"
-        viewController.view.backgroundColor = .white
-        present(UINavigationController(rootViewController: viewController), animated: true)
     }
 }
