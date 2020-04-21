@@ -38,6 +38,16 @@ class InsuranceHintCardCollectionViewCell: UICollectionViewCell {
         return layoutAttributes
     }
 
+    override var isHighlighted: Bool {
+            didSet {
+                let scaleTransform = isHighlighted ? CGAffineTransform(scaleX: 0.95, y: 0.95) : .identity
+                let animator = UIViewPropertyAnimator(duration: 0.1, curve: .easeInOut) {
+                    self.transform = scaleTransform
+                }
+                animator.startAnimation()
+            }
+        }
+
     func configure(_ insurance: Insurance?, hintType: HintType) {
         // TODO: Update this
         switch hintType {

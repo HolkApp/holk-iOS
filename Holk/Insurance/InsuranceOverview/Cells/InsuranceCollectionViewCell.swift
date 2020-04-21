@@ -51,9 +51,9 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
             }
             animator.startAnimation()
 
-            if isHighlighted {
-                lightFeedbackGenerator.impactOccurred()
-            }
+//            if isHighlighted {
+//                lightFeedbackGenerator.impactOccurred()
+//            }
         }
     }
 
