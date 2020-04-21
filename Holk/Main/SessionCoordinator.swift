@@ -35,7 +35,7 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
         navController.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navController.navigationBar.shadowImage = UIImage()
         navController.delegate = self
-        navController.navigationBar.tintColor = Color.mainBackgroundColor
+        navController.navigationBar.tintColor = Color.mainForegroundColor
         setupViewController()
     }
     

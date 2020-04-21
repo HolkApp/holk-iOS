@@ -41,14 +41,6 @@ class OnboardingInfoViewController: UIViewController {
     
     private func setup() {
         view.backgroundColor = Color.mainBackgroundColor
-        
-        navigationItem.setHidesBackButton(true, animated: false)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-            image: UIImage(systemName: "xmark")?.withSymbolWeightConfiguration(.medium),
-            style: .plain,
-            target: self,
-            action: #selector(back(_:))
-        )
 
         titleLabel.text = "Så här funkar det"
         titleLabel.font = Font.extraBold(.title)
@@ -146,9 +138,5 @@ class OnboardingInfoViewController: UIViewController {
             analyseImage.heightAnchor.constraint(greaterThanOrEqualToConstant: 48)
         ])
 
-    }
-    
-    @objc private func back(_ sender: Any) {
-        coordinator?.back()
     }
 }
