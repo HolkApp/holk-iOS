@@ -25,11 +25,7 @@ class InsuranceCoordinator: NSObject, Coordinator, UINavigationControllerDelegat
     // MARK: - Public Methods
     func start() {
 
-        let layout = DynamicHeightCollectionFlowLayout()
-        layout.scrollDirection = .vertical
-        layout.minimumInteritemSpacing = 20
-        layout.estimatedItemSize = CGSize(width: UIScreen.main.bounds.size.width, height: 100)
-
+        let layout = UICollectionViewCompositionalLayout.generateInsuranceLayout()
         let insurancesViewController = InsurancesViewController(storeController: storeController, collectionViewLayout: layout)
         insurancesViewController.coordinator = self
 
