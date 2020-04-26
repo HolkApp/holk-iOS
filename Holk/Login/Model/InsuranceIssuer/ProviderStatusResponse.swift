@@ -7,16 +7,12 @@
 
 import Foundation
 
-
-
 public struct ProviderStatusResponse: Codable {
-
     public var providerStatusList: [InsuranceProvider]
 
     public init(providerStatusList: [InsuranceProvider]) {
         self.providerStatusList = providerStatusList
     }
-
 
 }
 

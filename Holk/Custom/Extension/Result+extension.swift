@@ -6,6 +6,8 @@
 //  Copyright © 2020 Holk. All rights reserved.
 //
 
-extension Swift.Result where Success == Void {
+import Foundation
+
+extension Result where Success == Void {
     static var success: Self { .success(()) }
 }

@@ -14,44 +14,61 @@ private let kHolkServiceRefreshToken = "refresh.token"
 private let kHolkServiceExpirationDate = "expiration.date"
 
 class User {
-    private let dateFormatter = DateFormatter().then {
-        $0.dateFormat = "yyyy-MM-dd HH:mm:ss"
-    }
-    
-    var oauthAuthenticationResponse: OauthAuthenticationResponse? {
-        didSet {
-            if let oauthAuthenticationResponse = oauthAuthenticationResponse {
-                isNewUser = oauthAuthenticationResponse.newUser
-                accessToken = oauthAuthenticationResponse.accessToken
-                refreshToken = oauthAuthenticationResponse.refreshToken
-                let expiresInSeconds = oauthAuthenticationResponse.expiresInSeconds
-                expirationDate = Calendar.current.date(byAdding: .second, value: expiresInSeconds, to: Date())
-            }
-        }
-    }
-
+    var session: Session?
     var userInfoResponse: UserInfoResponse?
-    
-    private var _accessToken: String?
-    private var _refreshToken: String?
-    private var _expirationDateString: String?
+
+    var isNewUser: Bool {
+        session?.isNewUser ?? false
+    }
 
     var userName: String {
         userInfoResponse?.fullName ?? String()
     }
+
     var givenName: String {
         userInfoResponse?.givenName ?? String()
     }
+
     var surName: String {
         userInfoResponse?.surName ?? String()
     }
+
     var userID: String {
         userInfoResponse?.userId ?? String()
     }
+
     var email: String {
         userInfoResponse?.email ?? String()
     }
-    private(set) var isNewUser: Bool = true
+
+    
+    func reset() {
+        session = nil
+        userInfoResponse = nil
+    }
+}
+
+class Session {
+    private let dateFormatter = DateFormatter().then {
+        $0.dateFormat = "yyyy-MM-dd HH:mm:ss"
+    }
+
+    init(oauthAuthenticationResponse: OauthAuthenticationResponse? = nil) {
+        if let oauthAuthenticationResponse = oauthAuthenticationResponse {
+            accessToken = oauthAuthenticationResponse.accessToken
+            refreshToken = oauthAuthenticationResponse.refreshToken
+            let expiresInSeconds = oauthAuthenticationResponse.expiresInSeconds
+            expirationDate = Calendar.current.date(byAdding: .second, value: expiresInSeconds, to: Date())
+            isNewUser = oauthAuthenticationResponse.newUser
+        }
+    }
+
+    private var _accessToken: String?
+    private var _refreshToken: String?
+    private var _expirationDateString: String?
+
+    fileprivate var isNewUser: Bool = false
+
     private(set) var expirationDate: Date? {
         get {
             if _expirationDateString == nil {
@@ -71,7 +88,7 @@ class User {
             }
         }
     }
-    
+
     private(set) var accessToken: String? {
         get {
             if _accessToken == nil {
@@ -82,13 +99,14 @@ class User {
         set {
             if let token = newValue, !token.isEmpty {
                 KeychainService.set(password: token, account: kHolkAccountName, service: kHolkServiceAccessToken)
+                _accessToken = token
             } else {
                 KeychainService.delete(account: kHolkAccountName, service: kHolkServiceAccessToken)
                 _accessToken = nil
             }
         }
     }
-    
+
     private(set) var refreshToken: String? {
         get {
             if _refreshToken == nil {
@@ -99,18 +117,11 @@ class User {
         set {
             if let token = newValue, !token.isEmpty {
                 KeychainService.set(password: token, account: kHolkAccountName, service: kHolkServiceRefreshToken)
+                _refreshToken = token
             } else {
                 KeychainService.delete(account: kHolkAccountName, service: kHolkServiceRefreshToken)
                 _refreshToken = nil
             }
         }
-    }
-    
-    func reset() {
-        userInfoResponse = nil
-        oauthAuthenticationResponse = nil
-        accessToken = nil
-        refreshToken = nil
-        expirationDate = nil
     }
 }
