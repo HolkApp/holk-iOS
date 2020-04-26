@@ -1,5 +1,5 @@
 //
-//  InsuranceIssuerService.swift
+//  InsuranceProviderService.swift
 //  Holk
 //
 //  Created by 张梦皓 on 2020-04-26.
@@ -9,7 +9,7 @@
 import Foundation
 import Combine
 
-class InsuranceIssuerService {
+class InsuranceProviderService {
     private let client: APIClient
     private let user: User
 
@@ -22,7 +22,7 @@ class InsuranceIssuerService {
         self.user = user
     }
 
-    private func insuranceProviders() -> AnyPublisher<ProviderStatusResponse, URLError> {
+    func fetchInsuranceProviders() -> AnyPublisher<ProviderStatusResponse, URLError> {
         return client.httpRequest(method: .get, url: Endpoint.insurancesIssuers.url, headers: authorizationBearerHeader)
     }
 }

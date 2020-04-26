@@ -20,16 +20,14 @@ class AuthenticationService {
 
     private var authorizationBasicHeader: [String: String] {
         // Use the basic auth for /authorize/oauth/token, public endpoint
-        let authString = String(format: "%@:%@", Constants.basicAuthUsername, Constants.basicAuthPassword)
-
-//        let authString = "\(Constants.basicAuthUsername): \(Constants.basicAuthPassword)"
+        let authString = "\(Constants.basicAuthUsername):\(Constants.basicAuthPassword)"
         let authData = authString.data(using: String.Encoding.utf8)!
         let base64AuthString = authData.base64EncodedString()
         return ["Authorization": "Basic " + base64AuthString]
     }
 
-    init(queue: DispatchQueue) {
-        self.client = APIClient(queue: queue)
+    init(client: APIClient) {
+        self.client = client
         self.pollingTask = ScrapingStatusPollingTask()
     }
 
@@ -51,13 +49,14 @@ class AuthenticationService {
             "order_ref": orderRef
         ]
 
-        return client.httpRequest(method: .post, url: Endpoint.token.url, headers: httpHeaders, parameters: postParams).receive(on: DispatchQueue.main).eraseToAnyPublisher()
+        return client.httpRequest(method: .post, url: Endpoint.token.url, headers: authorizationBasicHeader, encodeParameters: postParams).receive(on: DispatchQueue.main).eraseToAnyPublisher()
     }
 
     func refresh(refreshToken: String) -> AnyPublisher<OauthAuthenticationResponse, URLError> {
         var httpHeaders = [
             "Content-Type": "application/x-www-form-urlencoded"
         ]
+        
         httpHeaders.merge(authorizationBasicHeader) { (_, new) -> String in
             return new
         }
@@ -67,6 +66,6 @@ class AuthenticationService {
             "refresh_token": refreshToken
         ]
 
-        return client.httpRequest(method: .post, url: Endpoint.token.url, headers: httpHeaders, parameters: postParams).receive(on: DispatchQueue.main).eraseToAnyPublisher()
+        return client.httpRequest(method: .post, url: Endpoint.token.url, headers: httpHeaders, encodeParameters: postParams).receive(on: DispatchQueue.main).eraseToAnyPublisher()
     }
 }
