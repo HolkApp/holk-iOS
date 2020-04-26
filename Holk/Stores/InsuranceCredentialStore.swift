@@ -29,7 +29,7 @@ final class InsuranceCredentialStore: APIStore {
         super.init()
     }
     
-    func addInsurance(issuer: InsuranceProvider, personalNumber: String) {
+    func addInsurance(_ provider: InsuranceProvider, personalNumber: String) {
         insuranceState.accept(.loading)
         integrateInsurance(issuerName: "FOLKSAM", personalNumber: personalNumber)
             .map { [weak self] result in

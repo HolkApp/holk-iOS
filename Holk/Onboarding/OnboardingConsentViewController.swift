@@ -16,7 +16,7 @@ final class OnboardingConsentViewController: UIViewController {
     
     // MARK: - Private variables
     private var storeController: StoreController
-    private let insuranceIssuer: InsuranceProvider
+    private let insuranceProvider: InsuranceProvider
     private let providerType: InsuranceProviderType
     private let bag = DisposeBag()
     private let headerLabel = UILabel()
@@ -24,9 +24,9 @@ final class OnboardingConsentViewController: UIViewController {
     private let bankIDIconView = UIImageView()
     private let nextButton = HolkButton()
     
-    init(storeController: StoreController, insuranceIssuer: InsuranceProvider, providerType: InsuranceProviderType) {
+    init(storeController: StoreController, insuranceProvider: InsuranceProvider, providerType: InsuranceProviderType) {
         self.storeController = storeController
-        self.insuranceIssuer = insuranceIssuer
+        self.insuranceProvider = insuranceProvider
         self.providerType = providerType
         
         super.init(nibName: nil, bundle: nil)
@@ -63,7 +63,7 @@ final class OnboardingConsentViewController: UIViewController {
             .underlineStyle: NSUnderlineStyle.single.rawValue
         ]
         let text = "We will fetch your insurance from %@. \n[Our terms and policies](http://google.com)"
-        let descriptionText = String(format: text, insuranceIssuer.displayName)
+        let descriptionText = String(format: text, insuranceProvider.displayName)
         descriptionTextView.attributedText = Parser.parse(
             markdownString: descriptionText,
             font: Font.regular(.label),
@@ -112,11 +112,11 @@ final class OnboardingConsentViewController: UIViewController {
             nextButton.widthAnchor.constraint(equalToConstant: 80),
             nextButton.heightAnchor.constraint(equalToConstant: 80),
             nextButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            view.bottomAnchor.constraint(equalTo: nextButton.bottomAnchor, constant: 40)
+            nextButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -40)
         ])
     }
     
     @objc private func nextButtonTapped(_ sender: UIButton) {
-        coordinator?.aggregateInsurance(providerType, insuranceIssuer: insuranceIssuer)
+        coordinator?.aggregateInsurance(providerType, insuranceProvider: insuranceProvider)
     }
 }

@@ -12,8 +12,8 @@ import RxSwift
 protocol OnboardingCoordinating: AnyObject {
     func startOnboarding(_ user: User)
     func addInsuranceProviderType(_ providerType: InsuranceProviderType)
-    func addInsuranceIssuer(_ insuranceIssuer: InsuranceProvider)
-    func aggregateInsurance(_ providerType: InsuranceProviderType, insuranceIssuer: InsuranceProvider)
+    func addInsuranceProvider(_ provider: InsuranceProvider)
+    func aggregateInsurance(_ providerType: InsuranceProviderType, insuranceProvider: InsuranceProvider)
     func finishOnboarding()
 }
 
@@ -28,7 +28,7 @@ final class OnboardingContainerViewController: UIViewController {
     private var progressViewTopAnchor: NSLayoutConstraint?
     private var progressViewHeightAnchor: NSLayoutConstraint?
     private var providerType: InsuranceProviderType?
-    private var insuranceIssuer: InsuranceProvider?
+    private var insuranceProvider: InsuranceProvider?
 
     // MARK: - Public Variables
     var storeController: StoreController
@@ -168,10 +168,10 @@ extension OnboardingContainerViewController: OnboardingCoordinating {
         childNavigationController.pushViewController(viewController, animated: true)
     }
     
-    func addInsuranceIssuer(_ insuranceIssuer: InsuranceProvider) {
+    func addInsuranceProvider(_ provider: InsuranceProvider) {
         guard let providerType = providerType else { fatalError("No providerType selected") }
-        self.insuranceIssuer = insuranceIssuer
-        let onboardingConsentViewController = OnboardingConsentViewController(storeController: storeController, insuranceIssuer: insuranceIssuer, providerType: providerType)
+        self.insuranceProvider = provider
+        let onboardingConsentViewController = OnboardingConsentViewController(storeController: storeController, insuranceProvider: provider, providerType: providerType)
         onboardingConsentViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: UIImage(systemName: "xmark")?.withSymbolWeightConfiguration(.medium),
             style: .plain,
@@ -182,9 +182,9 @@ extension OnboardingContainerViewController: OnboardingCoordinating {
         childNavigationController.pushViewController(onboardingConsentViewController, animated: true)
     }
     
-    func aggregateInsurance(_ providerType: InsuranceProviderType, insuranceIssuer: InsuranceProvider) {
+    func aggregateInsurance(_ providerType: InsuranceProviderType, insuranceProvider: InsuranceProvider) {
         progressSpinnerToCenter()
-        storeController.insuranceCredentialStore.addInsurance(issuer: insuranceIssuer, personalNumber: "199208253915")
+        storeController.insuranceCredentialStore.addInsurance(insuranceProvider, personalNumber: "199208253915")
         storeController.insuranceCredentialStore.insuranceState
             .subscribe({ [weak self] event in
                 switch event {
@@ -192,7 +192,7 @@ extension OnboardingContainerViewController: OnboardingCoordinating {
                     switch state {
                     case .loaded(let scrapingStatus):
                         print(scrapingStatus)
-                        self?.showInsuranceAggregatedConfirmation(insuranceIssuer)
+                        self?.showInsuranceAggregatedConfirmation(insuranceProvider)
                         self?.progressBarToTop()
                     case .error:
                         // TOOD: Error handling
@@ -288,15 +288,18 @@ extension OnboardingContainerViewController: NewUserViewControllerDelegate {
         childNavigationController.view.isHidden = true
         progressView.isHidden = false
 
-        storeController.authenticationStore.addUser(email)
-            .catchErrorJustReturn(.failure(APIError.network))
-            .subscribe(onNext: { [weak self] result in
+        storeController.userStore.addEmail(email) { [weak self] result in
+            switch result {
+            case .success:
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     self?.showInsuranceType()
                     self?.progressBarToTop()
                 }
-            })
-            .disposed(by: bag)
+            case .failure(let error):
+                print(error)
+                break
+            }
+        }
     }
 }
 

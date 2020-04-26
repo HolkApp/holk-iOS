@@ -10,6 +10,13 @@ import Alamofire
 import RxSwift
 import RxRelay
 
+enum RequestState<T: Codable, U:Error> {
+    case unintiated
+    case loaded(value: T)
+    case loading
+    case error(_ error: U)
+}
+
 final class InsuranceStore: APIStore {
     // MARK: - Public variables
     var allInsurance = BehaviorRelay<AllInsuranceResponse?>.init(value: nil)
