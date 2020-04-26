@@ -10,15 +10,25 @@ import Foundation
 
 enum APIError: Error {
     case decodingError
-    case response(error: NSError)
+    case response(error: URLError)
     case network
     
     var code: Int {
         switch self {
         case .response(let error):
-            return error.code
+            return error.errorCode
         default:
             return 500
+        }
+    }
+}
+
+extension APIError {
+    init(urlError: URLError) {
+        if urlError.code == .cannotDecodeRawData {
+            self = .decodingError
+        } else {
+            self = .response(error: urlError)
         }
     }
 }

@@ -28,31 +28,28 @@ class APIClient {
         method: APIMethod,
         url: URL,
         headers: [String: String] = [:],
-        parameters: [String: String] = [:]) -> AnyPublisher<T, URLError> {
+        body: Data? = nil,
+        encodeParameters: [String: String]? = nil) -> AnyPublisher<T, URLError> {
 
-        var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)!
-
-        if !parameters.isEmpty {
-            urlComponents.queryItems = []
-        }
-
-        for parameter in parameters {
-            urlComponents.queryItems?.append(URLQueryItem(name: parameter.key, value: parameter.value))
-        }
+        let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)!
 
         guard let url = urlComponents.url else {
-
             return Fail(error: URLError(.badURL)).eraseToAnyPublisher()
         }
-
 
         var request = URLRequest(url: url)
 
         request.httpMethod = method.rawValue
 
-//        for header in headers {
-//            request.addValue(header.key, forHTTPHeaderField: header.value)
-//        }
+        for header in headers {
+            request.addValue(header.value, forHTTPHeaderField: header.key)
+        }
+
+        if let encodeParameters = encodeParameters {
+            request.encodeParameters(parameters: encodeParameters)
+        } else if let body = body {
+            request.httpBody = body
+        }
 
         return session.dataTaskPublisher(for: request)
             .mapError({ $0 as URLError })
@@ -64,13 +61,20 @@ class APIClient {
     }
 
     private func decode<T: Decodable>(_ data: Data) -> AnyPublisher<T, URLError> {
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .secondsSince1970
-        return Just(data)
-            .decode(type: T.self, decoder: decoder)
-            .mapError { _ in
-                URLError(.cannotDecodeRawData)
-            }
-            .eraseToAnyPublisher()
+        if let data = data as? T {
+            return Just(data)
+                    .mapError { _ in URLError(.cannotDecodeRawData) }
+                    .eraseToAnyPublisher()
+        } else {
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .secondsSince1970
+            return Just(data)
+                .decode(type: T.self, decoder: decoder)
+                .mapError { error in
+                    print(error)
+                    return URLError(.cannotDecodeRawData)
+                }
+                .eraseToAnyPublisher()
+        }
     }
 }
