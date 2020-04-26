@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import Combine
 
 protocol OnboardingContainerCoordinating: AnyObject {
     func onboardingFinished(coordinator: OnboardingContainerViewController)
@@ -17,6 +18,7 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
     // MARK: - Public Properties
     var navController: UINavigationController
     var storeController: StoreController
+    var cancellables = Set<AnyCancellable>()
     
     private let bag = DisposeBag()
     private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
@@ -41,14 +43,15 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
     
     func authenticate() {
         showLoading()
-        storeController.authenticationStore.authenticate()
-            .observeOn(MainScheduler.instance)
-            .catchErrorJustReturn(.failure(APIError.network))
-            .map({ [weak self] result in
-                self?.handleAuthenticationUpdate(result)
-            })
-            .subscribe()
-            .disposed(by: bag)
+        storeController.authenticationStore.authenticate { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success(let bankIDAuthenticationResponse):
+                self.handleAuthenticationUpdate(bankIDAuthenticationResponse)
+            case .failure(let error):
+                self.showError(error, requestName: "authorize/bank-id/auth")
+            }
+        }
     }
 
     func information() {
@@ -62,46 +65,39 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
         showLandingScreen()
     }
 
-    private func handleAuthenticationUpdate(_ result: Result<BankIDAuthenticationResponse, APIError>) {
-        switch result {
-        case .success(let authenticationResponse):
-            BankIDService.autostart(autoStart: authenticationResponse.autoStartToken, redirectLink: "holk://", successHandler: { [weak self] in
-                guard let self = self else { return }
-                self.backgroundTask = UIApplication.shared.beginBackgroundTask(expirationHandler: {
-                    UIApplication.shared.endBackgroundTask(self.backgroundTask)
-                })
-                self.checkAuthenticationStatus(orderRef: authenticationResponse.orderRef)
-            }) {
-                #if targetEnvironment(simulator)
-                #else
-                #endif
-                // TODO: Should show some alert for downloading BankID on device
-            }
-        case .failure(let error):
-            // TODO: Error handling
-            showError(error, requestName: "authorize/bank-id/auth")
+    private func handleAuthenticationUpdate(_ bankIDAuthenticationResponse: BankIDAuthenticationResponse) {
+        BankIDService.autostart(autoStart: bankIDAuthenticationResponse.autoStartToken, redirectLink: "holk://", successHandler: { [weak self] in
+            guard let self = self else { return }
+            self.backgroundTask = UIApplication.shared.beginBackgroundTask(expirationHandler: {
+                UIApplication.shared.endBackgroundTask(self.backgroundTask)
+            })
+            self.checkAuthenticationStatus(orderRef: bankIDAuthenticationResponse.orderRef)
+        }) {
+            #if targetEnvironment(simulator)
+            #else
+            #endif
+            // TODO: Should show some alert for downloading BankID on device
         }
     }
-    
+
     private func checkAuthenticationStatus(orderRef: String) {
-        storeController
-            .authenticationStore
-            .token(orderRef: orderRef)
-            .map({ [weak self] result in
-                switch result {
-                case .success:
-                    self?.storeController.insuranceIssuerStore.loadInsuranceIssuers()
-                case .failure(let error):
-                    // TODO: Error handling
-                    self?.showError(error, requestName: "authorize/oauth/token")
-                }
-            })
-            .flatMap(weak: self, selector: { (obj, result) -> Observable<Result<Void, APIError>> in
-                obj.storeController.authenticationStore.userInfo()
-            })
-            .map({ [weak self] (result) in
-                guard let self = self else { return }
-                UIApplication.shared.endBackgroundTask(self.backgroundTask)
+        storeController.authenticationStore.token(orderRef: orderRef) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success:
+                self.storeController.insuranceProviderStore.fetchInsuranceProviders { _ in }
+//                self.storeController.insuranceProviderStore.loadInsuranceIssuers()
+                self.fetchUserInfo()
+            case .failure(let error):
+                self.showError(error, requestName: "authorize/oauth/token")
+            }
+        }
+    }
+
+    func fetchUserInfo() {
+        storeController.userStore.userInfo { [weak self] result in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
                 self.backgroundTask = .invalid
                 switch result {
                 case .success:
@@ -111,9 +107,9 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
                     // TODO: Error handling
                     self.showError(error, requestName: "authorize/user")
                 }
-            })
-            .subscribe()
-            .disposed(by: bag)
+            }
+            UIApplication.shared.endBackgroundTask(self.backgroundTask)
+        }
     }
 
     private func showError(_ error: APIError, requestName: String) {
@@ -135,7 +131,7 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
         case .shouldRefresh:
             showLoading()
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                self.storeController.authenticationStore.refresh().subscribe().disposed(by: self.bag)
+                self.storeController.authenticationStore.refresh { _ in }
             }
         case .updated:
             showLoading()
