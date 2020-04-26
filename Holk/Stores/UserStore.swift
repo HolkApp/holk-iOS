@@ -7,3 +7,44 @@
 //
 
 import Foundation
+import Combine
+
+final class UserStore {
+    private let userService: UserService
+    private var cancellables = Set<AnyCancellable>()
+    private var user: User
+
+    init(queue: DispatchQueue, user: User) {
+        self.user = user
+        self.userService = UserService(client: APIClient(queue: queue), user: user)
+    }
+
+    func userInfo(completion: @escaping (Result<UserInfoResponse, APIError>) -> Void) {
+        userService.fetchUserInfo().mapError { APIError.init(urlError: $0) }
+            .sink(receiveCompletion: { result in
+                switch result {
+                case .failure(let error):
+                    completion(.failure(error))
+                case .finished:
+                    break
+                }
+            }) { [weak self] in
+                self?.user.userInfoResponse = $0
+                completion(.success($0))
+            }
+            .store(in: &cancellables)
+    }
+
+    func addEmail(_ email: String, completion: @escaping (Result<Void, APIError>) -> Void) {
+        userService.addEmail(email).mapError { APIError.init(urlError: $0) }
+            .sink(receiveCompletion: { result in
+                switch result {
+                case .failure(let error):
+                    completion(.failure(error))
+                case .finished:
+                    break
+                }
+            }) { _ in completion(.success) }
+            .store(in: &cancellables)
+    }
+}

@@ -32,12 +32,12 @@ final class SessionStore: APIStore {
     
     // MARK: Private Variables
     private var authorizationBearerHeader: [String: String]? {
-        user.accessToken.flatMap { return ["Authorization": "Bearer " + $0] }
+        user.session?.accessToken.flatMap { return ["Authorization": "Bearer " + $0] }
     }
     
     private var authorizationBasicHeader: [String: String] {
         // Use the basic auth for /authorize/oauth/token, public endpoint
-        let authString = String(format: "%@:%@", Constants.basicAuthUsername, Constants.basicAuthPassword)
+        let authString = "\(Constants.basicAuthUsername):\(Constants.basicAuthPassword)"
         let authData = authString.data(using: String.Encoding.utf8)!
         let base64AuthString = authData.base64EncodedString()
         return ["Authorization": "Basic " + base64AuthString]
@@ -84,7 +84,7 @@ final class SessionStore: APIStore {
         
         return observable.map { [weak self] result in
             if let oauthAuthenticationResponse = try? result.get() {
-                self?.user.oauthAuthenticationResponse = oauthAuthenticationResponse
+                self?.user.session = Session(oauthAuthenticationResponse: oauthAuthenticationResponse)
             }
             return result
         }
@@ -92,7 +92,7 @@ final class SessionStore: APIStore {
     
     func refresh() -> Observable<Swift.Result<OauthAuthenticationResponse, APIError>> {
         // TODO: Error handling for not found refresh token in device, should probably log out.
-        guard let refreshToken = user.refreshToken else { fatalError("Refresh token not found") }
+        guard let refreshToken = user.session?.refreshToken else { fatalError("Refresh token not found") }
         var httpHeaders = [
             "Content-Type": "application/x-www-form-urlencoded"
         ]
@@ -115,7 +115,7 @@ final class SessionStore: APIStore {
         
         return observable.map { [weak self] result in
             if let oauthAuthenticationResponse = try? result.get() {
-                self?.user.oauthAuthenticationResponse = oauthAuthenticationResponse
+                self?.user.session = Session(oauthAuthenticationResponse: oauthAuthenticationResponse)
                 self?.delegate?.sessionStoreAccessTokenUpdated()
             } else {
                 // TODO: Only logout for now, but should only logout when receiving 401
