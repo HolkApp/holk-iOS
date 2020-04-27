@@ -192,11 +192,13 @@ extension OnboardingContainerViewController: OnboardingCoordinating {
                     switch state {
                     case .loaded(let scrapingStatus):
                         print(scrapingStatus)
-                        self?.showInsuranceAggregatedConfirmation(insuranceProvider)
+                        self?.showInsuranceAggregatedConfirmation()
                         self?.progressBarToTop()
                     case .error:
                         // TOOD: Error handling
                         print(state)
+                        self?.showInsuranceAggregatedConfirmation()
+                        self?.progressBarToTop()
                     case .loading, .unintiated:
                         break
                     }
@@ -210,29 +212,20 @@ extension OnboardingContainerViewController: OnboardingCoordinating {
     func finishOnboarding() {
         coordinator?.onboardingFinished(coordinator: self)
     }
-    
-    private func showInsuranceAggregatedConfirmation(_ insuranceIssuer: InsuranceProvider) {
-        storeController.insuranceStore.getAllInsurance()
+
+    private func showInsuranceAggregatedConfirmation() {
         let confirmationViewController = OnboardingConfirmationViewController()
         confirmationViewController.coordinator = self
         childNavigationController.pushViewController(confirmationViewController, animated: true)
-        storeController.insuranceStore.allInsuranceResult.takeUntil(.inclusive) { (requestState) -> Bool in
-            if case .loaded = requestState {
-                return true
-            }
-            return false
-        }.subscribe(onNext: { [weak self] requestState in
-            switch requestState {
-            case .loaded(let allInsurance):
-                confirmationViewController.allInsurance = allInsurance
-                self?.progressBarToTop()
-            case .error:
-                // TODO: error handling
-                break
-            default:
+        storeController.insuranceStore.fetchAllInsurances { result in
+            switch result {
+            case .success(let allInsuranceResponse):
+                confirmationViewController.allInsurances = allInsuranceResponse
+            case .failure(let error):
+                print(error)
                 break
             }
-            }).disposed(by: bag)
+        }
     }
     
     private func progressBarToTop(animated: Bool = true, completion: (() -> Void)? = nil) {
