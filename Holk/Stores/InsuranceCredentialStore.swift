@@ -10,6 +10,13 @@ import RxSwift
 import Alamofire
 import RxRelay
 
+enum RequestState<T: Codable, U:Error> {
+    case unintiated
+    case loaded(value: T)
+    case loading
+    case error(_ error: U)
+}
+
 final class InsuranceCredentialStore: APIStore {
     // MARK: - Public variables
     // TODO: should be an array of insurance
