@@ -53,7 +53,7 @@ final class StoreController {
 
         insuranceProviderStore = InsuranceProviderStore(queue: queue, user: user)
         insuranceCredentialStore = InsuranceCredentialStore(queue: queue, sessionStore: sessionStore)
-        insuranceStore = InsuranceStore(queue: queue, sessionStore: sessionStore)
+        insuranceStore = InsuranceStore(queue: queue, user: user)
         
         sessionStore.delegate = self
     }

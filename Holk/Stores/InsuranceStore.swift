@@ -6,59 +6,35 @@
 //  Copyright © 2020 Holk. All rights reserved.
 //
 
-import Alamofire
-import RxSwift
-import RxRelay
+import Foundation
+import Combine
 
-enum RequestState<T: Codable, U:Error> {
-    case unintiated
-    case loaded(value: T)
-    case loading
-    case error(_ error: U)
-}
-
-final class InsuranceStore: APIStore {
+final class InsuranceStore {
     // MARK: - Public variables
-    var allInsurance = BehaviorRelay<AllInsuranceResponse?>.init(value: nil)
-    var allInsuranceResult = BehaviorRelay<RequestState<AllInsuranceResponse, APIError>>.init(value: .unintiated)
+    var allInsuranceResponse = CurrentValueSubject<AllInsuranceResponse?, Never>(nil)
+
     // MARK: - Private variables
-    private let queue: DispatchQueue
-    private let sessionStore: SessionStore
-    private let bag = DisposeBag()
-    
-    init(queue: DispatchQueue, sessionStore: SessionStore) {
-        self.queue = queue
-        self.sessionStore = sessionStore
-        
-        super.init()
+    private let user: User
+    private let insuranceService: InsuranceService
+    private var cancellables = Set<AnyCancellable>()
+
+    init(queue: DispatchQueue, user: User) {
+        self.user = user
+        insuranceService = InsuranceService(client: APIClient(queue: queue), user: user)
     }
-    
-    func getAllInsurance() {
-        switch allInsuranceResult.value {
-        case .loading:
-            return
-        default:
-            allInsuranceResult.accept(.loading)
-        }
-        allInsurances().subscribe(onNext: { result in
+
+    func fetchAllInsurances(completion: @escaping (Result<AllInsuranceResponse, APIError>) -> Void) {
+        insuranceService.fetchAllInsurances().mapError { APIError.init(urlError: $0) }
+            .sink(receiveCompletion: { result in
             switch result {
-            case .success(let insurances):
-                self.allInsurance.accept(insurances)
-                self.allInsuranceResult.accept(.loaded(value: insurances))
-            case .failure:
-                // TODO: Error handling
+            case .failure(let error):
+                completion(.failure(error))
+            case .finished:
                 break
             }
-        }).disposed(by: bag)
-    }
-    
-    private func allInsurances() -> Observable<Swift.Result<AllInsuranceResponse, APIError>> {
-        let httpHeaders = sessionStore.authorizationHeader
-        
-        return httpRequest(
-            method: .get,
-            url: Endpoint.allInsurances.url,
-            headers: httpHeaders
-        )
+        }) { [weak self] allInsuranceResponse in
+            self?.allInsuranceResponse.value = allInsuranceResponse
+            completion(.success(allInsuranceResponse))
+        }.store(in: &cancellables)
     }
 }
