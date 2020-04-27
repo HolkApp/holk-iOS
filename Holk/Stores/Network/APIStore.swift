@@ -29,7 +29,8 @@ class APIStore {
                 $0.rx.responseData()
             }.map({ (response, data) -> Swift.Result<Value, APIError> in
                 guard 200..<300 ~= response.statusCode else {
-                    return .failure(.response(error: NSError(domain: String(data: data, encoding: .ascii) ?? "", code: response.statusCode)))
+                    let error = URLError(.init(rawValue: response.statusCode))
+                    return .failure(.response(error: error))
                 }
                 do {
                     if let data = data as? Value {
