@@ -54,13 +54,21 @@ class APIClient {
         return session.dataTaskPublisher(for: request)
             .mapError({ $0 as URLError })
             .flatMap(maxPublishers: .max(1)) { pair in
-                self.decode(pair.data)
+                self.decode(pair.data, response: pair.response)
             }
+            .eraseToAnyPublisher()
             .subscribe(on: queue)
             .eraseToAnyPublisher()
     }
 
-    private func decode<T: Decodable>(_ data: Data) -> AnyPublisher<T, URLError> {
+    private func decode<T: Decodable>(_ data: Data, response: URLResponse) -> AnyPublisher<T, URLError> {
+        guard let httpResponse = response as? HTTPURLResponse else {
+            return Fail(error: URLError(.badServerResponse)).eraseToAnyPublisher()
+        }
+
+        guard (200...299).contains(httpResponse.statusCode) else {
+            return Fail(error: URLError(.init(rawValue: httpResponse.statusCode))).eraseToAnyPublisher()
+        }
         if let data = data as? T {
             return Just(data)
                     .mapError { _ in URLError(.cannotDecodeRawData) }
@@ -71,7 +79,6 @@ class APIClient {
             return Just(data)
                 .decode(type: T.self, decoder: decoder)
                 .mapError { error in
-                    print(error)
                     return URLError(.cannotDecodeRawData)
                 }
                 .eraseToAnyPublisher()
