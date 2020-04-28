@@ -18,7 +18,7 @@ public struct InsuranceProvider: Codable {
     }
     public var _description: String?
     public var displayName: String
-    public var insuranceIssuerStatus: InsuranceIssuerStatus
+    public var insuranceIssuerStatus: InsuranceIssuerStatus?
     public var internalName: String
     public var logoUrl: String
     public var websiteUrl: String

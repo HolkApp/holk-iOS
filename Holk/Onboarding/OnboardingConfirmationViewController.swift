@@ -20,11 +20,13 @@ final class OnboardingConfirmationViewController: UIViewController {
     private let badgeLabel = UILabel()
     private let doneButton = HolkButton()
     
-    var allInsurance: AllInsuranceResponse? {
+    var addedInsurance: Insurance? {
         didSet {
-            descriptionLabel.text = String(format: "We found your insurance at %@", allInsurance?.insuranceList.first?.insuranceProvider ?? "")
-            insuranceLabel.text = allInsurance?.insuranceList.first?.insuranceType
-            addressLabel.text = allInsurance?.insuranceList.first?.address
+            DispatchQueue.main.async {
+                self.descriptionLabel.text = String(format: "We found your insurance at %@", self.addedInsurance?.insuranceProvider.displayName ?? "")
+                self.insuranceLabel.text = self.addedInsurance?.insuranceType
+                self.addressLabel.text = self.addedInsurance?.address
+            }
         }
     }
     
@@ -61,7 +63,7 @@ final class OnboardingConfirmationViewController: UIViewController {
         descriptionLabel.font = Font.regular(.title)
         descriptionLabel.textColor = Color.mainForegroundColor
         descriptionLabel.numberOfLines = 0
-        descriptionLabel.text = String(format: "We found your insurance at %@", allInsurance?.insuranceList.first?.insuranceProvider ?? "")
+        descriptionLabel.text = String(format: "We found your insurance at %@", addedInsurance?.insuranceProvider.displayName ?? "")
         
         cardView.backgroundColor = .clear
         cardView.layer.shadowRadius = 15
@@ -75,12 +77,12 @@ final class OnboardingConfirmationViewController: UIViewController {
         insuranceLabel.font = Font.semiBold(.title)
         insuranceLabel.textColor = Color.mainForegroundColor
         insuranceLabel.numberOfLines = 0
-        insuranceLabel.text = allInsurance?.insuranceList.first?.insuranceType
+        insuranceLabel.text = addedInsurance?.insuranceType
         
         addressLabel.font = Font.regular(.label)
         addressLabel.textColor = Color.mainForegroundColor
         addressLabel.numberOfLines = 0
-        addressLabel.text = allInsurance?.insuranceList.first?.address
+        addressLabel.text = addedInsurance?.address
         
         badgeLabel.font = Font.regular(.label)
         badgeLabel.textAlignment = .center
