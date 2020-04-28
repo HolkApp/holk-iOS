@@ -140,7 +140,7 @@ extension InsurancesViewController {
                 present(UINavigationController(rootViewController: viewController), animated: true)
             }
         } else {
-            let insurance = Insurance(id: "1", insuranceProvider: "1", insuranceType: "1", issuerReference: "", ssn: "", startDate: Date(), endDate: Date(), username: "")
+            let insurance = AllInsuranceResponse.mockInsurnace
             selectedIndexPath = indexPath
             coordinator?.showInsurnaceDetail(insurance)
         }

@@ -8,6 +8,13 @@
 
 import Foundation
 
+extension AllInsuranceResponse {
+    static let mockInsurnace: Insurance = {
+        let provider = InsuranceProvider(_description: "mock provider", displayName: "Folksam", insuranceIssuerStatus: .available, internalName: "Folksam", logoUrl: "", websiteUrl: "")
+        return Insurance(id: "Mock", insuranceProvider: provider, insuranceType: "test", issuerReference: "test", ssn: "199208253915", startDate: Date(), endDate: Date(), username: "Mock user name")
+    }()
+}
+
 struct AllInsuranceResponse: Codable {
     let insuranceList: [Insurance]
     let lastUpdated: Date
@@ -40,7 +47,7 @@ struct Insurance: Codable {
 
     let id: String
 //    let insuranceProvider: InsuranceIssuer
-    let insuranceProvider: String
+    let insuranceProvider: InsuranceProvider
     let insuranceType: String
     let issuerReference: String
     let ssn: String
@@ -75,7 +82,7 @@ extension Insurance {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         id = try container.decode(String.self, forKey: .id)
-        insuranceProvider = try container.decode(String.self, forKey: .insuranceProvider)
+        insuranceProvider = try container.decode(InsuranceProvider.self, forKey: .insuranceProvider)
         insuranceType = try container.decode(String.self, forKey: .insuranceType)
         issuerReference = try container.decode(String.self, forKey: .issuerReference)
         let startDateString = try container.decode(String.self, forKey: .startDate)

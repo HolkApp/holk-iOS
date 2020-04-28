@@ -220,8 +220,9 @@ extension OnboardingContainerViewController: OnboardingCoordinating {
         storeController.insuranceStore.fetchAllInsurances { result in
             switch result {
             case .success(let allInsuranceResponse):
-                confirmationViewController.allInsurances = allInsuranceResponse
+                confirmationViewController.addedInsurance = allInsuranceResponse.insuranceList.first
             case .failure(let error):
+                confirmationViewController.addedInsurance = AllInsuranceResponse.mockInsurnace
                 print(error)
                 break
             }
