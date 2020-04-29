@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import Combine
 
 protocol OnboardingCoordinating: AnyObject {
     func startOnboarding(_ user: User)
@@ -29,6 +30,7 @@ final class OnboardingContainerViewController: UIViewController {
     private var progressViewHeightAnchor: NSLayoutConstraint?
     private var providerType: InsuranceProviderType?
     private var insuranceProvider: InsuranceProvider?
+    private var cancellables = Set<AnyCancellable>()
 
     // MARK: - Public Variables
     var storeController: StoreController
@@ -184,29 +186,21 @@ extension OnboardingContainerViewController: OnboardingCoordinating {
     
     func aggregateInsurance(_ providerType: InsuranceProviderType, insuranceProvider: InsuranceProvider) {
         progressSpinnerToCenter()
-        storeController.insuranceCredentialStore.addInsurance(insuranceProvider, personalNumber: "199208253915")
-        storeController.insuranceCredentialStore.insuranceState
-            .subscribe({ [weak self] event in
-                switch event {
-                case .next(let state):
-                    switch state {
-                    case .loaded(let scrapingStatus):
-                        print(scrapingStatus)
-                        self?.showInsuranceAggregatedConfirmation()
-                        self?.progressBarToTop()
-                    case .error:
-                        // TOOD: Error handling
-                        print(state)
-                        self?.showInsuranceAggregatedConfirmation()
-                        self?.progressBarToTop()
-                    case .loading, .unintiated:
-                        break
-                    }
-                default:
-                    break
-                }
-            })
-            .disposed(by: bag)
+        storeController
+            .insuranceCredentialStore
+            .addInsurance(insuranceProvider, personalNumber: storeController.user.personalNumber)
+        storeController
+            .insuranceCredentialStore
+            .insuranceStatus.sink { [weak self] scrapingStatus in
+            print(scrapingStatus)
+            switch scrapingStatus {
+            case .completed:
+                self?.showInsuranceAggregatedConfirmation()
+                self?.progressBarToTop()
+            default:
+                break
+            }
+        }.store(in: &cancellables)
     }
     
     func finishOnboarding() {
@@ -218,6 +212,7 @@ extension OnboardingContainerViewController: OnboardingCoordinating {
         confirmationViewController.coordinator = self
         childNavigationController.pushViewController(confirmationViewController, animated: true)
         storeController.insuranceStore.fetchAllInsurances { result in
+            // TODO Need to change this with real data
             switch result {
             case .success(let allInsuranceResponse):
                 confirmationViewController.addedInsurance = allInsuranceResponse.insuranceList.first
