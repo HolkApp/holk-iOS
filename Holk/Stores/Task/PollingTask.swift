@@ -7,17 +7,27 @@
 //
 
 import Foundation
-import RxSwift
+import Combine
 
-let retryInterval = 1
-
-final class ScrapingStatusPollingTask {
-    func poll<T: Codable, E: Error>(_ observable: Observable<Result<T, E>>, pollingUntil: @escaping (Result<T, E>) -> Bool) -> Observable<Result<T, E>> {
-        let timer = Observable<Int>.timer(.seconds(retryInterval), scheduler: MainScheduler.instance)
-        // 3. Interval subscription
-        let subscription = timer.flatMapLatest { index in
-            observable
-        }.takeUntil(.inclusive, predicate: pollingUntil)
-        return subscription
+extension AnyPublisher {
+    static func poll<T: Codable>(_ publisher: AnyPublisher<T, URLError>, pollingUntil: @escaping (T) -> Bool) -> AnyPublisher<T, URLError> {
+        let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+        let publisher: AnyPublisher<T, URLError> = timer
+            .mapError({ _ in URLError.init(.cancelled) })
+            .flatMap { _ in publisher }
+            .eraseToAnyPublisher()
+            .mapError { error in
+                timer.upstream.connect().cancel()
+                return error
+            }
+            .eraseToAnyPublisher()
+        return publisher
+            .map({ value in
+                if pollingUntil(value) {
+                    timer.upstream.connect().cancel()
+                }
+                return value
+            })
+            .eraseToAnyPublisher()
     }
 }
