@@ -57,12 +57,12 @@
 		8F65466C230C78990053B3F8 /* HolkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F65466B230C78990053B3F8 /* HolkButton.swift */; };
 		8F65466F230DC4CC0053B3F8 /* HolkTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F65466E230DC4CC0053B3F8 /* HolkTextField.swift */; };
 		8F6546712316FE190053B3F8 /* NewUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6546702316FE190053B3F8 /* NewUserViewController.swift */; };
-		8F66F2FA23B0F3E60083DC3A /* SessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F66F2F923B0F3E60083DC3A /* SessionStore.swift */; };
 		8F66F2FC23BBFB580083DC3A /* BankIDAuthenticationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F66F2FB23BBFB580083DC3A /* BankIDAuthenticationResponse.swift */; };
 		8F66F2FE23BC04F90083DC3A /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F66F2FD23BC04F90083DC3A /* LoadingViewController.swift */; };
 		8F691D332455C32F0093E965 /* URLRequest+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F691D322455C32F0093E965 /* URLRequest+extension.swift */; };
 		8F691D3624562ED30093E965 /* AddUserEmailRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F691D3524562ED30093E965 /* AddUserEmailRequest.swift */; };
 		8F691D38245760310093E965 /* InsuranceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F691D37245760310093E965 /* InsuranceService.swift */; };
+		8F691D3A24588C9C0093E965 /* InsuranceCredentialService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F691D3924588C9C0093E965 /* InsuranceCredentialService.swift */; };
 		8F6BCA3922F73CBF004B887E /* Font Awesome 5 Pro-Solid-900.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8F6BCA3422F73CBF004B887E /* Font Awesome 5 Pro-Solid-900.otf */; };
 		8F6BCA3A22F73CBF004B887E /* Font Awesome 5 Brands-Regular-400.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8F6BCA3522F73CBF004B887E /* Font Awesome 5 Brands-Regular-400.otf */; };
 		8F6BCA3B22F73CBF004B887E /* Font Awesome 5 Pro-Regular-400.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8F6BCA3622F73CBF004B887E /* Font Awesome 5 Pro-Regular-400.otf */; };
@@ -182,12 +182,12 @@
 		8F65466B230C78990053B3F8 /* HolkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolkButton.swift; sourceTree = "<group>"; };
 		8F65466E230DC4CC0053B3F8 /* HolkTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolkTextField.swift; sourceTree = "<group>"; };
 		8F6546702316FE190053B3F8 /* NewUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserViewController.swift; sourceTree = "<group>"; };
-		8F66F2F923B0F3E60083DC3A /* SessionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStore.swift; sourceTree = "<group>"; };
 		8F66F2FB23BBFB580083DC3A /* BankIDAuthenticationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BankIDAuthenticationResponse.swift; path = Holk/Stores/BankIDAuthenticationResponse.swift; sourceTree = SOURCE_ROOT; };
 		8F66F2FD23BC04F90083DC3A /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		8F691D322455C32F0093E965 /* URLRequest+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+extension.swift"; sourceTree = "<group>"; };
 		8F691D3524562ED30093E965 /* AddUserEmailRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserEmailRequest.swift; sourceTree = "<group>"; };
 		8F691D37245760310093E965 /* InsuranceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceService.swift; sourceTree = "<group>"; };
+		8F691D3924588C9C0093E965 /* InsuranceCredentialService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceCredentialService.swift; sourceTree = "<group>"; };
 		8F6BCA3422F73CBF004B887E /* Font Awesome 5 Pro-Solid-900.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Font Awesome 5 Pro-Solid-900.otf"; sourceTree = "<group>"; };
 		8F6BCA3522F73CBF004B887E /* Font Awesome 5 Brands-Regular-400.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Font Awesome 5 Brands-Regular-400.otf"; sourceTree = "<group>"; };
 		8F6BCA3622F73CBF004B887E /* Font Awesome 5 Pro-Regular-400.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Font Awesome 5 Pro-Regular-400.otf"; sourceTree = "<group>"; };
@@ -338,6 +338,7 @@
 				8F5D89E42450F11C007F1B26 /* AuthenticationService.swift */,
 				8F5D89E824535028007F1B26 /* UserService.swift */,
 				8F5FA9412454EEBD009201A3 /* InsuranceProviderService.swift */,
+				8F691D3924588C9C0093E965 /* InsuranceCredentialService.swift */,
 				8F691D37245760310093E965 /* InsuranceService.swift */,
 			);
 			path = Service;
@@ -526,7 +527,6 @@
 				8F858A5123CE6370006B416A /* Task */,
 				8F9807E622722D5E00584BA9 /* StoreController.swift */,
 				8F25CAA0233E981800DC3B97 /* User.swift */,
-				8F66F2F923B0F3E60083DC3A /* SessionStore.swift */,
 				8F7C442923511C1200B54A36 /* AuthenticationStore.swift */,
 				8F5D89E624534AB8007F1B26 /* UserStore.swift */,
 				8FA5F374239D832C00083430 /* InsuranceProviderStore.swift */,
@@ -853,7 +853,6 @@
 				8FA8F1122330148300670471 /* FontAwesome.swift in Sources */,
 				8F5B5A3822771ED400E79A40 /* StringConstants.swift in Sources */,
 				8F66F2FE23BC04F90083DC3A /* LoadingViewController.swift in Sources */,
-				8F66F2FA23B0F3E60083DC3A /* SessionStore.swift in Sources */,
 				8F25CAAC23429F7100DC3B97 /* OnboardingInsuranceTypeViewController.swift in Sources */,
 				8F5FA9422454EEBD009201A3 /* InsuranceProviderService.swift in Sources */,
 				8F3305AA24029CBF00E9B443 /* HolkRingChartDataSource+Delegate.swift in Sources */,
@@ -902,6 +901,7 @@
 				8FA5F375239D832C00083430 /* InsuranceProviderStore.swift in Sources */,
 				8F3305A62401ECD400E9B443 /* HolkRingChart.swift in Sources */,
 				8F5D89DA244CFD2B007F1B26 /* HolkFloatingCardView.swift in Sources */,
+				8F691D3A24588C9C0093E965 /* InsuranceCredentialService.swift in Sources */,
 				8F3305A023FB32AB00E9B443 /* InsuranceStore.swift in Sources */,
 				8FC296BE23E7614D002A39D1 /* LandingInfoViewController.swift in Sources */,
 				8F5D89DF244EEB40007F1B26 /* InsuranceHintCardCollectionViewCell.swift in Sources */,
