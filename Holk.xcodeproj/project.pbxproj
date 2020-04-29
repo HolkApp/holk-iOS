@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8F0D403F227A0AD4000BD840 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0D403E227A0AD4000BD840 /* APIError.swift */; };
 		8F0D4041227A0D68000BD840 /* OnboardingInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0D4040227A0D68000BD840 /* OnboardingInfoViewController.swift */; };
+		8F16DE66245A127000EFC1BD /* EmailValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F16DE65245A127000EFC1BD /* EmailValidation.swift */; };
 		8F25CA992337AAC100DC3B97 /* FontAwsome+UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F25CA982337AAC100DC3B97 /* FontAwsome+UIExtensions.swift */; };
 		8F25CAA1233E981900DC3B97 /* OauthAuthenticationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F25CA9F233E981800DC3B97 /* OauthAuthenticationResponse.swift */; };
 		8F25CAA2233E981900DC3B97 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F25CAA0233E981800DC3B97 /* User.swift */; };
@@ -134,6 +135,7 @@
 		8BE4C8D20BBE4A002F7E3A10 /* Pods-Holk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Holk.release.xcconfig"; path = "Pods/Target Support Files/Pods-Holk/Pods-Holk.release.xcconfig"; sourceTree = "<group>"; };
 		8F0D403E227A0AD4000BD840 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		8F0D4040227A0D68000BD840 /* OnboardingInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingInfoViewController.swift; sourceTree = "<group>"; };
+		8F16DE65245A127000EFC1BD /* EmailValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidation.swift; sourceTree = "<group>"; };
 		8F25CA982337AAC100DC3B97 /* FontAwsome+UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FontAwsome+UIExtensions.swift"; sourceTree = "<group>"; };
 		8F25CA9F233E981800DC3B97 /* OauthAuthenticationResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OauthAuthenticationResponse.swift; path = Holk/Onboarding/Model/OauthAuthenticationResponse.swift; sourceTree = SOURCE_ROOT; };
 		8F25CAA0233E981800DC3B97 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Holk/Stores/User.swift; sourceTree = SOURCE_ROOT; };
@@ -487,7 +489,7 @@
 				8FE52F06239BB0EE001A77F5 /* Insurance */,
 				8F654669230195840053B3F8 /* Transition */,
 				8FE52F05239BB0CD001A77F5 /* Stores */,
-				8FE52F07239BBDD6001A77F5 /* DeviceServices */,
+				8FE52F07239BBDD6001A77F5 /* Helper */,
 				8FF6E73022B5340900F6D398 /* Model */,
 				8FF6E72222A70F5000F6D398 /* Custom */,
 				8F5B5A3322771EBF00E79A40 /* Generated */,
@@ -546,13 +548,14 @@
 			path = Insurance;
 			sourceTree = "<group>";
 		};
-		8FE52F07239BBDD6001A77F5 /* DeviceServices */ = {
+		8FE52F07239BBDD6001A77F5 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
 				8FE52F08239BBDEF001A77F5 /* KeychainService.swift */,
 				8F7C442F2351336E00B54A36 /* BankIDService.swift */,
+				8F16DE65245A127000EFC1BD /* EmailValidation.swift */,
 			);
-			path = DeviceServices;
+			path = Helper;
 			sourceTree = "<group>";
 		};
 		8FF6E72222A70F5000F6D398 /* Custom */ = {
@@ -879,6 +882,7 @@
 				8F9F6D9A23DA41A900B1727E /* HolkProgressBarView.swift in Sources */,
 				8FCEE9B323254C2D00F75FB8 /* KeyboardEventFloatingViewHandler.swift in Sources */,
 				8FA766C82440F729007EB2A2 /* HolkRoundBackgroundLabel.swift in Sources */,
+				8F16DE66245A127000EFC1BD /* EmailValidation.swift in Sources */,
 				8F5B5A3722771ED400E79A40 /* StoryboardsSegues.swift in Sources */,
 				8FF0BEFF241AF4E800BB5A6A /* UINavigationController+extension.swift in Sources */,
 				8FF6E73B22B6B55800F6D398 /* InsuranceProtectionViewController.swift in Sources */,
