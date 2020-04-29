@@ -26,30 +26,40 @@ final class InsuranceCredentialStore {
     func addInsurance(_ provider: InsuranceProvider, personalNumber: String) {
         insuranceCredentialService
             .integrateInsurance(providerName: "FOLKSAM", personalNumber: personalNumber)
-            .flatMap { sessionID in
-                AnyPublisher<ScrapingStatusResponse, URLError>
-                    .poll(self.insuranceCredentialService.fetchInsuranceStatus("sessionID")) { scrapingStatusResponse -> Bool in
-                    return scrapingStatusResponse.scrapingStatus == .completed
-                    }
-            }
+            .sink(receiveCompletion: { result in
+                switch result {
+                case .failure(let error):
+                    print(error)
+                case .finished:
+                    break
+                }
+            }, receiveValue: { [weak self] sessionID in
+                self?.pollInsuranceStatus(sessionID)
+            })
+            .store(in: &cancellables)
+    }
+
+    private func pollInsuranceStatus(_ sessionID: String) {
+        getInsuranceStatus(sessionID)
             .sink(
-                receiveCompletion: { [weak self] result in
+                receiveCompletion: { result in
                     switch result {
+                    case .failure(let error):
+                        print(error)
                     case .finished:
                         break
-                    case .failure(let error):
-                        // TODO:
-                        print(error)
-                        self?.insuranceStatus.send(.completed)
                     }
                 }
-            )
-            { [weak self] scrapingStatusResponse in
+            ) { [weak self] scrapingStatusResponse in
                 self?.insuranceStatus.send(scrapingStatusResponse.scrapingStatus)
+                if scrapingStatusResponse.scrapingStatus != .completed {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        self?.pollInsuranceStatus(sessionID)
+                    }
+                }
             }
             .store(in: &cancellables)
     }
-    
         
     private func getInsuranceStatus(_ sessionID: String) -> AnyPublisher<ScrapingStatusResponse, APIError> {
         return insuranceCredentialService
