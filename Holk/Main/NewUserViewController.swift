@@ -97,7 +97,7 @@ class NewUserViewController: UIViewController {
         )
         doneButton.translatesAutoresizingMaskIntoConstraints = false
         doneButton.addTarget(self, action: #selector(submit(_:)), for: .touchUpInside)
-        emailTextField.rx.text.orEmpty.map { EmailValidation.isValid($0) }.bind(to: doneButton.rx.isEnabled).disposed(by: bag)
+        emailTextField.rx.text.orEmpty.map { !EmailValidation.isValid($0) }.bind(to: doneButton.rx.isHidden).disposed(by: bag)
         
         doneButtonBottomConstraint = view.bottomAnchor.constraint(equalTo: doneButton.bottomAnchor, constant: 40)
         let stackViewTopConstraint = stackView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor)
