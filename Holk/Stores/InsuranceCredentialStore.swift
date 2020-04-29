@@ -6,113 +6,62 @@
 //  Copyright © 2020 Holk. All rights reserved.
 //
 
-import RxSwift
-import Alamofire
-import RxRelay
+import Foundation
+import Combine
 
-enum RequestState<T: Codable, U:Error> {
-    case unintiated
-    case loaded(value: T)
-    case loading
-    case error(_ error: U)
-}
-
-final class InsuranceCredentialStore: APIStore {
+final class InsuranceCredentialStore {
     // MARK: - Public variables
-    // TODO: should be an array of insurance
-    var insuranceState = BehaviorRelay<RequestState<ScrapingStatusResponse.ScrapingStatus, APIError>>.init(value: .unintiated)
-    
+    var insuranceStatus = PassthroughSubject<ScrapingStatusResponse.ScrapingStatus, Never>()
+
     // MARK: - Private variables
-    private let queue: DispatchQueue
-    private let sessionStore: SessionStore
-    private let bag = DisposeBag()
-    private let pollingTask: ScrapingStatusPollingTask
-    
-    init(queue: DispatchQueue, sessionStore: SessionStore) {
-        self.queue = queue
-        self.sessionStore = sessionStore
-        self.pollingTask = ScrapingStatusPollingTask()
-        
-        super.init()
+    private let user: User
+    private let insuranceCredentialService: InsuranceCredentialService
+    private var cancellables = Set<AnyCancellable>()
+
+    init(queue: DispatchQueue, user: User) {
+        self.user = user
+        insuranceCredentialService = InsuranceCredentialService(client: APIClient(queue: queue), user: user)
     }
     
     func addInsurance(_ provider: InsuranceProvider, personalNumber: String) {
-        insuranceState.accept(.loading)
-        integrateInsurance(issuerName: "FOLKSAM", personalNumber: personalNumber)
-            .map { [weak self] result in
-                guard let self = self else { return }
-                switch result {
-                case .success(let sessionId):
-                    self.pollingTask.poll(self.getInsuranceStatus(sessionId)) { [weak self] in
-                        guard let self = self else { return true }
-                        return self.insuranceStatusPollingPredicate($0)
-                    }.map({ responseResult -> Swift.Result<ScrapingStatusResponse.ScrapingStatus, APIError> in
-                        switch responseResult {
-                        case .success(let scrapingResponse):
-                            return .success(scrapingResponse.scrapingStatus)
-                        case .failure(let error):
-                            self.insuranceState.accept(.error(error))
-                            return .failure(error)
-                        }
-                    }).bind(onNext: { scrapingStatus in
-                        switch scrapingStatus {
-                        case .success(let status):
-                            if status == .completed {
-                                self.insuranceState.accept(.loaded(value: status))
-                            } else if status == .failed {
-                                //                                self.insuranceState.accept(.error(error))
-                            } else {
-                                self.insuranceState.accept(.loading)
-                            }
-                        case .failure(let error):
-                            self.insuranceState.accept(.error(error))
-                        }
-                    }).disposed(by: self.bag)
-                case .failure(let error):
-                    self.insuranceState.accept(.error(error))
-                    print(error)
-                }
-        }
-        .subscribe()
-        .disposed(by: bag)
-    }
-    
-        
-    private func getInsuranceStatus(_ sessionId: String) -> Observable<Swift.Result<ScrapingStatusResponse, APIError>> {
-        let httpHeaders = sessionStore.authorizationHeader
-        
-        return httpRequest(
-            method: .get,
-            url: Endpoint.scrapingStatus.url([sessionId]),
-            headers: httpHeaders
-        )
-    }
-    
-    private func insuranceStatusPollingPredicate(_ scrapingStatusResult: Swift.Result<ScrapingStatusResponse, APIError>) -> Bool {
-        switch scrapingStatusResult {
-        case .success(let scrapingStatusResponse):
-            switch scrapingStatusResponse.scrapingStatus {
-            case .completed:
-                return true
-            case .failed:
-                return true
-            default:
-                return false
+        insuranceCredentialService
+            .integrateInsurance(providerName: "FOLKSAM", personalNumber: personalNumber)
+            .flatMap { sessionID in
+                AnyPublisher<ScrapingStatusResponse, URLError>
+                    .poll(self.insuranceCredentialService.fetchInsuranceStatus("sessionID")) { scrapingStatusResponse -> Bool in
+                    return scrapingStatusResponse.scrapingStatus == .completed
+                    }
             }
-        case .failure(let error):
-            insuranceState.accept(.error(error))
-            return true
-        }
+            .sink(
+                receiveCompletion: { [weak self] result in
+                    switch result {
+                    case .finished:
+                        break
+                    case .failure(let error):
+                        // TODO:
+                        print(error)
+                        self?.insuranceStatus.send(.completed)
+                    }
+                }
+            )
+            { [weak self] scrapingStatusResponse in
+                self?.insuranceStatus.send(scrapingStatusResponse.scrapingStatus)
+            }
+            .store(in: &cancellables)
     }
     
-    private func integrateInsurance(issuerName: String, personalNumber: String) -> Observable<Swift.Result<String, APIError>> {
-        let httpHeaders = sessionStore.authorizationHeader
         
-        return httpRequest(
-            method: .post,
-            url: Endpoint.addInsurance.url([issuerName, personalNumber]),
-            encoding: URLEncoding.default,
-            headers: httpHeaders
-        )
+    private func getInsuranceStatus(_ sessionID: String) -> AnyPublisher<ScrapingStatusResponse, APIError> {
+        return insuranceCredentialService
+            .fetchInsuranceStatus(sessionID)
+            .mapError { APIError(urlError: $0) }
+            .eraseToAnyPublisher()
+    }
+    
+    private func integrateInsurance(providerName: String, personalNumber: String) -> AnyPublisher<String, APIError> {
+        return insuranceCredentialService
+            .integrateInsurance(providerName: providerName, personalNumber: personalNumber)
+            .mapError { APIError(urlError: $0) }
+            .eraseToAnyPublisher()
     }
 }
