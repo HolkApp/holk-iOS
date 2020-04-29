@@ -40,35 +40,20 @@ final class StoreController {
             return .updated
         }
     }
-    
-    private let sessionStore: SessionStore
+
     private let queue = DispatchQueue(label: "se.holk.store.queue", qos: .utility)
     
     init() {
         user = User()
+
         authenticationStore = AuthenticationStore(queue: queue, user: user)
         userStore = UserStore.init(queue: queue, user: user)
-
-        sessionStore = SessionStore(queue: queue, user: user)
-
         insuranceProviderStore = InsuranceProviderStore(queue: queue, user: user)
-        insuranceCredentialStore = InsuranceCredentialStore(queue: queue, sessionStore: sessionStore)
+        insuranceCredentialStore = InsuranceCredentialStore(queue: queue, user: user)
         insuranceStore = InsuranceStore(queue: queue, user: user)
-        
-        sessionStore.delegate = self
     }
     
     func resetSession() {
-        sessionStore.reset()
-    }
-}
-
-extension StoreController: SessionStoreDelegate {
-    func sessionStoreAccessTokenUpdated() {
-        delegate?.storeControllerAccessTokenUpdated()
-    }
-    
-    func sessionStoreRefreshTokenExpired() {
-        delegate?.storeControllerRefreshTokenExpired()
+        user.reset()
     }
 }

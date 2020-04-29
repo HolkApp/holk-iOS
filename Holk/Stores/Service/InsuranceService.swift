@@ -32,6 +32,9 @@ class InsuranceService {
             return new
         }
 
-        return client.httpRequest(method: .get, url: Endpoint.allInsurances.url, headers: httpHeaders)
+        return client
+            .httpRequest(method: .get, url: Endpoint.allInsurances.url, headers: httpHeaders)
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
     }
 }

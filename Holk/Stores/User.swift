@@ -14,6 +14,10 @@ private let kHolkServiceRefreshToken = "refresh.token"
 private let kHolkServiceExpirationDate = "expiration.date"
 
 class User {
+    init() {
+        session = Session()
+    }
+
     var session: Session?
     var userInfoResponse: UserInfoResponse?
 
@@ -41,18 +45,17 @@ class User {
         userInfoResponse?.email ?? String()
     }
 
+    var personalNumber: String {
+        userInfoResponse?.personalNumber ?? String()
+    }
     
     func reset() {
-        session = nil
+        session?.reset()
         userInfoResponse = nil
     }
 }
 
 class Session {
-    private let dateFormatter = DateFormatter().then {
-        $0.dateFormat = "yyyy-MM-dd HH:mm:ss"
-    }
-
     init(oauthAuthenticationResponse: OauthAuthenticationResponse? = nil) {
         if let oauthAuthenticationResponse = oauthAuthenticationResponse {
             accessToken = oauthAuthenticationResponse.accessToken
@@ -63,6 +66,15 @@ class Session {
         }
     }
 
+    func reset() {
+        expirationDate = nil
+        accessToken = nil
+        refreshToken = nil
+    }
+
+    private let dateFormatter = DateFormatter().then {
+        $0.dateFormat = "yyyy-MM-dd HH:mm:ss"
+    }
     private var _accessToken: String?
     private var _refreshToken: String?
     private var _expirationDateString: String?

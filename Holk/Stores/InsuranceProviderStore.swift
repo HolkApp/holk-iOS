@@ -26,7 +26,7 @@ final class InsuranceProviderStore: APIStore {
 
     // TODO: Update this simplify it by having return observable and keep a cache for the value.
     func fetchInsuranceProviders(completion: @escaping (Result<ProviderStatusResponse, APIError>) -> Void) {
-        insuranceProviderService.fetchInsuranceProviders().mapError { APIError.init(urlError: $0) }
+        insuranceProviderService.fetchInsuranceProviders().mapError { APIError(urlError: $0) }
         .sink(receiveCompletion: { result in
             switch result {
             case .failure(let error):
@@ -36,7 +36,7 @@ final class InsuranceProviderStore: APIStore {
             }
         }) { [weak self] in
             completion(.success($0))
-            self?.providerList.value = $0.providerStatusList
+            self?.providerList.send($0.providerStatusList)
         }
         .store(in: &cancellables)
     }

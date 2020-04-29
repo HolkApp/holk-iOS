@@ -8,6 +8,8 @@
 
 import RxSwift
 
+let retryInterval = 1
+
 extension ObservableType {
     func flatMap<A: AnyObject, O: ObservableType>(weak obj: A, selector: @escaping (A, Self.Element) throws -> O) -> Observable<O.Element> {
         return flatMap { [weak obj] value -> Observable<O.Element> in

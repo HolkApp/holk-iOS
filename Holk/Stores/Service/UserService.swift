@@ -33,7 +33,10 @@ class UserService {
             return new
         }
 
-        return client.httpRequest(method: .get, url: Endpoint.user.url, headers: httpHeaders)
+        return client
+            .httpRequest(method: .get, url: Endpoint.user.url, headers: httpHeaders)
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
     }
 
     func addEmail(_ email: String) -> AnyPublisher<Data, URLError> {
@@ -49,6 +52,9 @@ class UserService {
         let body = AddUserEmailRequest(email: email)
         let data = try? JSONEncoder().encode(body)
 
-        return client.httpRequest(method: .post, url: Endpoint.addEmail.url, headers: httpHeaders, body: data)
+        return client
+            .httpRequest(method: .post, url: Endpoint.addEmail.url, headers: httpHeaders, body: data)
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
     }
 }

@@ -131,7 +131,9 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
         case .shouldRefresh:
             showLoading()
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                self.storeController.authenticationStore.refresh { _ in }
+                self.storeController.authenticationStore.refresh { [weak self] _ in
+                    self?.showSession()
+                }
             }
         case .updated:
             showLoading()

@@ -11,7 +11,6 @@ import Combine
 
 class AuthenticationService {
     private let client: APIClient
-    private let pollingTask: ScrapingStatusPollingTask
 
     private struct Constants {
         static let basicAuthUsername = "SampleClientId"
@@ -28,11 +27,13 @@ class AuthenticationService {
 
     init(client: APIClient) {
         self.client = client
-        self.pollingTask = ScrapingStatusPollingTask()
     }
 
     func authenticate() -> AnyPublisher<BankIDAuthenticationResponse, URLError> {
-        return client.httpRequest(method: .post, url: Endpoint.authenticate.url, headers: authorizationBasicHeader).receive(on: DispatchQueue.main).eraseToAnyPublisher()
+        return client
+            .httpRequest(method: .post, url: Endpoint.authenticate.url, headers: authorizationBasicHeader)
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
     }
 
     func token(orderRef: String) -> AnyPublisher<OauthAuthenticationResponse, URLError> {
@@ -49,7 +50,10 @@ class AuthenticationService {
             "order_ref": orderRef
         ]
 
-        return client.httpRequest(method: .post, url: Endpoint.token.url, headers: authorizationBasicHeader, encodeParameters: postParams).receive(on: DispatchQueue.main).eraseToAnyPublisher()
+        return client
+            .httpRequest(method: .post, url: Endpoint.token.url, headers: authorizationBasicHeader, encodeParameters: postParams)
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
     }
 
     func refresh(refreshToken: String) -> AnyPublisher<OauthAuthenticationResponse, URLError> {
@@ -66,6 +70,9 @@ class AuthenticationService {
             "refresh_token": refreshToken
         ]
 
-        return client.httpRequest(method: .post, url: Endpoint.token.url, headers: httpHeaders, encodeParameters: postParams).receive(on: DispatchQueue.main).eraseToAnyPublisher()
+        return client
+            .httpRequest(method: .post, url: Endpoint.token.url, headers: httpHeaders, encodeParameters: postParams)
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
     }
 }

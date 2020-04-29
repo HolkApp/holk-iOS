@@ -24,7 +24,7 @@ final class InsuranceStore {
     }
 
     func fetchAllInsurances(completion: @escaping (Result<AllInsuranceResponse, APIError>) -> Void) {
-        insuranceService.fetchAllInsurances().mapError { APIError.init(urlError: $0) }
+        insuranceService.fetchAllInsurances().mapError { APIError(urlError: $0) }
             .sink(receiveCompletion: { result in
             switch result {
             case .failure(let error):

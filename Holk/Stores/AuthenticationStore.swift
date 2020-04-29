@@ -22,7 +22,7 @@ final class AuthenticationStore {
 
     func authenticate(completion: @escaping (Result<BankIDAuthenticationResponse, APIError>) -> Void) {
         return authenticationService.authenticate()
-            .mapError { APIError.init(urlError: $0) }
+            .mapError { APIError(urlError: $0) }
             .sink(receiveCompletion: { result in
                 switch result {
                 case .failure(let error):
@@ -36,7 +36,7 @@ final class AuthenticationStore {
 
     func token(orderRef: String, completion: @escaping (Result<OauthAuthenticationResponse, APIError>) -> Void) {
         return authenticationService.token(orderRef: orderRef)
-            .mapError { APIError.init(urlError: $0) }
+            .mapError { APIError(urlError: $0) }
             .sink(receiveCompletion: { result in
                 switch result {
                 case .failure(let error):
@@ -57,7 +57,7 @@ final class AuthenticationStore {
         }
 
         authenticationService.refresh(refreshToken: refreshToken)
-            .mapError { APIError.init(urlError: $0) }
+            .mapError { APIError(urlError: $0) }
             .sink(receiveCompletion: { result in
                 switch result {
                 case .failure(let error):
