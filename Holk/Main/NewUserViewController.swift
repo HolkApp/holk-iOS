@@ -7,8 +7,7 @@
 //
 
 import UIKit
-import RxCocoa
-import RxSwift
+import Combine
 
 protocol NewUserViewControllerDelegate: AnyObject {
     func newUserViewController(_ viewController: NewUserViewController, add email: String)
@@ -26,9 +25,9 @@ class NewUserViewController: UIViewController {
     private let emailTextField = HolkTextField()
     private var doneButton = HolkButton()
     private var doneButtonBottomConstraint: NSLayoutConstraint!
-    private var bag = DisposeBag()
     private var keyboardEventObserver: KeyboardEventObserver?
     private var user: User
+    private var cancellables = Set<AnyCancellable>()
     
     init(user: User) {
         self.user = user
@@ -87,6 +86,8 @@ class NewUserViewController: UIViewController {
         emailTextField.placeholder = "E-post adress"
         emailTextField.textColor = Color.mainForegroundColor
         emailTextField.tintColor = Color.mainForegroundColor
+        emailTextField.returnKeyType = .continue
+        emailTextField.delegate = self
         emailTextField.placeholderTextColor = Color.placeHolderColor
         
         doneButton.contentVerticalAlignment = .fill
@@ -96,8 +97,13 @@ class NewUserViewController: UIViewController {
             image: UIImage(systemName: "arrow.right.circle")?.withSymbolWeightConfiguration(.ultraLight)
         )
         doneButton.translatesAutoresizingMaskIntoConstraints = false
+        doneButton.isHidden = true
         doneButton.addTarget(self, action: #selector(submit(_:)), for: .touchUpInside)
-        emailTextField.rx.text.orEmpty.map { !EmailValidation.isValid($0) }.bind(to: doneButton.rx.isHidden).disposed(by: bag)
+
+        emailTextField.textPublisher
+            .compactMap({ !EmailValidation.isValid($0) })
+            .assign(to: \.isHidden, on: doneButton)
+            .store(in: &cancellables)
         
         doneButtonBottomConstraint = view.bottomAnchor.constraint(equalTo: doneButton.bottomAnchor, constant: 40)
         let stackViewTopConstraint = stackView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor)
@@ -131,5 +137,15 @@ class NewUserViewController: UIViewController {
         if let email = emailTextField.text {
             delegate?.newUserViewController(self, add: email)
         }
+    }
+}
+
+extension NewUserViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
+        if let text = textField.text, EmailValidation.isValid(text) {
+            addEmail()
+        }
+        return true
     }
 }
