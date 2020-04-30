@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Combine
 
 final class HolkTextField: UITextField {
     // MARK: - Private variables
@@ -256,5 +257,15 @@ private extension HolkTextField {
         } else {
             suffixLabel.removeFromSuperview()
         }
+    }
+}
+
+extension HolkTextField {
+    var textPublisher: AnyPublisher<String, Never> {
+        NotificationCenter.default
+            .publisher(for: UITextField.textDidChangeNotification, object: self)
+            .compactMap { $0.object as? UITextField }
+            .map { $0.text ?? "" }
+            .eraseToAnyPublisher()
     }
 }
