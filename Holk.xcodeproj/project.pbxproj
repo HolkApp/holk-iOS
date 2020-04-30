@@ -34,7 +34,6 @@
 		8F4965E124154DC800DEAFC1 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F4965E024154DC800DEAFC1 /* Montserrat-Bold.ttf */; };
 		8F54C244242C07E000D72FD7 /* Result+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F54C243242C07E000D72FD7 /* Result+extension.swift */; };
 		8F54C246242C1FDC00D72FD7 /* UserInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F54C245242C1FDC00D72FD7 /* UserInfoResponse.swift */; };
-		8F54C249242CFA7D00D72FD7 /* ObservableType+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F54C248242CFA7D00D72FD7 /* ObservableType+extension.swift */; };
 		8F54C24B242FD76E00D72FD7 /* InsuranceDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F54C24A242FD76E00D72FD7 /* InsuranceDetailTableViewCell.swift */; };
 		8F54C24D2431266900D72FD7 /* InsuranceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F54C24C2431266800D72FD7 /* InsuranceDetailViewController.swift */; };
 		8F54C24F24328C0E00D72FD7 /* InsuranceDetailTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F54C24E24328C0E00D72FD7 /* InsuranceDetailTransition.swift */; };
@@ -98,7 +97,6 @@
 		8FD84E6F2270E736009D563D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8FD84E6E2270E736009D563D /* Assets.xcassets */; };
 		8FD84E722270E736009D563D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FD84E702270E736009D563D /* LaunchScreen.storyboard */; };
 		8FD84E7D2270E736009D563D /* HolkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD84E7C2270E736009D563D /* HolkTests.swift */; };
-		8FD84E892271B157009D563D /* APIStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD84E882271B157009D563D /* APIStore.swift */; };
 		8FE52F09239BBDEF001A77F5 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE52F08239BBDEF001A77F5 /* KeychainService.swift */; };
 		8FF0BEFF241AF4E800BB5A6A /* UINavigationController+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF0BEFE241AF4E800BB5A6A /* UINavigationController+extension.swift */; };
 		8FF6E72422A70F6600F6D398 /* Then.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF6E72322A70F6600F6D398 /* Then.swift */; };
@@ -159,7 +157,6 @@
 		8F4965E024154DC800DEAFC1 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		8F54C243242C07E000D72FD7 /* Result+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+extension.swift"; sourceTree = "<group>"; };
 		8F54C245242C1FDC00D72FD7 /* UserInfoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoResponse.swift; sourceTree = "<group>"; };
-		8F54C248242CFA7D00D72FD7 /* ObservableType+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType+extension.swift"; sourceTree = "<group>"; };
 		8F54C24A242FD76E00D72FD7 /* InsuranceDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceDetailTableViewCell.swift; sourceTree = "<group>"; };
 		8F54C24C2431266800D72FD7 /* InsuranceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceDetailViewController.swift; sourceTree = "<group>"; };
 		8F54C24E24328C0E00D72FD7 /* InsuranceDetailTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceDetailTransition.swift; sourceTree = "<group>"; };
@@ -227,7 +224,6 @@
 		8FD84E782270E736009D563D /* HolkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HolkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FD84E7C2270E736009D563D /* HolkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolkTests.swift; sourceTree = "<group>"; };
 		8FD84E7E2270E736009D563D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8FD84E882271B157009D563D /* APIStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIStore.swift; sourceTree = "<group>"; };
 		8FE52F08239BBDEF001A77F5 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		8FF0BEFE241AF4E800BB5A6A /* UINavigationController+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+extension.swift"; sourceTree = "<group>"; };
 		8FF6E72322A70F6600F6D398 /* Then.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Then.swift; sourceTree = "<group>"; };
@@ -383,7 +379,6 @@
 				8FF0BEFE241AF4E800BB5A6A /* UINavigationController+extension.swift */,
 				8F54C243242C07E000D72FD7 /* Result+extension.swift */,
 				8F691D322455C32F0093E965 /* URLRequest+extension.swift */,
-				8F54C248242CFA7D00D72FD7 /* ObservableType+extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -505,7 +500,6 @@
 			children = (
 				8F0D403E227A0AD4000BD840 /* APIError.swift */,
 				8F7C442B23511C5900B54A36 /* APIEndpoint.swift */,
-				8FD84E882271B157009D563D /* APIStore.swift */,
 				8F5D89E024505D23007F1B26 /* APIClient.swift */,
 			);
 			path = Network;
@@ -829,14 +823,12 @@
 				8F2BB8E62332D4EB00E8AE4B /* FontLoader.swift in Sources */,
 				8F3C7DAE23F4AB63002EDA57 /* OnboardingConsentViewController.swift in Sources */,
 				8F5AF02423C6759C00690373 /* MockType.swift in Sources */,
-				8FD84E892271B157009D563D /* APIStore.swift in Sources */,
 				8F9807E92276F10E00584BA9 /* InsuranceCoordinator.swift in Sources */,
 				8F48BE6723315F49004D79D2 /* HolkIllustrationLabel.swift in Sources */,
 				8F54C24B242FD76E00D72FD7 /* InsuranceDetailTableViewCell.swift in Sources */,
 				8FA94157235904BA00844D97 /* Coordinator.swift in Sources */,
 				8FA766CB24411265007EB2A2 /* UIScrollView+extension.swift in Sources */,
 				8FF6E72822B026DB00F6D398 /* InsurancesViewController.swift in Sources */,
-				8F54C249242CFA7D00D72FD7 /* ObservableType+extension.swift in Sources */,
 				8F54C244242C07E000D72FD7 /* Result+extension.swift in Sources */,
 				8F7C442A23511C1200B54A36 /* AuthenticationStore.swift in Sources */,
 				8FA766CD24433AA3007EB2A2 /* UILabel+extension.swift in Sources */,

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RxSwift
 import Combine
 
 protocol OnboardingCoordinating: AnyObject {
@@ -20,7 +19,6 @@ protocol OnboardingCoordinating: AnyObject {
 
 final class OnboardingContainerViewController: UIViewController {
     // MARK: - Private Variables
-    private var bag = DisposeBag()
     private let progressView = HolkProgressBarView()
     private let childNavigationController = UINavigationController()
     private var onboardingViewControllers: [UIViewController] {

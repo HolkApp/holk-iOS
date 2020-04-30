@@ -8,11 +8,6 @@ target 'Holk' do
   pod 'SwiftLint'
   pod "MarkdownKit"
 
-  # Reactive Programming
-  pod 'RxSwift'
-  pod 'RxCocoa'
-  pod 'RxAlamofire'
-
   target 'HolkTests' do
     inherit! :search_paths
     # Pods for testing

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RxSwift
 import MarkdownKit
 
 final class OnboardingConsentViewController: UIViewController {
@@ -18,7 +17,6 @@ final class OnboardingConsentViewController: UIViewController {
     private var storeController: StoreController
     private let insuranceProvider: InsuranceProvider
     private let providerType: InsuranceProviderType
-    private let bag = DisposeBag()
     private let headerLabel = UILabel()
     private let descriptionTextView = UITextView()
     private let bankIDIconView = UIImageView()

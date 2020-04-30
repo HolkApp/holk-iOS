@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-final class InsuranceProviderStore: APIStore {
+final class InsuranceProviderStore {
     // MARK: - Public variables
     var providerList = CurrentValueSubject<[InsuranceProvider], Never>([])
     
@@ -20,8 +20,6 @@ final class InsuranceProviderStore: APIStore {
     init(queue: DispatchQueue, user: User) {
         self.user = user
         insuranceProviderService = InsuranceProviderService(client: APIClient(queue: queue), user: user)
-        
-        super.init()
     }
 
     // TODO: Update this simplify it by having return observable and keep a cache for the value.

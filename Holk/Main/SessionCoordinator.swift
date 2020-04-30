@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import RxSwift
 import Combine
 
 protocol OnboardingContainerCoordinating: AnyObject {
@@ -20,7 +19,6 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
     var storeController: StoreController
     var cancellables = Set<AnyCancellable>()
     
-    private let bag = DisposeBag()
     private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
     
     // MARK: - Init

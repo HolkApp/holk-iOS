@@ -6,7 +6,6 @@
 //  Copyright © 2019 Holk. All rights reserved.
 //
 
-import RxSwift
 import Alamofire
 
 protocol StoreControllerDelegate: AnyObject {

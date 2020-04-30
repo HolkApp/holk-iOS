@@ -1,34 +1,16 @@
 PODS:
   - Alamofire (4.9.0)
   - MarkdownKit (1.5)
-  - RxAlamofire (5.0.0):
-    - RxAlamofire/Core (= 5.0.0)
-  - RxAlamofire/Core (5.0.0):
-    - Alamofire (~> 4.8)
-    - RxSwift (~> 5.0)
-  - RxCocoa (5.0.0):
-    - RxRelay (~> 5)
-    - RxSwift (~> 5)
-  - RxRelay (5.0.0):
-    - RxSwift (~> 5)
-  - RxSwift (5.0.0)
   - SwiftLint (0.35.0)
 
 DEPENDENCIES:
   - Alamofire
   - MarkdownKit
-  - RxAlamofire
-  - RxCocoa
-  - RxSwift
   - SwiftLint
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Alamofire
-    - RxAlamofire
-    - RxCocoa
-    - RxRelay
-    - RxSwift
     - SwiftLint
   trunk:
     - MarkdownKit
@@ -36,12 +18,8 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: afc3e7c6db61476cb45cdd23fed06bad03bbc321
   MarkdownKit: 379028e9cd3ebf05ccac87205cd9aead446159d4
-  RxAlamofire: e7875a012aff55345672d0f70a2a9cd6aeb0f211
-  RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
-  RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
-  RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
   SwiftLint: 5553187048b900c91aa03552807681bb6b027846
 
-PODFILE CHECKSUM: f7a0262c770a935e2acf686e5f138f1051035725
+PODFILE CHECKSUM: a74df8928196e4a2d03731adcf88d4c216e249bf
 
 COCOAPODS: 1.8.1
