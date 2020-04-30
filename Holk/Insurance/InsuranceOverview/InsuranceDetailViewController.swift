@@ -32,6 +32,12 @@ class InsuranceDetailViewController: UIViewController {
         setup()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        navigationController?.navigationBar.barTintColor = Color.secondaryBackgroundColor
+    }
+
     private func setup() {
         navigationItem.largeTitleDisplayMode = .never
         view.backgroundColor = Color.secondaryBackgroundColor

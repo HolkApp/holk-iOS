@@ -86,7 +86,6 @@ final class SessionCoordinator: NSObject, Coordinator, UINavigationControllerDel
             switch result {
             case .success:
                 self.storeController.insuranceProviderStore.fetchInsuranceProviders { _ in }
-//                self.storeController.insuranceProviderStore.loadInsuranceIssuers()
                 self.fetchUserInfo()
             case .failure(let error):
                 self.showError(error, requestName: "authorize/oauth/token")

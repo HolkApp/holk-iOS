@@ -24,7 +24,6 @@ class InsuranceCoordinator: NSObject, Coordinator, UINavigationControllerDelegat
     }
     // MARK: - Public Methods
     func start() {
-
         let layout = UICollectionViewCompositionalLayout.generateInsuranceLayout()
         let insurancesViewController = InsurancesViewController(storeController: storeController, collectionViewLayout: layout)
         insurancesViewController.coordinator = self
