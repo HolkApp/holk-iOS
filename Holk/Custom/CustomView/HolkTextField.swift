@@ -179,14 +179,6 @@ final class HolkTextField: UITextField {
         return size
     }
     
-     override func deleteBackward() {
-//        let wasEmpty = (text ?? "").isEmpty
-        super.deleteBackward()
-//        if wasEmpty, (text ?? "").isEmpty {
-//            sendActions(for: .editingDidDeleteOnEmpty)
-//        }
-    }
-    
      override func tintColorDidChange() {
         super.tintColorDidChange()
         

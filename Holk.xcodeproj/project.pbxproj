@@ -75,7 +75,6 @@
 		8F858A4723CB377B006B416A /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F858A4623CB377B006B416A /* Parser.swift */; };
 		8F858A4B23CD1470006B416A /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F858A4A23CD1470006B416A /* Poppins-Regular.ttf */; };
 		8F858A4D23CD16FD006B416A /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F858A4C23CD16FC006B416A /* Poppins-SemiBold.ttf */; };
-		8F858A5323CE6381006B416A /* PollingTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F858A5223CE6381006B416A /* PollingTask.swift */; };
 		8F9807E722722D5E00584BA9 /* StoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9807E622722D5E00584BA9 /* StoreController.swift */; };
 		8F9807E92276F10E00584BA9 /* InsuranceCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9807E82276F10E00584BA9 /* InsuranceCoordinator.swift */; };
 		8F9F6D9A23DA41A900B1727E /* HolkProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9F6D9923DA41A900B1727E /* HolkProgressBarView.swift */; };
@@ -201,7 +200,6 @@
 		8F858A4623CB377B006B416A /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		8F858A4A23CD1470006B416A /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		8F858A4C23CD16FC006B416A /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
-		8F858A5223CE6381006B416A /* PollingTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollingTask.swift; sourceTree = "<group>"; };
 		8F9807E622722D5E00584BA9 /* StoreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreController.swift; sourceTree = "<group>"; };
 		8F9807E82276F10E00584BA9 /* InsuranceCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceCoordinator.swift; sourceTree = "<group>"; };
 		8F9F6D9923DA41A900B1727E /* HolkProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolkProgressBarView.swift; sourceTree = "<group>"; };
@@ -390,14 +388,6 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		8F858A5123CE6370006B416A /* Task */ = {
-			isa = PBXGroup;
-			children = (
-				8F858A5223CE6381006B416A /* PollingTask.swift */,
-			);
-			path = Task;
-			sourceTree = "<group>";
-		};
 		8F9C83D822A313EE005BB336 /* InsuranceOverview */ = {
 			isa = PBXGroup;
 			children = (
@@ -526,7 +516,6 @@
 			children = (
 				8F5D89E32450EAE3007F1B26 /* Service */,
 				8FD84E872270E7C9009D563D /* Network */,
-				8F858A5123CE6370006B416A /* Task */,
 				8F9807E622722D5E00584BA9 /* StoreController.swift */,
 				8F25CAA0233E981800DC3B97 /* User.swift */,
 				8F7C442923511C1200B54A36 /* AuthenticationStore.swift */,
@@ -893,7 +882,6 @@
 				8F5D89E724534AB8007F1B26 /* UserStore.swift in Sources */,
 				8F5D89E52450F11C007F1B26 /* AuthenticationService.swift in Sources */,
 				8FA766CF24435607007EB2A2 /* FontStyleGuide.swift in Sources */,
-				8F858A5323CE6381006B416A /* PollingTask.swift in Sources */,
 				8FD84E682270E732009D563D /* AppDelegate.swift in Sources */,
 				8F4965DB2412F17E00DEAFC1 /* HolkRingChartIconView.swift in Sources */,
 				8F691D38245760310093E965 /* InsuranceService.swift in Sources */,
