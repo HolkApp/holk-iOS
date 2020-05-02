@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class InsuranceProtectionCoordinator: Coordinator {
+final class InsuranceProtectionCoordinator {
     // MARK: - Public Properties
     var navController: UINavigationController
     // MARK: - Init

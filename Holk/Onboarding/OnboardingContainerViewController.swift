@@ -32,7 +32,7 @@ final class OnboardingContainerViewController: UIViewController {
 
     // MARK: - Public Variables
     var storeController: StoreController
-    weak var coordinator: SessionCoordinator?
+    weak var coordinator: OnboardingCoordinator?
     
     init(storeController: StoreController) {
         self.storeController = storeController
@@ -106,8 +106,9 @@ final class OnboardingContainerViewController: UIViewController {
         )
         alert.addAction(
             UIAlertAction(title: "OK", style: .default, handler: { [weak self] _ in
-                self?.dismiss(animated: true) {
-                    self?.dismiss(animated: true)
+                guard let self = self else { return }
+                alert.dismiss(animated: true) {
+                    self.coordinator?.onboardingStopped(self)
                 }
             })
         )
@@ -202,7 +203,7 @@ extension OnboardingContainerViewController: OnboardingCoordinating {
     }
     
     func finishOnboarding() {
-        coordinator?.onboardingFinished(coordinator: self)
+        coordinator?.onboardingFinished(self)
     }
 
     private func showInsuranceAggregatedConfirmation() {

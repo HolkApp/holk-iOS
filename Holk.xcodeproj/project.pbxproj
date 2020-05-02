@@ -10,6 +10,9 @@
 		8F0D403F227A0AD4000BD840 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0D403E227A0AD4000BD840 /* APIError.swift */; };
 		8F0D4041227A0D68000BD840 /* OnboardingInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0D4040227A0D68000BD840 /* OnboardingInfoViewController.swift */; };
 		8F16DE66245A127000EFC1BD /* EmailValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F16DE65245A127000EFC1BD /* EmailValidation.swift */; };
+		8F16DE68245B3D8500EFC1BD /* ShellCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F16DE67245B3D8500EFC1BD /* ShellCoordinator.swift */; };
+		8F16DE6A245CE43700EFC1BD /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F16DE69245CE43700EFC1BD /* OnboardingCoordinator.swift */; };
+		8F16DE6C245DB5CB00EFC1BD /* IntegrateInsuranceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F16DE6B245DB5CB00EFC1BD /* IntegrateInsuranceResponse.swift */; };
 		8F25CA992337AAC100DC3B97 /* FontAwsome+UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F25CA982337AAC100DC3B97 /* FontAwsome+UIExtensions.swift */; };
 		8F25CAA1233E981900DC3B97 /* OauthAuthenticationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F25CA9F233E981800DC3B97 /* OauthAuthenticationResponse.swift */; };
 		8F25CAA2233E981900DC3B97 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F25CAA0233E981800DC3B97 /* User.swift */; };
@@ -86,7 +89,6 @@
 		8FA8F10E232D377F00670471 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8FA8F10D232D377F00670471 /* Color.xcassets */; };
 		8FA8F1122330148300670471 /* FontAwesome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA8F1112330148300670471 /* FontAwesome.swift */; };
 		8FA941552353ADC200844D97 /* SessionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA941542353ADC200844D97 /* SessionCoordinator.swift */; };
-		8FA94157235904BA00844D97 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA94156235904BA00844D97 /* Coordinator.swift */; };
 		8FACE89623E767A900DCE741 /* UIButton+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FACE89523E767A900DCE741 /* UIButton+extension.swift */; };
 		8FC296BB23E237D0002A39D1 /* LandingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC296BA23E237D0002A39D1 /* LandingPageViewController.swift */; };
 		8FC296BE23E7614D002A39D1 /* LandingInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC296BD23E7614D002A39D1 /* LandingInfoViewController.swift */; };
@@ -133,6 +135,9 @@
 		8F0D403E227A0AD4000BD840 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		8F0D4040227A0D68000BD840 /* OnboardingInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingInfoViewController.swift; sourceTree = "<group>"; };
 		8F16DE65245A127000EFC1BD /* EmailValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidation.swift; sourceTree = "<group>"; };
+		8F16DE67245B3D8500EFC1BD /* ShellCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShellCoordinator.swift; sourceTree = "<group>"; };
+		8F16DE69245CE43700EFC1BD /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
+		8F16DE6B245DB5CB00EFC1BD /* IntegrateInsuranceResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntegrateInsuranceResponse.swift; sourceTree = "<group>"; };
 		8F25CA982337AAC100DC3B97 /* FontAwsome+UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FontAwsome+UIExtensions.swift"; sourceTree = "<group>"; };
 		8F25CA9F233E981800DC3B97 /* OauthAuthenticationResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OauthAuthenticationResponse.swift; path = Holk/Onboarding/Model/OauthAuthenticationResponse.swift; sourceTree = SOURCE_ROOT; };
 		8F25CAA0233E981800DC3B97 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Holk/Stores/User.swift; sourceTree = SOURCE_ROOT; };
@@ -209,7 +214,6 @@
 		8FA8F10D232D377F00670471 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		8FA8F1112330148300670471 /* FontAwesome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontAwesome.swift; sourceTree = "<group>"; };
 		8FA941542353ADC200844D97 /* SessionCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCoordinator.swift; sourceTree = "<group>"; };
-		8FA94156235904BA00844D97 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		8FACE89523E767A900DCE741 /* UIButton+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+extension.swift"; sourceTree = "<group>"; };
 		8FC296BA23E237D0002A39D1 /* LandingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingPageViewController.swift; sourceTree = "<group>"; };
 		8FC296BD23E7614D002A39D1 /* LandingInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingInfoViewController.swift; sourceTree = "<group>"; };
@@ -564,6 +568,7 @@
 		8FF6E73022B5340900F6D398 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8F16DE6B245DB5CB00EFC1BD /* IntegrateInsuranceResponse.swift */,
 				8F25CA9F233E981800DC3B97 /* OauthAuthenticationResponse.swift */,
 				8F66F2FB23BBFB580083DC3A /* BankIDAuthenticationResponse.swift */,
 				8F5D89CF244B3569007F1B26 /* ScrapingStatusResponse.swift */,
@@ -591,7 +596,8 @@
 		8FF6E73222B534F800F6D398 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				8FA94156235904BA00844D97 /* Coordinator.swift */,
+				8F16DE67245B3D8500EFC1BD /* ShellCoordinator.swift */,
+				8F16DE69245CE43700EFC1BD /* OnboardingCoordinator.swift */,
 				8FA941542353ADC200844D97 /* SessionCoordinator.swift */,
 				8FC296BC23E75D08002A39D1 /* LandingPage */,
 				8F6546702316FE190053B3F8 /* NewUserViewController.swift */,
@@ -809,6 +815,7 @@
 				8F3305A82401F27400E9B443 /* HolkRingChartLayer.swift in Sources */,
 				8F6546712316FE190053B3F8 /* NewUserViewController.swift in Sources */,
 				8F9807E722722D5E00584BA9 /* StoreController.swift in Sources */,
+				8F16DE6A245CE43700EFC1BD /* OnboardingCoordinator.swift in Sources */,
 				8FF6E75422B9634400F6D398 /* HolkSegmentedControl.swift in Sources */,
 				8F5D89D5244B364B007F1B26 /* ProviderStatus.swift in Sources */,
 				8FC296BB23E237D0002A39D1 /* LandingPageViewController.swift in Sources */,
@@ -826,9 +833,9 @@
 				8F9807E92276F10E00584BA9 /* InsuranceCoordinator.swift in Sources */,
 				8F48BE6723315F49004D79D2 /* HolkIllustrationLabel.swift in Sources */,
 				8F54C24B242FD76E00D72FD7 /* InsuranceDetailTableViewCell.swift in Sources */,
-				8FA94157235904BA00844D97 /* Coordinator.swift in Sources */,
 				8FA766CB24411265007EB2A2 /* UIScrollView+extension.swift in Sources */,
 				8FF6E72822B026DB00F6D398 /* InsurancesViewController.swift in Sources */,
+				8F16DE6C245DB5CB00EFC1BD /* IntegrateInsuranceResponse.swift in Sources */,
 				8F54C244242C07E000D72FD7 /* Result+extension.swift in Sources */,
 				8F7C442A23511C1200B54A36 /* AuthenticationStore.swift in Sources */,
 				8FA766CD24433AA3007EB2A2 /* UILabel+extension.swift in Sources */,
@@ -857,6 +864,7 @@
 				8F4965DF24130EA200DEAFC1 /* FloatingPoint+extension.swift in Sources */,
 				8F3305A423FB3EEA00E9B443 /* DateFormatter+extension.swift in Sources */,
 				8F691D3624562ED30093E965 /* AddUserEmailRequest.swift in Sources */,
+				8F16DE68245B3D8500EFC1BD /* ShellCoordinator.swift in Sources */,
 				8F858A4723CB377B006B416A /* Parser.swift in Sources */,
 				8F3C7DAC23F3439A002EDA57 /* OnboardingInsuranceCell.swift in Sources */,
 				8FF6E72422A70F6600F6D398 /* Then.swift in Sources */,

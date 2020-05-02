@@ -10,7 +10,7 @@ import UIKit
 
 class OnboardingInfoViewController: UIViewController {
     // MARK: - Public variables
-    weak var coordinator: SessionCoordinator?
+    weak var coordinator: ShellCoordinator?
     // MARK: - Private variables
     private var scrollView = UIScrollView()
     private var titleLabel = UILabel()

@@ -12,7 +12,7 @@ protocol InsuranceCoordinatorDelegate: AnyObject {
     func logout(_ coordinator: InsuranceCoordinator)
 }
 
-class InsuranceCoordinator: NSObject, Coordinator, UINavigationControllerDelegate {
+class InsuranceCoordinator: NSObject, UINavigationControllerDelegate {
     // MARK: - Public Properties
     var navController: UINavigationController
     var storeController: StoreController

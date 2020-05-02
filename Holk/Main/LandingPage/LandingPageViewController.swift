@@ -16,7 +16,7 @@ final class LandingPageViewController: UIPageViewController {
     private var pendingIndex: Int?
     
     // MARK: - Public Variables
-    weak var coordinator: SessionCoordinator?
+    weak var coordinator: ShellCoordinator?
     var orderedViewControllers = [UIViewController]() {
         didSet {
             viewControllersColors = orderedViewControllers.compactMap { $0.view.backgroundColor }

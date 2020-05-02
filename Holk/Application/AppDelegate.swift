@@ -12,15 +12,15 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var coordinator: SessionCoordinator?
+    var coordinator: ShellCoordinator?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
-        coordinator = SessionCoordinator(navController: UINavigationController())
+
+        coordinator = ShellCoordinator()
         coordinator?.start()
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = coordinator?.navController
+        window?.rootViewController = coordinator?.rootViewController
         window?.makeKeyAndVisible()
         
         // TODO: Add something for register the appearance
