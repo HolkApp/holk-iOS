@@ -29,8 +29,11 @@ extension UIImage {
 
         do { //Use saved file, if possible
             let data = try Data(contentsOf: newPath!)
-            let image = UIImage(data: data)
-            completion?(image)
+            if let image = UIImage(data: data) {
+                completion?(image)
+            } else {
+                throw CocoaError(.coderInvalidValue)
+            }
         } catch {
             return Alamofire.download(imageUrlString, to: destination).validate().responseData { response in
                 if let data = response.result.value {
