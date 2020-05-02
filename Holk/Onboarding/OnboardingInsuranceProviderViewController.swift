@@ -36,6 +36,20 @@ final class OnboardingInsuranceProviderViewController: UIViewController {
         
         setup()
     }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        let listNumber =  storeController.insuranceProviderStore.providerList.value.count
+        let listContentHeight = CGFloat(listNumber * 72)
+        if tableView.frame.height > listContentHeight {
+            tableView.contentInset.top = tableView.frame.height - listContentHeight + 8
+            tableView.isScrollEnabled = false
+        } else {
+            tableView.contentInset.top = 8
+            tableView.isScrollEnabled = true
+        }
+    }
     
     private func setup() {
         setupLayout()
@@ -55,11 +69,12 @@ final class OnboardingInsuranceProviderViewController: UIViewController {
         tableView.backgroundColor = Color.mainBackgroundColor
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.contentInset = .init(top: 8, left: 0, bottom: 8, right: 0)
 
         loadInsuranceProviderListIfNeeded()
 
         storeController.insuranceProviderStore.providerList.sink { [weak self] list in
-            self?.tableViewHeightAnchor?.constant = list.count * 72 > 600 ? 600 : CGFloat(list.count * 72)
+            self?.view.setNeedsLayout()
             self?.tableView.reloadData()
         }.store(in: &cancellables)
     }
@@ -70,9 +85,6 @@ final class OnboardingInsuranceProviderViewController: UIViewController {
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
         headerLabel.translatesAutoresizingMaskIntoConstraints = false
-
-        let tableViewHeightAnchor = tableView.heightAnchor.constraint(equalToConstant: 0)
-        self.tableViewHeightAnchor = tableViewHeightAnchor
         
         NSLayoutConstraint.activate([
             headerLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
@@ -81,7 +93,7 @@ final class OnboardingInsuranceProviderViewController: UIViewController {
             
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableViewHeightAnchor,
+            tableView.topAnchor.constraint(lessThanOrEqualTo: headerLabel.bottomAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
