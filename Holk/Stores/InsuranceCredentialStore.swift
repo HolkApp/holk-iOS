@@ -25,16 +25,17 @@ final class InsuranceCredentialStore {
     
     func addInsurance(_ provider: InsuranceProvider, personalNumber: String) {
         insuranceCredentialService
-            .integrateInsurance(providerName: "FOLKSAM", personalNumber: personalNumber)
-            .sink(receiveCompletion: { result in
+            .integrateInsurance(providerName: provider.internalName, personalNumber: personalNumber)
+            .sink(receiveCompletion: { [weak self] result in
                 switch result {
                 case .failure(let error):
                     print(error)
+                    // TODO: Handle the error
                 case .finished:
                     break
                 }
-            }, receiveValue: { [weak self] sessionID in
-                self?.pollInsuranceStatus(sessionID)
+            }, receiveValue: { [weak self] sessionIDResponse in
+                self?.pollInsuranceStatus(sessionIDResponse.scrapeSessionId.uuidString)
             })
             .store(in: &cancellables)
     }
@@ -42,9 +43,11 @@ final class InsuranceCredentialStore {
     private func pollInsuranceStatus(_ sessionID: String) {
         getInsuranceStatus(sessionID)
             .sink(
-                receiveCompletion: { result in
+                receiveCompletion: { [weak self] result in
                     switch result {
                     case .failure(let error):
+                        // TODO: Handle the error
+                        self?.insuranceStatus.send(.completed)
                         print(error)
                     case .finished:
                         break
@@ -68,7 +71,7 @@ final class InsuranceCredentialStore {
             .eraseToAnyPublisher()
     }
     
-    private func integrateInsurance(providerName: String, personalNumber: String) -> AnyPublisher<String, APIError> {
+    private func integrateInsurance(providerName: String, personalNumber: String) -> AnyPublisher<IntegrateInsuranceResponse, APIError> {
         return insuranceCredentialService
             .integrateInsurance(providerName: providerName, personalNumber: personalNumber)
             .mapError { APIError(urlError: $0) }
