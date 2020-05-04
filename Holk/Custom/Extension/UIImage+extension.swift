@@ -39,6 +39,8 @@ extension UIImage {
                 if let data = response.result.value {
                     let image = UIImage(data: data)
                     completion?(image)
+                } else {
+                    completion?(nil)
                 }
             }
         }
