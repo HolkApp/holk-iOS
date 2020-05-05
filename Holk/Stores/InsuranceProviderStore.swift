@@ -10,7 +10,7 @@ import Combine
 
 final class InsuranceProviderStore {
     // MARK: - Public variables
-    var providerList = CurrentValueSubject<[InsuranceProvider], Never>([])
+    var providerList = CurrentValueSubject<[InsuranceProvider]?, Never>(nil)
     
     // MARK: - Private variables
     private let user: User

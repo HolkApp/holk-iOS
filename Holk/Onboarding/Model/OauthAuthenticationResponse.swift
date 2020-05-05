@@ -37,7 +37,7 @@ extension OauthAuthenticationResponse {
         tokenType = try container.decode(String.self, forKey: .tokenType)
         scope = try container.decode(String.self, forKey: .scope)
         jti = try container.decode(String.self, forKey: .jti)
-        newUser = try container.decode(Bool.self, forKey: .newUser)
+        newUser = (try? container.decode(Bool.self, forKey: .newUser)) ?? false
         expiresInSeconds = try container.decode(Int.self, forKey: .expiresInSeconds)
     }
 }

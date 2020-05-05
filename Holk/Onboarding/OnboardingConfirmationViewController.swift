@@ -66,13 +66,13 @@ final class OnboardingConfirmationViewController: UIViewController {
         descriptionLabel.text = String(format: "We found your insurance at %@", addedInsurance?.insuranceProvider.displayName ?? "")
         
         cardView.backgroundColor = .clear
-        cardView.layer.shadowRadius = 15
-        cardView.layer.shadowOffset = CGSize(width: 0, height: 8)
-        cardView.layer.shadowColor = UIColor.black.cgColor
-        cardView.layer.shadowOpacity = 0.08
         cardView.layoutMargins = .init(top: 16, left: 32, bottom: 16, right: 32)
         
         cardContentView.backgroundColor = Color.mainBackgroundColor
+        cardContentView.layer.shadowRadius = 15
+        cardContentView.layer.shadowOffset = CGSize(width: 0, height: 8)
+        cardContentView.layer.shadowColor = UIColor.black.cgColor
+        cardContentView.layer.shadowOpacity = 0.08
         
         insuranceLabel.font = Font.semiBold(.title)
         insuranceLabel.textColor = Color.mainForegroundColor
@@ -138,7 +138,7 @@ final class OnboardingConfirmationViewController: UIViewController {
             descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
             descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
             
-            cardView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 56),
+            cardView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 20),
             cardView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             cardView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             cardViewBottomConstraint,

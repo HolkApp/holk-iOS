@@ -58,8 +58,10 @@ final class ShellCoordinator {
             }
         case .updated:
             showLoading()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                self.showSession()
+            storeController.userStore.userInfo { _ in }
+            storeController.insuranceProviderStore.fetchInsuranceProviders { _ in }
+            storeController.insuranceStore.fetchAllInsurances { [weak self] _ in
+                self?.showSession()
             }
         }
     }

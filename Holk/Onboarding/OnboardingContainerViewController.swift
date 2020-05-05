@@ -18,6 +18,10 @@ protocol OnboardingCoordinating: AnyObject {
 }
 
 final class OnboardingContainerViewController: UIViewController {
+    // MARK: - Public Variables
+    var storeController: StoreController
+    weak var coordinator: OnboardingCoordinator?
+    
     // MARK: - Private Variables
     private let progressView = HolkProgressBarView()
     private let childNavigationController = UINavigationController()
@@ -29,10 +33,6 @@ final class OnboardingContainerViewController: UIViewController {
     private var providerType: InsuranceProviderType?
     private var insuranceProvider: InsuranceProvider?
     private var cancellables = Set<AnyCancellable>()
-
-    // MARK: - Public Variables
-    var storeController: StoreController
-    weak var coordinator: OnboardingCoordinator?
     
     init(storeController: StoreController) {
         self.storeController = storeController

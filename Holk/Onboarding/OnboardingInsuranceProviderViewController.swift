@@ -40,7 +40,7 @@ final class OnboardingInsuranceProviderViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        let listNumber =  storeController.insuranceProviderStore.providerList.value.count
+        let listNumber =  storeController.insuranceProviderStore.providerList.value?.count ?? 0
         let listContentHeight = CGFloat(listNumber * 72)
         if tableView.frame.height > listContentHeight {
             tableView.contentInset.top = tableView.frame.height - listContentHeight + 8
@@ -99,11 +99,8 @@ final class OnboardingInsuranceProviderViewController: UIViewController {
     }
     
     private func loadInsuranceProviderListIfNeeded() {
-        switch storeController.insuranceProviderStore.providerList.value.count {
-        case 0:
+        if storeController.insuranceProviderStore.providerList.value == nil {
             storeController.insuranceProviderStore.fetchInsuranceProviders { _ in }
-        default:
-            return
         }
     }
     
@@ -114,35 +111,30 @@ final class OnboardingInsuranceProviderViewController: UIViewController {
 
 extension OnboardingInsuranceProviderViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let list = storeController.insuranceProviderStore.providerList.value
-        select(list[indexPath.item])
+        if let list = storeController.insuranceProviderStore.providerList.value {
+            select(list[indexPath.item])
+        }
     }
 }
 
 extension OnboardingInsuranceProviderViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let list = storeController.insuranceProviderStore.providerList.value
-        switch list.count {
-        case 0:
-            return 1
-        default:
-            return list.count
-        }
+        return list?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        let list = storeController.insuranceProviderStore.providerList.value
-        switch list.count {
-        case 0:
-            cell.textLabel?.text = "loading"
-        default:
+        if let list = storeController.insuranceProviderStore.providerList.value {
             if let onboardingInsuranceCell = cell as? OnboardingInsuranceCell {
                 let provider = list[indexPath.item]
+                onboardingInsuranceCell.configure(title: provider.displayName)
                 UIImage.imageWithUrl(imageUrlString: provider.logoUrl) { image in
                     onboardingInsuranceCell.configure(title: provider.displayName, image: image)
                 }
             }
+        } else {
+            cell.textLabel?.text = "loading"
         }
         return cell
     }

@@ -113,7 +113,7 @@ final class OnboardingInsuranceCell: UITableViewCell {
         comingUpLabel.textColor = isUpcoming ? Color.placeHolderColor : Color.mainForegroundColor
     }
     
-    func configure(title: String, image: UIImage?, isUpcoming: Bool = false) {
+    func configure(title: String, image: UIImage? = nil, isUpcoming: Bool = false) {
         titleLabel.text = title
         iconView.image = image
         self.isUpcoming = isUpcoming
