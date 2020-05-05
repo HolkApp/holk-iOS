@@ -84,6 +84,9 @@ final class InsurancesViewController: UICollectionViewController {
     // TODO: Trigger add more flow
     @objc private func addMoreTapped(sender: UIButton) {
         numberOfInsurances += 1
+
+        let addInsuranceContainerViewController = AddInsuranceContainerViewController(storeController: storeController)
+        present(addInsuranceContainerViewController, animated: true)
     }
 
     @objc private func profileTapped(sender: UIButton) {
