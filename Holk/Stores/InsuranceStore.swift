@@ -12,6 +12,7 @@ import Combine
 final class InsuranceStore {
     // MARK: - Public variables
     var allInsuranceResponse = CurrentValueSubject<AllInsuranceResponse?, Never>(nil)
+    var insuranceList = CurrentValueSubject<[Insurance], Never>([])
 
     // MARK: - Private variables
     private let user: User
@@ -34,6 +35,7 @@ final class InsuranceStore {
             }
         }) { [weak self] allInsuranceResponse in
             self?.allInsuranceResponse.value = allInsuranceResponse
+            self?.insuranceList.value = allInsuranceResponse.insuranceList
             completion(.success(allInsuranceResponse))
         }.store(in: &cancellables)
     }

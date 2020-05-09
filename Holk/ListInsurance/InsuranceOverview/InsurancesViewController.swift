@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Combine
 
 final class InsurancesViewController: UICollectionViewController {
     // MARK: - Public variables
@@ -15,7 +16,13 @@ final class InsurancesViewController: UICollectionViewController {
     weak var coordinator: InsuranceCoordinator?
 
     // MARK: - Private variables
+    private var insurnaceList: [Insurance] {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
     private let addMorebutton = HolkButton()
+    private var cancellables = Set<AnyCancellable>()
 
     // TODO: Remove the mock
     var numberOfInsurances = 1 {
@@ -27,6 +34,7 @@ final class InsurancesViewController: UICollectionViewController {
 
     init(storeController: StoreController, collectionViewLayout: UICollectionViewLayout) {
         self.storeController = storeController
+        insurnaceList = storeController.insuranceStore.insuranceList.value
 
         super.init(collectionViewLayout: collectionViewLayout)
     }
@@ -39,6 +47,9 @@ final class InsurancesViewController: UICollectionViewController {
         super.viewDidLoad()
         
         setup()
+        storeController.insuranceStore.insuranceList.sink { [weak self] in
+            self?.insurnaceList = $0
+        }.store(in: &cancellables)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -83,7 +94,7 @@ final class InsurancesViewController: UICollectionViewController {
 
     // TODO: Trigger add more flow
     @objc private func addMoreTapped(sender: UIButton) {
-        numberOfInsurances += 1
+//        numberOfInsurances += 1
 
         let addInsuranceContainerViewController = AddInsuranceContainerViewController(storeController: storeController)
         present(addInsuranceContainerViewController, animated: true)
@@ -104,7 +115,7 @@ extension InsurancesViewController {
         if section == 0 {
             return 2
         } else {
-            return numberOfInsurances
+            return insurnaceList.count
         }
     }
 
@@ -123,9 +134,9 @@ extension InsurancesViewController {
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier:
                         InsuranceCollectionViewCell.identifier, for: indexPath)
-            // TODO: Configure this
             if let insuranceTableViewCell = cell as? InsuranceCollectionViewCell {
-                insuranceTableViewCell.configure(nil)
+                let insurance = insurnaceList[indexPath.item]
+                insuranceTableViewCell.configure(insurance)
             }
             return cell
         }
@@ -149,8 +160,8 @@ extension InsurancesViewController {
                 present(UINavigationController(rootViewController: viewController), animated: true)
             }
         } else {
-            let insurance = AllInsuranceResponse.mockInsurnace
             selectedIndexPath = indexPath
+            let insurance = insurnaceList[indexPath.item]
             coordinator?.showInsurnaceDetail(insurance)
         }
     }
