@@ -51,10 +51,8 @@ final class ShellCoordinator {
             }
         case .shouldRefresh:
             showLoading()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                self.storeController.authenticationStore.refresh { [weak self] _ in
-                    self?.showSession()
-                }
+            self.storeController.authenticationStore.refresh { [weak self] _ in
+                self?.setupViewController()
             }
         case .updated:
             showLoading()
