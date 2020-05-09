@@ -1,23 +1,15 @@
-//
-//  AllInsuranceResponse.swift
-//  Holk
-//
-//  Created by 张梦皓 on 2020-02-17.
-//  Copyright © 2020 Holk. All rights reserved.
-//
-
 import Foundation
 
 extension AllInsuranceResponse {
     static let mockInsurnace: Insurance = {
-        let provider = InsuranceProvider(_description: "mock provider", displayName: "Folksam", insuranceIssuerStatus: .available, internalName: "Folksam", logoUrl: "", websiteUrl: "")
+        let provider = InsuranceProvider(description: "mock provider", displayName: "Folksam", insuranceIssuerStatus: .available, internalName: "Folksam", logoUrl: "", symbolUrl: "", websiteUrl: "")
         return Insurance(id: "Mock", insuranceProvider: provider, insuranceType: "test", issuerReference: "test", ssn: "199208253915", startDate: Date(), endDate: Date(), username: "Mock user name")
     }()
 }
 
 struct AllInsuranceResponse: Codable {
     let insuranceList: [Insurance]
-    let lastUpdated: Date
+    let lastUpdated: Date?
     
     private enum CodingKeys: String, CodingKey {
         case insuranceList = "insuranceList"
@@ -28,8 +20,9 @@ struct AllInsuranceResponse: Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         insuranceList = try container.decode([Insurance].self, forKey: .insuranceList)
-        let lastUpdatedString = try container.decode(String.self, forKey: .lastUpdated)
-        lastUpdated = DateFormatter.simpleDateFormatter.date(from: lastUpdatedString) ?? Date()
+        let lastUpdatedString = try? container.decode(String.self, forKey: .lastUpdated)
+        lastUpdated = lastUpdatedString.flatMap { DateFormatter.simpleDateFormatter.date(from: $0)
+        }
     }
 }
 
@@ -46,7 +39,6 @@ struct Insurance: Codable {
     }
 
     let id: String
-//    let insuranceProvider: InsuranceIssuer
     let insuranceProvider: InsuranceProvider
     let insuranceType: String
     let issuerReference: String

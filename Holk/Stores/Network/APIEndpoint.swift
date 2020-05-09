@@ -17,7 +17,7 @@ enum Endpoint: String {
     case user = "authorize/user"
     case insurancesIssuers = "insurance/scraping/provider/status"
     case allInsurances = "insurance/user"
-    case addInsurance = "insurance/scraping/%@/ssn/%@/scrape"
+    case addInsurance = "insurance/scraping/%@"
     case scrapingStatus = "insurance/scraping/status/id/%@"
     
     var url: URL {

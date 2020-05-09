@@ -29,9 +29,9 @@ class InsuranceCredentialService {
             .eraseToAnyPublisher()
     }
 
-    func integrateInsurance(providerName: String, personalNumber: String) -> AnyPublisher<IntegrateInsuranceResponse, URLError> {
+    func integrateInsurance(providerName: String) -> AnyPublisher<IntegrateInsuranceResponse, URLError> {
         return client
-            .httpRequest(method: .post, url: Endpoint.addInsurance.url([providerName, personalNumber]), headers: authorizationBearerHeader)
+            .httpRequest(method: .post, url: Endpoint.addInsurance.url([providerName]), headers: authorizationBearerHeader)
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }

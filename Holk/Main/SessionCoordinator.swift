@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Combine
 
 final class SessionCoordinator: NSObject, UINavigationControllerDelegate {
     // MARK: - Public Properties
@@ -16,8 +15,6 @@ final class SessionCoordinator: NSObject, UINavigationControllerDelegate {
     // MARK: - Private Properties
     private var presenterViewController: UIViewController
     private var storeController: StoreController
-    private var cancellables = Set<AnyCancellable>()
-
     
     // MARK: - Init
     init(presenterViewController: UIViewController, storeController: StoreController) {

@@ -215,7 +215,7 @@ extension AddInsuranceContainerViewController: AddInsuranceConsentViewController
         progressSpinnerToCenter()
         storeController
             .insuranceCredentialStore
-            .addInsurance(insuranceProvider, personalNumber: storeController.user.personalNumber)
+            .addInsurance(insuranceProvider)
         storeController
             .insuranceCredentialStore
             .insuranceStatus.sink { [weak self] scrapingStatus in

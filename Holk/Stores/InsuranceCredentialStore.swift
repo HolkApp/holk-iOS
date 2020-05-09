@@ -23,9 +23,9 @@ final class InsuranceCredentialStore {
         insuranceCredentialService = InsuranceCredentialService(client: APIClient(queue: queue), user: user)
     }
     
-    func addInsurance(_ provider: InsuranceProvider, personalNumber: String) {
+    func addInsurance(_ provider: InsuranceProvider) {
         insuranceCredentialService
-            .integrateInsurance(providerName: provider.internalName, personalNumber: personalNumber)
+            .integrateInsurance(providerName: provider.internalName)
             .sink(receiveCompletion: { [weak self] result in
                 switch result {
                 case .failure(let error):
@@ -71,9 +71,9 @@ final class InsuranceCredentialStore {
             .eraseToAnyPublisher()
     }
     
-    private func integrateInsurance(providerName: String, personalNumber: String) -> AnyPublisher<IntegrateInsuranceResponse, APIError> {
+    private func integrateInsurance(providerName: String) -> AnyPublisher<IntegrateInsuranceResponse, APIError> {
         return insuranceCredentialService
-            .integrateInsurance(providerName: providerName, personalNumber: personalNumber)
+            .integrateInsurance(providerName: providerName)
             .mapError { APIError(urlError: $0) }
             .eraseToAnyPublisher()
     }
