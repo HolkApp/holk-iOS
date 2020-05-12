@@ -10,7 +10,7 @@ import UIKit
 
 extension UICollectionViewCompositionalLayout {
     static func generateInsuranceLayout() -> UICollectionViewLayout {
-        let sections = [generateHintSection(), generateCardSection()]
+        let sections = [makeHintSection(), makeCardSection()]
 
         let layout = UICollectionViewCompositionalLayout { (sectionIndex, environment) in
             return sections[sectionIndex]
@@ -18,7 +18,7 @@ extension UICollectionViewCompositionalLayout {
         return layout
     }
 
-    private static func generateHintSection() -> NSCollectionLayoutSection {
+    private static func makeHintSection() -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(85))
@@ -28,7 +28,7 @@ extension UICollectionViewCompositionalLayout {
         return hintSection
     }
 
-    private static func generateCardSection() -> NSCollectionLayoutSection {
+    private static func makeCardSection() -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(420))
