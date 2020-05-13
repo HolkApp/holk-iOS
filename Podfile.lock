@@ -1,10 +1,12 @@
 PODS:
   - Alamofire (4.9.0)
+  - lottie-ios (3.1.8)
   - MarkdownKit (1.5)
   - SwiftLint (0.35.0)
 
 DEPENDENCIES:
   - Alamofire
+  - lottie-ios
   - MarkdownKit
   - SwiftLint
 
@@ -13,13 +15,15 @@ SPEC REPOS:
     - Alamofire
     - SwiftLint
   trunk:
+    - lottie-ios
     - MarkdownKit
 
 SPEC CHECKSUMS:
   Alamofire: afc3e7c6db61476cb45cdd23fed06bad03bbc321
+  lottie-ios: 48fac6be217c76937e36e340e2d09cf7b10b7f5f
   MarkdownKit: 379028e9cd3ebf05ccac87205cd9aead446159d4
   SwiftLint: 5553187048b900c91aa03552807681bb6b027846
 
-PODFILE CHECKSUM: a74df8928196e4a2d03731adcf88d4c216e249bf
+PODFILE CHECKSUM: 5ba35492d73c25fcb036787894380821c6d74b03
 
 COCOAPODS: 1.9.1

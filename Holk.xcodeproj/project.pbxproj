@@ -18,7 +18,7 @@
 		8F16DE7324609F5D00EFC1BD /* AddInsuranceProviderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F16DE7224609F5D00EFC1BD /* AddInsuranceProviderViewController.swift */; };
 		8F16DE752460A0F200EFC1BD /* AddInsuranceConsentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F16DE742460A0F200EFC1BD /* AddInsuranceConsentViewController.swift */; };
 		8F16DE772460A22300EFC1BD /* AddInsuranceConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F16DE762460A22300EFC1BD /* AddInsuranceConfirmationViewController.swift */; };
-		8F16DE792469FB4100EFC1BD /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F16DE782469FB4100EFC1BD /* ContainerViewController.swift */; };
+		8F16DE7C246B418F00EFC1BD /* Bell.json in Resources */ = {isa = PBXBuildFile; fileRef = 8F16DE7B246B418F00EFC1BD /* Bell.json */; };
 		8F25CA992337AAC100DC3B97 /* FontAwsome+UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F25CA982337AAC100DC3B97 /* FontAwsome+UIExtensions.swift */; };
 		8F25CAA1233E981900DC3B97 /* OauthAuthenticationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F25CA9F233E981800DC3B97 /* OauthAuthenticationResponse.swift */; };
 		8F25CAA2233E981900DC3B97 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F25CAA0233E981800DC3B97 /* User.swift */; };
@@ -149,7 +149,7 @@
 		8F16DE7224609F5D00EFC1BD /* AddInsuranceProviderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInsuranceProviderViewController.swift; sourceTree = "<group>"; };
 		8F16DE742460A0F200EFC1BD /* AddInsuranceConsentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInsuranceConsentViewController.swift; sourceTree = "<group>"; };
 		8F16DE762460A22300EFC1BD /* AddInsuranceConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInsuranceConfirmationViewController.swift; sourceTree = "<group>"; };
-		8F16DE782469FB4100EFC1BD /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
+		8F16DE7B246B418F00EFC1BD /* Bell.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Bell.json; sourceTree = "<group>"; };
 		8F25CA982337AAC100DC3B97 /* FontAwsome+UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FontAwsome+UIExtensions.swift"; sourceTree = "<group>"; };
 		8F25CA9F233E981800DC3B97 /* OauthAuthenticationResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OauthAuthenticationResponse.swift; path = Holk/Onboarding/Model/OauthAuthenticationResponse.swift; sourceTree = SOURCE_ROOT; };
 		8F25CAA0233E981800DC3B97 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Holk/Stores/User.swift; sourceTree = SOURCE_ROOT; };
@@ -310,6 +310,14 @@
 				8F16DE762460A22300EFC1BD /* AddInsuranceConfirmationViewController.swift */,
 			);
 			path = AddInsurance;
+			sourceTree = "<group>";
+		};
+		8F16DE7A246B417300EFC1BD /* Illustration */ = {
+			isa = PBXGroup;
+			children = (
+				8F16DE7B246B418F00EFC1BD /* Bell.json */,
+			);
+			path = Illustration;
 			sourceTree = "<group>";
 		};
 		8F5AF02023C6679E00690373 /* InsuranceIssuer */ = {
@@ -495,7 +503,7 @@
 				8FA8F10D232D377F00670471 /* Color.xcassets */,
 				8FD84E702270E736009D563D /* LaunchScreen.storyboard */,
 				8FD84E732270E736009D563D /* Info.plist */,
-				8F16DE782469FB4100EFC1BD /* ContainerViewController.swift */,
+				8F16DE7A246B417300EFC1BD /* Illustration */,
 			);
 			path = Holk;
 			sourceTree = "<group>";
@@ -734,6 +742,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F16DE7C246B418F00EFC1BD /* Bell.json in Resources */,
 				8FF6E74E22B955A400F6D398 /* Montserrat-Regular.ttf in Resources */,
 				8FD84E722270E736009D563D /* LaunchScreen.storyboard in Resources */,
 				8FD84E6F2270E736009D563D /* Assets.xcassets in Resources */,
@@ -900,7 +909,6 @@
 				8F4965DB2412F17E00DEAFC1 /* HolkRingChartIconView.swift in Sources */,
 				8F691D38245760310093E965 /* InsuranceService.swift in Sources */,
 				8FF6E74122B82D1100F6D398 /* Font.swift in Sources */,
-				8F16DE792469FB4100EFC1BD /* ContainerViewController.swift in Sources */,
 				8F5B5A3922771ED400E79A40 /* StoryboardsScenes.swift in Sources */,
 				8F54C24F24328C0E00D72FD7 /* InsuranceDetailTransition.swift in Sources */,
 				8F5D89DD244E45E3007F1B26 /* UICollectionViewCompositionalLayout+extension.swift in Sources */,

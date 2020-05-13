@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Lottie
 
 class InsuranceHintCardCollectionViewCell: UICollectionViewCell {
     enum HintType {
@@ -17,7 +18,7 @@ class InsuranceHintCardCollectionViewCell: UICollectionViewCell {
     // MARK: Private variables
     private let hintView = UIView()
     private let hintValueLabel = HolkRoundBackgroundLabel()
-    private let hintImageView = UIImageView()
+    private let hintImageView = AnimationView()
     private let hintLabel = UILabel()
 
     override init(frame: CGRect) {
@@ -53,12 +54,22 @@ class InsuranceHintCardCollectionViewCell: UICollectionViewCell {
         switch hintType {
         case .reminder:
             hintValueLabel.text = "3"
-            hintImageView.image = UIImage(systemName: "bell")
+            let starAnimation = Animation.named("Bell")
+            hintImageView.animation = starAnimation
+            hintImageView.play(fromProgress: 0, toProgress: 0.55, loopMode: .repeat(2)) {  [weak self] finished in
+                self?.hintImageView.currentProgress = 0.85
+            }
+            
             hintLabel.text = "Luckor"
             hintValueLabel.textColor = Color.mainForegroundColor
         case .thinkOf:
             hintValueLabel.text = "2"
-            hintImageView.image = UIImage(systemName: "exclamationmark.triangle")
+            let starAnimation = Animation.named("Bell")
+            hintImageView.animation = starAnimation
+            hintImageView.play(fromProgress: 0, toProgress: 0.55, loopMode: .repeat(2)) {  [weak self] finished in
+                self?.hintImageView.currentProgress = 0.85
+            }
+
             hintLabel.text = "Tänk på"
             hintValueLabel.textColor = Color.warningColor
         }

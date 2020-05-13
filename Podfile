@@ -6,7 +6,8 @@ target 'Holk' do
   use_frameworks!
   pod 'Alamofire'
   pod 'SwiftLint'
-  pod "MarkdownKit"
+  pod 'MarkdownKit'
+  pod 'lottie-ios'
 
   target 'HolkTests' do
     inherit! :search_paths
