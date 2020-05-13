@@ -58,9 +58,10 @@ final class AuthenticationStore {
 
         authenticationService.refresh(refreshToken: refreshToken)
             .mapError { APIError(urlError: $0) }
-            .sink(receiveCompletion: { result in
+            .sink(receiveCompletion: { [weak self] result in
                 switch result {
                 case .failure(let error):
+                    self?.user.reset()
                     completion(.failure(error))
                 case .finished:
                     break
