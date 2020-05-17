@@ -9,9 +9,13 @@
 import UIKit
 import Combine
 
+protocol OnboardingInsuranceProviderViewControllerDelegate: AnyObject {
+    func addInsuranceProvider(_ provider: InsuranceProvider)
+}
+
 final class OnboardingInsuranceProviderViewController: UIViewController {
     // MARK: - Public variables
-    weak var coordinator: OnboardingCoordinating?
+    weak var delegate: OnboardingInsuranceProviderViewControllerDelegate?
     
     // MARK: - Private variables
     private var storeController: StoreController
@@ -105,7 +109,7 @@ final class OnboardingInsuranceProviderViewController: UIViewController {
     }
     
     private func select(_ insuranceProvider: InsuranceProvider) {
-        coordinator?.addInsuranceProvider(insuranceProvider)
+        delegate?.addInsuranceProvider(insuranceProvider)
     }
 }
 
