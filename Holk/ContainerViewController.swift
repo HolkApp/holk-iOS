@@ -267,10 +267,6 @@ extension ContainerViewController: UICollectionViewDataSource {
         if let onboardingCell = cell as? OnboardingCell {
             let viewController = onboardingViewControllers[indexPath.item]
             onboardingCell.configure(onboarding: viewController.view)
-            if !children.contains(viewController) {
-                addChild(viewController)
-                viewController.didMove(toParent: self)
-            }
         }
         return cell
     }
