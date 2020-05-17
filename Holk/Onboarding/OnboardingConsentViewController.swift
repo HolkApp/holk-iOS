@@ -9,23 +9,25 @@
 import UIKit
 import MarkdownKit
 
+protocol OnboardingConsentViewControllerDelegate: AnyObject {
+    func aggregateInsurance(_ insuranceProvider: InsuranceProvider)
+}
+
 final class OnboardingConsentViewController: UIViewController {
     // MARK: - Public variables
-    weak var coordinator: OnboardingCoordinating?
+    weak var delegate: OnboardingConsentViewControllerDelegate?
     
     // MARK: - Private variables
     private var storeController: StoreController
     private let insuranceProvider: InsuranceProvider
-    private let providerType: InsuranceProviderType
     private let headerLabel = UILabel()
     private let descriptionTextView = UITextView()
     private let bankIDIconView = UIImageView()
     private let nextButton = HolkButton()
     
-    init(storeController: StoreController, insuranceProvider: InsuranceProvider, providerType: InsuranceProviderType) {
+    init(storeController: StoreController, insuranceProvider: InsuranceProvider) {
         self.storeController = storeController
         self.insuranceProvider = insuranceProvider
-        self.providerType = providerType
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -115,6 +117,6 @@ final class OnboardingConsentViewController: UIViewController {
     }
     
     @objc private func nextButtonTapped(_ sender: UIButton) {
-        coordinator?.aggregateInsurance(providerType, insuranceProvider: insuranceProvider)
+        delegate?.aggregateInsurance(insuranceProvider)
     }
 }

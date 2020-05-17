@@ -13,7 +13,7 @@ protocol OnboardingCoordinating: AnyObject {
     func startOnboarding(_ user: User)
     func addInsuranceProviderType(_ providerType: InsuranceProviderType)
     func addInsuranceProvider(_ provider: InsuranceProvider)
-    func aggregateInsurance(_ providerType: InsuranceProviderType, insuranceProvider: InsuranceProvider)
+    func aggregateInsurance(_ insuranceProvider: InsuranceProvider)
     func finishOnboarding()
 }
 
@@ -108,7 +108,7 @@ final class OnboardingContainerViewController: UIViewController {
             UIAlertAction(title: "OK", style: .default, handler: { [weak self] _ in
                 guard let self = self else { return }
                 alert.dismiss(animated: true) {
-                    self.coordinator?.onboardingStopped(self)
+//                    self.coordinator?.onboardingStopped(self)
                 }
             })
         )
@@ -119,7 +119,6 @@ final class OnboardingContainerViewController: UIViewController {
 extension OnboardingContainerViewController: OnboardingCoordinating {
     func startOnboarding(_ user: User) {
         progressView.isHidden = true
-        // TODO: Dont show new user if it is not new
         showAddNewUser(user)
 //        if user.isNewUser {
 //            showAddNewUser(user)
@@ -145,7 +144,7 @@ extension OnboardingContainerViewController: OnboardingCoordinating {
 
     private func showInsuranceType() {
         let insuranceProviderTypeViewController = OnboardingInsuranceTypeViewController(storeController: storeController)
-        insuranceProviderTypeViewController.coordinator = self
+//        insuranceProviderTypeViewController.coordinator = self
         let barButton = UIBarButtonItem(
             image: UIImage(systemName: "xmark")?.withSymbolWeightConfiguration(.medium),
             style: .plain,
@@ -165,25 +164,25 @@ extension OnboardingContainerViewController: OnboardingCoordinating {
             target: self,
             action: #selector(stopOnboarding(_:))
         )
-        viewController.coordinator = self
+//        viewController.coordinator = self
         childNavigationController.pushViewController(viewController, animated: true)
     }
     
     func addInsuranceProvider(_ provider: InsuranceProvider) {
         guard let providerType = providerType else { fatalError("No providerType selected") }
         self.insuranceProvider = provider
-        let onboardingConsentViewController = OnboardingConsentViewController(storeController: storeController, insuranceProvider: provider, providerType: providerType)
+        let onboardingConsentViewController = OnboardingConsentViewController(storeController: storeController, insuranceProvider: provider)
         onboardingConsentViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: UIImage(systemName: "xmark")?.withSymbolWeightConfiguration(.medium),
             style: .plain,
             target: self,
             action: #selector(stopOnboarding(_:))
         )
-        onboardingConsentViewController.coordinator = self
+//        onboardingConsentViewController.coordinator = self
         childNavigationController.pushViewController(onboardingConsentViewController, animated: true)
     }
     
-    func aggregateInsurance(_ providerType: InsuranceProviderType, insuranceProvider: InsuranceProvider) {
+    func aggregateInsurance(_ insuranceProvider: InsuranceProvider) {
         progressSpinnerToCenter()
         storeController
             .insuranceCredentialStore
@@ -203,12 +202,12 @@ extension OnboardingContainerViewController: OnboardingCoordinating {
     }
     
     func finishOnboarding() {
-        coordinator?.onboardingFinished(self)
+//        coordinator?.onboardingFinished(self)
     }
 
     private func showInsuranceAggregatedConfirmation() {
         let confirmationViewController = OnboardingConfirmationViewController()
-        confirmationViewController.coordinator = self
+//        confirmationViewController.coordinator = self
         childNavigationController.pushViewController(confirmationViewController, animated: true)
         storeController.insuranceStore.fetchAllInsurances { result in
             // TODO Need to change this with real data

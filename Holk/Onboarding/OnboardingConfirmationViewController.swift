@@ -8,7 +8,14 @@
 
 import UIKit
 
+protocol OnboardingConfirmationViewControllerDelegate: AnyObject {
+    func finishOnboarding()
+}
+
 final class OnboardingConfirmationViewController: UIViewController {
+    // MARK: - Public variables
+    weak var delegate: OnboardingConfirmationViewControllerDelegate?
+
     // MARK: - Private variables
     private let imageView = UIImageView()
     private let titleLabel = UILabel()
@@ -30,11 +37,7 @@ final class OnboardingConfirmationViewController: UIViewController {
         }
     }
     
-    // MARK: - Public variables
-    weak var coordinator: OnboardingCoordinating?
-    
     init() {
-        
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -170,6 +173,6 @@ final class OnboardingConfirmationViewController: UIViewController {
     }
     
     @objc private func submit(_ sender: UIButton) {
-        coordinator?.finishOnboarding()
+        delegate?.finishOnboarding()
     }
 }

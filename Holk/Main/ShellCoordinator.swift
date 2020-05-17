@@ -51,7 +51,13 @@ final class ShellCoordinator {
             }
         case .shouldRefresh:
             showLoading()
-            self.storeController.authenticationStore.refresh { [weak self] _ in
+            self.storeController.authenticationStore.refresh { [weak self] result in
+                switch result {
+                case .failure:
+                    self?.storeController.user.reset()
+                case .success:
+                    break
+                }
                 self?.setupViewController()
             }
         case .updated:

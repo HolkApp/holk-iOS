@@ -9,11 +9,11 @@
 import UIKit
 
 protocol OnboardingContainerCoordinating: AnyObject {
-    func onboardingStopped(_ onboardingContainerViewController: OnboardingContainerViewController)
-    func onboardingFinished(_ onboardingContainerViewController: OnboardingContainerViewController)
+    func onboardingStopped(_ onboardingContainerViewController: ContainerViewController)
+    func onboardingFinished(_ onboardingContainerViewController: ContainerViewController)
 }
 
-class OnboardingCoordinator {
+final class OnboardingCoordinator {
     var coordinator: ShellCoordinator?
     
     private var navigationController: UINavigationController
@@ -107,11 +107,17 @@ extension OnboardingCoordinator {
                 alert.dismiss(animated: true)
             })
         )
-        navigationController.present(alert, animated: true)
+        if navigationController.presentingViewController != nil {
+            navigationController.dismiss(animated: false) {
+                self.navigationController.present(alert, animated: true)
+            }
+        } else {
+            navigationController.present(alert, animated: true)
+        }
     }
 
     private func showOnboardingFlow() {
-        let onboardingContainerViewController = OnboardingContainerViewController(storeController: storeController)
+        let onboardingContainerViewController = ContainerViewController(storeController: storeController)
         onboardingContainerViewController.coordinator = self
         onboardingContainerViewController.startOnboarding(storeController.user)
         navigationController.pushViewController(onboardingContainerViewController, animated: false)
@@ -122,11 +128,11 @@ extension OnboardingCoordinator {
 
 // MARK: - OnboardingCoordinator
 extension OnboardingCoordinator: OnboardingContainerCoordinating {
-    func onboardingStopped(_ onboardingContainerViewController: OnboardingContainerViewController) {
+    func onboardingStopped(_ onboardingContainerViewController: ContainerViewController) {
         coordinator?.onboardingStopped()
     }
 
-    func onboardingFinished(_ onboardingContainerViewController: OnboardingContainerViewController) {
+    func onboardingFinished(_ onboardingContainerViewController: ContainerViewController) {
         coordinator?.onboardingFinished()
     }
 }

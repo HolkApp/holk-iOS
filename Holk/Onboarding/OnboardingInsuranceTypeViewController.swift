@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol OnboardingInsuranceTypeViewControllerDelegate: AnyObject {
+    func addInsuranceProviderType(_ providerType: InsuranceProviderType)
+}
+
 final class OnboardingInsuranceTypeViewController: UIViewController {
     // MARK: Private Variables
     private let headerLabel = UILabel()
@@ -15,7 +19,7 @@ final class OnboardingInsuranceTypeViewController: UIViewController {
     private var storeController: StoreController
     
     // MARK: Public Variables
-    weak var coordinator: OnboardingCoordinating?
+    weak var delegate: OnboardingInsuranceTypeViewControllerDelegate?
     
     init(storeController: StoreController) {
         self.storeController = storeController
@@ -78,7 +82,7 @@ final class OnboardingInsuranceTypeViewController: UIViewController {
     }
     
     private func select(providerType: InsuranceProviderType) {
-        coordinator?.addInsuranceProviderType(providerType)
+        delegate?.addInsuranceProviderType(providerType)
     }
 }
 
