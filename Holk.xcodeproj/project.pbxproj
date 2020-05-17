@@ -52,6 +52,7 @@
 		8F5B5A3822771ED400E79A40 /* StringConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5B5A3522771ED400E79A40 /* StringConstants.swift */; };
 		8F5B5A3922771ED400E79A40 /* StoryboardsScenes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5B5A3622771ED400E79A40 /* StoryboardsScenes.swift */; };
 		8F5B5A3B22783D0200E79A40 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5B5A3A22783D0200E79A40 /* TabBarController.swift */; };
+		8F5BE489246FE16A006AE8AF /* OnboardingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5BE488246FE16A006AE8AF /* OnboardingCell.swift */; };
 		8F5D89D0244B356A007F1B26 /* ScrapingStatusResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D89CF244B3569007F1B26 /* ScrapingStatusResponse.swift */; };
 		8F5D89D5244B364B007F1B26 /* ProviderStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D89D2244B364B007F1B26 /* ProviderStatus.swift */; };
 		8F5D89D6244B364B007F1B26 /* ProviderStatusResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D89D3244B364B007F1B26 /* ProviderStatusResponse.swift */; };
@@ -183,6 +184,7 @@
 		8F5B5A3522771ED400E79A40 /* StringConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringConstants.swift; sourceTree = "<group>"; };
 		8F5B5A3622771ED400E79A40 /* StoryboardsScenes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardsScenes.swift; sourceTree = "<group>"; };
 		8F5B5A3A22783D0200E79A40 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		8F5BE488246FE16A006AE8AF /* OnboardingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCell.swift; sourceTree = "<group>"; };
 		8F5D89CF244B3569007F1B26 /* ScrapingStatusResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScrapingStatusResponse.swift; path = "../../../../../Downloads/swift5-client/SwaggerClient/Classes/Swaggers/Models/ScrapingStatusResponse.swift"; sourceTree = "<group>"; };
 		8F5D89D2244B364B007F1B26 /* ProviderStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProviderStatus.swift; sourceTree = "<group>"; };
 		8F5D89D3244B364B007F1B26 /* ProviderStatusResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProviderStatusResponse.swift; sourceTree = "<group>"; };
@@ -599,6 +601,7 @@
 				8F3C7DAD23F4AB63002EDA57 /* OnboardingConsentViewController.swift */,
 				8F3C7DB123F833B4002EDA57 /* OnboardingConfirmationViewController.swift */,
 				8F3C7DAB23F3439A002EDA57 /* OnboardingInsuranceCell.swift */,
+				8F5BE488246FE16A006AE8AF /* OnboardingCell.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -858,6 +861,7 @@
 				8F5B5A3822771ED400E79A40 /* StringConstants.swift in Sources */,
 				8F66F2FE23BC04F90083DC3A /* LoadingViewController.swift in Sources */,
 				8F25CAAC23429F7100DC3B97 /* OnboardingInsuranceTypeViewController.swift in Sources */,
+				8F5BE489246FE16A006AE8AF /* OnboardingCell.swift in Sources */,
 				8F5FA9422454EEBD009201A3 /* InsuranceProviderService.swift in Sources */,
 				8F3305AA24029CBF00E9B443 /* HolkRingChartDataSource+Delegate.swift in Sources */,
 				8F25CAA2233E981900DC3B97 /* User.swift in Sources */,
