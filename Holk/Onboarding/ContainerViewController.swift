@@ -9,6 +9,7 @@ final class ContainerViewController: UIViewController {
     private let storeController: StoreController
     private let progressView = HolkProgressBarView()
     private let closeButton = HolkButton()
+    private var newUserViewController: NewUserViewController?
     private lazy var insuranceProviderTypeViewController: OnboardingInsuranceTypeViewController = OnboardingInsuranceTypeViewController(storeController: storeController)
     private lazy var insuranceProviderViewController: OnboardingInsuranceProviderViewController = OnboardingInsuranceProviderViewController(storeController: storeController)
     private var consentViewController: OnboardingConsentViewController?
@@ -48,6 +49,17 @@ final class ContainerViewController: UIViewController {
         setup()
     }
 
+    func startOnboarding(_ user: User) {
+        if user.isNewUser {
+            showAddNewUser(user)
+        } else {
+            progressBarToTop(animated: false, completion: { [weak self] in
+                self?.progressView.isHidden = true
+                self?.showInsuranceType()
+            })
+        }
+    }
+
     private func setup() {
         NotificationCenter.default.addObserver(self, selector: #selector(resumeLoadingAnimation), name: UIApplication.willEnterForegroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(pauseLoadingAnimation), name: UIApplication.didEnterBackgroundNotification, object: nil)
@@ -78,8 +90,6 @@ final class ContainerViewController: UIViewController {
         view.addSubview(closeButton)
 
         setupLayout()
-
-        showInsuranceType()
     }
 
     private func setupLayout() {
@@ -105,8 +115,19 @@ final class ContainerViewController: UIViewController {
         ])
     }
 
+    private func showAddNewUser(_ user: User) {
+        let newUserViewController = NewUserViewController(user: user)
+        newUserViewController.delegate = self
+        addChild(newUserViewController)
+        newUserViewController.view.frame = view.bounds
+        view.addSubview(newUserViewController.view)
+        newUserViewController.didMove(toParent: self)
+        self.newUserViewController = newUserViewController
+    }
+
     private func showInsuranceType() {
         insuranceProviderTypeViewController.delegate = self
+        progressView.isHidden = false
         if !onboardingViewControllers.contains(insuranceProviderTypeViewController) {
             onboardingViewControllers.append(insuranceProviderTypeViewController)
         }
@@ -192,12 +213,29 @@ final class ContainerViewController: UIViewController {
         )
         present(alert, animated: true)
     }
+}
 
-    func startOnboarding(_ user: User) {
-        progressView.isHidden = true
-        progressBarToTop(animated: false, completion: { [weak self] in
-            self?.showInsuranceType()
-        })
+extension ContainerViewController: NewUserViewControllerDelegate {
+    func newUserViewController(_ viewController: NewUserViewController, add email: String) {
+        progressView.setLoading(true)
+        collectionView.isHidden = true
+        progressView.isHidden = false
+
+        newUserViewController?.removeFromParent()
+        newUserViewController?.view.removeFromSuperview()
+
+        storeController.userStore.addEmail(email) { [weak self] result in
+            switch result {
+            case .success:
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    self?.progressBarToTop()
+                    self?.showInsuranceType()
+                }
+            case .failure(let error):
+                print(error)
+                break
+            }
+        }
     }
 }
 

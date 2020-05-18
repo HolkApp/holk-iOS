@@ -119,8 +119,8 @@ extension OnboardingCoordinator {
     private func showOnboardingFlow() {
         let onboardingContainerViewController = ContainerViewController(storeController: storeController)
         onboardingContainerViewController.coordinator = self
-        onboardingContainerViewController.startOnboarding(storeController.user)
         navigationController.pushViewController(onboardingContainerViewController, animated: false)
+        onboardingContainerViewController.startOnboarding(storeController.user)
         navigationController.dismiss(animated: true)
        }
 }
