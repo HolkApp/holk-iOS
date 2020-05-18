@@ -9,8 +9,8 @@
 import UIKit
 
 protocol OnboardingContainerCoordinating: AnyObject {
-    func onboardingStopped(_ onboardingContainerViewController: ContainerViewController)
-    func onboardingFinished(_ onboardingContainerViewController: ContainerViewController)
+    func onboardingStopped(_ onboardingContainerViewController: OnboardingContainerViewController)
+    func onboardingFinished(_ onboardingContainerViewController: OnboardingContainerViewController)
 }
 
 final class OnboardingCoordinator {
@@ -117,7 +117,7 @@ extension OnboardingCoordinator {
     }
 
     private func showOnboardingFlow() {
-        let onboardingContainerViewController = ContainerViewController(storeController: storeController)
+        let onboardingContainerViewController = OnboardingContainerViewController(storeController: storeController)
         onboardingContainerViewController.coordinator = self
         navigationController.pushViewController(onboardingContainerViewController, animated: false)
         onboardingContainerViewController.startOnboarding(storeController.user)
@@ -128,11 +128,11 @@ extension OnboardingCoordinator {
 
 // MARK: - OnboardingCoordinator
 extension OnboardingCoordinator: OnboardingContainerCoordinating {
-    func onboardingStopped(_ onboardingContainerViewController: ContainerViewController) {
+    func onboardingStopped(_ onboardingContainerViewController: OnboardingContainerViewController) {
         coordinator?.onboardingStopped()
     }
 
-    func onboardingFinished(_ onboardingContainerViewController: ContainerViewController) {
+    func onboardingFinished(_ onboardingContainerViewController: OnboardingContainerViewController) {
         coordinator?.onboardingFinished()
     }
 }

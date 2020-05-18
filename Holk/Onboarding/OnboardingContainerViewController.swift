@@ -1,7 +1,7 @@
 import UIKit
 import Combine
 
-final class ContainerViewController: UIViewController {
+final class OnboardingContainerViewController: UIViewController {
     // MARK: - Public Variables
     weak var coordinator: OnboardingCoordinator?
 
@@ -215,7 +215,7 @@ final class ContainerViewController: UIViewController {
     }
 }
 
-extension ContainerViewController: NewUserViewControllerDelegate {
+extension OnboardingContainerViewController: NewUserViewControllerDelegate {
     func newUserViewController(_ viewController: NewUserViewController, add email: String) {
         progressView.setLoading(true)
         collectionView.isHidden = true
@@ -239,7 +239,7 @@ extension ContainerViewController: NewUserViewControllerDelegate {
     }
 }
 
-extension ContainerViewController: OnboardingInsuranceTypeViewControllerDelegate {
+extension OnboardingContainerViewController: OnboardingInsuranceTypeViewControllerDelegate {
     func addInsuranceProviderType(_ providerType: InsuranceProviderType) {
         self.providerType = providerType
         insuranceProviderViewController.delegate = self
@@ -250,7 +250,7 @@ extension ContainerViewController: OnboardingInsuranceTypeViewControllerDelegate
     }
 }
 
-extension ContainerViewController: OnboardingInsuranceProviderViewControllerDelegate {
+extension OnboardingContainerViewController: OnboardingInsuranceProviderViewControllerDelegate {
     func addInsuranceProvider(_ provider: InsuranceProvider) {
         self.insuranceProvider = provider
         let onboardingConsentViewController = OnboardingConsentViewController(storeController: storeController, insuranceProvider: provider)
@@ -264,7 +264,7 @@ extension ContainerViewController: OnboardingInsuranceProviderViewControllerDele
     }
 }
 
-extension ContainerViewController: OnboardingConsentViewControllerDelegate {
+extension OnboardingContainerViewController: OnboardingConsentViewControllerDelegate {
     func aggregateInsurance(_ insuranceProvider: InsuranceProvider) {
         progressSpinnerToCenter()
         storeController
@@ -285,13 +285,13 @@ extension ContainerViewController: OnboardingConsentViewControllerDelegate {
     }
 }
 
-extension ContainerViewController: OnboardingConfirmationViewControllerDelegate {
+extension OnboardingContainerViewController: OnboardingConfirmationViewControllerDelegate {
     func finishOnboarding() {
         coordinator?.onboardingFinished(self)
     }
 }
 
-extension ContainerViewController: UICollectionViewDataSource {
+extension OnboardingContainerViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         1
     }
