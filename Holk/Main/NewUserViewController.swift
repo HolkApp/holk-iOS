@@ -106,7 +106,7 @@ class NewUserViewController: UIViewController {
             .store(in: &cancellables)
         
         doneButtonBottomConstraint = view.bottomAnchor.constraint(equalTo: doneButton.bottomAnchor, constant: 40)
-        let stackViewTopConstraint = stackView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor)
+        let stackViewTopConstraint = stackView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 20)
         stackViewTopConstraint.priority = .defaultLow
         
         NSLayoutConstraint.activate([
