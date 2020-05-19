@@ -10,7 +10,7 @@ import UIKit
 import Combine
 
 protocol OnboardingInsuranceProviderViewControllerDelegate: AnyObject {
-    func addInsuranceProvider(_ provider: InsuranceProvider)
+    func onboardingInsuranceProvider(_ viewController: OnboardingInsuranceProviderViewController, didSelect provider: InsuranceProvider)
 }
 
 final class OnboardingInsuranceProviderViewController: UIViewController {
@@ -109,7 +109,7 @@ final class OnboardingInsuranceProviderViewController: UIViewController {
     }
     
     private func select(_ insuranceProvider: InsuranceProvider) {
-        delegate?.addInsuranceProvider(insuranceProvider)
+        delegate?.onboardingInsuranceProvider(self, didSelect: insuranceProvider)
     }
 }
 

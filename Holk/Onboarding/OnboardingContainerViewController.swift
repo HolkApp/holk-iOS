@@ -53,8 +53,8 @@ final class OnboardingContainerViewController: UIViewController {
         if user.isNewUser {
             showAddNewUser(user)
         } else {
+            progressView.isHidden = true
             progressBarToTop(animated: false, completion: { [weak self] in
-                self?.progressView.isHidden = true
                 self?.showInsuranceType()
             })
         }
@@ -240,7 +240,7 @@ extension OnboardingContainerViewController: NewUserViewControllerDelegate {
 }
 
 extension OnboardingContainerViewController: OnboardingInsuranceTypeViewControllerDelegate {
-    func addInsuranceProviderType(_ providerType: InsuranceProviderType) {
+    func onboardingInsuranceProviderType(_ viewController: OnboardingInsuranceTypeViewController, didSelect providerType: InsuranceProviderType) {
         self.providerType = providerType
         insuranceProviderViewController.delegate = self
         if !onboardingViewControllers.contains(insuranceProviderViewController) {
@@ -251,7 +251,7 @@ extension OnboardingContainerViewController: OnboardingInsuranceTypeViewControll
 }
 
 extension OnboardingContainerViewController: OnboardingInsuranceProviderViewControllerDelegate {
-    func addInsuranceProvider(_ provider: InsuranceProvider) {
+    func onboardingInsuranceProvider(_ viewController: OnboardingInsuranceProviderViewController, didSelect provider: InsuranceProvider) {
         self.insuranceProvider = provider
         let onboardingConsentViewController = OnboardingConsentViewController(storeController: storeController, insuranceProvider: provider)
         onboardingConsentViewController.delegate = self
@@ -265,7 +265,7 @@ extension OnboardingContainerViewController: OnboardingInsuranceProviderViewCont
 }
 
 extension OnboardingContainerViewController: OnboardingConsentViewControllerDelegate {
-    func aggregateInsurance(_ insuranceProvider: InsuranceProvider) {
+    func onboardingConsent(_ viewController: OnboardingConsentViewController, didSelect insuranceProvider: InsuranceProvider) {
         progressSpinnerToCenter()
         storeController
             .insuranceCredentialStore
@@ -286,7 +286,7 @@ extension OnboardingContainerViewController: OnboardingConsentViewControllerDele
 }
 
 extension OnboardingContainerViewController: OnboardingConfirmationViewControllerDelegate {
-    func finishOnboarding() {
+    func onboardingConfirmation(_ viewController: OnboardingConfirmationViewController) {
         coordinator?.onboardingFinished(self)
     }
 }

@@ -9,7 +9,7 @@
 import UIKit
 
 protocol OnboardingConfirmationViewControllerDelegate: AnyObject {
-    func finishOnboarding()
+    func onboardingConfirmation(_ viewController: OnboardingConfirmationViewController)
 }
 
 final class OnboardingConfirmationViewController: UIViewController {
@@ -173,6 +173,6 @@ final class OnboardingConfirmationViewController: UIViewController {
     }
     
     @objc private func submit(_ sender: UIButton) {
-        delegate?.finishOnboarding()
+        delegate?.onboardingConfirmation(self)
     }
 }

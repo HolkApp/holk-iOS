@@ -10,7 +10,7 @@ import UIKit
 import MarkdownKit
 
 protocol OnboardingConsentViewControllerDelegate: AnyObject {
-    func aggregateInsurance(_ insuranceProvider: InsuranceProvider)
+    func onboardingConsent(_ viewController: OnboardingConsentViewController, didSelect insuranceProvider: InsuranceProvider)
 }
 
 final class OnboardingConsentViewController: UIViewController {
@@ -117,6 +117,6 @@ final class OnboardingConsentViewController: UIViewController {
     }
     
     @objc private func nextButtonTapped(_ sender: UIButton) {
-        delegate?.aggregateInsurance(insuranceProvider)
+        delegate?.onboardingConsent(self, didSelect: insuranceProvider)
     }
 }

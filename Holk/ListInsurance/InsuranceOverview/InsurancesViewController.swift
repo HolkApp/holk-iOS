@@ -94,9 +94,8 @@ final class InsurancesViewController: UICollectionViewController {
 
     // TODO: Trigger add more flow
     @objc private func addMoreTapped(sender: UIButton) {
-//        numberOfInsurances += 1
-
         let addInsuranceContainerViewController = AddInsuranceContainerViewController(storeController: storeController)
+        addInsuranceContainerViewController.delegate = self
         present(addInsuranceContainerViewController, animated: true)
     }
 
@@ -105,7 +104,7 @@ final class InsurancesViewController: UICollectionViewController {
     }
 }
 
-// MARK: - UITableViewDataSource
+// MARK: - UITableViewDataSource and UICollectionViewDelegate
 extension InsurancesViewController {
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 2
@@ -141,10 +140,7 @@ extension InsurancesViewController {
             return cell
         }
     }
-}
 
-// MARK: - UICollectionViewDelegate
-extension InsurancesViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // TODO: Update this with real insurance
         if indexPath.section == 0 {
@@ -163,6 +159,15 @@ extension InsurancesViewController {
             selectedIndexPath = indexPath
             let insurance = insurnaceList[indexPath.item]
             coordinator?.showInsurnaceDetail(insurance)
+        }
+    }
+}
+
+extension InsurancesViewController: AddInsuranceContainerViewControllerDelegate {
+    func addInsuranceDidFinish(_ viewController: AddInsuranceContainerViewController) {
+        viewController.dismiss(animated: true) {
+            // TODO: remove this in production
+            self.numberOfInsurances += 1
         }
     }
 }
