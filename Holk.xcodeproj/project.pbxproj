@@ -13,7 +13,6 @@
 		8F16DE68245B3D8500EFC1BD /* ShellCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F16DE67245B3D8500EFC1BD /* ShellCoordinator.swift */; };
 		8F16DE6A245CE43700EFC1BD /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F16DE69245CE43700EFC1BD /* OnboardingCoordinator.swift */; };
 		8F16DE6C245DB5CB00EFC1BD /* IntegrateInsuranceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F16DE6B245DB5CB00EFC1BD /* IntegrateInsuranceResponse.swift */; };
-		8F16DE6F2460879300EFC1BD /* AddInsuranceContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F16DE6E2460879300EFC1BD /* AddInsuranceContainerViewController.swift */; };
 		8F16DE7124609DA300EFC1BD /* AddInsuranceTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F16DE7024609DA300EFC1BD /* AddInsuranceTypeViewController.swift */; };
 		8F16DE7324609F5D00EFC1BD /* AddInsuranceProviderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F16DE7224609F5D00EFC1BD /* AddInsuranceProviderViewController.swift */; };
 		8F16DE752460A0F200EFC1BD /* AddInsuranceConsentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F16DE742460A0F200EFC1BD /* AddInsuranceConsentViewController.swift */; };
@@ -53,6 +52,7 @@
 		8F5B5A3B22783D0200E79A40 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5B5A3A22783D0200E79A40 /* TabBarController.swift */; };
 		8F5BE489246FE16A006AE8AF /* OnboardingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5BE488246FE16A006AE8AF /* OnboardingCell.swift */; };
 		8F5BE48B2471E68D006AE8AF /* OnboardingContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5BE48A2471E68D006AE8AF /* OnboardingContainerViewController.swift */; };
+		8F5BE48D24745EF5006AE8AF /* AddInsuranceContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5BE48C24745EF5006AE8AF /* AddInsuranceContainerViewController.swift */; };
 		8F5D89D0244B356A007F1B26 /* ScrapingStatusResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D89CF244B3569007F1B26 /* ScrapingStatusResponse.swift */; };
 		8F5D89D5244B364B007F1B26 /* ProviderStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D89D2244B364B007F1B26 /* ProviderStatus.swift */; };
 		8F5D89D6244B364B007F1B26 /* ProviderStatusResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5D89D3244B364B007F1B26 /* ProviderStatusResponse.swift */; };
@@ -145,7 +145,6 @@
 		8F16DE67245B3D8500EFC1BD /* ShellCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShellCoordinator.swift; sourceTree = "<group>"; };
 		8F16DE69245CE43700EFC1BD /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
 		8F16DE6B245DB5CB00EFC1BD /* IntegrateInsuranceResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntegrateInsuranceResponse.swift; sourceTree = "<group>"; };
-		8F16DE6E2460879300EFC1BD /* AddInsuranceContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInsuranceContainerViewController.swift; sourceTree = "<group>"; };
 		8F16DE7024609DA300EFC1BD /* AddInsuranceTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInsuranceTypeViewController.swift; sourceTree = "<group>"; };
 		8F16DE7224609F5D00EFC1BD /* AddInsuranceProviderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInsuranceProviderViewController.swift; sourceTree = "<group>"; };
 		8F16DE742460A0F200EFC1BD /* AddInsuranceConsentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInsuranceConsentViewController.swift; sourceTree = "<group>"; };
@@ -185,6 +184,7 @@
 		8F5B5A3A22783D0200E79A40 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		8F5BE488246FE16A006AE8AF /* OnboardingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCell.swift; sourceTree = "<group>"; };
 		8F5BE48A2471E68D006AE8AF /* OnboardingContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingContainerViewController.swift; sourceTree = "<group>"; };
+		8F5BE48C24745EF5006AE8AF /* AddInsuranceContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInsuranceContainerViewController.swift; sourceTree = "<group>"; };
 		8F5D89CF244B3569007F1B26 /* ScrapingStatusResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScrapingStatusResponse.swift; path = "../../../../../Downloads/swift5-client/SwaggerClient/Classes/Swaggers/Models/ScrapingStatusResponse.swift"; sourceTree = "<group>"; };
 		8F5D89D2244B364B007F1B26 /* ProviderStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProviderStatus.swift; sourceTree = "<group>"; };
 		8F5D89D3244B364B007F1B26 /* ProviderStatusResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProviderStatusResponse.swift; sourceTree = "<group>"; };
@@ -305,7 +305,7 @@
 		8F16DE6D2460831C00EFC1BD /* AddInsurance */ = {
 			isa = PBXGroup;
 			children = (
-				8F16DE6E2460879300EFC1BD /* AddInsuranceContainerViewController.swift */,
+				8F5BE48C24745EF5006AE8AF /* AddInsuranceContainerViewController.swift */,
 				8F16DE7024609DA300EFC1BD /* AddInsuranceTypeViewController.swift */,
 				8F16DE7224609F5D00EFC1BD /* AddInsuranceProviderViewController.swift */,
 				8F16DE742460A0F200EFC1BD /* AddInsuranceConsentViewController.swift */,
@@ -858,7 +858,6 @@
 				8F54C24B242FD76E00D72FD7 /* InsuranceDetailTableViewCell.swift in Sources */,
 				8FA766CB24411265007EB2A2 /* UIScrollView+extension.swift in Sources */,
 				8FF6E72822B026DB00F6D398 /* InsurancesViewController.swift in Sources */,
-				8F16DE6F2460879300EFC1BD /* AddInsuranceContainerViewController.swift in Sources */,
 				8F16DE6C245DB5CB00EFC1BD /* IntegrateInsuranceResponse.swift in Sources */,
 				8F54C244242C07E000D72FD7 /* Result+extension.swift in Sources */,
 				8F7C442A23511C1200B54A36 /* AuthenticationStore.swift in Sources */,
@@ -887,6 +886,7 @@
 				8F7C442C23511C5900B54A36 /* APIEndpoint.swift in Sources */,
 				8F5D89E124505D23007F1B26 /* APIClient.swift in Sources */,
 				8F5D89D6244B364B007F1B26 /* ProviderStatusResponse.swift in Sources */,
+				8F5BE48D24745EF5006AE8AF /* AddInsuranceContainerViewController.swift in Sources */,
 				8F3C7DB223F833B4002EDA57 /* OnboardingConfirmationViewController.swift in Sources */,
 				8FE52F09239BBDEF001A77F5 /* KeychainService.swift in Sources */,
 				8F4965DF24130EA200DEAFC1 /* FloatingPoint+extension.swift in Sources */,

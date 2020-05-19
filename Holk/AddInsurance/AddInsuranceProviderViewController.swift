@@ -10,7 +10,7 @@ import UIKit
 import Combine
 
 protocol AddInsuranceProviderViewControllerDelegate: AnyObject {
-    func addInsuranceDidSelectProvider(_ viewController: AddInsuranceProviderViewController, provider: InsuranceProvider)
+    func addInsuranceProvider(_ viewController: AddInsuranceProviderViewController, didSelect provider: InsuranceProvider)
 }
 
 final class AddInsuranceProviderViewController: UIViewController {
@@ -109,7 +109,7 @@ final class AddInsuranceProviderViewController: UIViewController {
     }
 
     private func select(_ insuranceProvider: InsuranceProvider) {
-        delegate?.addInsuranceDidSelectProvider(self, provider: insuranceProvider)
+        delegate?.addInsuranceProvider(self, didSelect: insuranceProvider)
     }
 }
 

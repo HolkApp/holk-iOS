@@ -9,7 +9,7 @@
 import UIKit
 
 protocol AddInsuranceTypeViewControllerDelegate: AnyObject {
-    func addInsuranceDidSelectProviderType(_ viewController: AddInsuranceTypeViewController, providerType: InsuranceProviderType)
+    func addInsuranceProviderType(_ viewController: AddInsuranceTypeViewController, didSelect providerType: InsuranceProviderType)
 }
 
 final class AddInsuranceTypeViewController: UIViewController {
@@ -82,7 +82,7 @@ final class AddInsuranceTypeViewController: UIViewController {
     }
 
     private func select(providerType: InsuranceProviderType) {
-        delegate?.addInsuranceDidSelectProviderType(self, providerType: providerType)
+        delegate?.addInsuranceProviderType(self, didSelect: providerType)
     }
 }
 

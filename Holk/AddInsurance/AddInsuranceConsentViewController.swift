@@ -10,7 +10,7 @@ import UIKit
 import MarkdownKit
 
 protocol AddInsuranceConsentViewControllerDelegate: AnyObject {
-    func addInsuranceDidSelectConsent(_ viewController: AddInsuranceConsentViewController)
+    func addInsuranceConsent(_ viewController: AddInsuranceConsentViewController)
 }
 
 final class AddInsuranceConsentViewController: UIViewController {
@@ -119,7 +119,7 @@ final class AddInsuranceConsentViewController: UIViewController {
     }
 
     @objc private func nextButtonTapped(_ sender: UIButton) {
-        delegate?.addInsuranceDidSelectConsent(self)
+        delegate?.addInsuranceConsent(self)
     }
 }
 

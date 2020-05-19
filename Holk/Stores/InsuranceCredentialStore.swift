@@ -26,7 +26,7 @@ final class InsuranceCredentialStore {
     func addInsurance(_ provider: InsuranceProvider) {
         insuranceCredentialService
             .integrateInsurance(providerName: provider.internalName)
-            .sink(receiveCompletion: { [weak self] result in
+            .sink(receiveCompletion: { result in
                 switch result {
                 case .failure(let error):
                     print(error)

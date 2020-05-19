@@ -7,8 +7,9 @@
 //
 
 import UIKit
+
 protocol AddInsuranceConfirmationViewControllerDelegate: AnyObject {
-    func addInsuranceDidSelectFinish(_ viewController: AddInsuranceConfirmationViewController)
+    func addInsuranceFinished(_ viewController: AddInsuranceConfirmationViewController)
 }
 
 final class AddInsuranceConfirmationViewController: UIViewController {
@@ -164,7 +165,7 @@ final class AddInsuranceConfirmationViewController: UIViewController {
     }
 
     @objc private func submit(_ sender: UIButton) {
-        delegate?.addInsuranceDidSelectFinish(self)
+        delegate?.addInsuranceFinished(self)
     }
 }
 

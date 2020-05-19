@@ -1,28 +1,36 @@
-//
-//  AddInsuranceContainerViewController.swift
-//  Holk
-//
-//  Created by 张梦皓 on 2020-05-04.
-//  Copyright © 2020 Holk. All rights reserved.
-//
-
 import UIKit
 import Combine
+
 protocol AddInsuranceContainerViewControllerDelegate: AnyObject {
     func addInsuranceDidFinish(_ viewController: AddInsuranceContainerViewController)
 }
 
-final class AddInsuranceContainerViewController: UIViewController{
+final class AddInsuranceContainerViewController: UIViewController {
     // MARK: - Public Variables
-    var storeController: StoreController
     weak var delegate: AddInsuranceContainerViewControllerDelegate?
 
     // MARK: - Private Variables
+    private let storeController: StoreController
     private let progressView = HolkProgressBarView()
-    private let childNavigationController = UINavigationController()
-    private var onboardingViewControllers: [UIViewController] {
-        childNavigationController.viewControllers
+    private let closeButton = HolkButton()
+    private lazy var insuranceProviderTypeViewController: AddInsuranceTypeViewController =
+        AddInsuranceTypeViewController(storeController: storeController)
+    private lazy var insuranceProviderViewController: AddInsuranceProviderViewController = AddInsuranceProviderViewController(storeController: storeController)
+    private var consentViewController: AddInsuranceConsentViewController?
+    private var addInsuranceViewControllers = [UIViewController]() {
+        didSet {
+            collectionView.reloadData()
+        }
     }
+    private lazy var collectionView: UICollectionView = {
+        let onboardingLayoutSection = UICollectionViewCompositionalLayout.makeOnboardingViewSection()
+        onboardingLayoutSection.visibleItemsInvalidationHandler = { [weak self] (visibleItems, offset, env) in
+            let lastVisibleItemIndex = visibleItems.last?.indexPath.item
+            lastVisibleItemIndex.flatMap { self?.progressView.currentStep = $0 + 1 }
+        }
+        let layout = UICollectionViewCompositionalLayout(section: onboardingLayoutSection)
+        return UICollectionView(frame: .zero, collectionViewLayout: layout)
+    }()
     private var progressViewTopAnchor: NSLayoutConstraint?
     private var progressViewHeightAnchor: NSLayoutConstraint?
     private var providerType: InsuranceProviderType?
@@ -43,8 +51,6 @@ final class AddInsuranceContainerViewController: UIViewController{
         super.viewDidLoad()
 
         setup()
-        progressBarToTop(animated: false)
-        showInsuranceTypes()
     }
 
     private func setup() {
@@ -54,69 +60,69 @@ final class AddInsuranceContainerViewController: UIViewController{
         navigationController?.isNavigationBarHidden = true
         view.backgroundColor = Color.mainBackgroundColor
 
-        progressView.isHidden = true
         progressView.totalSteps = 4
         progressView.progressTintColor = Color.mainHighlightColor
         progressView.trackTintColor = Color.placeHolderColor
+        progressView.translatesAutoresizingMaskIntoConstraints = false
 
-        childNavigationController.delegate = self
-        childNavigationController.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        childNavigationController.navigationBar.tintColor = .black
-        childNavigationController.navigationBar.shadowImage = UIImage()
+        collectionView.backgroundColor = Color.mainBackgroundColor
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.isScrollEnabled = false
+        collectionView.dataSource = self
+        collectionView.register(OnboardingCell.self, forCellWithReuseIdentifier: OnboardingCell.identifier)
+
+        closeButton.set(
+            color: Color.mainForegroundColor,
+            image: UIImage(systemName: "xmark")?.withSymbolWeightConfiguration(.medium)
+        )
+        closeButton.translatesAutoresizingMaskIntoConstraints = false
+        closeButton.addTarget(self, action: #selector(stopAddingInsurance(_:)), for: .touchUpInside)
+
+        view.addSubview(collectionView)
+        view.addSubview(progressView)
+        view.addSubview(closeButton)
 
         setupLayout()
+        startOnboarding()
     }
 
     private func setupLayout() {
-        progressView.translatesAutoresizingMaskIntoConstraints = false
-        childNavigationController.view.translatesAutoresizingMaskIntoConstraints = false
-
-        addChild(childNavigationController)
-        view.addSubview(childNavigationController.view)
-        childNavigationController.didMove(toParent: self)
-
-        view.addSubview(progressView)
         let progressViewTopAnchor = progressView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: view.bounds.height / 2 - 100)
         let progressViewHeightAnchor = progressView.heightAnchor.constraint(equalToConstant: 150)
 
         self.progressViewTopAnchor = progressViewTopAnchor
         self.progressViewHeightAnchor = progressViewHeightAnchor
         NSLayoutConstraint.activate([
-            childNavigationController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            childNavigationController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            childNavigationController.view.topAnchor.constraint(equalTo: view.topAnchor),
-            childNavigationController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            collectionView.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: view.bottomAnchor),
 
             progressView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             progressViewTopAnchor,
             progressViewHeightAnchor,
             progressView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
-            progressView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40)
+            progressView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
+
+            closeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10)
         ])
     }
-}
 
-extension AddInsuranceContainerViewController {
-    private func showInsuranceTypes() {
-        let insuranceProviderTypeViewController =
-            AddInsuranceTypeViewController(storeController: storeController)
+    private func startOnboarding() {
+        progressView.isHidden = true
+        progressBarToTop(animated: false, completion: { [weak self] in
+            self?.showInsuranceType()
+        })
+    }
+    private func showInsuranceType() {
         insuranceProviderTypeViewController.delegate = self
-        let barButton = UIBarButtonItem(
-            image: UIImage(systemName: "xmark")?.withSymbolWeightConfiguration(.medium),
-            style: .plain,
-            target: self,
-            action: #selector(stopAddingInsurance)
-        )
-        insuranceProviderTypeViewController.navigationItem.rightBarButtonItem = barButton
-        childNavigationController.setViewControllers([insuranceProviderTypeViewController], animated: false)
+        progressView.isHidden = false
+        if !addInsuranceViewControllers.contains(insuranceProviderTypeViewController) {
+            addInsuranceViewControllers.append(insuranceProviderTypeViewController)
+        }
     }
 
-    @objc private func stopAddingInsurance(_ sender: Any) {
-        self.dismiss(animated: true)
-    }
-}
-
-extension AddInsuranceContainerViewController {
     private func progressBarToTop(animated: Bool = true, completion: (() -> Void)? = nil) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
@@ -127,14 +133,14 @@ extension AddInsuranceContainerViewController {
                         self.progressViewHeightAnchor?.constant = 40
                         self.view.layoutIfNeeded()
                     }) { _ in
-                        self.childNavigationController.view.isHidden = false
+                        self.collectionView.isHidden  = false
                         self.progressView.isHidden = false
                         completion?()
                     }
                 } else {
                     self.progressViewTopAnchor?.constant = 40
                     self.progressViewHeightAnchor?.constant = 40
-                    self.childNavigationController.view.isHidden = false
+                    self.collectionView.isHidden = false
                     self.progressView.isHidden = false
                     completion?()
                 }
@@ -148,92 +154,15 @@ extension AddInsuranceContainerViewController {
             self.progressViewTopAnchor?.constant = self.view.bounds.height / 2 - 100
             self.progressViewHeightAnchor?.constant = 150
             self.progressView.update(.spinner, animated: false)
-            self.childNavigationController.view.isHidden = true
+            self.collectionView.isHidden = true
         }
-    }
-
-    @objc private func pauseLoadingAnimation() {
-        guard !progressView.isHidden else { return }
-        progressView.setLoading(false)
-    }
-
-    @objc private func resumeLoadingAnimation() {
-        guard !progressView.isHidden else { return }
-        progressView.setLoading(true)
-    }
-}
-
-extension AddInsuranceContainerViewController: AddInsuranceTypeViewControllerDelegate {
-    func addInsuranceDidSelectProviderType(_ viewController: AddInsuranceTypeViewController, providerType: InsuranceProviderType) {
-        self.providerType = providerType
-        showInsuranceProviders()
-    }
-
-    private func showInsuranceProviders() {
-        let viewController = AddInsuranceProviderViewController(storeController: storeController)
-        viewController.navigationItem.rightBarButtonItem = UIBarButtonItem(
-            image: UIImage(systemName: "xmark")?.withSymbolWeightConfiguration(.medium),
-            style: .plain,
-            target: self,
-            action: #selector(stopAddingInsurance(_:))
-        )
-        viewController.delegate = self
-        childNavigationController.pushViewController(viewController, animated: true)
-    }
-}
-
-extension AddInsuranceContainerViewController: AddInsuranceProviderViewControllerDelegate {
-    func addInsuranceDidSelectProvider(_ viewController: AddInsuranceProviderViewController, provider: InsuranceProvider) {
-        self.insuranceProvider = provider
-        guard let providerType = providerType else { fatalError("No providerType selected") }
-
-        showConsent(with: providerType, provider: provider)
-    }
-
-    func showConsent(with providerType: InsuranceProviderType ,provider: InsuranceProvider) {
-        let onboardingConsentViewController = AddInsuranceConsentViewController(storeController: storeController, insuranceProvider: provider, providerType: providerType)
-        onboardingConsentViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(
-            image: UIImage(systemName: "xmark")?.withSymbolWeightConfiguration(.medium),
-            style: .plain,
-            target: self,
-            action: #selector(stopAddingInsurance(_:))
-        )
-        onboardingConsentViewController.delegate = self
-        childNavigationController.pushViewController(onboardingConsentViewController, animated: true)
-    }
-}
-
-extension AddInsuranceContainerViewController: AddInsuranceConsentViewControllerDelegate {
-    func addInsuranceDidSelectConsent(_ viewController: AddInsuranceConsentViewController) {
-        guard let providerType = providerType, let insuranceProvider = insuranceProvider else {
-            fatalError("insuranceProvider or providerType is null")
-        }
-        aggregateInsurance(providerType, insuranceProvider: insuranceProvider)
-    }
-
-    private func aggregateInsurance(_ providerType: InsuranceProviderType, insuranceProvider: InsuranceProvider) {
-        progressSpinnerToCenter()
-        storeController
-            .insuranceCredentialStore
-            .addInsurance(insuranceProvider)
-        storeController
-            .insuranceCredentialStore
-            .insuranceStatus.sink { [weak self] scrapingStatus in
-                print(scrapingStatus)
-                switch scrapingStatus {
-                case .completed:
-                    self?.showInsuranceAggregatedConfirmation()
-                    self?.progressBarToTop()
-                default:
-                    break
-                }
-        }.store(in: &cancellables)
     }
 
     private func showInsuranceAggregatedConfirmation() {
         let confirmationViewController = AddInsuranceConfirmationViewController()
         confirmationViewController.delegate = self
-        childNavigationController.pushViewController(confirmationViewController, animated: true)
+        addInsuranceViewControllers.append(confirmationViewController)
+        collectionView.scrollToItem(at: IndexPath(item: 3, section: 0), at: .centeredHorizontally, animated: true)
         storeController.insuranceStore.fetchAllInsurances { result in
             // TODO Need to change this with real data
             switch result {
@@ -246,18 +175,94 @@ extension AddInsuranceContainerViewController: AddInsuranceConsentViewController
             }
         }
     }
+
+    @objc private func pauseLoadingAnimation() {
+        guard !progressView.isHidden else { return }
+        progressView.setLoading(false)
+    }
+
+    @objc private func resumeLoadingAnimation() {
+        guard !progressView.isHidden else { return }
+        progressView.setLoading(true)
+    }
+
+    @objc private func stopAddingInsurance(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
+}
+
+extension AddInsuranceContainerViewController: AddInsuranceTypeViewControllerDelegate {
+    func addInsuranceProviderType(_ viewController: AddInsuranceTypeViewController, didSelect providerType: InsuranceProviderType) {
+        self.providerType = providerType
+        insuranceProviderViewController.delegate = self
+        if !addInsuranceViewControllers.contains(insuranceProviderViewController) {
+            addInsuranceViewControllers.append(insuranceProviderViewController)
+        }
+        collectionView.scrollToItem(at: IndexPath(item: 1, section: 0), at: .centeredHorizontally, animated: true)
+    }
+}
+
+extension AddInsuranceContainerViewController: AddInsuranceProviderViewControllerDelegate {
+    func addInsuranceProvider(_ viewController: AddInsuranceProviderViewController, didSelect provider: InsuranceProvider) {
+        guard let providerType = providerType else { fatalError("No providerType selected") }
+        self.insuranceProvider = provider
+        let addInsuranceConsentViewController = AddInsuranceConsentViewController(storeController: storeController, insuranceProvider: provider, providerType: providerType)
+        addInsuranceConsentViewController.delegate = self
+        if let consentViewController = consentViewController {
+            addInsuranceViewControllers.removeAll { consentViewController == $0 }
+        }
+        addInsuranceViewControllers.append(addInsuranceConsentViewController)
+        self.consentViewController = addInsuranceConsentViewController
+        collectionView.scrollToItem(at: IndexPath(item: 2, section: 0), at: .centeredHorizontally, animated: true)
+    }
+}
+
+extension AddInsuranceContainerViewController: AddInsuranceConsentViewControllerDelegate {
+    func addInsuranceConsent(_ viewController: AddInsuranceConsentViewController) {
+        guard let insuranceProvider = insuranceProvider else {
+            fatalError("insuranceProvider or providerType is null")
+        }
+        progressSpinnerToCenter()
+        storeController
+            .insuranceCredentialStore
+            .addInsurance(insuranceProvider)
+        storeController
+            .insuranceCredentialStore
+            .insuranceStatus.sink { [weak self] scrapingStatus in
+            print(scrapingStatus)
+            switch scrapingStatus {
+            case .completed:
+                self?.showInsuranceAggregatedConfirmation()
+                self?.progressBarToTop()
+            default:
+                break
+            }
+            }
+        .store(in: &cancellables)
+    }
 }
 
 extension AddInsuranceContainerViewController: AddInsuranceConfirmationViewControllerDelegate {
-    func addInsuranceDidSelectFinish(_ viewController: AddInsuranceConfirmationViewController) {
+    func addInsuranceFinished(_ viewController: AddInsuranceConfirmationViewController) {
         delegate?.addInsuranceDidFinish(self)
     }
 }
 
-extension AddInsuranceContainerViewController: UINavigationControllerDelegate {
-    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
-        if let currentIndex = onboardingViewControllers.firstIndex(where: { viewController == $0 }) {
-            progressView.currentStep = currentIndex + 1
+extension AddInsuranceContainerViewController: UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        1
+    }
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        addInsuranceViewControllers.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OnboardingCell.identifier, for: indexPath)
+        if let onboardingCell = cell as? OnboardingCell {
+            let viewController = addInsuranceViewControllers[indexPath.item]
+            onboardingCell.configure(onboarding: viewController.view)
         }
+        return cell
     }
 }
