@@ -18,15 +18,21 @@ final class OnboardingCoordinator {
     
     private var navigationController: UINavigationController
     private var storeController: StoreController
+    private var onboardingContainerViewController: OnboardingContainerViewController
     private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
 
     init(navigationController: UINavigationController, storeController: StoreController) {
         self.navigationController = navigationController
         self.storeController = storeController
+        onboardingContainerViewController = OnboardingContainerViewController(storeController: storeController)
     }
 
     func start() {
-        showLoading()
+        onboardingContainerViewController.coordinator = self
+        navigationController.pushViewController(onboardingContainerViewController, animated: false)
+
+        onboardingContainerViewController.loading()
+
         authenticate()
     }
 }
@@ -41,14 +47,6 @@ extension OnboardingCoordinator {
             case .failure(let error):
                 self.showError(error, requestName: "authorize/bank-id/auth")
             }
-        }
-    }
-
-    private func showLoading() {
-        DispatchQueue.main.async {
-            let loadingViewController = LoadingViewController()
-            loadingViewController.modalPresentationStyle = .overFullScreen
-            self.navigationController.present(loadingViewController, animated: false)
         }
     }
 
@@ -117,11 +115,7 @@ extension OnboardingCoordinator {
     }
 
     private func showOnboardingFlow() {
-        let onboardingContainerViewController = OnboardingContainerViewController(storeController: storeController)
-        onboardingContainerViewController.coordinator = self
-        navigationController.pushViewController(onboardingContainerViewController, animated: false)
         onboardingContainerViewController.startOnboarding(storeController.user)
-        navigationController.dismiss(animated: true)
        }
 }
 

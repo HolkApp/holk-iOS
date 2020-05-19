@@ -49,12 +49,16 @@ final class OnboardingContainerViewController: UIViewController {
         setup()
     }
 
+    func loading() {
+        progressView.update(.spinner, animated: false)
+        collectionView.isHidden = true
+    }
+
     func startOnboarding(_ user: User) {
         if user.isNewUser {
             showAddNewUser(user)
         } else {
-            progressView.isHidden = true
-            progressBarToTop(animated: false, completion: { [weak self] in
+            progressBarToTop(animated: true, completion: { [weak self] in
                 self?.showInsuranceType()
             })
         }
