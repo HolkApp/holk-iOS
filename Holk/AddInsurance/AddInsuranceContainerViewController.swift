@@ -261,6 +261,10 @@ extension AddInsuranceContainerViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OnboardingCell.identifier, for: indexPath)
         if let onboardingCell = cell as? OnboardingCell {
             let viewController = addInsuranceViewControllers[indexPath.item]
+            if !children.contains(viewController) {
+                addChild(viewController)
+                viewController.didMove(toParent: self)
+            }
             onboardingCell.configure(onboarding: viewController.view)
         }
         return cell

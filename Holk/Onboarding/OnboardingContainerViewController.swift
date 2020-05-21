@@ -137,6 +137,24 @@ final class OnboardingContainerViewController: UIViewController {
         }
     }
 
+    private func showInsuranceAggregatedConfirmation() {
+        let confirmationViewController = OnboardingConfirmationViewController()
+        confirmationViewController.delegate = self
+        onboardingViewControllers.append(confirmationViewController)
+        collectionView.scrollToItem(at: IndexPath(item: 3, section: 0), at: .centeredHorizontally, animated: true)
+        storeController.insuranceStore.fetchAllInsurances { result in
+            // TODO Need to change this with real data
+            switch result {
+            case .success(let allInsuranceResponse):
+                confirmationViewController.addedInsurance = allInsuranceResponse.insuranceList.first
+            case .failure(let error):
+                confirmationViewController.addedInsurance = AllInsuranceResponse.mockInsurnace
+                print(error)
+                break
+            }
+        }
+    }
+
     private func progressBarToTop(animated: Bool = true, completion: (() -> Void)? = nil) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
@@ -169,24 +187,6 @@ final class OnboardingContainerViewController: UIViewController {
             self.progressViewHeightAnchor?.constant = 150
             self.progressView.update(.spinner, animated: false)
             self.collectionView.isHidden = true
-        }
-    }
-
-    private func showInsuranceAggregatedConfirmation() {
-        let confirmationViewController = OnboardingConfirmationViewController()
-        confirmationViewController.delegate = self
-        onboardingViewControllers.append(confirmationViewController)
-        collectionView.scrollToItem(at: IndexPath(item: 3, section: 0), at: .centeredHorizontally, animated: true)
-        storeController.insuranceStore.fetchAllInsurances { result in
-            // TODO Need to change this with real data
-            switch result {
-            case .success(let allInsuranceResponse):
-                confirmationViewController.addedInsurance = allInsuranceResponse.insuranceList.first
-            case .failure(let error):
-                confirmationViewController.addedInsurance = AllInsuranceResponse.mockInsurnace
-                print(error)
-                break
-            }
         }
     }
 
@@ -308,6 +308,10 @@ extension OnboardingContainerViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OnboardingCell.identifier, for: indexPath)
         if let onboardingCell = cell as? OnboardingCell {
             let viewController = onboardingViewControllers[indexPath.item]
+            if !children.contains(viewController) {
+                addChild(viewController)
+                viewController.didMove(toParent: self)
+            }
             onboardingCell.configure(onboarding: viewController.view)
         }
         return cell
