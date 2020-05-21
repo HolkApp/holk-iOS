@@ -8,11 +8,6 @@
 
 import UIKit
 
-protocol OnboardingContainerCoordinating: AnyObject {
-    func onboardingStopped(_ onboardingContainerViewController: OnboardingContainerViewController)
-    func onboardingFinished(_ onboardingContainerViewController: OnboardingContainerViewController)
-}
-
 final class OnboardingCoordinator {
     var coordinator: ShellCoordinator?
     
@@ -28,7 +23,7 @@ final class OnboardingCoordinator {
     }
 
     func start() {
-        onboardingContainerViewController.coordinator = self
+        onboardingContainerViewController.delegate = self
         navigationController.pushViewController(onboardingContainerViewController, animated: false)
 
         onboardingContainerViewController.loading()
@@ -70,7 +65,7 @@ extension OnboardingCoordinator {
             guard let self = self else { return }
             switch result {
             case .success:
-                self.storeController.insuranceProviderStore.fetchInsuranceProviders { _ in }
+                self.storeController.insuranceProviderStore.fetchInsuranceProviders()
                 self.fetchUserInfo()
             case .failure(let error):
                 self.showError(error, requestName: "authorize/oauth/token")
@@ -105,7 +100,8 @@ extension OnboardingCoordinator {
                 alert.dismiss(animated: true)
             })
         )
-        if navigationController.presentingViewController != nil {
+
+        if navigationController.presentedViewController != nil {
             navigationController.dismiss(animated: false) {
                 self.navigationController.present(alert, animated: true)
             }
@@ -121,7 +117,7 @@ extension OnboardingCoordinator {
 
 
 // MARK: - OnboardingCoordinator
-extension OnboardingCoordinator: OnboardingContainerCoordinating {
+extension OnboardingCoordinator: OnboardingContainerDelegate {
     func onboardingStopped(_ onboardingContainerViewController: OnboardingContainerViewController) {
         coordinator?.onboardingStopped()
     }

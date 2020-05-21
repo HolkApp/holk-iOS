@@ -19,7 +19,7 @@ final class UserStore {
         self.userService = UserService(client: APIClient(queue: queue), user: user)
     }
 
-    func userInfo(completion: @escaping (Result<UserInfoResponse, APIError>) -> Void) {
+    func userInfo(completion: @escaping (Result<UserInfoResponse, APIError>) -> Void = { _ in }) {
         userService.fetchUserInfo().mapError { APIError(urlError: $0) }
             .sink(receiveCompletion: { result in
                 switch result {

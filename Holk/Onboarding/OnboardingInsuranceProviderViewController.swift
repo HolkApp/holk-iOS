@@ -104,7 +104,7 @@ final class OnboardingInsuranceProviderViewController: UIViewController {
     
     private func loadInsuranceProviderListIfNeeded() {
         if storeController.insuranceProviderStore.providerList.value == nil {
-            storeController.insuranceProviderStore.fetchInsuranceProviders { _ in }
+            storeController.insuranceProviderStore.fetchInsuranceProviders()
         }
     }
     

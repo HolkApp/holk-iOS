@@ -23,7 +23,7 @@ final class InsuranceProviderStore {
     }
 
     // TODO: Update this simplify it by having return observable and keep a cache for the value.
-    func fetchInsuranceProviders(completion: @escaping (Result<ProviderStatusResponse, APIError>) -> Void) {
+    func fetchInsuranceProviders(completion: @escaping (Result<ProviderStatusResponse, APIError>) -> Void = { _ in }) {
         insuranceProviderService.fetchInsuranceProviders().mapError { APIError(urlError: $0) }
         .sink(receiveCompletion: { result in
             switch result {

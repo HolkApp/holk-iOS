@@ -62,8 +62,8 @@ final class ShellCoordinator {
             }
         case .updated:
             showLoading()
-            storeController.userStore.userInfo { _ in }
-            storeController.insuranceProviderStore.fetchInsuranceProviders { _ in }
+            storeController.userStore.userInfo()
+            storeController.insuranceProviderStore.fetchInsuranceProviders()
             storeController.insuranceStore.fetchAllInsurances { [weak self] _ in
                 self?.showSession()
             }
@@ -82,9 +82,7 @@ final class ShellCoordinator {
         let landingPageViewController = LandingPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
         landingPageViewController.coordinator = self
         landingPageNavigationController.setViewControllers([landingPageViewController], animated: false)
-        UIView.performWithoutAnimation {
-            rootViewController.present(landingPageNavigationController, animated: false)
-        }
+        rootViewController.present(landingPageNavigationController, animated: false)
     }
 
     func authenticate() {
