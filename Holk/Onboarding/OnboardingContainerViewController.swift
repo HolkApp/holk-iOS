@@ -1,9 +1,14 @@
 import UIKit
 import Combine
 
+protocol OnboardingContainerDelegate: AnyObject {
+    func onboardingStopped(_ onboardingContainerViewController: OnboardingContainerViewController)
+    func onboardingFinished(_ onboardingContainerViewController: OnboardingContainerViewController)
+}
+
 final class OnboardingContainerViewController: UIViewController {
     // MARK: - Public Variables
-    weak var coordinator: OnboardingCoordinator?
+    weak var delegate: OnboardingContainerDelegate?
 
     // MARK: - Private Variables
     private let storeController: StoreController
@@ -211,7 +216,7 @@ final class OnboardingContainerViewController: UIViewController {
             UIAlertAction(title: "OK", style: .default, handler: { [weak self] _ in
                 guard let self = self else { return }
                 alert.dismiss(animated: true) {
-                    self.coordinator?.onboardingStopped(self)
+                    self.delegate?.onboardingStopped(self)
                 }
             })
         )
@@ -291,7 +296,7 @@ extension OnboardingContainerViewController: OnboardingConsentViewControllerDele
 
 extension OnboardingContainerViewController: OnboardingConfirmationViewControllerDelegate {
     func onboardingConfirmation(_ viewController: OnboardingConfirmationViewController) {
-        coordinator?.onboardingFinished(self)
+        delegate?.onboardingFinished(self)
     }
 }
 
