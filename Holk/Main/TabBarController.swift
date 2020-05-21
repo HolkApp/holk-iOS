@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TabBarController: UITabBarController {
+final class TabBarController: UITabBarController {
     // MARK: - Public variables
     weak var coordinator: SessionCoordinator?
     
@@ -16,6 +16,7 @@ class TabBarController: UITabBarController {
     private let insuranceCoordinator: InsuranceCoordinator
     private let protectionCoordinator: InsuranceProtectionCoordinator
     private var storeController: StoreController
+    private let addMoreButton = HolkButton()
 
     init(storeController: StoreController) {
         self.storeController = storeController
@@ -33,6 +34,7 @@ class TabBarController: UITabBarController {
         insuranceCoordinator.start()
         insuranceCoordinator.delegate = self
         protectionCoordinator.start()
+
         viewControllers = [
             insuranceCoordinator.navController,
             protectionCoordinator.navController
@@ -40,6 +42,23 @@ class TabBarController: UITabBarController {
         
         tabBar.barTintColor = Color.tabbarBackgroundColor
         tabBar.tintColor = Color.mainForegroundColor
+
+        let addMoreImage = UIImage(systemName: "plus")?.withSymbolWeightConfiguration(.regular, pointSize: 30)
+        addMoreButton.set(color: Color.mainForegroundColor, image: addMoreImage)
+        addMoreButton.addTarget(self, action: #selector(addMoreTapped(sender:)), for: .touchUpInside)
+        addMoreButton.backgroundColor = Color.mainBackgroundColor
+        addMoreButton.layer.cornerRadius = 26
+        addMoreButton.clipsToBounds = true
+        addMoreButton.translatesAutoresizingMaskIntoConstraints = false
+
+        view.addSubview(addMoreButton)
+
+        NSLayoutConstraint.activate([
+            addMoreButton.centerXAnchor.constraint(equalTo: tabBar.centerXAnchor),
+            addMoreButton.centerYAnchor.constraint(equalTo: tabBar.topAnchor),
+            addMoreButton.widthAnchor.constraint(equalToConstant: 52),
+            addMoreButton.heightAnchor.constraint(equalToConstant: 52)
+        ])
     }
 
     override public func viewWillAppear(_ animated: Bool) {
@@ -53,11 +72,25 @@ class TabBarController: UITabBarController {
 
         navigationController?.setNavigationBarHidden(false, animated: false)
     }
+
+    @objc private func addMoreTapped(sender: UIButton) {
+        let addInsuranceContainerViewController = AddInsuranceContainerViewController(storeController: storeController)
+        addInsuranceContainerViewController.delegate = self
+        present(addInsuranceContainerViewController, animated: true)
+    }
 }
 
 // TODO: Change this when have a real profile
 extension TabBarController: InsuranceCoordinatorDelegate {
     func logout(_ coordinator: InsuranceCoordinator) {
         self.coordinator?.logout()
+    }
+}
+
+extension TabBarController: AddInsuranceContainerViewControllerDelegate {
+    func addInsuranceDidFinish(_ viewController: AddInsuranceContainerViewController) {
+        // TODO: Remove the fetch, when the adding finished, it should return the new list
+        storeController.insuranceStore.fetchAllInsurances()
+        viewController.dismiss(animated: true)
     }
 }
