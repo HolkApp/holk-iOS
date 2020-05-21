@@ -115,6 +115,7 @@ final class AddInsuranceContainerViewController: UIViewController {
             self?.showInsuranceType()
         })
     }
+    
     private func showInsuranceType() {
         insuranceProviderTypeViewController.delegate = self
         progressView.isHidden = false

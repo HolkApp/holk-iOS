@@ -11,26 +11,18 @@ import Combine
 
 final class InsurancesViewController: UICollectionViewController {
     // MARK: - Public variables
-    var storeController: StoreController
     var selectedIndexPath: IndexPath?
     weak var coordinator: InsuranceCoordinator?
 
     // MARK: - Private variables
+    private var storeController: StoreController
     private var insurnaceList: [Insurance] {
         didSet {
             collectionView.reloadData()
         }
     }
-    private let addMorebutton = HolkButton()
-    private var cancellables = Set<AnyCancellable>()
 
-    // TODO: Remove the mock
-    var numberOfInsurances = 1 {
-        didSet {
-            collectionView.reloadData()
-            collectionView.collectionViewLayout.invalidateLayout()
-        }
-    }
+    private var cancellables = Set<AnyCancellable>()
 
     init(storeController: StoreController, collectionViewLayout: UICollectionViewLayout) {
         self.storeController = storeController
@@ -73,30 +65,6 @@ final class InsurancesViewController: UICollectionViewController {
         collectionView.alwaysBounceVertical = true
         collectionView.register(InsuranceCollectionViewCell.self, forCellWithReuseIdentifier: InsuranceCollectionViewCell.identifier)
         collectionView.register(InsuranceHintCardCollectionViewCell.self, forCellWithReuseIdentifier: InsuranceHintCardCollectionViewCell.identifier)
-
-        let addMoreImage = UIImage(systemName: "plus")?.withSymbolWeightConfiguration(.regular, pointSize: 30)
-        addMorebutton.set(color: Color.mainForegroundColor, image: addMoreImage)
-        addMorebutton.addTarget(self, action: #selector(addMoreTapped(sender:)), for: .touchUpInside)
-        addMorebutton.backgroundColor = Color.mainBackgroundColor
-        addMorebutton.layer.cornerRadius = 26
-        addMorebutton.clipsToBounds = true
-        addMorebutton.translatesAutoresizingMaskIntoConstraints = false
-
-        view.addSubview(addMorebutton)
-
-        NSLayoutConstraint.activate([
-            addMorebutton.widthAnchor.constraint(equalToConstant: 52),
-            addMorebutton.heightAnchor.constraint(equalToConstant: 52),
-            addMorebutton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            addMorebutton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -12)
-        ])
-    }
-
-    // TODO: Trigger add more flow
-    @objc private func addMoreTapped(sender: UIButton) {
-        let addInsuranceContainerViewController = AddInsuranceContainerViewController(storeController: storeController)
-        addInsuranceContainerViewController.delegate = self
-        present(addInsuranceContainerViewController, animated: true)
     }
 
     @objc private func profileTapped(sender: UIButton) {
@@ -159,15 +127,6 @@ extension InsurancesViewController {
             selectedIndexPath = indexPath
             let insurance = insurnaceList[indexPath.item]
             coordinator?.showInsurnaceDetail(insurance)
-        }
-    }
-}
-
-extension InsurancesViewController: AddInsuranceContainerViewControllerDelegate {
-    func addInsuranceDidFinish(_ viewController: AddInsuranceContainerViewController) {
-        viewController.dismiss(animated: true) {
-            // TODO: remove this in production
-            self.numberOfInsurances += 1
         }
     }
 }
