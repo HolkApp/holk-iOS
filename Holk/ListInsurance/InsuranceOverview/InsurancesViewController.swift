@@ -51,6 +51,10 @@ final class InsurancesViewController: UICollectionViewController {
     }
     
     private func setup() {
+        let largeTitleFont = Font.font(name: .poppins, weight: .semiBold, size: 30)
+        navigationController?.navigationBar.largeTitleTextAttributes = [.font: largeTitleFont]
+        let titleFont = Font.font(name: .poppins, weight: .semiBold, size: 20)
+        navigationController?.navigationBar.titleTextAttributes = [.font: titleFont]
         title = "Översikt"
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "person.crop.circle"), style: .plain, target: self, action: #selector(profileTapped(sender:)))
 
