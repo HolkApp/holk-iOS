@@ -19,7 +19,7 @@ final class InsuranceProtectionCoordinator {
     func start() {
         let vc = InsuranceProtectionViewController()
         vc.coordinator = self
-        navController.tabBarItem = UITabBarItem(title: "Ditt skydd", image: UIImage(systemName: "bell"), tag: 1)
+        navController.tabBarItem = UITabBarItem(title: "Ditt skydd", image: UIImage(systemName: "bell"), selectedImage: UIImage(systemName: "bell.fill"))
         navController.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navController.navigationBar.shadowImage = UIImage()
         navController.pushViewController(vc, animated: true)

@@ -28,7 +28,7 @@ class InsuranceCoordinator: NSObject, UINavigationControllerDelegate {
         let insurancesViewController = InsurancesViewController(storeController: storeController, collectionViewLayout: layout)
         insurancesViewController.coordinator = self
 
-        navController.tabBarItem = UITabBarItem(title: "Översikt", image: UIImage(systemName: "square.stack.3d.up"), tag: 0)
+        navController.tabBarItem = UITabBarItem(title: "Översikt", image: UIImage(systemName: "square.stack.3d.up"), selectedImage: UIImage(systemName: "square.stack.3d.up.fill"))
         navController.navigationBar.tintColor = Color.mainForegroundColor
         navController.navigationBar.prefersLargeTitles = true
         navController.delegate = self
