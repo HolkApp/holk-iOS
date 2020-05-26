@@ -40,14 +40,10 @@ class InsuranceHintCardCollectionViewCell: UICollectionViewCell {
     }
 
     override var isHighlighted: Bool {
-            didSet {
-                let scaleTransform = isHighlighted ? CGAffineTransform(scaleX: 0.95, y: 0.95) : .identity
-                let animator = UIViewPropertyAnimator(duration: 0.1, curve: .easeInOut) {
-                    self.transform = scaleTransform
-                }
-                animator.startAnimation()
-            }
+        didSet {
+            hintView.backgroundColor = isHighlighted ? Color.hintCardPressDownBackgroundColor : Color.hintCardBackgroundColor
         }
+    }
 
     func configure(_ insurance: Insurance?, hintType: HintType) {
         // TODO: Update this
@@ -79,8 +75,8 @@ class InsuranceHintCardCollectionViewCell: UICollectionViewCell {
         contentView.layoutMargins = .init(top: 6, left: 6, bottom: 6, right: 6)
         backgroundColor = .clear
 
-        hintView.layoutMargins = .init(top: 12, left: 12, bottom: 4, right: 12)
-        hintView.backgroundColor = Color.secondaryBackgroundColor
+        hintView.layoutMargins = .init(top: 8, left: 12, bottom: 8, right: 12)
+        hintView.backgroundColor = Color.hintCardBackgroundColor
         hintView.layer.shadowOffset = CGSize(width: 0, height: 2)
         hintView.layer.shadowColor = UIColor.black.cgColor
         hintView.layer.shadowOpacity = 0.15
@@ -94,7 +90,7 @@ class InsuranceHintCardCollectionViewCell: UICollectionViewCell {
         hintValueLabel.textAlignment = .center
         hintValueLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        hintImageView.tintColor = Color.mainForegroundColor.withAlphaComponent(0.35)
+        hintImageView.contentMode = .scaleAspectFit
         hintImageView.translatesAutoresizingMaskIntoConstraints = false
 
         hintLabel.setStyleGuide(.body1)
@@ -111,21 +107,22 @@ class InsuranceHintCardCollectionViewCell: UICollectionViewCell {
         hintView.addSubview(hintLabel)
 
         NSLayoutConstraint.activate([
-            hintValueLabel.leadingAnchor.constraint(equalTo: hintView.layoutMarginsGuide.leadingAnchor),
-            hintValueLabel.topAnchor.constraint(equalTo: hintView.layoutMarginsGuide.topAnchor),
-            hintValueLabel.trailingAnchor.constraint(equalTo: hintImageView.leadingAnchor, constant: -12),
-            hintValueLabel.bottomAnchor.constraint(equalTo: hintLabel.topAnchor, constant: -12),
+            hintValueLabel.widthAnchor.constraint(equalToConstant: 40),
+            hintValueLabel.heightAnchor.constraint(equalToConstant: 30),
+            hintValueLabel.centerYAnchor.constraint(equalTo: hintImageView
+                .centerYAnchor),
+            hintValueLabel.trailingAnchor.constraint(lessThanOrEqualTo: hintView.layoutMarginsGuide.trailingAnchor),
 
-            hintImageView.widthAnchor.constraint(equalToConstant: 24),
-            hintImageView.heightAnchor.constraint(equalToConstant: 24),
-            hintImageView.centerYAnchor.constraint(equalTo: hintValueLabel
-.centerYAnchor),
-            hintImageView.trailingAnchor.constraint(lessThanOrEqualTo: hintView.layoutMarginsGuide.trailingAnchor),
+            hintImageView.widthAnchor.constraint(equalToConstant: 36),
+            hintImageView.heightAnchor.constraint(equalToConstant: 36),
+            hintImageView.leadingAnchor.constraint(equalTo: hintView.layoutMarginsGuide.leadingAnchor),
+            hintImageView.topAnchor.constraint(equalTo: hintView.layoutMarginsGuide.topAnchor),
+            hintImageView.bottomAnchor.constraint(equalTo: hintLabel.topAnchor, constant: -4),
 
-            hintLabel.leadingAnchor.constraint(equalTo: hintValueLabel
+            hintLabel.leadingAnchor.constraint(equalTo: hintImageView
 .leadingAnchor),
             hintLabel.trailingAnchor.constraint(equalTo: hintView.layoutMarginsGuide.trailingAnchor),
-            hintLabel.bottomAnchor.constraint(equalTo: hintView.layoutMarginsGuide.bottomAnchor),
+            hintLabel.lastBaselineAnchor.constraint(equalTo: hintView.layoutMarginsGuide.bottomAnchor),
 
             hintView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
             hintView.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
@@ -133,7 +130,6 @@ class InsuranceHintCardCollectionViewCell: UICollectionViewCell {
             hintView.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor)
         ])
     }
-
 }
 
 
