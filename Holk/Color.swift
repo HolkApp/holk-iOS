@@ -23,7 +23,15 @@ enum Color {
         return makeColor(asset: #function)
     }
 
-    static var backgroundColor: UIColor {
+    static var hintCardBackgroundColor: UIColor {
+        return makeColor(asset: #function)
+    }
+
+    static var hintCardPressDownBackgroundColor: UIColor {
+        return makeColor(asset: #function)
+    }
+
+    static var insuranceBackgroundColor: UIColor {
         return makeColor(asset: #function)
     }
     
@@ -51,10 +59,6 @@ enum Color {
         return makeColor(asset: #function)
     }
     
-    static var tabbarBackgroundColor: UIColor {
-        return makeColor(asset: #function)
-    }
-    
     static var mainAlertColor: UIColor {
         return makeColor(asset: #function)
     }
@@ -68,6 +72,10 @@ enum Color {
     }
     
     static var successColor: UIColor {
+        return makeColor(asset: #function)
+    }
+
+    static var tabBarItemSelectedColor: UIColor {
         return makeColor(asset: #function)
     }
 }

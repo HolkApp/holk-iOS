@@ -47,7 +47,7 @@ final class InsurancesViewController: UICollectionViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        navigationController?.navigationBar.barTintColor = Color.backgroundColor
+        navigationController?.navigationBar.barTintColor = Color.insuranceBackgroundColor
     }
     
     private func setup() {
@@ -58,7 +58,7 @@ final class InsurancesViewController: UICollectionViewController {
         title = "Översikt"
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "person.crop.circle"), style: .plain, target: self, action: #selector(profileTapped(sender:)))
 
-        view.backgroundColor = Color.backgroundColor
+        view.backgroundColor = Color.insuranceBackgroundColor
         view.layoutMargins = .zero
 
         collectionView.backgroundColor = .clear

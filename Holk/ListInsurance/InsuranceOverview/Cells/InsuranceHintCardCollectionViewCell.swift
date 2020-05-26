@@ -71,7 +71,7 @@ class InsuranceHintCardCollectionViewCell: UICollectionViewCell {
             }
 
             hintLabel.text = "Tänk på"
-            hintValueLabel.textColor = Color.warningColor
+            hintValueLabel.textColor = Color.mainForegroundColor
         }
     }
 

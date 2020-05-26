@@ -27,7 +27,7 @@ extension UILabel {
             font = Font.font(name: .poppins, weight: .semiBold, size: 25)
             setLineHeight(20)
         case .body1:
-            font = Font.font(name: .montserrat, weight: .regular, size: 13)
+            font = Font.font(name: .montserrat, weight: .medium, size: 13)
             setLineHeight(17)
         }
     }
