@@ -11,6 +11,7 @@ enum Font {
     enum Name {
         case montserrat
         case poppins
+        case lato
     }
 
     enum Weight {
@@ -84,6 +85,8 @@ enum Font {
             fontName = "Montserrat"
         case .poppins:
             fontName = "Poppins"
+        case .lato:
+            fontName = "Lato"
         }
         let fontWeight: String
         switch weight {

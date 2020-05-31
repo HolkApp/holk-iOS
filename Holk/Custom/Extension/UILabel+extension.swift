@@ -26,9 +26,30 @@ extension UILabel {
         case .header5:
             font = Font.font(name: .poppins, weight: .semiBold, size: 25)
             setLineHeight(20)
+        case .cardHeader1:
+            font = Font.font(name: .montserrat, weight: .extraBold, size: 35)
+            setLineHeight(37)
+        case .cardHeader2:
+            font = Font.font(name: .montserrat, weight: .extraBold, size: 30)
+            setLineHeight(32)
+        case .titleHeader1:
+            font = Font.font(name: .poppins, weight: .semiBold, size: 18)
+            setLineHeight(14)
         case .body1:
-            font = Font.font(name: .montserrat, weight: .medium, size: 13)
-            setLineHeight(17)
+            font = Font.font(name: .montserrat, weight: .medium, size: 14)
+            setLineHeight(20)
+        case .body2:
+            font = Font.font(name: .montserrat, weight: .medium, size: 18)
+            setLineHeight(25)
+        case .numbers1:
+            font = Font.font(name: .poppins, weight: .medium, size: 20)
+            setLineHeight(33)
+        case .numbers2:
+            font = Font.font(name: .lato, weight: .bold, size: 25)
+            setLineHeight(33)
+        case .numbers3:
+            font = Font.font(name: .lato, weight: .regular, size: 30)
+            setLineHeight(35)
         }
     }
 
