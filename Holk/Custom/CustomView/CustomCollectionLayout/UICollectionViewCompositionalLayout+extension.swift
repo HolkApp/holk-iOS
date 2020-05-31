@@ -45,7 +45,7 @@ extension UICollectionViewCompositionalLayout {
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         let cardSection = NSCollectionLayoutSection(group: group)
         cardSection.interGroupSpacing = 24
-        cardSection.contentInsets = .init(top: 40, leading: 18, bottom: 0, trailing: 18)
+        cardSection.contentInsets = .init(top: 12, leading: 18, bottom: 0, trailing: 18)
         return cardSection
     }
 }

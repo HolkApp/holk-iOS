@@ -8,7 +8,7 @@
 
 import UIKit
 
-class InsuranceDetailViewController: UIViewController {
+final class InsuranceDetailViewController: UIViewController {
     // MARK: - Public variables
     let tableView = UITableView()
     let ringChart = HolkRingChart()

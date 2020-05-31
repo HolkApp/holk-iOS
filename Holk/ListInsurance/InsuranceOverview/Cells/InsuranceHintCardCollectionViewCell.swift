@@ -86,7 +86,7 @@ class InsuranceHintCardCollectionViewCell: UICollectionViewCell {
         hintView.translatesAutoresizingMaskIntoConstraints = false
 
         hintValueLabel.setStyleGuide(.header5)
-        hintValueLabel.backgroundColor = Color.mainBackgroundColor
+        hintValueLabel.backgroundColor = Color.secondaryBackgroundColor
         hintValueLabel.textAlignment = .center
         hintValueLabel.translatesAutoresizingMaskIntoConstraints = false
 
