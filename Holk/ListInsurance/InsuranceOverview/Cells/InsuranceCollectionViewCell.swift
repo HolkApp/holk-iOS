@@ -18,6 +18,7 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
     private let subtitleLabel = UILabel()
     private let insuranceSubNumberLabel = UILabel()
     private let insuranceTextLabel = UILabel()
+    private let insuranceTypeImageView = UIImageView()
     private let insuranceImageView = UIImageView()
     private let clockImageView = UIImageView()
     private let daysLabel = UILabel()
@@ -82,11 +83,13 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         titleLabel.font = Font.extraBold(.title)
         titleLabel.textColor = Color.mainForegroundColor
         titleLabel.numberOfLines = 0
+        titleLabel.setContentHuggingPriority(.required, for: .vertical)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
         subtitleLabel.font = Font.regular(.subtitle)
         subtitleLabel.textColor = Color.mainForegroundColor
         subtitleLabel.numberOfLines = 0
+        subtitleLabel.setContentHuggingPriority(.required, for: .vertical)
         subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
 
         clockImageView.contentMode = .scaleAspectFit
@@ -118,6 +121,10 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         insuranceTextLabel.textAlignment = .center
         insuranceTextLabel.translatesAutoresizingMaskIntoConstraints = false
 
+        insuranceTypeImageView.image = UIImage(named: "house")
+        insuranceTypeImageView.contentMode = .scaleAspectFit
+        insuranceTypeImageView.translatesAutoresizingMaskIntoConstraints = false
+
         insuranceImageView.contentMode = .scaleAspectFit
         insuranceImageView.translatesAutoresizingMaskIntoConstraints = false
     }
@@ -127,6 +134,7 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
 
         containerView.addSubview(titleLabel)
         containerView.addSubview(subtitleLabel)
+        containerView.addSubview(insuranceTypeImageView)
         containerView.addSubview(insuranceImageView)
 
         containerView.addSubview(clockImageView)
@@ -146,6 +154,11 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
             subtitleLabel.topAnchor.constraint(equalTo: titleLabel.lastBaselineAnchor, constant: 8),
             subtitleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24),
             subtitleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -20),
+
+            insuranceTypeImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24),
+            insuranceTypeImageView.topAnchor.constraint(equalTo: subtitleLabel.lastBaselineAnchor, constant: 48),
+            insuranceTypeImageView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -24),
+            insuranceTypeImageView.bottomAnchor.constraint(equalTo: clockImageView.topAnchor, constant: -56),
 
             clockImageView.widthAnchor.constraint(equalToConstant: 28),
             clockImageView.heightAnchor.constraint(equalToConstant: 28),
