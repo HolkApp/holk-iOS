@@ -9,7 +9,10 @@
 import UIKit
 
 final class InsuranceViewController: UIViewController {
-    // MARK: - Private variables
+    // MARK: - Public Variables
+    weak var coordinator: InsuranceCoordinator?
+    
+    // MARK: - Private Variables
     private var storeController: StoreController
     private var insurnace: Insurance
 

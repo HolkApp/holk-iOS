@@ -1,5 +1,5 @@
 //
-//  InsuranceDetailTableViewCell.swift
+//  HomeInsuranceDetailTableViewCell.swift
 //  Holk
 //
 //  Created by 张梦皓 on 2020-03-28.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class InsuranceDetailTableViewCell: UITableViewCell {
+final class HomeInsuranceDetailTableViewCell: UITableViewCell {
     // MARK: - Private variables
     private let lightFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
     private let containerView = UIView()
@@ -181,7 +181,7 @@ class InsuranceDetailTableViewCell: UITableViewCell {
     }
 }
 
-extension InsuranceDetailTableViewCell: HolkRingChartDataSource {
+extension HomeInsuranceDetailTableViewCell: HolkRingChartDataSource {
     func numberOfSegments(_ ringChart: HolkRingChart) -> Int {
         return 6
     }

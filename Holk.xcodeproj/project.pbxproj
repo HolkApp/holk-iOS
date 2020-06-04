@@ -42,7 +42,7 @@
 		8F4965E124154DC800DEAFC1 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F4965E024154DC800DEAFC1 /* Montserrat-Bold.ttf */; };
 		8F54C244242C07E000D72FD7 /* Result+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F54C243242C07E000D72FD7 /* Result+extension.swift */; };
 		8F54C246242C1FDC00D72FD7 /* UserInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F54C245242C1FDC00D72FD7 /* UserInfoResponse.swift */; };
-		8F54C24B242FD76E00D72FD7 /* InsuranceDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F54C24A242FD76E00D72FD7 /* InsuranceDetailTableViewCell.swift */; };
+		8F54C24B242FD76E00D72FD7 /* HomeInsuranceDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F54C24A242FD76E00D72FD7 /* HomeInsuranceDetailTableViewCell.swift */; };
 		8F54C24D2431266900D72FD7 /* InsuranceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F54C24C2431266800D72FD7 /* InsuranceDetailViewController.swift */; };
 		8F54C24F24328C0E00D72FD7 /* InsuranceDetailTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F54C24E24328C0E00D72FD7 /* InsuranceDetailTransition.swift */; };
 		8F5AF02423C6759C00690373 /* MockType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5AF02323C6759C00690373 /* MockType.swift */; };
@@ -104,6 +104,7 @@
 		8FC81CEC2483FB4400F6BC8C /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8FC81CEB2483FB4400F6BC8C /* Lato-Regular.ttf */; };
 		8FC81CEE2483FB4C00F6BC8C /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8FC81CED2483FB4C00F6BC8C /* Lato-Bold.ttf */; };
 		8FC81CF02484011D00F6BC8C /* InsuranceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC81CEF2484011D00F6BC8C /* InsuranceViewController.swift */; };
+		8FC81CF22484051500F6BC8C /* HomeInsurnaceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC81CF12484051500F6BC8C /* HomeInsurnaceCollectionViewCell.swift */; };
 		8FCEE9AE23254AAC00F75FB8 /* KeyboardEventObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCEE9AD23254AAC00F75FB8 /* KeyboardEventObserver.swift */; };
 		8FCEE9B123254B6C00F75FB8 /* KeyboardEventContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCEE9B023254B6C00F75FB8 /* KeyboardEventContext.swift */; };
 		8FCEE9B323254C2D00F75FB8 /* KeyboardEventFloatingViewHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCEE9B223254C2D00F75FB8 /* KeyboardEventFloatingViewHandler.swift */; };
@@ -177,7 +178,7 @@
 		8F4965E024154DC800DEAFC1 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		8F54C243242C07E000D72FD7 /* Result+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+extension.swift"; sourceTree = "<group>"; };
 		8F54C245242C1FDC00D72FD7 /* UserInfoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoResponse.swift; sourceTree = "<group>"; };
-		8F54C24A242FD76E00D72FD7 /* InsuranceDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceDetailTableViewCell.swift; sourceTree = "<group>"; };
+		8F54C24A242FD76E00D72FD7 /* HomeInsuranceDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInsuranceDetailTableViewCell.swift; sourceTree = "<group>"; };
 		8F54C24C2431266800D72FD7 /* InsuranceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceDetailViewController.swift; sourceTree = "<group>"; };
 		8F54C24E24328C0E00D72FD7 /* InsuranceDetailTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceDetailTransition.swift; sourceTree = "<group>"; };
 		8F5AF02323C6759C00690373 /* MockType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockType.swift; sourceTree = "<group>"; };
@@ -239,6 +240,7 @@
 		8FC81CEB2483FB4400F6BC8C /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
 		8FC81CED2483FB4C00F6BC8C /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
 		8FC81CEF2484011D00F6BC8C /* InsuranceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceViewController.swift; sourceTree = "<group>"; };
+		8FC81CF12484051500F6BC8C /* HomeInsurnaceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInsurnaceCollectionViewCell.swift; sourceTree = "<group>"; };
 		8FCEE9AD23254AAC00F75FB8 /* KeyboardEventObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardEventObserver.swift; sourceTree = "<group>"; };
 		8FCEE9B023254B6C00F75FB8 /* KeyboardEventContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardEventContext.swift; sourceTree = "<group>"; };
 		8FCEE9B223254C2D00F75FB8 /* KeyboardEventFloatingViewHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardEventFloatingViewHandler.swift; sourceTree = "<group>"; };
@@ -463,6 +465,15 @@
 			path = LandingPage;
 			sourceTree = "<group>";
 		};
+		8FC81CF3248975E700F6BC8C /* HomeInsuranceCell */ = {
+			isa = PBXGroup;
+			children = (
+				8FC81CF12484051500F6BC8C /* HomeInsurnaceCollectionViewCell.swift */,
+				8F54C24A242FD76E00D72FD7 /* HomeInsuranceDetailTableViewCell.swift */,
+			);
+			path = HomeInsuranceCell;
+			sourceTree = "<group>";
+		};
 		8FCEE9AF23254B5700F75FB8 /* KeyboardEvent */ = {
 			isa = PBXGroup;
 			children = (
@@ -587,7 +598,7 @@
 			children = (
 				8FF6E72C22B0333000F6D398 /* InsuranceCollectionViewCell.swift */,
 				8F5D89DE244EEB40007F1B26 /* InsuranceHintCardCollectionViewCell.swift */,
-				8F54C24A242FD76E00D72FD7 /* InsuranceDetailTableViewCell.swift */,
+				8FC81CF3248975E700F6BC8C /* HomeInsuranceCell */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -866,7 +877,7 @@
 				8F5AF02423C6759C00690373 /* MockType.swift in Sources */,
 				8F9807E92276F10E00584BA9 /* InsuranceCoordinator.swift in Sources */,
 				8F48BE6723315F49004D79D2 /* HolkIllustrationLabel.swift in Sources */,
-				8F54C24B242FD76E00D72FD7 /* InsuranceDetailTableViewCell.swift in Sources */,
+				8F54C24B242FD76E00D72FD7 /* HomeInsuranceDetailTableViewCell.swift in Sources */,
 				8FA766CB24411265007EB2A2 /* UIScrollView+extension.swift in Sources */,
 				8FF6E72822B026DB00F6D398 /* InsuranceListViewController.swift in Sources */,
 				8F16DE6C245DB5CB00EFC1BD /* IntegrateInsuranceResponse.swift in Sources */,
@@ -901,6 +912,7 @@
 				8F3C7DB223F833B4002EDA57 /* OnboardingConfirmationViewController.swift in Sources */,
 				8FE52F09239BBDEF001A77F5 /* KeychainService.swift in Sources */,
 				8F4965DF24130EA200DEAFC1 /* FloatingPoint+extension.swift in Sources */,
+				8FC81CF22484051500F6BC8C /* HomeInsurnaceCollectionViewCell.swift in Sources */,
 				8F3305A423FB3EEA00E9B443 /* DateFormatter+extension.swift in Sources */,
 				8F691D3624562ED30093E965 /* AddUserEmailRequest.swift in Sources */,
 				8F16DE68245B3D8500EFC1BD /* ShellCoordinator.swift in Sources */,

@@ -57,7 +57,7 @@ final class InsuranceDetailViewController: UIViewController {
         tableView.contentInset.top = 200
         tableView.setContentOffset(CGPoint(x: 0, y: -200), animated: false)
 
-        tableView.register(InsuranceDetailTableViewCell.self, forCellReuseIdentifier: InsuranceDetailTableViewCell.identifier)
+        tableView.register(HomeInsuranceDetailTableViewCell.self, forCellReuseIdentifier: HomeInsuranceDetailTableViewCell.identifier)
 
         view.addSubview(ringChart)
         view.addSubview(tableView)
@@ -92,9 +92,9 @@ extension InsuranceDetailViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: InsuranceDetailTableViewCell.identifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: HomeInsuranceDetailTableViewCell.identifier, for: indexPath)
         let segment = insurance.segments[indexPath.item]
-        if let cell = cell as? InsuranceDetailTableViewCell {
+        if let cell = cell as? HomeInsuranceDetailTableViewCell {
             cell.configure(with: segment)
         }
         return cell

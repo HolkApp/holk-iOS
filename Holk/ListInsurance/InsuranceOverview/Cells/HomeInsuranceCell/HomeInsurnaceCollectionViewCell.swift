@@ -8,10 +8,11 @@
 
 import UIKit
 
-final class InsuranceCollectionViewCell: UICollectionViewCell {
+final class HomeInsurnaceCollectionViewCell: UICollectionViewCell {
     // MARK: - Public variables
     var insurance: Insurance?
     let containerView = UIView()
+    let ringChart = HolkRingChart()
 
     // MARK: - Private variables
     private let titleLabel = UILabel()
@@ -19,10 +20,9 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
     private let insuranceSubNumberLabel = UILabel()
     private let insuranceTextLabel = UILabel()
     private let insuranceImageView = UIImageView()
-    private let clockImageView = UIImageView()
-    private let daysLabel = UILabel()
-    private let daysTextLabel = UILabel()
-    
+
+    private let ringChartLabelsStackView = UIStackView()
+
     private let lightFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
 
     override init(frame: CGRect) {
@@ -50,6 +50,10 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
                 self.transform = scaleTransform
             }
             animator.startAnimation()
+
+//            if isHighlighted {
+//                lightFeedbackGenerator.impactOccurred()
+//            }
         }
     }
 
@@ -60,8 +64,6 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         insuranceSubNumberLabel.text = "4"
         insuranceTextLabel.text = "insurance"
         insuranceImageView.image = UIImage(named: "Folksam")
-        daysLabel.text = "118"
-        daysTextLabel.text = "Dagar kvar"
     }
 
     private func setup() {
@@ -89,23 +91,6 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         subtitleLabel.numberOfLines = 0
         subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        clockImageView.contentMode = .scaleAspectFit
-        clockImageView.image = UIImage(systemName: "clock")?.withSymbolWeightConfiguration(.regular)
-        clockImageView.tintColor = Color.mainForegroundColor
-        clockImageView.translatesAutoresizingMaskIntoConstraints = false
-
-        daysLabel.setStyleGuide(.numbers2)
-        daysLabel.textColor = Color.mainForegroundColor
-        daysLabel.numberOfLines = 0
-        daysLabel.textAlignment = .center
-        daysLabel.translatesAutoresizingMaskIntoConstraints = false
-
-        daysTextLabel.setStyleGuide(.body1)
-        daysTextLabel.textColor = Color.secondaryForegroundColor
-        daysTextLabel.numberOfLines = 0
-        daysTextLabel.textAlignment = .center
-        daysTextLabel.translatesAutoresizingMaskIntoConstraints = false
-
         insuranceSubNumberLabel.font = Font.semiBold(.header)
         insuranceSubNumberLabel.textColor = Color.mainForegroundColor
         insuranceSubNumberLabel.numberOfLines = 0
@@ -118,8 +103,17 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         insuranceTextLabel.textAlignment = .center
         insuranceTextLabel.translatesAutoresizingMaskIntoConstraints = false
 
+        ringChartLabelsStackView.axis = .vertical
+        ringChartLabelsStackView.spacing = 20
+        ringChartLabelsStackView.isBaselineRelativeArrangement = true
+        ringChartLabelsStackView.backgroundColor = .green
+        ringChartLabelsStackView.translatesAutoresizingMaskIntoConstraints = false
+
         insuranceImageView.contentMode = .scaleAspectFit
         insuranceImageView.translatesAutoresizingMaskIntoConstraints = false
+
+        ringChart.dataSource = self
+        ringChart.translatesAutoresizingMaskIntoConstraints = false
     }
 
     private func setupLayout() {
@@ -127,11 +121,18 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
 
         containerView.addSubview(titleLabel)
         containerView.addSubview(subtitleLabel)
+        containerView.addSubview(ringChart)
         containerView.addSubview(insuranceImageView)
 
-        containerView.addSubview(clockImageView)
-        containerView.addSubview(daysLabel)
-        containerView.addSubview(daysTextLabel)
+        ringChartLabelsStackView.addArrangedSubview(insuranceSubNumberLabel)
+        ringChartLabelsStackView.addArrangedSubview(insuranceTextLabel)
+        ringChart.addSubview(ringChartLabelsStackView)
+        ringChart.titleView = ringChartLabelsStackView
+
+        let ringChartLeadingConstraint = ringChart.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 36)
+        ringChartLeadingConstraint.priority = .defaultHigh
+        let ringChartTrailingConstraint = ringChart.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -36)
+        ringChartTrailingConstraint.priority = .defaultHigh
 
         NSLayoutConstraint.activate([
             containerView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
@@ -147,19 +148,62 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
             subtitleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24),
             subtitleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -20),
 
-            clockImageView.widthAnchor.constraint(equalToConstant: 28),
-            clockImageView.heightAnchor.constraint(equalToConstant: 28),
-            clockImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24),
-            clockImageView.trailingAnchor.constraint(equalTo: daysLabel.leadingAnchor, constant: -8),
-            clockImageView.bottomAnchor.constraint(equalTo: daysTextLabel.topAnchor, constant: -4),
+            ringChart.widthAnchor.constraint(lessThanOrEqualToConstant: 224),
+            ringChart.heightAnchor.constraint(equalTo: ringChart.widthAnchor),
+            ringChart.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: 48),
+            ringChartLeadingConstraint,
+            ringChartTrailingConstraint,
+            ringChart.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
 
-            daysLabel.centerYAnchor.constraint(equalTo: clockImageView.centerYAnchor),
-
-            daysTextLabel.leadingAnchor.constraint(equalTo: clockImageView.leadingAnchor),
-            daysTextLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -16),
-
+            insuranceImageView.topAnchor.constraint(equalTo: ringChart.bottomAnchor, constant: 36),
             insuranceImageView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -24),
             insuranceImageView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -16)
         ])
+    }
+}
+
+extension HomeInsurnaceCollectionViewCell: HolkRingChartDataSource {
+    private var mockNumberOfSegments: Int {
+        return insurance?.segments.count ?? 6
+    }
+
+    func numberOfSegments(_ ringChart: HolkRingChart) -> Int {
+        return mockNumberOfSegments
+    }
+
+    func ringChart(_ ringChart: HolkRingChart, sizeForSegmentAt index: Int) -> CGFloat {
+        return 1 / CGFloat(numberOfSegments(ringChart))
+    }
+
+    func ringChart(_ ringChart: HolkRingChart, ringChartWidthAt index: Int) -> CGFloat? {
+        return 16
+    }
+
+    func ringChart(_ ringChart: HolkRingChart, colorForSegmentAt index: Int) -> UIColor? {
+        if index == 0 {
+            return Color.mainForegroundColor
+        } else if index == 1 {
+            return Color.mainHighlightColor
+        } else if index == 2 {
+            return Color.successColor
+        } else if index == 3 {
+            return .green
+        } else if index == 4 {
+            return .red
+        } else {
+            return .cyan
+        }
+    }
+
+    func ringChart(_ ringChart: HolkRingChart, iconForSegmentAt index: Int) -> UIImage? {
+        if index == 0 {
+            return UIImage(named: "Heart")?.withRenderingMode(.alwaysTemplate)
+        } else if index == 1 {
+            return UIImage(named: "Plane")?.withRenderingMode(.alwaysTemplate)
+        } else if index == 2{
+            return UIImage(named: "Shoe")?.withRenderingMode(.alwaysTemplate)
+        } else {
+            return UIImage(named: "Car")?.withRenderingMode(.alwaysTemplate)
+        }
     }
 }
