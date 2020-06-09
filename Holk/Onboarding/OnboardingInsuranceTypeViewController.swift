@@ -48,7 +48,7 @@ final class OnboardingInsuranceTypeViewController: UIViewController {
         headerLabel.text = "Pick insurance"
         headerLabel.numberOfLines = 0
             
-        tableView.register(OnboardingInsuranceCell.self, forCellReuseIdentifier: "Cell")
+        tableView.register(OnboardingInsuranceCell.self, forCellReuseIdentifier: OnboardingInsuranceCell.identifier)
         tableView.backgroundColor = .clear
         tableView.showsVerticalScrollIndicator = false
         tableView.separatorColor = Color.secondaryForegroundColor
@@ -100,14 +100,12 @@ extension OnboardingInsuranceTypeViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        if let onboardingInsuranceCell = cell as? OnboardingInsuranceCell {
-            onboardingInsuranceCell.configure(
-                title: InsuranceProviderType.mockTypeResults[indexPath.item].rawValue,
-                image: UIImage(systemName: "house")?.withRenderingMode(.alwaysTemplate),
-                isUpcoming: InsuranceProviderType.mockTypeResults[indexPath.item].isUpcoming
-            )
-        }
-        return cell
+        let onboardingInsuranceCell = tableView.dequeueCell(ofType: OnboardingInsuranceCell.self, indexPath: indexPath)
+        onboardingInsuranceCell.configure(
+            title: InsuranceProviderType.mockTypeResults[indexPath.item].rawValue,
+            image: UIImage(systemName: "house")?.withRenderingMode(.alwaysTemplate),
+            isUpcoming: InsuranceProviderType.mockTypeResults[indexPath.item].isUpcoming
+        )
+        return onboardingInsuranceCell
     }
 }

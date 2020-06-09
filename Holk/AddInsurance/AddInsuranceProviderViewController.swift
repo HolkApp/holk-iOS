@@ -73,7 +73,7 @@ final class AddInsuranceProviderViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.contentInset = .init(top: 8, left: 0, bottom: 8, right: 0)
-        tableView.register(OnboardingInsuranceCell.self, forCellReuseIdentifier: "Cell")
+        tableView.register(OnboardingInsuranceCell.self, forCellReuseIdentifier: OnboardingInsuranceCell.identifier)
 
         loadInsuranceProviderListIfNeeded()
 
@@ -128,19 +128,17 @@ extension AddInsuranceProviderViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let onboardingInsuranceCell = tableView.dequeueCell(ofType: OnboardingInsuranceCell.self, indexPath: indexPath)
         if let list = storeController.insuranceProviderStore.providerList.value {
-            if let onboardingInsuranceCell = cell as? OnboardingInsuranceCell {
-                let provider = list[indexPath.item]
-                onboardingInsuranceCell.configure(title: provider.displayName)
-                UIImage.imageWithUrl(imageUrlString: provider.symbolUrl) { image in
-                    onboardingInsuranceCell.configure(title: provider.displayName, image: image)
-                }
+            let provider = list[indexPath.item]
+            onboardingInsuranceCell.configure(title: provider.displayName)
+            UIImage.imageWithUrl(imageUrlString: provider.symbolUrl) { image in
+                onboardingInsuranceCell.configure(title: provider.displayName, image: image)
             }
         } else {
-            cell.textLabel?.text = "loading"
+            onboardingInsuranceCell.textLabel?.text = "loading"
         }
-        return cell
+        return onboardingInsuranceCell
     }
 }
 

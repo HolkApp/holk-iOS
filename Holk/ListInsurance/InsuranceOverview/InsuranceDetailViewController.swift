@@ -92,12 +92,10 @@ extension InsuranceDetailViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: HomeInsuranceDetailTableViewCell.identifier, for: indexPath)
+        let homeInsuranceDetailTableViewCell = tableView.dequeueCell(ofType: HomeInsuranceDetailTableViewCell.self, indexPath: indexPath)
         let segment = insurance.segments[indexPath.item]
-        if let cell = cell as? HomeInsuranceDetailTableViewCell {
-            cell.configure(with: segment)
-        }
-        return cell
+        homeInsuranceDetailTableViewCell.configure(with: segment)
+        return homeInsuranceDetailTableViewCell
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

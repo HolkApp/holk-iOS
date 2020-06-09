@@ -111,7 +111,7 @@ final class OnboardingContainerViewController: UIViewController {
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            collectionView.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
 
             progressView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             progressViewTopAnchor,
@@ -310,15 +310,13 @@ extension OnboardingContainerViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OnboardingCell.identifier, for: indexPath)
-        if let onboardingCell = cell as? OnboardingCell {
-            let viewController = onboardingViewControllers[indexPath.item]
-            if !children.contains(viewController) {
-                addChild(viewController)
-                viewController.didMove(toParent: self)
-            }
-            onboardingCell.configure(onboarding: viewController.view)
+        let onboardingCell = collectionView.dequeueCell(ofType: OnboardingCell.self, indexPath: indexPath)
+        let viewController = onboardingViewControllers[indexPath.item]
+        if !children.contains(viewController) {
+            addChild(viewController)
+            viewController.didMove(toParent: self)
         }
-        return cell
+        onboardingCell.configure(onboarding: viewController.view)
+        return onboardingCell
     }
 }

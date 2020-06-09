@@ -67,7 +67,7 @@ final class OnboardingInsuranceProviderViewController: UIViewController {
         headerLabel.text = "Pick insurance company"
         headerLabel.numberOfLines = 0
         
-        tableView.register(OnboardingInsuranceCell.self, forCellReuseIdentifier: "Cell")
+        tableView.register(OnboardingInsuranceCell.self, forCellReuseIdentifier: OnboardingInsuranceCell.identifier)
         tableView.alwaysBounceVertical = false
         tableView.separatorColor = Color.secondaryForegroundColor
         tableView.backgroundColor = Color.mainBackgroundColor
@@ -128,18 +128,16 @@ extension OnboardingInsuranceProviderViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let onboardingInsuranceCell = tableView.dequeueCell(ofType: OnboardingInsuranceCell.self, indexPath: indexPath)
         if let list = storeController.insuranceProviderStore.providerList.value {
-            if let onboardingInsuranceCell = cell as? OnboardingInsuranceCell {
-                let provider = list[indexPath.item]
-                onboardingInsuranceCell.configure(title: provider.displayName)
-                UIImage.imageWithUrl(imageUrlString: provider.symbolUrl) { image in
-                    onboardingInsuranceCell.configure(title: provider.displayName, image: image)
-                }
+            let provider = list[indexPath.item]
+            onboardingInsuranceCell.configure(title: provider.displayName)
+            UIImage.imageWithUrl(imageUrlString: provider.symbolUrl) { image in
+                onboardingInsuranceCell.configure(title: provider.displayName, image: image)
             }
         } else {
-            cell.textLabel?.text = "loading"
+            onboardingInsuranceCell.textLabel?.text = "loading"
         }
-        return cell
+        return onboardingInsuranceCell
     }
 }
