@@ -16,10 +16,10 @@ final class HomeInsurnaceCollectionViewCell: UICollectionViewCell {
 
     // MARK: - Private variables
     private let titleLabel = UILabel()
-    private let subtitleLabel = UILabel()
     private let insuranceSubNumberLabel = UILabel()
     private let insuranceTextLabel = UILabel()
     private let insuranceImageView = UIImageView()
+    private let chevronView = UIImageView()
 
     private let ringChartLabelsStackView = UIStackView()
 
@@ -57,13 +57,15 @@ final class HomeInsurnaceCollectionViewCell: UICollectionViewCell {
         }
     }
 
-    func configure(_ insurance: Insurance?) {
-        // TODO: Update this
-        titleLabel.text = "Home insurace"
-        subtitleLabel.text = "Folksam bas"
-        insuranceSubNumberLabel.text = "4"
-        insuranceTextLabel.text = "insurance"
+    func configure(_ insurance: Insurance) {
+        self.insurance = insurance
+
+        titleLabel.text = "Dina skydd"
+        insuranceSubNumberLabel.text = String(insurance.segments.count)
+        insuranceTextLabel.text = "Sub insurances"
         insuranceImageView.image = UIImage(named: "Folksam")
+
+        ringChart.reloadSegments()
     }
 
     private func setup() {
@@ -86,11 +88,6 @@ final class HomeInsurnaceCollectionViewCell: UICollectionViewCell {
         titleLabel.numberOfLines = 0
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        subtitleLabel.font = Font.regular(.subtitle)
-        subtitleLabel.textColor = Color.mainForegroundColor
-        subtitleLabel.numberOfLines = 0
-        subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
-
         insuranceSubNumberLabel.font = Font.semiBold(.header)
         insuranceSubNumberLabel.textColor = Color.mainForegroundColor
         insuranceSubNumberLabel.numberOfLines = 0
@@ -112,6 +109,10 @@ final class HomeInsurnaceCollectionViewCell: UICollectionViewCell {
         insuranceImageView.contentMode = .scaleAspectFit
         insuranceImageView.translatesAutoresizingMaskIntoConstraints = false
 
+        chevronView.image = UIImage(systemName: "chevron.right")
+        chevronView.tintColor = Color.mainForegroundColor
+        chevronView.translatesAutoresizingMaskIntoConstraints = false
+
         ringChart.dataSource = self
         ringChart.translatesAutoresizingMaskIntoConstraints = false
     }
@@ -120,9 +121,9 @@ final class HomeInsurnaceCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(containerView)
 
         containerView.addSubview(titleLabel)
-        containerView.addSubview(subtitleLabel)
         containerView.addSubview(ringChart)
         containerView.addSubview(insuranceImageView)
+        containerView.addSubview(chevronView)
 
         ringChartLabelsStackView.addArrangedSubview(insuranceSubNumberLabel)
         ringChartLabelsStackView.addArrangedSubview(insuranceTextLabel)
@@ -144,20 +145,21 @@ final class HomeInsurnaceCollectionViewCell: UICollectionViewCell {
             titleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24),
             titleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -24),
 
-            subtitleLabel.topAnchor.constraint(equalTo: titleLabel.lastBaselineAnchor, constant: 8),
-            subtitleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24),
-            subtitleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -20),
-
             ringChart.widthAnchor.constraint(lessThanOrEqualToConstant: 224),
             ringChart.heightAnchor.constraint(equalTo: ringChart.widthAnchor),
-            ringChart.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: 48),
+            ringChart.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 48),
             ringChartLeadingConstraint,
             ringChartTrailingConstraint,
             ringChart.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
 
             insuranceImageView.topAnchor.constraint(equalTo: ringChart.bottomAnchor, constant: 36),
-            insuranceImageView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -24),
-            insuranceImageView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -16)
+            insuranceImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
+            insuranceImageView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -16),
+
+            chevronView.widthAnchor.constraint(equalToConstant: 16),
+            chevronView.heightAnchor.constraint(equalToConstant: 24),
+            chevronView.bottomAnchor.constraint(equalTo: insuranceImageView.bottomAnchor),
+            chevronView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -8)
         ])
     }
 }

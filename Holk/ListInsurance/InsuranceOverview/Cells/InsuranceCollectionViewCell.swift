@@ -16,8 +16,6 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
     // MARK: - Private variables
     private let titleLabel = UILabel()
     private let subtitleLabel = UILabel()
-    private let insuranceSubNumberLabel = UILabel()
-    private let insuranceTextLabel = UILabel()
     private let insuranceTypeImageView = UIImageView()
     private let insuranceImageView = UIImageView()
     private let clockImageView = UIImageView()
@@ -54,13 +52,13 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         }
     }
 
-    func configure(_ insurance: Insurance?) {
-        // TODO: Update this
-        titleLabel.text = "Home insurace"
-        subtitleLabel.text = "Folksam bas"
-        insuranceSubNumberLabel.text = "4"
-        insuranceTextLabel.text = "insurance"
-        insuranceImageView.image = UIImage(named: "Folksam")
+    func configure(_ insurance: Insurance) {
+        self.insurance = insurance
+        titleLabel.text = insurance.insuranceType
+        subtitleLabel.text = insurance.address
+        UIImage.imageWithUrl(imageUrlString: insurance.insuranceProvider.logoUrl) { [weak self] image in
+            self?.insuranceImageView.image = image
+        }
         daysLabel.text = "118"
         daysTextLabel.text = "Dagar kvar"
     }
@@ -108,18 +106,6 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         daysTextLabel.numberOfLines = 0
         daysTextLabel.textAlignment = .center
         daysTextLabel.translatesAutoresizingMaskIntoConstraints = false
-
-        insuranceSubNumberLabel.font = Font.semiBold(.header)
-        insuranceSubNumberLabel.textColor = Color.mainForegroundColor
-        insuranceSubNumberLabel.numberOfLines = 0
-        insuranceSubNumberLabel.textAlignment = .center
-        insuranceSubNumberLabel.translatesAutoresizingMaskIntoConstraints = false
-
-        insuranceTextLabel.font = Font.regular(.subtitle)
-        insuranceTextLabel.textColor = Color.mainForegroundColor
-        insuranceTextLabel.numberOfLines = 0
-        insuranceTextLabel.textAlignment = .center
-        insuranceTextLabel.translatesAutoresizingMaskIntoConstraints = false
 
         insuranceTypeImageView.image = UIImage(named: "house")
         insuranceTypeImageView.contentMode = .scaleAspectFit
