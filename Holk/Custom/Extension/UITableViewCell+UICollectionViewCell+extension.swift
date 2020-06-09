@@ -21,3 +21,10 @@ extension UICollectionViewCell {
         return String(describing: self)
     }
 }
+
+extension UITableViewHeaderFooterView {
+    /// Static variable to return the string represantion of the current class
+    static var identifier: String {
+        return String(describing: self)
+    }
+}

@@ -105,9 +105,12 @@
 		8FC81CEE2483FB4C00F6BC8C /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8FC81CED2483FB4C00F6BC8C /* Lato-Bold.ttf */; };
 		8FC81CF02484011D00F6BC8C /* InsuranceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC81CEF2484011D00F6BC8C /* InsuranceViewController.swift */; };
 		8FC81CF22484051500F6BC8C /* HomeInsurnaceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC81CF12484051500F6BC8C /* HomeInsurnaceCollectionViewCell.swift */; };
+		8FC81CF5248C478900F6BC8C /* HomeInsuranceBeneficiaryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC81CF4248C478900F6BC8C /* HomeInsuranceBeneficiaryCollectionViewCell.swift */; };
 		8FCEE9AE23254AAC00F75FB8 /* KeyboardEventObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCEE9AD23254AAC00F75FB8 /* KeyboardEventObserver.swift */; };
 		8FCEE9B123254B6C00F75FB8 /* KeyboardEventContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCEE9B023254B6C00F75FB8 /* KeyboardEventContext.swift */; };
 		8FCEE9B323254C2D00F75FB8 /* KeyboardEventFloatingViewHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCEE9B223254C2D00F75FB8 /* KeyboardEventFloatingViewHandler.swift */; };
+		8FD67678248EDBFF00E62820 /* HomeInsuranceCostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD67677248EDBFF00E62820 /* HomeInsuranceCostCollectionViewCell.swift */; };
+		8FD6767A248EE66800E62820 /* UITableView+UICollectionView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD67679248EE66800E62820 /* UITableView+UICollectionView+extension.swift */; };
 		8FD84E682270E732009D563D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD84E672270E732009D563D /* AppDelegate.swift */; };
 		8FD84E6F2270E736009D563D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8FD84E6E2270E736009D563D /* Assets.xcassets */; };
 		8FD84E722270E736009D563D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FD84E702270E736009D563D /* LaunchScreen.storyboard */; };
@@ -241,9 +244,12 @@
 		8FC81CED2483FB4C00F6BC8C /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
 		8FC81CEF2484011D00F6BC8C /* InsuranceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceViewController.swift; sourceTree = "<group>"; };
 		8FC81CF12484051500F6BC8C /* HomeInsurnaceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInsurnaceCollectionViewCell.swift; sourceTree = "<group>"; };
+		8FC81CF4248C478900F6BC8C /* HomeInsuranceBeneficiaryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInsuranceBeneficiaryCollectionViewCell.swift; sourceTree = "<group>"; };
 		8FCEE9AD23254AAC00F75FB8 /* KeyboardEventObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardEventObserver.swift; sourceTree = "<group>"; };
 		8FCEE9B023254B6C00F75FB8 /* KeyboardEventContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardEventContext.swift; sourceTree = "<group>"; };
 		8FCEE9B223254C2D00F75FB8 /* KeyboardEventFloatingViewHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardEventFloatingViewHandler.swift; sourceTree = "<group>"; };
+		8FD67677248EDBFF00E62820 /* HomeInsuranceCostCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInsuranceCostCollectionViewCell.swift; sourceTree = "<group>"; };
+		8FD67679248EE66800E62820 /* UITableView+UICollectionView+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+UICollectionView+extension.swift"; sourceTree = "<group>"; };
 		8FD84E642270E732009D563D /* Holk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Holk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FD84E672270E732009D563D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8FD84E6E2270E736009D563D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -404,6 +410,7 @@
 				8FACE89523E767A900DCE741 /* UIButton+extension.swift */,
 				8FA766CA24411265007EB2A2 /* UIScrollView+extension.swift */,
 				8FF6E73322B57DA800F6D398 /* UITableViewCell+UICollectionViewCell+extension.swift */,
+				8FD67679248EE66800E62820 /* UITableView+UICollectionView+extension.swift */,
 				8FF6E75122B960B300F6D398 /* UIImage+extension.swift */,
 				8F3305A323FB3EEA00E9B443 /* DateFormatter+extension.swift */,
 				8F4965DE24130EA200DEAFC1 /* FloatingPoint+extension.swift */,
@@ -469,6 +476,8 @@
 			isa = PBXGroup;
 			children = (
 				8FC81CF12484051500F6BC8C /* HomeInsurnaceCollectionViewCell.swift */,
+				8FC81CF4248C478900F6BC8C /* HomeInsuranceBeneficiaryCollectionViewCell.swift */,
+				8FD67677248EDBFF00E62820 /* HomeInsuranceCostCollectionViewCell.swift */,
 				8F54C24A242FD76E00D72FD7 /* HomeInsuranceDetailTableViewCell.swift */,
 			);
 			path = HomeInsuranceCell;
@@ -908,6 +917,7 @@
 				8F7C442C23511C5900B54A36 /* APIEndpoint.swift in Sources */,
 				8F5D89E124505D23007F1B26 /* APIClient.swift in Sources */,
 				8F5D89D6244B364B007F1B26 /* ProviderStatusResponse.swift in Sources */,
+				8FD6767A248EE66800E62820 /* UITableView+UICollectionView+extension.swift in Sources */,
 				8F5BE48D24745EF5006AE8AF /* AddInsuranceContainerViewController.swift in Sources */,
 				8F3C7DB223F833B4002EDA57 /* OnboardingConfirmationViewController.swift in Sources */,
 				8FE52F09239BBDEF001A77F5 /* KeychainService.swift in Sources */,
@@ -930,6 +940,7 @@
 				8F3305A223FB3A8100E9B443 /* AllInsuranceResponse.swift in Sources */,
 				8F54C246242C1FDC00D72FD7 /* UserInfoResponse.swift in Sources */,
 				8FCEE9AE23254AAC00F75FB8 /* KeyboardEventObserver.swift in Sources */,
+				8FD67678248EDBFF00E62820 /* HomeInsuranceCostCollectionViewCell.swift in Sources */,
 				8F5D89E724534AB8007F1B26 /* UserStore.swift in Sources */,
 				8F5D89E52450F11C007F1B26 /* AuthenticationService.swift in Sources */,
 				8FA766CF24435607007EB2A2 /* FontStyleGuide.swift in Sources */,
@@ -952,6 +963,7 @@
 				8F5D89DF244EEB40007F1B26 /* InsuranceHintCardCollectionViewCell.swift in Sources */,
 				8F65466C230C78990053B3F8 /* HolkButton.swift in Sources */,
 				8F7C44302351336E00B54A36 /* BankIDService.swift in Sources */,
+				8FC81CF5248C478900F6BC8C /* HomeInsuranceBeneficiaryCollectionViewCell.swift in Sources */,
 				8FF6E72D22B0333000F6D398 /* InsuranceCollectionViewCell.swift in Sources */,
 				8F5B5A3B22783D0200E79A40 /* TabBarController.swift in Sources */,
 				8F3C7DB023F82865002EDA57 /* InsuranceCredentialStore.swift in Sources */,
