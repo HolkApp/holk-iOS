@@ -96,7 +96,7 @@ final class AddInsuranceContainerViewController: UIViewController {
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            collectionView.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
 
             progressView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             progressViewTopAnchor,
@@ -105,7 +105,7 @@ final class AddInsuranceContainerViewController: UIViewController {
             progressView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
 
             closeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10)
+            closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20)
         ])
     }
 
@@ -259,15 +259,13 @@ extension AddInsuranceContainerViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OnboardingCell.identifier, for: indexPath)
-        if let onboardingCell = cell as? OnboardingCell {
-            let viewController = addInsuranceViewControllers[indexPath.item]
-            if !children.contains(viewController) {
-                addChild(viewController)
-                viewController.didMove(toParent: self)
-            }
-            onboardingCell.configure(onboarding: viewController.view)
+        let onboardingCell = collectionView.dequeueCell(ofType: OnboardingCell.self, indexPath: indexPath)
+        let viewController = addInsuranceViewControllers[indexPath.item]
+        if !children.contains(viewController) {
+            addChild(viewController)
+            viewController.didMove(toParent: self)
         }
-        return cell
+        onboardingCell.configure(onboarding: viewController.view)
+        return onboardingCell
     }
 }

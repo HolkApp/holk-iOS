@@ -13,10 +13,11 @@ protocol InsuranceCoordinatorDelegate: AnyObject {
 }
 
 final class InsuranceCoordinator: NSObject, UINavigationControllerDelegate {
-    // MARK: - Public Properties
+    // MARK: - Public Variables
     var navController: UINavigationController
     var storeController: StoreController
     weak var delegate: InsuranceCoordinatorDelegate?
+
     // MARK: - Init
     init(navController: UINavigationController, storeController: StoreController) {
         self.navController = navController
@@ -24,7 +25,7 @@ final class InsuranceCoordinator: NSObject, UINavigationControllerDelegate {
     }
     // MARK: - Public Methods
     func start() {
-        let layout = UICollectionViewCompositionalLayout.generateInsuranceLayout()
+        let layout = UICollectionViewCompositionalLayout.makeInsuranceListLayout()
         let insuranceListViewController = InsuranceListViewController(storeController: storeController, collectionViewLayout: layout)
         insuranceListViewController.coordinator = self
 
@@ -33,6 +34,12 @@ final class InsuranceCoordinator: NSObject, UINavigationControllerDelegate {
         navController.navigationBar.prefersLargeTitles = true
         navController.delegate = self
         navController.setViewControllers([insuranceListViewController], animated: true)
+    }
+
+    func showInsurance(_ insurance: Insurance) {
+        let insuranceViewController = InsuranceViewController(storeController: storeController, insurance: insurance)
+        insuranceViewController.coordinator = self
+        navController.pushViewController(insuranceViewController, animated: true)
     }
 
     func showInsurnaceDetail(_ insurance: Insurance) {

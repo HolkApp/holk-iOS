@@ -16,7 +16,7 @@ final class InsuranceListViewController: UICollectionViewController {
 
     // MARK: - Private variables
     private var storeController: StoreController
-    private var insurnaceList: [Insurance] {
+    private var insuranceList: [Insurance] {
         didSet {
             collectionView.reloadData()
         }
@@ -26,7 +26,7 @@ final class InsuranceListViewController: UICollectionViewController {
 
     init(storeController: StoreController, collectionViewLayout: UICollectionViewLayout) {
         self.storeController = storeController
-        insurnaceList = storeController.insuranceStore.insuranceList.value
+        insuranceList = storeController.insuranceStore.insuranceList.value
 
         super.init(collectionViewLayout: collectionViewLayout)
     }
@@ -42,7 +42,7 @@ final class InsuranceListViewController: UICollectionViewController {
 //        storeController.insuranceStore.insuranceList.sink { [weak self] in
 //            self?.insurnaceList = $0
 //        }.store(in: &cancellables)
-        insurnaceList = [AllInsuranceResponse.mockInsurnace]
+        insuranceList = [AllInsuranceResponse.mockInsurnace]
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -56,7 +56,7 @@ final class InsuranceListViewController: UICollectionViewController {
         navigationController?.navigationBar.largeTitleTextAttributes = [.font: largeTitleFont]
         let titleFont = Font.font(name: .poppins, weight: .semiBold, size: 20)
         navigationController?.navigationBar.titleTextAttributes = [.font: titleFont]
-        title = "Översikt"
+        title = "Insurnace"
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "person.crop.circle"), style: .plain, target: self, action: #selector(profileTapped(sender:)))
 
         view.backgroundColor = Color.insuranceBackgroundColor
@@ -94,24 +94,18 @@ extension InsuranceListViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 0 {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier:
-            InsuranceHintCardCollectionViewCell.identifier, for: indexPath)
-            if let insuranceHintCardCollectionViewCell = cell as? InsuranceHintCardCollectionViewCell {
-                if indexPath.item == 0 {
-                    insuranceHintCardCollectionViewCell.configure(nil, hintType: .reminder)
-                } else {
-                    insuranceHintCardCollectionViewCell.configure(nil, hintType: .thinkOf)
-                }
+            let insuranceHintCardCollectionViewCell = collectionView.dequeueCell(ofType: InsuranceHintCardCollectionViewCell.self, indexPath: indexPath)
+            if indexPath.item == 0 {
+                insuranceHintCardCollectionViewCell.configure(nil, hintType: .reminder)
+            } else {
+                insuranceHintCardCollectionViewCell.configure(nil, hintType: .thinkOf)
             }
-            return cell
+            return insuranceHintCardCollectionViewCell
         } else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier:
-                        InsuranceCollectionViewCell.identifier, for: indexPath)
-            if let insuranceTableViewCell = cell as? InsuranceCollectionViewCell {
-                let insurance = insurnaceList[indexPath.item]
-                insuranceTableViewCell.configure(insurance)
-            }
-            return cell
+            let insuranceTableViewCell = collectionView.dequeueCell(ofType: InsuranceCollectionViewCell.self, indexPath: indexPath)
+            let insurance = insuranceList[indexPath.item]
+            insuranceTableViewCell.configure(insurance)
+            return insuranceTableViewCell
         }
     }
 
@@ -131,8 +125,9 @@ extension InsuranceListViewController {
             }
         } else {
             selectedIndexPath = indexPath
-            let insurance = insurnaceList[indexPath.item]
-            coordinator?.showInsurnaceDetail(insurance)
+            let insurance = insuranceList[indexPath.item]
+            coordinator?.showInsurance(insurance)
+//            coordinator?.showInsurnaceDetail(insurance)
         }
     }
 }
