@@ -11,14 +11,15 @@ import UIKit
 final class InsuranceViewController: UIViewController {
     // MARK: - Public Variables
     weak var coordinator: InsuranceCoordinator?
+    var selectedIndexPath: IndexPath?
+    lazy var collectionView: UICollectionView = {
+        let insuranceLayout = UICollectionViewCompositionalLayout.makeInsuranceLayout()
+        return UICollectionView(frame: .zero, collectionViewLayout: insuranceLayout)
+    }()
     
     // MARK: - Private Variables
     private var storeController: StoreController
     private var insurance: Insurance
-    private lazy var collectionView: UICollectionView = {
-        let insuranceLayout = UICollectionViewCompositionalLayout.makeInsuranceLayout()
-        return UICollectionView(frame: .zero, collectionViewLayout: insuranceLayout)
-    }()
 
     init(storeController: StoreController, insurance: Insurance) {
         self.storeController = storeController
@@ -41,14 +42,16 @@ final class InsuranceViewController: UIViewController {
         super.viewWillAppear(animated)
 
         navigationController?.navigationBar.barTintColor = Color.secondaryBackgroundColor
+        navigationController?.navigationBar.shadowImage = UIImage()
     }
 
     private func setup() {
         navigationItem.largeTitleDisplayMode = .never
         view.backgroundColor = Color.secondaryBackgroundColor
 
-        collectionView.backgroundColor = .clear
         collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.backgroundColor = .clear
         collectionView.alwaysBounceVertical = true
         collectionView.register(HomeInsurnaceCollectionViewCell.self, forCellWithReuseIdentifier: HomeInsurnaceCollectionViewCell.identifier)
         collectionView.register(HomeInsuranceBeneficiaryCollectionViewCell.self, forCellWithReuseIdentifier: HomeInsuranceBeneficiaryCollectionViewCell.identifier)
@@ -70,7 +73,7 @@ final class InsuranceViewController: UIViewController {
     }
 }
 
-extension InsuranceViewController: UICollectionViewDataSource {
+extension InsuranceViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 3
     }
@@ -82,10 +85,6 @@ extension InsuranceViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         var cell: UICollectionViewCell
         switch indexPath.section {
-        case 0:
-            let homeInsurnaceCollectionViewCell = collectionView.dequeueCell(ofType: HomeInsurnaceCollectionViewCell.self, indexPath: indexPath)
-            homeInsurnaceCollectionViewCell.configure(insurance)
-            cell = homeInsurnaceCollectionViewCell
         case 1:
             let homeInsuranceBeneficiaryCollectionViewCell = collectionView.dequeueCell(ofType: HomeInsuranceBeneficiaryCollectionViewCell.self, indexPath: indexPath)
             homeInsuranceBeneficiaryCollectionViewCell.configure(insurance)
@@ -95,8 +94,17 @@ extension InsuranceViewController: UICollectionViewDataSource {
             homeInsuranceCostCollectionViewCell.configure(insurance)
             cell = homeInsuranceCostCollectionViewCell
         default:
-            cell = UICollectionViewCell()
+            let homeInsurnaceCollectionViewCell = collectionView.dequeueCell(ofType: HomeInsurnaceCollectionViewCell.self, indexPath: indexPath)
+            homeInsurnaceCollectionViewCell.configure(insurance)
+            cell = homeInsurnaceCollectionViewCell
         }
         return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            selectedIndexPath = indexPath
+            coordinator?.showInsurnaceDetail(insurance)
+        }
     }
 }

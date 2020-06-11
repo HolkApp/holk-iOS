@@ -1,20 +1,20 @@
 //
-//  InsuranceDetailTransition.swift
+//  InsuranceTransition.swift
 //  Holk
 //
-//  Created by 张梦皓 on 2020-03-30.
+//  Created by 张梦皓 on 2020-06-09.
 //  Copyright © 2020 Holk. All rights reserved.
 //
 
 import UIKit
 
-final class InsuranceDetailTransition: NSObject, UIViewControllerAnimatedTransitioning {
+final class InsuranceTransition: NSObject, UIViewControllerAnimatedTransitioning {
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        if let insuranceListViewController = transitionContext.viewController(forKey: .from) as? InsuranceViewController, let toViewController = transitionContext.viewController(forKey: .to) as? InsuranceDetailViewController {
+        if let insuranceListViewController = transitionContext.viewController(forKey: .from) as? InsuranceListViewController, let toViewController = transitionContext.viewController(forKey: .to) as? InsuranceViewController {
             let fromViewController = insuranceListViewController
             push(transitionContext, fromViewController: fromViewController, toViewController: toViewController)
-        } else if let fromViewController = transitionContext.viewController(forKey: .from) as? InsuranceDetailViewController,
-            let insuranceListViewController = transitionContext.viewController(forKey: .to) as? InsuranceViewController {
+        } else if let fromViewController = transitionContext.viewController(forKey: .from) as? InsuranceViewController,
+            let insuranceListViewController = transitionContext.viewController(forKey: .to) as? InsuranceListViewController {
             pop(transitionContext, fromViewController: fromViewController, toViewController: insuranceListViewController)
         } else {
             // fallBack
@@ -25,8 +25,8 @@ final class InsuranceDetailTransition: NSObject, UIViewControllerAnimatedTransit
         return 0.4
     }
 
-    private func push(_ transitionContext: UIViewControllerContextTransitioning, fromViewController: InsuranceViewController, toViewController: InsuranceDetailViewController) {
-        if let selectedIndexPath = fromViewController.selectedIndexPath, let fromCell = fromViewController.collectionView.cellForItem(at: selectedIndexPath) as? HomeInsurnaceCollectionViewCell, let toView = toViewController.view {
+    private func push(_ transitionContext: UIViewControllerContextTransitioning, fromViewController: InsuranceListViewController, toViewController: InsuranceViewController) {
+        if let selectedIndexPath = fromViewController.selectedIndexPath, let fromCell = fromViewController.collectionView.cellForItem(at: selectedIndexPath) as? InsuranceCollectionViewCell, let toView = toViewController.view {
             let containerView = transitionContext.containerView
             containerView.addSubview(toViewController.view)
             toViewController.view.alpha = 0
@@ -48,28 +48,28 @@ final class InsuranceDetailTransition: NSObject, UIViewControllerAnimatedTransit
                     fromViewController.view.alpha = 0
                     temporaryView.frame = toView.frame
                     toViewController.view.alpha = 1.0
-                },
+            },
                 completion: { success in
                     transitionContext.completeTransition(success)
                     fromViewController.view.alpha = 1
                     fromCell.alpha = 1.0
                     temporaryView.removeFromSuperview()
-                })
+            })
 
             UIView.animate(
-            withDuration: duration / 4,
-            delay: duration / 2,
-            options: UIView.AnimationOptions.curveEaseInOut,
-            animations: {
-                temporaryView.alpha = 0
+                withDuration: duration / 4,
+                delay: duration / 2,
+                options: UIView.AnimationOptions.curveEaseInOut,
+                animations: {
+                    temporaryView.alpha = 0
             })
         }
     }
 
-    private func pop(_ transitionContext: UIViewControllerContextTransitioning, fromViewController: InsuranceDetailViewController, toViewController: InsuranceViewController) {
+    private func pop(_ transitionContext: UIViewControllerContextTransitioning, fromViewController: InsuranceViewController, toViewController: InsuranceListViewController) {
         if let fromView = fromViewController.view,
             let selectedIndexPath = toViewController.selectedIndexPath,
-            let toCell = toViewController.collectionView.cellForItem(at: selectedIndexPath) as? HomeInsurnaceCollectionViewCell {
+            let toCell = toViewController.collectionView.cellForItem(at: selectedIndexPath) as? InsuranceCollectionViewCell {
             let containerView = transitionContext.containerView
             containerView.addSubview(toViewController.view)
             toViewController.view.alpha = 0
@@ -91,22 +91,21 @@ final class InsuranceDetailTransition: NSObject, UIViewControllerAnimatedTransit
                     fromViewController.view.alpha = 0
                     temporaryView.frame = toCell.containerView.convert(toCell.containerView.bounds, to: toViewController.view)
                     toViewController.view.alpha = 1.0
-                },
+            },
                 completion: { success in
                     transitionContext.completeTransition(success)
                     fromViewController.view.alpha = 1
                     fromView.alpha = 1.0
                     temporaryView.removeFromSuperview()
-                })
+            })
 
             UIView.animate(
-            withDuration: duration / 4,
-            delay: duration / 2,
-            options: UIView.AnimationOptions.curveEaseInOut,
-            animations: {
-                temporaryView.alpha = 0
+                withDuration: duration / 4,
+                delay: duration / 2,
+                options: UIView.AnimationOptions.curveEaseInOut,
+                animations: {
+                    temporaryView.alpha = 0
             })
         }
     }
 }
-
