@@ -49,14 +49,15 @@ final class InsuranceListViewController: UICollectionViewController {
         super.viewWillAppear(animated)
 
         navigationController?.navigationBar.barTintColor = Color.insuranceBackgroundColor
+        navigationController?.navigationBar.shadowImage = nil
     }
     
     private func setup() {
         let largeTitleFont = Font.font(name: .poppins, weight: .semiBold, size: 30)
         navigationController?.navigationBar.largeTitleTextAttributes = [.font: largeTitleFont]
         let titleFont = Font.font(name: .poppins, weight: .semiBold, size: 20)
+        title = "Försäkringar"
         navigationController?.navigationBar.titleTextAttributes = [.font: titleFont]
-        title = "Insurnace"
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "person.crop.circle"), style: .plain, target: self, action: #selector(profileTapped(sender:)))
 
         view.backgroundColor = Color.insuranceBackgroundColor

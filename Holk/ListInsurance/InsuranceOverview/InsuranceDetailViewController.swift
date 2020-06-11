@@ -36,6 +36,7 @@ final class InsuranceDetailViewController: UIViewController {
         super.viewWillAppear(animated)
 
         navigationController?.navigationBar.barTintColor = Color.secondaryBackgroundColor
+        navigationController?.navigationBar.shadowImage = UIImage()
     }
 
     private func setup() {
@@ -105,12 +106,8 @@ extension InsuranceDetailViewController: UITableViewDataSource {
 }
 
 extension InsuranceDetailViewController: HolkRingChartDataSource {
-        private var mockNumberOfSegments: Int {
-        return 6
-    }
-
     func numberOfSegments(_ ringChart: HolkRingChart) -> Int {
-        return mockNumberOfSegments
+        return insurance.segments.count
     }
 
     func ringChart(_ ringChart: HolkRingChart, sizeForSegmentAt index: Int) -> CGFloat {
