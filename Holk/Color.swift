@@ -23,11 +23,11 @@ enum Color {
         return makeColor(asset: #function)
     }
 
-    static var hintCardBackgroundColor: UIColor {
+    static var suggestionCardBackgroundColor: UIColor {
         return makeColor(asset: #function)
     }
 
-    static var hintCardPressDownBackgroundColor: UIColor {
+    static var suggestionCardPressDownBackgroundColor: UIColor {
         return makeColor(asset: #function)
     }
 

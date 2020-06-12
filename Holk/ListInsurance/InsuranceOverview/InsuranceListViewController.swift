@@ -70,7 +70,7 @@ final class InsuranceListViewController: UICollectionViewController {
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.alwaysBounceVertical = true
         collectionView.register(InsuranceCollectionViewCell.self, forCellWithReuseIdentifier: InsuranceCollectionViewCell.identifier)
-        collectionView.register(InsuranceHintCardCollectionViewCell.self, forCellWithReuseIdentifier: InsuranceHintCardCollectionViewCell.identifier)
+        collectionView.register(InsuranceSuggestionCardCollectionViewCell.self, forCellWithReuseIdentifier: InsuranceSuggestionCardCollectionViewCell.identifier)
     }
 
     @objc private func profileTapped(sender: UIButton) {
@@ -95,13 +95,13 @@ extension InsuranceListViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 0 {
-            let insuranceHintCardCollectionViewCell = collectionView.dequeueCell(ofType: InsuranceHintCardCollectionViewCell.self, indexPath: indexPath)
+            let insuranceSuggestionCardCollectionViewCell = collectionView.dequeueCell(ofType: InsuranceSuggestionCardCollectionViewCell.self, indexPath: indexPath)
             if indexPath.item == 0 {
-                insuranceHintCardCollectionViewCell.configure(nil, hintType: .reminder)
+                insuranceSuggestionCardCollectionViewCell.configure(nil, suggestionType: .reminder)
             } else {
-                insuranceHintCardCollectionViewCell.configure(nil, hintType: .thinkOf)
+                insuranceSuggestionCardCollectionViewCell.configure(nil, suggestionType: .thinkOf)
             }
-            return insuranceHintCardCollectionViewCell
+            return insuranceSuggestionCardCollectionViewCell
         } else {
             let insuranceTableViewCell = collectionView.dequeueCell(ofType: InsuranceCollectionViewCell.self, indexPath: indexPath)
             let insurance = insuranceList[indexPath.item]

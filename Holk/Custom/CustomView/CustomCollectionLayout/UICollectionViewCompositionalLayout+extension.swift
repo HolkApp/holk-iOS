@@ -10,7 +10,7 @@ import UIKit
 
 extension UICollectionViewCompositionalLayout {
     static func makeInsuranceListLayout() -> UICollectionViewLayout {
-        let sections = [makeHintSection(), makeInsuranceListSection()]
+        let sections = [makeSuggestionSection(), makeInsuranceListSection()]
 
         let layout = UICollectionViewCompositionalLayout { (sectionIndex, environment) in
             return sections[sectionIndex]
@@ -32,19 +32,19 @@ extension UICollectionViewCompositionalLayout {
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-        let hintSection = NSCollectionLayoutSection(group: group)
-        hintSection.orthogonalScrollingBehavior = .groupPaging
-        return hintSection
+        let suggestionSection = NSCollectionLayoutSection(group: group)
+        suggestionSection.orthogonalScrollingBehavior = .groupPaging
+        return suggestionSection
     }
 
-    static func makeHintSection() -> NSCollectionLayoutSection {
+    static func makeSuggestionSection() -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(80))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-        let hintSection = NSCollectionLayoutSection(group: group)
-        hintSection.contentInsets = .init(top: 0, leading: 16, bottom: 0, trailing: 16)
-        return hintSection
+        let suggestionSection = NSCollectionLayoutSection(group: group)
+        suggestionSection.contentInsets = .init(top: 0, leading: 16, bottom: 0, trailing: 16)
+        return suggestionSection
     }
 
     static func makeInsuranceListSection() -> NSCollectionLayoutSection {

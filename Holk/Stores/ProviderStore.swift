@@ -1,5 +1,5 @@
 //
-//  InsuranceProviderStore.swift
+//  ProviderStore.swift
 //  Holk
 //
 //  Created by 张梦皓 on 2019-12-08.
@@ -8,23 +8,23 @@
 import Foundation
 import Combine
 
-final class InsuranceProviderStore {
+final class ProviderStore {
     // MARK: - Public variables
     var providerList = CurrentValueSubject<[InsuranceProvider]?, Never>(nil)
     
     // MARK: - Private variables
     private let user: User
-    private let insuranceProviderService: InsuranceProviderService
+    private let providerService: ProviderService
     private var cancellables = Set<AnyCancellable>()
     
     init(queue: DispatchQueue, user: User) {
         self.user = user
-        insuranceProviderService = InsuranceProviderService(client: APIClient(queue: queue), user: user)
+        providerService = ProviderService(client: APIClient(queue: queue), user: user)
     }
 
     // TODO: Update this simplify it by having return observable and keep a cache for the value.
     func fetchInsuranceProviders(completion: @escaping (Result<ProviderStatusResponse, APIError>) -> Void = { _ in }) {
-        insuranceProviderService.fetchInsuranceProviders().mapError { APIError(urlError: $0) }
+        providerService.fetchInsuranceProviders().mapError { APIError(urlError: $0) }
         .sink(receiveCompletion: { result in
             switch result {
             case .failure(let error):

@@ -36,7 +36,7 @@ class User {
     var surName: String {
         userInfoResponse?.surName ?? String()
     }
-
+    
     var userID: String {
         userInfoResponse?.userId ?? String()
     }
@@ -48,7 +48,7 @@ class User {
     var personalNumber: String {
         userInfoResponse?.personalNumber ?? String()
     }
-    
+
     func reset() {
         session?.reset()
         userInfoResponse = nil
