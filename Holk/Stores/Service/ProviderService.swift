@@ -1,5 +1,5 @@
 //
-//  InsuranceProviderService.swift
+//  ProviderService.swift
 //  Holk
 //
 //  Created by 张梦皓 on 2020-04-26.
@@ -9,7 +9,7 @@
 import Foundation
 import Combine
 
-class InsuranceProviderService {
+final class ProviderService {
     private let client: APIClient
     private let user: User
 

@@ -22,7 +22,7 @@ final class InsuranceCredentialStore {
         self.user = user
         insuranceCredentialService = InsuranceCredentialService(client: APIClient(queue: queue), user: user)
     }
-    
+
     func addInsurance(_ provider: InsuranceProvider) {
         insuranceCredentialService
             .integrateInsurance(providerName: provider.internalName)
@@ -30,7 +30,7 @@ final class InsuranceCredentialStore {
                 switch result {
                 case .failure(let error):
                     print(error)
-                    // TODO: Handle the error
+                // TODO: Handle the error
                 case .finished:
                     break
                 }
@@ -38,6 +38,13 @@ final class InsuranceCredentialStore {
                 self?.pollInsuranceStatus(sessionIDResponse.scrapeSessionId.uuidString)
             })
             .store(in: &cancellables)
+    }
+
+    private func integrateInsurance(providerName: String) -> AnyPublisher<IntegrateInsuranceResponse, APIError> {
+        return insuranceCredentialService
+            .integrateInsurance(providerName: providerName)
+            .mapError { APIError(urlError: $0) }
+            .eraseToAnyPublisher()
     }
 
     private func pollInsuranceStatus(_ sessionID: String) {
@@ -60,20 +67,13 @@ final class InsuranceCredentialStore {
                         self?.pollInsuranceStatus(sessionID)
                     }
                 }
-            }
-            .store(in: &cancellables)
+        }
+        .store(in: &cancellables)
     }
-        
+
     private func getInsuranceStatus(_ sessionID: String) -> AnyPublisher<ScrapingStatusResponse, APIError> {
         return insuranceCredentialService
             .fetchInsuranceStatus(sessionID)
-            .mapError { APIError(urlError: $0) }
-            .eraseToAnyPublisher()
-    }
-    
-    private func integrateInsurance(providerName: String) -> AnyPublisher<IntegrateInsuranceResponse, APIError> {
-        return insuranceCredentialService
-            .integrateInsurance(providerName: providerName)
             .mapError { APIError(urlError: $0) }
             .eraseToAnyPublisher()
     }

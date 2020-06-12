@@ -9,7 +9,7 @@
 import Foundation
 import Combine
 
-class UserService {
+final class UserService {
     private let client: APIClient
     private let user: User
 

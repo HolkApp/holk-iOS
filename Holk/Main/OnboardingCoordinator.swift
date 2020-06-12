@@ -65,7 +65,7 @@ extension OnboardingCoordinator {
             guard let self = self else { return }
             switch result {
             case .success:
-                self.storeController.insuranceProviderStore.fetchInsuranceProviders()
+                self.storeController.providerStore.fetchInsuranceProviders()
                 self.fetchUserInfo()
             case .failure(let error):
                 self.showError(error, requestName: "authorize/oauth/token")

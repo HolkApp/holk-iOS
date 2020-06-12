@@ -23,7 +23,7 @@ final class StoreController {
     weak var delegate: StoreControllerDelegate?
     
     let authenticationStore: AuthenticationStore
-    let insuranceProviderStore: InsuranceProviderStore
+    let providerStore: ProviderStore
     let insuranceCredentialStore: InsuranceCredentialStore
     let userStore: UserStore
     let insuranceStore: InsuranceStore
@@ -47,7 +47,7 @@ final class StoreController {
 
         authenticationStore = AuthenticationStore(queue: queue, user: user)
         userStore = UserStore.init(queue: queue, user: user)
-        insuranceProviderStore = InsuranceProviderStore(queue: queue, user: user)
+        providerStore = ProviderStore(queue: queue, user: user)
         insuranceCredentialStore = InsuranceCredentialStore(queue: queue, user: user)
         insuranceStore = InsuranceStore(queue: queue, user: user)
     }

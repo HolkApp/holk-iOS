@@ -9,7 +9,7 @@
 import Foundation
 import Combine
 
-class InsuranceService {
+final class InsuranceService {
     private let client: APIClient
     private let user: User
 

@@ -9,7 +9,7 @@
 import Foundation
 import Combine
 
-class AuthenticationService {
+final class AuthenticationService {
     private let client: APIClient
 
     private struct Constants {

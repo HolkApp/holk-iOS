@@ -63,7 +63,7 @@ final class ShellCoordinator {
         case .updated:
             showLoading()
             storeController.userStore.userInfo()
-            storeController.insuranceProviderStore.fetchInsuranceProviders()
+            storeController.providerStore.fetchInsuranceProviders()
             storeController.insuranceStore.fetchAllInsurances { [weak self] _ in
                 self?.showSession()
             }
