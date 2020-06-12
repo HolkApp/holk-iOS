@@ -27,6 +27,7 @@ final class StoreController {
     let insuranceCredentialStore: InsuranceCredentialStore
     let userStore: UserStore
     let insuranceStore: InsuranceStore
+    let suggestionStore: SuggestionStore
     private(set) var user: User
     
     var sessionState: SessionState {
@@ -50,6 +51,7 @@ final class StoreController {
         providerStore = ProviderStore(queue: queue, user: user)
         insuranceCredentialStore = InsuranceCredentialStore(queue: queue, user: user)
         insuranceStore = InsuranceStore(queue: queue, user: user)
+        suggestionStore = SuggestionStore(queue: queue, user: user)
     }
     
     func resetSession() {
