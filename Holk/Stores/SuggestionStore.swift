@@ -22,4 +22,19 @@ final class SuggestionStore {
         self.user = user
         suggestionService = SuggestionService(client: APIClient(queue: queue), user: user)
     }
+
+    func fetchAllSuggestions(completion: @escaping (Result<SuggestionsListResponse, APIError>) -> Void = { _ in }) {
+        suggestionService.fetchAllSuggestions().mapError { APIError(urlError: $0) }
+            .sink(receiveCompletion: { result in
+            switch result {
+            case .failure(let error):
+                completion(.failure(error))
+            case .finished:
+                break
+            }
+        }) { [weak self] suggestionsListResponse in
+            self?.suggestions.value = suggestionsListResponse
+            completion(.success(suggestionsListResponse))
+        }.store(in: &cancellables)
+    }
 }
