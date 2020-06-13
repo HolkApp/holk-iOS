@@ -22,4 +22,8 @@ extension UICollectionView {
     func dequeueCell<T: UICollectionViewCell>(ofType type: T.Type, indexPath: IndexPath) -> T {
         return dequeueReusableCell(withReuseIdentifier: T.identifier, for: indexPath) as! T
     }
+
+    func dequeueHeaderFooterView<T: UICollectionReusableView>(type: T.Type, of kind: String, indexPath: IndexPath) -> T {
+        return dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: T.identifier, for: indexPath) as! T
+    }
 }

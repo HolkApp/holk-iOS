@@ -15,14 +15,14 @@ extension UITableViewCell {
     }
 }
 
-extension UICollectionViewCell {
+extension UITableViewHeaderFooterView {
     /// Static variable to return the string represantion of the current class
     static var identifier: String {
         return String(describing: self)
     }
 }
 
-extension UITableViewHeaderFooterView {
+extension UICollectionReusableView {
     /// Static variable to return the string represantion of the current class
     static var identifier: String {
         return String(describing: self)

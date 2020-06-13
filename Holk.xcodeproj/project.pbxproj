@@ -112,10 +112,15 @@
 		8FD67678248EDBFF00E62820 /* HomeInsuranceCostCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD67677248EDBFF00E62820 /* HomeInsuranceCostCollectionViewCell.swift */; };
 		8FD6767A248EE66800E62820 /* UITableView+UICollectionView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD67679248EE66800E62820 /* UITableView+UICollectionView+extension.swift */; };
 		8FD6767C2490192B00E62820 /* InsuranceTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD6767B2490192B00E62820 /* InsuranceTransition.swift */; };
-		8FD6767F2492C91A00E62820 /* Suggestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD6767E2492C91A00E62820 /* Suggestion.swift */; };
+		8FD6767F2492C91A00E62820 /* GapSuggestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD6767E2492C91A00E62820 /* GapSuggestion.swift */; };
 		8FD676812492C9CC00E62820 /* SuggestionsListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD676802492C9CC00E62820 /* SuggestionsListResponse.swift */; };
 		8FD676832492CB0700E62820 /* SuggestionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD676822492CB0700E62820 /* SuggestionStore.swift */; };
 		8FD676852492CE0600E62820 /* SuggestionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD676842492CE0600E62820 /* SuggestionService.swift */; };
+		8FD676882493F7A400E62820 /* InsuranceGapsSuggestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD676872493F7A400E62820 /* InsuranceGapsSuggestionViewController.swift */; };
+		8FD6768A2493F7C300E62820 /* InsuranceThinkOfSuggestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD676892493F7C300E62820 /* InsuranceThinkOfSuggestionViewController.swift */; };
+		8FD6768C2495107400E62820 /* InsuranceGapsSuggestionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD6768B2495107400E62820 /* InsuranceGapsSuggestionCollectionViewCell.swift */; };
+		8FD6768E24951C8700E62820 /* ThinkOfSuggestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD6768D24951C8700E62820 /* ThinkOfSuggestion.swift */; };
+		8FD67691249527AC00E62820 /* InsuranceSuggestionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD67690249527AC00E62820 /* InsuranceSuggestionHeaderView.swift */; };
 		8FD84E682270E732009D563D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD84E672270E732009D563D /* AppDelegate.swift */; };
 		8FD84E6F2270E736009D563D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8FD84E6E2270E736009D563D /* Assets.xcassets */; };
 		8FD84E722270E736009D563D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FD84E702270E736009D563D /* LaunchScreen.storyboard */; };
@@ -256,10 +261,15 @@
 		8FD67677248EDBFF00E62820 /* HomeInsuranceCostCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInsuranceCostCollectionViewCell.swift; sourceTree = "<group>"; };
 		8FD67679248EE66800E62820 /* UITableView+UICollectionView+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+UICollectionView+extension.swift"; sourceTree = "<group>"; };
 		8FD6767B2490192B00E62820 /* InsuranceTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceTransition.swift; sourceTree = "<group>"; };
-		8FD6767E2492C91A00E62820 /* Suggestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Suggestion.swift; sourceTree = "<group>"; };
+		8FD6767E2492C91A00E62820 /* GapSuggestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GapSuggestion.swift; sourceTree = "<group>"; };
 		8FD676802492C9CC00E62820 /* SuggestionsListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionsListResponse.swift; sourceTree = "<group>"; };
 		8FD676822492CB0700E62820 /* SuggestionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionStore.swift; sourceTree = "<group>"; };
 		8FD676842492CE0600E62820 /* SuggestionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionService.swift; sourceTree = "<group>"; };
+		8FD676872493F7A400E62820 /* InsuranceGapsSuggestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceGapsSuggestionViewController.swift; sourceTree = "<group>"; };
+		8FD676892493F7C300E62820 /* InsuranceThinkOfSuggestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InsuranceThinkOfSuggestionViewController.swift; path = "/Users/zhangmenghao/Developer/holk-iOS/Holk/ListInsurance/InsurnaceSuggestion/InsuranceThinkOfSuggestionViewController.swift"; sourceTree = "<absolute>"; };
+		8FD6768B2495107400E62820 /* InsuranceGapsSuggestionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceGapsSuggestionCollectionViewCell.swift; sourceTree = "<group>"; };
+		8FD6768D24951C8700E62820 /* ThinkOfSuggestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThinkOfSuggestion.swift; sourceTree = "<group>"; };
+		8FD67690249527AC00E62820 /* InsuranceSuggestionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceSuggestionHeaderView.swift; sourceTree = "<group>"; };
 		8FD84E642270E732009D563D /* Holk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Holk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FD84E672270E732009D563D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8FD84E6E2270E736009D563D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -508,10 +518,30 @@
 		8FD6767D2492C8FB00E62820 /* Suggestion */ = {
 			isa = PBXGroup;
 			children = (
-				8FD6767E2492C91A00E62820 /* Suggestion.swift */,
+				8FD6767E2492C91A00E62820 /* GapSuggestion.swift */,
+				8FD6768D24951C8700E62820 /* ThinkOfSuggestion.swift */,
 				8FD676802492C9CC00E62820 /* SuggestionsListResponse.swift */,
 			);
 			path = Suggestion;
+			sourceTree = "<group>";
+		};
+		8FD676862493F78800E62820 /* InsurnaceSuggestion */ = {
+			isa = PBXGroup;
+			children = (
+				8FD676872493F7A400E62820 /* InsuranceGapsSuggestionViewController.swift */,
+				8FD676892493F7C300E62820 /* InsuranceThinkOfSuggestionViewController.swift */,
+				8FD6768F2495279500E62820 /* Cell */,
+			);
+			path = InsurnaceSuggestion;
+			sourceTree = "<group>";
+		};
+		8FD6768F2495279500E62820 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				8FD6768B2495107400E62820 /* InsuranceGapsSuggestionCollectionViewCell.swift */,
+				8FD67690249527AC00E62820 /* InsuranceSuggestionHeaderView.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		8FD84E5B2270E732009D563D = {
@@ -597,6 +627,7 @@
 		8FE52F06239BB0EE001A77F5 /* ListInsurance */ = {
 			isa = PBXGroup;
 			children = (
+				8FD676862493F78800E62820 /* InsurnaceSuggestion */,
 				8F9C83D822A313EE005BB336 /* InsuranceOverview */,
 				8FF6E73922B6B52200F6D398 /* InsuranceProtection */,
 			);
@@ -892,6 +923,7 @@
 				8F3305A82401F27400E9B443 /* HolkRingChartLayer.swift in Sources */,
 				8F6546712316FE190053B3F8 /* NewUserViewController.swift in Sources */,
 				8F9807E722722D5E00584BA9 /* StoreController.swift in Sources */,
+				8FD6768C2495107400E62820 /* InsuranceGapsSuggestionCollectionViewCell.swift in Sources */,
 				8F16DE6A245CE43700EFC1BD /* OnboardingCoordinator.swift in Sources */,
 				8FF6E75422B9634400F6D398 /* HolkSegmentedControl.swift in Sources */,
 				8F5D89D5244B364B007F1B26 /* ProviderStatus.swift in Sources */,
@@ -915,11 +947,13 @@
 				8FF6E72822B026DB00F6D398 /* InsuranceListViewController.swift in Sources */,
 				8F16DE6C245DB5CB00EFC1BD /* IntegrateInsuranceResponse.swift in Sources */,
 				8F54C244242C07E000D72FD7 /* Result+extension.swift in Sources */,
+				8FD6768E24951C8700E62820 /* ThinkOfSuggestion.swift in Sources */,
 				8F7C442A23511C1200B54A36 /* AuthenticationStore.swift in Sources */,
 				8FA766CD24433AA3007EB2A2 /* UILabel+extension.swift in Sources */,
 				8FA941552353ADC200844D97 /* SessionCoordinator.swift in Sources */,
 				8F5BE48B2471E68D006AE8AF /* OnboardingContainerViewController.swift in Sources */,
 				8F0D4041227A0D68000BD840 /* OnboardingInfoViewController.swift in Sources */,
+				8FD676882493F7A400E62820 /* InsuranceGapsSuggestionViewController.swift in Sources */,
 				8FA8F1122330148300670471 /* FontAwesome.swift in Sources */,
 				8F16DE772460A22300EFC1BD /* AddInsuranceConfirmationViewController.swift in Sources */,
 				8F5B5A3822771ED400E79A40 /* StringConstants.swift in Sources */,
@@ -932,7 +966,8 @@
 				8FF6E75222B960B300F6D398 /* UIImage+extension.swift in Sources */,
 				8F16DE752460A0F200EFC1BD /* AddInsuranceConsentViewController.swift in Sources */,
 				8F25CA992337AAC100DC3B97 /* FontAwsome+UIExtensions.swift in Sources */,
-				8FD6767F2492C91A00E62820 /* Suggestion.swift in Sources */,
+				8FD6767F2492C91A00E62820 /* GapSuggestion.swift in Sources */,
+				8FD6768A2493F7C300E62820 /* InsuranceThinkOfSuggestionViewController.swift in Sources */,
 				8F65466F230DC4CC0053B3F8 /* HolkTextField.swift in Sources */,
 				8F0D403F227A0AD4000BD840 /* APIError.swift in Sources */,
 				8F66F2FC23BBFB580083DC3A /* BankIDAuthenticationResponse.swift in Sources */,
@@ -950,6 +985,7 @@
 				8F4965DF24130EA200DEAFC1 /* FloatingPoint+extension.swift in Sources */,
 				8FC81CF22484051500F6BC8C /* HomeInsurnaceCollectionViewCell.swift in Sources */,
 				8F3305A423FB3EEA00E9B443 /* DateFormatter+extension.swift in Sources */,
+				8FD67691249527AC00E62820 /* InsuranceSuggestionHeaderView.swift in Sources */,
 				8F691D3624562ED30093E965 /* AddUserEmailRequest.swift in Sources */,
 				8F16DE68245B3D8500EFC1BD /* ShellCoordinator.swift in Sources */,
 				8F858A4723CB377B006B416A /* Parser.swift in Sources */,

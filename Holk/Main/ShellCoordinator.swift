@@ -19,7 +19,7 @@ final class ShellCoordinator {
     private var onboardingCoordinator: OnboardingCoordinator?
     private lazy var landingPageNavigationController: UINavigationController = {
         let navigationController = UINavigationController()
-        navigationController.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationController.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController.navigationBar.shadowImage = UIImage()
         navigationController.navigationBar.tintColor = Color.mainForegroundColor
         navigationController.modalPresentationStyle = .overFullScreen

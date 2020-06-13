@@ -25,7 +25,6 @@ class InsuranceSuggestionCardCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
 
         setup()
-        setupLayout()
     }
 
     required init?(coder: NSCoder) {
@@ -97,6 +96,8 @@ class InsuranceSuggestionCardCollectionViewCell: UICollectionViewCell {
         suggestionLabel.textColor = Color.mainForegroundColor
         suggestionLabel.numberOfLines = 0
         suggestionLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        setupLayout()
     }
 
     private func setupLayout() {

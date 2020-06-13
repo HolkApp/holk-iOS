@@ -1,6 +1,6 @@
 import Foundation
 
 struct SuggestionsListResponse: Codable {
-    let gaps: [Suggestion]
-    let thinkOfs: [Suggestion]
+    let gaps: [GapSuggestion]
+    let thinkOfs: [ThinkOfSuggestion]
 }

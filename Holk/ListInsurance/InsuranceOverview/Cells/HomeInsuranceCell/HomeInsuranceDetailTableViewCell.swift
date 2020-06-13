@@ -77,7 +77,6 @@ final class HomeInsuranceDetailTableViewCell: UITableViewCell {
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOpacity = 0.15
         layer.shadowRadius = 30
-        layer.cornerCurve = .continuous
 
         contentView.backgroundColor = .clear
         containerView.backgroundColor = Color.secondaryBackgroundColor

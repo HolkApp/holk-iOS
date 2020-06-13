@@ -29,7 +29,6 @@ final class HomeInsurnaceCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
 
         setup()
-        setupLayout()
     }
 
     required init?(coder: NSCoder) {
@@ -76,7 +75,6 @@ final class HomeInsurnaceCollectionViewCell: UICollectionViewCell {
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOpacity = 0.15
         layer.shadowRadius = 30
-        layer.cornerCurve = .continuous
 
         containerView.backgroundColor = Color.secondaryBackgroundColor
         containerView.layer.cornerRadius = 16
@@ -115,6 +113,8 @@ final class HomeInsurnaceCollectionViewCell: UICollectionViewCell {
 
         ringChart.dataSource = self
         ringChart.translatesAutoresizingMaskIntoConstraints = false
+
+        setupLayout()
     }
 
     private func setupLayout() {

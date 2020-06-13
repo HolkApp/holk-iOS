@@ -28,7 +28,6 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
 
         setup()
-        setupLayout()
     }
 
     required init?(coder: NSCoder) {
@@ -71,7 +70,6 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOpacity = 0.15
         layer.shadowRadius = 30
-        layer.cornerCurve = .continuous
 
         containerView.backgroundColor = Color.secondaryBackgroundColor
         containerView.layer.cornerRadius = 16
@@ -113,6 +111,8 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
 
         insuranceImageView.contentMode = .scaleAspectFit
         insuranceImageView.translatesAutoresizingMaskIntoConstraints = false
+
+        setupLayout()
     }
 
     private func setupLayout() {
