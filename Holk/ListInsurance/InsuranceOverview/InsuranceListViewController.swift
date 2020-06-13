@@ -114,15 +114,13 @@ extension InsuranceListViewController {
         // TODO: Update this with real insurance
         if indexPath.section == 0 {
             if indexPath.item == 0 {
-                let viewController = UIViewController()
-                viewController.title = "Reminder"
-                viewController.view.backgroundColor = .white
-                present(UINavigationController(rootViewController: viewController), animated: true)
+                let insuranceGapsSuggestionViewController = InsuranceGapsSuggestionViewController(storeController: storeController)
+                insuranceGapsSuggestionViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(cancel(_:)))
+                present(UINavigationController(rootViewController: insuranceGapsSuggestionViewController), animated: true)
             } else {
-                let viewController = UIViewController()
-                viewController.title = "Think Of"
-                viewController.view.backgroundColor = .white
-                present(UINavigationController(rootViewController: viewController), animated: true)
+                let insuranceThinkOfSuggestionViewController = InsuranceThinkOfSuggestionViewController()
+                insuranceThinkOfSuggestionViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(cancel(_:)))
+                present(UINavigationController(rootViewController: insuranceThinkOfSuggestionViewController), animated: true)
             }
         } else {
             selectedIndexPath = indexPath
@@ -130,5 +128,9 @@ extension InsuranceListViewController {
             coordinator?.showInsurance(insurance)
 //            coordinator?.showInsurnaceDetail(insurance)
         }
+    }
+
+    @objc private func cancel(_ sender: Any) {
+        dismiss(animated: true)
     }
 }
