@@ -1,9 +1,9 @@
 import Foundation
 
 extension AllInsuranceResponse {
-    static let mockInsurnace: Insurance = {
+    static let mockinsurance: Insurance = {
         let provider = InsuranceProvider(description: "mock provider", displayName: "Folksam", insuranceIssuerStatus: .available, internalName: "Folksam", logoUrl: "", symbolUrl: "", websiteUrl: "")
-        return Insurance(id: "Mock", insuranceProvider: provider, insuranceType: "test", issuerReference: "test", ssn: "199208253915", startDate: Date(), endDate: Date(), username: "Mock user name")
+        return Insurance(id: "Mock", insuranceProvider: provider, insuranceType: "test", providerReference: "test", ssn: "199208253915", startDate: Date(), endDate: Date(), username: "Mock user name")
     }()
 }
 
@@ -41,7 +41,7 @@ struct Insurance: Codable {
     let id: String
     let insuranceProvider: InsuranceProvider
     let insuranceType: String
-    let issuerReference: String
+    let providerReference: String
     let ssn: String
     let startDate: Date
     let endDate: Date
@@ -61,7 +61,7 @@ struct Insurance: Codable {
         case id = "id"
         case insuranceProvider = "insuranceProvider"
         case insuranceType = "insuranceType"
-        case issuerReference = "issuerReference"
+        case providerReference = "providerReference"
         case startDate = "startDate"
         case endDate = "endDate"
         case ssn = "ssn"
@@ -76,7 +76,7 @@ extension Insurance {
         id = try container.decode(String.self, forKey: .id)
         insuranceProvider = try container.decode(InsuranceProvider.self, forKey: .insuranceProvider)
         insuranceType = try container.decode(String.self, forKey: .insuranceType)
-        issuerReference = try container.decode(String.self, forKey: .issuerReference)
+        providerReference = try container.decode(String.self, forKey: .providerReference)
         let startDateString = try container.decode(String.self, forKey: .startDate)
         startDate = DateFormatter.simpleDateFormatter.date(from: startDateString) ?? Date()
         let endDateString = try container.decode(String.self, forKey: .endDate)

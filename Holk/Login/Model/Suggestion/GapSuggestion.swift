@@ -1,18 +1,18 @@
 import Foundation
 
-struct GapSuggestion: Codable {
+struct GapSuggestion: Codable, Hashable {
+    struct Details: Codable, Hashable {
+        struct Paragraph: Codable, Hashable {
+            let icon: String
+            let text: String
+        }
+
+        let subHeader: String
+        let description: String
+        let paragraphs: [Paragraph]
+    }
+
     let title: String
     let tag: String
-    let details: GapSuggestionDetails
-}
-
-struct GapSuggestionDetails: Codable {
-    let subHeader: String
-    let description: String
-    let paragraphs: [GapSuggestionParagraph]
-}
-
-struct GapSuggestionParagraph: Codable {
-    let icon: String
-    let text: String
+    let details: Details
 }

@@ -1,7 +1,12 @@
 import Foundation
 
 struct ThinkOfSuggestion: Codable {
-    let Header: String
-    let body: String
-    let icon: String
+    struct Details: Codable, Hashable {
+        let subHeader: String
+        let description: String
+    }
+
+    let title: String
+    let tag: String
+    let details: Details
 }
