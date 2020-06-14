@@ -39,17 +39,25 @@ final class InsuranceListViewController: UICollectionViewController {
         super.viewDidLoad()
         
         setup()
-//        storeController.insuranceStore.insuranceList.sink { [weak self] in
-//            self?.insurnaceList = $0
-//        }.store(in: &cancellables)
-        insuranceList = [AllInsuranceResponse.mockInsurnace]
+        storeController.insuranceStore.insuranceList.sink { [weak self] in
+            self?.insuranceList = $0
+        }.store(in: &cancellables)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        navigationController?.navigationBar.layoutMargins.left = 24
+        navigationController?.navigationBar.layoutMargins.right = 24
         navigationController?.navigationBar.barTintColor = Color.insuranceBackgroundColor
-        navigationController?.navigationBar.shadowImage = nil
+        navigationController?.navigationBar.shadowImage = UIImage()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        navigationController?.navigationBar.layoutMargins.left = 16
+        navigationController?.navigationBar.layoutMargins.right = 16
     }
     
     private func setup() {
