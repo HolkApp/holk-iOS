@@ -26,11 +26,20 @@ extension UILabel {
         case .header5:
             font = Font.font(name: .poppins, weight: .semiBold, size: 25)
             setLineHeight(20)
+        case .header6:
+            font = Font.font(name: .poppins, weight: .regular, size: 21)
+            setLineHeight(20)
+        case .subHeaders1:
+            font = Font.font(name: .poppins, weight: .light, size: 22)
+            setLineHeight(30)
+        case .subHeaders2:
+            font = Font.font(name: .poppins, weight: .light, size: 15)
+            setLineHeight(30)
         case .cardHeader1:
             font = Font.font(name: .montserrat, weight: .extraBold, size: 35)
             setLineHeight(37)
         case .cardHeader2:
-            font = Font.font(name: .montserrat, weight: .extraBold, size: 30)
+            font = Font.font(name: .montserrat, weight: .extraBold, size: 28)
             setLineHeight(32)
         case .titleHeader1:
             font = Font.font(name: .poppins, weight: .semiBold, size: 18)
@@ -39,6 +48,9 @@ extension UILabel {
             font = Font.font(name: .montserrat, weight: .medium, size: 14)
             setLineHeight(20)
         case .body2:
+            font = Font.font(name: .montserrat, weight: .regular, size: 16)
+            setLineHeight(23)
+        case .body3:
             font = Font.font(name: .montserrat, weight: .medium, size: 18)
             setLineHeight(25)
         case .numbers1:
@@ -50,6 +62,9 @@ extension UILabel {
         case .numbers3:
             font = Font.font(name: .lato, weight: .regular, size: 30)
             setLineHeight(35)
+        case .largeNumber:
+            font = Font.font(name: .poppins, weight: .regular, size: 64)
+            setLineHeight(76)
         }
     }
 

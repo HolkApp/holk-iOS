@@ -39,7 +39,7 @@ final class HomeInsuranceCostCollectionViewCell: UICollectionViewCell {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
         costLabel.textColor = Color.mainForegroundColor
-        costLabel.setStyleGuide(.body2)
+        costLabel.setStyleGuide(.body3)
         costLabel.numberOfLines = 0
         costLabel.translatesAutoresizingMaskIntoConstraints = false
 
