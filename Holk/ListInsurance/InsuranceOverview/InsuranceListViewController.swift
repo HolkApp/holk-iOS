@@ -53,10 +53,10 @@ final class InsuranceListViewController: UICollectionViewController {
     }
     
     private func setup() {
+        title = "Försäkringar"
         let largeTitleFont = Font.font(name: .poppins, weight: .semiBold, size: 30)
         navigationController?.navigationBar.largeTitleTextAttributes = [.font: largeTitleFont]
         let titleFont = Font.font(name: .poppins, weight: .semiBold, size: 20)
-        title = "Försäkringar"
         navigationController?.navigationBar.titleTextAttributes = [.font: titleFont]
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "person.crop.circle"), style: .plain, target: self, action: #selector(profileTapped(sender:)))
 
@@ -88,8 +88,7 @@ extension InsuranceListViewController {
         if section == 0 {
             return 2
         } else {
-//            return insurnaceList.count
-            return 1
+            return insuranceList.count
         }
     }
 
@@ -126,7 +125,6 @@ extension InsuranceListViewController {
             selectedIndexPath = indexPath
             let insurance = insuranceList[indexPath.item]
             coordinator?.showInsurance(insurance)
-//            coordinator?.showInsurnaceDetail(insurance)
         }
     }
 

@@ -47,7 +47,7 @@ final class TabBarController: UITabBarController {
         let addMoreImage = UIImage(systemName: "plus")?.withSymbolWeightConfiguration(.regular, pointSize: 30)
         addMoreButton.set(color: Color.secondaryBackgroundColor, image: addMoreImage)
         addMoreButton.addTarget(self, action: #selector(addMoreTapped(sender:)), for: .touchUpInside)
-        addMoreButton.backgroundColor = Color.secondaryForegroundColor
+        addMoreButton.backgroundColor = Color.tabBarItemSelectedColor
         addMoreButton.layer.cornerRadius = 26
         addMoreButton.clipsToBounds = true
         addMoreButton.translatesAutoresizingMaskIntoConstraints = false
@@ -90,8 +90,6 @@ extension TabBarController: InsuranceCoordinatorDelegate {
 
 extension TabBarController: AddInsuranceContainerViewControllerDelegate {
     func addInsuranceDidFinish(_ viewController: AddInsuranceContainerViewController) {
-        // TODO: Remove the fetch, when the adding finished, it should return the new list
-        storeController.insuranceStore.fetchAllInsurances()
         viewController.dismiss(animated: true)
     }
 }

@@ -153,7 +153,7 @@ final class OnboardingContainerViewController: UIViewController {
             case .success(let allInsuranceResponse):
                 confirmationViewController.addedInsurance = allInsuranceResponse.insuranceList.first
             case .failure(let error):
-                confirmationViewController.addedInsurance = AllInsuranceResponse.mockInsurnace
+                confirmationViewController.addedInsurance = AllInsuranceResponse.mockinsurance
                 print(error)
                 break
             }

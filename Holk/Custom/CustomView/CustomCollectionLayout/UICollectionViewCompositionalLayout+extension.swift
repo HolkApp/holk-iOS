@@ -20,7 +20,7 @@ extension UICollectionViewCompositionalLayout {
     }
 
     static func makeInsuranceLayout() -> UICollectionViewLayout {
-        let sections = [makeInsurnaceSection(), makeInsuranceBeneficiarySection(), makeInsuranceCostSection()]
+        let sections = [makeinsuranceSection(), makeInsuranceBeneficiarySection(), makeInsuranceCostSection()]
 
         let layout = UICollectionViewCompositionalLayout { (sectionIndex, environment) in
             return sections[sectionIndex]
@@ -71,7 +71,7 @@ extension UICollectionViewCompositionalLayout {
         return cardSection
     }
 
-    static func makeInsurnaceSection() -> NSCollectionLayoutSection {
+    static func makeinsuranceSection() -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(420))
@@ -109,7 +109,7 @@ extension UICollectionViewCompositionalLayout {
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(230))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         let gapsSection = NSCollectionLayoutSection(group: group)
-        gapsSection.boundarySupplementaryItems = [makeInsurnaceSuggestionSectionHeaderElement()]
+        gapsSection.boundarySupplementaryItems = [makeinsuranceSuggestionSectionHeaderElement()]
         gapsSection.contentInsets = .init(top: 0, leading: 16, bottom: 0, trailing: 16)
         return gapsSection
     }
@@ -117,7 +117,7 @@ extension UICollectionViewCompositionalLayout {
 
 // MARK: - NSCollectionLayoutBoundarySupplementaryItem
 extension UICollectionViewCompositionalLayout {
-    static func makeInsurnaceSuggestionSectionHeaderElement() -> NSCollectionLayoutBoundarySupplementaryItem {
+    static func makeinsuranceSuggestionSectionHeaderElement() -> NSCollectionLayoutBoundarySupplementaryItem {
         let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(56))
         let headerElement = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: "header", alignment: .top)
         headerElement.contentInsets = .init(top: 0, leading: 16, bottom: 0, trailing: 16)

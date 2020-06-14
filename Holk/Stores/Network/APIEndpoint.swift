@@ -19,7 +19,7 @@ enum Endpoint: String {
     case allInsurances = "insurance/user"
     case addInsurance = "insurance/scraping/%@"
     case scrapingStatus = "insurance/scraping/status/id/%@"
-    case allSuggestions = "suggestion/list/"
+    case allSuggestions = "suggestion/list/all"
     
     var url: URL {
         return URL(string: Endpoint.baseUrl + self.rawValue)!

@@ -26,7 +26,7 @@ final class InsuranceDetailTransition: NSObject, UIViewControllerAnimatedTransit
     }
 
     private func push(_ transitionContext: UIViewControllerContextTransitioning, fromViewController: InsuranceViewController, toViewController: InsuranceDetailViewController) {
-        if let selectedIndexPath = fromViewController.selectedIndexPath, let fromCell = fromViewController.collectionView.cellForItem(at: selectedIndexPath) as? HomeInsurnaceCollectionViewCell, let toView = toViewController.view {
+        if let selectedIndexPath = fromViewController.selectedIndexPath, let fromCell = fromViewController.collectionView.cellForItem(at: selectedIndexPath) as? HomeinsuranceCollectionViewCell, let toView = toViewController.view {
             let containerView = transitionContext.containerView
             containerView.addSubview(toViewController.view)
             toViewController.view.alpha = 0
@@ -69,7 +69,7 @@ final class InsuranceDetailTransition: NSObject, UIViewControllerAnimatedTransit
     private func pop(_ transitionContext: UIViewControllerContextTransitioning, fromViewController: InsuranceDetailViewController, toViewController: InsuranceViewController) {
         if let fromView = fromViewController.view,
             let selectedIndexPath = toViewController.selectedIndexPath,
-            let toCell = toViewController.collectionView.cellForItem(at: selectedIndexPath) as? HomeInsurnaceCollectionViewCell {
+            let toCell = toViewController.collectionView.cellForItem(at: selectedIndexPath) as? HomeinsuranceCollectionViewCell {
             let containerView = transitionContext.containerView
             containerView.addSubview(toViewController.view)
             toViewController.view.alpha = 0

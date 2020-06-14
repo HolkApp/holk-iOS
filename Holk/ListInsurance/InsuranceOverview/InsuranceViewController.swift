@@ -53,7 +53,7 @@ final class InsuranceViewController: UIViewController {
         collectionView.delegate = self
         collectionView.backgroundColor = .clear
         collectionView.alwaysBounceVertical = true
-        collectionView.register(HomeInsurnaceCollectionViewCell.self, forCellWithReuseIdentifier: HomeInsurnaceCollectionViewCell.identifier)
+        collectionView.register(HomeinsuranceCollectionViewCell.self, forCellWithReuseIdentifier: HomeinsuranceCollectionViewCell.identifier)
         collectionView.register(HomeInsuranceBeneficiaryCollectionViewCell.self, forCellWithReuseIdentifier: HomeInsuranceBeneficiaryCollectionViewCell.identifier)
         collectionView.register(HomeInsuranceCostCollectionViewCell.self, forCellWithReuseIdentifier: HomeInsuranceCostCollectionViewCell.identifier)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -94,9 +94,9 @@ extension InsuranceViewController: UICollectionViewDataSource, UICollectionViewD
             homeInsuranceCostCollectionViewCell.configure(insurance)
             cell = homeInsuranceCostCollectionViewCell
         default:
-            let homeInsurnaceCollectionViewCell = collectionView.dequeueCell(ofType: HomeInsurnaceCollectionViewCell.self, indexPath: indexPath)
-            homeInsurnaceCollectionViewCell.configure(insurance)
-            cell = homeInsurnaceCollectionViewCell
+            let homeinsuranceCollectionViewCell = collectionView.dequeueCell(ofType: HomeinsuranceCollectionViewCell.self, indexPath: indexPath)
+            homeinsuranceCollectionViewCell.configure(insurance)
+            cell = homeinsuranceCollectionViewCell
         }
         return cell
     }
@@ -104,7 +104,7 @@ extension InsuranceViewController: UICollectionViewDataSource, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.section == 0 {
             selectedIndexPath = indexPath
-            coordinator?.showInsurnaceDetail(insurance)
+            coordinator?.showinsuranceDetail(insurance)
         }
     }
 }

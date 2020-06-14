@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class HomeInsurnaceCollectionViewCell: UICollectionViewCell {
+final class HomeinsuranceCollectionViewCell: UICollectionViewCell {
     // MARK: - Public variables
     var insurance: Insurance?
     let containerView = UIView()
@@ -76,7 +76,7 @@ final class HomeInsurnaceCollectionViewCell: UICollectionViewCell {
         layer.shadowOpacity = 0.15
         layer.shadowRadius = 30
 
-        containerView.backgroundColor = Color.secondaryBackgroundColor
+        containerView.backgroundColor = Color.insuranceBackgroundColor
         containerView.layer.cornerRadius = 16
         containerView.layer.cornerCurve = .continuous
         containerView.translatesAutoresizingMaskIntoConstraints = false
@@ -164,7 +164,7 @@ final class HomeInsurnaceCollectionViewCell: UICollectionViewCell {
     }
 }
 
-extension HomeInsurnaceCollectionViewCell: HolkRingChartDataSource {
+extension HomeinsuranceCollectionViewCell: HolkRingChartDataSource {
     private var mockNumberOfSegments: Int {
         return insurance?.segments.count ?? 6
     }
