@@ -8,18 +8,41 @@
 import UIKit
 
 enum Font {
-    enum Name {
+    enum Name: CustomStringConvertible {
         case montserrat
         case poppins
         case lato
+
+        var description: String {
+            switch self {
+            case .montserrat:
+                return "Montserrat"
+            case .poppins:
+                return "Poppins"
+            case .lato:
+                return "Lato"
+            }
+        }
     }
 
-    enum Weight {
+    enum Weight: CustomStringConvertible {
+        case light
         case regular
         case medium
         case semiBold
         case bold
         case extraBold
+
+        var description: String {
+            switch self {
+            case .light: return "Light"
+            case .regular: return "Regular"
+            case .medium: return "Medium"
+            case .semiBold: return "SemiBold"
+            case .bold: return "Bold"
+            case .extraBold: return "ExtraBold"
+            }
+        }
     }
     
     enum Size: UInt {
@@ -57,50 +80,40 @@ enum Font {
             return CGFloat(rawValue)
         }
     }
-    
+
+    static func font(name: Name, weight: Weight, size: CGFloat) -> UIFont {
+        return UIFont(name: "\(name.description)-\(weight.description)", size: size)!
+    }
+
+    @available(*, deprecated)
     static func regular(_ size: Size) -> UIFont {
         return font(weight: .regular, size: size)
     }
 
+    @available(*, deprecated)
     static func medium(_ size: Size) -> UIFont {
         return font(weight: .medium, size: size)
     }
-    
+
+    @available(*, deprecated)
     static func semiBold(_ size: Size) -> UIFont {
         return font(weight: .semiBold, size: size)
     }
-    
+
+    @available(*, deprecated)
     static func bold(_ size: Size) -> UIFont {
         return font(weight: .bold, size: size)
     }
-    
+
+    @available(*, deprecated)
     static func extraBold(_ size: Size) -> UIFont {
         return font(weight: .extraBold, size: size)
     }
 
-    static func font(name: Name, weight: Weight, size: CGFloat) -> UIFont {
-        let fontName: String
-        switch name {
-        case .montserrat:
-            fontName = "Montserrat"
-        case .poppins:
-            fontName = "Poppins"
-        case .lato:
-            fontName = "Lato"
-        }
-        let fontWeight: String
-        switch weight {
-        case .regular: fontWeight = "-Regular"
-        case .medium: fontWeight = "-Medium"
-        case .semiBold: fontWeight = "-SemiBold"
-        case .bold: fontWeight = "-Bold"
-        case .extraBold: fontWeight = "-ExtraBold"
-        }
-        return UIFont(name: fontName + fontWeight, size: size)!
-    }
-    
+    // TODO: Remove this
     private static func font(weight: Weight, size: Size) -> UIFont {
         switch weight {
+        case .light: return UIFont(name: "Poppins-Light", size: size.pointSize)!
         case .regular: return UIFont(name: "Montserrat-Regular", size: size.pointSize)!
         case .medium: return UIFont(name: "Poppins-Medium", size: size.pointSize)!
         case .semiBold: return UIFont(name: "Poppins-SemiBold", size: size.pointSize)!

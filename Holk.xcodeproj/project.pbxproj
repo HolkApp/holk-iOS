@@ -121,6 +121,7 @@
 		8FD6768C2495107400E62820 /* InsuranceGapsSuggestionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD6768B2495107400E62820 /* InsuranceGapsSuggestionCollectionViewCell.swift */; };
 		8FD6768E24951C8700E62820 /* ThinkOfSuggestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD6768D24951C8700E62820 /* ThinkOfSuggestion.swift */; };
 		8FD67691249527AC00E62820 /* InsuranceSuggestionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD67690249527AC00E62820 /* InsuranceSuggestionHeaderView.swift */; };
+		8FD6769324963C9D00E62820 /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8FD6769224963C9D00E62820 /* Poppins-Light.ttf */; };
 		8FD84E682270E732009D563D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD84E672270E732009D563D /* AppDelegate.swift */; };
 		8FD84E6F2270E736009D563D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8FD84E6E2270E736009D563D /* Assets.xcassets */; };
 		8FD84E722270E736009D563D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FD84E702270E736009D563D /* LaunchScreen.storyboard */; };
@@ -270,6 +271,7 @@
 		8FD6768B2495107400E62820 /* InsuranceGapsSuggestionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceGapsSuggestionCollectionViewCell.swift; sourceTree = "<group>"; };
 		8FD6768D24951C8700E62820 /* ThinkOfSuggestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThinkOfSuggestion.swift; sourceTree = "<group>"; };
 		8FD67690249527AC00E62820 /* InsuranceSuggestionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceSuggestionHeaderView.swift; sourceTree = "<group>"; };
+		8FD6769224963C9D00E62820 /* Poppins-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Light.ttf"; sourceTree = "<group>"; };
 		8FD84E642270E732009D563D /* Holk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Holk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FD84E672270E732009D563D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8FD84E6E2270E736009D563D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -728,6 +730,7 @@
 				8F858A4C23CD16FC006B416A /* Poppins-SemiBold.ttf */,
 				8FA766D024447BD8007EB2A2 /* Poppins-Medium.ttf */,
 				8F858A4A23CD1470006B416A /* Poppins-Regular.ttf */,
+				8FD6769224963C9D00E62820 /* Poppins-Light.ttf */,
 				8F6BCA3522F73CBF004B887E /* Font Awesome 5 Brands-Regular-400.otf */,
 				8F6BCA3822F73CBF004B887E /* Font Awesome 5 Duotone-Solid-900.otf */,
 				8F6BCA3722F73CBF004B887E /* Font Awesome 5 Pro-Light-300.otf */,
@@ -838,6 +841,7 @@
 				8F6BCA3D22F73CBF004B887E /* Font Awesome 5 Duotone-Solid-900.otf in Resources */,
 				8F858A4D23CD16FD006B416A /* Poppins-SemiBold.ttf in Resources */,
 				8F6BCA3C22F73CBF004B887E /* Font Awesome 5 Pro-Light-300.otf in Resources */,
+				8FD6769324963C9D00E62820 /* Poppins-Light.ttf in Resources */,
 				8F6BCA3A22F73CBF004B887E /* Font Awesome 5 Brands-Regular-400.otf in Resources */,
 				8FC81CEE2483FB4C00F6BC8C /* Lato-Bold.ttf in Resources */,
 				8FF6E74A22B82F3600F6D398 /* Montserrat-ExtraBold.ttf in Resources */,
