@@ -39,17 +39,23 @@ final class InsuranceCoordinator: NSObject, UINavigationControllerDelegate {
     func showInsurance(_ insurance: Insurance) {
         let insuranceViewController = InsuranceViewController(storeController: storeController, insurance: insurance)
         insuranceViewController.coordinator = self
+        insuranceViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(back(_:)))
         navController.pushViewController(insuranceViewController, animated: true)
     }
 
-    func showInsurnaceDetail(_ insurance: Insurance) {
+    func showinsuranceDetail(_ insurance: Insurance) {
         let insuranceDetailViewController = InsuranceDetailViewController(insurance: insurance)
         insuranceDetailViewController.coordinator = self
+        insuranceDetailViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(back(_:)))
         navController.pushViewController(insuranceDetailViewController, animated: true)
     }
 
     func logout() {
         delegate?.logout(self)
+    }
+
+    @objc private func back(_ sender: Any) {
+        navController.popViewController(animated: true)
     }
     
     // MARK: - UINavigationControllerDelegate
