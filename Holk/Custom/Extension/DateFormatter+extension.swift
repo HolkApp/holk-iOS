@@ -9,6 +9,13 @@
 import Foundation
 
 extension DateFormatter {
+    static let yyyyMMddDateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.calendar = Calendar(identifier: .iso8601)
+        return formatter
+    }()
+
     static let simpleDateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium

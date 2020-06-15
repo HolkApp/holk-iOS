@@ -75,7 +75,7 @@ class APIClient {
                     .eraseToAnyPublisher()
         } else {
             let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .secondsSince1970
+            decoder.dateDecodingStrategy = .formatted(DateFormatter.yyyyMMddDateFormatter)
             return Just(data)
                 .decode(type: T.self, decoder: decoder)
                 .mapError { error in
