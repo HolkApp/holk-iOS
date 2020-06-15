@@ -13,7 +13,7 @@ final class InsuranceViewController: UIViewController {
     weak var coordinator: InsuranceCoordinator?
     var selectedIndexPath: IndexPath?
     lazy var collectionView: UICollectionView = {
-        let insuranceLayout = UICollectionViewCompositionalLayout.makeInsuranceLayout()
+        let insuranceLayout = UICollectionViewCompositionalLayout.makeHomeInsuranceLayout()
         return UICollectionView(frame: .zero, collectionViewLayout: insuranceLayout)
     }()
     
@@ -42,7 +42,6 @@ final class InsuranceViewController: UIViewController {
         super.viewWillAppear(animated)
 
         navigationController?.navigationBar.barTintColor = Color.secondaryBackgroundColor
-        navigationController?.navigationBar.shadowImage = UIImage()
     }
 
     private func setup() {
@@ -56,6 +55,7 @@ final class InsuranceViewController: UIViewController {
         collectionView.register(HomeinsuranceCollectionViewCell.self, forCellWithReuseIdentifier: HomeinsuranceCollectionViewCell.identifier)
         collectionView.register(HomeInsuranceBeneficiaryCollectionViewCell.self, forCellWithReuseIdentifier: HomeInsuranceBeneficiaryCollectionViewCell.identifier)
         collectionView.register(HomeInsuranceCostCollectionViewCell.self, forCellWithReuseIdentifier: HomeInsuranceCostCollectionViewCell.identifier)
+        collectionView.register(HomeInsuranceHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HomeInsuranceHeaderView.identifier)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
 
         view.addSubview(collectionView)
@@ -105,6 +105,17 @@ extension InsuranceViewController: UICollectionViewDataSource, UICollectionViewD
         if indexPath.section == 0 {
             selectedIndexPath = indexPath
             coordinator?.showinsuranceDetail(insurance)
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == UICollectionView.elementKindSectionHeader {
+            let insuranceSuggestionHeaderView =
+                collectionView.dequeueHeaderFooterView(type: HomeInsuranceHeaderView.self, of: kind, indexPath: indexPath)
+            insuranceSuggestionHeaderView.configure(insurance)
+            return insuranceSuggestionHeaderView
+        } else {
+            return UICollectionReusableView()
         }
     }
 }

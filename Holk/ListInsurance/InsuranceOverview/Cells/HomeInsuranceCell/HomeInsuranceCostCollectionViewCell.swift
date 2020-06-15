@@ -32,9 +32,9 @@ final class HomeInsuranceCostCollectionViewCell: UICollectionViewCell {
         contentView.backgroundColor = .clear
         contentView.layoutMargins = .init(top: 0, left: 6, bottom: 0, right: 6)
 
-        titleLabel.text = "Costs"
+        titleLabel.text = "Kostnad"
         titleLabel.textColor = Color.mainForegroundColor
-        titleLabel.setStyleGuide(.cardHeader2)
+        titleLabel.setStyleGuide(.header6)
         titleLabel.numberOfLines = 0
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
@@ -61,7 +61,7 @@ final class HomeInsuranceCostCollectionViewCell: UICollectionViewCell {
             titleLabel.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor, constant: -16),
 
             costLabel.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor, constant: 16),
-            costLabel.topAnchor.constraint(greaterThanOrEqualTo: titleLabel.bottomAnchor, constant: 12),
+            costLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 12),
             costLabel.trailingAnchor.constraint(lessThanOrEqualTo: chevronView.leadingAnchor, constant: 16),
             costLabel.bottomAnchor.constraint(equalTo: bottomSeparatorLine.topAnchor, constant: -16),
 
@@ -80,6 +80,6 @@ final class HomeInsuranceCostCollectionViewCell: UICollectionViewCell {
     func configure(_ insurance: Insurance) {
         self.insurance = insurance
         // TODO: Update this
-        costLabel.text = "250 kr"
+        costLabel.text = "250(mock) kr/mån"
     }
 }

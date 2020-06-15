@@ -64,7 +64,7 @@ final class InsuranceGapsSuggestionViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(InsuranceGapsSuggestionCollectionViewCell.self, forCellWithReuseIdentifier: InsuranceGapsSuggestionCollectionViewCell.identifier)
-        collectionView.register(InsuranceSuggestionHeaderView.self, forSupplementaryViewOfKind: "header", withReuseIdentifier: InsuranceSuggestionHeaderView.identifier)
+        collectionView.register(InsuranceSuggestionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: InsuranceSuggestionHeaderView.identifier)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
 
         setupLayout()
@@ -115,7 +115,7 @@ extension InsuranceGapsSuggestionViewController: UICollectionViewDataSource, UIC
     }
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if kind == "header" {
+        if kind == UICollectionView.elementKindSectionHeader {
             let insuranceSuggestionHeaderView =
                 collectionView.dequeueHeaderFooterView(type: InsuranceSuggestionHeaderView.self, of: kind, indexPath: indexPath)
             insuranceSuggestionHeaderView.configure("Luckor som finns i ditt skydd")

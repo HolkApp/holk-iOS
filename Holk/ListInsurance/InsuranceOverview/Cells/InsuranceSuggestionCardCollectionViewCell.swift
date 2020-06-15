@@ -84,7 +84,8 @@ class InsuranceSuggestionCardCollectionViewCell: UICollectionViewCell {
         suggestionView.layer.cornerCurve = .continuous
         suggestionView.translatesAutoresizingMaskIntoConstraints = false
 
-        suggestionValueLabel.setStyleGuide(.header5)
+        suggestionValueLabel.cornerRadius = 10
+        suggestionValueLabel.setStyleGuide(.numbers1)
         suggestionValueLabel.backgroundColor = Color.secondaryBackgroundColor
         suggestionValueLabel.textAlignment = .center
         suggestionValueLabel.translatesAutoresizingMaskIntoConstraints = false

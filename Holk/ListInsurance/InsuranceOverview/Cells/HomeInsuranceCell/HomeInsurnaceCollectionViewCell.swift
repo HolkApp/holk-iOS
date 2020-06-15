@@ -20,10 +20,7 @@ final class HomeinsuranceCollectionViewCell: UICollectionViewCell {
     private let insuranceTextLabel = UILabel()
     private let insuranceImageView = UIImageView()
     private let chevronView = UIImageView()
-
     private let ringChartLabelsStackView = UIStackView()
-
-    private let lightFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -49,10 +46,6 @@ final class HomeinsuranceCollectionViewCell: UICollectionViewCell {
                 self.transform = scaleTransform
             }
             animator.startAnimation()
-
-//            if isHighlighted {
-//                lightFeedbackGenerator.impactOccurred()
-//            }
         }
     }
 
@@ -61,8 +54,10 @@ final class HomeinsuranceCollectionViewCell: UICollectionViewCell {
 
         titleLabel.text = "Dina skydd"
         insuranceSubNumberLabel.text = String(insurance.segments.count)
-        insuranceTextLabel.text = "Sub insurances"
-        insuranceImageView.image = UIImage(named: "Folksam")
+        insuranceTextLabel.text = "Skydd"
+        UIImage.imageWithUrl(imageUrlString: insurance.insuranceProvider.logoUrl) { [weak self] image in
+            self?.insuranceImageView.image = image
+        }
 
         ringChart.reloadSegments()
     }
@@ -81,18 +76,18 @@ final class HomeinsuranceCollectionViewCell: UICollectionViewCell {
         containerView.layer.cornerCurve = .continuous
         containerView.translatesAutoresizingMaskIntoConstraints = false
 
-        titleLabel.font = Font.extraBold(.title)
+        titleLabel.setStyleGuide(.header6)
         titleLabel.textColor = Color.mainForegroundColor
         titleLabel.numberOfLines = 0
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        insuranceSubNumberLabel.font = Font.semiBold(.header)
+        insuranceSubNumberLabel.setStyleGuide(.largeNumber)
         insuranceSubNumberLabel.textColor = Color.mainForegroundColor
         insuranceSubNumberLabel.numberOfLines = 0
         insuranceSubNumberLabel.textAlignment = .center
         insuranceSubNumberLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        insuranceTextLabel.font = Font.regular(.subtitle)
+        insuranceTextLabel.setStyleGuide(.subHeaders2)
         insuranceTextLabel.textColor = Color.mainForegroundColor
         insuranceTextLabel.numberOfLines = 0
         insuranceTextLabel.textAlignment = .center
@@ -178,7 +173,7 @@ extension HomeinsuranceCollectionViewCell: HolkRingChartDataSource {
     }
 
     func ringChart(_ ringChart: HolkRingChart, ringChartWidthAt index: Int) -> CGFloat? {
-        return 16
+        return 8
     }
 
     func ringChart(_ ringChart: HolkRingChart, colorForSegmentAt index: Int) -> UIColor? {

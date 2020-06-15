@@ -74,6 +74,7 @@ final class InsuranceGapsSuggestionCollectionViewCell: UICollectionViewCell {
             tagLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
             tagLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
 
+            chevronView.topAnchor.constraint(equalTo: tagLabel.bottomAnchor, constant: 36),
             chevronView.widthAnchor.constraint(equalToConstant: 16),
             chevronView.heightAnchor.constraint(equalToConstant: 24),
             chevronView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),

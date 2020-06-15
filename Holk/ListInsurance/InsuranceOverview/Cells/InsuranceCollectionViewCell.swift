@@ -53,13 +53,25 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
 
     func configure(_ insurance: Insurance) {
         self.insurance = insurance
-        titleLabel.text = insurance.insuranceType
+        titleLabel.text = insurance.insuranceType.description
         subtitleLabel.text = insurance.address
         UIImage.imageWithUrl(imageUrlString: insurance.insuranceProvider.logoUrl) { [weak self] image in
             self?.insuranceImageView.image = image
         }
-        daysLabel.text = "118"
-        daysTextLabel.text = "Dagar kvar"
+        switch insurance.endDate.expirationDaysLeft() {
+        case .valid(let daysLeft):
+            daysLabel.text = "\(daysLeft)"
+            daysTextLabel.text = "Dagar kvar"
+        case .today:
+            daysLabel.text = ""
+            daysTextLabel.text = "Ends today"
+        case .expired:
+            daysLabel.text = ""
+            daysTextLabel.text = "Expired"
+        default:
+            daysLabel.text = ""
+            daysTextLabel.text = ""
+        }
     }
 
     private func setup() {
@@ -76,13 +88,13 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         containerView.layer.cornerCurve = .continuous
         containerView.translatesAutoresizingMaskIntoConstraints = false
 
-        titleLabel.font = Font.extraBold(.title)
+        titleLabel.setStyleGuide(.header5)
         titleLabel.textColor = Color.mainForegroundColor
         titleLabel.numberOfLines = 0
         titleLabel.setContentHuggingPriority(.required, for: .vertical)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        subtitleLabel.font = Font.regular(.subtitle)
+        subtitleLabel.setStyleGuide(.subHeaders1)
         subtitleLabel.textColor = Color.mainForegroundColor
         subtitleLabel.numberOfLines = 0
         subtitleLabel.setContentHuggingPriority(.required, for: .vertical)

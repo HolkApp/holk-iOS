@@ -27,7 +27,7 @@ extension UILabel {
             font = Font.font(name: .poppins, weight: .semiBold, size: 25)
             setLineHeight(20)
         case .header6:
-            font = Font.font(name: .poppins, weight: .regular, size: 21)
+            font = Font.font(name: .poppins, weight: .semiBold, size: 21)
             setLineHeight(20)
         case .subHeaders1:
             font = Font.font(name: .poppins, weight: .light, size: 22)

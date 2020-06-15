@@ -33,14 +33,14 @@ final class HomeInsuranceBeneficiaryCollectionViewCell: UICollectionViewCell {
         contentView.backgroundColor = .clear
         contentView.layoutMargins = .init(top: 0, left: 6, bottom: 0, right: 6)
 
-        titleLabel.text = "People covered"
+        titleLabel.text = "Gäller för"
         titleLabel.textColor = Color.mainForegroundColor
-        titleLabel.setStyleGuide(.cardHeader2)
+        titleLabel.setStyleGuide(.header6)
         titleLabel.numberOfLines = 0
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
         usernameLabel.textColor = Color.mainForegroundColor
-        usernameLabel.setStyleGuide(.body3)
+        usernameLabel.setStyleGuide(.body2)
         usernameLabel.numberOfLines = 0
         usernameLabel.translatesAutoresizingMaskIntoConstraints = false
 
@@ -71,7 +71,7 @@ final class HomeInsuranceBeneficiaryCollectionViewCell: UICollectionViewCell {
             titleLabel.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor, constant: -16),
 
             usernameLabel.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor, constant: 16),
-            usernameLabel.topAnchor.constraint(greaterThanOrEqualTo: titleLabel.bottomAnchor, constant: 12),
+            usernameLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
             usernameLabel.trailingAnchor.constraint(lessThanOrEqualTo: chevronView.leadingAnchor, constant: 16),
             usernameLabel.bottomAnchor.constraint(equalTo: bottomSeparatorLine.topAnchor, constant: -16),
 
