@@ -24,9 +24,8 @@ final class StoreController {
     
     let authenticationStore: AuthenticationStore
     let providerStore: ProviderStore
-    let insuranceCredentialStore: InsuranceCredentialStore
-    let userStore: UserStore
     let insuranceStore: InsuranceStore
+    let userStore: UserStore
     let suggestionStore: SuggestionStore
     private(set) var user: User
     
@@ -49,7 +48,6 @@ final class StoreController {
         authenticationStore = AuthenticationStore(queue: queue, user: user)
         userStore = UserStore.init(queue: queue, user: user)
         providerStore = ProviderStore(queue: queue, user: user)
-        insuranceCredentialStore = InsuranceCredentialStore(queue: queue, user: user)
         insuranceStore = InsuranceStore(queue: queue, user: user)
         suggestionStore = SuggestionStore(queue: queue, user: user)
     }
