@@ -9,11 +9,13 @@
 import UIKit
 
 class HolkRoundBackgroundLabel: UILabel {
+    var cornerRadius: CGFloat?
+
     override init(frame: CGRect) {
         super.init(frame: frame)
 
         clipsToBounds = true
-        layoutMargins = .init(top: 0, left: 16, bottom: 0, right: 16)
+        layoutMargins = .init(top: 0, left: 8, bottom: 0, right: 8)
     }
 
     required init?(coder: NSCoder) {
@@ -22,7 +24,7 @@ class HolkRoundBackgroundLabel: UILabel {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        let radius = min(frame.height, frame.width) / 2
+        let radius = cornerRadius ?? min(frame.height, frame.width) / 2
         layer.cornerRadius = radius
 
         invalidateIntrinsicContentSize()

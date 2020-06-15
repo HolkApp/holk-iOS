@@ -66,7 +66,7 @@ final class InsuranceListViewController: UICollectionViewController {
         navigationController?.navigationBar.largeTitleTextAttributes = [.font: largeTitleFont]
         let titleFont = Font.font(name: .poppins, weight: .semiBold, size: 20)
         navigationController?.navigationBar.titleTextAttributes = [.font: titleFont]
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "person.crop.circle"), style: .plain, target: self, action: #selector(profileTapped(sender:)))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "profile"), style: .plain, target: self, action: #selector(profileTapped(sender:)))
 
         view.backgroundColor = Color.insuranceBackgroundColor
         view.layoutMargins = .zero
