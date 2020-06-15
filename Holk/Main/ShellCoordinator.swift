@@ -36,10 +36,6 @@ final class ShellCoordinator {
     }
 
     func start() {
-        sessionCoordinator = SessionCoordinator(presenterViewController: rootViewController, storeController: storeController)
-        sessionCoordinator?.coordinator = self
-        onboardingCoordinator = OnboardingCoordinator(navigationController: landingPageNavigationController, storeController: storeController)
-        onboardingCoordinator?.coordinator = self
         setupViewController()
     }
 
@@ -87,6 +83,8 @@ final class ShellCoordinator {
     }
 
     func authenticate() {
+        onboardingCoordinator = OnboardingCoordinator(navigationController: landingPageNavigationController, storeController: storeController)
+        onboardingCoordinator?.coordinator = self
         onboardingCoordinator?.start()
     }
 
@@ -99,6 +97,7 @@ final class ShellCoordinator {
     func onboardingFinished() {
         rootViewController.dismiss(animated: false) {
             self.showSession()
+            self.onboardingCoordinator = nil
         }
     }
 
@@ -107,11 +106,15 @@ final class ShellCoordinator {
         rootViewController.dismiss(animated: false) {
             DispatchQueue.main.async {
                 self.setupViewController()
+                self.onboardingCoordinator = nil
+                self.sessionCoordinator = nil
             }
         }
     }
 
     private func showSession() {
+        sessionCoordinator = SessionCoordinator(presenterViewController: rootViewController, storeController: storeController)
+        sessionCoordinator?.coordinator = self
         sessionCoordinator?.start()
     }
 }

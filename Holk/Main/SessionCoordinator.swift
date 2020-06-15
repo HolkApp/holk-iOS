@@ -10,7 +10,7 @@ import UIKit
 
 final class SessionCoordinator: NSObject, UINavigationControllerDelegate {
     // MARK: - Public Properties
-    var coordinator: ShellCoordinator?
+    weak var coordinator: ShellCoordinator?
 
     // MARK: - Private Properties
     private var presenterViewController: UIViewController

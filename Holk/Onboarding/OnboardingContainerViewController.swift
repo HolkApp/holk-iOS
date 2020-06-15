@@ -15,9 +15,9 @@ final class OnboardingContainerViewController: UIViewController {
     private let progressView = HolkProgressBarView()
     private let closeButton = HolkButton()
     private var newUserViewController: NewUserViewController?
-    private lazy var insuranceProviderTypeViewController: OnboardingInsuranceTypeViewController = OnboardingInsuranceTypeViewController(storeController: storeController)
-    private lazy var insuranceProviderViewController: OnboardingInsuranceProviderViewController = OnboardingInsuranceProviderViewController(storeController: storeController)
-    private var consentViewController: OnboardingConsentViewController?
+    private weak var insuranceProviderTypeViewController: OnboardingInsuranceTypeViewController?
+    private weak var insuranceProviderViewController: OnboardingInsuranceProviderViewController?
+    private weak var consentViewController: OnboardingConsentViewController?
     private var onboardingViewControllers = [UIViewController]() {
         didSet {
             collectionView.reloadData()
@@ -135,29 +135,24 @@ final class OnboardingContainerViewController: UIViewController {
     }
 
     private func showInsuranceType() {
-        insuranceProviderTypeViewController.delegate = self
-        progressView.isHidden = false
-        if !onboardingViewControllers.contains(insuranceProviderTypeViewController) {
-            onboardingViewControllers.append(insuranceProviderTypeViewController)
+        if let insuranceProviderTypeViewController = insuranceProviderTypeViewController {
+            if !onboardingViewControllers.contains(insuranceProviderTypeViewController) {
+                onboardingViewControllers.append(insuranceProviderTypeViewController)
+            }
+        } else {
+            let viewController = OnboardingInsuranceTypeViewController(storeController: storeController)
+            viewController.delegate = self
+            progressView.isHidden = false
+            self.insuranceProviderTypeViewController = viewController
+            self.onboardingViewControllers.append(viewController)
         }
     }
 
-    private func showInsuranceAggregatedConfirmation() {
-        let confirmationViewController = OnboardingConfirmationViewController()
+    private func showInsuranceAggregatedConfirmation(_ addedInsurance: Insurance) {
+        let confirmationViewController = OnboardingConfirmationViewController(addedInsurance)
         confirmationViewController.delegate = self
         onboardingViewControllers.append(confirmationViewController)
         collectionView.scrollToItem(at: IndexPath(item: 3, section: 0), at: .centeredHorizontally, animated: true)
-        storeController.insuranceStore.fetchAllInsurances { result in
-            // TODO Need to change this with real data
-            switch result {
-            case .success(let allInsuranceResponse):
-                confirmationViewController.addedInsurance = allInsuranceResponse.insuranceList.first
-            case .failure(let error):
-                confirmationViewController.addedInsurance = AllInsuranceResponse.mockinsurance
-                print(error)
-                break
-            }
-        }
     }
 
     private func progressBarToTop(animated: Bool = true, completion: (() -> Void)? = nil) {
@@ -217,6 +212,7 @@ final class OnboardingContainerViewController: UIViewController {
                 guard let self = self else { return }
                 alert.dismiss(animated: true) {
                     self.delegate?.onboardingStopped(self)
+                    self.onboardingViewControllers.removeAll()
                 }
             })
         )
@@ -251,9 +247,15 @@ extension OnboardingContainerViewController: NewUserViewControllerDelegate {
 extension OnboardingContainerViewController: OnboardingInsuranceTypeViewControllerDelegate {
     func onboardingInsuranceProviderType(_ viewController: OnboardingInsuranceTypeViewController, didSelect providerType: InsuranceProviderType) {
         self.providerType = providerType
-        insuranceProviderViewController.delegate = self
-        if !onboardingViewControllers.contains(insuranceProviderViewController) {
-            onboardingViewControllers.append(insuranceProviderViewController)
+        if let insuranceProviderViewController = insuranceProviderViewController {
+            if !onboardingViewControllers.contains(insuranceProviderViewController) {
+                onboardingViewControllers.append(insuranceProviderViewController)
+            }
+        } else {
+            let viewController = OnboardingInsuranceProviderViewController(storeController: storeController)
+            viewController.delegate = self
+            insuranceProviderViewController = viewController
+            onboardingViewControllers.append(viewController)
         }
         collectionView.scrollToItem(at: IndexPath(item: 1, section: 0), at: .centeredHorizontally, animated: true)
     }
@@ -262,14 +264,14 @@ extension OnboardingContainerViewController: OnboardingInsuranceTypeViewControll
 extension OnboardingContainerViewController: OnboardingInsuranceProviderViewControllerDelegate {
     func onboardingInsuranceProvider(_ viewController: OnboardingInsuranceProviderViewController, didSelect provider: InsuranceProvider) {
         self.insuranceProvider = provider
-        let onboardingConsentViewController = OnboardingConsentViewController(storeController: storeController, insuranceProvider: provider)
-        onboardingConsentViewController.delegate = self
         if let consentViewController = consentViewController {
             onboardingViewControllers.removeAll { consentViewController == $0 }
         }
-        onboardingViewControllers.append(onboardingConsentViewController)
+        let viewController = OnboardingConsentViewController(storeController: storeController, insuranceProvider: provider)
+        viewController.delegate = self
+        consentViewController = viewController
+        onboardingViewControllers.append(viewController)
         collectionView.scrollToItem(at: IndexPath(item: 2, section: 0), at: .centeredHorizontally, animated: true)
-        self.consentViewController = onboardingConsentViewController
     }
 }
 
@@ -277,19 +279,24 @@ extension OnboardingContainerViewController: OnboardingConsentViewControllerDele
     func onboardingConsent(_ viewController: OnboardingConsentViewController, didSelect insuranceProvider: InsuranceProvider) {
         progressSpinnerToCenter()
         storeController
-            .insuranceCredentialStore
+            .insuranceStore
             .addInsurance(insuranceProvider)
         storeController
-            .insuranceCredentialStore
-            .insuranceStatus.sink { [weak self] scrapingStatus in
-            print(scrapingStatus)
-            switch scrapingStatus {
-            case .completed:
-                self?.showInsuranceAggregatedConfirmation()
-                self?.progressBarToTop()
-            default:
-                break
-            }
+            .insuranceStore
+            .insuranceStatus
+            .sink { [weak self] scrapingStatus in
+                guard let self = self else { return }
+                // TODO: remove the print
+                print(scrapingStatus)
+                switch scrapingStatus {
+                case .completed:
+                    let insuranceList = self.storeController.insuranceStore.insuranceList.value
+                    // TODO: remove the mock
+                    self.showInsuranceAggregatedConfirmation(insuranceList.first ?? AllInsuranceResponse.mockinsurance)
+                    self.progressBarToTop()
+                default:
+                    break
+                }
         }.store(in: &cancellables)
     }
 }
@@ -297,6 +304,7 @@ extension OnboardingContainerViewController: OnboardingConsentViewControllerDele
 extension OnboardingContainerViewController: OnboardingConfirmationViewControllerDelegate {
     func onboardingConfirmation(_ viewController: OnboardingConfirmationViewController) {
         delegate?.onboardingFinished(self)
+        onboardingViewControllers.removeAll()
     }
 }
 

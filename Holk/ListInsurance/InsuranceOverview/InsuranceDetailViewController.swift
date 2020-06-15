@@ -36,7 +36,6 @@ final class InsuranceDetailViewController: UIViewController {
         super.viewWillAppear(animated)
 
         navigationController?.navigationBar.barTintColor = Color.secondaryBackgroundColor
-        navigationController?.navigationBar.shadowImage = UIImage()
     }
 
     private func setup() {

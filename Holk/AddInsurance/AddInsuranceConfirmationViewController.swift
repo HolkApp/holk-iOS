@@ -13,6 +13,9 @@ protocol AddInsuranceConfirmationViewControllerDelegate: AnyObject {
 }
 
 final class AddInsuranceConfirmationViewController: UIViewController {
+    // MARK: - Public variables
+    weak var delegate: AddInsuranceConfirmationViewControllerDelegate?
+
     // MARK: - Private variables
     private let imageView = UIImageView()
     private let titleLabel = UILabel()
@@ -23,19 +26,25 @@ final class AddInsuranceConfirmationViewController: UIViewController {
     private let addressLabel = UILabel()
     private let badgeLabel = UILabel()
     private let doneButton = HolkButton()
-
-    var addedInsurance: Insurance? {
+    private var addedInsurance: Insurance {
         didSet {
             DispatchQueue.main.async {
-                self.descriptionLabel.text = String(format: "We found your insurance at %@", self.addedInsurance?.insuranceProvider.displayName ?? "")
-                self.insuranceLabel.text = self.addedInsurance?.insuranceType
-                self.addressLabel.text = self.addedInsurance?.address
+                self.descriptionLabel.text = String(format: "We found your insurance at %@", self.addedInsurance.insuranceProvider.displayName)
+                self.insuranceLabel.text = self.addedInsurance.insuranceType.description
+                self.addressLabel.text = self.addedInsurance.address
             }
         }
     }
 
-    // MARK: - Public variables
-    weak var delegate: AddInsuranceConfirmationViewControllerDelegate?
+    init(_ addedInsurance: Insurance) {
+        self.addedInsurance = addedInsurance
+
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,7 +67,7 @@ final class AddInsuranceConfirmationViewController: UIViewController {
         descriptionLabel.font = Font.regular(.title)
         descriptionLabel.textColor = Color.mainForegroundColor
         descriptionLabel.numberOfLines = 0
-        descriptionLabel.text = String(format: "We found your insurance at %@", addedInsurance?.insuranceProvider.displayName ?? "")
+        descriptionLabel.text = String(format: "We found your insurance at %@", addedInsurance.insuranceProvider.displayName)
 
         cardView.backgroundColor = .clear
         cardView.layoutMargins = .init(top: 16, left: 32, bottom: 16, right: 32)
@@ -72,12 +81,12 @@ final class AddInsuranceConfirmationViewController: UIViewController {
         insuranceLabel.font = Font.semiBold(.title)
         insuranceLabel.textColor = Color.mainForegroundColor
         insuranceLabel.numberOfLines = 0
-        insuranceLabel.text = addedInsurance?.insuranceType
+        insuranceLabel.text = addedInsurance.insuranceType.description
 
         addressLabel.font = Font.regular(.label)
         addressLabel.textColor = Color.mainForegroundColor
         addressLabel.numberOfLines = 0
-        addressLabel.text = addedInsurance?.address
+        addressLabel.text = addedInsurance.address
 
         badgeLabel.font = Font.regular(.label)
         badgeLabel.textAlignment = .center

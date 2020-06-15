@@ -13,10 +13,9 @@ final class AddInsuranceContainerViewController: UIViewController {
     private let storeController: StoreController
     private let progressView = HolkProgressBarView()
     private let closeButton = HolkButton()
-    private lazy var insuranceProviderTypeViewController: AddInsuranceTypeViewController =
-        AddInsuranceTypeViewController(storeController: storeController)
-    private lazy var insuranceProviderViewController: AddInsuranceProviderViewController = AddInsuranceProviderViewController(storeController: storeController)
-    private var consentViewController: AddInsuranceConsentViewController?
+    private weak var insuranceProviderTypeViewController: AddInsuranceTypeViewController?
+    private weak var insuranceProviderViewController: AddInsuranceProviderViewController?
+    private weak var consentViewController: AddInsuranceConsentViewController?
     private var addInsuranceViewControllers = [UIViewController]() {
         didSet {
             collectionView.reloadData()
@@ -83,7 +82,7 @@ final class AddInsuranceContainerViewController: UIViewController {
         view.addSubview(closeButton)
 
         setupLayout()
-        startOnboarding()
+        startAddingInsurance()
     }
 
     private func setupLayout() {
@@ -109,18 +108,24 @@ final class AddInsuranceContainerViewController: UIViewController {
         ])
     }
 
-    private func startOnboarding() {
+    private func startAddingInsurance() {
         progressView.isHidden = true
         progressBarToTop(animated: false, completion: { [weak self] in
             self?.showInsuranceType()
         })
     }
-    
+
     private func showInsuranceType() {
-        insuranceProviderTypeViewController.delegate = self
-        progressView.isHidden = false
-        if !addInsuranceViewControllers.contains(insuranceProviderTypeViewController) {
-            addInsuranceViewControllers.append(insuranceProviderTypeViewController)
+        if let insuranceProviderTypeViewController = insuranceProviderTypeViewController {
+            if !addInsuranceViewControllers.contains(insuranceProviderTypeViewController) {
+                addInsuranceViewControllers.append(insuranceProviderTypeViewController)
+            }
+        } else {
+            let viewController = AddInsuranceTypeViewController(storeController: storeController)
+            viewController.delegate = self
+            progressView.isHidden = false
+            self.insuranceProviderTypeViewController = viewController
+            self.addInsuranceViewControllers.append(viewController)
         }
     }
 
@@ -159,22 +164,11 @@ final class AddInsuranceContainerViewController: UIViewController {
         }
     }
 
-    private func showInsuranceAggregatedConfirmation() {
-        let confirmationViewController = AddInsuranceConfirmationViewController()
+    private func showInsuranceAggregatedConfirmation(_ addedInsurance: Insurance) {
+        let confirmationViewController = AddInsuranceConfirmationViewController(addedInsurance)
         confirmationViewController.delegate = self
         addInsuranceViewControllers.append(confirmationViewController)
         collectionView.scrollToItem(at: IndexPath(item: 3, section: 0), at: .centeredHorizontally, animated: true)
-        storeController.insuranceStore.fetchAllInsurances { result in
-            // TODO Need to change this with real data
-            switch result {
-            case .success(let allInsuranceResponse):
-                confirmationViewController.addedInsurance = allInsuranceResponse.insuranceList.first
-            case .failure(let error):
-                confirmationViewController.addedInsurance = AllInsuranceResponse.mockinsurance
-                print(error)
-                break
-            }
-        }
     }
 
     @objc private func pauseLoadingAnimation() {
@@ -188,16 +182,37 @@ final class AddInsuranceContainerViewController: UIViewController {
     }
 
     @objc private func stopAddingInsurance(_ sender: Any) {
-        self.dismiss(animated: true)
+        let alert = UIAlertController(title: "Are you sure you want to cancel", message: nil, preferredStyle: .alert)
+        alert.addAction(
+            UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
+                alert.dismiss(animated: true)
+            })
+        )
+        alert.addAction(
+            UIAlertAction(title: "OK", style: .default, handler: { [weak self] _ in
+                guard let self = self else { return }
+                alert.dismiss(animated: true) {
+                    self.dismiss(animated: true)
+                    self.addInsuranceViewControllers.removeAll()
+                }
+            })
+        )
+        present(alert, animated: true)
     }
 }
 
 extension AddInsuranceContainerViewController: AddInsuranceTypeViewControllerDelegate {
     func addInsuranceProviderType(_ viewController: AddInsuranceTypeViewController, didSelect providerType: InsuranceProviderType) {
         self.providerType = providerType
-        insuranceProviderViewController.delegate = self
-        if !addInsuranceViewControllers.contains(insuranceProviderViewController) {
-            addInsuranceViewControllers.append(insuranceProviderViewController)
+        if let insuranceProviderViewController = insuranceProviderViewController {
+            if !addInsuranceViewControllers.contains(insuranceProviderViewController) {
+                addInsuranceViewControllers.append(insuranceProviderViewController)
+            }
+        } else {
+            let viewController = AddInsuranceProviderViewController(storeController: storeController)
+            viewController.delegate = self
+            insuranceProviderViewController = viewController
+            addInsuranceViewControllers.append(viewController)
         }
         collectionView.scrollToItem(at: IndexPath(item: 1, section: 0), at: .centeredHorizontally, animated: true)
     }
@@ -207,13 +222,13 @@ extension AddInsuranceContainerViewController: AddInsuranceProviderViewControlle
     func addInsuranceProvider(_ viewController: AddInsuranceProviderViewController, didSelect provider: InsuranceProvider) {
         guard let providerType = providerType else { fatalError("No providerType selected") }
         self.insuranceProvider = provider
-        let addInsuranceConsentViewController = AddInsuranceConsentViewController(storeController: storeController, insuranceProvider: provider, providerType: providerType)
-        addInsuranceConsentViewController.delegate = self
         if let consentViewController = consentViewController {
             addInsuranceViewControllers.removeAll { consentViewController == $0 }
         }
-        addInsuranceViewControllers.append(addInsuranceConsentViewController)
-        self.consentViewController = addInsuranceConsentViewController
+        let viewController = AddInsuranceConsentViewController(storeController: storeController, insuranceProvider: provider, providerType: providerType)
+        viewController.delegate = self
+        consentViewController = viewController
+        addInsuranceViewControllers.append(viewController)
         collectionView.scrollToItem(at: IndexPath(item: 2, section: 0), at: .centeredHorizontally, animated: true)
     }
 }
@@ -225,21 +240,25 @@ extension AddInsuranceContainerViewController: AddInsuranceConsentViewController
         }
         progressSpinnerToCenter()
         storeController
-            .insuranceCredentialStore
+            .insuranceStore
             .addInsurance(insuranceProvider)
         storeController
-            .insuranceCredentialStore
-            .insuranceStatus.sink { [weak self] scrapingStatus in
-            print(scrapingStatus)
-            switch scrapingStatus {
-            case .completed:
-                self?.showInsuranceAggregatedConfirmation()
-                self?.progressBarToTop()
-            default:
-                break
-            }
-            }
-        .store(in: &cancellables)
+            .insuranceStore
+            .insuranceStatus
+            .sink { [weak self] scrapingStatus in
+                guard let self = self else { return }
+                // TODO: remove the print
+                print(scrapingStatus)
+                switch scrapingStatus {
+                case .completed:
+                    let insuranceList = self.storeController.insuranceStore.insuranceList.value
+                    // TODO: remove the mock
+                    self.showInsuranceAggregatedConfirmation(insuranceList.first ?? AllInsuranceResponse.mockinsurance)
+                    self.progressBarToTop()
+                default:
+                    break
+                }
+        }.store(in: &cancellables)
     }
 }
 

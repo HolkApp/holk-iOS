@@ -9,7 +9,7 @@
 import UIKit
 
 final class OnboardingCoordinator {
-    var coordinator: ShellCoordinator?
+    weak var coordinator: ShellCoordinator?
     
     private var navigationController: UINavigationController
     private var storeController: StoreController
