@@ -17,6 +17,8 @@ enum FontStyleGuide {
     case header6
     case subHeaders1
     case subHeaders2
+    case subHeaders3
+    case subHeaders4
     case cardHeader1
     case cardHeader2
     case titleHeader1

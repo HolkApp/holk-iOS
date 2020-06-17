@@ -87,7 +87,7 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         titleLabel.setContentHuggingPriority(.required, for: .vertical)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        subtitleLabel.setStyleGuide(.subHeaders1)
+        subtitleLabel.setStyleGuide(.subHeaders3)
         subtitleLabel.textColor = Color.mainForegroundColor
         subtitleLabel.numberOfLines = 0
         subtitleLabel.setContentHuggingPriority(.required, for: .vertical)
