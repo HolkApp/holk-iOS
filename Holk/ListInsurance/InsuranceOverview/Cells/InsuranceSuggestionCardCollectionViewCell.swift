@@ -31,24 +31,16 @@ class InsuranceSuggestionCardCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
-        let layoutAttributes = super.preferredLayoutAttributesFitting(layoutAttributes)
-        layoutIfNeeded()
-        layoutAttributes.frame.size = systemLayoutSizeFitting(UIView.layoutFittingCompressedSize, withHorizontalFittingPriority: .required, verticalFittingPriority: .fittingSizeLevel)
-        return layoutAttributes
-    }
-
     override var isHighlighted: Bool {
         didSet {
             suggestionView.backgroundColor = isHighlighted ? Color.suggestionCardPressDownBackgroundColor : Color.suggestionCardBackgroundColor
         }
     }
 
-    func configure(_ insurance: Insurance?, suggestionType: SuggestionType) {
+    func configure(_ suggestions: SuggestionsListResponse?, suggestionType: SuggestionType) {
         // TODO: Update this
         switch suggestionType {
         case .reminder:
-            suggestionValueLabel.text = "3"
             let starAnimation = Animation.named("Bell")
             suggestionImageView.animation = starAnimation
             suggestionImageView.play(fromProgress: 0, toProgress: 0.55, loopMode: .repeat(2)) {  [weak self] finished in
@@ -56,9 +48,9 @@ class InsuranceSuggestionCardCollectionViewCell: UICollectionViewCell {
             }
             
             suggestionLabel.text = "Luckor"
+            suggestionValueLabel.text = suggestions.flatMap { String($0.gaps.count) }
             suggestionValueLabel.textColor = Color.mainForegroundColor
         case .thinkOf:
-            suggestionValueLabel.text = "2"
             let starAnimation = Animation.named("Bell")
             suggestionImageView.animation = starAnimation
             suggestionImageView.play(fromProgress: 0, toProgress: 0.55, loopMode: .repeat(2)) {  [weak self] finished in
@@ -66,6 +58,7 @@ class InsuranceSuggestionCardCollectionViewCell: UICollectionViewCell {
             }
 
             suggestionLabel.text = "Tänk på"
+            suggestionValueLabel.text = suggestions.flatMap { String($0.thinkOfs.count) }
             suggestionValueLabel.textColor = Color.mainForegroundColor
         }
     }
@@ -76,10 +69,6 @@ class InsuranceSuggestionCardCollectionViewCell: UICollectionViewCell {
 
         suggestionView.layoutMargins = .init(top: 8, left: 12, bottom: 8, right: 12)
         suggestionView.backgroundColor = Color.suggestionCardBackgroundColor
-        suggestionView.layer.shadowOffset = CGSize(width: 0, height: 2)
-        suggestionView.layer.shadowColor = UIColor.black.cgColor
-        suggestionView.layer.shadowOpacity = 0.15
-        suggestionView.layer.shadowRadius = 30
         suggestionView.layer.cornerRadius = 8
         suggestionView.layer.cornerCurve = .continuous
         suggestionView.translatesAutoresizingMaskIntoConstraints = false
@@ -119,12 +108,11 @@ class InsuranceSuggestionCardCollectionViewCell: UICollectionViewCell {
             suggestionImageView.heightAnchor.constraint(equalToConstant: 36),
             suggestionImageView.leadingAnchor.constraint(equalTo: suggestionView.layoutMarginsGuide.leadingAnchor),
             suggestionImageView.topAnchor.constraint(equalTo: suggestionView.layoutMarginsGuide.topAnchor),
-            suggestionImageView.bottomAnchor.constraint(equalTo: suggestionLabel.topAnchor, constant: -4),
 
-            suggestionLabel.leadingAnchor.constraint(equalTo: suggestionImageView
-.leadingAnchor),
+            suggestionLabel.leadingAnchor.constraint(equalTo: suggestionImageView.leadingAnchor),
+            suggestionLabel.topAnchor.constraint(equalTo: suggestionImageView.bottomAnchor, constant: 4),
             suggestionLabel.trailingAnchor.constraint(equalTo: suggestionView.layoutMarginsGuide.trailingAnchor),
-            suggestionLabel.lastBaselineAnchor.constraint(equalTo: suggestionView.layoutMarginsGuide.bottomAnchor),
+            suggestionLabel.lastBaselineAnchor.constraint(equalTo: suggestionView.layoutMarginsGuide.bottomAnchor, constant: -6),
 
             suggestionView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
             suggestionView.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),

@@ -16,6 +16,7 @@ final class InsuranceListViewController: UICollectionViewController {
 
     // MARK: - Private variables
     private var storeController: StoreController
+    private var suggestions: SuggestionsListResponse?
     private var insuranceList: [Insurance] {
         didSet {
             collectionView.reloadData()
@@ -27,6 +28,7 @@ final class InsuranceListViewController: UICollectionViewController {
     init(storeController: StoreController, collectionViewLayout: UICollectionViewLayout) {
         self.storeController = storeController
         insuranceList = storeController.insuranceStore.insuranceList.value
+        suggestions = storeController.suggestionStore.suggestions.value
 
         super.init(collectionViewLayout: collectionViewLayout)
     }
@@ -104,9 +106,9 @@ extension InsuranceListViewController {
         if indexPath.section == 0 {
             let insuranceSuggestionCardCollectionViewCell = collectionView.dequeueCell(ofType: InsuranceSuggestionCardCollectionViewCell.self, indexPath: indexPath)
             if indexPath.item == 0 {
-                insuranceSuggestionCardCollectionViewCell.configure(nil, suggestionType: .reminder)
+                insuranceSuggestionCardCollectionViewCell.configure(suggestions, suggestionType: .reminder)
             } else {
-                insuranceSuggestionCardCollectionViewCell.configure(nil, suggestionType: .thinkOf)
+                insuranceSuggestionCardCollectionViewCell.configure(suggestions, suggestionType: .thinkOf)
             }
             return insuranceSuggestionCardCollectionViewCell
         } else {
