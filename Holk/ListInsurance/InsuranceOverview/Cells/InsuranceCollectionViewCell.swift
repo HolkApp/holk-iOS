@@ -34,13 +34,6 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
-        let layoutAttributes = super.preferredLayoutAttributesFitting(layoutAttributes)
-        layoutIfNeeded()
-        layoutAttributes.frame.size = systemLayoutSizeFitting(UIView.layoutFittingCompressedSize, withHorizontalFittingPriority: .required, verticalFittingPriority: .fittingSizeLevel)
-        return layoutAttributes
-    }
-
     override var isHighlighted: Bool {
         didSet {
             let scaleTransform = isHighlighted ? CGAffineTransform(scaleX: 0.95, y: 0.95) : .identity
@@ -80,8 +73,8 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
 
         layer.shadowOffset = CGSize(width: 0, height: 2)
         layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOpacity = 0.15
-        layer.shadowRadius = 30
+        layer.shadowOpacity = 0.1
+        layer.shadowRadius = 40
 
         containerView.backgroundColor = Color.secondaryBackgroundColor
         containerView.layer.cornerRadius = 16
