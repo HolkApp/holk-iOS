@@ -82,10 +82,10 @@ final class ShellCoordinator {
         rootViewController.present(landingPageNavigationController, animated: false)
     }
 
-    func authenticate() {
+    func authenticate(authenticateOnOtherDevice: Bool = false) {
         onboardingCoordinator = OnboardingCoordinator(navigationController: landingPageNavigationController, storeController: storeController)
         onboardingCoordinator?.coordinator = self
-        onboardingCoordinator?.start()
+        onboardingCoordinator?.start(authenticateOnOtherDevice)
     }
 
     func onboardingStopped() {

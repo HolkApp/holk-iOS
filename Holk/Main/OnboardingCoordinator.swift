@@ -15,6 +15,7 @@ final class OnboardingCoordinator {
     private var storeController: StoreController
     private var onboardingContainerViewController: OnboardingContainerViewController
     private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
+    private var isPresentingQRCode = false
 
     init(navigationController: UINavigationController, storeController: StoreController) {
         self.navigationController = navigationController
@@ -22,41 +23,56 @@ final class OnboardingCoordinator {
         onboardingContainerViewController = OnboardingContainerViewController(storeController: storeController)
     }
 
-    func start() {
+    func start(_ authenticateOnOtherDevice: Bool) {
         onboardingContainerViewController.delegate = self
         navigationController.pushViewController(onboardingContainerViewController, animated: false)
 
         onboardingContainerViewController.loading()
-
-        authenticate()
+        authenticate(authenticateOnOtherDevice)
     }
 }
 
 extension OnboardingCoordinator {
-    private func authenticate() {
+    private func authenticate(_ authenticateOnOtherDevice: Bool) {
         storeController.authenticationStore.authenticate { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let bankIDAuthenticationResponse):
-                self.handleAuthenticationUpdate(bankIDAuthenticationResponse)
+                self.handleAuthenticationUpdate(bankIDAuthenticationResponse, handleOnOtherDevice: authenticateOnOtherDevice)
             case .failure(let error):
                 self.showError(error, requestName: "authorize/bank-id/auth")
             }
         }
     }
 
-    private func handleAuthenticationUpdate(_ bankIDAuthenticationResponse: BankIDAuthenticationResponse) {
-        BankIDService.autostart(autoStart: bankIDAuthenticationResponse.autoStartToken, redirectLink: "holk://", successHandler: { [weak self] in
-            guard let self = self else { return }
-            self.backgroundTask = UIApplication.shared.beginBackgroundTask(expirationHandler: {
-                UIApplication.shared.endBackgroundTask(self.backgroundTask)
-            })
-            self.checkAuthenticationStatus(orderRef: bankIDAuthenticationResponse.orderRef)
-        }) {
-            #if targetEnvironment(simulator)
-            #else
-            #endif
-            // TODO: Should show some alert for downloading BankID on device
+    private func handleAuthenticationUpdate(_ bankIDAuthenticationResponse: BankIDAuthenticationResponse, handleOnOtherDevice: Bool) {
+        if handleOnOtherDevice {
+            let deeplinkUrl = URL(string: "bankid:///?autostarttoken=\(bankIDAuthenticationResponse.autoStartToken)")
+            authenticateWithQRCode(deeplinkUrl)
+            checkAuthenticationStatus(orderRef: bankIDAuthenticationResponse.orderRef)
+        } else {
+            BankIDService.autostart(autoStart: bankIDAuthenticationResponse.autoStartToken, redirectLink: "holk://", successHandler: { [weak self] in
+                guard let self = self else { return }
+                self.backgroundTask = UIApplication.shared.beginBackgroundTask(expirationHandler: {
+                    UIApplication.shared.endBackgroundTask(self.backgroundTask)
+                })
+                self.checkAuthenticationStatus(orderRef: bankIDAuthenticationResponse.orderRef)
+            }) { [weak self] deepLinkUrl in
+                self?.authenticateWithQRCode(deepLinkUrl)
+                self?.checkAuthenticationStatus(orderRef: bankIDAuthenticationResponse.orderRef)
+            }
+        }
+    }
+
+    private func authenticateWithQRCode(_ deepLinkUrl: URL?) {
+        guard let deepLinkUrl = deepLinkUrl, let qrImage = BankIDService.generateQRCode(from: deepLinkUrl.absoluteString) else { return }
+        DispatchQueue.main.async {
+            let qrCodeViewController = HolkQRCodeViewController(qrImage: qrImage)
+            qrCodeViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(self.dismissPresntedViewController(_:)))
+            let qrController = UINavigationController(rootViewController: qrCodeViewController)
+            self.navigationController.present(qrController, animated: true) { [weak self] in
+                self?.isPresentingQRCode = true
+            }
         }
     }
 
@@ -67,6 +83,10 @@ extension OnboardingCoordinator {
             case .success:
                 self.storeController.providerStore.fetchInsuranceProviders()
                 self.fetchUserInfo()
+                if self.isPresentingQRCode {
+                    self.isPresentingQRCode = false
+                    self.navigationController.dismiss(animated: true)
+                }
             case .failure(let error):
                 self.showError(error, requestName: "authorize/oauth/token")
             }
@@ -112,7 +132,11 @@ extension OnboardingCoordinator {
 
     private func showOnboardingFlow() {
         onboardingContainerViewController.startOnboarding(storeController.user)
-       }
+    }
+
+    @objc private func dismissPresntedViewController(_ sender: Any) {
+        self.navigationController.presentedViewController?.dismiss(animated: true)
+    }
 }
 
 
