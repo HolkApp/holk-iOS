@@ -9,8 +9,8 @@
 import UIKit
 
 final class BankIDService {
-    static func autostart(autoStart token: String, redirectLink: String, successHandler: @escaping () -> Void, failureHandler: @escaping (URL?) -> Void  = { _ in }) {
-        guard !token.isEmpty else {
+    static func autostart(autoStart token: String?, redirectLink: String, successHandler: @escaping () -> Void, failureHandler: @escaping (URL?) -> Void  = { _ in }) {
+        guard let token = token, !token.isEmpty else {
             return sign(redirectLink: redirectLink, successHandler: successHandler, failureHandler: failureHandler)
         }
         guard let url = URL(string: "bankid:///?autostarttoken=\(token)&redirect=\(redirectLink)") else { return failureHandler(nil)
