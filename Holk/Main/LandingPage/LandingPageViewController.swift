@@ -36,12 +36,18 @@ final class LandingPageViewController: UIPageViewController {
     }
     
     private func setup() {
+        let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(loginLongPressed(_:)))
+        longPressGestureRecognizer.minimumPressDuration = 1.0
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(loginTapped(_:)))
+        tapGestureRecognizer.require(toFail: longPressGestureRecognizer)
+        loginButton.addGestureRecognizer(tapGestureRecognizer)
+        loginButton.addGestureRecognizer(longPressGestureRecognizer)
+
         loginButton.backgroundColor = Color.mainBackgroundColor
         loginButton.setTitle("Logga in", for: .normal)
         loginButton.titleLabel?.font = Font.semiBold(.subtitle)
         loginButton.set(color: Color.mainForegroundColor, image: UIImage(named: "BankID"))
         loginButton.imageToTheRightOfText()
-        loginButton.addTarget(self, action: #selector(loginTapped(_:)), for: .touchUpInside)
         
         infoButton.backgroundColor = Color.mainBackgroundColor
         infoButton.titleLabel?.font = Font.semiBold(.description)
@@ -53,6 +59,7 @@ final class LandingPageViewController: UIPageViewController {
         infoButton.setTitle("Så här funkar det", for: .normal)
         infoButton.set(color: Color.mainForegroundColor)
         infoButton.addTarget(self, action: #selector(infoTapped(_:)), for: .touchUpInside)
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: infoButton)
         
         dataSource = self
@@ -91,8 +98,14 @@ final class LandingPageViewController: UIPageViewController {
         ])
     }
     
-    @objc private func loginTapped(_ sender: UIButton) {
+    @objc private func loginTapped(_ gesture: UIGestureRecognizer) {
         coordinator?.authenticate()
+    }
+
+    @objc private func loginLongPressed(_ gesture: UIGestureRecognizer) {
+        if gesture.state == .began {
+            coordinator?.authenticate(authenticateOnOtherDevice: true)
+        }
     }
     
     @objc private func infoTapped(_ sender: UIButton) {
