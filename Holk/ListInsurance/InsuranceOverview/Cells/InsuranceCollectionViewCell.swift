@@ -163,7 +163,7 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
             daysTextLabel.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -16),
 
             insuranceImageView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
-            insuranceImageView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -16),
+            insuranceImageView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -8),
             insuranceImageView.widthAnchor.constraint(equalToConstant: 120),
             insuranceImageView.heightAnchor.constraint(equalToConstant: 48)
         ])

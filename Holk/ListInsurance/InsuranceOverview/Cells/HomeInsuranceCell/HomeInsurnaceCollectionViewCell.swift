@@ -142,14 +142,14 @@ final class HomeinsuranceCollectionViewCell: UICollectionViewCell {
 
             insuranceImageView.topAnchor.constraint(equalTo: ringChart.bottomAnchor, constant: 36),
             insuranceImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
-            insuranceImageView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -16),
+            insuranceImageView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -8),
             insuranceImageView.widthAnchor.constraint(equalToConstant: 120),
             insuranceImageView.heightAnchor.constraint(equalToConstant: 48),
 
             chevronView.widthAnchor.constraint(equalToConstant: 16),
             chevronView.heightAnchor.constraint(equalToConstant: 24),
-            chevronView.bottomAnchor.constraint(equalTo: insuranceImageView.bottomAnchor),
-            chevronView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -8)
+            chevronView.centerYAnchor.constraint(equalTo: insuranceImageView.centerYAnchor),
+            chevronView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16)
         ])
     }
 }
