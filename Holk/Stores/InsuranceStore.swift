@@ -84,6 +84,10 @@ final class InsuranceStore {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                         self?.pollInsuranceStatus(sessionID)
                     }
+                } else {
+                    if let scrapedInsurances = scrapingStatusResponse.scrapedInsurances {
+                        self?.insuranceList.send(scrapedInsurances)
+                    }
                 }
         }
         .store(in: &cancellables)
