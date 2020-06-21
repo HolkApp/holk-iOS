@@ -26,46 +26,42 @@ final class InsuranceStore {
         insuranceService = InsuranceService(client: APIClient(queue: queue), user: user)
     }
 
-    func addInsurance(_ provider: InsuranceProvider) {
+    func addInsurance(_ provider: InsuranceProvider, integrationHandler: @escaping (Result<IntegrateInsuranceResponse, APIError>) -> Void = { _ in }) {
         insuranceCredentialService
             .integrateInsurance(providerName: provider.internalName)
+            .mapError { APIError(urlError: $0) }
             .sink(receiveCompletion: { result in
                 switch result {
                 case .failure(let error):
-                    print(error)
+                    integrationHandler(.failure(error))
                 // TODO: Handle the error
                 case .finished:
                     break
                 }
-            }, receiveValue: { [weak self] sessionIDResponse in
-                self?.pollInsuranceStatus(sessionIDResponse.scrapeSessionId.uuidString)
+            }, receiveValue: { sessionIDResponse in
+                integrationHandler(.success(sessionIDResponse))
             })
             .store(in: &cancellables)
     }
 
     func fetchAllInsurances(completion: @escaping (Result<AllInsuranceResponse, APIError>) -> Void = { _ in }) {
-        insuranceService.fetchAllInsurances().mapError { APIError(urlError: $0) }
+        insuranceService
+            .fetchAllInsurances()
+            .mapError { APIError(urlError: $0) }
             .sink(receiveCompletion: { result in
-            switch result {
-            case .failure(let error):
-                completion(.failure(error))
-            case .finished:
-                break
-            }
-        }) { [weak self] allInsuranceResponse in
-            self?.insuranceList.value = allInsuranceResponse.insuranceList
-            completion(.success(allInsuranceResponse))
+                switch result {
+                case .failure(let error):
+                    completion(.failure(error))
+                case .finished:
+                    break
+                }
+            }) { [weak self] allInsuranceResponse in
+                self?.insuranceList.value = allInsuranceResponse.insuranceList
+                completion(.success(allInsuranceResponse))
         }.store(in: &cancellables)
     }
 
-    private func integrateInsurance(providerName: String) -> AnyPublisher<IntegrateInsuranceResponse, APIError> {
-        return insuranceCredentialService
-            .integrateInsurance(providerName: providerName)
-            .mapError { APIError(urlError: $0) }
-            .eraseToAnyPublisher()
-    }
-
-    private func pollInsuranceStatus(_ sessionID: String) {
+    func pollInsuranceStatus(_ sessionID: String) {
         getInsuranceStatus(sessionID)
             .sink(
                 receiveCompletion: { [weak self] result in

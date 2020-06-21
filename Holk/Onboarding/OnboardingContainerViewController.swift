@@ -14,6 +14,7 @@ final class OnboardingContainerViewController: UIViewController {
     private let storeController: StoreController
     private let progressView = HolkProgressBarView()
     private let closeButton = HolkButton()
+    private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
     private var newUserViewController: NewUserViewController?
     private weak var insuranceProviderTypeViewController: OnboardingInsuranceTypeViewController?
     private weak var insuranceProviderViewController: OnboardingInsuranceProviderViewController?
@@ -280,7 +281,31 @@ extension OnboardingContainerViewController: OnboardingConsentViewControllerDele
         progressSpinnerToCenter()
         storeController
             .insuranceStore
-            .addInsurance(insuranceProvider)
+            .addInsurance(insuranceProvider) { result in
+                switch result {
+                case .success(let integrateInsuranceResponse):
+                    BankIDService.autostart(
+                        autoStart: integrateInsuranceResponse.optionalAutoStartToken,
+                        redirectLink: "holk://",
+                        successHandler: { [weak self] in
+                            guard let self = self else { return }
+                            self.backgroundTask = UIApplication.shared.beginBackgroundTask(expirationHandler: {
+                                UIApplication.shared.endBackgroundTask(self.backgroundTask)
+                            })
+                            self.storeController
+                                .insuranceStore
+                                .pollInsuranceStatus(integrateInsuranceResponse.scrapeSessionId)
+                    }) { _ in
+                        self.storeController
+                        .insuranceStore
+                        .pollInsuranceStatus(integrateInsuranceResponse.scrapeSessionId)
+                    }
+                case .failure(let error):
+                    // TODO: Error
+                    break
+                }
+
+        }
         storeController
             .insuranceStore
             .insuranceStatus
