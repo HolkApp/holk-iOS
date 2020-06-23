@@ -286,7 +286,7 @@ extension OnboardingContainerViewController: OnboardingConsentViewControllerDele
                 case .success(let integrateInsuranceResponse):
                     BankIDService.autostart(
                         autoStart: integrateInsuranceResponse.optionalAutoStartToken,
-                        redirectLink: "holk://",
+                        redirectLink: BankIDService.redirectLink,
                         successHandler: { [weak self] in
                             guard let self = self else { return }
                             self.backgroundTask = UIApplication.shared.beginBackgroundTask(expirationHandler: {
@@ -295,16 +295,16 @@ extension OnboardingContainerViewController: OnboardingConsentViewControllerDele
                             self.storeController
                                 .insuranceStore
                                 .pollInsuranceStatus(integrateInsuranceResponse.scrapeSessionId)
-                    }) { _ in
+                        }
+                    ) { _ in
                         self.storeController
-                        .insuranceStore
-                        .pollInsuranceStatus(integrateInsuranceResponse.scrapeSessionId)
+                            .insuranceStore
+                            .pollInsuranceStatus(integrateInsuranceResponse.scrapeSessionId)
                     }
                 case .failure(let error):
                     // TODO: Error
                     break
                 }
-
         }
         storeController
             .insuranceStore
@@ -317,6 +317,7 @@ extension OnboardingContainerViewController: OnboardingConsentViewControllerDele
                 case .completed:
                     let insuranceList = self.storeController.insuranceStore.insuranceList.value
                     // TODO: remove the mock
+                    self.storeController.suggestionStore.fetchAllSuggestions()
                     self.showInsuranceAggregatedConfirmation(insuranceList.first ?? AllInsuranceResponse.mockinsurance)
                     self.progressBarToTop()
                 default:
@@ -349,7 +350,7 @@ extension OnboardingContainerViewController: UICollectionViewDataSource {
             addChild(viewController)
             viewController.didMove(toParent: self)
         }
-        onboardingCell.configure(onboarding: viewController.view)
+        onboardingCell.configure(onboardingView: viewController.view)
         return onboardingCell
     }
 }

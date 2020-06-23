@@ -9,21 +9,31 @@
 import UIKit
 
 final class BankIDService {
-    static func autostart(autoStart token: String?, redirectLink: String, successHandler: @escaping () -> Void, failureHandler: @escaping (URL?) -> Void  = { _ in }) {
+    static let redirectLink = "holk://"
+    static func makeDeeplink(autoStart token: String? = nil, redirectLink: String = BankIDService.redirectLink) -> URL? {
+        var urlComponents = URLComponents(string: "bankid:///")
+        urlComponents?.queryItems = []
+        guard !redirectLink.isEmpty else { return nil }
+        urlComponents?.queryItems?.append(URLQueryItem(name: "redirect", value: redirectLink))
         guard let token = token, !token.isEmpty else {
-            return sign(redirectLink: redirectLink, successHandler: successHandler, failureHandler: failureHandler)
+        return urlComponents?.url
         }
-        guard let url = URL(string: "bankid:///?autostarttoken=\(token)&redirect=\(redirectLink)") else { return failureHandler(nil)
+        urlComponents?.queryItems?.append(URLQueryItem(name: "autostarttoken", value: token))
+        return urlComponents?.url
+    }
+
+    static func autostart(autoStart token: String?, redirectLink: String = BankIDService.redirectLink, successHandler: @escaping () -> Void, failureHandler: @escaping (URL?) -> Void  = { _ in }) {
+        guard let url = makeDeeplink(autoStart: token, redirectLink: redirectLink) else { return failureHandler(nil)
         }
         start(url, successHandler, failureHandler)
     }
     
     static func sign(redirectLink: String, successHandler: @escaping () -> Void, failureHandler: @escaping (URL?) -> Void = { _ in }) {
-        guard let url = URL(string: "bankid:///?redirect=\(redirectLink)") else { return failureHandler(nil) }
+        guard let url = makeDeeplink(redirectLink: redirectLink) else { return failureHandler(nil) }
         start(url, successHandler, failureHandler)
     }
     
-    private static func start(_ url: URL, _ successHandler: @escaping () -> Void, _ failureHandler: @escaping (URL?) -> Void) {
+    static func start(_ url: URL, _ successHandler: @escaping () -> Void, _ failureHandler: @escaping (URL?) -> Void) {
         DispatchQueue.main.async {
             if UIApplication.shared.canOpenURL(url) {
                 UIApplication.shared.open(url, options: [:]) { success in

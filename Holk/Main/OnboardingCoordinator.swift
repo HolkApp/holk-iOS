@@ -46,19 +46,21 @@ extension OnboardingCoordinator {
     }
 
     private func handleAuthenticationUpdate(_ bankIDAuthenticationResponse: BankIDAuthenticationResponse, handleOnOtherDevice: Bool) {
+        guard let deeplinkUrl = BankIDService.makeDeeplink(autoStart: bankIDAuthenticationResponse.autoStartToken) else {
+            return
+        }
         if handleOnOtherDevice {
-            let deeplinkUrl = URL(string: "bankid:///?autostarttoken=\(bankIDAuthenticationResponse.autoStartToken)")
             authenticateWithQRCode(deeplinkUrl)
             checkAuthenticationStatus(orderRef: bankIDAuthenticationResponse.orderRef)
         } else {
-            BankIDService.autostart(autoStart: bankIDAuthenticationResponse.autoStartToken, redirectLink: "holk://", successHandler: { [weak self] in
+            BankIDService.start(deeplinkUrl, { [weak self] in
                 guard let self = self else { return }
                 self.backgroundTask = UIApplication.shared.beginBackgroundTask(expirationHandler: {
                     UIApplication.shared.endBackgroundTask(self.backgroundTask)
                 })
                 self.checkAuthenticationStatus(orderRef: bankIDAuthenticationResponse.orderRef)
-            }) { [weak self] deepLinkUrl in
-                self?.authenticateWithQRCode(deepLinkUrl)
+            }) { [weak self] deeplinkUrl in
+                self?.authenticateWithQRCode(deeplinkUrl)
                 self?.checkAuthenticationStatus(orderRef: bankIDAuthenticationResponse.orderRef)
             }
         }
