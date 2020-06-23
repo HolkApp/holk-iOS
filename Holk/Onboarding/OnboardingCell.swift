@@ -43,7 +43,7 @@ final class OnboardingCell: UICollectionViewCell {
         contentView.backgroundColor = .clear
     }
 
-    func configure(onboarding view: UIView) {
+    func configure(onboardingView view: UIView) {
         hostedView = view
     }
 }

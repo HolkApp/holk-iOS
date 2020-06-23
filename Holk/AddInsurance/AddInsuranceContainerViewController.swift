@@ -252,7 +252,7 @@ extension AddInsuranceContainerViewController: AddInsuranceConsentViewController
                 switch scrapingStatus {
                 case .completed:
                     let insuranceList = self.storeController.insuranceStore.insuranceList.value
-                    // TODO: remove the mock
+                    // TODO: Find the latest added insurance and remove the mock
                     self.showInsuranceAggregatedConfirmation(insuranceList.first ?? AllInsuranceResponse.mockinsurance)
                     self.progressBarToTop()
                 default:
@@ -284,7 +284,7 @@ extension AddInsuranceContainerViewController: UICollectionViewDataSource {
             addChild(viewController)
             viewController.didMove(toParent: self)
         }
-        onboardingCell.configure(onboarding: viewController.view)
+        onboardingCell.configure(onboardingView: viewController.view)
         return onboardingCell
     }
 }

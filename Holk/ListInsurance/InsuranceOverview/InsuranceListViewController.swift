@@ -16,8 +16,12 @@ final class InsuranceListViewController: UICollectionViewController {
 
     // MARK: - Private variables
     private var storeController: StoreController
-    private var suggestions: SuggestionsListResponse?
-    private var insuranceList: [Insurance] {
+    private var suggestions: SuggestionsListResponse? {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
+    private var insuranceList: [Insurance] = [] {
         didSet {
             collectionView.reloadData()
         }
@@ -27,8 +31,6 @@ final class InsuranceListViewController: UICollectionViewController {
 
     init(storeController: StoreController, collectionViewLayout: UICollectionViewLayout) {
         self.storeController = storeController
-        insuranceList = storeController.insuranceStore.insuranceList.value
-        suggestions = storeController.suggestionStore.suggestions.value
 
         super.init(collectionViewLayout: collectionViewLayout)
     }
@@ -41,9 +43,13 @@ final class InsuranceListViewController: UICollectionViewController {
         super.viewDidLoad()
         
         setup()
-        storeController.insuranceStore.insuranceList.sink { [weak self] in
-            self?.insuranceList = $0
-        }.store(in: &cancellables)
+
+        storeController.insuranceStore.insuranceList
+            .sink { [weak self] in self?.insuranceList = $0 }
+            .store(in: &cancellables)
+        storeController.suggestionStore.suggestions
+            .sink { [weak self] in self?.suggestions = $0 }
+            .store(in: &cancellables)
     }
 
     override func viewWillAppear(_ animated: Bool) {
