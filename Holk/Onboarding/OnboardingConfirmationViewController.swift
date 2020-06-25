@@ -27,18 +27,21 @@ final class OnboardingConfirmationViewController: UIViewController {
     private let badgeLabel = UILabel()
     private let doneButton = HolkButton()
     
-    private var addedInsurance: Insurance {
+    private var addedInsurance: Insurance? {
         didSet {
             DispatchQueue.main.async {
-                self.descriptionLabel.text = String(format: "We found your insurance at %@", self.addedInsurance.insuranceProvider.displayName)
-                self.insuranceLabel.text = self.addedInsurance.insuranceType.description
-                self.addressLabel.text = self.addedInsurance.address
+                guard let addedInsurance = self.addedInsurance else { return }
+                self.descriptionLabel.text = String(format: "We found your insurance at %@", addedInsurance.insuranceProvider.displayName)
+                self.insuranceLabel.text = addedInsurance.insuranceType.description
+                self.addressLabel.text = addedInsurance.address
             }
         }
     }
     
-    init(_ addedInsurance: Insurance) {
-        self.addedInsurance = addedInsurance
+    init(_ addedInsuranceList: [Insurance]) {
+        // TODO: Only use first insurance for now, but should get home insurance
+        self.addedInsurance = addedInsuranceList.first
+
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -67,8 +70,12 @@ final class OnboardingConfirmationViewController: UIViewController {
         descriptionLabel.font = Font.regular(.title)
         descriptionLabel.textColor = Color.mainForegroundColor
         descriptionLabel.numberOfLines = 0
-        descriptionLabel.text = String(format: "We found your insurance at %@", addedInsurance.insuranceProvider.displayName)
-        
+        if let addedInsurance = addedInsurance {
+            descriptionLabel.text = String(format: "We found your insurance at %@", addedInsurance.insuranceProvider.displayName)
+        } else {
+            descriptionLabel.text = "Sorry, but we cannot find any insurance"
+        }
+
         cardView.backgroundColor = .clear
         cardView.layoutMargins = .init(top: 16, left: 32, bottom: 16, right: 32)
         
@@ -81,12 +88,12 @@ final class OnboardingConfirmationViewController: UIViewController {
         insuranceLabel.font = Font.semiBold(.title)
         insuranceLabel.textColor = Color.mainForegroundColor
         insuranceLabel.numberOfLines = 0
-        insuranceLabel.text = addedInsurance.insuranceType.description
+        insuranceLabel.text = addedInsurance?.insuranceType.description
         
         addressLabel.font = Font.regular(.label)
         addressLabel.textColor = Color.mainForegroundColor
         addressLabel.numberOfLines = 0
-        addressLabel.text = addedInsurance.address
+        addressLabel.text = addedInsurance?.address
         
         badgeLabel.font = Font.regular(.label)
         badgeLabel.textAlignment = .center
