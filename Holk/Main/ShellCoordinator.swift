@@ -103,6 +103,7 @@ final class ShellCoordinator {
 
     func logout() {
         storeController.resetSession()
+        storeController = StoreController()
         rootViewController.dismiss(animated: false) {
             DispatchQueue.main.async {
                 self.setupViewController()
