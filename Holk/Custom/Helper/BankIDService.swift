@@ -9,20 +9,21 @@
 import UIKit
 
 final class BankIDService {
-    static let redirectLink = "holk://"
-    static func makeDeeplink(autoStart token: String? = nil, redirectLink: String = BankIDService.redirectLink) -> URL? {
+    static let holkRedirectLink = "holk://"
+    static let nullRedirectLink = "null"
+    
+    static func makeDeeplink(autoStart token: String? = nil, redirectLink: String = BankIDService.holkRedirectLink) -> URL? {
         var urlComponents = URLComponents(string: "bankid:///")
         urlComponents?.queryItems = []
-        guard !redirectLink.isEmpty else { return nil }
-        urlComponents?.queryItems?.append(URLQueryItem(name: "redirect", value: redirectLink))
-        guard let token = token, !token.isEmpty else {
-        return urlComponents?.url
+        if !redirectLink.isEmpty {
+            urlComponents?.queryItems?.append(URLQueryItem(name: "redirect", value: redirectLink))
         }
+        guard let token = token, !token.isEmpty else { return urlComponents?.url }
         urlComponents?.queryItems?.append(URLQueryItem(name: "autostarttoken", value: token))
         return urlComponents?.url
     }
 
-    static func autostart(autoStart token: String?, redirectLink: String = BankIDService.redirectLink, successHandler: @escaping () -> Void, failureHandler: @escaping (URL?) -> Void  = { _ in }) {
+    static func autostart(autoStart token: String?, redirectLink: String = BankIDService.holkRedirectLink, successHandler: @escaping () -> Void, failureHandler: @escaping (URL?) -> Void  = { _ in }) {
         guard let url = makeDeeplink(autoStart: token, redirectLink: redirectLink) else { return failureHandler(nil)
         }
         start(url, successHandler, failureHandler)

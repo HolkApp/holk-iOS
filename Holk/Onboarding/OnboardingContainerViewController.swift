@@ -149,8 +149,8 @@ final class OnboardingContainerViewController: UIViewController {
         }
     }
 
-    private func showInsuranceAggregatedConfirmation(_ addedInsurance: Insurance) {
-        let confirmationViewController = OnboardingConfirmationViewController(addedInsurance)
+    private func showInsuranceAggregatedConfirmation(_ addedInsuranceList: [Insurance]) {
+        let confirmationViewController = OnboardingConfirmationViewController(addedInsuranceList)
         confirmationViewController.delegate = self
         onboardingViewControllers.append(confirmationViewController)
         collectionView.scrollToItem(at: IndexPath(item: 3, section: 0), at: .centeredHorizontally, animated: true)
@@ -219,6 +219,19 @@ final class OnboardingContainerViewController: UIViewController {
         )
         present(alert, animated: true)
     }
+
+    private func showError(_ error: APIError, requestName: String) {
+        let alert = UIAlertController(title: requestName + " \(error.code)", message: error.localizedDescription, preferredStyle: .alert)
+        alert.addAction(.init(
+            title: "Close",
+            style: .default,
+            handler: { action in
+                alert.dismiss(animated: true)
+            })
+        )
+
+        present(alert, animated: true)
+    }
 }
 
 extension OnboardingContainerViewController: NewUserViewControllerDelegate {
@@ -238,8 +251,7 @@ extension OnboardingContainerViewController: NewUserViewControllerDelegate {
                     self?.showInsuranceType()
                 }
             case .failure(let error):
-                print(error)
-                break
+                self?.showError(error, requestName: "authorize/user/email")
             }
         }
     }
@@ -281,49 +293,56 @@ extension OnboardingContainerViewController: OnboardingConsentViewControllerDele
         progressSpinnerToCenter()
         storeController
             .insuranceStore
-            .addInsurance(insuranceProvider) { result in
-                switch result {
-                case .success(let integrateInsuranceResponse):
-                    BankIDService.autostart(
-                        autoStart: integrateInsuranceResponse.optionalAutoStartToken,
-                        redirectLink: BankIDService.redirectLink,
-                        successHandler: { [weak self] in
-                            guard let self = self else { return }
-                            self.backgroundTask = UIApplication.shared.beginBackgroundTask(expirationHandler: {
-                                UIApplication.shared.endBackgroundTask(self.backgroundTask)
-                            })
-                            self.storeController
-                                .insuranceStore
-                                .pollInsuranceStatus(integrateInsuranceResponse.scrapeSessionId)
-                        }
-                    ) { _ in
-                        self.storeController
-                            .insuranceStore
-                            .pollInsuranceStatus(integrateInsuranceResponse.scrapeSessionId)
-                    }
-                case .failure(let error):
-                    // TODO: Error
-                    break
-                }
+            .addInsurance(insuranceProvider) { [weak self] result in
+                self?.handleInsuranceIntegration(result)
         }
         storeController
             .insuranceStore
             .insuranceStatus
-            .sink { [weak self] scrapingStatus in
+            .sink { [weak self] result in
                 guard let self = self else { return }
                 // TODO: remove the print
-                print(scrapingStatus)
-                switch scrapingStatus {
-                case .completed:
-                    let insuranceList = self.storeController.insuranceStore.insuranceList.value
-                    // TODO: remove the mock
-                    self.storeController.suggestionStore.fetchAllSuggestions()
-                    self.showInsuranceAggregatedConfirmation(insuranceList.first ?? AllInsuranceResponse.mockinsurance)
-                    self.progressBarToTop()
-                default:
-                    break
+                print(result)
+                switch result {
+                case .success(let scrapingStatus):
+                    switch scrapingStatus {
+                    case .completed:
+                        let insuranceList = self.storeController.insuranceStore.insuranceList.value
+                        self.storeController.suggestionStore.fetchAllSuggestions()
+                        self.showInsuranceAggregatedConfirmation(insuranceList)
+                        self.progressBarToTop()
+                    default:
+                        break
+                    }
+                case .failure(let error):
+                    self.showError(error, requestName: "insurance/scraping/status/id")
                 }
         }.store(in: &cancellables)
+    }
+
+    private func handleInsuranceIntegration(_ result: Result<IntegrateInsuranceResponse, APIError>) {
+        switch result {
+        case .success(let integrateInsuranceResponse):
+            BankIDService.autostart(
+                autoStart: nil,
+                redirectLink: BankIDService.holkRedirectLink,
+                successHandler: { [weak self] in
+                    guard let self = self else { return }
+                    self.backgroundTask = UIApplication.shared.beginBackgroundTask(expirationHandler: {
+                        UIApplication.shared.endBackgroundTask(self.backgroundTask)
+                    })
+                    self.storeController
+                        .insuranceStore
+                        .pollInsuranceStatus(integrateInsuranceResponse.scrapeSessionId)
+                }
+            ) { _ in
+                self.storeController
+                    .insuranceStore
+                    .pollInsuranceStatus(integrateInsuranceResponse.scrapeSessionId)
+            }
+        case .failure(let error):
+            showError(error, requestName: "insurance/scraping")
+        }
     }
 }
 

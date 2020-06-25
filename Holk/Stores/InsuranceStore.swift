@@ -11,7 +11,7 @@ import Combine
 
 final class InsuranceStore {
     // MARK: - Public variables
-    var insuranceStatus = PassthroughSubject<ScrapingStatusResponse.ScrapingStatus, Never>()
+    var insuranceStatus = PassthroughSubject<Result<ScrapingStatusResponse.ScrapingStatus, APIError>, Never>()
     var insuranceList = CurrentValueSubject<[Insurance], Never>([])
 
     // MARK: - Private variables
@@ -67,15 +67,13 @@ final class InsuranceStore {
                 receiveCompletion: { [weak self] result in
                     switch result {
                     case .failure(let error):
-                        // TODO: Handle the error
-                        self?.insuranceStatus.send(.completed)
-                        print(error)
+                        self?.insuranceStatus.send(.failure(error))
                     case .finished:
                         break
                     }
                 }
             ) { [weak self] scrapingStatusResponse in
-                self?.insuranceStatus.send(scrapingStatusResponse.scrapingStatus)
+                self?.insuranceStatus.send(.success(scrapingStatusResponse.scrapingStatus))
                 if scrapingStatusResponse.scrapingStatus != .completed {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                         self?.pollInsuranceStatus(sessionID)

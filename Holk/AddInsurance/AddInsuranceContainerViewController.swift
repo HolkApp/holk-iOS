@@ -164,8 +164,8 @@ final class AddInsuranceContainerViewController: UIViewController {
         }
     }
 
-    private func showInsuranceAggregatedConfirmation(_ addedInsurance: Insurance) {
-        let confirmationViewController = AddInsuranceConfirmationViewController(addedInsurance)
+    private func showInsuranceAggregatedConfirmation(_ addedInsuranceList: [Insurance]) {
+        let confirmationViewController = AddInsuranceConfirmationViewController(addedInsuranceList)
         confirmationViewController.delegate = self
         addInsuranceViewControllers.append(confirmationViewController)
         collectionView.scrollToItem(at: IndexPath(item: 3, section: 0), at: .centeredHorizontally, animated: true)
@@ -245,17 +245,22 @@ extension AddInsuranceContainerViewController: AddInsuranceConsentViewController
         storeController
             .insuranceStore
             .insuranceStatus
-            .sink { [weak self] scrapingStatus in
+            .sink { [weak self] result in
                 guard let self = self else { return }
                 // TODO: remove the print
-                print(scrapingStatus)
-                switch scrapingStatus {
-                case .completed:
-                    let insuranceList = self.storeController.insuranceStore.insuranceList.value
-                    // TODO: Find the latest added insurance and remove the mock
-                    self.showInsuranceAggregatedConfirmation(insuranceList.first ?? AllInsuranceResponse.mockinsurance)
-                    self.progressBarToTop()
-                default:
+                print(result)
+                switch result {
+                case .success(let scrapingStatus):
+                    switch scrapingStatus {
+                    case .completed:
+                        let insuranceList = self.storeController.insuranceStore.insuranceList.value
+                        self.storeController.suggestionStore.fetchAllSuggestions()
+                        self.showInsuranceAggregatedConfirmation(insuranceList)
+                        self.progressBarToTop()
+                    default:
+                        break
+                    }
+                case .failure(let error):
                     break
                 }
         }.store(in: &cancellables)
