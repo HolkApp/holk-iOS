@@ -8,24 +8,32 @@
 
 import UIKit
 
+protocol OnboardingCoordinatorDelegate: AnyObject {
+    func onboardingStopped(_ coordinator: OnboardingCoordinator)
+    func onboardingFinished(_ coordinator: OnboardingCoordinator)
+}
+
 final class OnboardingCoordinator {
-    weak var coordinator: ShellCoordinator?
+    weak var coordinator: OnboardingCoordinatorDelegate?
     
     private var navigationController: UINavigationController
     private var storeController: StoreController
-    private var onboardingContainerViewController: OnboardingContainerViewController
+
+    private weak var onboardingContainerViewController: OnboardingContainerViewController?
+
     private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
     private var isPresentingQRCode = false
 
     init(navigationController: UINavigationController, storeController: StoreController) {
         self.navigationController = navigationController
         self.storeController = storeController
-        onboardingContainerViewController = OnboardingContainerViewController(storeController: storeController)
     }
 
     func start(_ authenticateOnOtherDevice: Bool) {
+        let onboardingContainerViewController = OnboardingContainerViewController(storeController: storeController)
         onboardingContainerViewController.delegate = self
         navigationController.pushViewController(onboardingContainerViewController, animated: false)
+        self.onboardingContainerViewController = onboardingContainerViewController
 
         onboardingContainerViewController.loading()
         authenticate(authenticateOnOtherDevice)
@@ -100,6 +108,7 @@ extension OnboardingCoordinator {
             guard let self = self else { return }
             DispatchQueue.main.async {
                 self.backgroundTask = .invalid
+                UIApplication.shared.endBackgroundTask(self.backgroundTask)
                 switch result {
                 case .success:
                     self.showOnboardingFlow()
@@ -109,7 +118,6 @@ extension OnboardingCoordinator {
                     self.showError(error, requestName: "authorize/user")
                 }
             }
-            UIApplication.shared.endBackgroundTask(self.backgroundTask)
         }
     }
 
@@ -133,7 +141,7 @@ extension OnboardingCoordinator {
     }
 
     private func showOnboardingFlow() {
-        onboardingContainerViewController.startOnboarding(storeController.user)
+        onboardingContainerViewController?.startOnboarding(storeController.user)
     }
 
     @objc private func dismissPresntedViewController(_ sender: Any) {
@@ -145,10 +153,11 @@ extension OnboardingCoordinator {
 // MARK: - OnboardingCoordinator
 extension OnboardingCoordinator: OnboardingContainerDelegate {
     func onboardingStopped(_ onboardingContainerViewController: OnboardingContainerViewController) {
-        coordinator?.onboardingStopped()
+        coordinator?.onboardingStopped(self)
+        storeController.authenticationStore.cancelAll()
     }
 
     func onboardingFinished(_ onboardingContainerViewController: OnboardingContainerViewController) {
-        coordinator?.onboardingFinished()
+        coordinator?.onboardingFinished(self)
     }
 }

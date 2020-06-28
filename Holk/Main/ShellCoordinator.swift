@@ -88,19 +88,6 @@ final class ShellCoordinator {
         onboardingCoordinator?.start(authenticateOnOtherDevice)
     }
 
-    func onboardingStopped() {
-        rootViewController.dismiss(animated: false) {
-            self.showLandingScreen()
-        }
-    }
-
-    func onboardingFinished() {
-        rootViewController.dismiss(animated: false) {
-            self.showSession()
-            self.onboardingCoordinator = nil
-        }
-    }
-
     func logout() {
         storeController.resetSession()
         storeController = StoreController()
@@ -126,6 +113,21 @@ extension ShellCoordinator {
         let onboardingInfoViewController = OnboardingInfoViewController()
         onboardingInfoViewController.coordinator = self
         landingPageNavigationController.pushViewController(onboardingInfoViewController, animated: true)
+    }
+}
+
+extension ShellCoordinator: OnboardingCoordinatorDelegate {
+    func onboardingStopped(_ coordinator: OnboardingCoordinator) {
+        rootViewController.dismiss(animated: false) {
+            self.showLandingScreen()
+        }
+    }
+
+    func onboardingFinished(_ coordinator: OnboardingCoordinator) {
+        rootViewController.dismiss(animated: false) {
+            self.showSession()
+            self.onboardingCoordinator = nil
+        }
     }
 }
 
