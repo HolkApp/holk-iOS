@@ -48,7 +48,7 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         self.insurance = insurance
         titleLabel.text = insurance.insuranceType.description
         subtitleLabel.text = insurance.address
-        UIImage.imageWithUrl(imageUrlString: insurance.insuranceProvider.logoUrl) { [weak self] image in
+        UIImage.makeImageWithUrl(imageUrlString: insurance.insuranceProvider.logoUrl) { [weak self] image in
             self?.insuranceImageView.image = image
         }
         switch insurance.endDate.expirationDaysLeft() {

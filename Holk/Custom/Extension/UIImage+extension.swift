@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 
 extension UIImage {
-    static func imageWith(_ layer: CALayer) -> UIImage? {
+    static func makeImageWithLayer(_ layer: CALayer) -> UIImage? {
         UIGraphicsBeginImageContextWithOptions(layer.bounds.size, layer.isOpaque, 0.0)
         layer.render(in: UIGraphicsGetCurrentContext()!)
         let img = UIGraphicsGetImageFromCurrentImageContext()
@@ -19,7 +19,7 @@ extension UIImage {
     }
 
     @discardableResult
-    static func imageWithUrl(imageUrlString: String, completion: ((UIImage?) -> Void)? = nil) -> DownloadRequest? {
+    static func makeImageWithUrl(imageUrlString: String, completion: ((UIImage?) -> Void)? = nil) -> DownloadRequest? {
         let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0] as NSURL
         let newPath = path.appendingPathComponent(imageUrlString)
 
