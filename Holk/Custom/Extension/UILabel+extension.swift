@@ -22,13 +22,16 @@ extension UILabel {
             setLineHeight(46)
         case .header4:
             font = Font.font(name: .poppins, weight: .semiBold, size: 30)
-            setLineHeight(39)
+            setLineHeight(44)
         case .header5:
             font = Font.font(name: .poppins, weight: .semiBold, size: 25)
-            setLineHeight(20)
+            setLineHeight(35)
         case .header6:
             font = Font.font(name: .poppins, weight: .semiBold, size: 21)
-            setLineHeight(20)
+            setLineHeight(30)
+            case .header7:
+            font = Font.font(name: .montserrat, weight: .regular, size: 18)
+            setLineHeight(29)
         case .subHeaders1:
             font = Font.font(name: .poppins, weight: .light, size: 22)
             setLineHeight(30)

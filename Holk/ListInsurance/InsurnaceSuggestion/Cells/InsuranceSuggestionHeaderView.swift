@@ -17,6 +17,7 @@ final class InsuranceSuggestionHeaderView: UICollectionReusableView {
         clipsToBounds = true
         backgroundColor = .clear
 
+        textLabel.setStyleGuide(.body3)
         textLabel.textColor = Color.secondaryForegroundColor
         textLabel.translatesAutoresizingMaskIntoConstraints = false
         
