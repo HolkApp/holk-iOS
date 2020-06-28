@@ -48,10 +48,12 @@ final class InsuranceGapsSuggestionViewController: UIViewController {
         iconView.image = UIImage(systemName: "bell")?.withSymbolWeightConfiguration(.light)
         iconView.translatesAutoresizingMaskIntoConstraints = false
 
+        titleLabel.setStyleGuide(.header4)
         titleLabel.text = "Luckor"
         titleLabel.textColor = Color.mainForegroundColor
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
+        numberLabel.setStyleGuide(.numbers3)
         numberLabel.text = "\(gaps.count) st"
         numberLabel.textColor = Color.mainForegroundColor
         numberLabel.textAlignment = .right
@@ -63,7 +65,7 @@ final class InsuranceGapsSuggestionViewController: UIViewController {
         collectionView.backgroundColor = .clear
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.register(InsuranceGapsSuggestionCollectionViewCell.self, forCellWithReuseIdentifier: InsuranceGapsSuggestionCollectionViewCell.identifier)
+        collectionView.register(InsuranceGapsCollectionViewCell.self, forCellWithReuseIdentifier: InsuranceGapsCollectionViewCell.identifier)
         collectionView.register(InsuranceSuggestionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: InsuranceSuggestionHeaderView.identifier)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
 
@@ -109,7 +111,7 @@ extension InsuranceGapsSuggestionViewController: UICollectionViewDataSource, UIC
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let insuranceGapsSuggestionCollectionViewCell =  collectionView.dequeueCell(ofType: InsuranceGapsSuggestionCollectionViewCell.self, indexPath: indexPath)
+        let insuranceGapsSuggestionCollectionViewCell =  collectionView.dequeueCell(ofType: InsuranceGapsCollectionViewCell.self, indexPath: indexPath)
         insuranceGapsSuggestionCollectionViewCell.configure(gaps[indexPath.item])
         return insuranceGapsSuggestionCollectionViewCell
     }

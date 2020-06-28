@@ -1,5 +1,5 @@
 //
-//  InsuranceGapsSuggestionCollectionViewCell.swift
+//  InsuranceGapsCollectionViewCell.swift
 //  Holk
 //
 //  Created by 张梦皓 on 2020-06-13.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class InsuranceGapsSuggestionCollectionViewCell: UICollectionViewCell {
+final class InsuranceGapsCollectionViewCell: UICollectionViewCell {
     // MARK: - Private variables
     private let iconView = UIImageView()
     private let titleLabel = UILabel()
@@ -38,11 +38,13 @@ final class InsuranceGapsSuggestionCollectionViewCell: UICollectionViewCell {
         iconView.image = UIImage(systemName: "bell")
         iconView.translatesAutoresizingMaskIntoConstraints = false
 
+        titleLabel.setStyleGuide(.cardHeader2)
         titleLabel.numberOfLines = 0
         titleLabel.textColor = Color.secondaryHighlightColor
         titleLabel.textAlignment = .center
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
+        tagLabel.setStyleGuide(.header7)
         tagLabel.numberOfLines = 0
         tagLabel.textColor = Color.secondaryBackgroundColor
         tagLabel.textAlignment = .center
