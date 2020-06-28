@@ -71,4 +71,8 @@ final class AuthenticationStore {
                 completion(.success(oauthAuthenticationResponse)) }
             .store(in: &cancellables)
     }
+
+    func cancelAll() {
+        cancellables.forEach { $0.cancel() }
+    }
 }

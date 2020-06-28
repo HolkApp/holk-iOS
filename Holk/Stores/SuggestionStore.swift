@@ -37,4 +37,8 @@ final class SuggestionStore {
             completion(.success(suggestionsListResponse))
         }.store(in: &cancellables)
     }
+
+    func cancelAll() {
+        cancellables.forEach { $0.cancel() }
+    }
 }

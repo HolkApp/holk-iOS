@@ -47,4 +47,8 @@ final class UserStore {
             }) { _ in completion(.success) }
             .store(in: &cancellables)
     }
+
+    func cancelAll() {
+        cancellables.forEach { $0.cancel() }
+    }
 }

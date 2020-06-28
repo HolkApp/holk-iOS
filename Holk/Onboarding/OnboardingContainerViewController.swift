@@ -49,6 +49,10 @@ final class OnboardingContainerViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    deinit {
+        cancellables.forEach { $0.cancel() }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -309,6 +313,7 @@ extension OnboardingContainerViewController: OnboardingConsentViewControllerDele
                     case .completed:
                         let insuranceList = self.storeController.insuranceStore.insuranceList.value
                         self.storeController.suggestionStore.fetchAllSuggestions()
+                        self.storeController.insuranceStore.fetchAllInsurances()
                         self.showInsuranceAggregatedConfirmation(insuranceList)
                         self.progressBarToTop()
                     default:

@@ -56,7 +56,7 @@ final class InsuranceStore {
                     break
                 }
             }) { [weak self] allInsuranceResponse in
-                self?.insuranceList.value = allInsuranceResponse.insuranceList
+                self?.insuranceList.send(allInsuranceResponse.insuranceList)
                 completion(.success(allInsuranceResponse))
         }.store(in: &cancellables)
     }
@@ -73,8 +73,7 @@ final class InsuranceStore {
                     }
                 }
             ) { [weak self] scrapingStatusResponse in
-                self?.insuranceStatus.send(.success(scrapingStatusResponse.scrapingStatus))
-                if scrapingStatusResponse.scrapingStatus != .completed {
+                if scrapingStatusResponse.scrapingStatus != .completed && scrapingStatusResponse.scrapingStatus != .failed {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                         self?.pollInsuranceStatus(sessionID)
                     }
@@ -83,6 +82,7 @@ final class InsuranceStore {
                         self?.insuranceList.send(scrapedInsurances)
                     }
                 }
+                self?.insuranceStatus.send(.success(scrapingStatusResponse.scrapingStatus))
         }
         .store(in: &cancellables)
     }
@@ -92,5 +92,9 @@ final class InsuranceStore {
             .fetchInsuranceStatus(sessionID)
             .mapError { APIError(urlError: $0) }
             .eraseToAnyPublisher()
+    }
+
+    func cancelAll() {
+        cancellables.forEach { $0.cancel() }
     }
 }

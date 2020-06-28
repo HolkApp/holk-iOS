@@ -38,4 +38,8 @@ final class ProviderStore {
         }
         .store(in: &cancellables)
     }
+
+    func cancelAll() {
+        cancellables.forEach { $0.cancel() }
+    }
 }
