@@ -37,7 +37,7 @@ final class BankIDService {
     static func start(_ url: URL, _ successHandler: @escaping () -> Void, _ failureHandler: @escaping (URL?) -> Void) {
         DispatchQueue.main.async {
             if UIApplication.shared.canOpenURL(url) {
-                UIApplication.shared.open(url, options: [:]) { success in
+                UIApplication.shared.open(url, options: [.universalLinksOnly: true]) { success in
                     if success {
                         successHandler()
                     } else {
