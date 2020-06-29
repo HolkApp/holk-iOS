@@ -127,6 +127,7 @@
 		8FD6769D249FEA3500E62820 /* HolkQRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD6769C249FEA3500E62820 /* HolkQRViewController.swift */; };
 		8FD6769F24A8CE0F00E62820 /* InsuranceThinkOfCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD6769E24A8CE0E00E62820 /* InsuranceThinkOfCollectionViewCell.swift */; };
 		8FD676A124A8D82500E62820 /* HolkIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD676A024A8D82500E62820 /* HolkIconView.swift */; };
+		8FD676A324AA7DC500E62820 /* Paragraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD676A224AA7DC400E62820 /* Paragraph.swift */; };
 		8FD84E682270E732009D563D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD84E672270E732009D563D /* AppDelegate.swift */; };
 		8FD84E6F2270E736009D563D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8FD84E6E2270E736009D563D /* Assets.xcassets */; };
 		8FD84E722270E736009D563D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8FD84E702270E736009D563D /* LaunchScreen.storyboard */; };
@@ -282,6 +283,7 @@
 		8FD6769C249FEA3500E62820 /* HolkQRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolkQRViewController.swift; sourceTree = "<group>"; };
 		8FD6769E24A8CE0E00E62820 /* InsuranceThinkOfCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceThinkOfCollectionViewCell.swift; sourceTree = "<group>"; };
 		8FD676A024A8D82500E62820 /* HolkIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolkIconView.swift; sourceTree = "<group>"; };
+		8FD676A224AA7DC400E62820 /* Paragraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paragraph.swift; sourceTree = "<group>"; };
 		8FD84E642270E732009D563D /* Holk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Holk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FD84E672270E732009D563D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8FD84E6E2270E736009D563D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -536,6 +538,7 @@
 			children = (
 				8FD6767E2492C91A00E62820 /* GapSuggestion.swift */,
 				8FD6768D24951C8700E62820 /* ThinkOfSuggestion.swift */,
+				8FD676A224AA7DC400E62820 /* Paragraph.swift */,
 				8FD676802492C9CC00E62820 /* SuggestionsListResponse.swift */,
 			);
 			path = Suggestion;
@@ -952,6 +955,7 @@
 				8F25CAA523410CB800DC3B97 /* OnboardingInsuranceProviderViewController.swift in Sources */,
 				8FCEE9B123254B6C00F75FB8 /* KeyboardEventContext.swift in Sources */,
 				8F4965DD2412F70100DEAFC1 /* HolkRingChartIconsView.swift in Sources */,
+				8FD676A324AA7DC500E62820 /* Paragraph.swift in Sources */,
 				8FF6E72622AC0D2800F6D398 /* Color.swift in Sources */,
 				8F54C24D2431266900D72FD7 /* InsuranceDetailViewController.swift in Sources */,
 				8F2BB8E62332D4EB00E8AE4B /* FontLoader.swift in Sources */,
