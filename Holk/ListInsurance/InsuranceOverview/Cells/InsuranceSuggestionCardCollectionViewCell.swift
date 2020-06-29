@@ -11,7 +11,7 @@ import Lottie
 
 class InsuranceSuggestionCardCollectionViewCell: UICollectionViewCell {
     enum SuggestionType {
-        case reminder
+        case gap
         case thinkOf
     }
 
@@ -40,7 +40,7 @@ class InsuranceSuggestionCardCollectionViewCell: UICollectionViewCell {
     func configure(_ suggestions: SuggestionsListResponse?, suggestionType: SuggestionType) {
         // TODO: Update this
         switch suggestionType {
-        case .reminder:
+        case .gap:
             let starAnimation = Animation.named("Bell")
             suggestionImageView.animation = starAnimation
             suggestionImageView.play(fromProgress: 0, toProgress: 0.55, loopMode: .repeat(2)) {  [weak self] finished in

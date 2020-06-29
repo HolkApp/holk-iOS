@@ -112,7 +112,7 @@ extension InsuranceListViewController {
         if indexPath.section == 0 {
             let insuranceSuggestionCardCollectionViewCell = collectionView.dequeueCell(ofType: InsuranceSuggestionCardCollectionViewCell.self, indexPath: indexPath)
             if indexPath.item == 0 {
-                insuranceSuggestionCardCollectionViewCell.configure(suggestions, suggestionType: .reminder)
+                insuranceSuggestionCardCollectionViewCell.configure(suggestions, suggestionType: .gap)
             } else {
                 insuranceSuggestionCardCollectionViewCell.configure(suggestions, suggestionType: .thinkOf)
             }
