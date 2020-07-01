@@ -26,14 +26,24 @@ final class HolkIconView: UIView {
     }
 
     private func setup() {
+        clipsToBounds = true
+
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
 
+        addSubview(imageView)
+
         NSLayoutConstraint.activate([
-            imageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 4),
-            imageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 4),
-            imageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -4),
-            imageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 4),
+            imageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 8),
+            imageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 8),
+            imageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8),
+            imageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -8),
         ])
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        layer.cornerRadius = min(frame.width, frame.height) / 2
     }
 }

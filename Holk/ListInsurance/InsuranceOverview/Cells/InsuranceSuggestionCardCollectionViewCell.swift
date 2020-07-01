@@ -18,7 +18,9 @@ class InsuranceSuggestionCardCollectionViewCell: UICollectionViewCell {
     // MARK: Private variables
     private let suggestionView = UIView()
     private let suggestionValueLabel = HolkRoundBackgroundLabel()
-    private let suggestionImageView = AnimationView()
+    private let suggestionAnimationView = AnimationView()
+    private let suggestionImageView = UIImageView()
+    private let suggestionIllustrationView = UIStackView()
     private let suggestionLabel = UILabel()
 
     override init(frame: CGRect) {
@@ -37,25 +39,30 @@ class InsuranceSuggestionCardCollectionViewCell: UICollectionViewCell {
         }
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+
+        suggestionAnimationView.removeFromSuperview()
+        suggestionImageView.removeFromSuperview()
+    }
+
     func configure(_ suggestions: SuggestionsListResponse?, suggestionType: SuggestionType) {
         // TODO: Update this
         switch suggestionType {
         case .gap:
             let starAnimation = Animation.named("Bell")
-            suggestionImageView.animation = starAnimation
-            suggestionImageView.play(fromProgress: 0, toProgress: 0.55, loopMode: .repeat(2)) {  [weak self] finished in
-                self?.suggestionImageView.currentProgress = 0.85
+            suggestionAnimationView.animation = starAnimation
+            suggestionAnimationView.play(fromProgress: 0, toProgress: 0.55, loopMode: .repeat(2)) {  [weak self] finished in
+                self?.suggestionAnimationView.currentProgress = 0.85
             }
-            
+            suggestionIllustrationView.addArrangedSubview(suggestionAnimationView)
+
             suggestionLabel.text = "Luckor"
             suggestionValueLabel.text = suggestions.flatMap { String($0.gaps.count) }
             suggestionValueLabel.textColor = Color.mainForegroundColor
         case .thinkOf:
-            let starAnimation = Animation.named("Bell")
-            suggestionImageView.animation = starAnimation
-            suggestionImageView.play(fromProgress: 0, toProgress: 0.55, loopMode: .repeat(2)) {  [weak self] finished in
-                self?.suggestionImageView.currentProgress = 0.85
-            }
+            suggestionImageView.image = UIImage(named: "light")
+            suggestionIllustrationView.addArrangedSubview(suggestionImageView)
 
             suggestionLabel.text = "Tänk på"
             suggestionValueLabel.text = suggestions.flatMap { String($0.thinkOfs.count) }
@@ -79,8 +86,11 @@ class InsuranceSuggestionCardCollectionViewCell: UICollectionViewCell {
         suggestionValueLabel.textAlignment = .center
         suggestionValueLabel.translatesAutoresizingMaskIntoConstraints = false
 
+        suggestionAnimationView.contentMode = .scaleAspectFit
         suggestionImageView.contentMode = .scaleAspectFit
-        suggestionImageView.translatesAutoresizingMaskIntoConstraints = false
+
+        suggestionIllustrationView.backgroundColor = .red
+        suggestionIllustrationView.translatesAutoresizingMaskIntoConstraints = false
 
         suggestionLabel.setStyleGuide(.body1)
         suggestionLabel.textColor = Color.mainForegroundColor
@@ -94,23 +104,22 @@ class InsuranceSuggestionCardCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(suggestionView)
 
         suggestionView.addSubview(suggestionValueLabel)
-        suggestionView.addSubview(suggestionImageView)
+        suggestionView.addSubview(suggestionIllustrationView)
         suggestionView.addSubview(suggestionLabel)
 
         NSLayoutConstraint.activate([
             suggestionValueLabel.widthAnchor.constraint(equalToConstant: 40),
             suggestionValueLabel.heightAnchor.constraint(equalToConstant: 30),
-            suggestionValueLabel.centerYAnchor.constraint(equalTo: suggestionImageView
-                .centerYAnchor),
+            suggestionValueLabel.centerYAnchor.constraint(equalTo: suggestionIllustrationView.centerYAnchor),
             suggestionValueLabel.trailingAnchor.constraint(lessThanOrEqualTo: suggestionView.layoutMarginsGuide.trailingAnchor),
 
-            suggestionImageView.widthAnchor.constraint(equalToConstant: 36),
-            suggestionImageView.heightAnchor.constraint(equalToConstant: 36),
-            suggestionImageView.leadingAnchor.constraint(equalTo: suggestionView.layoutMarginsGuide.leadingAnchor),
-            suggestionImageView.topAnchor.constraint(equalTo: suggestionView.layoutMarginsGuide.topAnchor),
+            suggestionIllustrationView.widthAnchor.constraint(equalToConstant: 36),
+            suggestionIllustrationView.heightAnchor.constraint(equalToConstant: 36),
+            suggestionIllustrationView.leadingAnchor.constraint(equalTo: suggestionView.layoutMarginsGuide.leadingAnchor),
+            suggestionIllustrationView.topAnchor.constraint(equalTo: suggestionView.layoutMarginsGuide.topAnchor),
 
-            suggestionLabel.leadingAnchor.constraint(equalTo: suggestionImageView.leadingAnchor),
-            suggestionLabel.topAnchor.constraint(equalTo: suggestionImageView.bottomAnchor, constant: 4),
+            suggestionLabel.leadingAnchor.constraint(equalTo: suggestionIllustrationView.leadingAnchor),
+            suggestionLabel.topAnchor.constraint(equalTo: suggestionIllustrationView.bottomAnchor, constant: 4),
             suggestionLabel.trailingAnchor.constraint(equalTo: suggestionView.layoutMarginsGuide.trailingAnchor),
             suggestionLabel.lastBaselineAnchor.constraint(equalTo: suggestionView.layoutMarginsGuide.bottomAnchor, constant: -6),
 
