@@ -27,31 +27,30 @@ final class InsuranceThinkOfCollectionViewCell: UICollectionViewCell {
     }
 
     func configure(_ gap: ThinkOfSuggestion) {
-//        titleLabel.text = gap.title
-//        subInsuranceTypeLabel.text = gap.tag
+        titleLabel.text = gap.title
+        subInsuranceTypeLabel.text = gap.subInsurance
     }
 
     private func setup() {
-        contentView.backgroundColor = Color.mainForegroundColor
+        contentView.backgroundColor = .systemGreen
         contentView.layer.cornerRadius = 16
         contentView.layer.cornerCurve = .continuous
 
-        iconView.image = UIImage(systemName: "bell")
+        iconView.image = UIImage(named: "light")
         iconView.translatesAutoresizingMaskIntoConstraints = false
 
         thinkOfTypeIconView.imageView.image = UIImage(named: "thinkOf")
+        thinkOfTypeIconView.backgroundColor = .systemBlue
         thinkOfTypeIconView.translatesAutoresizingMaskIntoConstraints = false
 
         subInsuranceTypeLabel.setStyleGuide(.titleHeader1)
         subInsuranceTypeLabel.numberOfLines = 0
         subInsuranceTypeLabel.textColor = Color.secondaryBackgroundColor
-        subInsuranceTypeLabel.textAlignment = .center
         subInsuranceTypeLabel.translatesAutoresizingMaskIntoConstraints = false
 
         titleLabel.setStyleGuide(.cardHeader2)
         titleLabel.numberOfLines = 0
         titleLabel.textColor = Color.secondaryHighlightColor
-        titleLabel.textAlignment = .center
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
         chevronView.image = UIImage(systemName: "chevron.right")
@@ -85,8 +84,8 @@ final class InsuranceThinkOfCollectionViewCell: UICollectionViewCell {
             titleLabel.topAnchor.constraint(equalTo: subInsuranceTypeLabel.lastBaselineAnchor, constant: 14),
             titleLabel.leadingAnchor.constraint(equalTo: subInsuranceTypeLabel.leadingAnchor),
             titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -14),
+            titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -40),
 
-            chevronView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
             chevronView.widthAnchor.constraint(equalToConstant: 16),
             chevronView.heightAnchor.constraint(equalToConstant: 24),
             chevronView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),

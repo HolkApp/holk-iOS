@@ -1,15 +1,14 @@
 import Foundation
 
-struct ThinkOfSuggestion: Codable {
+struct ThinkOfSuggestion: Codable, Hashable {
     struct Details: Codable, Hashable {
-        let subHeader: String
+        let header: String
         let description: String
         let insuranceInfo: String
         let paragraphs: [Paragraph]
     }
 
     let title: String
-    let insuranceIcon: String
-    let insuranceTitle: String
+    let subInsurance: String
     let details: Details
 }
