@@ -28,8 +28,8 @@ extension UICollectionViewCompositionalLayout {
         return layout
     }
 
-    static func makeInsuranceGapsSuggestionLayout() -> UICollectionViewLayout {
-        let sections = [makeInsuranceGapsSuggestionSection()]
+    static func makeInsuranceSuggestionsLayout() -> UICollectionViewLayout {
+        let sections = [makeInsuranceSuggestionSection()]
 
         let layout = UICollectionViewCompositionalLayout { (sectionIndex, environment) in
             return sections[sectionIndex]
@@ -99,19 +99,19 @@ extension UICollectionViewCompositionalLayout {
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(100))
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
         let costSection = NSCollectionLayoutSection(group: group)
-        costSection.contentInsets = .init(top: 0, leading: 16, bottom: 0, trailing: 16)
+        costSection.contentInsets = .init(top: 0, leading: 20, bottom: 0, trailing: 20)
         return costSection
     }
 
-    static func makeInsuranceGapsSuggestionSection() -> NSCollectionLayoutSection {
+    static func makeInsuranceSuggestionSection() -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(500))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(230))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-        group.interItemSpacing = .fixed(24)
         let gapsSection = NSCollectionLayoutSection(group: group)
         gapsSection.boundarySupplementaryItems = [makeSectionHeaderElement()]
         gapsSection.contentInsets = .init(top: 0, leading: 16, bottom: 0, trailing: 16)
+        gapsSection.interGroupSpacing = 24
         return gapsSection
     }
 }
