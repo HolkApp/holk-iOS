@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class InsuranceGapsSuggestionViewController: UIViewController {
+final class InsuranceGapsViewController: UIViewController {
     enum Section {
       case gap
     }
@@ -114,7 +114,7 @@ final class InsuranceGapsSuggestionViewController: UIViewController {
     }
 }
 
-extension InsuranceGapsSuggestionViewController {
+extension InsuranceGapsViewController {
     func makeDataSource() -> DataSource {
         let dataSource = DataSource(
             collectionView: collectionView,
@@ -144,4 +144,4 @@ extension InsuranceGapsSuggestionViewController {
     }
 }
 
-extension InsuranceGapsSuggestionViewController: UICollectionViewDelegate {}
+extension InsuranceGapsViewController: UICollectionViewDelegate {}

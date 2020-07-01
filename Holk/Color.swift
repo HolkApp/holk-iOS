@@ -17,6 +17,7 @@ enum Color {
         case blue8
         case green1
         case grey1
+        case grey2
         case pink1
         case red1
         case yellow2
@@ -36,59 +37,71 @@ enum Color {
         return color
     }
     
-    static var landingBackgroundColor: UIColor {
+    static var landingBackground: UIColor {
         return makeColor(asset: #function)
     }
     
-    static var landingSecondaryBackgroundColor: UIColor {
+    static var landingSecondaryBackground: UIColor {
         return makeColor(asset: #function)
     }
 
-    static var suggestionCardBackgroundColor: UIColor {
+    static var suggestionCardBackground: UIColor {
         return makeColor(asset: #function)
     }
 
-    static var suggestionCardPressDownBackgroundColor: UIColor {
+    static var suggestionCardPressDownBackground: UIColor {
         return makeColor(asset: #function)
     }
 
-    static var insuranceBackgroundColor: UIColor {
+    static var insuranceBackground: UIColor {
         return makeColor(asset: #function)
     }
     
-    static var mainBackgroundColor: UIColor {
+    static var mainBackground: UIColor {
         return makeColor(asset: #function)
     }
     
-    static var secondaryBackgroundColor: UIColor {
+    static var secondaryBackground: UIColor {
         return makeColor(asset: #function)
     }
     
-    static var placeHolderColor: UIColor {
+    static var placeHolder: UIColor {
         return makeColor(asset: #function)
     }
     
-    static var mainForegroundColor: UIColor {
+    static var mainForeground: UIColor {
         return makeColor(asset: #function)
     }
     
-    static var secondaryForegroundColor: UIColor {
+    static var secondaryForeground: UIColor {
+        return UIColor { traitCollection in
+            if traitCollection.userInterfaceStyle == .dark {
+                return makeColor(asset: .grey2)
+            } else {
+                return makeColor(asset: .grey2)
+            }
+        }
+    }
+
+    static var secondaryHighlight: UIColor {
+        return makeColor(asset: #function)
+    }
+    
+    static var mainHighlight: UIColor {
         return makeColor(asset: #function)
     }
 
-    static var secondaryHighlightColor: UIColor {
-        return makeColor(asset: #function)
+    static var success: UIColor {
+        return UIColor { traitCollection in
+            if traitCollection.userInterfaceStyle == .dark {
+                return makeColor(asset: .green1)
+            } else {
+                return makeColor(asset: .green1)
+            }
+        }
     }
     
-    static var mainAlertColor: UIColor {
-        return makeColor(asset: #function)
-    }
-    
-    static var mainHighlightColor: UIColor {
-        return makeColor(asset: #function)
-    }
-    
-    static var warningColor: UIColor {
+    static var warning: UIColor {
         return UIColor { traitCollection in
             if traitCollection.userInterfaceStyle == .dark {
                 return makeColor(asset: .red1)
@@ -97,13 +110,29 @@ enum Color {
             }
         }
     }
-    
-    static var successColor: UIColor {
+
+    static var tabBarItemSelected: UIColor {
         return makeColor(asset: #function)
     }
 
-    static var tabBarItemSelectedColor: UIColor {
-        return makeColor(asset: #function)
+    static var gapsLabel: UIColor {
+        return UIColor { traitCollection in
+            if traitCollection.userInterfaceStyle == .dark {
+                return makeColor(asset: .pink1)
+            } else {
+                return makeColor(asset: .pink1)
+            }
+        }
+    }
+
+    static var secondaryLabel: UIColor {
+        return UIColor { traitCollection in
+            if traitCollection.userInterfaceStyle == .dark {
+                return .white
+            } else {
+                return .white
+            }
+        }
     }
 }
 
@@ -111,11 +140,11 @@ extension Color {
     static func color(_ insuranceSegments: Insurance.Segment) -> UIColor {
         switch insuranceSegments.kind {
         case .home:
-            return Color.mainForegroundColor
+            return Color.mainForeground
         case .travel:
-            return Color.mainHighlightColor
+            return Color.mainHighlight
         case .pets:
-            return Color.successColor
+            return Color.success
         }
     }
 }

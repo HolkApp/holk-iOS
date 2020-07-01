@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class InsuranceThinkOfSuggestionViewController: UIViewController {
+final class InsuranceThinkOfsViewController: UIViewController {
     enum Section {
       case thinkOf
     }
@@ -115,7 +115,7 @@ final class InsuranceThinkOfSuggestionViewController: UIViewController {
     }
 }
 
-extension InsuranceThinkOfSuggestionViewController {
+extension InsuranceThinkOfsViewController {
     func makeDataSource() -> DataSource {
         let dataSource = DataSource(
             collectionView: collectionView,
@@ -145,5 +145,5 @@ extension InsuranceThinkOfSuggestionViewController {
     }
 }
 
-extension InsuranceThinkOfSuggestionViewController: UICollectionViewDelegate {
+extension InsuranceThinkOfsViewController: UICollectionViewDelegate {
 }
