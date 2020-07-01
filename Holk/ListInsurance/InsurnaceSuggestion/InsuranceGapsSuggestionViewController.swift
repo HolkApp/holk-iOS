@@ -9,10 +9,19 @@
 import UIKit
 
 final class InsuranceGapsSuggestionViewController: UIViewController {
+    enum Section {
+      case gap
+    }
+
+    typealias DataSource = UICollectionViewDiffableDataSource<Section, GapSuggestion>
+    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, GapSuggestion>
+
+    private lazy var dataSource = makeDataSource()
+
     // MARK: - Public variables
     lazy var collectionView: UICollectionView = {
-        let insuranceGapsSuggestionLayout = UICollectionViewCompositionalLayout.makeInsuranceGapsSuggestionLayout()
-        return UICollectionView(frame: .zero, collectionViewLayout: insuranceGapsSuggestionLayout)
+        let insurancSuggestionsLayout = UICollectionViewCompositionalLayout.makeInsuranceSuggestionsLayout()
+        return UICollectionView(frame: .zero, collectionViewLayout: insurancSuggestionsLayout)
     }()
 
     // MARK: - Private variables
@@ -45,7 +54,7 @@ final class InsuranceGapsSuggestionViewController: UIViewController {
         view.backgroundColor = Color.mainBackgroundColor
 
         iconView.tintColor = Color.mainForegroundColor
-        iconView.image = UIImage(systemName: "bell")?.withSymbolWeightConfiguration(.light)
+        iconView.image = UIImage(systemName: "bell")
         iconView.translatesAutoresizingMaskIntoConstraints = false
 
         titleLabel.setStyleGuide(.header4)
@@ -64,12 +73,12 @@ final class InsuranceGapsSuggestionViewController: UIViewController {
 
         collectionView.backgroundColor = .clear
         collectionView.delegate = self
-        collectionView.dataSource = self
         collectionView.register(InsuranceGapsCollectionViewCell.self, forCellWithReuseIdentifier: InsuranceGapsCollectionViewCell.identifier)
         collectionView.register(InsuranceSuggestionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: InsuranceSuggestionHeaderView.identifier)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
 
         setupLayout()
+        applySnapshot(animatingDifferences: false)
     }
 
     private func setupLayout() {
@@ -80,7 +89,7 @@ final class InsuranceGapsSuggestionViewController: UIViewController {
         view.addSubview(collectionView)
 
         NSLayoutConstraint.activate([
-            iconView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 24),
+            iconView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             iconView.topAnchor.constraint(equalTo: view.topAnchor, constant: 24),
             iconView.widthAnchor.constraint(equalTo: iconView.heightAnchor),
             iconView.heightAnchor.constraint(equalToConstant: 32),
@@ -105,25 +114,34 @@ final class InsuranceGapsSuggestionViewController: UIViewController {
     }
 }
 
-extension InsuranceGapsSuggestionViewController: UICollectionViewDataSource, UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return gaps.count
+extension InsuranceGapsSuggestionViewController {
+    func makeDataSource() -> DataSource {
+        let dataSource = DataSource(
+            collectionView: collectionView,
+            cellProvider: { (collectionView, indexPath, gap) in
+                let insuranceGapsSuggestionCollectionViewCell =  collectionView.dequeueCell(ofType: InsuranceGapsCollectionViewCell.self, indexPath: indexPath)
+                insuranceGapsSuggestionCollectionViewCell.configure(gap)
+                return insuranceGapsSuggestionCollectionViewCell
+        })
+        dataSource.supplementaryViewProvider = ({ (collectionView, kind, indexPath) in
+            if kind == UICollectionView.elementKindSectionHeader {
+                let insuranceSuggestionHeaderView =
+                    collectionView.dequeueHeaderFooterView(type: InsuranceSuggestionHeaderView.self, of: kind, indexPath: indexPath)
+                insuranceSuggestionHeaderView.configure("Luckor som finns i ditt skydd")
+                return insuranceSuggestionHeaderView
+            } else {
+                return nil
+            }
+        })
+        return dataSource
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let insuranceGapsSuggestionCollectionViewCell =  collectionView.dequeueCell(ofType: InsuranceGapsCollectionViewCell.self, indexPath: indexPath)
-        insuranceGapsSuggestionCollectionViewCell.configure(gaps[indexPath.item])
-        return insuranceGapsSuggestionCollectionViewCell
-    }
-
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        if kind == UICollectionView.elementKindSectionHeader {
-            let insuranceSuggestionHeaderView =
-                collectionView.dequeueHeaderFooterView(type: InsuranceSuggestionHeaderView.self, of: kind, indexPath: indexPath)
-            insuranceSuggestionHeaderView.configure("Luckor som finns i ditt skydd")
-            return insuranceSuggestionHeaderView
-        } else {
-            return UICollectionReusableView()
-        }
+    func applySnapshot(animatingDifferences: Bool = true) {
+        var snapshot = Snapshot()
+        snapshot.appendSections([.gap])
+        snapshot.appendItems(gaps)
+        dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
 }
+
+extension InsuranceGapsSuggestionViewController: UICollectionViewDelegate {}
