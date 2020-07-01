@@ -25,9 +25,9 @@ final class InsuranceSuggestionHeaderView: UICollectionReusableView {
 
         NSLayoutConstraint.activate([
             textLabel.topAnchor.constraint(equalTo: topAnchor, constant: 20),
-            textLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32),
-            textLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -32),
-            textLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -32)
+            textLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+            textLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -28),
+            textLabel.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
     }
 
