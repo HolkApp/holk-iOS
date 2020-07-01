@@ -41,7 +41,7 @@ final class InsuranceGapsCollectionViewCell: UICollectionViewCell {
 
         titleLabel.setStyleGuide(.cardHeader2)
         titleLabel.numberOfLines = 0
-        titleLabel.textColor = Color.gapsLabel
+        titleLabel.textColor = Color.gapLabel
         titleLabel.textAlignment = .center
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 

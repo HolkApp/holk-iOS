@@ -32,28 +32,30 @@ final class InsuranceThinkOfCollectionViewCell: UICollectionViewCell {
     }
 
     private func setup() {
-        contentView.backgroundColor = .systemGreen
+        contentView.backgroundColor = Color.thinkOfBackground
         contentView.layer.cornerRadius = 16
         contentView.layer.cornerCurve = .continuous
 
         iconView.image = UIImage(named: "light")
+        iconView.tintColor = Color.mainForeground
         iconView.translatesAutoresizingMaskIntoConstraints = false
 
         thinkOfTypeIconView.imageView.image = UIImage(named: "thinkOf")
-        thinkOfTypeIconView.backgroundColor = .systemBlue
+        thinkOfTypeIconView.backgroundColor = Color.thinkOfIconBackground
         thinkOfTypeIconView.translatesAutoresizingMaskIntoConstraints = false
 
         subInsuranceTypeLabel.setStyleGuide(.titleHeader1)
         subInsuranceTypeLabel.numberOfLines = 0
-        subInsuranceTypeLabel.textColor = Color.secondaryBackground
+        subInsuranceTypeLabel.textColor = Color.mainForeground
         subInsuranceTypeLabel.translatesAutoresizingMaskIntoConstraints = false
 
         titleLabel.setStyleGuide(.cardHeader2)
         titleLabel.numberOfLines = 0
-        titleLabel.textColor = Color.secondaryHighlight
+        titleLabel.textColor = Color.secondaryLabel
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
         chevronView.image = UIImage(systemName: "chevron.right")
+        chevronView.tintColor = Color.secondaryLabel
         chevronView.translatesAutoresizingMaskIntoConstraints = false
 
         setupLayout()

@@ -15,6 +15,7 @@ enum Color {
         case blue3
         case blue5
         case blue8
+        case blue9
         case green1
         case grey1
         case grey2
@@ -115,22 +116,45 @@ enum Color {
         return makeColor(asset: #function)
     }
 
-    static var gapsLabel: UIColor {
-        return UIColor { traitCollection in
-            if traitCollection.userInterfaceStyle == .dark {
-                return makeColor(asset: .pink1)
-            } else {
-                return makeColor(asset: .pink1)
-            }
-        }
-    }
-
     static var secondaryLabel: UIColor {
         return UIColor { traitCollection in
             if traitCollection.userInterfaceStyle == .dark {
                 return .white
             } else {
                 return .white
+            }
+        }
+    }
+}
+
+// MARK: Suggestion
+extension Color {
+    static var thinkOfIconBackground: UIColor {
+        return UIColor { traitCollection in
+            if traitCollection.userInterfaceStyle == .dark {
+                return makeColor(asset: .blue9)
+            } else {
+                return makeColor(asset: .blue9)
+            }
+        }
+    }
+
+    static var thinkOfBackground: UIColor {
+        return UIColor { traitCollection in
+            if traitCollection.userInterfaceStyle == .dark {
+                return makeColor(asset: .blue8)
+            } else {
+                return makeColor(asset: .blue8)
+            }
+        }
+    }
+
+    static var gapLabel: UIColor {
+        return UIColor { traitCollection in
+            if traitCollection.userInterfaceStyle == .dark {
+                return makeColor(asset: .pink1)
+            } else {
+                return makeColor(asset: .pink1)
             }
         }
     }
