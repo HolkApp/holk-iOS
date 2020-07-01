@@ -133,7 +133,7 @@ extension InsuranceListViewController {
                 insuranceGapsSuggestionViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(cancel(_:)))
                 present(UINavigationController(rootViewController: insuranceGapsSuggestionViewController), animated: true)
             } else {
-                let insuranceThinkOfSuggestionViewController = InsuranceThinkOfSuggestionViewController()
+                let insuranceThinkOfSuggestionViewController = InsuranceThinkOfSuggestionViewController(storeController: storeController)
                 insuranceThinkOfSuggestionViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(cancel(_:)))
                 present(UINavigationController(rootViewController: insuranceThinkOfSuggestionViewController), animated: true)
             }
