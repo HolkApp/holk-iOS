@@ -8,6 +8,27 @@
 
 import UIKit
 enum Color {
+
+    enum ColorProvider: String {
+        case blue1
+        case blue2
+        case blue3
+        case blue5
+        case blue8
+        case green1
+        case grey1
+        case pink1
+        case red1
+        case yellow2
+    }
+
+    static func makeColor(asset name: ColorProvider) -> UIColor {
+        guard let color = UIColor(named: name.rawValue) else {
+            fatalError("No asset found with name " + name.rawValue)
+        }
+        return color
+    }
+
     static func makeColor(asset name: String) -> UIColor {
         guard let color = UIColor(named: name) else {
             fatalError("No asset found with name " + name)
@@ -68,7 +89,13 @@ enum Color {
     }
     
     static var warningColor: UIColor {
-        return makeColor(asset: #function)
+        return UIColor { traitCollection in
+            if traitCollection.userInterfaceStyle == .dark {
+                return makeColor(asset: .red1)
+            } else {
+                return makeColor(asset: .red1)
+            }
+        }
     }
     
     static var successColor: UIColor {
