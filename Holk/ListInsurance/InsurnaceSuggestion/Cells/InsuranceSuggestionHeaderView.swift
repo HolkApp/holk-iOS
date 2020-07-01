@@ -18,7 +18,7 @@ final class InsuranceSuggestionHeaderView: UICollectionReusableView {
         backgroundColor = .clear
 
         textLabel.setStyleGuide(.body3)
-        textLabel.textColor = Color.secondaryForegroundColor
+        textLabel.textColor = Color.secondaryForeground
         textLabel.translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(textLabel)

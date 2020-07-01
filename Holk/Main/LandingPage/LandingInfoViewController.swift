@@ -26,7 +26,7 @@ final class LandingInfoViewController: UIViewController {
     }
     
     // MARK: - Init
-    init(text: String = String(), textColor: UIColor = Color.mainBackgroundColor) {
+    init(text: String = String(), textColor: UIColor = Color.mainBackground) {
         self.text = text
         self.textColor = textColor
         super.init(nibName: nil, bundle: nil)

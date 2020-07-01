@@ -76,36 +76,36 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         layer.shadowOpacity = 0.1
         layer.shadowRadius = 40
 
-        containerView.backgroundColor = Color.secondaryBackgroundColor
+        containerView.backgroundColor = Color.secondaryBackground
         containerView.layer.cornerRadius = 16
         containerView.layer.cornerCurve = .continuous
         containerView.translatesAutoresizingMaskIntoConstraints = false
 
         titleLabel.setStyleGuide(.header5)
-        titleLabel.textColor = Color.mainForegroundColor
+        titleLabel.textColor = Color.mainForeground
         titleLabel.numberOfLines = 0
         titleLabel.setContentHuggingPriority(.required, for: .vertical)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
         subtitleLabel.setStyleGuide(.subHeaders3)
-        subtitleLabel.textColor = Color.mainForegroundColor
+        subtitleLabel.textColor = Color.mainForeground
         subtitleLabel.numberOfLines = 0
         subtitleLabel.setContentHuggingPriority(.required, for: .vertical)
         subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
 
         clockImageView.contentMode = .scaleAspectFit
         clockImageView.image = UIImage(systemName: "clock")?.withSymbolWeightConfiguration(.regular)
-        clockImageView.tintColor = Color.mainForegroundColor
+        clockImageView.tintColor = Color.mainForeground
         clockImageView.translatesAutoresizingMaskIntoConstraints = false
 
         daysLabel.setStyleGuide(.numbers2)
-        daysLabel.textColor = Color.mainForegroundColor
+        daysLabel.textColor = Color.mainForeground
         daysLabel.numberOfLines = 0
         daysLabel.textAlignment = .center
         daysLabel.translatesAutoresizingMaskIntoConstraints = false
 
         daysTextLabel.setStyleGuide(.body1)
-        daysTextLabel.textColor = Color.secondaryForegroundColor
+        daysTextLabel.textColor = Color.secondaryForeground
         daysTextLabel.numberOfLines = 0
         daysTextLabel.textAlignment = .center
         daysTextLabel.translatesAutoresizingMaskIntoConstraints = false

@@ -14,6 +14,6 @@ final class InsuranceProtectionViewController: UIViewController {
     convenience init() {
         self.init(nibName: nil, bundle: nil)
 
-        view.backgroundColor = Color.mainBackgroundColor
+        view.backgroundColor = Color.mainBackground
     }
 }

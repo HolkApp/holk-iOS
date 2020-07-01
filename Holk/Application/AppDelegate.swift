@@ -25,8 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // TODO: Add something for register the appearance
         let appearance = UIPageControl.appearance(whenContainedInInstancesOf: [UIPageViewController.self])
-        appearance.pageIndicatorTintColor = Color.secondaryForegroundColor
-        appearance.currentPageIndicatorTintColor = Color.mainHighlightColor
+        appearance.pageIndicatorTintColor = Color.secondaryForeground
+        appearance.currentPageIndicatorTintColor = Color.mainHighlight
         
         return true
     }

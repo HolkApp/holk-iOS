@@ -51,24 +51,24 @@ final class InsuranceGapsViewController: UIViewController {
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.view.backgroundColor = .clear
 
-        view.backgroundColor = Color.mainBackgroundColor
+        view.backgroundColor = Color.mainBackground
 
-        iconView.tintColor = Color.mainForegroundColor
-        iconView.image = UIImage(systemName: "bell")
+        iconView.tintColor = Color.mainForeground
+        iconView.image = UIImage(systemName: "bell")?.withSymbolWeightConfiguration(.light)
         iconView.translatesAutoresizingMaskIntoConstraints = false
 
         titleLabel.setStyleGuide(.header4)
         titleLabel.text = "Luckor"
-        titleLabel.textColor = Color.mainForegroundColor
+        titleLabel.textColor = Color.mainForeground
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
         numberLabel.setStyleGuide(.numbers3)
         numberLabel.text = "\(gaps.count) st"
-        numberLabel.textColor = Color.mainForegroundColor
+        numberLabel.textColor = Color.mainForeground
         numberLabel.textAlignment = .right
         numberLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        separatorLine.backgroundColor = Color.placeHolderColor
+        separatorLine.backgroundColor = Color.placeHolder
         separatorLine.translatesAutoresizingMaskIntoConstraints = false
 
         collectionView.backgroundColor = .clear

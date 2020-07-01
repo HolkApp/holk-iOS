@@ -64,24 +64,24 @@ final class HomeinsuranceCollectionViewCell: UICollectionViewCell {
         layer.shadowOpacity = 0.05
         layer.shadowRadius = 30
 
-        containerView.backgroundColor = Color.insuranceBackgroundColor
+        containerView.backgroundColor = Color.insuranceBackground
         containerView.layer.cornerRadius = 16
         containerView.layer.cornerCurve = .continuous
         containerView.translatesAutoresizingMaskIntoConstraints = false
 
         titleLabel.setStyleGuide(.header6)
-        titleLabel.textColor = Color.mainForegroundColor
+        titleLabel.textColor = Color.mainForeground
         titleLabel.numberOfLines = 0
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
         insuranceSubNumberLabel.setStyleGuide(.largeNumber)
-        insuranceSubNumberLabel.textColor = Color.mainForegroundColor
+        insuranceSubNumberLabel.textColor = Color.mainForeground
         insuranceSubNumberLabel.numberOfLines = 0
         insuranceSubNumberLabel.textAlignment = .center
         insuranceSubNumberLabel.translatesAutoresizingMaskIntoConstraints = false
 
         insuranceTextLabel.setStyleGuide(.subHeaders2)
-        insuranceTextLabel.textColor = Color.mainForegroundColor
+        insuranceTextLabel.textColor = Color.mainForeground
         insuranceTextLabel.numberOfLines = 0
         insuranceTextLabel.textAlignment = .center
         insuranceTextLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -96,7 +96,7 @@ final class HomeinsuranceCollectionViewCell: UICollectionViewCell {
         insuranceImageView.translatesAutoresizingMaskIntoConstraints = false
 
         chevronView.image = UIImage(systemName: "chevron.right")
-        chevronView.tintColor = Color.mainForegroundColor
+        chevronView.tintColor = Color.mainForeground
         chevronView.translatesAutoresizingMaskIntoConstraints = false
 
         ringChart.dataSource = self
@@ -173,11 +173,11 @@ extension HomeinsuranceCollectionViewCell: HolkRingChartDataSource {
 
     func ringChart(_ ringChart: HolkRingChart, colorForSegmentAt index: Int) -> UIColor? {
         if index == 0 {
-            return Color.mainForegroundColor
+            return Color.mainForeground
         } else if index == 1 {
-            return Color.mainHighlightColor
+            return Color.mainHighlight
         } else if index == 2 {
-            return Color.successColor
+            return Color.success
         } else if index == 3 {
             return .green
         } else if index == 4 {

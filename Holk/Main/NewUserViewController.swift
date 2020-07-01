@@ -46,7 +46,7 @@ class NewUserViewController: UIViewController {
     
     private func setup() {
         view.layoutMargins = .init(top: 20, left: 40, bottom: 20, right: 40)
-        view.backgroundColor = Color.mainBackgroundColor
+        view.backgroundColor = Color.mainBackground
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard(_:)))
         view.addGestureRecognizer(tapGestureRecognizer)
@@ -66,34 +66,34 @@ class NewUserViewController: UIViewController {
         
         titleLabel.text = "Hi \(user.givenName),"
         titleLabel.font = Font.extraBold(.header)
-        titleLabel.textColor = Color.mainForegroundColor
+        titleLabel.textColor = Color.mainForeground
         titleLabel.numberOfLines = 0
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         subtitleLabel.text = "Great to see that you want to sign up for Holk"
         subtitleLabel.font = Font.regular(.title)
-        subtitleLabel.textColor = Color.mainForegroundColor
+        subtitleLabel.textColor = Color.mainForeground
         subtitleLabel.numberOfLines = 0
         subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         descriptionLabel.text = "Enter your mail adress in order to complete your account"
         descriptionLabel.font = Font.regular(.subtitle)
-        descriptionLabel.textColor = Color.mainForegroundColor
+        descriptionLabel.textColor = Color.mainForeground
         descriptionLabel.numberOfLines = 0
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        emailTextField.helpColor = Color.placeHolderColor
+        emailTextField.helpColor = Color.placeHolder
         emailTextField.placeholder = "E-post adress"
-        emailTextField.textColor = Color.mainForegroundColor
-        emailTextField.tintColor = Color.mainForegroundColor
+        emailTextField.textColor = Color.mainForeground
+        emailTextField.tintColor = Color.mainForeground
         emailTextField.returnKeyType = .continue
         emailTextField.delegate = self
-        emailTextField.placeholderTextColor = Color.placeHolderColor
+        emailTextField.placeholderTextColor = Color.placeHolder
         
         doneButton.contentVerticalAlignment = .fill
         doneButton.contentHorizontalAlignment = .fill
         doneButton.set(
-            color: Color.mainForegroundColor,
+            color: Color.mainForeground,
             image: UIImage(systemName: "arrow.right.circle")?.withSymbolWeightConfiguration(.ultraLight)
         )
         doneButton.translatesAutoresizingMaskIntoConstraints = false

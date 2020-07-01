@@ -9,7 +9,7 @@
 import UIKit
 
 final class HolkSegmentedControl: UISegmentedControl {
-    var selectionForegroundColor: UIColor? = Color.mainForegroundColor {
+    var selectionForegroundColor: UIColor? = Color.mainForeground {
         didSet {
             imageLayer.backgroundColor = selectionForegroundColor?.cgColor
         }

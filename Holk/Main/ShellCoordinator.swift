@@ -21,7 +21,7 @@ final class ShellCoordinator {
         let navigationController = UINavigationController()
         navigationController.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController.navigationBar.shadowImage = UIImage()
-        navigationController.navigationBar.tintColor = Color.mainForegroundColor
+        navigationController.navigationBar.tintColor = Color.mainForeground
         navigationController.modalPresentationStyle = .overFullScreen
         return navigationController
     }()

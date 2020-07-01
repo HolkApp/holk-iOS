@@ -58,15 +58,15 @@ final class AddInsuranceConfirmationViewController: UIViewController {
         navigationItem.hidesBackButton = true
 
         imageView.image = UIImage(systemName: "checkmark.circle")?.withSymbolWeightConfiguration(.thin)
-        imageView.tintColor = Color.successColor
+        imageView.tintColor = Color.success
 
         titleLabel.font = Font.bold(.header)
-        titleLabel.textColor = Color.mainForegroundColor
+        titleLabel.textColor = Color.mainForeground
         titleLabel.numberOfLines = 0
         titleLabel.text = "Great,"
 
         descriptionLabel.font = Font.regular(.title)
-        descriptionLabel.textColor = Color.mainForegroundColor
+        descriptionLabel.textColor = Color.mainForeground
         descriptionLabel.numberOfLines = 0
         if let addedInsurance = addedInsurance {
             descriptionLabel.text = String(format: "We found your insurance at %@", addedInsurance.insuranceProvider.displayName)
@@ -77,33 +77,33 @@ final class AddInsuranceConfirmationViewController: UIViewController {
         cardView.backgroundColor = .clear
         cardView.layoutMargins = .init(top: 16, left: 32, bottom: 16, right: 32)
 
-        cardContentView.backgroundColor = Color.mainBackgroundColor
+        cardContentView.backgroundColor = Color.mainBackground
         cardContentView.layer.shadowRadius = 15
         cardContentView.layer.shadowOffset = CGSize(width: 0, height: 8)
         cardContentView.layer.shadowColor = UIColor.black.cgColor
         cardContentView.layer.shadowOpacity = 0.08
 
         insuranceLabel.font = Font.semiBold(.title)
-        insuranceLabel.textColor = Color.mainForegroundColor
+        insuranceLabel.textColor = Color.mainForeground
         insuranceLabel.numberOfLines = 0
         insuranceLabel.text = addedInsurance?.insuranceType.description
 
         addressLabel.font = Font.regular(.label)
-        addressLabel.textColor = Color.mainForegroundColor
+        addressLabel.textColor = Color.mainForeground
         addressLabel.numberOfLines = 0
         addressLabel.text = addedInsurance?.address
 
         badgeLabel.font = Font.regular(.label)
         badgeLabel.textAlignment = .center
-        badgeLabel.textColor = Color.mainBackgroundColor
+        badgeLabel.textColor = Color.mainBackground
         badgeLabel.layer.cornerRadius = 16
         badgeLabel.layer.backgroundColor = UIColor.red.cgColor
         badgeLabel.text = "7"
 
         doneButton.setTitle("Add to Holk", for: .normal)
-        doneButton.backgroundColor = Color.mainHighlightColor
+        doneButton.backgroundColor = Color.mainHighlight
         doneButton.titleLabel?.font = Font.semiBold(.subtitle)
-        doneButton.set(color: Color.mainForegroundColor)
+        doneButton.set(color: Color.mainForeground)
         doneButton.addTarget(self, action: #selector(submit(_:)), for: .touchUpInside)
 
         setupLayout()

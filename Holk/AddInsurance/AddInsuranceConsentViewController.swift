@@ -49,10 +49,10 @@ final class AddInsuranceConsentViewController: UIViewController {
 
         view.layoutMargins.left = 40
         view.layoutMargins.right = 40
-        view.backgroundColor = Color.mainBackgroundColor
+        view.backgroundColor = Color.mainBackground
 
         headerLabel.font = Font.bold(.header)
-        headerLabel.textColor = Color.mainForegroundColor
+        headerLabel.textColor = Color.mainForeground
         headerLabel.textAlignment = .left
         headerLabel.text = "Add your insurance"
         headerLabel.numberOfLines = 0
@@ -61,7 +61,7 @@ final class AddInsuranceConsentViewController: UIViewController {
         descriptionTextView.isScrollEnabled = false
         descriptionTextView.isEditable = false
         descriptionTextView.linkTextAttributes = [
-            .foregroundColor: Color.landingBackgroundColor,
+            .foregroundColor: Color.landingBackground,
             .underlineStyle: NSUnderlineStyle.single.rawValue
         ]
         let text = "We will fetch your insurance from %@. \n[Our terms and policies](http://google.com)"
@@ -69,7 +69,7 @@ final class AddInsuranceConsentViewController: UIViewController {
         descriptionTextView.attributedText = Parser.parse(
             markdownString: descriptionText,
             font: Font.regular(.label),
-            textColor: Color.mainForegroundColor
+            textColor: Color.mainForeground
         )
 
         bankIDIconView.image = UIImage(named: "BankID")
@@ -78,7 +78,7 @@ final class AddInsuranceConsentViewController: UIViewController {
         nextButton.contentVerticalAlignment = .fill
         nextButton.contentHorizontalAlignment = .fill
         nextButton.set(
-            color: Color.mainForegroundColor,
+            color: Color.mainForeground,
             image: UIImage(systemName: "arrow.right.circle")?.withSymbolWeightConfiguration(.ultraLight)
         )
         nextButton.addTarget(self, action: #selector(nextButtonTapped(_:)), for: .touchUpInside)

@@ -31,26 +31,28 @@ final class InsuranceGapsCollectionViewCell: UICollectionViewCell {
     }
 
     private func setup() {
-        contentView.backgroundColor = Color.mainForegroundColor
+        contentView.backgroundColor = Color.mainForeground
         contentView.layer.cornerRadius = 16
         contentView.layer.cornerCurve = .continuous
 
-        iconView.image = UIImage(systemName: "bell")
+        iconView.image = UIImage(systemName: "bell")?.withSymbolWeightConfiguration(.light)
+        iconView.tintColor = Color.secondaryLabel
         iconView.translatesAutoresizingMaskIntoConstraints = false
 
         titleLabel.setStyleGuide(.cardHeader2)
         titleLabel.numberOfLines = 0
-        titleLabel.textColor = Color.secondaryHighlightColor
+        titleLabel.textColor = Color.gapsLabel
         titleLabel.textAlignment = .center
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
         tagLabel.setStyleGuide(.header7)
         tagLabel.numberOfLines = 0
-        tagLabel.textColor = Color.secondaryBackgroundColor
+        tagLabel.textColor = Color.secondaryLabel
         tagLabel.textAlignment = .center
         tagLabel.translatesAutoresizingMaskIntoConstraints = false
 
         chevronView.image = UIImage(systemName: "chevron.right")
+        chevronView.tintColor = Color.secondaryLabel
         chevronView.translatesAutoresizingMaskIntoConstraints = false
 
         setupLayout()
@@ -66,9 +68,9 @@ final class InsuranceGapsCollectionViewCell: UICollectionViewCell {
             iconView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             iconView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 24),
             iconView.widthAnchor.constraint(equalTo: iconView.heightAnchor),
-            iconView.heightAnchor.constraint(equalToConstant: 32),
+            iconView.heightAnchor.constraint(equalToConstant: 42),
 
-            titleLabel.topAnchor.constraint(equalTo: iconView.bottomAnchor, constant: 32),
+            titleLabel.topAnchor.constraint(equalTo: iconView.bottomAnchor, constant: 16),
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
             titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
 

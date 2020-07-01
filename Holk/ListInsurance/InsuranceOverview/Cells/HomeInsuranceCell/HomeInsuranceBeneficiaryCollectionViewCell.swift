@@ -34,24 +34,24 @@ final class HomeInsuranceBeneficiaryCollectionViewCell: UICollectionViewCell {
         contentView.layoutMargins = .init(top: 0, left: 6, bottom: 0, right: 6)
 
         titleLabel.text = "Gäller för"
-        titleLabel.textColor = Color.mainForegroundColor
+        titleLabel.textColor = Color.mainForeground
         titleLabel.setStyleGuide(.header6)
         titleLabel.numberOfLines = 0
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        usernameLabel.textColor = Color.mainForegroundColor
+        usernameLabel.textColor = Color.mainForeground
         usernameLabel.setStyleGuide(.body2)
         usernameLabel.numberOfLines = 0
         usernameLabel.translatesAutoresizingMaskIntoConstraints = false
 
         chevronView.image = UIImage(systemName: "chevron.right")
-        chevronView.tintColor = Color.mainForegroundColor
+        chevronView.tintColor = Color.mainForeground
         chevronView.translatesAutoresizingMaskIntoConstraints = false
 
-        topSeparatorLine.backgroundColor = Color.placeHolderColor
+        topSeparatorLine.backgroundColor = Color.placeHolder
         topSeparatorLine.translatesAutoresizingMaskIntoConstraints = false
 
-        bottomSeparatorLine.backgroundColor = Color.placeHolderColor
+        bottomSeparatorLine.backgroundColor = Color.placeHolder
         bottomSeparatorLine.translatesAutoresizingMaskIntoConstraints = false
 
         contentView.addSubview(titleLabel)

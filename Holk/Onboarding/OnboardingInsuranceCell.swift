@@ -28,7 +28,7 @@ final class OnboardingInsuranceCell: UITableViewCell {
                 }
                 let image = UIImage(systemName: "chevron.right")?.withRenderingMode(.alwaysTemplate)
                 let detailDisclosureView = UIImageView(image: image)
-                detailDisclosureView.tintColor = Color.mainForegroundColor
+                detailDisclosureView.tintColor = Color.mainForeground
                 accessoryView = detailDisclosureView
             }
             updateColor()
@@ -48,12 +48,12 @@ final class OnboardingInsuranceCell: UITableViewCell {
     private func setup() {
         layoutMargins = .init(top: 12, left: 36, bottom: 12, right: 36)
         selectionStyle = .none
-        backgroundColor = Color.mainBackgroundColor
+        backgroundColor = Color.mainBackground
         contentView.backgroundColor = .clear
         
         let image = UIImage(systemName: "chevron.right")?.withRenderingMode(.alwaysTemplate)
         let detailDisclosureView = UIImageView(image: image)
-        detailDisclosureView.tintColor = Color.mainForegroundColor
+        detailDisclosureView.tintColor = Color.mainForeground
         accessoryView = detailDisclosureView
         
         contentView.addSubview(stackView)
@@ -108,9 +108,9 @@ final class OnboardingInsuranceCell: UITableViewCell {
     }
     
     private func updateColor() {
-        iconView.tintColor = isUpcoming ? Color.placeHolderColor : Color.mainForegroundColor
-        titleLabel.textColor = isUpcoming ? Color.placeHolderColor : Color.mainForegroundColor
-        comingUpLabel.textColor = isUpcoming ? Color.placeHolderColor : Color.mainForegroundColor
+        iconView.tintColor = isUpcoming ? Color.placeHolder : Color.mainForeground
+        titleLabel.textColor = isUpcoming ? Color.placeHolder : Color.mainForeground
+        comingUpLabel.textColor = isUpcoming ? Color.placeHolder : Color.mainForeground
     }
     
     func configure(title: String, image: UIImage? = nil, isUpcoming: Bool = false) {

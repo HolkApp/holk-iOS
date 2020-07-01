@@ -19,11 +19,11 @@ final class HomeInsuranceHeaderView: UICollectionReusableView {
         backgroundColor = .clear
 
         titleLabel.setStyleGuide(.header4)
-        titleLabel.textColor = Color.mainForegroundColor
+        titleLabel.textColor = Color.mainForeground
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
         descriptionLabel.setStyleGuide(.subHeaders1)
-        descriptionLabel.textColor = Color.mainForegroundColor
+        descriptionLabel.textColor = Color.mainForeground
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
 
         addSubview(titleLabel)

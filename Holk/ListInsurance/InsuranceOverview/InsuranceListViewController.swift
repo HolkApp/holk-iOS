@@ -57,7 +57,7 @@ final class InsuranceListViewController: UICollectionViewController {
 
         navigationController?.navigationBar.layoutMargins.left = 24
         navigationController?.navigationBar.layoutMargins.right = 24
-        navigationController?.navigationBar.barTintColor = Color.insuranceBackgroundColor
+        navigationController?.navigationBar.barTintColor = Color.insuranceBackground
         navigationController?.navigationBar.shadowImage = UIImage()
     }
 
@@ -76,7 +76,7 @@ final class InsuranceListViewController: UICollectionViewController {
         navigationController?.navigationBar.titleTextAttributes = [.font: titleFont]
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "profile"), style: .plain, target: self, action: #selector(profileTapped(sender:)))
 
-        view.backgroundColor = Color.insuranceBackgroundColor
+        view.backgroundColor = Color.insuranceBackground
         view.layoutMargins = .zero
 
         collectionView.backgroundColor = .clear

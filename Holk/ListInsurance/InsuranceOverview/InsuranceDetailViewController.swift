@@ -35,12 +35,12 @@ final class InsuranceDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        navigationController?.navigationBar.barTintColor = Color.secondaryBackgroundColor
+        navigationController?.navigationBar.barTintColor = Color.secondaryBackground
     }
 
     private func setup() {
         navigationItem.largeTitleDisplayMode = .never
-        view.backgroundColor = Color.secondaryBackgroundColor
+        view.backgroundColor = Color.secondaryBackground
 
         ringChart.dataSource = self
         ringChart.translatesAutoresizingMaskIntoConstraints = false
@@ -115,11 +115,11 @@ extension InsuranceDetailViewController: HolkRingChartDataSource {
 
     func ringChart(_ ringChart: HolkRingChart, colorForSegmentAt index: Int) -> UIColor? {
         if index == 0 {
-            return Color.mainForegroundColor
+            return Color.mainForeground
         } else if index == 1 {
-            return Color.mainHighlightColor
+            return Color.mainHighlight
         } else if index == 2 {
-            return Color.successColor
+            return Color.success
         } else if index == 3 {
             return .green
         } else if index == 4 {

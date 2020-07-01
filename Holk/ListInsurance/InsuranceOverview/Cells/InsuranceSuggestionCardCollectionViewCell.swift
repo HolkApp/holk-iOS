@@ -35,7 +35,7 @@ class InsuranceSuggestionCardCollectionViewCell: UICollectionViewCell {
 
     override var isHighlighted: Bool {
         didSet {
-            suggestionView.backgroundColor = isHighlighted ? Color.suggestionCardPressDownBackgroundColor : Color.suggestionCardBackgroundColor
+            suggestionView.backgroundColor = isHighlighted ? Color.suggestionCardPressDownBackground : Color.suggestionCardBackground
         }
     }
 
@@ -59,14 +59,14 @@ class InsuranceSuggestionCardCollectionViewCell: UICollectionViewCell {
 
             suggestionLabel.text = "Luckor"
             suggestionValueLabel.text = suggestions.flatMap { String($0.gaps.count) }
-            suggestionValueLabel.textColor = Color.mainForegroundColor
+            suggestionValueLabel.textColor = Color.mainForeground
         case .thinkOf:
             suggestionImageView.image = UIImage(named: "light")
             suggestionIllustrationView.addArrangedSubview(suggestionImageView)
 
             suggestionLabel.text = "Tänk på"
             suggestionValueLabel.text = suggestions.flatMap { String($0.thinkOfs.count) }
-            suggestionValueLabel.textColor = Color.mainForegroundColor
+            suggestionValueLabel.textColor = Color.mainForeground
         }
     }
 
@@ -75,14 +75,14 @@ class InsuranceSuggestionCardCollectionViewCell: UICollectionViewCell {
         backgroundColor = .clear
 
         suggestionView.layoutMargins = .init(top: 8, left: 12, bottom: 8, right: 12)
-        suggestionView.backgroundColor = Color.suggestionCardBackgroundColor
+        suggestionView.backgroundColor = Color.suggestionCardBackground
         suggestionView.layer.cornerRadius = 8
         suggestionView.layer.cornerCurve = .continuous
         suggestionView.translatesAutoresizingMaskIntoConstraints = false
 
         suggestionValueLabel.cornerRadius = 10
         suggestionValueLabel.setStyleGuide(.numbers1)
-        suggestionValueLabel.backgroundColor = Color.secondaryBackgroundColor
+        suggestionValueLabel.backgroundColor = Color.secondaryBackground
         suggestionValueLabel.textAlignment = .center
         suggestionValueLabel.translatesAutoresizingMaskIntoConstraints = false
 
@@ -93,7 +93,7 @@ class InsuranceSuggestionCardCollectionViewCell: UICollectionViewCell {
         suggestionIllustrationView.translatesAutoresizingMaskIntoConstraints = false
 
         suggestionLabel.setStyleGuide(.body1)
-        suggestionLabel.textColor = Color.mainForegroundColor
+        suggestionLabel.textColor = Color.mainForeground
         suggestionLabel.numberOfLines = 0
         suggestionLabel.translatesAutoresizingMaskIntoConstraints = false
 

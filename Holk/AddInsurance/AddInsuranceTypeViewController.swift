@@ -40,10 +40,10 @@ final class AddInsuranceTypeViewController: UIViewController {
     private func setup() {
         navigationItem.title = "Start finding your gaps"
 
-        view.backgroundColor = Color.mainBackgroundColor
+        view.backgroundColor = Color.mainBackground
 
         headerLabel.font = Font.bold(.header)
-        headerLabel.textColor = Color.mainForegroundColor
+        headerLabel.textColor = Color.mainForeground
         headerLabel.textAlignment = .left
         headerLabel.text = "Pick insurance"
         headerLabel.numberOfLines = 0
@@ -51,7 +51,7 @@ final class AddInsuranceTypeViewController: UIViewController {
         tableView.register(OnboardingInsuranceCell.self, forCellReuseIdentifier: OnboardingInsuranceCell.identifier)
         tableView.backgroundColor = .clear
         tableView.showsVerticalScrollIndicator = false
-        tableView.separatorColor = Color.secondaryForegroundColor
+        tableView.separatorColor = Color.secondaryForeground
         tableView.alwaysBounceVertical = false
         tableView.estimatedRowHeight = 72
         tableView.delegate = self

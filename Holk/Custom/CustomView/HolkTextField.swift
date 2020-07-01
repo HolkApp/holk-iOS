@@ -202,7 +202,7 @@ private extension HolkTextField {
         underlineLayer.backgroundColor = tintColor.cgColor //Color.separator.cgColor
         underlineLayer.lineWidth = lineWidth
         underlineLayer.fillColor = UIColor.clear.cgColor
-        underlineLayer.strokeColor = Color.mainForegroundColor.cgColor
+        underlineLayer.strokeColor = Color.mainForeground.cgColor
         underlineLayer.strokeEnd = 0.5
         underlineLayer.strokeStart = 0.5
         

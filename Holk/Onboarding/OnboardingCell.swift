@@ -39,7 +39,7 @@ final class OnboardingCell: UICollectionViewCell {
     }
 
     private func setup() {
-        backgroundColor = Color.mainBackgroundColor
+        backgroundColor = Color.mainBackground
         contentView.backgroundColor = .clear
     }
 

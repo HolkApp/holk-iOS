@@ -32,36 +32,36 @@ class OnboardingInfoViewController: UIViewController {
     }
     
     private func setup() {
-        view.backgroundColor = Color.mainBackgroundColor
+        view.backgroundColor = Color.mainBackground
 
         titleLabel.text = "Så här funkar det"
         titleLabel.font = Font.extraBold(.title)
-        titleLabel.textColor = Color.mainForegroundColor
+        titleLabel.textColor = Color.mainForeground
         titleLabel.numberOfLines = 0
         subtitleLabel.text = "Först granskar och analyseriar vi din försäkring och sedan jämför vi den med hur ditt vardagsliv ser ut."
         subtitleLabel.font = Font.regular(.label)
-        subtitleLabel.textColor = Color.mainForegroundColor
+        subtitleLabel.textColor = Color.mainForeground
         subtitleLabel.numberOfLines = 0
         headerLabel.text = "3 enkla steg"
         headerLabel.font = Font.semiBold(.title)
-        headerLabel.textColor = Color.mainForegroundColor
+        headerLabel.textColor = Color.mainForeground
         headerLabel.numberOfLines = 0
         loginLabel.text = "Hämta din försäkring med Bank-ID."
         loginLabel.font = Font.regular(.description)
-        loginLabel.textColor = Color.mainForegroundColor
+        loginLabel.textColor = Color.mainForeground
         loginLabel.numberOfLines = 0
         answerQuestionLabel.text = "Svara på några enkla frågor om din vardag"
         answerQuestionLabel.font = Font.regular(.description)
-        answerQuestionLabel.textColor = Color.mainForegroundColor
+        answerQuestionLabel.textColor = Color.mainForeground
         answerQuestionLabel.numberOfLines = 0
         analyseLabel.text = "Holks AI motor analyserar och letar luckor och saknade skydd som du bör tänka på."
         analyseLabel.font = Font.regular(.description)
-        analyseLabel.textColor = Color.mainForegroundColor
+        analyseLabel.textColor = Color.mainForeground
         analyseLabel.numberOfLines = 0
 
-        loginImage.image = .fontAwesomeIcon(name: .fileCheck, style: .light, textColor: Color.mainForegroundColor, size: FontAwesome.mediumIconSize)
-        answerQuestionImage.image = .fontAwesomeIcon(name: .commentAltSmile, style: .light, textColor: Color.mainForegroundColor, size: FontAwesome.mediumIconSize)
-        analyseImage.image = .fontAwesomeIcon(name: .bellExclamation, style: .light, textColor: Color.mainForegroundColor, size: FontAwesome.mediumIconSize)
+        loginImage.image = .fontAwesomeIcon(name: .fileCheck, style: .light, textColor: Color.mainForeground, size: FontAwesome.mediumIconSize)
+        answerQuestionImage.image = .fontAwesomeIcon(name: .commentAltSmile, style: .light, textColor: Color.mainForeground, size: FontAwesome.mediumIconSize)
+        analyseImage.image = .fontAwesomeIcon(name: .bellExclamation, style: .light, textColor: Color.mainForeground, size: FontAwesome.mediumIconSize)
 
         setupLayout()
     }

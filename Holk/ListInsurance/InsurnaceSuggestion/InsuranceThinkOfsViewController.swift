@@ -51,24 +51,24 @@ final class InsuranceThinkOfsViewController: UIViewController {
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.view.backgroundColor = .clear
 
-        view.backgroundColor = Color.mainBackgroundColor
+        view.backgroundColor = Color.mainBackground
 
-        iconView.tintColor = Color.mainForegroundColor
+        iconView.tintColor = Color.mainForeground
         iconView.image = UIImage(named: "light")?.withSymbolWeightConfiguration(.light)
         iconView.translatesAutoresizingMaskIntoConstraints = false
 
         titleLabel.setStyleGuide(.header4)
         titleLabel.text = "Tänk på"
-        titleLabel.textColor = Color.mainForegroundColor
+        titleLabel.textColor = Color.mainForeground
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
         numberLabel.setStyleGuide(.numbers3)
         numberLabel.text = "\(thinkOfs.count) st"
-        numberLabel.textColor = Color.mainForegroundColor
+        numberLabel.textColor = Color.mainForeground
         numberLabel.textAlignment = .right
         numberLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        separatorLine.backgroundColor = Color.placeHolderColor
+        separatorLine.backgroundColor = Color.placeHolder
         separatorLine.translatesAutoresizingMaskIntoConstraints = false
 
         collectionView.backgroundColor = .clear

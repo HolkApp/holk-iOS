@@ -33,21 +33,21 @@ final class HomeInsuranceCostCollectionViewCell: UICollectionViewCell {
         contentView.layoutMargins = .init(top: 0, left: 6, bottom: 0, right: 6)
 
         titleLabel.text = "Kostnad"
-        titleLabel.textColor = Color.mainForegroundColor
+        titleLabel.textColor = Color.mainForeground
         titleLabel.setStyleGuide(.header6)
         titleLabel.numberOfLines = 0
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        costLabel.textColor = Color.mainForegroundColor
+        costLabel.textColor = Color.mainForeground
         costLabel.setStyleGuide(.subHeaders4)
         costLabel.numberOfLines = 0
         costLabel.translatesAutoresizingMaskIntoConstraints = false
 
         chevronView.image = UIImage(systemName: "chevron.right")
-        chevronView.tintColor = Color.mainForegroundColor
+        chevronView.tintColor = Color.mainForeground
         chevronView.translatesAutoresizingMaskIntoConstraints = false
 
-        bottomSeparatorLine.backgroundColor = Color.placeHolderColor
+        bottomSeparatorLine.backgroundColor = Color.placeHolder
         bottomSeparatorLine.translatesAutoresizingMaskIntoConstraints = false
 
         contentView.addSubview(titleLabel)

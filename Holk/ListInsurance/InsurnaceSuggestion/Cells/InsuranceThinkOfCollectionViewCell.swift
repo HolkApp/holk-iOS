@@ -45,12 +45,12 @@ final class InsuranceThinkOfCollectionViewCell: UICollectionViewCell {
 
         subInsuranceTypeLabel.setStyleGuide(.titleHeader1)
         subInsuranceTypeLabel.numberOfLines = 0
-        subInsuranceTypeLabel.textColor = Color.secondaryBackgroundColor
+        subInsuranceTypeLabel.textColor = Color.secondaryBackground
         subInsuranceTypeLabel.translatesAutoresizingMaskIntoConstraints = false
 
         titleLabel.setStyleGuide(.cardHeader2)
         titleLabel.numberOfLines = 0
-        titleLabel.textColor = Color.secondaryHighlightColor
+        titleLabel.textColor = Color.secondaryHighlight
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
         chevronView.image = UIImage(systemName: "chevron.right")

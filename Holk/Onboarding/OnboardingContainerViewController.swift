@@ -79,21 +79,21 @@ final class OnboardingContainerViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(pauseLoadingAnimation), name: UIApplication.didEnterBackgroundNotification, object: nil)
 
         navigationController?.isNavigationBarHidden = true
-        view.backgroundColor = Color.mainBackgroundColor
+        view.backgroundColor = Color.mainBackground
 
         progressView.totalSteps = 4
-        progressView.progressTintColor = Color.mainHighlightColor
-        progressView.trackTintColor = Color.placeHolderColor
+        progressView.progressTintColor = Color.mainHighlight
+        progressView.trackTintColor = Color.placeHolder
         progressView.translatesAutoresizingMaskIntoConstraints = false
 
-        collectionView.backgroundColor = Color.mainBackgroundColor
+        collectionView.backgroundColor = Color.mainBackground
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.isScrollEnabled = false
         collectionView.dataSource = self
         collectionView.register(OnboardingCell.self, forCellWithReuseIdentifier: OnboardingCell.identifier)
 
         closeButton.set(
-            color: Color.mainForegroundColor,
+            color: Color.mainForeground,
             image: UIImage(systemName: "xmark")?.withSymbolWeightConfiguration(.medium)
         )
         closeButton.translatesAutoresizingMaskIntoConstraints = false

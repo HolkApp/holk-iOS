@@ -43,13 +43,13 @@ final class LandingPageViewController: UIPageViewController {
         loginButton.addGestureRecognizer(tapGestureRecognizer)
         loginButton.addGestureRecognizer(longPressGestureRecognizer)
 
-        loginButton.backgroundColor = Color.mainBackgroundColor
+        loginButton.backgroundColor = Color.mainBackground
         loginButton.setTitle("Logga in", for: .normal)
         loginButton.titleLabel?.font = Font.semiBold(.subtitle)
-        loginButton.set(color: Color.mainForegroundColor, image: UIImage(named: "BankID"))
+        loginButton.set(color: Color.mainForeground, image: UIImage(named: "BankID"))
         loginButton.imageToTheRightOfText()
         
-        infoButton.backgroundColor = Color.mainBackgroundColor
+        infoButton.backgroundColor = Color.mainBackground
         infoButton.titleLabel?.font = Font.semiBold(.description)
         infoButton.layer.cornerRadius = 18
         if #available(iOS 13.0, *) {
@@ -57,7 +57,7 @@ final class LandingPageViewController: UIPageViewController {
         }
         infoButton.contentEdgeInsets = UIEdgeInsets(top: 10, left: 15, bottom: 10, right: 15)
         infoButton.setTitle("Så här funkar det", for: .normal)
-        infoButton.set(color: Color.mainForegroundColor)
+        infoButton.set(color: Color.mainForeground)
         infoButton.addTarget(self, action: #selector(infoTapped(_:)), for: .touchUpInside)
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: infoButton)
@@ -66,18 +66,18 @@ final class LandingPageViewController: UIPageViewController {
         delegate = self
         
         let firstViewController = LandingInfoViewController(text: "Hitta dina luckor")
-        firstViewController.view.backgroundColor = Color.landingBackgroundColor
+        firstViewController.view.backgroundColor = Color.landingBackground
         let middleViewController = LandingInfoViewController(text: "Förstå din försäkring")
-        middleViewController.view.backgroundColor = Color.landingSecondaryBackgroundColor
-        let lastViewController = LandingInfoViewController(text: "Bli bättre skyddad", textColor: Color.mainForegroundColor)
-        lastViewController.view.backgroundColor = Color.mainHighlightColor
+        middleViewController.view.backgroundColor = Color.landingSecondaryBackground
+        let lastViewController = LandingInfoViewController(text: "Bli bättre skyddad", textColor: Color.mainForeground)
+        lastViewController.view.backgroundColor = Color.mainHighlight
         orderedViewControllers = [firstViewController, middleViewController, lastViewController]
         // First set only the next visible view controller
         setViewControllers([firstViewController], direction: .forward, animated: true, completion: nil)
         
         pageControl.numberOfPages = orderedViewControllers.count
-        pageControl.currentPageIndicatorTintColor = Color.mainForegroundColor
-        pageControl.pageIndicatorTintColor = Color.mainBackgroundColor
+        pageControl.currentPageIndicatorTintColor = Color.mainForeground
+        pageControl.pageIndicatorTintColor = Color.mainBackground
         
         setupCosntraints()
     }

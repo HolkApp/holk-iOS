@@ -54,7 +54,7 @@ final class HomeInsuranceDetailTableViewCell: UITableViewCell {
 
     override var tintColor: UIColor! {
         didSet {
-            subInsuranceIconView.tintColor = tintColor ?? Color.mainHighlightColor
+            subInsuranceIconView.tintColor = tintColor ?? Color.mainHighlight
         }
     }
 
@@ -68,9 +68,6 @@ final class HomeInsuranceDetailTableViewCell: UITableViewCell {
 
     private func setup() {
         selectionStyle = .none
-
-        // TODO: Rmeove this
-        configure(nil)
         
         backgroundColor = .clear
         layer.shadowOffset = CGSize(width: 0, height: 2)
@@ -79,43 +76,43 @@ final class HomeInsuranceDetailTableViewCell: UITableViewCell {
         layer.shadowRadius = 30
 
         contentView.backgroundColor = .clear
-        containerView.backgroundColor = Color.secondaryBackgroundColor
+        containerView.backgroundColor = Color.secondaryBackground
         containerView.layer.cornerRadius = 16
         containerView.layer.cornerCurve = .continuous
         containerView.translatesAutoresizingMaskIntoConstraints = false
 
         reminderValueLabel.font = Font.medium(.label)
-        reminderValueLabel.backgroundColor = Color.mainBackgroundColor
-        reminderValueLabel.textColor = Color.mainForegroundColor
+        reminderValueLabel.backgroundColor = Color.mainBackground
+        reminderValueLabel.textColor = Color.mainForeground
         reminderValueLabel.textAlignment = .center
         reminderValueLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        reminderImageView.tintColor = Color.mainForegroundColor.withAlphaComponent(0.35)
+        reminderImageView.tintColor = Color.mainForeground.withAlphaComponent(0.35)
         reminderImageView.translatesAutoresizingMaskIntoConstraints = false
 
         thinkOfValueLabel.font = Font.medium(.label)
-        thinkOfValueLabel.backgroundColor = Color.mainBackgroundColor
-        thinkOfValueLabel.textColor = Color.warningColor
+        thinkOfValueLabel.backgroundColor = Color.mainBackground
+        thinkOfValueLabel.textColor = Color.warning
         thinkOfValueLabel.textAlignment = .center
         thinkOfValueLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        thinkOfImageView.tintColor = Color.mainForegroundColor.withAlphaComponent(0.35)
+        thinkOfImageView.tintColor = Color.mainForeground.withAlphaComponent(0.35)
         thinkOfImageView.translatesAutoresizingMaskIntoConstraints = false
 
         ringChart.dataSource = self
         ringChart.translatesAutoresizingMaskIntoConstraints = false
 
-        subInsuranceIconView.tintColor = tintColor ?? Color.mainHighlightColor
+        subInsuranceIconView.tintColor = tintColor ?? Color.mainHighlight
         subInsuranceIconView.contentMode = .scaleAspectFit
         subInsuranceIconView.translatesAutoresizingMaskIntoConstraints = false
 
         titleLabel.numberOfLines = 0
-        titleLabel.textColor = Color.mainForegroundColor
+        titleLabel.textColor = Color.mainForeground
         titleLabel.setStyleGuide(.header5)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
         descriptionLabel.numberOfLines = 0
-        descriptionLabel.textColor = Color.mainForegroundColor.withAlphaComponent(0.5)
+        descriptionLabel.textColor = Color.mainForeground.withAlphaComponent(0.5)
         descriptionLabel.setStyleGuide(.body1)
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
 
@@ -195,9 +192,9 @@ extension HomeInsuranceDetailTableViewCell: HolkRingChartDataSource {
 
     func ringChart(_ ringChart: HolkRingChart, colorForSegmentAt index: Int) -> UIColor? {
         if index == 0 {
-            return tintColor ?? Color.mainHighlightColor
+            return tintColor ?? Color.mainHighlight
         } else {
-            return Color.placeHolderColor
+            return Color.placeHolder
         }
     }
 }
