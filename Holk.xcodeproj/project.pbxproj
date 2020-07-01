@@ -114,8 +114,8 @@
 		8FD676812492C9CC00E62820 /* SuggestionsListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD676802492C9CC00E62820 /* SuggestionsListResponse.swift */; };
 		8FD676832492CB0700E62820 /* SuggestionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD676822492CB0700E62820 /* SuggestionStore.swift */; };
 		8FD676852492CE0600E62820 /* SuggestionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD676842492CE0600E62820 /* SuggestionService.swift */; };
-		8FD676882493F7A400E62820 /* InsuranceGapsSuggestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD676872493F7A400E62820 /* InsuranceGapsSuggestionViewController.swift */; };
-		8FD6768A2493F7C300E62820 /* InsuranceThinkOfSuggestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD676892493F7C300E62820 /* InsuranceThinkOfSuggestionViewController.swift */; };
+		8FD676882493F7A400E62820 /* InsuranceGapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD676872493F7A400E62820 /* InsuranceGapsViewController.swift */; };
+		8FD6768A2493F7C300E62820 /* InsuranceThinkOfsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD676892493F7C300E62820 /* InsuranceThinkOfsViewController.swift */; };
 		8FD6768C2495107400E62820 /* InsuranceGapsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD6768B2495107400E62820 /* InsuranceGapsCollectionViewCell.swift */; };
 		8FD6768E24951C8700E62820 /* ThinkOfSuggestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD6768D24951C8700E62820 /* ThinkOfSuggestion.swift */; };
 		8FD67691249527AC00E62820 /* InsuranceSuggestionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD67690249527AC00E62820 /* InsuranceSuggestionHeaderView.swift */; };
@@ -270,8 +270,8 @@
 		8FD676802492C9CC00E62820 /* SuggestionsListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionsListResponse.swift; sourceTree = "<group>"; };
 		8FD676822492CB0700E62820 /* SuggestionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionStore.swift; sourceTree = "<group>"; };
 		8FD676842492CE0600E62820 /* SuggestionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionService.swift; sourceTree = "<group>"; };
-		8FD676872493F7A400E62820 /* InsuranceGapsSuggestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceGapsSuggestionViewController.swift; sourceTree = "<group>"; };
-		8FD676892493F7C300E62820 /* InsuranceThinkOfSuggestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InsuranceThinkOfSuggestionViewController.swift; path = "/Users/zhangmenghao/Developer/holk-iOS/Holk/ListInsurance/InsurnaceSuggestion/InsuranceThinkOfSuggestionViewController.swift"; sourceTree = "<absolute>"; };
+		8FD676872493F7A400E62820 /* InsuranceGapsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceGapsViewController.swift; sourceTree = "<group>"; };
+		8FD676892493F7C300E62820 /* InsuranceThinkOfsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InsuranceThinkOfsViewController.swift; path = "/Users/zhangmenghao/Developer/holk-iOS/Holk/ListInsurance/InsurnaceSuggestion/InsuranceThinkOfsViewController.swift"; sourceTree = "<absolute>"; };
 		8FD6768B2495107400E62820 /* InsuranceGapsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceGapsCollectionViewCell.swift; sourceTree = "<group>"; };
 		8FD6768D24951C8700E62820 /* ThinkOfSuggestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThinkOfSuggestion.swift; sourceTree = "<group>"; };
 		8FD67690249527AC00E62820 /* InsuranceSuggestionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceSuggestionHeaderView.swift; sourceTree = "<group>"; };
@@ -547,8 +547,8 @@
 		8FD676862493F78800E62820 /* InsurnaceSuggestion */ = {
 			isa = PBXGroup;
 			children = (
-				8FD676872493F7A400E62820 /* InsuranceGapsSuggestionViewController.swift */,
-				8FD676892493F7C300E62820 /* InsuranceThinkOfSuggestionViewController.swift */,
+				8FD676872493F7A400E62820 /* InsuranceGapsViewController.swift */,
+				8FD676892493F7C300E62820 /* InsuranceThinkOfsViewController.swift */,
 				8FD6768F2495279500E62820 /* Cells */,
 			);
 			path = InsurnaceSuggestion;
@@ -977,7 +977,7 @@
 				8FA941552353ADC200844D97 /* SessionCoordinator.swift in Sources */,
 				8F5BE48B2471E68D006AE8AF /* OnboardingContainerViewController.swift in Sources */,
 				8F0D4041227A0D68000BD840 /* OnboardingInfoViewController.swift in Sources */,
-				8FD676882493F7A400E62820 /* InsuranceGapsSuggestionViewController.swift in Sources */,
+				8FD676882493F7A400E62820 /* InsuranceGapsViewController.swift in Sources */,
 				8FA8F1122330148300670471 /* FontAwesome.swift in Sources */,
 				8F16DE772460A22300EFC1BD /* AddInsuranceConfirmationViewController.swift in Sources */,
 				8F5B5A3822771ED400E79A40 /* StringConstants.swift in Sources */,
@@ -991,7 +991,7 @@
 				8F16DE752460A0F200EFC1BD /* AddInsuranceConsentViewController.swift in Sources */,
 				8F25CA992337AAC100DC3B97 /* FontAwsome+UIExtensions.swift in Sources */,
 				8FD6767F2492C91A00E62820 /* GapSuggestion.swift in Sources */,
-				8FD6768A2493F7C300E62820 /* InsuranceThinkOfSuggestionViewController.swift in Sources */,
+				8FD6768A2493F7C300E62820 /* InsuranceThinkOfsViewController.swift in Sources */,
 				8FD676972496C41000E62820 /* Insurance.swift in Sources */,
 				8F65466F230DC4CC0053B3F8 /* HolkTextField.swift in Sources */,
 				8F0D403F227A0AD4000BD840 /* APIError.swift in Sources */,

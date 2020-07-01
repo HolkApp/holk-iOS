@@ -129,13 +129,13 @@ extension InsuranceListViewController {
         // TODO: Update this with real insurance
         if indexPath.section == 0 {
             if indexPath.item == 0 {
-                let insuranceGapsSuggestionViewController = InsuranceGapsSuggestionViewController(storeController: storeController)
-                insuranceGapsSuggestionViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(cancel(_:)))
-                present(UINavigationController(rootViewController: insuranceGapsSuggestionViewController), animated: true)
+                let insuranceGapsViewController = InsuranceGapsViewController(storeController: storeController)
+                insuranceGapsViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(cancel(_:)))
+                present(UINavigationController(rootViewController: insuranceGapsViewController), animated: true)
             } else {
-                let insuranceThinkOfSuggestionViewController = InsuranceThinkOfSuggestionViewController(storeController: storeController)
-                insuranceThinkOfSuggestionViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(cancel(_:)))
-                present(UINavigationController(rootViewController: insuranceThinkOfSuggestionViewController), animated: true)
+                let insuranceThinkOfsViewController = InsuranceThinkOfsViewController(storeController: storeController)
+                insuranceThinkOfsViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(cancel(_:)))
+                present(UINavigationController(rootViewController: insuranceThinkOfsViewController), animated: true)
             }
         } else {
             selectedIndexPath = indexPath
