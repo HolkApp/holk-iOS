@@ -12,12 +12,15 @@ final class InsuranceDetailViewController: UIViewController {
     // MARK: - Public variables
     let tableView = UITableView()
     let ringChart = HolkRingChart()
-    var insurance: Insurance
-    
+
     weak var coordinator: InsuranceCoordinator?
 
-    init(insurance: Insurance) {
+    private let insurance: Insurance
+    private let storeController: StoreController
+
+    init(storeController: StoreController, insurance: Insurance) {
         self.insurance = insurance
+        self.storeController = storeController
 
         super.init(nibName: nil, bundle: nil)
     }

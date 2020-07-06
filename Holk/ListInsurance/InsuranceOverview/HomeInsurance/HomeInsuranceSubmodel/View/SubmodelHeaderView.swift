@@ -10,17 +10,17 @@ import UIKit
 
 final class SubmodelHeaderView: UICollectionReusableView {
     weak var submodelsViewController: HomeinsuranceSubmodelsViewController?
-    let titleLabel = UILabel()
-    let descriptionLabel = UILabel()
-    let imageView = UIImageView()
-    let basicSubmodelsSegmentView = SubmodelSegmentView()
-    let additionalSubmodelsSegmentView = SubmodelSegmentView()
+    private let titleLabel = UILabel()
+    private let descriptionLabel = UILabel()
+    private let imageView = UIImageView()
+    private let basicSubmodelsSegmentView = SubmodelSegmentView()
+    private let additionalSubmodelsSegmentView = SubmodelSegmentView()
 
     override init(frame: CGRect) {
         super.init(frame: .zero)
 
         clipsToBounds = true
-        backgroundColor = .clear
+        backgroundColor = Color.secondaryBackground
 
         titleLabel.setStyleGuide(.header4)
         titleLabel.textAlignment = .center
