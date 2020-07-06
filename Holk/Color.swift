@@ -63,7 +63,13 @@ extension Color {
     }
 
     static var insuranceBackground: UIColor {
-        return makeColor(asset: #function)
+        return UIColor { traitCollection in
+            if traitCollection.userInterfaceStyle == .dark {
+                return makeColor(asset: .blue1)
+            } else {
+                return makeColor(asset: .blue1)
+            }
+        }
     }
 
     static var mainBackground: UIColor {
@@ -93,9 +99,9 @@ extension Color {
     static var secondaryForeground: UIColor {
         return UIColor { traitCollection in
             if traitCollection.userInterfaceStyle == .dark {
-                return makeColor(asset: .grey2)
+                return makeColor(asset: .grey4)
             } else {
-                return makeColor(asset: .grey2)
+                return makeColor(asset: .grey4)
             }
         }
     }

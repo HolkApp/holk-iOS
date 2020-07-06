@@ -84,7 +84,7 @@ final class OnboardingConfirmationViewController: UIViewController {
         cardContentView.layer.shadowOffset = CGSize(width: 0, height: 8)
         cardContentView.layer.shadowColor = UIColor.black.cgColor
         cardContentView.layer.shadowOpacity = 0.08
-        
+
         insuranceLabel.font = Font.semiBold(.title)
         insuranceLabel.textColor = Color.mainForeground
         insuranceLabel.numberOfLines = 0

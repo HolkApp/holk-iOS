@@ -51,7 +51,7 @@ final class InsuranceGapsViewController: UIViewController {
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.view.backgroundColor = .clear
 
-        view.backgroundColor = Color.mainBackground
+        view.backgroundColor = Color.secondaryBackground
 
         iconView.tintColor = Color.mainForeground
         iconView.image = UIImage(systemName: "bell")?.withSymbolWeightConfiguration(.light)
