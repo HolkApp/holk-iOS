@@ -71,6 +71,7 @@ final class HomeinsuranceSubmodelsViewController: UIViewController {
         navigationItem.largeTitleDisplayMode = .never
         
         collectionView.backgroundColor = Color.mainBackground
+        collectionView.showsVerticalScrollIndicator = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(SubmodelCollectionViewCell.self, forCellWithReuseIdentifier: SubmodelCollectionViewCell.identifier)
         collectionView.register(SubmodelHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SubmodelHeaderView.identifier)

@@ -64,6 +64,12 @@ final class SubmodelCollectionViewCell: UICollectionViewCell {
     }
 
     private func setup() {
+        layer.cornerRadius = 15
+        layer.shadowOffset = CGSize(width: 0, height: 8)
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 0.08
+
+        translatesAutoresizingMaskIntoConstraints = false
         contentView.layoutMargins = .init(top: 0, left: 18, bottom: 0, right: 18)
 
         cardView.layer.cornerRadius = 10
