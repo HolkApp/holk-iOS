@@ -51,7 +51,7 @@ final class InsuranceThinkOfsViewController: UIViewController {
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.view.backgroundColor = .clear
 
-        view.backgroundColor = Color.secondaryBackground
+        view.backgroundColor = Color.mainBackground
 
         iconView.tintColor = Color.mainForeground
         iconView.image = UIImage(named: "light")?.withSymbolWeightConfiguration(.light)

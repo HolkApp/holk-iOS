@@ -73,13 +73,7 @@ extension Color {
     }
 
     static var mainBackground: UIColor {
-        return UIColor { traitCollection in
-            if traitCollection.userInterfaceStyle == .dark {
-                return makeColor(asset: .blue3)
-            } else {
-                return makeColor(asset: .blue3)
-            }
-        }
+        return makeColor(asset: #function)
     }
 
     static var secondaryBackground: UIColor {
