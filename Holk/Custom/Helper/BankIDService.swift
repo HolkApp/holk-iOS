@@ -34,18 +34,14 @@ final class BankIDService {
         start(url, successHandler, failureHandler)
     }
     
-    static func start(_ url: URL, _ successHandler: @escaping () -> Void, _ failureHandler: @escaping (URL?) -> Void) {
+    static func start(_ url: URL, _ successHandler: @escaping () -> Void, _ failureHandler: @escaping (URL) -> Void) {
         DispatchQueue.main.async {
-            if UIApplication.shared.canOpenURL(url) {
-                UIApplication.shared.open(url, options: [.universalLinksOnly: true]) { success in
-                    if success {
-                        successHandler()
-                    } else {
-                        failureHandler(url)
-                    }
+            UIApplication.shared.open(url, options: [.universalLinksOnly: false]) { success in
+                if success {
+                    successHandler()
+                } else {
+                    failureHandler(url)
                 }
-            } else {
-                failureHandler(url)
             }
         }
     }
