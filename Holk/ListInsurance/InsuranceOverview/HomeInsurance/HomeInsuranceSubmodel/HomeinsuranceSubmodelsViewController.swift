@@ -70,7 +70,7 @@ final class HomeinsuranceSubmodelsViewController: UIViewController {
     private func setup() {
         navigationItem.largeTitleDisplayMode = .never
         
-        collectionView.backgroundColor = Color.secondaryBackground
+        collectionView.backgroundColor = Color.mainBackground
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(SubmodelCollectionViewCell.self, forCellWithReuseIdentifier: SubmodelCollectionViewCell.identifier)
         collectionView.register(SubmodelHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SubmodelHeaderView.identifier)
