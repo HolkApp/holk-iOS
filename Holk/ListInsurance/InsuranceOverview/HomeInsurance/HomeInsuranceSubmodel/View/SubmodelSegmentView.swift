@@ -30,13 +30,13 @@ final class SubmodelSegmentView: UIControl {
         layoutMargins = .init(top: 0, left: 6, bottom: 0, right: 6)
 
         titleLabel.text = "Kostnad"
-        titleLabel.textColor = Color.mainForeground
+        titleLabel.textColor = Color.placeholder
         titleLabel.setStyleGuide(.titleHeader3)
         titleLabel.numberOfLines = 0
         titleLabel.textAlignment = .center
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        numberLabel.textColor = Color.mainForeground
+        numberLabel.textColor = Color.placeholder
         numberLabel.setStyleGuide(.number4)
         numberLabel.numberOfLines = 0
         numberLabel.textAlignment = .center
@@ -70,6 +70,8 @@ final class SubmodelSegmentView: UIControl {
     override var isSelected: Bool {
         didSet {
             selectionView.isHidden = !isSelected
+            numberLabel.textColor = isSelected ? Color.mainForeground : Color.placeholder
+            titleLabel.textColor = isSelected ? Color.mainForeground : Color.placeholder
         }
     }
 

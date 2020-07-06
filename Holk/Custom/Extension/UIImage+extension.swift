@@ -59,8 +59,8 @@ extension UIImage {
 extension UIImage {
     convenience init?(insuranceSegment: Insurance.Segment) {
         switch insuranceSegment.kind {
-        case .travel: self.init(named: "Plane")
-        case .home:  self.init(named: "Heart")
+        case .travel: self.init(named: "travel")
+        case .home:  self.init(named: "goods")
         case .pets: self.init(named: "Shoe")
         }
     }

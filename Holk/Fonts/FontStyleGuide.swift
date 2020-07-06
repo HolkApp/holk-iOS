@@ -23,11 +23,14 @@ enum FontStyleGuide {
     case cardHeader1
     case cardHeader2
     case titleHeader1
+    case titleHeader2
+    case titleHeader3
     case body1
     case body2
     case body3
-    case numbers1
-    case numbers2
-    case numbers3
+    case number1
+    case number2
+    case number3
+    case number4
     case largeNumber
 }

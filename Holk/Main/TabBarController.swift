@@ -42,12 +42,12 @@ final class TabBarController: UITabBarController {
         
         tabBar.barTintColor = Color.secondaryBackground
         tabBar.unselectedItemTintColor = Color.mainForeground
-        tabBar.tintColor = Color.tabBarItemSelected
+        tabBar.tintColor = Color.secondaryHighlight
 
         let addMoreImage = UIImage(systemName: "plus")?.withSymbolWeightConfiguration(.regular, pointSize: 30)
         addMoreButton.set(color: Color.secondaryBackground, image: addMoreImage)
         addMoreButton.addTarget(self, action: #selector(addMoreTapped(sender:)), for: .touchUpInside)
-        addMoreButton.backgroundColor = Color.tabBarItemSelected
+        addMoreButton.backgroundColor = Color.secondaryHighlight
         addMoreButton.layer.cornerRadius = 26
         addMoreButton.clipsToBounds = true
         addMoreButton.translatesAutoresizingMaskIntoConstraints = false

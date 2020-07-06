@@ -108,9 +108,9 @@ final class OnboardingInsuranceCell: UITableViewCell {
     }
     
     private func updateColor() {
-        iconView.tintColor = isUpcoming ? Color.placeHolder : Color.mainForeground
-        titleLabel.textColor = isUpcoming ? Color.placeHolder : Color.mainForeground
-        comingUpLabel.textColor = isUpcoming ? Color.placeHolder : Color.mainForeground
+        iconView.tintColor = isUpcoming ? Color.placeholder : Color.mainForeground
+        titleLabel.textColor = isUpcoming ? Color.placeholder : Color.mainForeground
+        comingUpLabel.textColor = isUpcoming ? Color.placeholder : Color.mainForeground
     }
     
     func configure(title: String, image: UIImage? = nil, isUpcoming: Bool = false) {

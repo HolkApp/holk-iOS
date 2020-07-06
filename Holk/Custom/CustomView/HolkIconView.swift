@@ -34,10 +34,10 @@ final class HolkIconView: UIView {
         addSubview(imageView)
 
         NSLayoutConstraint.activate([
-            imageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 8),
-            imageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 8),
-            imageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8),
-            imageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -8),
+            imageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 12),
+            imageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 12),
+            imageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -12),
+            imageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -12),
         ])
     }
 

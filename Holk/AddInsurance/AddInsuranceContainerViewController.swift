@@ -61,7 +61,7 @@ final class AddInsuranceContainerViewController: UIViewController {
 
         progressView.totalSteps = 4
         progressView.progressTintColor = Color.mainHighlight
-        progressView.trackTintColor = Color.placeHolder
+        progressView.trackTintColor = Color.placeholder
         progressView.translatesAutoresizingMaskIntoConstraints = false
 
         collectionView.backgroundColor = Color.mainBackground

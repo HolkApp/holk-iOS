@@ -8,8 +8,8 @@
 
 import Foundation
 
-struct Insurance: Codable {
-    struct Segment {
+struct Insurance: Codable, Hashable, Equatable {
+    struct Segment: Hashable {
         let kind: Kind
         let description: String
 

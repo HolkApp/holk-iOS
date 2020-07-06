@@ -9,8 +9,8 @@
 import UIKit
 
 final class InsuranceThinkOfsViewController: UIViewController {
-    enum Section {
-      case thinkOf
+    enum Section: CaseIterable {
+        case thinkOf
     }
 
     typealias DataSource = UICollectionViewDiffableDataSource<Section, ThinkOfSuggestion>
@@ -62,13 +62,13 @@ final class InsuranceThinkOfsViewController: UIViewController {
         titleLabel.textColor = Color.mainForeground
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        numberLabel.setStyleGuide(.numbers3)
+        numberLabel.setStyleGuide(.number3)
         numberLabel.text = "\(thinkOfs.count) st"
         numberLabel.textColor = Color.mainForeground
         numberLabel.textAlignment = .right
         numberLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        separatorLine.backgroundColor = Color.placeHolder
+        separatorLine.backgroundColor = Color.placeholder
         separatorLine.translatesAutoresizingMaskIntoConstraints = false
 
         collectionView.backgroundColor = .clear
@@ -138,10 +138,10 @@ extension InsuranceThinkOfsViewController {
     }
 
     func applySnapshot(animatingDifferences: Bool = true) {
-      var snapshot = Snapshot()
-      snapshot.appendSections([.thinkOf])
-      snapshot.appendItems(thinkOfs)
-      dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
+        var snapshot = Snapshot()
+        snapshot.appendSections(Section.allCases)
+        snapshot.appendItems(thinkOfs)
+        dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
 }
 

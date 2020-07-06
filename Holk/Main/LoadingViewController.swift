@@ -20,7 +20,7 @@ final class LoadingViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(pauseLoadingAnimation), name: UIApplication.didEnterBackgroundNotification, object: nil)
 
         loadingSpinner.update(.spinner)
-        loadingSpinner.trackTintColor = Color.placeHolder
+        loadingSpinner.trackTintColor = Color.placeholder
         loadingSpinner.spinnerRadius = Constants.loadingSpinnerSize / 2
 
         view.backgroundColor = .white

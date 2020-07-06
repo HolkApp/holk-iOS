@@ -82,13 +82,13 @@ class NewUserViewController: UIViewController {
         descriptionLabel.numberOfLines = 0
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        emailTextField.helpColor = Color.placeHolder
+        emailTextField.helpColor = Color.placeholder
         emailTextField.placeholder = "E-post adress"
         emailTextField.textColor = Color.mainForeground
         emailTextField.tintColor = Color.mainForeground
         emailTextField.returnKeyType = .continue
         emailTextField.delegate = self
-        emailTextField.placeholderTextColor = Color.placeHolder
+        emailTextField.placeholderTextColor = Color.placeholder
         
         doneButton.contentVerticalAlignment = .fill
         doneButton.contentHorizontalAlignment = .fill

@@ -188,14 +188,9 @@ extension HomeinsuranceCollectionViewCell: HolkRingChartDataSource {
     }
 
     func ringChart(_ ringChart: HolkRingChart, iconForSegmentAt index: Int) -> UIImage? {
-        if index == 0 {
-            return UIImage(named: "Heart")?.withRenderingMode(.alwaysTemplate)
-        } else if index == 1 {
-            return UIImage(named: "Plane")?.withRenderingMode(.alwaysTemplate)
-        } else if index == 2{
-            return UIImage(named: "Shoe")?.withRenderingMode(.alwaysTemplate)
-        } else {
-            return UIImage(named: "Car")?.withRenderingMode(.alwaysTemplate)
-        }
+        let segment = insurance?.segments[index]
+        return segment.flatMap(
+            UIImage.init(insuranceSegment: )
+        )?.withRenderingMode(.alwaysTemplate)
     }
 }

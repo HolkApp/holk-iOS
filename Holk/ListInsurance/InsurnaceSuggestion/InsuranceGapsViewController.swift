@@ -9,8 +9,8 @@
 import UIKit
 
 final class InsuranceGapsViewController: UIViewController {
-    enum Section {
-      case gap
+    enum Section: CaseIterable {
+        case gap
     }
 
     typealias DataSource = UICollectionViewDiffableDataSource<Section, GapSuggestion>
@@ -62,13 +62,13 @@ final class InsuranceGapsViewController: UIViewController {
         titleLabel.textColor = Color.mainForeground
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        numberLabel.setStyleGuide(.numbers3)
+        numberLabel.setStyleGuide(.number3)
         numberLabel.text = "\(gaps.count) st"
         numberLabel.textColor = Color.mainForeground
         numberLabel.textAlignment = .right
         numberLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        separatorLine.backgroundColor = Color.placeHolder
+        separatorLine.backgroundColor = Color.placeholder
         separatorLine.translatesAutoresizingMaskIntoConstraints = false
 
         collectionView.backgroundColor = .clear
@@ -138,7 +138,7 @@ extension InsuranceGapsViewController {
 
     func applySnapshot(animatingDifferences: Bool = true) {
         var snapshot = Snapshot()
-        snapshot.appendSections([.gap])
+        snapshot.appendSections(Section.allCases)
         snapshot.appendItems(gaps)
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }

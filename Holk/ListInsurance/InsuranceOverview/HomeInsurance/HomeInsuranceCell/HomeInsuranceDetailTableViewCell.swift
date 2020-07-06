@@ -194,7 +194,7 @@ extension HomeInsuranceDetailTableViewCell: HolkRingChartDataSource {
         if index == 0 {
             return tintColor ?? Color.mainHighlight
         } else {
-            return Color.placeHolder
+            return Color.placeholder
         }
     }
 }

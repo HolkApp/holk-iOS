@@ -1,6 +1,6 @@
 import Foundation
 
-struct InsuranceProvider: Codable {
+struct InsuranceProvider: Codable, Hashable {
     enum InsuranceIssuerStatus: String, Codable {
         case available = "AVAILABLE"
         case underImplementation = "UNDER_IMPLEMENTATION"

@@ -15,7 +15,7 @@ class HolkRoundBackgroundLabel: UILabel {
         super.init(frame: frame)
 
         clipsToBounds = true
-        layoutMargins = .init(top: 0, left: 8, bottom: 0, right: 8)
+        layoutMargins = .init(top: 0, left: 12, bottom: 0, right: 12)
     }
 
     required init?(coder: NSCoder) {

@@ -40,7 +40,8 @@ final class InsuranceThinkOfCollectionViewCell: UICollectionViewCell {
         iconView.tintColor = Color.mainForeground
         iconView.translatesAutoresizingMaskIntoConstraints = false
 
-        thinkOfTypeIconView.imageView.image = UIImage(named: "thinkOf")
+        // TODO:
+        thinkOfTypeIconView.imageView.image = UIImage(named: "travel")
         thinkOfTypeIconView.backgroundColor = Color.thinkOfIconBackground
         thinkOfTypeIconView.translatesAutoresizingMaskIntoConstraints = false
 
@@ -76,8 +77,8 @@ final class InsuranceThinkOfCollectionViewCell: UICollectionViewCell {
 
             thinkOfTypeIconView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 24),
             thinkOfTypeIconView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
-            thinkOfTypeIconView.widthAnchor.constraint(equalToConstant: 48),
-            thinkOfTypeIconView.heightAnchor.constraint(equalToConstant: 48),
+            thinkOfTypeIconView.widthAnchor.constraint(equalToConstant: 56),
+            thinkOfTypeIconView.heightAnchor.constraint(equalToConstant: 56),
 
             subInsuranceTypeLabel.topAnchor.constraint(equalTo: thinkOfTypeIconView.bottomAnchor, constant: 14),
             subInsuranceTypeLabel.leadingAnchor.constraint(equalTo: thinkOfTypeIconView.leadingAnchor),

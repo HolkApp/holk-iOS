@@ -78,7 +78,7 @@ final class InsuranceDetailViewController: UIViewController {
 // MARK: - UITableViewDelegate
 extension InsuranceDetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let viewController = UIViewController()
+        let viewController = HomeinsuranceSubmodelsViewController(storeController: storeController, insurance: insurance)
         viewController.title = "Subinsurance Title"
         viewController.view.backgroundColor = .white
         present(UINavigationController(rootViewController: viewController), animated: true)
@@ -134,14 +134,7 @@ extension InsuranceDetailViewController: HolkRingChartDataSource {
     }
 
     func ringChart(_ ringChart: HolkRingChart, iconForSegmentAt index: Int) -> UIImage? {
-        if index == 0 {
-            return UIImage(named: "Heart")?.withRenderingMode(.alwaysTemplate)
-        } else if index == 1 {
-            return UIImage(named: "Plane")?.withRenderingMode(.alwaysTemplate)
-        } else if index == 2{
-            return UIImage(named: "Shoe")?.withRenderingMode(.alwaysTemplate)
-        } else {
-            return UIImage(named: "Car")?.withRenderingMode(.alwaysTemplate)
-        }
+        let segment = insurance.segments[index]
+        return UIImage.init(insuranceSegment: segment)?.withRenderingMode(.alwaysTemplate)
     }
 }
