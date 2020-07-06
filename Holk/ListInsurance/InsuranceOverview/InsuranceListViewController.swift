@@ -55,6 +55,8 @@ final class InsuranceListViewController: UICollectionViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        navigationItem.largeTitleDisplayMode = .always
+        
         navigationController?.navigationBar.layoutMargins.left = 24
         navigationController?.navigationBar.layoutMargins.right = 24
         navigationController?.navigationBar.barTintColor = Color.insuranceBackground
@@ -70,10 +72,17 @@ final class InsuranceListViewController: UICollectionViewController {
     
     private func setup() {
         title = "Försäkringar"
+
         let largeTitleFont = Font.font(name: .poppins, weight: .semiBold, size: 30)
-        navigationController?.navigationBar.largeTitleTextAttributes = [.font: largeTitleFont]
+        navigationController?.navigationBar.largeTitleTextAttributes = [
+            .font: largeTitleFont,
+            .foregroundColor: Color.mainForeground
+        ]
         let titleFont = Font.font(name: .poppins, weight: .semiBold, size: 20)
-        navigationController?.navigationBar.titleTextAttributes = [.font: titleFont]
+        navigationController?.navigationBar.titleTextAttributes = [
+            .font: titleFont,
+            .foregroundColor: Color.mainForeground
+        ]
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "profile"), style: .plain, target: self, action: #selector(profileTapped(sender:)))
 
         view.backgroundColor = Color.insuranceBackground
