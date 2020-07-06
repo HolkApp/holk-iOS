@@ -98,7 +98,7 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         clockImageView.tintColor = Color.mainForeground
         clockImageView.translatesAutoresizingMaskIntoConstraints = false
 
-        daysLabel.setStyleGuide(.numbers2)
+        daysLabel.setStyleGuide(.number2)
         daysLabel.textColor = Color.mainForeground
         daysLabel.numberOfLines = 0
         daysLabel.textAlignment = .center
