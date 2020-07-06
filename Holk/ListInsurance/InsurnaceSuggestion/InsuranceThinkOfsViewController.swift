@@ -78,7 +78,6 @@ final class InsuranceThinkOfsViewController: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
 
         setupLayout()
-
         applySnapshot(animatingDifferences: false)
     }
 

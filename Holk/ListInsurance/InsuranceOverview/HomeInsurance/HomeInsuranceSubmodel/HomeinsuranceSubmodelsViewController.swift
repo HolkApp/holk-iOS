@@ -68,6 +68,8 @@ final class HomeinsuranceSubmodelsViewController: UIViewController {
     }
 
     private func setup() {
+        navigationItem.largeTitleDisplayMode = .never
+        
         collectionView.backgroundColor = Color.secondaryBackground
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(SubmodelCollectionViewCell.self, forCellWithReuseIdentifier: SubmodelCollectionViewCell.identifier)
@@ -76,7 +78,7 @@ final class HomeinsuranceSubmodelsViewController: UIViewController {
 
         NSLayoutConstraint.activate([
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
@@ -141,7 +143,7 @@ extension HomeinsuranceSubmodelsViewController {
     }
 
     private func makeSubmodelSectionHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
-        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(260))
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(260))
         let headerElement = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
         return headerElement
     }
@@ -150,7 +152,7 @@ extension HomeinsuranceSubmodelsViewController {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(200))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(200))
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitem: item, count: 1)
         let cardSection = NSCollectionLayoutSection(group: group)
         cardSection.interGroupSpacing = 24
         cardSection.contentInsets = .init(top: 40, leading: 0, bottom: 20, trailing: 0)
