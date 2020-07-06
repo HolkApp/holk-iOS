@@ -59,7 +59,7 @@ final class HomeinsuranceSubmodelsViewController: UIViewController {
         super.viewDidLoad()
 
         setup()
-        applySnapshot()
+        applySnapshot(animatingDifferences: false)
     }
 
     func updateSelection(_ segment: SubmodelSegment) {
