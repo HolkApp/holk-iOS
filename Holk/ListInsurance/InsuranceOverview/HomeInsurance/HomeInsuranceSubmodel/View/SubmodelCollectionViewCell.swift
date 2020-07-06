@@ -34,6 +34,12 @@ final class SubmodelCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+
+        iconView.imageView.image = nil
+    }
+
     func configure(_ segment: Insurance.Segment) {
         switch segment.kind {
         case .home:
