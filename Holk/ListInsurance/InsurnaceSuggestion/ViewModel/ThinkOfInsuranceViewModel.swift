@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ThinkOfInsuranceViewModel {
+struct ThinkOfInsuranceViewModel: Hashable {
     private var insurance: Insurance
 
     var insuranceKind: Insurance.Kind

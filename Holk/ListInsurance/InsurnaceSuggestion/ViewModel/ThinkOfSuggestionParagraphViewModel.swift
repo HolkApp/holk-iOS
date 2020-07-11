@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ThinkOfSuggestionParagraphViewModel {
+struct ThinkOfSuggestionParagraphViewModel: Hashable {
     private var paragraph: Paragraph
     var icon: String
     var text: String
