@@ -72,9 +72,7 @@ class Session {
         refreshToken = nil
     }
 
-    private let dateFormatter = DateFormatter().then {
-        $0.dateFormat = "yyyy-MM-dd HH:mm:ss"
-    }
+    private let dateFormatter = DateFormatter.longDateFormatter
     private var _accessToken: String?
     private var _refreshToken: String?
     private var _expirationDateString: String?

@@ -16,6 +16,13 @@ extension DateFormatter {
         return formatter
     }()
 
+    static let longDateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        formatter.calendar = Calendar(identifier: .iso8601)
+        return formatter
+    }()
+
     static let simpleDateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
