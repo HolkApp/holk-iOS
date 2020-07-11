@@ -1,5 +1,5 @@
 //
-//  HomeinsuranceSubmodelsViewController.swift
+//  HomeinsuranceSubInsurancesViewController.swift
 //  Holk
 //
 //  Created by 张梦皓 on 2020-07-01.
@@ -8,32 +8,32 @@
 
 import UIKit
 
-final class HomeinsuranceSubmodelsViewController: UIViewController {
+final class HomeinsuranceSubInsurancesViewController: UIViewController {
     enum Section: CaseIterable {
-        case submodel
+        case subInsurance
     }
 
-    enum HomeinsuranceSubmodelSegment: Hashable {
+    enum HomeinsuranceSubInsuranceSegment: Hashable {
         case basic(Insurance.Segment)
         case additional(Insurance.Segment)
     }
 
-    enum SubmodelSegment {
+    enum SubInsuranceSegment {
         case basic
         case additional
     }
 
-    typealias DataSource = UICollectionViewDiffableDataSource<Section, HomeinsuranceSubmodelSegment>
-    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, HomeinsuranceSubmodelSegment>
+    typealias DataSource = UICollectionViewDiffableDataSource<Section, HomeinsuranceSubInsuranceSegment>
+    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, HomeinsuranceSubInsuranceSegment>
 
     // MARK: - Public Variables
     var storeController: StoreController
 
     // MARK: - Private Variables
     private let insurance: Insurance
-    private let basicSubmodel: [HomeinsuranceSubmodelSegment]
-    private let additionalSubmodel: [HomeinsuranceSubmodelSegment]
-    private var selectedSegment: SubmodelSegment = .basic
+    private let basicSubInsurance: [HomeinsuranceSubInsuranceSegment]
+    private let additionalSubInsurance: [HomeinsuranceSubInsuranceSegment]
+    private var selectedSegment: SubInsuranceSegment = .basic
     private lazy var dataSource = makeDataSource()
     private lazy var collectionView: UICollectionView = {
         let layout = makeSubinsurancesLayout()
@@ -44,9 +44,9 @@ final class HomeinsuranceSubmodelsViewController: UIViewController {
     init(storeController: StoreController, insurance: Insurance) {
         self.storeController = storeController
         self.insurance = insurance
-        basicSubmodel = insurance.segments.compactMap { HomeinsuranceSubmodelSegment.basic($0) }
+        basicSubInsurance = insurance.segments.compactMap { HomeinsuranceSubInsuranceSegment.basic($0) }
         // TODO: Update this
-        additionalSubmodel = []
+        additionalSubInsurance = []
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -62,7 +62,7 @@ final class HomeinsuranceSubmodelsViewController: UIViewController {
         applySnapshot(animatingDifferences: false)
     }
 
-    func updateSelection(_ segment: SubmodelSegment) {
+    func updateSelection(_ segment: SubInsuranceSegment) {
         selectedSegment = segment
         applySnapshot()
     }
@@ -73,8 +73,8 @@ final class HomeinsuranceSubmodelsViewController: UIViewController {
         collectionView.backgroundColor = Color.insuranceBackground
         collectionView.showsVerticalScrollIndicator = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.register(SubmodelCollectionViewCell.self, forCellWithReuseIdentifier: SubmodelCollectionViewCell.identifier)
-        collectionView.register(SubmodelHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SubmodelHeaderView.identifier)
+        collectionView.register(SubInsuranceCollectionViewCell.self, forCellWithReuseIdentifier: SubInsuranceCollectionViewCell.identifier)
+        collectionView.register(SubInsuranceHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SubInsuranceHeaderView.identifier)
         view.addSubview(collectionView)
 
         NSLayoutConstraint.activate([
@@ -87,32 +87,32 @@ final class HomeinsuranceSubmodelsViewController: UIViewController {
 }
 
 // MARK: UICollectionViewLayout
-extension HomeinsuranceSubmodelsViewController {
+extension HomeinsuranceSubInsurancesViewController {
     private func makeDataSource() -> DataSource {
         let dataSource = DataSource(
             collectionView: collectionView,
             cellProvider: { (collectionView, indexPath, segment) in
                 switch segment {
                 case .basic(let basicSegment):
-                    let submodelCollectionViewCell = collectionView.dequeueCell(ofType: SubmodelCollectionViewCell.self, indexPath: indexPath)
-                    submodelCollectionViewCell.configure(basicSegment)
-                    return submodelCollectionViewCell
+                    let subInsuranceCollectionViewCell = collectionView.dequeueCell(ofType: SubInsuranceCollectionViewCell.self, indexPath: indexPath)
+                    subInsuranceCollectionViewCell.configure(basicSegment)
+                    return subInsuranceCollectionViewCell
                 case .additional(let additionalSegment):
-                    let submodelCollectionViewCell = collectionView.dequeueCell(ofType: SubmodelCollectionViewCell.self, indexPath: indexPath)
-                    submodelCollectionViewCell.configure(additionalSegment)
-                    return submodelCollectionViewCell
+                    let subInsuranceCollectionViewCell = collectionView.dequeueCell(ofType: SubInsuranceCollectionViewCell.self, indexPath: indexPath)
+                    subInsuranceCollectionViewCell.configure(additionalSegment)
+                    return subInsuranceCollectionViewCell
                 }
         })
         dataSource.supplementaryViewProvider = ({ [weak self] (collectionView, kind, indexPath) in
             guard let self = self else { return nil }
             if kind == UICollectionView.elementKindSectionHeader {
-                let submodelHeaderView = collectionView.dequeueHeaderFooterView(
-                        type: SubmodelHeaderView.self,
+                let subInsuranceHeaderView = collectionView.dequeueHeaderFooterView(
+                        type: SubInsuranceHeaderView.self,
                         of: kind, indexPath: indexPath
                 )
-                submodelHeaderView.configure(self.insurance)
-                submodelHeaderView.submodelsViewController = self
-                return submodelHeaderView
+                subInsuranceHeaderView.configure(self.insurance)
+                subInsuranceHeaderView.subInsurancesViewController = self
+                return subInsuranceHeaderView
             } else {
                 return nil
             }
@@ -126,9 +126,9 @@ extension HomeinsuranceSubmodelsViewController {
         snapshot.appendSections(sections)
         switch selectedSegment {
         case .basic:
-            snapshot.appendItems(basicSubmodel)
+            snapshot.appendItems(basicSubInsurance)
         case .additional:
-            snapshot.appendItems(additionalSubmodel)
+            snapshot.appendItems(additionalSubInsurance)
         }
 
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
@@ -143,7 +143,7 @@ extension HomeinsuranceSubmodelsViewController {
         return layout
     }
 
-    private func makeSubmodelSectionHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
+    private func makeSubInsuranceSectionHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
         let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(260))
         let headerElement = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
         return headerElement
@@ -157,7 +157,7 @@ extension HomeinsuranceSubmodelsViewController {
         let cardSection = NSCollectionLayoutSection(group: group)
         cardSection.interGroupSpacing = 24
         cardSection.contentInsets = .init(top: 40, leading: 0, bottom: 20, trailing: 0)
-        cardSection.boundarySupplementaryItems = [makeSubmodelSectionHeader()]
+        cardSection.boundarySupplementaryItems = [makeSubInsuranceSectionHeader()]
         return cardSection
     }
 }

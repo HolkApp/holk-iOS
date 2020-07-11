@@ -1,5 +1,5 @@
 //
-//  SubmodelSegmentView.swift
+//  SubInsuranceSegmentView.swift
 //  Holk
 //
 //  Created by 张梦皓 on 2020-07-03.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class SubmodelSegmentView: UIControl {
+final class SubInsuranceSegmentView: UIControl {
     // MARK: - Private variables
     private let titleLabel = UILabel()
     private let numberLabel = UILabel()
@@ -75,8 +75,8 @@ final class SubmodelSegmentView: UIControl {
         }
     }
 
-    func configure(_ segmentKind: String, numberOfSubmodels: Int) {
+    func configure(_ segmentKind: String, numberOfSubInsurances: Int) {
         titleLabel.text = segmentKind
-        numberLabel.text = String(numberOfSubmodels)
+        numberLabel.text = String(numberOfSubInsurances)
     }
 }

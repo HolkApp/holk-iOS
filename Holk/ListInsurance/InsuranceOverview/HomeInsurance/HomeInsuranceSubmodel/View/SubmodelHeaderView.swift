@@ -1,5 +1,5 @@
 //
-//  SubmodelHeaderView.swift
+//  SubInsuranceHeaderView.swift
 //  Holk
 //
 //  Created by 张梦皓 on 2020-07-02.
@@ -8,13 +8,13 @@
 
 import UIKit
 
-final class SubmodelHeaderView: UICollectionReusableView {
-    weak var submodelsViewController: HomeinsuranceSubmodelsViewController?
+final class SubInsuranceHeaderView: UICollectionReusableView {
+    weak var subInsurancesViewController: HomeinsuranceSubInsurancesViewController?
     private let titleLabel = UILabel()
     private let descriptionLabel = UILabel()
     private let imageView = UIImageView()
-    private let basicSubmodelsSegmentView = SubmodelSegmentView()
-    private let additionalSubmodelsSegmentView = SubmodelSegmentView()
+    private let basicSubInsurancesSegmentView = SubInsuranceSegmentView()
+    private let additionalSubInsurancesSegmentView = SubInsuranceSegmentView()
 
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -36,19 +36,19 @@ final class SubmodelHeaderView: UICollectionReusableView {
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
 
-        basicSubmodelsSegmentView.addTarget(self, action: #selector(segmentSelected(_:)), for: .touchUpInside)
-        basicSubmodelsSegmentView.isSelected = true
-        basicSubmodelsSegmentView.translatesAutoresizingMaskIntoConstraints = false
+        basicSubInsurancesSegmentView.addTarget(self, action: #selector(segmentSelected(_:)), for: .touchUpInside)
+        basicSubInsurancesSegmentView.isSelected = true
+        basicSubInsurancesSegmentView.translatesAutoresizingMaskIntoConstraints = false
 
-        additionalSubmodelsSegmentView.addTarget(self, action: #selector(segmentSelected(_:)), for: .touchUpInside)
-        additionalSubmodelsSegmentView.isSelected = false
-        additionalSubmodelsSegmentView.translatesAutoresizingMaskIntoConstraints = false
+        additionalSubInsurancesSegmentView.addTarget(self, action: #selector(segmentSelected(_:)), for: .touchUpInside)
+        additionalSubInsurancesSegmentView.isSelected = false
+        additionalSubInsurancesSegmentView.translatesAutoresizingMaskIntoConstraints = false
 
         let stackView = UIStackView()
         stackView.spacing = 32
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.addArrangedSubview(basicSubmodelsSegmentView)
-        stackView.addArrangedSubview(additionalSubmodelsSegmentView)
+        stackView.addArrangedSubview(basicSubInsurancesSegmentView)
+        stackView.addArrangedSubview(additionalSubInsurancesSegmentView)
 
         addSubview(titleLabel)
         addSubview(descriptionLabel)
@@ -91,30 +91,30 @@ final class SubmodelHeaderView: UICollectionReusableView {
 
         titleLabel.text = nil
         descriptionLabel.text = nil
-        basicSubmodelsSegmentView.isSelected = true
-        additionalSubmodelsSegmentView.isSelected = false
+        basicSubInsurancesSegmentView.isSelected = true
+        additionalSubInsurancesSegmentView.isSelected = false
     }
 
     func configure(_ insurance: Insurance) {
         titleLabel.text = "Dina skydd"
-        descriptionLabel.text = insurance.insuranceType.description
+        descriptionLabel.text = insurance.kind.description
 
-        basicSubmodelsSegmentView.configure("Grundskydd", numberOfSubmodels:  insurance.segments.count)
+        basicSubInsurancesSegmentView.configure("Grundskydd", numberOfSubInsurances:  insurance.segments.count)
         // TODO: Put addon here
-        additionalSubmodelsSegmentView.configure("Tilläggsskydd", numberOfSubmodels:  0)
+        additionalSubInsurancesSegmentView.configure("Tilläggsskydd", numberOfSubInsurances:  0)
     }
 }
 
-extension SubmodelHeaderView {
+extension SubInsuranceHeaderView {
     @objc private func segmentSelected(_ sender: UIControl) {
-        if sender === basicSubmodelsSegmentView {
-            basicSubmodelsSegmentView.isSelected = true
-            additionalSubmodelsSegmentView.isSelected = false
-            submodelsViewController?.updateSelection(.basic)
+        if sender === basicSubInsurancesSegmentView {
+            basicSubInsurancesSegmentView.isSelected = true
+            additionalSubInsurancesSegmentView.isSelected = false
+            subInsurancesViewController?.updateSelection(.basic)
         } else {
-            basicSubmodelsSegmentView.isSelected = false
-            additionalSubmodelsSegmentView.isSelected = true
-            submodelsViewController?.updateSelection(.additional)
+            basicSubInsurancesSegmentView.isSelected = false
+            additionalSubInsurancesSegmentView.isSelected = true
+            subInsurancesViewController?.updateSelection(.additional)
         }
     }
 }

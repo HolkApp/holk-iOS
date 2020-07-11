@@ -44,9 +44,9 @@ final class InsuranceCoordinator: NSObject, UINavigationControllerDelegate {
     }
 
     func showinsuranceDetail(_ insurance: Insurance) {
-        let homeinsuranceSubmodelsViewController = HomeinsuranceSubmodelsViewController(storeController: storeController, insurance: insurance)
-        homeinsuranceSubmodelsViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(back(_:)))
-        navController.pushViewController(homeinsuranceSubmodelsViewController, animated: true)
+        let homeinsuranceSubInsurancesViewController = HomeinsuranceSubInsurancesViewController(storeController: storeController, insurance: insurance)
+        homeinsuranceSubInsurancesViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(back(_:)))
+        navController.pushViewController(homeinsuranceSubInsurancesViewController, animated: true)
     }
 
     func logout() {

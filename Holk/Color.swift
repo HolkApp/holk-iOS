@@ -159,7 +159,7 @@ extension Color {
 
 }
 
-// MARK: Insurance Submodel Color
+// MARK: Insurance SubInsurance Color
 extension Color {
     static var goodsInsuranceBackgroundColor: UIColor {
         return UIColor { traitCollection in

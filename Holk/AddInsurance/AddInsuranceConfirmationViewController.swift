@@ -31,7 +31,7 @@ final class AddInsuranceConfirmationViewController: UIViewController {
             DispatchQueue.main.async {
                 guard let addedInsurance = self.addedInsurance else { return }
                 self.descriptionLabel.text = String(format: "We found your insurance at %@", addedInsurance.insuranceProvider.displayName)
-                self.insuranceLabel.text = addedInsurance.insuranceType.description
+                self.insuranceLabel.text = addedInsurance.kind.description
                 self.addressLabel.text = addedInsurance.address
             }
         }
@@ -86,7 +86,7 @@ final class AddInsuranceConfirmationViewController: UIViewController {
         insuranceLabel.font = Font.semiBold(.title)
         insuranceLabel.textColor = Color.mainForeground
         insuranceLabel.numberOfLines = 0
-        insuranceLabel.text = addedInsurance?.insuranceType.description
+        insuranceLabel.text = addedInsurance?.kind.description
 
         addressLabel.font = Font.regular(.label)
         addressLabel.textColor = Color.mainForeground

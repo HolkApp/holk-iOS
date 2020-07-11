@@ -3,7 +3,7 @@ import Foundation
 extension AllInsuranceResponse {
     static let mockinsurance: Insurance = {
         let provider = InsuranceProvider(description: "mock provider", displayName: "Folksam", status: .available, internalName: "Folksam", logoUrl: "", symbolUrl: "", websiteUrl: "")
-        return Insurance(id: "Mock", insuranceProvider: provider, insuranceType: .homeInsurnace, providerReference: "test", ssn: "199208253915", startDate: Date(), endDate: Date(), username: "Mock user name")
+        return Insurance(id: "Mock", insuranceProvider: provider, kind: .homeInsurnace, providerReference: "test", ssn: "199208253915", startDate: Date(), endDate: Date(), username: "Mock user name")
     }()
 }
 
@@ -20,8 +20,8 @@ struct AllInsuranceResponse: Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         insuranceList = try container.decode([Insurance].self, forKey: .insuranceList)
-        let lastUpdatedString = try? container.decode(String.self, forKey: .lastUpdated)
-        lastUpdated = lastUpdatedString.flatMap { DateFormatter.yyyyMMddDateFormatter.date(from: $0)
-        }
+        lastUpdated = try? container.decode(Date.self, forKey: .lastUpdated)
+//        lastUpdated = lastUpdatedString.flatMap { DateFormatter.yyyyMMddDateFormatter.date(from: $0)
+//        }
     }
 }

@@ -1,5 +1,5 @@
 //
-//  SubmodelCollectionViewCell.swift
+//  SubInsuranceCollectionViewCell.swift
 //  Holk
 //
 //  Created by 张梦皓 on 2020-07-05.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class SubmodelCollectionViewCell: UICollectionViewCell {
+final class SubInsuranceCollectionViewCell: UICollectionViewCell {
     private let cardView = UIView()
     private let iconView = HolkIconView()
     private let titleLabel = UILabel()

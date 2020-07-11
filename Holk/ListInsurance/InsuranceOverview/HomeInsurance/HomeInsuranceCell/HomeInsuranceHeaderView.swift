@@ -46,7 +46,7 @@ final class HomeInsuranceHeaderView: UICollectionReusableView {
     }
 
     func configure(_ insurance: Insurance) {
-        titleLabel.text = insurance.insuranceType.description
+        titleLabel.text = insurance.kind.description
         descriptionLabel.text = insurance.address
     }
 }

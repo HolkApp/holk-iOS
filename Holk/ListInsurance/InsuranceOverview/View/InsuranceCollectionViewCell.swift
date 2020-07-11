@@ -46,7 +46,7 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
 
     func configure(_ insurance: Insurance) {
         self.insurance = insurance
-        titleLabel.text = insurance.insuranceType.description
+        titleLabel.text = insurance.kind.description
         subtitleLabel.text = insurance.address
         UIImage.makeImageWithUrl(imageUrlString: insurance.insuranceProvider.logoUrl) { [weak self] image in
             self?.insuranceImageView.image = image

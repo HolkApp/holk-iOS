@@ -20,7 +20,7 @@ struct Insurance: Codable, Hashable, Equatable {
         }
     }
 
-    enum InsuranceType: String, Codable, CustomStringConvertible {
+    enum Kind: String, Codable {
         case homeInsurnace = "HEMFORSAKRING"
 
         var description: String {
@@ -33,7 +33,7 @@ struct Insurance: Codable, Hashable, Equatable {
 
     let id: String
     let insuranceProvider: InsuranceProvider
-    let insuranceType: InsuranceType
+    let kind: Kind
     let providerReference: String
     let ssn: String
     let startDate: Date
@@ -44,7 +44,7 @@ struct Insurance: Codable, Hashable, Equatable {
     }
     var segments: [Segment] {
         return [
-            Segment(kind: .home, description: "Decription text for what a subinsurance is about, lore isbm"),
+            Segment(kind: .home, description: "Decription text for what a subInsurance is about, lore isbm"),
             Segment(kind: .travel, description: "This is travel segment of your home insurance."),
             Segment(kind: .pets, description: "This is pets segment of your home insurance.")
         ]
@@ -53,7 +53,7 @@ struct Insurance: Codable, Hashable, Equatable {
     private enum CodingKeys: String, CodingKey {
         case id = "id"
         case insuranceProvider = "insuranceProvider"
-        case insuranceType = "insuranceType"
+        case kind = "insuranceType"
         case providerReference = "providerReference"
         case startDate = "startDate"
         case endDate = "endDate"
@@ -68,7 +68,7 @@ extension Insurance {
 
         id = try container.decode(String.self, forKey: .id)
         insuranceProvider = try container.decode(InsuranceProvider.self, forKey: .insuranceProvider)
-        insuranceType = try container.decode(InsuranceType.self, forKey: .insuranceType)
+        kind = try container.decode(Kind.self, forKey: .kind)
         providerReference = try container.decode(String.self, forKey: .providerReference)
         startDate = try container.decode(Date.self, forKey: .startDate)
         endDate = try container.decode(Date.self, forKey: .endDate)
