@@ -130,7 +130,7 @@
 		8FD676992497945400E62820 /* HomeInsuranceHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD676982497945400E62820 /* HomeInsuranceHeaderView.swift */; };
 		8FD6769B2499692000E62820 /* ScrapingStatusResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD6769A2499692000E62820 /* ScrapingStatusResponse.swift */; };
 		8FD6769D249FEA3500E62820 /* HolkQRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD6769C249FEA3500E62820 /* HolkQRViewController.swift */; };
-		8FD6769F24A8CE0F00E62820 /* InsuranceThinkOfCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD6769E24A8CE0E00E62820 /* InsuranceThinkOfCollectionViewCell.swift */; };
+		8FD6769F24A8CE0F00E62820 /* InsuranceThinkOfsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD6769E24A8CE0E00E62820 /* InsuranceThinkOfsCollectionViewCell.swift */; };
 		8FD676A124A8D82500E62820 /* HolkIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD676A024A8D82500E62820 /* HolkIconView.swift */; };
 		8FD676A324AA7DC500E62820 /* Paragraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD676A224AA7DC400E62820 /* Paragraph.swift */; };
 		8FD676A524AD387900E62820 /* HomeinsuranceSubmodelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD676A424AD387800E62820 /* HomeinsuranceSubmodelsViewController.swift */; };
@@ -293,7 +293,7 @@
 		8FD676982497945400E62820 /* HomeInsuranceHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInsuranceHeaderView.swift; sourceTree = "<group>"; };
 		8FD6769A2499692000E62820 /* ScrapingStatusResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapingStatusResponse.swift; sourceTree = "<group>"; };
 		8FD6769C249FEA3500E62820 /* HolkQRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolkQRViewController.swift; sourceTree = "<group>"; };
-		8FD6769E24A8CE0E00E62820 /* InsuranceThinkOfCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceThinkOfCollectionViewCell.swift; sourceTree = "<group>"; };
+		8FD6769E24A8CE0E00E62820 /* InsuranceThinkOfsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceThinkOfsCollectionViewCell.swift; sourceTree = "<group>"; };
 		8FD676A024A8D82500E62820 /* HolkIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolkIconView.swift; sourceTree = "<group>"; };
 		8FD676A224AA7DC400E62820 /* Paragraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paragraph.swift; sourceTree = "<group>"; };
 		8FD676A424AD387800E62820 /* HomeinsuranceSubmodelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeinsuranceSubmodelsViewController.swift; sourceTree = "<group>"; };
@@ -550,8 +550,8 @@
 			children = (
 				8FC8EA6B24B8DD4100BE69D9 /* InsuranceThinkOfDetailViewModel.swift */,
 				8FC8EA6D24B8ECF900BE69D9 /* ThinkOfSuggestionParagraphViewModel.swift */,
-				8FC8EA6F24B9077500BE69D9 /* ThinkOfSubInsuranceViewModel.swift */,
 				8FC8EA7124BA3DE000BE69D9 /* ThinkOfInsuranceViewModel.swift */,
+				8FC8EA6F24B9077500BE69D9 /* ThinkOfSubInsuranceViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -593,7 +593,7 @@
 			isa = PBXGroup;
 			children = (
 				8FD6768B2495107400E62820 /* InsuranceGapsCollectionViewCell.swift */,
-				8FD6769E24A8CE0E00E62820 /* InsuranceThinkOfCollectionViewCell.swift */,
+				8FD6769E24A8CE0E00E62820 /* InsuranceThinkOfsCollectionViewCell.swift */,
 				8FD67690249527AC00E62820 /* InsuranceSuggestionHeaderView.swift */,
 			);
 			path = View;
@@ -1091,7 +1091,7 @@
 				8FC8EA7024B9077500BE69D9 /* ThinkOfSubInsuranceViewModel.swift in Sources */,
 				8F54C246242C1FDC00D72FD7 /* UserInfoResponse.swift in Sources */,
 				8FD676A124A8D82500E62820 /* HolkIconView.swift in Sources */,
-				8FD6769F24A8CE0F00E62820 /* InsuranceThinkOfCollectionViewCell.swift in Sources */,
+				8FD6769F24A8CE0F00E62820 /* InsuranceThinkOfsCollectionViewCell.swift in Sources */,
 				8FCEE9AE23254AAC00F75FB8 /* KeyboardEventObserver.swift in Sources */,
 				8FD67678248EDBFF00E62820 /* HomeInsuranceCostCollectionViewCell.swift in Sources */,
 				8F5D89E724534AB8007F1B26 /* UserStore.swift in Sources */,

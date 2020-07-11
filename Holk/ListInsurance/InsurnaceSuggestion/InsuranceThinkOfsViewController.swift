@@ -73,7 +73,7 @@ final class InsuranceThinkOfsViewController: UIViewController {
 
         collectionView.backgroundColor = .clear
         collectionView.delegate = self
-        collectionView.register(InsuranceThinkOfCollectionViewCell.self, forCellWithReuseIdentifier: InsuranceThinkOfCollectionViewCell.identifier)
+        collectionView.register(InsuranceThinkOfsCollectionViewCell.self, forCellWithReuseIdentifier: InsuranceThinkOfsCollectionViewCell.identifier)
         collectionView.register(InsuranceSuggestionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: InsuranceSuggestionHeaderView.identifier)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
 
@@ -119,9 +119,9 @@ extension InsuranceThinkOfsViewController {
         let dataSource = DataSource(
             collectionView: collectionView,
             cellProvider: { (collectionView, indexPath, thinkOf) in
-                let insuranceThinkOfCollectionViewCell =  collectionView.dequeueCell(ofType: InsuranceThinkOfCollectionViewCell.self, indexPath: indexPath)
-                insuranceThinkOfCollectionViewCell.configure(thinkOf)
-                return insuranceThinkOfCollectionViewCell
+                let insuranceThinkOfsCollectionViewCell =  collectionView.dequeueCell(ofType: InsuranceThinkOfsCollectionViewCell.self, indexPath: indexPath)
+                insuranceThinkOfsCollectionViewCell.configure(thinkOf)
+                return insuranceThinkOfsCollectionViewCell
         })
         dataSource.supplementaryViewProvider = ({ (collectionView, kind, indexPath) in
             if kind == UICollectionView.elementKindSectionHeader {
