@@ -98,3 +98,14 @@ final class InsuranceStore {
         cancellables.forEach { $0.cancel() }
     }
 }
+
+extension InsuranceStore {
+    // TODO: Update the logic when the backend is ready
+    func relatedInsurances(thinkOf: ThinkOfSuggestion) -> [Insurance] {
+        return insuranceList.value.filter { insurance in
+            insurance.segments.contains { subInsurance in
+                subInsurance.kind == .travel
+            }
+        }
+    }
+}
