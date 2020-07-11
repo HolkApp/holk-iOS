@@ -104,6 +104,10 @@
 		8FC81CF5248C478900F6BC8C /* HomeInsuranceBeneficiaryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC81CF4248C478900F6BC8C /* HomeInsuranceBeneficiaryCollectionViewCell.swift */; };
 		8FC8EA6324AFBD6300BE69D9 /* SubmodelSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC8EA6224AFBD6300BE69D9 /* SubmodelSegmentView.swift */; };
 		8FC8EA6724B241B500BE69D9 /* SubmodelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC8EA6624B241B500BE69D9 /* SubmodelCollectionViewCell.swift */; };
+		8FC8EA6C24B8DD4100BE69D9 /* InsuranceThinkOfDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC8EA6B24B8DD4100BE69D9 /* InsuranceThinkOfDetailViewModel.swift */; };
+		8FC8EA6E24B8ECF900BE69D9 /* ThinkOfSuggestionParagraphViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC8EA6D24B8ECF900BE69D9 /* ThinkOfSuggestionParagraphViewModel.swift */; };
+		8FC8EA7024B9077500BE69D9 /* ThinkOfSubInsuranceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC8EA6F24B9077500BE69D9 /* ThinkOfSubInsuranceViewModel.swift */; };
+		8FC8EA7224BA3DE000BE69D9 /* ThinkOfInsuranceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC8EA7124BA3DE000BE69D9 /* ThinkOfInsuranceViewModel.swift */; };
 		8FCEE9AE23254AAC00F75FB8 /* KeyboardEventObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCEE9AD23254AAC00F75FB8 /* KeyboardEventObserver.swift */; };
 		8FCEE9B123254B6C00F75FB8 /* KeyboardEventContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCEE9B023254B6C00F75FB8 /* KeyboardEventContext.swift */; };
 		8FCEE9B323254C2D00F75FB8 /* KeyboardEventFloatingViewHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FCEE9B223254C2D00F75FB8 /* KeyboardEventFloatingViewHandler.swift */; };
@@ -262,6 +266,10 @@
 		8FC81CF4248C478900F6BC8C /* HomeInsuranceBeneficiaryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInsuranceBeneficiaryCollectionViewCell.swift; sourceTree = "<group>"; };
 		8FC8EA6224AFBD6300BE69D9 /* SubmodelSegmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmodelSegmentView.swift; sourceTree = "<group>"; };
 		8FC8EA6624B241B500BE69D9 /* SubmodelCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmodelCollectionViewCell.swift; sourceTree = "<group>"; };
+		8FC8EA6B24B8DD4100BE69D9 /* InsuranceThinkOfDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceThinkOfDetailViewModel.swift; sourceTree = "<group>"; };
+		8FC8EA6D24B8ECF900BE69D9 /* ThinkOfSuggestionParagraphViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThinkOfSuggestionParagraphViewModel.swift; sourceTree = "<group>"; };
+		8FC8EA6F24B9077500BE69D9 /* ThinkOfSubInsuranceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThinkOfSubInsuranceViewModel.swift; sourceTree = "<group>"; };
+		8FC8EA7124BA3DE000BE69D9 /* ThinkOfInsuranceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThinkOfInsuranceViewModel.swift; sourceTree = "<group>"; };
 		8FCEE9AD23254AAC00F75FB8 /* KeyboardEventObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardEventObserver.swift; sourceTree = "<group>"; };
 		8FCEE9B023254B6C00F75FB8 /* KeyboardEventContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardEventContext.swift; sourceTree = "<group>"; };
 		8FCEE9B223254C2D00F75FB8 /* KeyboardEventFloatingViewHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardEventFloatingViewHandler.swift; sourceTree = "<group>"; };
@@ -535,6 +543,16 @@
 			path = HomeInsurance;
 			sourceTree = "<group>";
 		};
+		8FC8EA6A24B8DD0F00BE69D9 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				8FC8EA6D24B8ECF900BE69D9 /* ThinkOfSuggestionParagraphViewModel.swift */,
+				8FC8EA6F24B9077500BE69D9 /* ThinkOfSubInsuranceViewModel.swift */,
+				8FC8EA7124BA3DE000BE69D9 /* ThinkOfInsuranceViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		8FCEE9AF23254B5700F75FB8 /* KeyboardEvent */ = {
 			isa = PBXGroup;
 			children = (
@@ -561,6 +579,7 @@
 			children = (
 				8FD676872493F7A400E62820 /* InsuranceGapsViewController.swift */,
 				8FD676892493F7C300E62820 /* InsuranceThinkOfsViewController.swift */,
+				8FC8EA6A24B8DD0F00BE69D9 /* ViewModel */,
 				8FD6768F2495279500E62820 /* View */,
 			);
 			path = InsurnaceSuggestion;
@@ -975,6 +994,7 @@
 				8F3305A82401F27400E9B443 /* HolkRingChartLayer.swift in Sources */,
 				8F6546712316FE190053B3F8 /* NewUserViewController.swift in Sources */,
 				8F9807E722722D5E00584BA9 /* StoreController.swift in Sources */,
+				8FC8EA6C24B8DD4100BE69D9 /* InsuranceThinkOfDetailViewModel.swift in Sources */,
 				8FD6768C2495107400E62820 /* InsuranceGapsCollectionViewCell.swift in Sources */,
 				8F16DE6A245CE43700EFC1BD /* OnboardingCoordinator.swift in Sources */,
 				8FF6E75422B9634400F6D398 /* HolkSegmentedControl.swift in Sources */,
@@ -986,6 +1006,7 @@
 				8FCEE9B123254B6C00F75FB8 /* KeyboardEventContext.swift in Sources */,
 				8F4965DD2412F70100DEAFC1 /* HolkRingChartIconsView.swift in Sources */,
 				8FD676A324AA7DC500E62820 /* Paragraph.swift in Sources */,
+				8FC8EA7224BA3DE000BE69D9 /* ThinkOfInsuranceViewModel.swift in Sources */,
 				8FF6E72622AC0D2800F6D398 /* Color.swift in Sources */,
 				8F2BB8E62332D4EB00E8AE4B /* FontLoader.swift in Sources */,
 				8FD676832492CB0700E62820 /* SuggestionStore.swift in Sources */,
@@ -1010,6 +1031,7 @@
 				8FD676882493F7A400E62820 /* InsuranceGapsViewController.swift in Sources */,
 				8FA8F1122330148300670471 /* FontAwesome.swift in Sources */,
 				8F16DE772460A22300EFC1BD /* AddInsuranceConfirmationViewController.swift in Sources */,
+				8FC8EA6E24B8ECF900BE69D9 /* ThinkOfSuggestionParagraphViewModel.swift in Sources */,
 				8F5B5A3822771ED400E79A40 /* StringConstants.swift in Sources */,
 				8F66F2FE23BC04F90083DC3A /* LoadingViewController.swift in Sources */,
 				8F25CAAC23429F7100DC3B97 /* OnboardingInsuranceTypeViewController.swift in Sources */,
@@ -1061,6 +1083,7 @@
 				8FF6E73B22B6B55800F6D398 /* InsuranceProtectionViewController.swift in Sources */,
 				8FF6E73422B57DA800F6D398 /* UITableViewCell+UICollectionViewCell+extension.swift in Sources */,
 				8F3305A223FB3A8100E9B443 /* AllInsuranceResponse.swift in Sources */,
+				8FC8EA7024B9077500BE69D9 /* ThinkOfSubInsuranceViewModel.swift in Sources */,
 				8F54C246242C1FDC00D72FD7 /* UserInfoResponse.swift in Sources */,
 				8FD676A124A8D82500E62820 /* HolkIconView.swift in Sources */,
 				8FD6769F24A8CE0F00E62820 /* InsuranceThinkOfCollectionViewCell.swift in Sources */,
