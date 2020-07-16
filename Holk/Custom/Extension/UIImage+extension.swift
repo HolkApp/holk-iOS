@@ -19,9 +19,9 @@ extension UIImage {
     }
 
     @discardableResult
-    static func makeImageWithUrl(imageUrlString: String, completion: ((UIImage?) -> Void)? = nil) -> DownloadRequest? {
+    static func makeImage(_ imageUrl: URL, completion: ((UIImage?) -> Void)? = nil) -> DownloadRequest? {
         let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0] as NSURL
-        let newPath = path.appendingPathComponent(imageUrlString)
+        let newPath = path.appendingPathComponent(imageUrl.absoluteString)
 
         let destination: DownloadRequest.DownloadFileDestination = { _, _ in
             return (newPath!, [.removePreviousFile, .createIntermediateDirectories])
@@ -35,7 +35,7 @@ extension UIImage {
                 throw CocoaError(.coderInvalidValue)
             }
         } catch {
-            return Alamofire.download(imageUrlString, to: destination).validate().responseData { response in
+            return Alamofire.download(imageUrl, to: destination).validate().responseData { response in
                 if let data = response.result.value {
                     let image = UIImage(data: data)
                     completion?(image)
@@ -56,6 +56,7 @@ extension UIImage {
     }
 }
 
+// MARK: - SubInsurance Image extension
 extension UIImage {
     convenience init?(insuranceSegment: Insurance.Segment) {
         switch insuranceSegment.kind {

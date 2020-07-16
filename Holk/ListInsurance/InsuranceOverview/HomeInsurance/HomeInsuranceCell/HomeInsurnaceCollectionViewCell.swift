@@ -48,7 +48,7 @@ final class HomeinsuranceCollectionViewCell: UICollectionViewCell {
         titleLabel.text = "Dina skydd"
         insuranceSubNumberLabel.text = String(insurance.segments.count)
         insuranceTextLabel.text = "Skydd"
-        UIImage.makeImageWithUrl(imageUrlString: insurance.insuranceProvider.logoUrl) { [weak self] image in
+        UIImage.makeImage(insurance.insuranceProvider.logoUrl) { [weak self] image in
             self?.insuranceImageView.image = image
         }
 

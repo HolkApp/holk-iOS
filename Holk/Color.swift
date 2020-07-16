@@ -133,6 +133,16 @@ extension Color {
             }
         }
     }
+
+    static var separator: UIColor {
+        return UIColor { traitCollection in
+            if traitCollection.userInterfaceStyle == .dark {
+                return makeColor(asset: .blue2)
+            } else {
+                return makeColor(asset: .blue2)
+            }
+        }
+    }
 }
 
 // MARK: Status Color
@@ -230,6 +240,16 @@ extension Color {
                 return makeColor(asset: .pink1)
             } else {
                 return makeColor(asset: .pink1)
+            }
+        }
+    }
+
+    static var paragraphIconBackground: UIColor {
+        return UIColor { traitCollection in
+            if traitCollection.userInterfaceStyle == .dark {
+                return makeColor(asset: .grey1)
+            } else {
+                return makeColor(asset: .grey1)
             }
         }
     }
