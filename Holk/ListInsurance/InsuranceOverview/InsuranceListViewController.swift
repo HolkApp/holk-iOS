@@ -94,8 +94,8 @@ final class InsuranceListViewController: UICollectionViewController {
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.alwaysBounceVertical = true
-        collectionView.register(InsuranceCollectionViewCell.self, forCellWithReuseIdentifier: InsuranceCollectionViewCell.identifier)
-        collectionView.register(InsuranceSuggestionCardCollectionViewCell.self, forCellWithReuseIdentifier: InsuranceSuggestionCardCollectionViewCell.identifier)
+        collectionView.registerCell(InsuranceCollectionViewCell.self)
+        collectionView.registerCell(InsuranceSuggestionCardCollectionViewCell.self)
     }
 
     @objc private func profileTapped(sender: UIButton) {
@@ -119,7 +119,7 @@ extension InsuranceListViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 0 {
-            let insuranceSuggestionCardCollectionViewCell = collectionView.dequeueCell(ofType: InsuranceSuggestionCardCollectionViewCell.self, indexPath: indexPath)
+            let insuranceSuggestionCardCollectionViewCell = collectionView.dequeueCell(InsuranceSuggestionCardCollectionViewCell.self, indexPath: indexPath)
             if indexPath.item == 0 {
                 insuranceSuggestionCardCollectionViewCell.configure(suggestions, suggestionType: .gap)
             } else {
@@ -127,7 +127,7 @@ extension InsuranceListViewController {
             }
             return insuranceSuggestionCardCollectionViewCell
         } else {
-            let insuranceTableViewCell = collectionView.dequeueCell(ofType: InsuranceCollectionViewCell.self, indexPath: indexPath)
+            let insuranceTableViewCell = collectionView.dequeueCell(InsuranceCollectionViewCell.self, indexPath: indexPath)
             let insurance = insuranceList[indexPath.item]
             insuranceTableViewCell.configure(insurance)
             return insuranceTableViewCell

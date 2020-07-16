@@ -73,8 +73,8 @@ final class HomeinsuranceSubInsurancesViewController: UIViewController {
         collectionView.backgroundColor = Color.insuranceBackground
         collectionView.showsVerticalScrollIndicator = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.register(SubInsuranceCollectionViewCell.self, forCellWithReuseIdentifier: SubInsuranceCollectionViewCell.identifier)
-        collectionView.register(SubInsuranceHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SubInsuranceHeaderView.identifier)
+        collectionView.registerCell(SubInsuranceCollectionViewCell.self)
+        collectionView.registerReusableSupplementaryView(SubInsuranceHeaderView.self, of: UICollectionView.elementKindSectionHeader)
         view.addSubview(collectionView)
 
         NSLayoutConstraint.activate([
@@ -94,11 +94,11 @@ extension HomeinsuranceSubInsurancesViewController {
             cellProvider: { (collectionView, indexPath, segment) in
                 switch segment {
                 case .basic(let basicSegment):
-                    let subInsuranceCollectionViewCell = collectionView.dequeueCell(ofType: SubInsuranceCollectionViewCell.self, indexPath: indexPath)
+                    let subInsuranceCollectionViewCell = collectionView.dequeueCell(SubInsuranceCollectionViewCell.self, indexPath: indexPath)
                     subInsuranceCollectionViewCell.configure(basicSegment)
                     return subInsuranceCollectionViewCell
                 case .additional(let additionalSegment):
-                    let subInsuranceCollectionViewCell = collectionView.dequeueCell(ofType: SubInsuranceCollectionViewCell.self, indexPath: indexPath)
+                    let subInsuranceCollectionViewCell = collectionView.dequeueCell(SubInsuranceCollectionViewCell.self, indexPath: indexPath)
                     subInsuranceCollectionViewCell.configure(additionalSegment)
                     return subInsuranceCollectionViewCell
                 }
@@ -106,9 +106,9 @@ extension HomeinsuranceSubInsurancesViewController {
         dataSource.supplementaryViewProvider = ({ [weak self] (collectionView, kind, indexPath) in
             guard let self = self else { return nil }
             if kind == UICollectionView.elementKindSectionHeader {
-                let subInsuranceHeaderView = collectionView.dequeueHeaderFooterView(
-                        type: SubInsuranceHeaderView.self,
-                        of: kind, indexPath: indexPath
+                let subInsuranceHeaderView = collectionView.dequeueReusableSupplementaryView(
+                    SubInsuranceHeaderView.self,
+                    of: kind, indexPath: indexPath
                 )
                 subInsuranceHeaderView.configure(self.insurance)
                 subInsuranceHeaderView.subInsurancesViewController = self

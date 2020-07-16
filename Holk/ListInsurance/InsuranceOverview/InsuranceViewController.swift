@@ -52,10 +52,10 @@ final class InsuranceViewController: UIViewController {
         collectionView.delegate = self
         collectionView.backgroundColor = .clear
         collectionView.alwaysBounceVertical = true
-        collectionView.register(HomeinsuranceCollectionViewCell.self, forCellWithReuseIdentifier: HomeinsuranceCollectionViewCell.identifier)
-        collectionView.register(HomeInsuranceBeneficiaryCollectionViewCell.self, forCellWithReuseIdentifier: HomeInsuranceBeneficiaryCollectionViewCell.identifier)
-        collectionView.register(HomeInsuranceCostCollectionViewCell.self, forCellWithReuseIdentifier: HomeInsuranceCostCollectionViewCell.identifier)
-        collectionView.register(HomeInsuranceHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HomeInsuranceHeaderView.identifier)
+        collectionView.registerCell(HomeinsuranceCollectionViewCell.self)
+        collectionView.registerCell(HomeInsuranceBeneficiaryCollectionViewCell.self)
+        collectionView.registerCell(HomeInsuranceCostCollectionViewCell.self)
+        collectionView.registerReusableSupplementaryView(HomeInsuranceHeaderView.self, of: UICollectionView.elementKindSectionHeader)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
 
         view.addSubview(collectionView)
@@ -86,15 +86,15 @@ extension InsuranceViewController: UICollectionViewDataSource, UICollectionViewD
         var cell: UICollectionViewCell
         switch indexPath.section {
         case 1:
-            let homeInsuranceBeneficiaryCollectionViewCell = collectionView.dequeueCell(ofType: HomeInsuranceBeneficiaryCollectionViewCell.self, indexPath: indexPath)
+            let homeInsuranceBeneficiaryCollectionViewCell = collectionView.dequeueCell(HomeInsuranceBeneficiaryCollectionViewCell.self, indexPath: indexPath)
             homeInsuranceBeneficiaryCollectionViewCell.configure(insurance)
             cell = homeInsuranceBeneficiaryCollectionViewCell
         case 2:
-            let homeInsuranceCostCollectionViewCell = collectionView.dequeueCell(ofType: HomeInsuranceCostCollectionViewCell.self, indexPath: indexPath)
+            let homeInsuranceCostCollectionViewCell = collectionView.dequeueCell(HomeInsuranceCostCollectionViewCell.self, indexPath: indexPath)
             homeInsuranceCostCollectionViewCell.configure(insurance)
             cell = homeInsuranceCostCollectionViewCell
         default:
-            let homeinsuranceCollectionViewCell = collectionView.dequeueCell(ofType: HomeinsuranceCollectionViewCell.self, indexPath: indexPath)
+            let homeinsuranceCollectionViewCell = collectionView.dequeueCell(HomeinsuranceCollectionViewCell.self, indexPath: indexPath)
             homeinsuranceCollectionViewCell.configure(insurance)
             cell = homeinsuranceCollectionViewCell
         }
@@ -110,10 +110,10 @@ extension InsuranceViewController: UICollectionViewDataSource, UICollectionViewD
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionHeader {
-            let insuranceSuggestionHeaderView =
-                collectionView.dequeueHeaderFooterView(type: HomeInsuranceHeaderView.self, of: kind, indexPath: indexPath)
-            insuranceSuggestionHeaderView.configure(insurance)
-            return insuranceSuggestionHeaderView
+            let insuranceSuggestionCollectionHeaderView =
+                collectionView.dequeueReusableSupplementaryView(HomeInsuranceHeaderView.self, of: kind, indexPath: indexPath)
+            insuranceSuggestionCollectionHeaderView.configure(insurance)
+            return insuranceSuggestionCollectionHeaderView
         } else {
             return UICollectionReusableView()
         }

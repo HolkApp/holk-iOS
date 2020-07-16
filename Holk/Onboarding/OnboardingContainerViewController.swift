@@ -90,7 +90,7 @@ final class OnboardingContainerViewController: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.isScrollEnabled = false
         collectionView.dataSource = self
-        collectionView.register(OnboardingCell.self, forCellWithReuseIdentifier: OnboardingCell.identifier)
+        collectionView.registerCell(OnboardingCell.self)
 
         closeButton.set(
             color: Color.mainForeground,
@@ -368,7 +368,7 @@ extension OnboardingContainerViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let onboardingCell = collectionView.dequeueCell(ofType: OnboardingCell.self, indexPath: indexPath)
+        let onboardingCell = collectionView.dequeueCell(OnboardingCell.self, indexPath: indexPath)
         let viewController = onboardingViewControllers[indexPath.item]
         if !children.contains(viewController) {
             addChild(viewController)

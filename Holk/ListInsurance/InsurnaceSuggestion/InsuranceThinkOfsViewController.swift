@@ -73,8 +73,8 @@ final class InsuranceThinkOfsViewController: UIViewController {
 
         collectionView.backgroundColor = .clear
         collectionView.delegate = self
-        collectionView.register(InsuranceThinkOfsCollectionViewCell.self, forCellWithReuseIdentifier: InsuranceThinkOfsCollectionViewCell.identifier)
-        collectionView.register(InsuranceSuggestionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: InsuranceSuggestionHeaderView.identifier)
+        collectionView.registerCell(InsuranceThinkOfsCollectionViewCell.self)
+        collectionView.registerReusableSupplementaryView(InsuranceSuggestionCollectionHeaderView.self, of: UICollectionView.elementKindSectionHeader)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
 
         setupLayout()
@@ -119,16 +119,16 @@ extension InsuranceThinkOfsViewController {
         let dataSource = DataSource(
             collectionView: collectionView,
             cellProvider: { (collectionView, indexPath, thinkOf) in
-                let insuranceThinkOfsCollectionViewCell =  collectionView.dequeueCell(ofType: InsuranceThinkOfsCollectionViewCell.self, indexPath: indexPath)
+                let insuranceThinkOfsCollectionViewCell =  collectionView.dequeueCell(InsuranceThinkOfsCollectionViewCell.self, indexPath: indexPath)
                 insuranceThinkOfsCollectionViewCell.configure(thinkOf)
                 return insuranceThinkOfsCollectionViewCell
         })
         dataSource.supplementaryViewProvider = ({ (collectionView, kind, indexPath) in
             if kind == UICollectionView.elementKindSectionHeader {
-                let insuranceSuggestionHeaderView =
-                    collectionView.dequeueHeaderFooterView(type: InsuranceSuggestionHeaderView.self, of: kind, indexPath: indexPath)
-                insuranceSuggestionHeaderView.configure("Viktiga saker att tänka på")
-                return insuranceSuggestionHeaderView
+                let insuranceSuggestionCollectionHeaderView =
+                    collectionView.dequeueReusableSupplementaryView(InsuranceSuggestionCollectionHeaderView.self, of: kind, indexPath: indexPath)
+                insuranceSuggestionCollectionHeaderView.configure("Viktiga saker att tänka på")
+                return insuranceSuggestionCollectionHeaderView
             } else {
                 return nil
             }

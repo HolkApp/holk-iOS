@@ -9,21 +9,33 @@
 import UIKit
 
 extension UITableView {
-    func dequeueCell<T: UITableViewCell>(ofType type: T.Type, indexPath: IndexPath) -> T {
+    func registerCell<T: UITableViewCell>(_ type: T.Type) {
+        self.register(T.self, forCellReuseIdentifier: T.identifier)
+    }
+
+    func dequeueCell<T: UITableViewCell>(_ type: T.Type, indexPath: IndexPath) -> T {
         return dequeueReusableCell(withIdentifier: T.identifier, for: indexPath) as! T
     }
 
-    func dequeueHeaderFooterView<T: UITableViewHeaderFooterView>(ofType type: T.Type) -> T {
+    func dequeueHeaderFooterView<T: UITableViewHeaderFooterView>(_ type: T.Type) -> T {
         return dequeueReusableHeaderFooterView(withIdentifier: T.identifier) as! T
     }
 }
 
 extension UICollectionView {
-    func dequeueCell<T: UICollectionViewCell>(ofType type: T.Type, indexPath: IndexPath) -> T {
+    func registerCell<T: UICollectionViewCell>(_ type: T.Type) {
+        self.register(T.self, forCellWithReuseIdentifier: T.identifier)
+    }
+
+    func registerReusableSupplementaryView<T: UICollectionReusableView>(_ type: T.Type, of kind: String) {
+        self.register(T.self, forSupplementaryViewOfKind: kind, withReuseIdentifier: T.identifier)
+    }
+
+    func dequeueCell<T: UICollectionViewCell>(_ type: T.Type, indexPath: IndexPath) -> T {
         return dequeueReusableCell(withReuseIdentifier: T.identifier, for: indexPath) as! T
     }
 
-    func dequeueHeaderFooterView<T: UICollectionReusableView>(type: T.Type, of kind: String, indexPath: IndexPath) -> T {
+    func dequeueReusableSupplementaryView<T: UICollectionReusableView>(_ type: T.Type, of kind: String, indexPath: IndexPath) -> T {
         return dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: T.identifier, for: indexPath) as! T
     }
 }

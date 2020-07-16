@@ -48,7 +48,7 @@ final class AddInsuranceTypeViewController: UIViewController {
         headerLabel.text = "Pick insurance"
         headerLabel.numberOfLines = 0
 
-        tableView.register(OnboardingInsuranceCell.self, forCellReuseIdentifier: OnboardingInsuranceCell.identifier)
+        tableView.registerCell(OnboardingInsuranceCell.self)
         tableView.backgroundColor = .clear
         tableView.showsVerticalScrollIndicator = false
         tableView.separatorColor = Color.secondaryForeground
@@ -100,7 +100,7 @@ extension AddInsuranceTypeViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let onboardingInsuranceCell = tableView.dequeueCell(ofType: OnboardingInsuranceCell.self, indexPath: indexPath)
+        let onboardingInsuranceCell = tableView.dequeueCell(OnboardingInsuranceCell.self, indexPath: indexPath)
         onboardingInsuranceCell.configure(
             title: InsuranceProviderType.mockTypeResults[indexPath.item].rawValue,
             image: UIImage(systemName: "house")?.withRenderingMode(.alwaysTemplate),
