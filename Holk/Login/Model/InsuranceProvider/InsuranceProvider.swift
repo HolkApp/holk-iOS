@@ -11,7 +11,7 @@ struct InsuranceProvider: Codable, Hashable {
     let displayName: String
     let status: InsuranceIssuerStatus?
     let internalName: String
-    let logoUrl: String
-    let symbolUrl: String
-    let websiteUrl: String
+    let logoUrl: URL
+    let symbolUrl: URL
+    let websiteUrl: URL
 }
