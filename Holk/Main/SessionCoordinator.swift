@@ -13,7 +13,7 @@ final class SessionCoordinator: NSObject, UINavigationControllerDelegate {
     weak var coordinator: ShellCoordinator?
 
     // MARK: - Private Properties
-    private var presenterViewController: UIViewController
+    private weak var presenterViewController: UIViewController?
     private var storeController: StoreController
     
     // MARK: - Init
@@ -37,6 +37,6 @@ final class SessionCoordinator: NSObject, UINavigationControllerDelegate {
         tabbarController.navigationItem.hidesBackButton = true
         tabbarController.coordinator = self
         tabbarController.modalPresentationStyle = .overFullScreen
-        presenterViewController.present(tabbarController, animated: false)
+        presenterViewController?.present(tabbarController, animated: false)
     }
 }
