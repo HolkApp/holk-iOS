@@ -146,4 +146,9 @@ extension InsuranceThinkOfsViewController {
 }
 
 extension InsuranceThinkOfsViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let thinkOf = thinkOfs[indexPath.item]
+        let insuranceThinkOfDetailViewController = InsuranceThinkOfDetailViewController(storeController: storeController, thinkOf: thinkOf)
+        show(insuranceThinkOfDetailViewController, sender: self)
+    }
 }
