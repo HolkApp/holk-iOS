@@ -54,13 +54,11 @@ final class InsuranceListViewController: UICollectionViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-        navigationItem.largeTitleDisplayMode = .always
         
         navigationController?.navigationBar.layoutMargins.left = 24
         navigationController?.navigationBar.layoutMargins.right = 24
-        navigationController?.navigationBar.barTintColor = Color.insuranceBackground
-        navigationController?.navigationBar.shadowImage = UIImage()
+
+        collectionView.contentInset = .init(top: 1, left: 0, bottom: 0, right: 0)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
