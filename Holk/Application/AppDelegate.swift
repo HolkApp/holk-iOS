@@ -24,10 +24,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         // TODO: Add something for register the appearance
-        let appearance = UIPageControl.appearance(whenContainedInInstancesOf: [UIPageViewController.self])
-        appearance.pageIndicatorTintColor = Color.secondaryForeground
-        appearance.currentPageIndicatorTintColor = Color.mainHighlight
-        
+        let pageControlAppearance = UIPageControl.appearance(whenContainedInInstancesOf: [UIPageViewController.self])
+        pageControlAppearance.pageIndicatorTintColor = Color.mainBackground
+        pageControlAppearance.currentPageIndicatorTintColor = Color.mainForeground
+
+        UINavigationBar.appearance().tintColor = Color.mainForeground
+
         return true
     }
     
