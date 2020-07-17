@@ -20,8 +20,8 @@ final class TabBarController: UITabBarController {
 
     init(storeController: StoreController) {
         self.storeController = storeController
-        insuranceCoordinator = InsuranceCoordinator(navController: UINavigationController(), storeController: storeController)
-        protectionCoordinator = InsuranceProtectionCoordinator(navController: UINavigationController())
+        insuranceCoordinator = InsuranceCoordinator(storeController: storeController)
+        protectionCoordinator = InsuranceProtectionCoordinator()
 
         super.init(nibName: nil, bundle: nil)
     }
