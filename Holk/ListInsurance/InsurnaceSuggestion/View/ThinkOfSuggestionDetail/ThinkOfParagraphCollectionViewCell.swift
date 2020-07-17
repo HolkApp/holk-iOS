@@ -45,9 +45,9 @@ final class ThinkOfParagraphCollectionViewCell: UICollectionViewCell {
             iconView.heightAnchor.constraint(equalToConstant: 52),
             iconView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 26),
             iconView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            iconView.trailingAnchor.constraint(equalTo: descriptionLabel.trailingAnchor, constant: -20),
+            iconView.trailingAnchor.constraint(equalTo: descriptionLabel.leadingAnchor, constant: -20),
 
-            descriptionLabel.topAnchor.constraint(equalTo: iconView.topAnchor),
+            descriptionLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -26),
             descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
         ])
@@ -55,9 +55,9 @@ final class ThinkOfParagraphCollectionViewCell: UICollectionViewCell {
 }
 
 extension ThinkOfParagraphCollectionViewCell {
-    func configure(_ paragraph: Paragraph) {
+    func configure(_ viewModel: ThinkOfSuggestionParagraphViewModel) {
         // TODO: Configure the icon
 //        paragraph.icon
-        descriptionLabel.text = paragraph.text
+        descriptionLabel.text = viewModel.text
     }
 }

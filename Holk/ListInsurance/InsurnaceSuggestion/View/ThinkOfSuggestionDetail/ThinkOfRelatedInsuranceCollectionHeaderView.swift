@@ -53,12 +53,12 @@ final class ThinkOfRelatedInsuranceCollectionHeaderView: UICollectionReusableVie
         titleSeparatorline.backgroundColor = Color.separator
         titleSeparatorline.translatesAutoresizingMaskIntoConstraints = false
 
-        titleLabel.text = "Försäkring"
-        nameLabel.setStyleGuide(.header1)
+        nameLabel.text = "Försäkring"
+        nameLabel.setStyleGuide(.titleHeader1)
         nameLabel.textColor = Color.mainForeground
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        nameValueLabel.setStyleGuide(.header2)
+        nameValueLabel.setStyleGuide(.titleHeader2)
         nameValueLabel.textColor = Color.secondaryForeground
         nameValueLabel.textAlignment = .right
         nameValueLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -67,7 +67,7 @@ final class ThinkOfRelatedInsuranceCollectionHeaderView: UICollectionReusableVie
         nameSeparatorline.translatesAutoresizingMaskIntoConstraints = false
 
         providerLabel.text = "Bolag"
-        providerLabel.setStyleGuide(.header1)
+        providerLabel.setStyleGuide(.titleHeader1)
         providerLabel.textColor = Color.mainForeground
         providerLabel.translatesAutoresizingMaskIntoConstraints = false
 
@@ -78,11 +78,11 @@ final class ThinkOfRelatedInsuranceCollectionHeaderView: UICollectionReusableVie
         providerSeparatorline.translatesAutoresizingMaskIntoConstraints = false
 
         endDateLabel.text = "Gäller till"
-        endDateLabel.setStyleGuide(.header1)
+        endDateLabel.setStyleGuide(.titleHeader1)
         endDateLabel.textColor = Color.mainForeground
         endDateLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        endDateValueLabel.setStyleGuide(.header2)
+        endDateValueLabel.setStyleGuide(.titleHeader2)
         endDateValueLabel.textColor = Color.secondaryForeground
         endDateValueLabel.textAlignment = .right
         endDateValueLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -111,7 +111,7 @@ final class ThinkOfRelatedInsuranceCollectionHeaderView: UICollectionReusableVie
             titleLabel.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
             titleLabel.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
 
-            titleSeparatorline.heightAnchor.constraint(equalToConstant: 1),
+            titleSeparatorline.heightAnchor.constraint(equalToConstant: 2),
             titleSeparatorline.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
             titleSeparatorline.topAnchor.constraint(equalTo: titleLabel.lastBaselineAnchor, constant: 16),
             titleSeparatorline.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
@@ -123,7 +123,7 @@ final class ThinkOfRelatedInsuranceCollectionHeaderView: UICollectionReusableVie
             nameValueLabel.lastBaselineAnchor.constraint(equalTo: nameLabel.lastBaselineAnchor),
             nameValueLabel.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
 
-            nameSeparatorline.heightAnchor.constraint(equalToConstant: 1),
+            nameSeparatorline.heightAnchor.constraint(equalToConstant: 2),
             nameSeparatorline.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
             nameSeparatorline.topAnchor.constraint(equalTo: nameLabel.lastBaselineAnchor, constant: 16),
             nameSeparatorline.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
@@ -132,10 +132,12 @@ final class ThinkOfRelatedInsuranceCollectionHeaderView: UICollectionReusableVie
             providerLabel.topAnchor.constraint(equalTo: nameSeparatorline.bottomAnchor, constant: 16),
             providerLabel.trailingAnchor.constraint(equalTo: providerValueLabel.leadingAnchor, constant: -8),
 
+            providerValueLabel.heightAnchor.constraint(equalToConstant: 32),
+            providerValueLabel.widthAnchor.constraint(equalToConstant: 140),
             providerValueLabel.centerYAnchor.constraint(equalTo: providerLabel.centerYAnchor),
             providerValueLabel.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
 
-            providerSeparatorline.heightAnchor.constraint(equalToConstant: 1),
+            providerSeparatorline.heightAnchor.constraint(equalToConstant: 2),
             providerSeparatorline.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
             providerSeparatorline.topAnchor.constraint(equalTo: providerLabel.lastBaselineAnchor, constant: 16),
             providerSeparatorline.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
@@ -147,10 +149,11 @@ final class ThinkOfRelatedInsuranceCollectionHeaderView: UICollectionReusableVie
             endDateValueLabel.lastBaselineAnchor.constraint(equalTo: endDateLabel.lastBaselineAnchor),
             endDateValueLabel.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
 
-            endDateSeparatorline.heightAnchor.constraint(equalToConstant: 1),
+            endDateSeparatorline.heightAnchor.constraint(equalToConstant: 2),
             endDateSeparatorline.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
             endDateSeparatorline.topAnchor.constraint(equalTo: endDateLabel.lastBaselineAnchor, constant: 16),
-            endDateSeparatorline.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor)
+            endDateSeparatorline.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
+            endDateSeparatorline.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor)
         ])
     }
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class HomeinsuranceSubInsurancesViewController: UIViewController {
+final class HomeSubInsurancesViewController: UIViewController {
     enum Section: CaseIterable {
         case subInsurance
     }
@@ -31,8 +31,8 @@ final class HomeinsuranceSubInsurancesViewController: UIViewController {
 
     // MARK: - Private Variables
     private let insurance: Insurance
-    private let basicSubInsurance: [HomeinsuranceSubInsuranceSegment]
-    private let additionalSubInsurance: [HomeinsuranceSubInsuranceSegment]
+    private let basicSubInsurances: [HomeinsuranceSubInsuranceSegment]
+    private let additionalSubInsurances: [HomeinsuranceSubInsuranceSegment]
     private var selectedSegment: SubInsuranceSegment = .basic
     private lazy var dataSource = makeDataSource()
     private lazy var collectionView: UICollectionView = {
@@ -44,9 +44,9 @@ final class HomeinsuranceSubInsurancesViewController: UIViewController {
     init(storeController: StoreController, insurance: Insurance) {
         self.storeController = storeController
         self.insurance = insurance
-        basicSubInsurance = insurance.segments.compactMap { HomeinsuranceSubInsuranceSegment.basic($0) }
+        basicSubInsurances = insurance.segments.compactMap { HomeinsuranceSubInsuranceSegment.basic($0) }
         // TODO: Update this
-        additionalSubInsurance = []
+        additionalSubInsurances = []
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -69,6 +69,7 @@ final class HomeinsuranceSubInsurancesViewController: UIViewController {
 
     private func setup() {
         navigationItem.largeTitleDisplayMode = .never
+        navigationItem.setAppearance(backgroundColor: Color.secondaryBackground)
         
         collectionView.backgroundColor = Color.insuranceBackground
         collectionView.showsVerticalScrollIndicator = false
@@ -87,7 +88,7 @@ final class HomeinsuranceSubInsurancesViewController: UIViewController {
 }
 
 // MARK: UICollectionViewLayout
-extension HomeinsuranceSubInsurancesViewController {
+extension HomeSubInsurancesViewController {
     private func makeDataSource() -> DataSource {
         let dataSource = DataSource(
             collectionView: collectionView,
@@ -126,16 +127,16 @@ extension HomeinsuranceSubInsurancesViewController {
         snapshot.appendSections(sections)
         switch selectedSegment {
         case .basic:
-            snapshot.appendItems(basicSubInsurance)
+            snapshot.appendItems(basicSubInsurances)
         case .additional:
-            snapshot.appendItems(additionalSubInsurance)
+            snapshot.appendItems(additionalSubInsurances)
         }
 
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
     }
 
     private func makeSubinsurancesLayout() -> UICollectionViewLayout {
-        let sections = [makeSumodelCardsSection()]
+        let sections = [makeSubInsuranceCardsSection()]
 
         let layout = UICollectionViewCompositionalLayout { (sectionIndex, environment) in
             return sections[sectionIndex]
@@ -149,7 +150,7 @@ extension HomeinsuranceSubInsurancesViewController {
         return headerElement
     }
 
-    private func makeSumodelCardsSection() -> NSCollectionLayoutSection {
+    private func makeSubInsuranceCardsSection() -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(200))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(200))
