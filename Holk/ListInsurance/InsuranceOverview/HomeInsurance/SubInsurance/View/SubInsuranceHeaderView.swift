@@ -9,7 +9,7 @@
 import UIKit
 
 final class SubInsuranceHeaderView: UICollectionReusableView {
-    weak var subInsurancesViewController: HomeinsuranceSubInsurancesViewController?
+    weak var subInsurancesViewController: HomeSubInsurancesViewController?
     private let titleLabel = UILabel()
     private let descriptionLabel = UILabel()
     private let imageView = UIImageView()

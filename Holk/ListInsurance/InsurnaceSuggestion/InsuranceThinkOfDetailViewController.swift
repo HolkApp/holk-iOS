@@ -12,18 +12,16 @@ final class InsuranceThinkOfDetailViewController: UIViewController {
 
     enum Section: CaseIterable {
         case paragraph
-        case insurance
-        case subinsurance
+        case subInsurance
     }
 
-    enum SectionModel: Hashable {
+    enum Item: Hashable {
         case paragraph(ThinkOfSuggestionParagraphViewModel)
-        case insurance(ThinkOfInsuranceViewModel)
-        case subinsurance(ThinkOfSubInsuranceViewModel)
+        case subInsurance(ThinkOfSubInsuranceViewModel)
     }
 
-    typealias DataSource = UICollectionViewDiffableDataSource<Section, SectionModel>
-    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, SectionModel>
+    typealias DataSource = UICollectionViewDiffableDataSource<Section, Item>
+    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Item>
 
     private let viewModel: InsuranceThinkOfDetailViewModel
     private var storeController: StoreController

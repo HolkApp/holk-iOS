@@ -13,7 +13,7 @@ final class HomeSubInsurancesViewController: UIViewController {
         case subInsurance
     }
 
-    enum HomeinsuranceSubInsuranceSegment: Hashable {
+    enum HomeSubInsuranceSegment: Hashable {
         case basic(Insurance.Segment)
         case additional(Insurance.Segment)
     }
@@ -23,16 +23,16 @@ final class HomeSubInsurancesViewController: UIViewController {
         case additional
     }
 
-    typealias DataSource = UICollectionViewDiffableDataSource<Section, HomeinsuranceSubInsuranceSegment>
-    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, HomeinsuranceSubInsuranceSegment>
+    typealias DataSource = UICollectionViewDiffableDataSource<Section, HomeSubInsuranceSegment>
+    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, HomeSubInsuranceSegment>
 
     // MARK: - Public Variables
     var storeController: StoreController
 
     // MARK: - Private Variables
     private let insurance: Insurance
-    private let basicSubInsurances: [HomeinsuranceSubInsuranceSegment]
-    private let additionalSubInsurances: [HomeinsuranceSubInsuranceSegment]
+    private let basicSubInsurances: [HomeSubInsuranceSegment]
+    private let additionalSubInsurances: [HomeSubInsuranceSegment]
     private var selectedSegment: SubInsuranceSegment = .basic
     private lazy var dataSource = makeDataSource()
     private lazy var collectionView: UICollectionView = {
@@ -44,7 +44,7 @@ final class HomeSubInsurancesViewController: UIViewController {
     init(storeController: StoreController, insurance: Insurance) {
         self.storeController = storeController
         self.insurance = insurance
-        basicSubInsurances = insurance.segments.compactMap { HomeinsuranceSubInsuranceSegment.basic($0) }
+        basicSubInsurances = insurance.segments.compactMap { HomeSubInsuranceSegment.basic($0) }
         // TODO: Update this
         additionalSubInsurances = []
 
