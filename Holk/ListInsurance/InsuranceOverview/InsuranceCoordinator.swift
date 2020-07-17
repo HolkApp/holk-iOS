@@ -14,13 +14,12 @@ protocol InsuranceCoordinatorDelegate: AnyObject {
 
 final class InsuranceCoordinator: NSObject, UINavigationControllerDelegate {
     // MARK: - Public Variables
-    var navController: UINavigationController
     var storeController: StoreController
     weak var delegate: InsuranceCoordinatorDelegate?
+    let navController = UINavigationController()
 
     // MARK: - Init
-    init(navController: UINavigationController, storeController: StoreController) {
-        self.navController = navController
+    init(storeController: StoreController) {
         self.storeController = storeController
     }
     // MARK: - Public Methods
@@ -30,8 +29,6 @@ final class InsuranceCoordinator: NSObject, UINavigationControllerDelegate {
         insuranceListViewController.coordinator = self
 
         navController.tabBarItem = UITabBarItem(title: "Översikt", image: UIImage(systemName: "square.stack.3d.up"), selectedImage: UIImage(systemName: "square.stack.3d.up.fill"))
-        navController.navigationBar.tintColor = Color.mainForeground
-        navController.navigationBar.prefersLargeTitles = true
         navController.delegate = self
         navController.setViewControllers([insuranceListViewController], animated: true)
     }
@@ -39,13 +36,11 @@ final class InsuranceCoordinator: NSObject, UINavigationControllerDelegate {
     func showInsurance(_ insurance: Insurance) {
         let insuranceViewController = InsuranceViewController(storeController: storeController, insurance: insurance)
         insuranceViewController.coordinator = self
-        insuranceViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(back(_:)))
         navController.pushViewController(insuranceViewController, animated: true)
     }
 
     func showinsuranceDetail(_ insurance: Insurance) {
-        let homeinsuranceSubInsurancesViewController = HomeinsuranceSubInsurancesViewController(storeController: storeController, insurance: insurance)
-        homeinsuranceSubInsurancesViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(back(_:)))
+        let homeinsuranceSubInsurancesViewController = HomeSubInsurancesViewController(storeController: storeController, insurance: insurance)
         navController.pushViewController(homeinsuranceSubInsurancesViewController, animated: true)
     }
 

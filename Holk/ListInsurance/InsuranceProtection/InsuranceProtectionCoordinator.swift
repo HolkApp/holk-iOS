@@ -10,10 +10,10 @@ import UIKit
 
 final class InsuranceProtectionCoordinator {
     // MARK: - Public Properties
-    var navController: UINavigationController
+    let navController = UINavigationController()
     // MARK: - Init
-    init(navController: UINavigationController) {
-        self.navController = navController
+    init() {
+        // TODO: Configure this
     }
     // MARK: - Public Methods
     func start() {

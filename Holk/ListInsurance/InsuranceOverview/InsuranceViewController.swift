@@ -46,6 +46,7 @@ final class InsuranceViewController: UIViewController {
 
     private func setup() {
         navigationItem.largeTitleDisplayMode = .never
+        navigationItem.setAppearance(backgroundColor: Color.secondaryBackground)
         view.backgroundColor = Color.secondaryBackground
 
         collectionView.dataSource = self
