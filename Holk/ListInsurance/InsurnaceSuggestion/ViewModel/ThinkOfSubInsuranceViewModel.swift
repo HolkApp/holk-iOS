@@ -9,7 +9,7 @@
 import Foundation
 
 struct ThinkOfSubInsuranceViewModel: Hashable {
-    private var subInsurance: Insurance.Segment
+    var subInsurance: Insurance.Segment
     var kind: Insurance.Segment.Kind
     var text: String
 
