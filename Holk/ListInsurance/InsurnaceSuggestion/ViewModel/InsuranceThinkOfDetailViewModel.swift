@@ -38,13 +38,21 @@ final class InsuranceThinkOfDetailViewModel {
         }
     }
 
-    func makeThinkOfSuggestionParagraphViewModel(at index: IndexPath) -> ThinkOfSuggestionParagraphViewModel {
+    func makeAllThinkOfSuggestionParagraphViewModel() -> [ThinkOfSuggestionParagraphViewModel] {
+        return detailParagraphs.map(ThinkOfSuggestionParagraphViewModel.init(paragraph: ))
+    }
+
+    private func makeThinkOfSuggestionParagraphViewModel(at index: IndexPath) -> ThinkOfSuggestionParagraphViewModel {
         let paragraph = detailParagraphs[index.item]
         return ThinkOfSuggestionParagraphViewModel(paragraph: paragraph)
     }
 
     func makeThinkOfInsuranceViewModel() -> ThinkOfInsuranceViewModel? {
         return mappedInsurance.map(ThinkOfInsuranceViewModel.init(insurance: ))
+    }
+
+    func makeAllThinkOfSubInsuranceViewModel() -> [ThinkOfSubInsuranceViewModel] {
+        return mappedSubInsurances.map(ThinkOfSubInsuranceViewModel.init(subInsurance: ))
     }
 
     func makeThinkOfSubInsuranceViewModel(at indexPath: IndexPath) -> ThinkOfSubInsuranceViewModel {
