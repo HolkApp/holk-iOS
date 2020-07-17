@@ -61,10 +61,10 @@ final class InsuranceViewController: UIViewController {
 
         view.addSubview(collectionView)
 
-        setupCosntraints()
+        setupLayout()
     }
 
-    private func setupCosntraints() {
+    private func setupLayout() {
         NSLayoutConstraint.activate([
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
