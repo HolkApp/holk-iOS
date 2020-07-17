@@ -76,13 +76,11 @@ final class LandingPageViewController: UIPageViewController {
         setViewControllers([firstViewController], direction: .forward, animated: true, completion: nil)
         
         pageControl.numberOfPages = orderedViewControllers.count
-        pageControl.currentPageIndicatorTintColor = Color.mainForeground
-        pageControl.pageIndicatorTintColor = Color.mainBackground
         
-        setupCosntraints()
+        setupLayout()
     }
     
-    private func setupCosntraints() {
+    private func setupLayout() {
         loginButton.translatesAutoresizingMaskIntoConstraints = false
         pageControl.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(pageControl)
