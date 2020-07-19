@@ -12,6 +12,11 @@
 		8F02658624C1A30E00F4208B /* SubInsuranceSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F02658224C1A30E00F4208B /* SubInsuranceSegmentView.swift */; };
 		8F02658724C1A30E00F4208B /* SubInsuranceHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F02658324C1A30E00F4208B /* SubInsuranceHeaderView.swift */; };
 		8F02658824C1A30E00F4208B /* SubInsuranceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F02658424C1A30E00F4208B /* SubInsuranceCollectionViewCell.swift */; };
+		8F02658A24C43E5800F4208B /* ThinkOfDetailCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F02658924C43E5800F4208B /* ThinkOfDetailCollectionHeaderView.swift */; };
+		8F02658E24C4517400F4208B /* Poppins-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F02658D24C4517400F4208B /* Poppins-ExtraBold.ttf */; };
+		8F02659024C4517D00F4208B /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F02658F24C4517D00F4208B /* Poppins-Bold.ttf */; };
+		8F02659224C4C2FB00F4208B /* ThinkOfSuggestionBannerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F02659124C4C2FB00F4208B /* ThinkOfSuggestionBannerViewModel.swift */; };
+		8F02659424C4C43F00F4208B /* ThinkOfBannerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F02659324C4C43F00F4208B /* ThinkOfBannerCollectionViewCell.swift */; };
 		8F0D403F227A0AD4000BD840 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0D403E227A0AD4000BD840 /* APIError.swift */; };
 		8F0D4041227A0D68000BD840 /* OnboardingInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0D4040227A0D68000BD840 /* OnboardingInfoViewController.swift */; };
 		8F16DE66245A127000EFC1BD /* EmailValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F16DE65245A127000EFC1BD /* EmailValidation.swift */; };
@@ -178,6 +183,11 @@
 		8F02658224C1A30E00F4208B /* SubInsuranceSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubInsuranceSegmentView.swift; sourceTree = "<group>"; };
 		8F02658324C1A30E00F4208B /* SubInsuranceHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubInsuranceHeaderView.swift; sourceTree = "<group>"; };
 		8F02658424C1A30E00F4208B /* SubInsuranceCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubInsuranceCollectionViewCell.swift; sourceTree = "<group>"; };
+		8F02658924C43E5800F4208B /* ThinkOfDetailCollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThinkOfDetailCollectionHeaderView.swift; sourceTree = "<group>"; };
+		8F02658D24C4517400F4208B /* Poppins-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraBold.ttf"; sourceTree = "<group>"; };
+		8F02658F24C4517D00F4208B /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
+		8F02659124C4C2FB00F4208B /* ThinkOfSuggestionBannerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThinkOfSuggestionBannerViewModel.swift; sourceTree = "<group>"; };
+		8F02659324C4C43F00F4208B /* ThinkOfBannerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThinkOfBannerCollectionViewCell.swift; sourceTree = "<group>"; };
 		8F0D403E227A0AD4000BD840 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		8F0D4040227A0D68000BD840 /* OnboardingInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingInfoViewController.swift; sourceTree = "<group>"; };
 		8F16DE65245A127000EFC1BD /* EmailValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidation.swift; sourceTree = "<group>"; };
@@ -574,6 +584,7 @@
 			isa = PBXGroup;
 			children = (
 				8FC8EA6B24B8DD4100BE69D9 /* InsuranceThinkOfDetailViewModel.swift */,
+				8F02659124C4C2FB00F4208B /* ThinkOfSuggestionBannerViewModel.swift */,
 				8FC8EA6D24B8ECF900BE69D9 /* ThinkOfSuggestionParagraphViewModel.swift */,
 				8FC8EA7124BA3DE000BE69D9 /* ThinkOfInsuranceViewModel.swift */,
 				8FC8EA6F24B9077500BE69D9 /* ThinkOfSubInsuranceViewModel.swift */,
@@ -594,7 +605,9 @@
 		8FC8EA7424BA53C500BE69D9 /* ThinkOfSuggestionDetail */ = {
 			isa = PBXGroup;
 			children = (
+				8F02659324C4C43F00F4208B /* ThinkOfBannerCollectionViewCell.swift */,
 				8FC8EA7524BA540300BE69D9 /* ThinkOfParagraphCollectionViewCell.swift */,
+				8F02658924C43E5800F4208B /* ThinkOfDetailCollectionHeaderView.swift */,
 				8FC8EA7724BB3EC200BE69D9 /* ThinkOfRelatedInsuranceCollectionHeaderView.swift */,
 			);
 			path = ThinkOfSuggestionDetail;
@@ -823,6 +836,8 @@
 				8F5BE48E247AF819006AE8AF /* Montserrat-Medium.ttf */,
 				8F4965E024154DC800DEAFC1 /* Montserrat-Bold.ttf */,
 				8FF6E74922B82F3600F6D398 /* Montserrat-ExtraBold.ttf */,
+				8F02658D24C4517400F4208B /* Poppins-ExtraBold.ttf */,
+				8F02658F24C4517D00F4208B /* Poppins-Bold.ttf */,
 				8F858A4C23CD16FC006B416A /* Poppins-SemiBold.ttf */,
 				8FA766D024447BD8007EB2A2 /* Poppins-Medium.ttf */,
 				8F858A4A23CD1470006B416A /* Poppins-Regular.ttf */,
@@ -943,6 +958,8 @@
 				8FF6E74A22B82F3600F6D398 /* Montserrat-ExtraBold.ttf in Resources */,
 				8F6BCA3922F73CBF004B887E /* Font Awesome 5 Pro-Solid-900.otf in Resources */,
 				8FC81CEC2483FB4400F6BC8C /* Lato-Regular.ttf in Resources */,
+				8F02659024C4517D00F4208B /* Poppins-Bold.ttf in Resources */,
+				8F02658E24C4517400F4208B /* Poppins-ExtraBold.ttf in Resources */,
 				8F4965E124154DC800DEAFC1 /* Montserrat-Bold.ttf in Resources */,
 				8F6BCA3B22F73CBF004B887E /* Font Awesome 5 Pro-Regular-400.otf in Resources */,
 				8FA8F10E232D377F00670471 /* Color.xcassets in Resources */,
@@ -1042,10 +1059,12 @@
 				8F2BB8E62332D4EB00E8AE4B /* FontLoader.swift in Sources */,
 				8FD676832492CB0700E62820 /* SuggestionStore.swift in Sources */,
 				8FD676952496B43500E62820 /* Date+extension.swift in Sources */,
+				8F02658A24C43E5800F4208B /* ThinkOfDetailCollectionHeaderView.swift in Sources */,
 				8F3C7DAE23F4AB63002EDA57 /* OnboardingConsentViewController.swift in Sources */,
 				8F5AF02423C6759C00690373 /* MockType.swift in Sources */,
 				8F9807E92276F10E00584BA9 /* InsuranceCoordinator.swift in Sources */,
 				8F48BE6723315F49004D79D2 /* HolkIllustrationLabel.swift in Sources */,
+				8F02659424C4C43F00F4208B /* ThinkOfBannerCollectionViewCell.swift in Sources */,
 				8F54C24B242FD76E00D72FD7 /* HomeInsuranceDetailTableViewCell.swift in Sources */,
 				8FD676992497945400E62820 /* HomeInsuranceHeaderView.swift in Sources */,
 				8FA766CB24411265007EB2A2 /* UIScrollView+extension.swift in Sources */,
@@ -1138,6 +1157,7 @@
 				8FC81CF02484011D00F6BC8C /* InsuranceViewController.swift in Sources */,
 				8F691D3A24588C9C0093E965 /* InsuranceCredentialService.swift in Sources */,
 				8F16DE7124609DA300EFC1BD /* AddInsuranceTypeViewController.swift in Sources */,
+				8F02659224C4C2FB00F4208B /* ThinkOfSuggestionBannerViewModel.swift in Sources */,
 				8FC296BE23E7614D002A39D1 /* LandingInfoViewController.swift in Sources */,
 				8F02658824C1A30E00F4208B /* SubInsuranceCollectionViewCell.swift in Sources */,
 				8F5D89DF244EEB40007F1B26 /* InsuranceSuggestionCardCollectionViewCell.swift in Sources */,
