@@ -11,11 +11,13 @@ import UIKit
 final class InsuranceThinkOfDetailViewController: UIViewController {
 
     enum Section: CaseIterable {
+        case banner
         case paragraph
         case subInsurance
     }
 
     enum Item: Hashable {
+        case banner(ThinkOfSuggestionBannerViewModel)
         case paragraph(ThinkOfSuggestionParagraphViewModel)
         case subInsurance(ThinkOfSubInsuranceViewModel)
     }
@@ -54,13 +56,17 @@ final class InsuranceThinkOfDetailViewController: UIViewController {
     }
 
     private func setup() {
-        navigationItem.setAppearance(backgroundColor: Color.secondaryBackground)
-        
+        navigationItem.setAppearance(backgroundColor: viewModel.headerBackgroundViewColor ?? Color.secondaryBackground)
+
+        collectionView.bounces = false
         collectionView.backgroundColor = Color.secondaryBackground
         collectionView.showsVerticalScrollIndicator = false
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.registerCell(ThinkOfBannerCollectionViewCell.self)
+        collectionView.registerReusableSupplementaryView(ThinkOfDetailCollectionHeaderView.self, of: UICollectionView.elementKindSectionHeader)
         collectionView.registerCell(ThinkOfParagraphCollectionViewCell.self)
-        collectionView.registerReusableSupplementaryView(ThinkOfRelatedInsuranceCollectionHeaderView.self, of: UICollectionView.elementKindSectionHeader)
         collectionView.registerCell(SubInsuranceCollectionViewCell.self)
+        collectionView.registerReusableSupplementaryView(ThinkOfRelatedInsuranceCollectionHeaderView.self, of: UICollectionView.elementKindSectionHeader)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
 
         view.addSubview(collectionView)
@@ -83,6 +89,10 @@ extension InsuranceThinkOfDetailViewController {
             collectionView: collectionView,
             cellProvider: { (collectionView, indexPath, section) in
                 switch section {
+                case .banner(let thinkOfSuggestionBannerViewModel):
+                    let thinkOfBannerCollectionViewCell = collectionView.dequeueCell(ThinkOfBannerCollectionViewCell.self, indexPath: indexPath)
+                    thinkOfBannerCollectionViewCell.configure(thinkOfSuggestionBannerViewModel)
+                    return thinkOfBannerCollectionViewCell
                 case .paragraph(let thinkOfSuggestionParagraphViewModel):
                     let thinkOfParagraphCollectionViewCell = collectionView.dequeueCell(ThinkOfParagraphCollectionViewCell.self, indexPath: indexPath)
                     thinkOfParagraphCollectionViewCell.configure(thinkOfSuggestionParagraphViewModel)
@@ -96,23 +106,31 @@ extension InsuranceThinkOfDetailViewController {
         dataSource.supplementaryViewProvider = ({ [weak self] (collectionView, kind, indexPath) in
             guard let self = self else { return nil }
             switch Section.allCases[indexPath.section] {
+            case.banner:
+                if kind == UICollectionView.elementKindSectionHeader {
+                    let thinkOfDetailCollectionHeaderView = collectionView.dequeueReusableSupplementaryView(
+                        ThinkOfDetailCollectionHeaderView.self,
+                        of: kind,
+                        indexPath: indexPath
+                    )
+                    thinkOfDetailCollectionHeaderView.configure(self.viewModel)
+                    return thinkOfDetailCollectionHeaderView
+                }
+                return nil
             case .paragraph:
                 return nil
             case .subInsurance:
-                if kind == UICollectionView.elementKindSectionHeader {
-                    if let insurnaceViewModel = self.viewModel.makeThinkOfInsuranceViewModel() {
-                        let thinkOfRelatedInsuranceCollectionHeaderView = collectionView.dequeueReusableSupplementaryView(
-                                ThinkOfRelatedInsuranceCollectionHeaderView.self,
-                                of: kind,
-                                indexPath: indexPath
-                        )
-                        thinkOfRelatedInsuranceCollectionHeaderView.configure(insurnaceViewModel)
-                        return thinkOfRelatedInsuranceCollectionHeaderView
-                    }
+                if kind == UICollectionView.elementKindSectionHeader, let insurnaceViewModel = self.viewModel.makeThinkOfInsuranceViewModel() {
+                    let thinkOfRelatedInsuranceCollectionHeaderView = collectionView.dequeueReusableSupplementaryView(
+                        ThinkOfRelatedInsuranceCollectionHeaderView.self,
+                        of: kind,
+                        indexPath: indexPath
+                    )
+                    thinkOfRelatedInsuranceCollectionHeaderView.configure(insurnaceViewModel)
+                    return thinkOfRelatedInsuranceCollectionHeaderView
                 }
                 return nil
             }
-
         })
         return dataSource
     }
@@ -123,6 +141,9 @@ extension InsuranceThinkOfDetailViewController {
         snapshot.appendSections(sections)
         sections.forEach { section in
             switch section {
+            case .banner:
+                let bannerItem = Item.banner(viewModel.makeThinkOfSuggestionBannerViewModel())
+                snapshot.appendItems([bannerItem], toSection: section)
             case .paragraph:
                 let paragraphItems = viewModel.makeAllThinkOfSuggestionParagraphViewModel().map({ Item.paragraph($0) })
                 snapshot.appendItems(paragraphItems, toSection: section)
@@ -136,12 +157,30 @@ extension InsuranceThinkOfDetailViewController {
     }
 
     private func makeThinkOfSuggestionLayout() -> UICollectionViewLayout {
-        let sections = [makeParagraphSection(), makeSubInsuranceCardsSection()]
+        let sections = [makeBannerSection(), makeParagraphSection(), makeSubInsuranceCardsSection()]
 
         let layout = UICollectionViewCompositionalLayout { (sectionIndex, environment) in
             return sections[sectionIndex]
         }
         return layout
+    }
+
+    private func makeBannerSection() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(390))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(390))
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+        let cardSection = NSCollectionLayoutSection(group: group)
+        cardSection.contentInsets = .init(top: 0, leading: 0, bottom: 36, trailing: 0)
+        cardSection.boundarySupplementaryItems = [makeThinkOfDetailHeader()]
+        return cardSection
+    }
+
+    private func makeThinkOfDetailHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(240))
+        let headerElement = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+//        headerElement.pinToVisibleBounds = true
+        return headerElement
     }
 
     private func makeParagraphSection() -> NSCollectionLayoutSection {
@@ -152,14 +191,7 @@ extension InsuranceThinkOfDetailViewController {
         let cardSection = NSCollectionLayoutSection(group: group)
         cardSection.interGroupSpacing = 24
         cardSection.contentInsets = .init(top: 0, leading: 0, bottom: 20, trailing: 0)
-//        cardSection.boundarySupplementaryItems = [makeSubInsuranceSectionHeader()]
         return cardSection
-    }
-
-    private func makeSubInsuranceSectionHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
-        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(240))
-        let headerElement = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
-        return headerElement
     }
 
     private func makeSubInsuranceCardsSection() -> NSCollectionLayoutSection {
@@ -172,5 +204,11 @@ extension InsuranceThinkOfDetailViewController {
         cardSection.contentInsets = .init(top: 20, leading: 0, bottom: 20, trailing: 0)
         cardSection.boundarySupplementaryItems = [makeSubInsuranceSectionHeader()]
         return cardSection
+    }
+
+    private func makeSubInsuranceSectionHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(240))
+        let headerElement = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+        return headerElement
     }
 }
