@@ -32,24 +32,30 @@ extension UILabel {
             case .header7:
             font = Font.font(name: .montserrat, weight: .regular, size: 18)
             setLineHeight(29)
-        case .subHeaders1:
+        case .subHeader1:
             font = Font.font(name: .poppins, weight: .light, size: 22)
             setLineHeight(30)
-        case .subHeaders2:
+        case .subHeader2:
             font = Font.font(name: .poppins, weight: .light, size: 15)
             setLineHeight(30)
-        case .subHeaders3:
+        case .subHeader3:
             font = Font.font(name: .poppins, weight: .light, size: 19)
             setLineHeight(30)
-        case .subHeaders4:
+        case .subHeader4:
             font = Font.font(name: .poppins, weight: .regular, size: 25)
             setLineHeight(30)
+        case .subHeader5:
+            font = Font.font(name: .poppins, weight: .regular, size: 17)
+            setLineHeight(22)
         case .cardHeader1:
             font = Font.font(name: .montserrat, weight: .extraBold, size: 35)
             setLineHeight(37)
         case .cardHeader2:
-            font = Font.font(name: .montserrat, weight: .extraBold, size: 28)
+            font = Font.font(name: .poppins, weight: .extraBold, size: 28)
             setLineHeight(32)
+        case .cardHeader3:
+            font = Font.font(name: .poppins, weight: .extraBold, size: 31)
+            setLineHeight(37)
         case .titleHeader1:
             font = Font.font(name: .poppins, weight: .semiBold, size: 18)
             setLineHeight(14)
