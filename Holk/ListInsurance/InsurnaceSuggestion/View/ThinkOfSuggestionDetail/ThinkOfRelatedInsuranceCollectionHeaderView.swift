@@ -41,7 +41,6 @@ final class ThinkOfRelatedInsuranceCollectionHeaderView: UICollectionReusableVie
 
     private func setup() {
         clipsToBounds = true
-        backgroundColor = .clear
 
         layoutMargins = .init(top: 36, left: 26, bottom: 36, right: 26)
 

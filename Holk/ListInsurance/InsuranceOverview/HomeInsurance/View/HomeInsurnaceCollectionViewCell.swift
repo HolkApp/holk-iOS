@@ -80,7 +80,7 @@ final class HomeinsuranceCollectionViewCell: UICollectionViewCell {
         insuranceSubNumberLabel.textAlignment = .center
         insuranceSubNumberLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        insuranceTextLabel.setStyleGuide(.subHeaders2)
+        insuranceTextLabel.setStyleGuide(.subHeader2)
         insuranceTextLabel.textColor = Color.mainForeground
         insuranceTextLabel.numberOfLines = 0
         insuranceTextLabel.textAlignment = .center

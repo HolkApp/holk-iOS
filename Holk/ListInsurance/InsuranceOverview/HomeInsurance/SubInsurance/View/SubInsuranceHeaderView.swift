@@ -27,7 +27,7 @@ final class SubInsuranceHeaderView: UICollectionReusableView {
         titleLabel.textColor = Color.mainForeground
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        descriptionLabel.setStyleGuide(.subHeaders3)
+        descriptionLabel.setStyleGuide(.subHeader3)
         descriptionLabel.textAlignment = .center
         descriptionLabel.textColor = Color.mainForeground
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false

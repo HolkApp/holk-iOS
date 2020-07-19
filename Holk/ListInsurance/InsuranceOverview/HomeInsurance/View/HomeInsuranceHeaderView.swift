@@ -22,7 +22,7 @@ final class HomeInsuranceHeaderView: UICollectionReusableView {
         titleLabel.textColor = Color.mainForeground
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        descriptionLabel.setStyleGuide(.subHeaders1)
+        descriptionLabel.setStyleGuide(.subHeader1)
         descriptionLabel.textColor = Color.mainForeground
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
 
