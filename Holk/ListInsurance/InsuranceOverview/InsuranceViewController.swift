@@ -52,7 +52,9 @@ final class InsuranceViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.backgroundColor = .clear
-        collectionView.alwaysBounceVertical = true
+        collectionView.bounces = false
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.showsHorizontalScrollIndicator = false
         collectionView.registerCell(HomeinsuranceCollectionViewCell.self)
         collectionView.registerCell(HomeInsuranceBeneficiaryCollectionViewCell.self)
         collectionView.registerCell(HomeInsuranceCostCollectionViewCell.self)

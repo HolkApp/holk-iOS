@@ -38,6 +38,7 @@ final class SubInsuranceCollectionViewCell: UICollectionViewCell {
         super.prepareForReuse()
 
         iconView.imageView.image = nil
+        iconView.backgroundColor = nil
     }
 
     func configure(_ segment: Insurance.Segment) {

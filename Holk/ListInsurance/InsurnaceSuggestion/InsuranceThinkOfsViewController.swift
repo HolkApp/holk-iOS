@@ -75,6 +75,9 @@ final class InsuranceThinkOfsViewController: UIViewController {
 
         collectionView.backgroundColor = .clear
         collectionView.delegate = self
+        collectionView.bounces = false
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.showsHorizontalScrollIndicator = false
         collectionView.registerCell(InsuranceThinkOfsCollectionViewCell.self)
         collectionView.registerReusableSupplementaryView(InsuranceSuggestionCollectionHeaderView.self, of: UICollectionView.elementKindSectionHeader)
         collectionView.translatesAutoresizingMaskIntoConstraints = false

@@ -88,6 +88,7 @@ final class InsuranceListViewController: UICollectionViewController {
         view.backgroundColor = Color.insuranceBackground
         view.layoutMargins = .zero
 
+        collectionView.bounces = false
         collectionView.backgroundColor = .clear
         collectionView.delegate = self
         collectionView.dataSource = self
