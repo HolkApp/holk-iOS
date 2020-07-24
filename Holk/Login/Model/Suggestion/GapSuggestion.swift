@@ -8,6 +8,6 @@ struct GapSuggestion: Codable, Hashable {
     }
 
     let title: String
-    let tag: String
+    let type: String
     let details: Details
 }

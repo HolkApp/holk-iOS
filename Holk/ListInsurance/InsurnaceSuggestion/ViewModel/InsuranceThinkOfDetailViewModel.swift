@@ -28,7 +28,7 @@ final class InsuranceThinkOfDetailViewModel {
 
         title = thinkOfSuggestion.title
         detailParagraphs = thinkOfSuggestion.details.paragraphs
-        subInsuranceText = thinkOfSuggestion.subInsurance
+        subInsuranceText = thinkOfSuggestion.type
 
         // TOOD: Remove the mock
         mappedInsurance = insurances.first { insurnace in

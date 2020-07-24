@@ -38,10 +38,10 @@ struct Insurance: Codable, Hashable, Equatable {
     let ssn: String
     let startDate: Date
     let endDate: Date
-    let username: String
     var address: String {
         "Mocked Sveavägen 140"
     }
+    let userName: String
     var segments: [Segment] {
         return [
             Segment(kind: .home, description: "Decription text for what a subInsurance is about, lore isbm"),
@@ -58,7 +58,7 @@ struct Insurance: Codable, Hashable, Equatable {
         case startDate = "startDate"
         case endDate = "endDate"
         case ssn = "ssn"
-        case username = "taker"
+        case userName = "taker"
     }
 }
 

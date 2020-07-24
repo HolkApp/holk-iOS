@@ -4,11 +4,10 @@ struct ThinkOfSuggestion: Codable, Hashable {
     struct Details: Codable, Hashable {
         let header: String
         let description: String
-        let insuranceInfo: String
         let paragraphs: [Paragraph]
     }
 
     let title: String
-    let subInsurance: String
+    let type: String
     let details: Details
 }

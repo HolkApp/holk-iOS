@@ -89,6 +89,6 @@ final class HomeInsuranceBeneficiaryCollectionViewCell: UICollectionViewCell {
 
     func configure(_ insurance: Insurance) {
         self.insurance = insurance
-        usernameLabel.text = insurance.username
+        usernameLabel.text = insurance.userName
     }
 }

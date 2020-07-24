@@ -26,9 +26,9 @@ final class InsuranceThinkOfsCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func configure(_ gap: ThinkOfSuggestion) {
-        titleLabel.text = gap.title
-        subInsuranceTypeLabel.text = gap.subInsurance
+    func configure(_ thinkOf: ThinkOfSuggestion) {
+        titleLabel.text = thinkOf.title
+        subInsuranceTypeLabel.text = thinkOf.type
     }
 
     private func setup() {
@@ -40,7 +40,7 @@ final class InsuranceThinkOfsCollectionViewCell: UICollectionViewCell {
         iconView.tintColor = Color.mainForeground
         iconView.translatesAutoresizingMaskIntoConstraints = false
 
-        // TODO:
+        // TODO: Find the correct image
         thinkOfTypeIconView.imageView.image = UIImage(named: "travel")
         thinkOfTypeIconView.backgroundColor = Color.thinkOfIconBackground
         thinkOfTypeIconView.translatesAutoresizingMaskIntoConstraints = false
