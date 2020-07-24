@@ -15,10 +15,10 @@ enum Endpoint: String {
     case token = "authorize/oauth/token"
     case addEmail = "authorize/user/email"
     case user = "authorize/user"
-    case insurancesIssuers = "insurance/scraping/provider/status"
-    case allInsurances = "insurance/user"
-    case addInsurance = "insurance/scraping/%@"
-    case scrapingStatus = "insurance/scraping/status/id/%@"
+    case insurancesIssuers = "aggregate/provider/status"
+    case allInsurances = "insurance"
+    case addInsurance = "aggregate/provider/%@"
+    case scrapingStatus = "aggregate/status/id/%@"
     case allSuggestions = "suggestion/list/all"
     
     var url: URL {
