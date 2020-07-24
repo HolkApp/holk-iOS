@@ -20,8 +20,8 @@ struct AllInsuranceResponse: Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         insuranceList = try container.decode([Insurance].self, forKey: .insuranceList)
-        lastUpdated = try? container.decode(Date.self, forKey: .lastUpdated)
-//        lastUpdated = lastUpdatedString.flatMap { DateFormatter.yyyyMMddDateFormatter.date(from: $0)
-//        }
+        let lastUpdatedString = try? container.decode(String.self, forKey: .lastUpdated)
+        lastUpdated = lastUpdatedString.flatMap { DateFormatter.simpleDateFormatter.date(from: $0)
+        }
     }
 }

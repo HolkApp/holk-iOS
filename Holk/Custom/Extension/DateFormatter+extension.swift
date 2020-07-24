@@ -25,9 +25,9 @@ extension DateFormatter {
 
     static let simpleDateFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        formatter.timeStyle = .short
-        formatter.doesRelativeDateFormatting = true
+
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS"
+        formatter.calendar = Calendar(identifier: .iso8601)
         return formatter
     }()
 }
