@@ -132,7 +132,7 @@ extension OnboardingInsuranceProviderViewController: UITableViewDataSource {
         if let list = storeController.providerStore.providerList.value {
             let provider = list[indexPath.item]
             onboardingInsuranceCell.configure(title: provider.displayName)
-            UIImage.makeImage(provider.symbolUrl) { image in
+            UIImage.makeImageWithURL(provider.symbolUrl) { image in
                 onboardingInsuranceCell.configure(title: provider.displayName, image: image)
             }
         } else {

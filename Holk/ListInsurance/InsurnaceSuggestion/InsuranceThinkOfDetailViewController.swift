@@ -57,6 +57,7 @@ final class InsuranceThinkOfDetailViewController: UIViewController {
 
     private func setup() {
         navigationItem.setAppearance(backgroundColor: viewModel.headerBackgroundViewColor ?? Color.secondaryBackground)
+        navigationController?.navigationBar.tintColor = Color.secondaryBackground
 
         collectionView.bounces = false
         collectionView.backgroundColor = Color.secondaryBackground
@@ -179,7 +180,6 @@ extension InsuranceThinkOfDetailViewController {
     private func makeThinkOfDetailHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
         let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(240))
         let headerElement = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
-//        headerElement.pinToVisibleBounds = true
         return headerElement
     }
 

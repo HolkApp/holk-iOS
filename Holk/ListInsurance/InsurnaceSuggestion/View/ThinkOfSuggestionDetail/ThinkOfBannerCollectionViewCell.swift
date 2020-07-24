@@ -25,7 +25,7 @@ final class ThinkOfBannerCollectionViewCell: UICollectionViewCell {
 
     func configure(_ viewModel: ThinkOfSuggestionBannerViewModel) {
         if let imageURL = viewModel.imageURL {
-            UIImage.makeImage(imageURL) { [weak self] image in
+            UIImage.makeImageWithURL(imageURL) { [weak self] image in
                 self?.imageView.image = image
             }
         } else {
@@ -37,7 +37,6 @@ final class ThinkOfBannerCollectionViewCell: UICollectionViewCell {
     }
 
     private func setup() {
-//        clipsToBounds = true
         backgroundColor = Color.secondaryBackground
 
         imageView.contentMode = .scaleAspectFit

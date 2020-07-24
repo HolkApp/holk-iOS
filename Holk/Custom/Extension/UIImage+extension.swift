@@ -19,7 +19,7 @@ extension UIImage {
     }
 
     @discardableResult
-    static func makeImage(_ imageUrl: URL, completion: ((UIImage?) -> Void)? = nil) -> DownloadRequest? {
+    static func makeImageWithURL(_ imageUrl: URL, completion: ((UIImage?) -> Void)? = nil) -> DownloadRequest? {
         let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0] as NSURL
         let newPath = path.appendingPathComponent(imageUrl.absoluteString)
 
