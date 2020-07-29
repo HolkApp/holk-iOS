@@ -12,7 +12,7 @@
 		8F02658624C1A30E00F4208B /* SubInsuranceSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F02658224C1A30E00F4208B /* SubInsuranceSegmentView.swift */; };
 		8F02658724C1A30E00F4208B /* SubInsuranceHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F02658324C1A30E00F4208B /* SubInsuranceHeaderView.swift */; };
 		8F02658824C1A30E00F4208B /* SubInsuranceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F02658424C1A30E00F4208B /* SubInsuranceCollectionViewCell.swift */; };
-		8F02658A24C43E5800F4208B /* ThinkOfDetailCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F02658924C43E5800F4208B /* ThinkOfDetailCollectionHeaderView.swift */; };
+		8F02658A24C43E5800F4208B /* ThinkOfBannerCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F02658924C43E5800F4208B /* ThinkOfBannerCollectionHeaderView.swift */; };
 		8F02658E24C4517400F4208B /* Poppins-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F02658D24C4517400F4208B /* Poppins-ExtraBold.ttf */; };
 		8F02659024C4517D00F4208B /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F02658F24C4517D00F4208B /* Poppins-Bold.ttf */; };
 		8F02659224C4C2FB00F4208B /* ThinkOfSuggestionBannerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F02659124C4C2FB00F4208B /* ThinkOfSuggestionBannerViewModel.swift */; };
@@ -182,7 +182,7 @@
 		8F02658224C1A30E00F4208B /* SubInsuranceSegmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubInsuranceSegmentView.swift; sourceTree = "<group>"; };
 		8F02658324C1A30E00F4208B /* SubInsuranceHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubInsuranceHeaderView.swift; sourceTree = "<group>"; };
 		8F02658424C1A30E00F4208B /* SubInsuranceCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubInsuranceCollectionViewCell.swift; sourceTree = "<group>"; };
-		8F02658924C43E5800F4208B /* ThinkOfDetailCollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThinkOfDetailCollectionHeaderView.swift; sourceTree = "<group>"; };
+		8F02658924C43E5800F4208B /* ThinkOfBannerCollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThinkOfBannerCollectionHeaderView.swift; sourceTree = "<group>"; };
 		8F02658D24C4517400F4208B /* Poppins-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraBold.ttf"; sourceTree = "<group>"; };
 		8F02658F24C4517D00F4208B /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		8F02659124C4C2FB00F4208B /* ThinkOfSuggestionBannerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThinkOfSuggestionBannerViewModel.swift; sourceTree = "<group>"; };
@@ -603,9 +603,9 @@
 		8FC8EA7424BA53C500BE69D9 /* ThinkOfSuggestionDetail */ = {
 			isa = PBXGroup;
 			children = (
+				8F02658924C43E5800F4208B /* ThinkOfBannerCollectionHeaderView.swift */,
 				8F02659324C4C43F00F4208B /* ThinkOfBannerCollectionViewCell.swift */,
 				8FC8EA7524BA540300BE69D9 /* ThinkOfParagraphCollectionViewCell.swift */,
-				8F02658924C43E5800F4208B /* ThinkOfDetailCollectionHeaderView.swift */,
 				8FC8EA7724BB3EC200BE69D9 /* ThinkOfRelatedInsuranceCollectionHeaderView.swift */,
 			);
 			path = ThinkOfSuggestionDetail;
@@ -1056,7 +1056,7 @@
 				8F2BB8E62332D4EB00E8AE4B /* FontLoader.swift in Sources */,
 				8FD676832492CB0700E62820 /* SuggestionStore.swift in Sources */,
 				8FD676952496B43500E62820 /* Date+extension.swift in Sources */,
-				8F02658A24C43E5800F4208B /* ThinkOfDetailCollectionHeaderView.swift in Sources */,
+				8F02658A24C43E5800F4208B /* ThinkOfBannerCollectionHeaderView.swift in Sources */,
 				8F3C7DAE23F4AB63002EDA57 /* OnboardingConsentViewController.swift in Sources */,
 				8F5AF02423C6759C00690373 /* MockType.swift in Sources */,
 				8F9807E92276F10E00584BA9 /* InsuranceCoordinator.swift in Sources */,

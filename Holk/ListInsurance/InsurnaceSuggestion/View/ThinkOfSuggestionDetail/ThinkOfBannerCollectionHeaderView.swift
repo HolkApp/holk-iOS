@@ -1,5 +1,5 @@
 //
-//  ThinkOfDetailCollectionHeaderView.swift
+//  ThinkOfBannerHeaderView.swift
 //  Holk
 //
 //  Created by 张梦皓 on 2020-07-19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class ThinkOfDetailCollectionHeaderView: UICollectionReusableView {
+final class ThinkOfBannerHeaderView: UICollectionReusableView {
     private let headerBackgroundView = UIView()
     private let iconView = HolkIconView()
     private let tagLabel = UILabel()
