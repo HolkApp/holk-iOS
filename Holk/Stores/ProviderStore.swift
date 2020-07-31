@@ -39,6 +39,10 @@ final class ProviderStore {
         .store(in: &cancellables)
     }
 
+    subscript(_ providerName: String) -> InsuranceProvider? {
+        return providerList.value?.first(where: { $0.internalName == providerName })
+    }
+
     func cancelAll() {
         cancellables.forEach { $0.cancel() }
     }

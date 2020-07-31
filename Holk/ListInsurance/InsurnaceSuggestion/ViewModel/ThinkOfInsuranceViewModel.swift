@@ -12,16 +12,16 @@ struct ThinkOfInsuranceViewModel: Hashable {
     private var insurance: Insurance
 
     var insuranceKind: Insurance.Kind
-    var insuranceName: String
-    var insuranceImageUrl: URL
+    var insuranceName: String?
+    var insuranceImageURL: URL?
     var endDate: Date
     var endDateString: String { DateFormatter.yyyyMMddDateFormatter.string(from: endDate) }
 
-    init(insurance: Insurance) {
+    init(insurance: Insurance, provider: InsuranceProvider?) {
         self.insurance = insurance
         insuranceKind = insurance.kind
-        insuranceImageUrl = insurance.insuranceProvider.logoUrl
-        insuranceName = insurance.insuranceProvider.displayName
+        insuranceImageURL = provider?.logoUrl
+        insuranceName = provider?.displayName
         endDate = insurance.endDate
     }
 }
