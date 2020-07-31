@@ -9,6 +9,7 @@
 import UIKit
 
 final class InsuranceThinkOfDetailViewModel {
+    private var storeController: StoreController
     private var thinkOfSuggestion: ThinkOfSuggestion
 
     let title: String
@@ -23,7 +24,8 @@ final class InsuranceThinkOfDetailViewModel {
     var iconImageBackgroundColor: UIColor?
     var headerBackgroundViewColor: UIColor?
 
-    init(thinkOfSuggestion: ThinkOfSuggestion, insurances: [Insurance]) {
+    init(_ storeController: StoreController, thinkOfSuggestion: ThinkOfSuggestion, insurances: [Insurance]) {
+        self.storeController = storeController
         self.thinkOfSuggestion = thinkOfSuggestion
 
         title = thinkOfSuggestion.title
@@ -34,9 +36,9 @@ final class InsuranceThinkOfDetailViewModel {
         mappedInsurance = insurances.first { insurnace in
             insurnace.segments.contains { segment in segment.kind == .travel }
         }
-        mappedSubInsurances = insurances.flatMap { insurance in
-            insurance.segments.filter { segment in segment.kind == .travel }
-        }
+        mappedSubInsurances = mappedInsurance?.segments.filter { segment in
+            segment.kind == .travel
+        } ?? []
 
         if let subInsurance = mappedSubInsurances.first {
             switch subInsurance.kind {
@@ -70,7 +72,10 @@ final class InsuranceThinkOfDetailViewModel {
     }
 
     func makeThinkOfInsuranceViewModel() -> ThinkOfInsuranceViewModel? {
-        return mappedInsurance.map(ThinkOfInsuranceViewModel.init(insurance: ))
+        guard let mappedInsurance = mappedInsurance else { return nil }
+        let providerName = mappedInsurance.insuranceProviderName
+        let provider = storeController.providerStore[providerName]
+        return ThinkOfInsuranceViewModel(insurance: mappedInsurance, provider: provider)
     }
 
     func makeAllThinkOfSubInsuranceViewModel() -> [ThinkOfSubInsuranceViewModel] {

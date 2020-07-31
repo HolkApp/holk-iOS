@@ -42,14 +42,17 @@ final class HomeinsuranceCollectionViewCell: UICollectionViewCell {
         }
     }
 
-    func configure(_ insurance: Insurance) {
+    func configure(_ insurance: Insurance, provider: InsuranceProvider?) {
         self.insurance = insurance
 
-        titleLabel.text = "Dina skydd"
-        insuranceSubNumberLabel.text = String(insurance.segments.count)
-        insuranceTextLabel.text = "Skydd"
-        UIImage.makeImage(insurance.insuranceProvider.logoUrl) { [weak self] image in
-            self?.insuranceImageView.image = image
+        titleLabel.setText("Dina skydd", with: .header6)
+        insuranceSubNumberLabel.setText("\(insurance.segments.count)", with: .largeNumber)
+        insuranceTextLabel.setText("Skydd", with: .subHeader2)
+        
+        if let provider = provider {
+            UIImage.makeImageWithURL(provider.logoUrl) { [weak self] image in
+                self?.insuranceImageView.image = image
+            }
         }
 
         ringChart.reloadSegments()

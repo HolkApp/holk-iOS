@@ -17,6 +17,7 @@ final class OnboardingConfirmationViewController: UIViewController {
     weak var delegate: OnboardingConfirmationViewControllerDelegate?
 
     // MARK: - Private variables
+    private let storeController: StoreController
     private let imageView = UIImageView()
     private let titleLabel = UILabel()
     private let descriptionLabel = UILabel()
@@ -30,15 +31,17 @@ final class OnboardingConfirmationViewController: UIViewController {
     private var addedInsurance: Insurance? {
         didSet {
             DispatchQueue.main.async {
-                guard let addedInsurance = self.addedInsurance else { return }
-                self.descriptionLabel.text = String(format: "We found your insurance at %@", addedInsurance.insuranceProvider.displayName)
+                guard let addedInsurance = self.addedInsurance,
+                    let insurnaceProvider = self.storeController.providerStore[addedInsurance.insuranceProviderName] else { return }
+                self.descriptionLabel.text = String(format: "We found your insurance at %@", insurnaceProvider.displayName)
                 self.insuranceLabel.text = addedInsurance.kind.description
                 self.addressLabel.text = addedInsurance.address
             }
         }
     }
     
-    init(_ addedInsuranceList: [Insurance]) {
+    init(_ storeController: StoreController, addedInsuranceList: [Insurance]) {
+        self.storeController = storeController
         // TODO: Only use first insurance for now, but should get home insurance
         self.addedInsurance = addedInsuranceList.first
 
@@ -70,8 +73,9 @@ final class OnboardingConfirmationViewController: UIViewController {
         descriptionLabel.font = Font.regular(.title)
         descriptionLabel.textColor = Color.mainForeground
         descriptionLabel.numberOfLines = 0
-        if let addedInsurance = addedInsurance {
-            descriptionLabel.text = String(format: "We found your insurance at %@", addedInsurance.insuranceProvider.displayName)
+        if let addedInsurance = addedInsurance,
+            let provider = storeController.providerStore[addedInsurance.insuranceProviderName] {
+            descriptionLabel.text = String(format: "We found your insurance at %@", provider.displayName)
         } else {
             descriptionLabel.text = "Sorry, but we cannot find any insurance"
         }

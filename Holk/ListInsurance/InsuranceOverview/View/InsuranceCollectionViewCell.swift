@@ -44,23 +44,25 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         }
     }
 
-    func configure(_ insurance: Insurance) {
+    func configure(_ insurance: Insurance, provider: InsuranceProvider?) {
         self.insurance = insurance
-        titleLabel.text = insurance.kind.description
-        subtitleLabel.text = insurance.address
-        UIImage.makeImage(insurance.insuranceProvider.logoUrl) { [weak self] image in
-            self?.insuranceImageView.image = image
+        titleLabel.setText(insurance.kind.description, with: .header5)
+        subtitleLabel.setText(insurance.address, with: .subHeader3)
+        if let provider = provider {
+            UIImage.makeImageWithURL(provider.logoUrl) { [weak self] image in
+                self?.insuranceImageView.image = image
+            }
         }
         switch insurance.endDate.expirationDaysLeft() {
         case .valid(let daysLeft):
-            daysLabel.text = "\(daysLeft)"
-            daysTextLabel.text = "Dagar kvar"
+            daysLabel.setText("\(daysLeft)", with: .number2)
+            daysTextLabel.setText("Dagar kvar", with: .body1)
         case .today:
             daysLabel.text = ""
-            daysTextLabel.text = "Ends today"
+            daysTextLabel.setText("Ends today", with: .body1)
         case .expired:
             daysLabel.text = ""
-            daysTextLabel.text = "Expired"
+            daysTextLabel.setText("Expired", with: .body1)
         default:
             daysLabel.text = ""
             daysTextLabel.text = ""
@@ -81,13 +83,11 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         containerView.layer.cornerCurve = .continuous
         containerView.translatesAutoresizingMaskIntoConstraints = false
 
-        titleLabel.setStyleGuide(.header5)
         titleLabel.textColor = Color.mainForeground
         titleLabel.numberOfLines = 0
         titleLabel.setContentHuggingPriority(.required, for: .vertical)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        subtitleLabel.setStyleGuide(.subHeader3)
         subtitleLabel.textColor = Color.mainForeground
         subtitleLabel.numberOfLines = 0
         subtitleLabel.setContentHuggingPriority(.required, for: .vertical)

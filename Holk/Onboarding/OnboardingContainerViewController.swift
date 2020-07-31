@@ -154,7 +154,7 @@ final class OnboardingContainerViewController: UIViewController {
     }
 
     private func showInsuranceAggregatedConfirmation(_ addedInsuranceList: [Insurance]) {
-        let confirmationViewController = OnboardingConfirmationViewController(addedInsuranceList)
+        let confirmationViewController = OnboardingConfirmationViewController(storeController, addedInsuranceList: addedInsuranceList)
         confirmationViewController.delegate = self
         onboardingViewControllers.append(confirmationViewController)
         collectionView.scrollToItem(at: IndexPath(item: 3, section: 0), at: .centeredHorizontally, animated: true)

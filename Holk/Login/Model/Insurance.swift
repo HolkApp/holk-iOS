@@ -32,16 +32,14 @@ struct Insurance: Codable, Hashable, Equatable {
     }
 
     let id: String
-    let insuranceProvider: InsuranceProvider
+    let insuranceProviderName: String
     let kind: Kind
     let providerReference: String
     let ssn: String
     let startDate: Date
     let endDate: Date
-    var address: String {
-        "Mocked Sveavägen 140"
-    }
     let userName: String
+    var address: String
     var segments: [Segment] {
         return [
             Segment(kind: .home, description: "Decription text for what a subInsurance is about, lore isbm"),
@@ -52,13 +50,14 @@ struct Insurance: Codable, Hashable, Equatable {
 
     private enum CodingKeys: String, CodingKey {
         case id = "id"
-        case insuranceProvider = "insuranceProvider"
+        case insuranceProviderName = "insuranceProviderName"
         case kind = "insuranceType"
         case providerReference = "providerReference"
         case startDate = "startDate"
         case endDate = "endDate"
-        case ssn = "ssn"
+        case ssn = "takerPersonalNumber"
         case userName = "taker"
+        case address = "address"
     }
 }
 
@@ -67,13 +66,14 @@ extension Insurance {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         id = try container.decode(String.self, forKey: .id)
-        insuranceProvider = try container.decode(InsuranceProvider.self, forKey: .insuranceProvider)
+        insuranceProviderName = try container.decode(String.self, forKey: .insuranceProviderName)
         kind = try container.decode(Kind.self, forKey: .kind)
         providerReference = try container.decode(String.self, forKey: .providerReference)
         startDate = try container.decode(Date.self, forKey: .startDate)
         endDate = try container.decode(Date.self, forKey: .endDate)
         ssn = try container.decode(String.self, forKey: .ssn)
-        username = try container.decode(String.self, forKey: .username)
+        userName = try container.decode(String.self, forKey: .userName)
+        address = try container.decode(String.self, forKey: .address)
     }
 }
 

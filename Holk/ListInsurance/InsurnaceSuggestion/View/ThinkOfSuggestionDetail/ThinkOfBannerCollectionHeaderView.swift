@@ -1,5 +1,5 @@
 //
-//  ThinkOfBannerHeaderView.swift
+//  ThinkOfBannerCollectionHeaderView.swift
 //  Holk
 //
 //  Created by 张梦皓 on 2020-07-19.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class ThinkOfBannerHeaderView: UICollectionReusableView {
+final class ThinkOfBannerCollectionHeaderView: UICollectionReusableView {
     private let headerBackgroundView = UIView()
     private let iconView = HolkIconView()
     private let tagLabel = UILabel()
@@ -27,8 +27,8 @@ final class ThinkOfBannerHeaderView: UICollectionReusableView {
     func configure(_ viewModel: InsuranceThinkOfDetailViewModel) {
         iconView.imageView.image = viewModel.iconImage
         iconView.backgroundColor = viewModel.iconImageBackgroundColor
-        tagLabel.text = viewModel.subInsuranceText
-        titleLabel.text = viewModel.title
+        tagLabel.setText(viewModel.subInsuranceText, with: .titleHeader1)
+        titleLabel.setText(viewModel.title, with: .cardHeader3)
         headerBackgroundView.backgroundColor = viewModel.headerBackgroundViewColor
     }
 

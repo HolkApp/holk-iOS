@@ -129,7 +129,9 @@ extension InsuranceListViewController {
         } else {
             let insuranceTableViewCell = collectionView.dequeueCell(InsuranceCollectionViewCell.self, indexPath: indexPath)
             let insurance = insuranceList[indexPath.item]
-            insuranceTableViewCell.configure(insurance)
+            let providerName = insurance.insuranceProviderName
+            let provider = storeController.providerStore[providerName]
+            insuranceTableViewCell.configure(insurance, provider: provider)
             return insuranceTableViewCell
         }
     }

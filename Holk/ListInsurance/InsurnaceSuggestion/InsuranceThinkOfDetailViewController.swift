@@ -40,7 +40,7 @@ final class InsuranceThinkOfDetailViewController: UIViewController {
         self.storeController = storeController
         self.thinkOf = thinkOf
         relatedInsurances = storeController.insuranceStore.relatedInsurances(thinkOf: thinkOf)
-        viewModel = InsuranceThinkOfDetailViewModel(thinkOfSuggestion: thinkOf, insurances: relatedInsurances)
+        viewModel = InsuranceThinkOfDetailViewModel(storeController, thinkOfSuggestion: thinkOf, insurances: relatedInsurances)
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -64,7 +64,7 @@ final class InsuranceThinkOfDetailViewController: UIViewController {
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.registerCell(ThinkOfBannerCollectionViewCell.self)
-        collectionView.registerReusableSupplementaryView(ThinkOfDetailCollectionHeaderView.self, of: UICollectionView.elementKindSectionHeader)
+        collectionView.registerReusableSupplementaryView(ThinkOfBannerCollectionHeaderView.self, of: UICollectionView.elementKindSectionHeader)
         collectionView.registerCell(ThinkOfParagraphCollectionViewCell.self)
         collectionView.registerCell(SubInsuranceCollectionViewCell.self)
         collectionView.registerReusableSupplementaryView(ThinkOfRelatedInsuranceCollectionHeaderView.self, of: UICollectionView.elementKindSectionHeader)
@@ -110,7 +110,7 @@ extension InsuranceThinkOfDetailViewController {
             case.banner:
                 if kind == UICollectionView.elementKindSectionHeader {
                     let thinkOfDetailCollectionHeaderView = collectionView.dequeueReusableSupplementaryView(
-                        ThinkOfDetailCollectionHeaderView.self,
+                        ThinkOfBannerCollectionHeaderView.self,
                         of: kind,
                         indexPath: indexPath
                     )

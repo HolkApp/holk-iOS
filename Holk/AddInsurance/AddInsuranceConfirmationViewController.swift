@@ -17,6 +17,8 @@ final class AddInsuranceConfirmationViewController: UIViewController {
     weak var delegate: AddInsuranceConfirmationViewControllerDelegate?
 
     // MARK: - Private variables
+    private let storeController: StoreController
+
     private let imageView = UIImageView()
     private let titleLabel = UILabel()
     private let descriptionLabel = UILabel()
@@ -29,15 +31,16 @@ final class AddInsuranceConfirmationViewController: UIViewController {
     private var addedInsurance: Insurance? {
         didSet {
             DispatchQueue.main.async {
-                guard let addedInsurance = self.addedInsurance else { return }
-                self.descriptionLabel.text = String(format: "We found your insurance at %@", addedInsurance.insuranceProvider.displayName)
+                guard let addedInsurance = self.addedInsurance, let insurnaceProvider = self.storeController.providerStore[addedInsurance.insuranceProviderName] else { return }
+                self.descriptionLabel.text = String(format: "We found your insurance at %@", insurnaceProvider.displayName)
                 self.insuranceLabel.text = addedInsurance.kind.description
                 self.addressLabel.text = addedInsurance.address
             }
         }
     }
 
-    init(_ addedInsuranceList: [Insurance]) {
+    init(_ storeController: StoreController, addedInsuranceList: [Insurance]) {
+        self.storeController = storeController
         self.addedInsurance = addedInsuranceList.first
 
         super.init(nibName: nil, bundle: nil)

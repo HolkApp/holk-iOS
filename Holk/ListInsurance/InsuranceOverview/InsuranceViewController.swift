@@ -98,7 +98,8 @@ extension InsuranceViewController: UICollectionViewDataSource, UICollectionViewD
             cell = homeInsuranceCostCollectionViewCell
         default:
             let homeinsuranceCollectionViewCell = collectionView.dequeueCell(HomeinsuranceCollectionViewCell.self, indexPath: indexPath)
-            homeinsuranceCollectionViewCell.configure(insurance)
+            let provider = storeController.providerStore[insurance.insuranceProviderName]
+            homeinsuranceCollectionViewCell.configure(insurance, provider: provider)
             cell = homeinsuranceCollectionViewCell
         }
         return cell
