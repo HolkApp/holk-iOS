@@ -2,8 +2,7 @@ import Foundation
 
 extension AllInsuranceResponse {
     static let mockinsurance: Insurance = {
-        let provider = InsuranceProvider(description: "mock provider", displayName: "Folksam", status: .available, internalName: "Folksam", logoUrl: URL(string: "test://")!, symbolUrl: URL(string: "test://")!, websiteUrl: URL(string: "test://")!)
-        return Insurance(id: "Mock", insuranceProvider: provider, kind: .homeInsurnace, providerReference: "test", ssn: "199208253915", startDate: Date(), endDate: Date(), username: "Mock user name")
+        return Insurance(id: "Mock", insuranceProviderName: "testforsakringar", kind: .homeInsurnace, providerReference: "test", ssn: "199208253915", startDate: Date(), endDate: Date(), userName: "Mock user name", address: "test")
     }()
 }
 
