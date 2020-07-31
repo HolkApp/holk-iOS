@@ -56,12 +56,13 @@ final class SubInsuranceCollectionViewCell: UICollectionViewCell {
             iconView.backgroundColor = .systemPink
             cardView.backgroundColor = Color.mainHighlight
         }
-        titleLabel.text = segment.kind.rawValue
-        descriptionLabel.text = segment.description
+        titleLabel.setText(segment.kind.rawValue, with: .cardHeader2)
+        descriptionLabel.setText(segment.description, with: .body1)
 
         // TODO:
-        gapValueLabel.text = "1"
-        thinkOfValueLabel.text = "0"
+
+        gapValueLabel.setText("0", with: .number1)
+        thinkOfValueLabel.setText("1", with: .number1)
     }
 
     private func setup() {

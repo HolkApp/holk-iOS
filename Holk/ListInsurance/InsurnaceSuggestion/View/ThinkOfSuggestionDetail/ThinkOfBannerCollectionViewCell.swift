@@ -32,8 +32,8 @@ final class ThinkOfBannerCollectionViewCell: UICollectionViewCell {
             imageView.image = UIImage(named: "thinkOfPlaceholder")
         }
 
-        headerLabel.text = viewModel.detailHeader
-        descriptionLabel.text = viewModel.detailDescription
+        headerLabel.setText(viewModel.detailHeader, with: .header5)
+        descriptionLabel.setText(viewModel.detailDescription, with: .subHeader5)
     }
 
     private func setup() {

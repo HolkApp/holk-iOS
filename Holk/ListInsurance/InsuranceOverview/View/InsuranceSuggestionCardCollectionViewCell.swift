@@ -57,14 +57,14 @@ class InsuranceSuggestionCardCollectionViewCell: UICollectionViewCell {
             }
             suggestionIllustrationView.addArrangedSubview(suggestionAnimationView)
 
-            suggestionLabel.text = "Luckor"
+            suggestionLabel.setText("Luckor", with: .body1)
             suggestionValueLabel.text = suggestions.flatMap { String($0.gaps.count) }
             suggestionValueLabel.textColor = Color.mainForeground
         case .thinkOf:
             suggestionImageView.image = UIImage(named: "light")
             suggestionIllustrationView.addArrangedSubview(suggestionImageView)
 
-            suggestionLabel.text = "Tänk på"
+            suggestionLabel.setText("Tänk på", with: .body1)
             suggestionValueLabel.text = suggestions.flatMap { String($0.thinkOfs.count) }
             suggestionValueLabel.textColor = Color.mainForeground
         }

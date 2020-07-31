@@ -17,7 +17,6 @@ final class InsuranceSuggestionCollectionHeaderView: UICollectionReusableView {
         clipsToBounds = true
         backgroundColor = .clear
 
-        textLabel.setStyleGuide(.body3)
         textLabel.textColor = Color.secondaryForeground
         textLabel.translatesAutoresizingMaskIntoConstraints = false
         
@@ -36,7 +35,7 @@ final class InsuranceSuggestionCollectionHeaderView: UICollectionReusableView {
     }
 
     func configure(_ text: String) {
-        textLabel.text = text
+        textLabel.setText(text, with: .body3)
     }
 }
 

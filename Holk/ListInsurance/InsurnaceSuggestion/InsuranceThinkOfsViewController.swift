@@ -59,13 +59,11 @@ final class InsuranceThinkOfsViewController: UIViewController {
         iconView.image = UIImage(named: "light")?.withSymbolWeightConfiguration(.light)
         iconView.translatesAutoresizingMaskIntoConstraints = false
 
-        titleLabel.setStyleGuide(.header4)
-        titleLabel.text = "Tänk på"
+        titleLabel.setText("Tänk på", with: .header4)
         titleLabel.textColor = Color.mainForeground
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        numberLabel.setStyleGuide(.number3)
-        numberLabel.text = "\(thinkOfs.count) st"
+        numberLabel.setText("\(thinkOfs.count) st", with: .number3)
         numberLabel.textColor = Color.mainForeground
         numberLabel.textAlignment = .right
         numberLabel.translatesAutoresizingMaskIntoConstraints = false

@@ -71,8 +71,9 @@ final class AddInsuranceConfirmationViewController: UIViewController {
         descriptionLabel.font = Font.regular(.title)
         descriptionLabel.textColor = Color.mainForeground
         descriptionLabel.numberOfLines = 0
-        if let addedInsurance = addedInsurance {
-            descriptionLabel.text = String(format: "We found your insurance at %@", addedInsurance.insuranceProvider.displayName)
+        if let addedInsurance = addedInsurance,
+            let provider = storeController.providerStore[addedInsurance.insuranceProviderName] {
+            descriptionLabel.text = String(format: "We found your insurance at %@", provider.displayName)
         } else {
             descriptionLabel.text = "Sorry, but we cannot find any insurance"
         }

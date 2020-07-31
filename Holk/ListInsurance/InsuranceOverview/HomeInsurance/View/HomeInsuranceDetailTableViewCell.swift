@@ -42,8 +42,9 @@ final class HomeInsuranceDetailTableViewCell: UITableViewCell {
     func configure(with insuranceSegment: Insurance.Segment) {
         tintColor = Color.color(insuranceSegment)
         subInsuranceIconView.image = UIImage(insuranceSegment: insuranceSegment)?.withRenderingMode(.alwaysTemplate)
-        titleLabel.text = "Subinsurance title" //insuranceSegment.kind.rawValue
-        descriptionLabel.text = insuranceSegment.description
+        //insuranceSegment.kind.rawValue
+        titleLabel.setText("Subinsurance title", with: .header5)
+        descriptionLabel.setText(insuranceSegment.description, with: .body1)
 
         ringChart.reloadSegments()
     }

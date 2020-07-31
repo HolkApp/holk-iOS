@@ -29,9 +29,7 @@ final class SubInsuranceSegmentView: UIControl {
         backgroundColor = .clear
         layoutMargins = .init(top: 0, left: 6, bottom: 0, right: 6)
 
-        titleLabel.text = "Kostnad"
         titleLabel.textColor = Color.placeholder
-        titleLabel.setStyleGuide(.titleHeader3)
         titleLabel.numberOfLines = 0
         titleLabel.textAlignment = .center
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -76,7 +74,7 @@ final class SubInsuranceSegmentView: UIControl {
     }
 
     func configure(_ segmentKind: String, numberOfSubInsurances: Int) {
-        titleLabel.text = segmentKind
-        numberLabel.text = String(numberOfSubInsurances)
+        titleLabel.setText(segmentKind, with: .titleHeader3)
+        numberLabel.setText("\(numberOfSubInsurances)", with: .number4)
     }
 }

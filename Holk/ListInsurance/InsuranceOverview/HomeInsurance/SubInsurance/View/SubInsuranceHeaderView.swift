@@ -89,15 +89,13 @@ final class SubInsuranceHeaderView: UICollectionReusableView {
     override func prepareForReuse() {
         super.prepareForReuse()
 
-        titleLabel.text = nil
-        descriptionLabel.text = nil
         basicSubInsurancesSegmentView.isSelected = true
         additionalSubInsurancesSegmentView.isSelected = false
     }
 
     func configure(_ insurance: Insurance) {
-        titleLabel.text = "Dina skydd"
-        descriptionLabel.text = insurance.kind.description
+        titleLabel.setText("Dina skydd", with: .header4)
+        descriptionLabel.setText(insurance.kind.description, with: .subHeader3)
 
         basicSubInsurancesSegmentView.configure("Grundskydd", numberOfSubInsurances:  insurance.segments.count)
         // TODO: Put addon here

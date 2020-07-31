@@ -27,8 +27,8 @@ final class InsuranceThinkOfsCollectionViewCell: UICollectionViewCell {
     }
 
     func configure(_ thinkOf: ThinkOfSuggestion) {
-        titleLabel.text = thinkOf.title
-        subInsuranceTypeLabel.text = thinkOf.type
+        titleLabel.setText(thinkOf.title, with: .cardHeader2)
+        subInsuranceTypeLabel.setText(thinkOf.type, with: .titleHeader1)
     }
 
     private func setup() {
@@ -84,7 +84,7 @@ final class InsuranceThinkOfsCollectionViewCell: UICollectionViewCell {
             subInsuranceTypeLabel.leadingAnchor.constraint(equalTo: thinkOfTypeIconView.leadingAnchor),
             subInsuranceTypeLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -14),
 
-            titleLabel.topAnchor.constraint(equalTo: subInsuranceTypeLabel.lastBaselineAnchor, constant: 14),
+            titleLabel.topAnchor.constraint(equalTo: subInsuranceTypeLabel.bottomAnchor, constant: 4),
             titleLabel.leadingAnchor.constraint(equalTo: subInsuranceTypeLabel.leadingAnchor),
             titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -14),
             titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -40),

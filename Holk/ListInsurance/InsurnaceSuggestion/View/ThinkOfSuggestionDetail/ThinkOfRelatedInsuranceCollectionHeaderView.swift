@@ -32,10 +32,12 @@ final class ThinkOfRelatedInsuranceCollectionHeaderView: UICollectionReusableVie
     }
 
     func configure(_ viewModel: ThinkOfInsuranceViewModel) {
-        nameValueLabel.text = viewModel.insuranceName
-        endDateValueLabel.text = viewModel.endDateString
-        UIImage.makeImage(viewModel.insuranceImageUrl) { [weak self] image in
-            self?.providerValueLabel.image = image
+        nameValueLabel.setText(viewModel.insuranceName, with: .titleHeader2)
+        endDateValueLabel.setText(viewModel.endDateString, with: .titleHeader2)
+        if let imageURL = viewModel.insuranceImageURL {
+            UIImage.makeImageWithURL(imageURL) { [weak self] image in
+                self?.providerValueLabel.image = image
+            }
         }
     }
 
@@ -44,16 +46,14 @@ final class ThinkOfRelatedInsuranceCollectionHeaderView: UICollectionReusableVie
 
         layoutMargins = .init(top: 36, left: 26, bottom: 36, right: 26)
 
-        titleLabel.text = "Din info"
-        titleLabel.setStyleGuide(.header6)
+        titleLabel.setText("Din info", with: .header6)
         titleLabel.textColor = Color.mainForeground
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
         titleSeparatorline.backgroundColor = Color.separator
         titleSeparatorline.translatesAutoresizingMaskIntoConstraints = false
 
-        nameLabel.text = "Försäkring"
-        nameLabel.setStyleGuide(.titleHeader1)
+        nameLabel.setText("Försäkring", with: .titleHeader1)
         nameLabel.textColor = Color.mainForeground
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
 
@@ -66,7 +66,7 @@ final class ThinkOfRelatedInsuranceCollectionHeaderView: UICollectionReusableVie
         nameSeparatorline.translatesAutoresizingMaskIntoConstraints = false
 
         providerLabel.text = "Bolag"
-        providerLabel.setStyleGuide(.titleHeader1)
+        providerLabel.setText("Bolag", with: .titleHeader1)
         providerLabel.textColor = Color.mainForeground
         providerLabel.translatesAutoresizingMaskIntoConstraints = false
 
@@ -76,8 +76,7 @@ final class ThinkOfRelatedInsuranceCollectionHeaderView: UICollectionReusableVie
         providerSeparatorline.backgroundColor = Color.separator
         providerSeparatorline.translatesAutoresizingMaskIntoConstraints = false
 
-        endDateLabel.text = "Gäller till"
-        endDateLabel.setStyleGuide(.titleHeader1)
+        endDateLabel.setText("Gäller till", with: .titleHeader1)
         endDateLabel.textColor = Color.mainForeground
         endDateLabel.translatesAutoresizingMaskIntoConstraints = false
 

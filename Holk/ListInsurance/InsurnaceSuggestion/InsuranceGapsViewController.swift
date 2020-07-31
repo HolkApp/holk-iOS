@@ -59,13 +59,11 @@ final class InsuranceGapsViewController: UIViewController {
         iconView.image = UIImage(systemName: "bell")?.withSymbolWeightConfiguration(.light)
         iconView.translatesAutoresizingMaskIntoConstraints = false
 
-        titleLabel.setStyleGuide(.header4)
-        titleLabel.text = "Luckor"
+        titleLabel.setText("Luckor", with: .header4)
         titleLabel.textColor = Color.mainForeground
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        numberLabel.setStyleGuide(.number3)
-        numberLabel.text = "\(gaps.count) st"
+        numberLabel.setText("\(gaps.count) st", with: .number3)
         numberLabel.textColor = Color.mainForeground
         numberLabel.textAlignment = .right
         numberLabel.translatesAutoresizingMaskIntoConstraints = false

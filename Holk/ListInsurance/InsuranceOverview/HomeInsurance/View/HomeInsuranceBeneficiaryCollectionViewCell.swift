@@ -33,7 +33,7 @@ final class HomeInsuranceBeneficiaryCollectionViewCell: UICollectionViewCell {
         contentView.backgroundColor = .clear
         contentView.layoutMargins = .init(top: 0, left: 6, bottom: 0, right: 6)
 
-        titleLabel.text = "Gäller för"
+        titleLabel.setText("Gäller för", with: .header6)
         titleLabel.textColor = Color.mainForeground
         titleLabel.setStyleGuide(.header6)
         titleLabel.numberOfLines = 0
@@ -89,6 +89,6 @@ final class HomeInsuranceBeneficiaryCollectionViewCell: UICollectionViewCell {
 
     func configure(_ insurance: Insurance) {
         self.insurance = insurance
-        usernameLabel.text = insurance.userName
+        usernameLabel.setText(insurance.userName, with: .body2)
     }
 }

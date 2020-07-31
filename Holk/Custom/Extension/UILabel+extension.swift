@@ -9,6 +9,11 @@
 import UIKit
 
 extension UILabel {
+    func setText(_ string: String?, with styleGuide: FontStyleGuide) {
+        text = string
+        setStyleGuide(styleGuide)
+    }
+
     func setStyleGuide(_ styleGuide: FontStyleGuide) {
         switch styleGuide {
         case .header1:
@@ -58,10 +63,10 @@ extension UILabel {
             setLineHeight(37)
         case .titleHeader1:
             font = Font.font(name: .poppins, weight: .semiBold, size: 18)
-            setLineHeight(14)
+            setLineHeight(23)
         case .titleHeader2:
             font = Font.font(name: .poppins, weight: .medium, size: 18)
-            setLineHeight(39)
+            setLineHeight(23)
         case .titleHeader3:
             font = Font.font(name: .poppins, weight: .regular, size: 15)
             setLineHeight(39)
@@ -92,11 +97,13 @@ extension UILabel {
         }
     }
 
-    func setLineHeight(_ lineHeight: CGFloat) {
+    private func setLineHeight(_ lineHeight: CGFloat) {
         guard let font = font else { return }
 
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = max(lineHeight - font.lineHeight, 0)
+        paragraphStyle.lineSpacing = 0
+        paragraphStyle.minimumLineHeight = lineHeight
+        paragraphStyle.maximumLineHeight = lineHeight
         paragraphStyle.alignment = textAlignment
 
         let attrString: NSMutableAttributedString

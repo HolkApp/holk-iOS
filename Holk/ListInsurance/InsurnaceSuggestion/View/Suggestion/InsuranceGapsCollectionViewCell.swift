@@ -26,8 +26,8 @@ final class InsuranceGapsCollectionViewCell: UICollectionViewCell {
     }
 
     func configure(_ gap: GapSuggestion) {
-        titleLabel.text = gap.title
-        tagLabel.text = gap.type
+        titleLabel.setText(gap.title, with: .cardHeader2)
+        tagLabel.setText(gap.type, with: .header7)
     }
 
     private func setup() {

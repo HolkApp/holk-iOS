@@ -58,6 +58,6 @@ extension ThinkOfParagraphCollectionViewCell {
     func configure(_ viewModel: ThinkOfSuggestionParagraphViewModel) {
         // TODO: Configure the icon
 //        paragraph.icon
-        descriptionLabel.text = viewModel.text
+        descriptionLabel.setText(viewModel.text, with: .body2)
     }
 }
