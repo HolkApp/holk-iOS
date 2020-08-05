@@ -9,14 +9,51 @@
 import Foundation
 
 struct Insurance: Codable, Hashable, Equatable {
-    struct Segment: Hashable {
-        let kind: Kind
-        let description: String
 
-        enum Kind: String {
-            case travel
-            case home
-            case pets
+    struct SubInsurance: Codable, Hashable, Equatable {
+        enum Kind: String, Codable {
+            case allRisk = "ALLRISK"
+            case assault = "ASSAULT"
+            case legal = "LEGAL"
+            case child = "CHILD_INSURANCE"
+            case movables = "MOVABLES"
+            case responsibility = "RESPONSIBILITY"
+            case travel = "TRAVEL"
+        }
+
+        let body: String
+        let header: String
+        let iconUrl: URL
+        let kind: Kind
+
+        private enum CodingKeys: String, CodingKey {
+            case kind = "type"
+            case header = "headerText"
+            case body = "bodyText"
+            case iconUrl = "iconUrl"
+        }
+    }
+
+    struct Cost: Codable, Hashable, Equatable {
+        enum Frequency: String, Codable {
+            case annual = "ANNUAL"
+            case monthly = "MONTHLY"
+        }
+
+        let paymentFrequency: Frequency
+        let price: Double
+
+        var monthlyPrice: Double {
+            switch paymentFrequency {
+            case .annual: return price / 12.0
+            case .monthly: return price
+            }
+        }
+        var annualPrice: Double {
+            switch paymentFrequency {
+            case .annual: return price
+            case .monthly: return price * 12.0
+            }
         }
     }
 
@@ -39,14 +76,9 @@ struct Insurance: Codable, Hashable, Equatable {
     let startDate: Date
     let endDate: Date
     let userName: String
-    var address: String
-    var segments: [Segment] {
-        return [
-            Segment(kind: .home, description: "Decription text for what a subInsurance is about, lore isbm"),
-            Segment(kind: .travel, description: "This is travel segment of your home insurance."),
-            Segment(kind: .pets, description: "This is pets segment of your home insurance.")
-        ]
-    }
+    let address: String
+    let cost: Cost
+    var subInsurances: [SubInsurance]
 
     private enum CodingKeys: String, CodingKey {
         case id = "id"
@@ -58,6 +90,8 @@ struct Insurance: Codable, Hashable, Equatable {
         case ssn = "takerPersonalNumber"
         case userName = "taker"
         case address = "address"
+        case cost = "cost"
+        case subInsurances = "homeInsuranceSubInsuranceDto"
     }
 }
 
@@ -74,6 +108,18 @@ extension Insurance {
         ssn = try container.decode(String.self, forKey: .ssn)
         userName = try container.decode(String.self, forKey: .userName)
         address = try container.decode(String.self, forKey: .address)
+        cost = try container.decode(Cost.self, forKey: .cost)
+        subInsurances = try container.decode([SubInsurance].self, forKey: .subInsurances)
     }
 }
 
+extension Insurance.SubInsurance {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        kind = try container.decode(Kind.self, forKey: .kind)
+        body = try container.decode(String.self, forKey: .body)
+        header = try container.decode(String.self, forKey: .header)
+        iconUrl = try container.decode(URL.self, forKey: .iconUrl)
+    }
+}
