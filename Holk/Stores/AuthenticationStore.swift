@@ -52,7 +52,8 @@ final class AuthenticationStore {
     
     func refresh(completion: @escaping (Result<OauthAuthenticationResponse, APIError>) -> Void) {
         guard let refreshToken = user.session?.refreshToken else {
-            completion(.failure(.response(error: .init(.badURL))))
+            let urlError = URLError.init(.cannotParseResponse)
+            completion(.failure(.init(urlError: urlError)))
             return
         }
 
