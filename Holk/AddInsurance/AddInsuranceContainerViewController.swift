@@ -254,7 +254,7 @@ extension AddInsuranceContainerViewController: AddInsuranceConsentViewController
                 case .success(let scrapingStatus):
                     switch scrapingStatus {
                     case .completed:
-                        let insuranceList = self.storeController.insuranceStore.insuranceList.value
+                        let insuranceList = self.storeController.insuranceStore.insuranceList
                         self.storeController.suggestionStore.fetchAllSuggestions()
                         self.showInsuranceAggregatedConfirmation(insuranceList)
                         self.progressBarToTop()

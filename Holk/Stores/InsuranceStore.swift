@@ -12,7 +12,7 @@ import Combine
 final class InsuranceStore {
     // MARK: - Public variables
     var insuranceStatus = PassthroughSubject<Result<ScrapingStatusResponse.ScrapingStatus, APIError>, Never>()
-    var insuranceList = CurrentValueSubject<[Insurance], Never>([])
+    @Published var insuranceList: [Insurance] = []
 
     // MARK: - Private variables
     private let user: User
@@ -56,7 +56,7 @@ final class InsuranceStore {
                     break
                 }
             }) { [weak self] allInsuranceResponse in
-                self?.insuranceList.send(allInsuranceResponse.insuranceList)
+                self?.insuranceList = allInsuranceResponse.insuranceList
                 completion(.success(allInsuranceResponse))
         }.store(in: &cancellables)
     }
@@ -79,7 +79,7 @@ final class InsuranceStore {
                     }
                 } else {
                     if let scrapedInsurances = scrapingStatusResponse.scrapedInsurances {
-                        self?.insuranceList.send(scrapedInsurances)
+                        self?.insuranceList = scrapedInsurances
                     }
                 }
                 self?.insuranceStatus.send(.success(scrapingStatusResponse.scrapingStatus))
@@ -102,9 +102,9 @@ final class InsuranceStore {
 extension InsuranceStore {
     // TODO: Update the logic when the backend is ready
     func relatedInsurances(thinkOf: ThinkOfSuggestion) -> [Insurance] {
-        return insuranceList.value.filter { insurance in
-            insurance.segments.contains { subInsurance in
-                subInsurance.kind == .travel
+        return insuranceList.filter { insurance in
+            insurance.subInsurances.contains { subInsurance in
+                subInsurance.kind == .child
             }
         }
     }

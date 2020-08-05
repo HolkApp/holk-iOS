@@ -311,7 +311,7 @@ extension OnboardingContainerViewController: OnboardingConsentViewControllerDele
                 case .success(let scrapingStatus):
                     switch scrapingStatus {
                     case .completed:
-                        let insuranceList = self.storeController.insuranceStore.insuranceList.value
+                        let insuranceList = self.storeController.insuranceStore.insuranceList
                         self.storeController.suggestionStore.fetchAllSuggestions()
                         self.storeController.insuranceStore.fetchAllInsurances()
                         self.showInsuranceAggregatedConfirmation(insuranceList)
