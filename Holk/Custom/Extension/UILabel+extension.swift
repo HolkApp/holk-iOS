@@ -48,7 +48,7 @@ extension UILabel {
             setLineHeight(30)
         case .subHeader4:
             font = Font.font(name: .poppins, weight: .regular, size: 25)
-            setLineHeight(30)
+            setLineHeight(35)
         case .subHeader5:
             font = Font.font(name: .poppins, weight: .regular, size: 17)
             setLineHeight(22)
@@ -93,7 +93,7 @@ extension UILabel {
             setLineHeight(48)
         case .largeNumber:
             font = Font.font(name: .poppins, weight: .regular, size: 64)
-            setLineHeight(76)
+            setLineHeight(80)
         }
     }
 
