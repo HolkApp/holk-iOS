@@ -14,8 +14,8 @@ final class HomeSubInsurancesViewController: UIViewController {
     }
 
     enum HomeSubInsuranceSegment: Hashable {
-        case basic(Insurance.Segment)
-        case additional(Insurance.Segment)
+        case basic(Insurance.SubInsurance)
+        case additional(Insurance.SubInsurance)
     }
 
     enum SubInsuranceSegment {
@@ -44,7 +44,7 @@ final class HomeSubInsurancesViewController: UIViewController {
     init(storeController: StoreController, insurance: Insurance) {
         self.storeController = storeController
         self.insurance = insurance
-        basicSubInsurances = insurance.segments.compactMap { HomeSubInsuranceSegment.basic($0) }
+        basicSubInsurances = insurance.subInsurances.compactMap { HomeSubInsuranceSegment.basic($0) }
         // TODO: Update this
         additionalSubInsurances = []
 
@@ -93,15 +93,15 @@ extension HomeSubInsurancesViewController {
     private func makeDataSource() -> DataSource {
         let dataSource = DataSource(
             collectionView: collectionView,
-            cellProvider: { (collectionView, indexPath, segment) in
-                switch segment {
-                case .basic(let basicSegment):
+            cellProvider: { (collectionView, indexPath, subInsurance) in
+                switch subInsurance {
+                case .basic(let basicSubInsurance):
                     let subInsuranceCollectionViewCell = collectionView.dequeueCell(SubInsuranceCollectionViewCell.self, indexPath: indexPath)
-                    subInsuranceCollectionViewCell.configure(basicSegment)
+                    subInsuranceCollectionViewCell.configure(basicSubInsurance)
                     return subInsuranceCollectionViewCell
-                case .additional(let additionalSegment):
+                case .additional(let additionalSubInsurance):
                     let subInsuranceCollectionViewCell = collectionView.dequeueCell(SubInsuranceCollectionViewCell.self, indexPath: indexPath)
-                    subInsuranceCollectionViewCell.configure(additionalSegment)
+                    subInsuranceCollectionViewCell.configure(additionalSubInsurance)
                     return subInsuranceCollectionViewCell
                 }
         })

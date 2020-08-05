@@ -9,13 +9,13 @@
 import Foundation
 
 struct ThinkOfSubInsuranceViewModel: Hashable {
-    var subInsurance: Insurance.Segment
-    var kind: Insurance.Segment.Kind
+    var subInsurance: Insurance.SubInsurance
+    var kind: Insurance.SubInsurance.Kind
     var text: String
 
-    init(subInsurance: Insurance.Segment) {
+    init(subInsurance: Insurance.SubInsurance) {
         self.subInsurance = subInsurance
         kind = subInsurance.kind
-        text = subInsurance.description
+        text = subInsurance.body
     }
 }

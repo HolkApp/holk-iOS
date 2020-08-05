@@ -62,7 +62,7 @@ final class HomeInsuranceCostCollectionViewCell: UICollectionViewCell {
             costLabel.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor, constant: 16),
             costLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 12),
             costLabel.trailingAnchor.constraint(lessThanOrEqualTo: chevronView.leadingAnchor, constant: 16),
-            costLabel.bottomAnchor.constraint(equalTo: bottomSeparatorLine.topAnchor, constant: -16),
+            costLabel.lastBaselineAnchor.constraint(equalTo: bottomSeparatorLine.topAnchor, constant: -16),
 
             chevronView.widthAnchor.constraint(equalToConstant: 16),
             chevronView.heightAnchor.constraint(equalToConstant: 24),
@@ -78,7 +78,7 @@ final class HomeInsuranceCostCollectionViewCell: UICollectionViewCell {
 
     func configure(_ insurance: Insurance) {
         self.insurance = insurance
-        // TODO: Update this
-        costLabel.setText("250(mock) kr/mån", with: .subHeader4)
+        let costText = String(format: "%.0f kr/mån", insurance.cost.monthlyPrice)
+        costLabel.setText(costText, with: .subHeader4)
     }
 }

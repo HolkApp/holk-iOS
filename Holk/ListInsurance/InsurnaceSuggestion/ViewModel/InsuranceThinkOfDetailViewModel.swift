@@ -17,7 +17,7 @@ final class InsuranceThinkOfDetailViewModel {
     // TODO: fix
     private let detailParagraphs: [Paragraph]
     private let mappedInsurance: Insurance?
-    private let mappedSubInsurances: [Insurance.Segment]
+    private let mappedSubInsurances: [Insurance.SubInsurance]
 
     // TODO: fix
     var iconImage: UIImage?
@@ -34,27 +34,16 @@ final class InsuranceThinkOfDetailViewModel {
 
         // TOOD: Remove the mock
         mappedInsurance = insurances.first { insurnace in
-            insurnace.segments.contains { segment in segment.kind == .travel }
+            insurnace.subInsurances.contains { segment in segment.kind == .child }
         }
-        mappedSubInsurances = mappedInsurance?.segments.filter { segment in
-            segment.kind == .travel
+        mappedSubInsurances = mappedInsurance?.subInsurances.filter { subInsurance in
+            subInsurance.kind == .child
         } ?? []
 
         if let subInsurance = mappedSubInsurances.first {
-            switch subInsurance.kind {
-            case .home:
-                iconImage = UIImage.init(insuranceSegment: subInsurance)
-                iconImageBackgroundColor = Color.goodsInsuranceIconBackgroundColor
-                headerBackgroundViewColor = Color.goodsInsuranceBackgroundColor
-            case .travel:
-                iconImage = UIImage.init(insuranceSegment: subInsurance)
-                iconImageBackgroundColor = Color.travelInsuranceIconBackgroundColor
-                headerBackgroundViewColor = Color.travelInsuranceBackgroundColor
-            case .pets:
-                iconImage = nil
-                iconImageBackgroundColor = .systemPink
-                headerBackgroundViewColor = Color.mainHighlight
-            }
+            iconImage = UIImage.init(subInsurance: subInsurance)
+            iconImageBackgroundColor = Color.iconBackgroundColor(subInsurance)
+            headerBackgroundViewColor = Color.backgroundColor(subInsurance)
         }
     }
 

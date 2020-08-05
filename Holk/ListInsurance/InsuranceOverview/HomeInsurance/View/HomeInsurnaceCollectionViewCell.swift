@@ -46,7 +46,7 @@ final class HomeinsuranceCollectionViewCell: UICollectionViewCell {
         self.insurance = insurance
 
         titleLabel.setText("Dina skydd", with: .header6)
-        insuranceSubNumberLabel.setText("\(insurance.segments.count)", with: .largeNumber)
+        insuranceSubNumberLabel.setText("\(insurance.subInsurances.count)", with: .largeNumber)
         insuranceTextLabel.setText("Skydd", with: .subHeader2)
         
         if let provider = provider {
@@ -159,7 +159,7 @@ final class HomeinsuranceCollectionViewCell: UICollectionViewCell {
 
 extension HomeinsuranceCollectionViewCell: HolkRingChartDataSource {
     private var mockNumberOfSegments: Int {
-        return insurance?.segments.count ?? 6
+        return insurance?.subInsurances.count ?? 6
     }
 
     func numberOfSegments(_ ringChart: HolkRingChart) -> Int {
@@ -191,9 +191,9 @@ extension HomeinsuranceCollectionViewCell: HolkRingChartDataSource {
     }
 
     func ringChart(_ ringChart: HolkRingChart, iconForSegmentAt index: Int) -> UIImage? {
-        let segment = insurance?.segments[index]
-        return segment.flatMap(
-            UIImage.init(insuranceSegment: )
+        let subInsurance = insurance?.subInsurances[index]
+        return subInsurance.flatMap(
+            UIImage.init(subInsurance: )
         )?.withRenderingMode(.alwaysTemplate)
     }
 }

@@ -41,23 +41,12 @@ final class SubInsuranceCollectionViewCell: UICollectionViewCell {
         iconView.backgroundColor = nil
     }
 
-    func configure(_ segment: Insurance.Segment) {
-        switch segment.kind {
-        case .home:
-            iconView.imageView.image = UIImage.init(insuranceSegment: segment)
-            iconView.backgroundColor = Color.goodsInsuranceIconBackgroundColor
-            cardView.backgroundColor = Color.goodsInsuranceBackgroundColor
-        case .travel:
-            iconView.imageView.image = UIImage.init(insuranceSegment: segment)
-            iconView.backgroundColor = Color.travelInsuranceIconBackgroundColor
-            cardView.backgroundColor = Color.travelInsuranceBackgroundColor
-        case .pets:
-            // TODO:
-            iconView.backgroundColor = .systemPink
-            cardView.backgroundColor = Color.mainHighlight
-        }
-        titleLabel.setText(segment.kind.rawValue, with: .cardHeader2)
-        descriptionLabel.setText(segment.description, with: .body1)
+    func configure(_ subInsurance: Insurance.SubInsurance) {
+        iconView.imageView.image = UIImage.init(subInsurance: subInsurance)
+        iconView.backgroundColor = Color.iconBackgroundColor(subInsurance)
+        cardView.backgroundColor = Color.backgroundColor(subInsurance)
+        titleLabel.setText(subInsurance.header, with: .cardHeader2)
+        descriptionLabel.setText(subInsurance.body, with: .body1)
 
         // TODO:
 
