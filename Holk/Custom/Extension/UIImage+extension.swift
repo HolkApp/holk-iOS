@@ -58,11 +58,10 @@ extension UIImage {
 
 // MARK: - SubInsurance Image extension
 extension UIImage {
-    convenience init?(insuranceSegment: Insurance.Segment) {
-        switch insuranceSegment.kind {
+    convenience init?(subInsurance: Insurance.SubInsurance) {
+        switch subInsurance.kind {
         case .travel: self.init(named: "travel")
-        case .home:  self.init(named: "goods")
-        case .pets: self.init(named: "Shoe")
+        default:  self.init(named: "goods")
         }
     }
 }
