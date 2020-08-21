@@ -50,7 +50,7 @@ final class HomeinsuranceCollectionViewCell: UICollectionViewCell {
         insuranceTextLabel.setText("Skydd", with: .subHeader2)
         
         if let provider = provider {
-            UIImage.makeImageWithURL(provider.logoUrl) { [weak self] image in
+            UIImage.makeImage(with: provider.logoUrl) { [weak self] image in
                 self?.insuranceImageView.image = image
             }
         }

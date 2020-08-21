@@ -10,16 +10,30 @@ import UIKit
 import Alamofire
 
 extension UIImage {
-    static func makeImageWithLayer(_ layer: CALayer) -> UIImage? {
+    convenience init?(layer: CALayer) {
         UIGraphicsBeginImageContextWithOptions(layer.bounds.size, layer.isOpaque, 0.0)
         layer.render(in: UIGraphicsGetCurrentContext()!)
-        let img = UIGraphicsGetImageFromCurrentImageContext()
+        let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        return img
+
+        guard let cgImage = image?.cgImage else { return nil }
+        self.init(cgImage: cgImage)
+    }
+
+    convenience init?(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) {
+        let rect = CGRect(origin: .zero, size: size)
+        UIGraphicsBeginImageContextWithOptions(rect.size, false, 0.0)
+        color.setFill()
+        UIRectFill(rect)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+
+        guard let cgImage = image?.cgImage else { return nil }
+        self.init(cgImage: cgImage)
     }
 
     @discardableResult
-    static func makeImageWithURL(_ imageUrl: URL, completion: ((UIImage?) -> Void)? = nil) -> DownloadRequest? {
+    static func makeImage(with imageUrl: URL, completion: ((UIImage?) -> Void)? = nil) -> DownloadRequest? {
         let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0] as NSURL
         let newPath = path.appendingPathComponent(imageUrl.absoluteString)
 
@@ -32,7 +46,7 @@ extension UIImage {
             if let image = UIImage(data: data) {
                 completion?(image)
             } else {
-                throw CocoaError(.coderInvalidValue)
+                throw CocoaError(.fileNoSuchFile)
             }
         } catch {
             return Alamofire.download(imageUrl, to: destination).validate().responseData { response in
@@ -64,4 +78,9 @@ extension UIImage {
         default:  self.init(named: "goods")
         }
     }
+}
+
+// MARK: - Suggestion Image extension
+extension UIImage {
+    
 }

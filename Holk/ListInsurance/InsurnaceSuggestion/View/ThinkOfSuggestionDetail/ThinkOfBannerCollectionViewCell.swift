@@ -25,7 +25,7 @@ final class ThinkOfBannerCollectionViewCell: UICollectionViewCell {
 
     func configure(_ viewModel: ThinkOfSuggestionBannerViewModel) {
         if let imageURL = viewModel.imageURL {
-            UIImage.makeImageWithURL(imageURL) { [weak self] image in
+            UIImage.makeImage(with: imageURL) { [weak self] image in
                 self?.imageView.image = image
             }
         } else {

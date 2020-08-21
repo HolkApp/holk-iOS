@@ -35,7 +35,7 @@ final class ThinkOfRelatedInsuranceCollectionHeaderView: UICollectionReusableVie
         nameValueLabel.setText(viewModel.insuranceName, with: .titleHeader2)
         endDateValueLabel.setText(viewModel.endDateString, with: .titleHeader2)
         if let imageURL = viewModel.insuranceImageURL {
-            UIImage.makeImageWithURL(imageURL) { [weak self] image in
+            UIImage.makeImage(with: imageURL) { [weak self] image in
                 self?.providerValueLabel.image = image
             }
         }

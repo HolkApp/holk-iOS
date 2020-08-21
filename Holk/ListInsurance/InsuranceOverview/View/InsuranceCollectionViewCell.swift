@@ -49,7 +49,7 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         titleLabel.setText(insurance.kind.description, with: .header5)
         subtitleLabel.setText(insurance.address, with: .subHeader3)
         if let provider = provider {
-            UIImage.makeImageWithURL(provider.logoUrl) { [weak self] image in
+            UIImage.makeImage(with: provider.logoUrl) { [weak self] image in
                 self?.insuranceImageView.image = image
             }
         }
