@@ -6,7 +6,7 @@
 //  Copyright © 2019 Holk. All rights reserved.
 //
 
-import Alamofire
+import Foundation
 
 protocol StoreControllerDelegate: AnyObject {
     func storeControllerAccessTokenUpdated()

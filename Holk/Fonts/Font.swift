@@ -11,6 +11,7 @@ enum Font {
     enum Name: CustomStringConvertible {
         case montserrat
         case poppins
+        case raleway
         case lato
 
         var description: String {
@@ -19,6 +20,8 @@ enum Font {
                 return "Montserrat"
             case .poppins:
                 return "Poppins"
+            case .raleway:
+                return "Raleway"
             case .lato:
                 return "Lato"
             }

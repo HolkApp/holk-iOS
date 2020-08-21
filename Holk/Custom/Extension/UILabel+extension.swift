@@ -29,10 +29,10 @@ extension UILabel {
             font = Font.font(name: .poppins, weight: .semiBold, size: 30)
             setLineHeight(44)
         case .header5:
-            font = Font.font(name: .poppins, weight: .semiBold, size: 25)
+            font = Font.font(name: .raleway, weight: .bold, size: 26)
             setLineHeight(35)
         case .header6:
-            font = Font.font(name: .poppins, weight: .semiBold, size: 21)
+            font = Font.font(name: .raleway, weight: .bold, size: 22)
             setLineHeight(30)
             case .header7:
             font = Font.font(name: .montserrat, weight: .regular, size: 18)
@@ -50,8 +50,8 @@ extension UILabel {
             font = Font.font(name: .poppins, weight: .regular, size: 25)
             setLineHeight(35)
         case .subHeader5:
-            font = Font.font(name: .poppins, weight: .regular, size: 17)
-            setLineHeight(22)
+            font = Font.font(name: .raleway, weight: .regular, size: 18)
+            setLineHeight(24)
         case .cardHeader1:
             font = Font.font(name: .montserrat, weight: .extraBold, size: 35)
             setLineHeight(37)
@@ -59,10 +59,10 @@ extension UILabel {
             font = Font.font(name: .poppins, weight: .extraBold, size: 28)
             setLineHeight(32)
         case .cardHeader3:
-            font = Font.font(name: .poppins, weight: .extraBold, size: 31)
-            setLineHeight(37)
+            font = Font.font(name: .montserrat, weight: .extraBold, size: 31)
+            setLineHeight(39)
         case .titleHeader1:
-            font = Font.font(name: .poppins, weight: .semiBold, size: 18)
+            font = Font.font(name: .raleway, weight: .bold, size: 18)
             setLineHeight(23)
         case .titleHeader2:
             font = Font.font(name: .poppins, weight: .medium, size: 18)
@@ -74,8 +74,8 @@ extension UILabel {
             font = Font.font(name: .montserrat, weight: .medium, size: 14)
             setLineHeight(20)
         case .body2:
-            font = Font.font(name: .montserrat, weight: .regular, size: 16)
-            setLineHeight(23)
+            font = Font.font(name: .raleway, weight: .regular, size: 16)
+            setLineHeight(22)
         case .body3:
             font = Font.font(name: .montserrat, weight: .medium, size: 18)
             setLineHeight(25)

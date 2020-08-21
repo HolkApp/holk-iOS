@@ -86,6 +86,12 @@
 		8F6BCA3B22F73CBF004B887E /* Font Awesome 5 Pro-Regular-400.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8F6BCA3622F73CBF004B887E /* Font Awesome 5 Pro-Regular-400.otf */; };
 		8F6BCA3C22F73CBF004B887E /* Font Awesome 5 Pro-Light-300.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8F6BCA3722F73CBF004B887E /* Font Awesome 5 Pro-Light-300.otf */; };
 		8F6BCA3D22F73CBF004B887E /* Font Awesome 5 Duotone-Solid-900.otf in Resources */ = {isa = PBXBuildFile; fileRef = 8F6BCA3822F73CBF004B887E /* Font Awesome 5 Duotone-Solid-900.otf */; };
+		8F6FAF3C24E5D4C6000EE3F1 /* Raleway-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F6FAF3624E5D4C4000EE3F1 /* Raleway-Medium.ttf */; };
+		8F6FAF3D24E5D4C6000EE3F1 /* Raleway-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F6FAF3724E5D4C5000EE3F1 /* Raleway-Regular.ttf */; };
+		8F6FAF3E24E5D4C6000EE3F1 /* Raleway-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F6FAF3824E5D4C5000EE3F1 /* Raleway-SemiBold.ttf */; };
+		8F6FAF3F24E5D4C6000EE3F1 /* Raleway-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F6FAF3924E5D4C5000EE3F1 /* Raleway-Bold.ttf */; };
+		8F6FAF4024E5D4C6000EE3F1 /* Raleway-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F6FAF3A24E5D4C5000EE3F1 /* Raleway-ExtraBold.ttf */; };
+		8F6FAF4124E5D4C6000EE3F1 /* Raleway-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F6FAF3B24E5D4C5000EE3F1 /* Raleway-Light.ttf */; };
 		8F7C442A23511C1200B54A36 /* AuthenticationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7C442923511C1200B54A36 /* AuthenticationStore.swift */; };
 		8F7C442C23511C5900B54A36 /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7C442B23511C5900B54A36 /* APIEndpoint.swift */; };
 		8F7C44302351336E00B54A36 /* BankIDService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7C442F2351336E00B54A36 /* BankIDService.swift */; };
@@ -256,6 +262,12 @@
 		8F6BCA3622F73CBF004B887E /* Font Awesome 5 Pro-Regular-400.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Font Awesome 5 Pro-Regular-400.otf"; sourceTree = "<group>"; };
 		8F6BCA3722F73CBF004B887E /* Font Awesome 5 Pro-Light-300.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Font Awesome 5 Pro-Light-300.otf"; sourceTree = "<group>"; };
 		8F6BCA3822F73CBF004B887E /* Font Awesome 5 Duotone-Solid-900.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Font Awesome 5 Duotone-Solid-900.otf"; sourceTree = "<group>"; };
+		8F6FAF3624E5D4C4000EE3F1 /* Raleway-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Medium.ttf"; sourceTree = "<group>"; };
+		8F6FAF3724E5D4C5000EE3F1 /* Raleway-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Regular.ttf"; sourceTree = "<group>"; };
+		8F6FAF3824E5D4C5000EE3F1 /* Raleway-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-SemiBold.ttf"; sourceTree = "<group>"; };
+		8F6FAF3924E5D4C5000EE3F1 /* Raleway-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Bold.ttf"; sourceTree = "<group>"; };
+		8F6FAF3A24E5D4C5000EE3F1 /* Raleway-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-ExtraBold.ttf"; sourceTree = "<group>"; };
+		8F6FAF3B24E5D4C5000EE3F1 /* Raleway-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Light.ttf"; sourceTree = "<group>"; };
 		8F7C442923511C1200B54A36 /* AuthenticationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationStore.swift; sourceTree = "<group>"; };
 		8F7C442B23511C5900B54A36 /* APIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
 		8F7C442F2351336E00B54A36 /* BankIDService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankIDService.swift; sourceTree = "<group>"; };
@@ -839,6 +851,12 @@
 				8FA766D024447BD8007EB2A2 /* Poppins-Medium.ttf */,
 				8F858A4A23CD1470006B416A /* Poppins-Regular.ttf */,
 				8FD6769224963C9D00E62820 /* Poppins-Light.ttf */,
+				8F6FAF3924E5D4C5000EE3F1 /* Raleway-Bold.ttf */,
+				8F6FAF3A24E5D4C5000EE3F1 /* Raleway-ExtraBold.ttf */,
+				8F6FAF3B24E5D4C5000EE3F1 /* Raleway-Light.ttf */,
+				8F6FAF3624E5D4C4000EE3F1 /* Raleway-Medium.ttf */,
+				8F6FAF3724E5D4C5000EE3F1 /* Raleway-Regular.ttf */,
+				8F6FAF3824E5D4C5000EE3F1 /* Raleway-SemiBold.ttf */,
 				8F6BCA3522F73CBF004B887E /* Font Awesome 5 Brands-Regular-400.otf */,
 				8F6BCA3822F73CBF004B887E /* Font Awesome 5 Duotone-Solid-900.otf */,
 				8F6BCA3722F73CBF004B887E /* Font Awesome 5 Pro-Light-300.otf */,
@@ -956,9 +974,13 @@
 				8F6BCA3922F73CBF004B887E /* Font Awesome 5 Pro-Solid-900.otf in Resources */,
 				8FC81CEC2483FB4400F6BC8C /* Lato-Regular.ttf in Resources */,
 				8F02659024C4517D00F4208B /* Poppins-Bold.ttf in Resources */,
+				8F6FAF4024E5D4C6000EE3F1 /* Raleway-ExtraBold.ttf in Resources */,
 				8F02658E24C4517400F4208B /* Poppins-ExtraBold.ttf in Resources */,
 				8F4965E124154DC800DEAFC1 /* Montserrat-Bold.ttf in Resources */,
+				8F6FAF3C24E5D4C6000EE3F1 /* Raleway-Medium.ttf in Resources */,
+				8F6FAF3D24E5D4C6000EE3F1 /* Raleway-Regular.ttf in Resources */,
 				8F6BCA3B22F73CBF004B887E /* Font Awesome 5 Pro-Regular-400.otf in Resources */,
+				8F6FAF3F24E5D4C6000EE3F1 /* Raleway-Bold.ttf in Resources */,
 				8FA8F10E232D377F00670471 /* Color.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
