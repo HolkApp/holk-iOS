@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
+        FirebaseApp.configure()
+
         coordinator = ShellCoordinator()
         coordinator?.start()
         
@@ -24,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         
         // TODO: Add something for register the appearance
-        let pageControlAppearance = UIPageControl.appearance(whenContainedInInstancesOf: [UIPageViewController.self])
+        let pageControlAppearance = UIPageControl.appearance(whenContainedInInstancesOf: [LandingPageViewController.self])
         pageControlAppearance.pageIndicatorTintColor = Color.mainBackground
         pageControlAppearance.currentPageIndicatorTintColor = Color.mainForeground
 

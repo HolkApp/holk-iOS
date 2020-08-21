@@ -8,6 +8,7 @@ target 'Holk' do
   pod 'SwiftLint'
   pod 'MarkdownKit'
   pod 'lottie-ios'
+  pod 'Firebase/Analytics'
 
   target 'HolkTests' do
     inherit! :search_paths

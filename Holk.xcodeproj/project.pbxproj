@@ -42,6 +42,7 @@
 		8F3C7DAE23F4AB63002EDA57 /* OnboardingConsentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3C7DAD23F4AB63002EDA57 /* OnboardingConsentViewController.swift */; };
 		8F3C7DB023F82865002EDA57 /* InsuranceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3C7DAF23F82865002EDA57 /* InsuranceStore.swift */; };
 		8F3C7DB223F833B4002EDA57 /* OnboardingConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F3C7DB123F833B4002EDA57 /* OnboardingConfirmationViewController.swift */; };
+		8F43D50B24F057B5004A0666 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8F43D50A24F057B5004A0666 /* GoogleService-Info.plist */; };
 		8F48BE6723315F49004D79D2 /* HolkIllustrationLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F48BE6623315F49004D79D2 /* HolkIllustrationLabel.swift */; };
 		8F4965DB2412F17E00DEAFC1 /* HolkRingChartIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4965DA2412F17E00DEAFC1 /* HolkRingChartIconView.swift */; };
 		8F4965DD2412F70100DEAFC1 /* HolkRingChartIconsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4965DC2412F70100DEAFC1 /* HolkRingChartIconsView.swift */; };
@@ -211,6 +212,7 @@
 		8F3C7DAD23F4AB63002EDA57 /* OnboardingConsentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingConsentViewController.swift; sourceTree = "<group>"; };
 		8F3C7DAF23F82865002EDA57 /* InsuranceStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceStore.swift; sourceTree = "<group>"; };
 		8F3C7DB123F833B4002EDA57 /* OnboardingConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingConfirmationViewController.swift; sourceTree = "<group>"; };
+		8F43D50A24F057B5004A0666 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8F48BE6623315F49004D79D2 /* HolkIllustrationLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolkIllustrationLabel.swift; sourceTree = "<group>"; };
 		8F4965DA2412F17E00DEAFC1 /* HolkRingChartIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolkRingChartIconView.swift; sourceTree = "<group>"; };
 		8F4965DC2412F70100DEAFC1 /* HolkRingChartIconsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolkRingChartIconsView.swift; sourceTree = "<group>"; };
@@ -691,6 +693,7 @@
 				8FA8F10D232D377F00670471 /* Color.xcassets */,
 				8FD84E702270E736009D563D /* LaunchScreen.storyboard */,
 				8FD84E732270E736009D563D /* Info.plist */,
+				8F43D50A24F057B5004A0666 /* GoogleService-Info.plist */,
 				8F16DE7A246B417300EFC1BD /* Illustration */,
 			);
 			path = Holk;
@@ -956,6 +959,7 @@
 				8F02658E24C4517400F4208B /* Poppins-ExtraBold.ttf in Resources */,
 				8F4965E124154DC800DEAFC1 /* Montserrat-Bold.ttf in Resources */,
 				8F6FAF3C24E5D4C6000EE3F1 /* Raleway-Medium.ttf in Resources */,
+				8F43D50B24F057B5004A0666 /* GoogleService-Info.plist in Resources */,
 				8F6FAF3D24E5D4C6000EE3F1 /* Raleway-Regular.ttf in Resources */,
 				8F6FAF3F24E5D4C6000EE3F1 /* Raleway-Bold.ttf in Resources */,
 				8FA8F10E232D377F00670471 /* Color.xcassets in Resources */,
@@ -1258,7 +1262,7 @@
 			baseConfigurationReference = 8EC6ADAA8FC71969E3EC36F9 /* Pods-Holk.staging.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 21;
 				DEVELOPMENT_TEAM = B6L4JUFKP9;
@@ -1270,8 +1274,8 @@
 				);
 				MARKETING_VERSION = 0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.holk.app-dev";
-				PRODUCT_NAME = "$(TARGET_NAME)-dev";
-				PROVISIONING_PROFILE_SPECIFIER = "iOS Dev";
+				PRODUCT_NAME = "Holk-dev";
+				PROVISIONING_PROFILE_SPECIFIER = "iOS Staging";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1432,7 +1436,7 @@
 				);
 				MARKETING_VERSION = 0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.holk.app-dev";
-				PRODUCT_NAME = "$(TARGET_NAME)-dev";
+				PRODUCT_NAME = "Holk-dev";
 				PROVISIONING_PROFILE_SPECIFIER = "iOS Dev";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1456,7 +1460,7 @@
 				);
 				MARKETING_VERSION = 0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.holk.app;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Holk;
 				PROVISIONING_PROFILE_SPECIFIER = "App Store";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
