@@ -59,9 +59,16 @@ class OnboardingInfoViewController: UIViewController {
         analyseLabel.textColor = Color.mainForeground
         analyseLabel.numberOfLines = 0
 
-        loginImage.image = .fontAwesomeIcon(name: .fileCheck, style: .light, textColor: Color.mainForeground, size: FontAwesome.mediumIconSize)
-        answerQuestionImage.image = .fontAwesomeIcon(name: .commentAltSmile, style: .light, textColor: Color.mainForeground, size: FontAwesome.mediumIconSize)
-        analyseImage.image = .fontAwesomeIcon(name: .bellExclamation, style: .light, textColor: Color.mainForeground, size: FontAwesome.mediumIconSize)
+
+        loginImage.image = UIImage(systemName: "checkmark.shield")
+        loginImage.tintColor = Color.mainForeground
+        loginImage.contentMode = .scaleAspectFit
+        answerQuestionImage.image = UIImage(systemName: "bubble.left")
+        answerQuestionImage.contentMode = .scaleAspectFit
+        answerQuestionImage.tintColor = Color.mainForeground
+        analyseImage.image = UIImage(systemName: "bell.circle")
+        analyseImage.contentMode = .scaleAspectFit
+        analyseImage.tintColor = Color.mainForeground
 
         setupLayout()
     }

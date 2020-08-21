@@ -125,15 +125,3 @@ enum Font {
         }
     }
 }
-
-extension Font {
-    static func fontAwesome(style: FontAwesomeStyle, size: Size) -> UIFont {
-        UIFont.loadFontAwesome(ofStyle: style)
-        return UIFont.fontAwesome(ofSize: size.pointSize, style: style)
-    }
-}
-
-extension FontAwesome {
-    /// 45
-    static let mediumIconSize = CGSize.init(width: 45, height: 45)
-}
