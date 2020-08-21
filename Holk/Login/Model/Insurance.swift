@@ -91,7 +91,7 @@ struct Insurance: Codable, Hashable, Equatable {
         case userName = "taker"
         case address = "address"
         case cost = "cost"
-        case subInsurances = "homeInsuranceSubInsuranceDto"
+        case subInsurances = "subInsuranceList"
     }
 }
 
