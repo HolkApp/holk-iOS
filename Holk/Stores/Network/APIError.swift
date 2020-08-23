@@ -8,9 +8,7 @@
 
 import Foundation
 
-struct APIError: Error, Equatable {
-    
-    var code: URLError.Code?
+struct APIError: Error, Equatable, Decodable {
     var errorCode: Int?
     var timestamp: Date?
     var message: String?
@@ -18,8 +16,11 @@ struct APIError: Error, Equatable {
 }
 
 extension APIError {
+    init(code: URLError.Code) {
+        self.init(urlError: URLError(code))
+    }
+    
     init(urlError: URLError) {
-        code = urlError.code
         errorCode = urlError.errorCode
         message = urlError.localizedDescription
     }
