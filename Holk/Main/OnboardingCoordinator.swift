@@ -122,7 +122,7 @@ extension OnboardingCoordinator {
     }
 
     private func showError(_ error: APIError, requestName: String) {
-        let alert = UIAlertController(title: requestName + " \(error.code)", message: error.localizedDescription, preferredStyle: .alert)
+        let alert = UIAlertController(title: requestName + " \(error.errorCode)", message: error.debugMessage, preferredStyle: .alert)
         alert.addAction(.init(
             title: "Close",
             style: .default,

@@ -29,7 +29,6 @@ final class InsuranceStore {
     func addInsurance(_ provider: InsuranceProvider, integrationHandler: @escaping (Result<IntegrateInsuranceResponse, APIError>) -> Void = { _ in }) {
         insuranceCredentialService
             .integrateInsurance(providerName: provider.internalName)
-            .mapError { APIError(urlError: $0) }
             .sink(receiveCompletion: { result in
                 switch result {
                 case .failure(let error):
@@ -47,7 +46,6 @@ final class InsuranceStore {
     func fetchAllInsurances(completion: @escaping (Result<AllInsuranceResponse, APIError>) -> Void = { _ in }) {
         insuranceService
             .fetchAllInsurances()
-            .mapError { APIError(urlError: $0) }
             .sink(receiveCompletion: { result in
                 switch result {
                 case .failure(let error):
@@ -90,7 +88,6 @@ final class InsuranceStore {
     private func getInsuranceStatus(_ sessionID: String) -> AnyPublisher<ScrapingStatusResponse, APIError> {
         return insuranceCredentialService
             .fetchInsuranceStatus(sessionID)
-            .mapError { APIError(urlError: $0) }
             .eraseToAnyPublisher()
     }
 

@@ -20,7 +20,7 @@ final class UserStore {
     }
 
     func userInfo(completion: @escaping (Result<UserInfoResponse, APIError>) -> Void = { _ in }) {
-        userService.fetchUserInfo().mapError { APIError(urlError: $0) }
+        userService.fetchUserInfo()
             .sink(receiveCompletion: { result in
                 switch result {
                 case .failure(let error):
@@ -36,7 +36,7 @@ final class UserStore {
     }
 
     func addEmail(_ email: String, completion: @escaping (Result<Void, APIError>) -> Void) {
-        userService.addEmail(email).mapError { APIError(urlError: $0) }
+        userService.addEmail(email)
             .sink(receiveCompletion: { result in
                 switch result {
                 case .failure(let error):

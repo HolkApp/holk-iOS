@@ -24,7 +24,7 @@ final class SuggestionStore {
     }
 
     func fetchAllSuggestions(completion: @escaping (Result<SuggestionsListResponse, APIError>) -> Void = { _ in }) {
-        suggestionService.fetchAllSuggestions().mapError { APIError(urlError: $0) }
+        suggestionService.fetchAllSuggestions()
             .sink(receiveCompletion: { result in
             switch result {
             case .failure(let error):
