@@ -22,7 +22,7 @@ final class InsuranceService {
         self.user = user
     }
 
-    func fetchAllInsurances() -> AnyPublisher<AllInsuranceResponse, URLError> {
+    func fetchAllInsurances() -> AnyPublisher<AllInsuranceResponse, APIError> {
         var httpHeaders = [
             "Content-Type": "application/json",
             "Accept": "application/json"

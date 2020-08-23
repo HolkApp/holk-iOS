@@ -22,16 +22,24 @@ final class InsuranceCredentialService {
         self.user = user
     }
 
-    func fetchInsuranceStatus(_ sessionId: String) -> AnyPublisher<ScrapingStatusResponse, URLError> {
+    func fetchInsuranceStatus(_ sessionId: String) -> AnyPublisher<ScrapingStatusResponse, APIError> {
         return client
-            .httpRequest(method: .get, url: Endpoint.scrapingStatus.url([sessionId]), headers: authorizationBearerHeader)
+            .httpRequest(
+                method: .get,
+                url: Endpoint.scrapingStatus.url([sessionId]),
+                headers: authorizationBearerHeader
+            )
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
 
-    func integrateInsurance(providerName: String) -> AnyPublisher<IntegrateInsuranceResponse, URLError> {
+    func integrateInsurance(providerName: String) -> AnyPublisher<IntegrateInsuranceResponse, APIError> {
         return client
-            .httpRequest(method: .post, url: Endpoint.addInsurance.url([providerName]), headers: authorizationBearerHeader)
+            .httpRequest(
+                method: .post,
+                url: Endpoint.addInsurance.url([providerName]),
+                headers: authorizationBearerHeader
+            )
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }

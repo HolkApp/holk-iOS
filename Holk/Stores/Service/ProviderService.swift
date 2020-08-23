@@ -22,7 +22,7 @@ final class ProviderService {
         self.user = user
     }
 
-    func fetchInsuranceProviders() -> AnyPublisher<ProviderStatusResponse, URLError> {
+    func fetchInsuranceProviders() -> AnyPublisher<ProviderStatusResponse, APIError> {
         return client
             .httpRequest(method: .get, url: Endpoint.insurancesIssuers.url, headers: authorizationBearerHeader)
             .receive(on: DispatchQueue.main)

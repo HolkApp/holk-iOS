@@ -29,14 +29,14 @@ final class AuthenticationService {
         self.client = client
     }
 
-    func authenticate() -> AnyPublisher<BankIDAuthenticationResponse, URLError> {
+    func authenticate() -> AnyPublisher<BankIDAuthenticationResponse, APIError> {
         return client
             .httpRequest(method: .post, url: Endpoint.authenticate.url, headers: authorizationBasicHeader)
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
 
-    func token(orderRef: String) -> AnyPublisher<OauthAuthenticationResponse, URLError> {
+    func token(orderRef: String) -> AnyPublisher<OauthAuthenticationResponse, APIError> {
         var httpHeaders = [
             "Content-Type": "application/x-www-form-urlencoded"
         ]
@@ -56,7 +56,7 @@ final class AuthenticationService {
             .eraseToAnyPublisher()
     }
 
-    func refresh(refreshToken: String) -> AnyPublisher<OauthAuthenticationResponse, URLError> {
+    func refresh(refreshToken: String) -> AnyPublisher<OauthAuthenticationResponse, APIError> {
         var httpHeaders = [
             "Content-Type": "application/x-www-form-urlencoded"
         ]

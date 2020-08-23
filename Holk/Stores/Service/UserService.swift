@@ -22,7 +22,7 @@ final class UserService {
         self.user = user
     }
 
-    func fetchUserInfo() -> AnyPublisher<UserInfoResponse, URLError> {
+    func fetchUserInfo() -> AnyPublisher<UserInfoResponse, APIError> {
         // TODO: Do something to the header to not set in every server
         var httpHeaders = [
             "Content-Type": "application/json",
@@ -39,7 +39,7 @@ final class UserService {
             .eraseToAnyPublisher()
     }
 
-    func addEmail(_ email: String) -> AnyPublisher<Data, URLError> {
+    func addEmail(_ email: String) -> AnyPublisher<Data, APIError> {
         var httpHeaders = [
             "Content-Type": "application/json",
             "Accept": "application/json"

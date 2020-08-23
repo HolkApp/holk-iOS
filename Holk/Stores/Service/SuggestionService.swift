@@ -22,7 +22,7 @@ final class SuggestionService {
         self.user = user
     }
 
-    func fetchAllSuggestions() -> AnyPublisher<SuggestionsListResponse, URLError> {
+    func fetchAllSuggestions() -> AnyPublisher<SuggestionsListResponse, APIError> {
         var httpHeaders = [
             "Content-Type": "application/json",
             "Accept": "application/json"
