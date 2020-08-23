@@ -32,8 +32,8 @@ final class OnboardingConfirmationViewController: UIViewController {
         didSet {
             DispatchQueue.main.async {
                 guard let addedInsurance = self.addedInsurance,
-                    let insurnaceProvider = self.storeController.providerStore[addedInsurance.insuranceProviderName] else { return }
-                self.descriptionLabel.text = String(format: "We found your insurance at %@", insurnaceProvider.displayName)
+                    let insuranceProvider = self.storeController.providerStore[addedInsurance.insuranceProviderName] else { return }
+                self.descriptionLabel.text = String(format: "We found your insurance at %@", insuranceProvider.displayName)
                 self.insuranceLabel.text = addedInsurance.kind.description
                 self.addressLabel.text = addedInsurance.address
             }

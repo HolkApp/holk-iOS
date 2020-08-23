@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class HomeinsuranceCollectionViewCell: UICollectionViewCell {
+final class HomeInsuranceCollectionViewCell: UICollectionViewCell {
     // MARK: - Public variables
     var insurance: Insurance?
     let containerView = UIView()
@@ -157,7 +157,7 @@ final class HomeinsuranceCollectionViewCell: UICollectionViewCell {
     }
 }
 
-extension HomeinsuranceCollectionViewCell: HolkRingChartDataSource {
+extension HomeInsuranceCollectionViewCell: HolkRingChartDataSource {
     private var mockNumberOfSegments: Int {
         return insurance?.subInsurances.count ?? 6
     }

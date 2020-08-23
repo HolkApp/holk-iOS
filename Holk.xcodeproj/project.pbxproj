@@ -109,7 +109,7 @@
 		8FC81CEC2483FB4400F6BC8C /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8FC81CEB2483FB4400F6BC8C /* Lato-Regular.ttf */; };
 		8FC81CEE2483FB4C00F6BC8C /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8FC81CED2483FB4C00F6BC8C /* Lato-Bold.ttf */; };
 		8FC81CF02484011D00F6BC8C /* InsuranceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC81CEF2484011D00F6BC8C /* InsuranceViewController.swift */; };
-		8FC81CF22484051500F6BC8C /* HomeInsurnaceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC81CF12484051500F6BC8C /* HomeInsurnaceCollectionViewCell.swift */; };
+		8FC81CF22484051500F6BC8C /* HomeInsuranceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC81CF12484051500F6BC8C /* HomeInsuranceCollectionViewCell.swift */; };
 		8FC81CF5248C478900F6BC8C /* HomeInsuranceBeneficiaryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC81CF4248C478900F6BC8C /* HomeInsuranceBeneficiaryCollectionViewCell.swift */; };
 		8FC8EA6924B65AF400BE69D9 /* InsuranceThinkOfDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC8EA6824B65AF300BE69D9 /* InsuranceThinkOfDetailViewController.swift */; };
 		8FC8EA6C24B8DD4100BE69D9 /* InsuranceThinkOfDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC8EA6B24B8DD4100BE69D9 /* InsuranceThinkOfDetailViewModel.swift */; };
@@ -279,7 +279,7 @@
 		8FC81CEB2483FB4400F6BC8C /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
 		8FC81CED2483FB4C00F6BC8C /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
 		8FC81CEF2484011D00F6BC8C /* InsuranceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceViewController.swift; sourceTree = "<group>"; };
-		8FC81CF12484051500F6BC8C /* HomeInsurnaceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInsurnaceCollectionViewCell.swift; sourceTree = "<group>"; };
+		8FC81CF12484051500F6BC8C /* HomeInsuranceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInsuranceCollectionViewCell.swift; sourceTree = "<group>"; };
 		8FC81CF4248C478900F6BC8C /* HomeInsuranceBeneficiaryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInsuranceBeneficiaryCollectionViewCell.swift; sourceTree = "<group>"; };
 		8FC8EA6824B65AF300BE69D9 /* InsuranceThinkOfDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceThinkOfDetailViewController.swift; sourceTree = "<group>"; };
 		8FC8EA6B24B8DD4100BE69D9 /* InsuranceThinkOfDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceThinkOfDetailViewModel.swift; sourceTree = "<group>"; };
@@ -570,7 +570,7 @@
 		8FC81CF3248975E700F6BC8C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8FC81CF12484051500F6BC8C /* HomeInsurnaceCollectionViewCell.swift */,
+				8FC81CF12484051500F6BC8C /* HomeInsuranceCollectionViewCell.swift */,
 				8FD676982497945400E62820 /* HomeInsuranceHeaderView.swift */,
 				8FC81CF4248C478900F6BC8C /* HomeInsuranceBeneficiaryCollectionViewCell.swift */,
 				8FD67677248EDBFF00E62820 /* HomeInsuranceCostCollectionViewCell.swift */,
@@ -1116,7 +1116,7 @@
 				8F3C7DB223F833B4002EDA57 /* OnboardingConfirmationViewController.swift in Sources */,
 				8FE52F09239BBDEF001A77F5 /* KeychainService.swift in Sources */,
 				8F4965DF24130EA200DEAFC1 /* FloatingPoint+extension.swift in Sources */,
-				8FC81CF22484051500F6BC8C /* HomeInsurnaceCollectionViewCell.swift in Sources */,
+				8FC81CF22484051500F6BC8C /* HomeInsuranceCollectionViewCell.swift in Sources */,
 				8F3305A423FB3EEA00E9B443 /* DateFormatter+extension.swift in Sources */,
 				8FD6769B2499692000E62820 /* ScrapingStatusResponse.swift in Sources */,
 				8FD67691249527AC00E62820 /* InsuranceSuggestionHeaderView.swift in Sources */,

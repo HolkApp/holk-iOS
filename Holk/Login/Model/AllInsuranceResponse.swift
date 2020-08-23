@@ -5,7 +5,7 @@ extension AllInsuranceResponse {
         return Insurance(
             id: "Mock",
             insuranceProviderName: "testforsakringar",
-            kind: .homeInsurnace,
+            kind: .homeInsurance,
             providerReference: "test",
             ssn: "199208253915",
             startDate: Date(),

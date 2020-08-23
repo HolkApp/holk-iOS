@@ -55,7 +55,7 @@ final class InsuranceViewController: UIViewController {
         collectionView.bounces = false
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
-        collectionView.registerCell(HomeinsuranceCollectionViewCell.self)
+        collectionView.registerCell(HomeInsuranceCollectionViewCell.self)
         collectionView.registerCell(HomeInsuranceBeneficiaryCollectionViewCell.self)
         collectionView.registerCell(HomeInsuranceCostCollectionViewCell.self)
         collectionView.registerReusableSupplementaryView(HomeInsuranceHeaderView.self, of: UICollectionView.elementKindSectionHeader)
@@ -97,10 +97,10 @@ extension InsuranceViewController: UICollectionViewDataSource, UICollectionViewD
             homeInsuranceCostCollectionViewCell.configure(insurance)
             cell = homeInsuranceCostCollectionViewCell
         default:
-            let homeinsuranceCollectionViewCell = collectionView.dequeueCell(HomeinsuranceCollectionViewCell.self, indexPath: indexPath)
+            let homeInsuranceCollectionViewCell = collectionView.dequeueCell(HomeInsuranceCollectionViewCell.self, indexPath: indexPath)
             let provider = storeController.providerStore[insurance.insuranceProviderName]
-            homeinsuranceCollectionViewCell.configure(insurance, provider: provider)
-            cell = homeinsuranceCollectionViewCell
+            homeInsuranceCollectionViewCell.configure(insurance, provider: provider)
+            cell = homeInsuranceCollectionViewCell
         }
         return cell
     }

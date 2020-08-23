@@ -33,8 +33,8 @@ final class InsuranceThinkOfDetailViewModel {
         subInsuranceText = thinkOfSuggestion.type
 
         // TOOD: Remove the mock
-        mappedInsurance = insurances.first { insurnace in
-            insurnace.subInsurances.contains { segment in segment.kind == .child }
+        mappedInsurance = insurances.first { insurance in
+            insurance.subInsurances.contains { segment in segment.kind == .child }
         }
         mappedSubInsurances = mappedInsurance?.subInsurances.filter { subInsurance in
             subInsurance.kind == .child

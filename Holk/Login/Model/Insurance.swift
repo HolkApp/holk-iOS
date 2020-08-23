@@ -58,11 +58,11 @@ struct Insurance: Codable, Hashable, Equatable {
     }
 
     enum Kind: String, Codable {
-        case homeInsurnace = "HEMFORSAKRING"
+        case homeInsurance = "HEMFORSAKRING"
 
         var description: String {
             switch self {
-            case .homeInsurnace:
+            case .homeInsurance:
                 return "Hemförsäkring"
             }
         }

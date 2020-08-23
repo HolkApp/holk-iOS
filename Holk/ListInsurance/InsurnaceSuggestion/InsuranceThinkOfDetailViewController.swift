@@ -121,13 +121,13 @@ extension InsuranceThinkOfDetailViewController {
             case .paragraph:
                 return nil
             case .subInsurance:
-                if kind == UICollectionView.elementKindSectionHeader, let insurnaceViewModel = self.viewModel.makeThinkOfInsuranceViewModel() {
+                if kind == UICollectionView.elementKindSectionHeader, let insuranceViewModel = self.viewModel.makeThinkOfInsuranceViewModel() {
                     let thinkOfRelatedInsuranceCollectionHeaderView = collectionView.dequeueReusableSupplementaryView(
                         ThinkOfRelatedInsuranceCollectionHeaderView.self,
                         of: kind,
                         indexPath: indexPath
                     )
-                    thinkOfRelatedInsuranceCollectionHeaderView.configure(insurnaceViewModel)
+                    thinkOfRelatedInsuranceCollectionHeaderView.configure(insuranceViewModel)
                     return thinkOfRelatedInsuranceCollectionHeaderView
                 }
                 return nil
