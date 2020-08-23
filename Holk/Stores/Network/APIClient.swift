@@ -29,12 +29,12 @@ class APIClient {
         url: URL,
         headers: [String: String] = [:],
         body: Data? = nil,
-        encodeParameters: [String: String]? = nil) -> AnyPublisher<T, URLError> {
+        encodeParameters: [String: String]? = nil) -> AnyPublisher<T, APIError> {
 
         let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)!
 
         guard let url = urlComponents.url else {
-            return Fail(error: URLError(.badURL)).eraseToAnyPublisher()
+            return Fail(error: APIError(code: .badURL)).eraseToAnyPublisher()
         }
 
         var request = URLRequest(url: url)
@@ -52,7 +52,7 @@ class APIClient {
         }
 
         return session.dataTaskPublisher(for: request)
-            .mapError({ $0 as URLError })
+            .mapError(APIError.init(urlError: ))
             .flatMap(maxPublishers: .max(1)) { pair in
                 self.decode(pair.data, response: pair.response)
             }
@@ -61,26 +61,37 @@ class APIClient {
             .eraseToAnyPublisher()
     }
 
-    private func decode<T: Decodable>(_ data: Data, response: URLResponse) -> AnyPublisher<T, URLError> {
+    private func decode<T: Decodable>(_ data: Data, response: URLResponse) -> AnyPublisher<T, APIError> {
         guard let httpResponse = response as? HTTPURLResponse else {
-            return Fail(error: URLError(.badServerResponse)).eraseToAnyPublisher()
+            let urlError = URLError(.badServerResponse)
+            return Fail(error: APIError(urlError: urlError)).eraseToAnyPublisher()
         }
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .formatted(DateFormatter.yyyyMMddDateFormatter)
 
         guard (200...299).contains(httpResponse.statusCode) else {
-            return Fail(error: URLError(.init(rawValue: httpResponse.statusCode))).eraseToAnyPublisher()
+            do {
+               var apiError = try decoder.decode(APIError.self, from: data)
+                apiError.errorCode = httpResponse.statusCode
+                return Fail(error: apiError).eraseToAnyPublisher()
+            } catch {
+                let urlError = URLError(.init(rawValue: httpResponse.statusCode))
+                let apiError = APIError(urlError: urlError)
+                return Fail(error: apiError).eraseToAnyPublisher()
+            }
         }
         if let data = data as? T {
             return Just(data)
-                    .mapError { _ in URLError(.cannotDecodeRawData) }
-                    .eraseToAnyPublisher()
+                .mapError { _ in APIError(code: .cannotDecodeRawData) }
+                .eraseToAnyPublisher()
         } else {
-            let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .formatted(DateFormatter.yyyyMMddDateFormatter)
             return Just(data)
                 .decode(type: T.self, decoder: decoder)
-                .mapError { error in
-                    return URLError(.cannotDecodeRawData)
-                }
+                .mapError { _ in
+                    var apiError = APIError(code: .cannotDecodeRawData)
+                    apiError.debugMessage = "JSON could not be encoded"
+                    return apiError
+            }
                 .eraseToAnyPublisher()
         }
     }
