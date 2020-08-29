@@ -12,6 +12,7 @@ import Combine
 final class InsuranceStore {
     // MARK: - Public variables
     var insuranceStatus = PassthroughSubject<Result<ScrapingStatusResponse.ScrapingStatus, APIError>, Never>()
+    @Published var aggregatedInsuranceIds: [Insurance.ID] = []
     @Published var insuranceList: [Insurance] = []
 
     // MARK: - Private variables
@@ -30,12 +31,8 @@ final class InsuranceStore {
         insuranceCredentialService
             .integrateInsurance(providerName: provider.internalName)
             .sink(receiveCompletion: { result in
-                switch result {
-                case .failure(let error):
+                if case let .failure(error) = result {
                     integrationHandler(.failure(error))
-                // TODO: Handle the error
-                case .finished:
-                    break
                 }
             }, receiveValue: { sessionIDResponse in
                 integrationHandler(.success(sessionIDResponse))
@@ -43,19 +40,16 @@ final class InsuranceStore {
             .store(in: &cancellables)
     }
 
-    func fetchAllInsurances(completion: @escaping (Result<AllInsuranceResponse, APIError>) -> Void = { _ in }) {
+    func allInsurances(completion: @escaping (Result<[Insurance], APIError>) -> Void = { _ in }) {
         insuranceService
             .fetchAllInsurances()
             .sink(receiveCompletion: { result in
-                switch result {
-                case .failure(let error):
+                if case let .failure(error) = result {
                     completion(.failure(error))
-                case .finished:
-                    break
                 }
             }) { [weak self] allInsuranceResponse in
                 self?.insuranceList = allInsuranceResponse.insuranceList
-                completion(.success(allInsuranceResponse))
+                completion(.success(allInsuranceResponse.insuranceList))
         }.store(in: &cancellables)
     }
 
@@ -63,11 +57,8 @@ final class InsuranceStore {
         getInsuranceStatus(sessionID)
             .sink(
                 receiveCompletion: { [weak self] result in
-                    switch result {
-                    case .failure(let error):
+                    if case let .failure(error) = result {
                         self?.insuranceStatus.send(.failure(error))
-                    case .finished:
-                        break
                     }
                 }
             ) { [weak self] scrapingStatusResponse in
@@ -76,8 +67,8 @@ final class InsuranceStore {
                         self?.pollInsuranceStatus(sessionID)
                     }
                 } else {
-                    if let scrapedInsurances = scrapingStatusResponse.scrapedInsurances {
-                        self?.insuranceList = scrapedInsurances
+                    if let aggregatedInsurancesIds = scrapingStatusResponse.aggregatedInsurances {
+                        self?.aggregatedInsuranceIds = aggregatedInsurancesIds
                     }
                 }
                 self?.insuranceStatus.send(.success(scrapingStatusResponse.scrapingStatus))

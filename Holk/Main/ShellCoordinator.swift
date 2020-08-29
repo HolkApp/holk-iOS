@@ -61,7 +61,7 @@ final class ShellCoordinator {
             storeController.userStore.userInfo()
             storeController.providerStore.fetchInsuranceProviders()
             storeController.suggestionStore.fetchAllSuggestions()
-            storeController.insuranceStore.fetchAllInsurances { [weak self] _ in
+            storeController.insuranceStore.allInsurances { [weak self] _ in
                 self?.showSession()
             }
         }
