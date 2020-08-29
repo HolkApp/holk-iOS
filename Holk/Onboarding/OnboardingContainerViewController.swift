@@ -305,24 +305,33 @@ extension OnboardingContainerViewController: OnboardingConsentViewControllerDele
             .insuranceStatus
             .sink { [weak self] result in
                 guard let self = self else { return }
-                // TODO: remove the print
-                print(result)
                 switch result {
                 case .success(let scrapingStatus):
-                    switch scrapingStatus {
-                    case .completed:
-                        let insuranceList = self.storeController.insuranceStore.insuranceList
-                        self.storeController.suggestionStore.fetchAllSuggestions()
-                        self.storeController.insuranceStore.fetchAllInsurances()
-                        self.showInsuranceAggregatedConfirmation(insuranceList)
+                    if .completed == scrapingStatus {
+                        let ids = self.storeController.insuranceStore.aggregatedInsuranceIds
+                        self.aggregatedInsurance(ids: ids)
                         self.progressBarToTop()
-                    default:
-                        break
                     }
                 case .failure(let error):
-                    self.showError(error, requestName: "insurance/scraping/status/id")
+                    self.showError(error, requestName: "aggregate/status/id")
                 }
         }.store(in: &cancellables)
+    }
+
+    private func aggregatedInsurance(ids: [Insurance.ID]) {
+        self.storeController.suggestionStore.fetchAllSuggestions()
+        self.storeController.insuranceStore.allInsurances { [weak self] result in
+            guard let self = self else { return }
+            do {
+                let insuranceList = try result.get()
+                let aggregatedInsurances = insuranceList.filter { insurance -> Bool in
+                    ids.contains(insurance.id)
+                }
+                self.showInsuranceAggregatedConfirmation(aggregatedInsurances)
+            } catch {
+                // Handle error
+            }
+        }
     }
 
     private func handleInsuranceIntegration(_ result: Result<IntegrateInsuranceResponse, APIError>) {

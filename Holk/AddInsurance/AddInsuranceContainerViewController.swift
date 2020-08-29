@@ -32,6 +32,7 @@ final class AddInsuranceContainerViewController: UIViewController {
     }()
     private var progressViewTopAnchor: NSLayoutConstraint?
     private var progressViewHeightAnchor: NSLayoutConstraint?
+    private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
     private var providerType: InsuranceProviderType?
     private var insuranceProvider: InsuranceProvider?
     private var cancellables = Set<AnyCancellable>()
@@ -165,7 +166,6 @@ final class AddInsuranceContainerViewController: UIViewController {
     }
 
     private func showInsuranceAggregatedConfirmation(_ addedInsuranceList: [Insurance]) {
-
         let confirmationViewController = AddInsuranceConfirmationViewController(storeController, addedInsuranceList: addedInsuranceList)
         confirmationViewController.delegate = self
         addInsuranceViewControllers.append(confirmationViewController)
@@ -198,6 +198,19 @@ final class AddInsuranceContainerViewController: UIViewController {
                 }
             })
         )
+        present(alert, animated: true)
+    }
+
+    private func showError(_ error: APIError, requestName: String) {
+        let alert = UIAlertController(title: requestName + " \(error.errorCode)", message: error.debugMessage, preferredStyle: .alert)
+        alert.addAction(.init(
+            title: "Close",
+            style: .default,
+            handler: { action in
+                alert.dismiss(animated: true)
+            })
+        )
+
         present(alert, animated: true)
     }
 }
@@ -242,29 +255,66 @@ extension AddInsuranceContainerViewController: AddInsuranceConsentViewController
         progressSpinnerToCenter()
         storeController
             .insuranceStore
-            .addInsurance(insuranceProvider)
+            .addInsurance(insuranceProvider) { [weak self] result in
+                self?.handleInsuranceIntegration(result)
+        }
         storeController
             .insuranceStore
             .insuranceStatus
             .sink { [weak self] result in
                 guard let self = self else { return }
-                // TODO: remove the print
-                print(result)
                 switch result {
                 case .success(let scrapingStatus):
-                    switch scrapingStatus {
-                    case .completed:
-                        let insuranceList = self.storeController.insuranceStore.insuranceList
-                        self.storeController.suggestionStore.fetchAllSuggestions()
-                        self.showInsuranceAggregatedConfirmation(insuranceList)
-                        self.progressBarToTop()
-                    default:
-                        break
-                    }
+                if .completed == scrapingStatus {
+                    let ids = self.storeController.insuranceStore.aggregatedInsuranceIds
+                    self.aggregatedInsurance(ids: ids)
+                    self.progressBarToTop()
+                }
                 case .failure(let error):
-                    break
+                    self.showError(error, requestName: "aggregate/status/id")
                 }
         }.store(in: &cancellables)
+    }
+
+    private func aggregatedInsurance(ids: [Insurance.ID]) {
+        self.storeController.suggestionStore.fetchAllSuggestions()
+        self.storeController.insuranceStore.allInsurances { [weak self] result in
+            guard let self = self else { return }
+            do {
+                let insuranceList = try result.get()
+                let aggregatedInsurances = insuranceList.filter { insurance -> Bool in
+                    ids.contains(insurance.id)
+                }
+                self.showInsuranceAggregatedConfirmation(aggregatedInsurances)
+            } catch {
+                // Handle error
+            }
+        }
+    }
+
+    private func handleInsuranceIntegration(_ result: Result<IntegrateInsuranceResponse, APIError>) {
+        switch result {
+        case .success(let integrateInsuranceResponse):
+            BankIDService.autostart(
+                autoStart: nil,
+                redirectLink: BankIDService.holkRedirectLink,
+                successHandler: { [weak self] in
+                    guard let self = self else { return }
+                    self.backgroundTask = UIApplication.shared.beginBackgroundTask(expirationHandler: {
+                        UIApplication.shared.endBackgroundTask(self.backgroundTask)
+                    })
+                    self.storeController
+                        .insuranceStore
+                        .pollInsuranceStatus(integrateInsuranceResponse.scrapeSessionId)
+                }
+            ) { _ in
+                self.storeController
+                    .insuranceStore
+                    .pollInsuranceStatus(integrateInsuranceResponse.scrapeSessionId)
+            }
+        case .failure(let error):
+            showError(error, requestName: "insurance/scraping")
+        }
     }
 }
 
