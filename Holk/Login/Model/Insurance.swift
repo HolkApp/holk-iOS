@@ -9,6 +9,17 @@
 import Foundation
 
 struct Insurance: Codable, Hashable, Equatable {
+    struct ID: Hashable, Codable, ExpressibleByStringLiteral {
+        init(stringLiteral value: String) {
+            self.value = value
+        }
+
+        init(_ value: String) {
+            self.value = value
+        }
+
+        let value: String
+    }
 
     struct SubInsurance: Codable, Hashable, Equatable {
         enum Kind: String, Codable {
@@ -68,7 +79,7 @@ struct Insurance: Codable, Hashable, Equatable {
         }
     }
 
-    let id: String
+    let id: Insurance.ID
     let insuranceProviderName: String
     let kind: Kind
     let providerReference: String
@@ -99,7 +110,8 @@ extension Insurance {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        id = try container.decode(String.self, forKey: .id)
+        let idString = try container.decode(String.self, forKey: .id)
+        id = Insurance.ID(idString)
         insuranceProviderName = try container.decode(String.self, forKey: .insuranceProviderName)
         kind = try container.decode(Kind.self, forKey: .kind)
         providerReference = try container.decode(String.self, forKey: .providerReference)

@@ -11,5 +11,18 @@ struct ScrapingStatusResponse: Codable {
     }
 
     let scrapingStatus: ScrapingStatus
-    let scrapedInsurances: [Insurance]?
+    let aggregatedInsurances: [Insurance.ID]?
+
+    private enum CodingKeys: String, CodingKey {
+        case scrapingStatus = "scrapingStatus"
+        case aggregatedInsurances = "scrapedInsurances"
+    }
+
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        scrapingStatus = try container.decode(ScrapingStatus.self, forKey: .scrapingStatus)
+        let insuranceIDs = try? container.decode([String].self, forKey: .aggregatedInsurances)
+        aggregatedInsurances = insuranceIDs?.compactMap({ Insurance.ID($0) })
+    }
 }
