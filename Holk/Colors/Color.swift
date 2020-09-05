@@ -260,32 +260,3 @@ extension Color {
         }
     }
 }
-
-extension Color {
-    static func tintColor(_ subInsurance: Insurance.SubInsurance) -> UIColor {
-        switch subInsurance.kind {
-        case .travel:
-            return Color.mainForeground
-        default:
-            return Color.mainHighlight
-        }
-    }
-
-    static func backgroundColor(_ subInsurance: Insurance.SubInsurance) -> UIColor {
-        switch subInsurance.kind {
-        case .travel:
-            return Color.travelInsuranceBackgroundColor
-        default:
-            return Color.goodsInsuranceBackgroundColor
-        }
-    }
-
-    static func iconBackgroundColor(_ subInsurance: Insurance.SubInsurance) -> UIColor {
-        switch subInsurance.kind {
-        case .travel:
-            return Color.travelInsuranceIconBackgroundColor
-        default:
-            return Color.goodsInsuranceIconBackgroundColor
-        }
-    }
-}

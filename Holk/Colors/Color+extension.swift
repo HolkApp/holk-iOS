@@ -6,7 +6,7 @@
 //  Copyright © 2020 Holk. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 extension Color {
     static func tintColor(_ subInsurance: Insurance.SubInsurance) -> UIColor {
