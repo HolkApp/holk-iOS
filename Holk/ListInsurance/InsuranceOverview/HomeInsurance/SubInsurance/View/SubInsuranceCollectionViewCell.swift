@@ -160,8 +160,8 @@ final class SubInsuranceCollectionViewCell: UICollectionViewCell {
 
             gapValueLabel.leadingAnchor.constraint(equalTo: gapImageView.trailingAnchor, constant: 8),
             gapValueLabel.topAnchor.constraint(equalTo: gapView.topAnchor),
-            gapValueLabel.bottomAnchor.constraint(equalTo: gapView.bottomAnchor),
             gapValueLabel.trailingAnchor.constraint(equalTo: gapView.trailingAnchor),
+            gapValueLabel.bottomAnchor.constraint(equalTo: gapView.bottomAnchor, constant: -4),
 
             thinkOfImageView.heightAnchor.constraint(equalToConstant: 30),
             thinkOfImageView.widthAnchor.constraint(equalToConstant: 30),
