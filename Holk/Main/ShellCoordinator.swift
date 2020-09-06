@@ -150,7 +150,6 @@ extension ShellCoordinator: AuthenticationCoordinatorDelegate {
             if case .success(let insurances) = result, !insurances.isEmpty {
                 self.rootViewController.dismiss(animated: false) {
                     self.showSession()
-                    self.onboardingCoordinator = nil
                 }
             } else {
                 self.onboardingCoordinator = OnboardingCoordinator(navigationController:
