@@ -19,7 +19,7 @@ final class UserStore {
         self.userService = UserService(client: APIClient(queue: queue), user: user)
     }
 
-    func userInfo(completion: @escaping (Result<UserInfoResponse, APIError>) -> Void = { _ in }) {
+    func userInfo(completion: @escaping (Result<User, APIError>) -> Void = { _ in }) {
         userService.fetchUserInfo()
             .sink(receiveCompletion: { result in
                 switch result {
@@ -29,8 +29,9 @@ final class UserStore {
                     break
                 }
             }) { [weak self] in
-                self?.user.userInfoResponse = $0
-                completion(.success($0))
+                guard let self = self else { return }
+                self.user.userInfoResponse = $0
+                completion(.success(self.user))
             }
             .store(in: &cancellables)
     }
