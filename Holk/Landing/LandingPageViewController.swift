@@ -51,7 +51,7 @@ final class LandingPageViewController: UIPageViewController {
         
         infoButton.backgroundColor = Color.mainBackground
         infoButton.titleLabel?.font = Font.semiBold(.description)
-        infoButton.layer.cornerRadius = 18
+        infoButton.layer.cornerRadius = 20
         if #available(iOS 13.0, *) {
             infoButton.layer.cornerCurve = .continuous
         }
