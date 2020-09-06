@@ -13,6 +13,10 @@ struct APIError: Error, Equatable, Decodable {
     var timestamp: Date?
     var message: String?
     var debugMessage: String?
+
+    var localizedDescription: String {
+        return debugMessage ?? "Something went wrong"
+    }
 }
 
 extension APIError {
