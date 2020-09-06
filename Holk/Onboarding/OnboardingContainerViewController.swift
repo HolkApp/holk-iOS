@@ -15,7 +15,6 @@ final class OnboardingContainerViewController: UIViewController {
     private let progressView = HolkProgressBarView()
     private let closeButton = HolkButton()
     private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
-    private var newUserViewController: NewUserViewController?
     private weak var insuranceProviderTypeViewController: OnboardingInsuranceTypeViewController?
     private weak var insuranceProviderViewController: OnboardingInsuranceProviderViewController?
     private weak var consentViewController: OnboardingConsentViewController?
@@ -64,14 +63,10 @@ final class OnboardingContainerViewController: UIViewController {
         collectionView.isHidden = true
     }
 
-    func startOnboarding(_ user: User) {
-        if user.isNewUser {
-            showAddNewUser(user)
-        } else {
-            progressBarToTop(animated: true, completion: { [weak self] in
-                self?.showInsuranceType()
-            })
-        }
+    func start() {
+        progressBarToTop(animated: true, completion: { [weak self] in
+            self?.showInsuranceType()
+        })
     }
 
     private func setup() {
@@ -97,7 +92,7 @@ final class OnboardingContainerViewController: UIViewController {
             image: UIImage(systemName: "xmark")?.withSymbolWeightConfiguration(.medium)
         )
         closeButton.translatesAutoresizingMaskIntoConstraints = false
-        closeButton.addTarget(self, action: #selector(stopOnboarding(_:)), for: .touchUpInside)
+        closeButton.addTarget(self, action: #selector(stopOnboardingAlert(_:)), for: .touchUpInside)
 
         view.addSubview(collectionView)
         view.addSubview(progressView)
@@ -129,14 +124,12 @@ final class OnboardingContainerViewController: UIViewController {
         ])
     }
 
-    private func showAddNewUser(_ user: User) {
-        let newUserViewController = NewUserViewController(user: user)
-        newUserViewController.delegate = self
-        addChild(newUserViewController)
-        newUserViewController.view.frame = view.bounds
-        view.addSubview(newUserViewController.view)
-        newUserViewController.didMove(toParent: self)
-        self.newUserViewController = newUserViewController
+    func addSubViewController(_ viewController: UIViewController) {
+        addChild(viewController)
+        viewController.view.frame = view.bounds
+        view.addSubview(viewController.view)
+        viewController.didMove(toParent: self)
+        view.bringSubviewToFront(closeButton)
     }
 
     private func showInsuranceType() {
@@ -160,7 +153,7 @@ final class OnboardingContainerViewController: UIViewController {
         collectionView.scrollToItem(at: IndexPath(item: 3, section: 0), at: .centeredHorizontally, animated: true)
     }
 
-    private func progressBarToTop(animated: Bool = true, completion: (() -> Void)? = nil) {
+    func progressBarToTop(animated: Bool = true, completion: (() -> Void)? = nil) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             self.progressView.update(.bar, animated: animated) {
@@ -170,9 +163,11 @@ final class OnboardingContainerViewController: UIViewController {
                         self.progressViewHeightAnchor?.constant = 40
                         self.view.layoutIfNeeded()
                     }) { _ in
-                        self.collectionView.isHidden  = false
-                        self.progressView.isHidden = false
-                        completion?()
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                            self.collectionView.isHidden  = false
+                            self.progressView.isHidden = false
+                            completion?()
+                        }
                     }
                 } else {
                     self.progressViewTopAnchor?.constant = 40
@@ -185,7 +180,7 @@ final class OnboardingContainerViewController: UIViewController {
         }
     }
 
-    private func progressSpinnerToCenter() {
+    func progressSpinnerToCenter() {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             self.progressViewTopAnchor?.constant = self.view.bounds.height / 2 - 100
@@ -205,7 +200,7 @@ final class OnboardingContainerViewController: UIViewController {
         progressView.setLoading(true)
     }
 
-    @objc private func stopOnboarding(_ sender: Any) {
+    @objc private func stopOnboardingAlert(_ sender: Any) {
         let alert = UIAlertController(title: "Are you sure you want to cancel", message: nil, preferredStyle: .alert)
         alert.addAction(
             UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
@@ -224,7 +219,7 @@ final class OnboardingContainerViewController: UIViewController {
         present(alert, animated: true)
     }
 
-    private func showError(_ error: APIError, requestName: String) {
+    func showError(_ error: APIError, requestName: String) {
         let alert = UIAlertController(title: requestName + (String(describing: error.errorCode)), message: error.debugMessage, preferredStyle: .alert)
         alert.addAction(.init(
             title: "Close",
@@ -235,29 +230,6 @@ final class OnboardingContainerViewController: UIViewController {
         )
 
         present(alert, animated: true)
-    }
-}
-
-extension OnboardingContainerViewController: NewUserViewControllerDelegate {
-    func newUserViewController(_ viewController: NewUserViewController, add email: String) {
-        progressView.setLoading(true)
-        collectionView.isHidden = true
-        progressView.isHidden = false
-
-        newUserViewController?.removeFromParent()
-        newUserViewController?.view.removeFromSuperview()
-
-        storeController.userStore.addEmail(email) { [weak self] result in
-            switch result {
-            case .success:
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    self?.progressBarToTop()
-                    self?.showInsuranceType()
-                }
-            case .failure(let error):
-                self?.showError(error, requestName: "authorize/user/email")
-            }
-        }
     }
 }
 

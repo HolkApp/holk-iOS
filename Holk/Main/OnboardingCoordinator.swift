@@ -17,6 +17,7 @@ final class OnboardingCoordinator {
     weak var delegate: OnboardingCoordinatorDelegate?
 
     private var navigationController: UINavigationController
+    private var newUserViewController: NewUserViewController?
     private var storeController: StoreController
     private var user: User
     private var onboardingContainerViewController: OnboardingContainerViewController
@@ -32,7 +33,40 @@ final class OnboardingCoordinator {
         onboardingContainerViewController.delegate = self
         navigationController.pushViewController(onboardingContainerViewController, animated: false)
 
-        onboardingContainerViewController.startOnboarding(user)
+        if user.isNewUser {
+            showAddNewUser(user)
+        } else {
+            onboardingContainerViewController.start()
+        }
+    }
+
+    private func showAddNewUser(_ user: User) {
+        let newUserViewController = NewUserViewController(user: user)
+        newUserViewController.delegate = self
+        self.newUserViewController = newUserViewController
+
+        onboardingContainerViewController.addSubViewController(newUserViewController)
+    }
+}
+
+extension OnboardingCoordinator: NewUserViewControllerDelegate {
+     func newUserViewController(_ viewController: NewUserViewController, add email: String) {
+        onboardingContainerViewController.progressSpinnerToCenter()
+        newUserViewController?.removeFromParent()
+        newUserViewController?.view.removeFromSuperview()
+
+        storeController.userStore.addEmail(email) { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success:
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                    self.onboardingContainerViewController.progressBarToTop()
+                    self.onboardingContainerViewController.start()
+                }
+            case .failure(let error):
+                self.onboardingContainerViewController.showError(error, requestName: "authorize/user/email")
+            }
+        }
     }
 }
 
