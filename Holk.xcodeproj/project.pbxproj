@@ -21,7 +21,7 @@
 		8F0D4041227A0D68000BD840 /* OnboardingInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0D4040227A0D68000BD840 /* OnboardingInfoViewController.swift */; };
 		8F16DE66245A127000EFC1BD /* EmailValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F16DE65245A127000EFC1BD /* EmailValidation.swift */; };
 		8F16DE68245B3D8500EFC1BD /* ShellCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F16DE67245B3D8500EFC1BD /* ShellCoordinator.swift */; };
-		8F16DE6A245CE43700EFC1BD /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F16DE69245CE43700EFC1BD /* OnboardingCoordinator.swift */; };
+		8F16DE6A245CE43700EFC1BD /* AuthenticationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F16DE69245CE43700EFC1BD /* AuthenticationCoordinator.swift */; };
 		8F16DE6C245DB5CB00EFC1BD /* IntegrateInsuranceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F16DE6B245DB5CB00EFC1BD /* IntegrateInsuranceResponse.swift */; };
 		8F16DE7124609DA300EFC1BD /* AddInsuranceTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F16DE7024609DA300EFC1BD /* AddInsuranceTypeViewController.swift */; };
 		8F16DE7324609F5D00EFC1BD /* AddInsuranceProviderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F16DE7224609F5D00EFC1BD /* AddInsuranceProviderViewController.swift */; };
@@ -70,6 +70,7 @@
 		8F5FA9422454EEBD009201A3 /* ProviderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5FA9412454EEBD009201A3 /* ProviderService.swift */; };
 		8F63AE1825038286008A39A0 /* FeatureFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F63AE1725038286008A39A0 /* FeatureFlags.swift */; };
 		8F63AE1C250385CC008A39A0 /* Color+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F63AE1B250385CC008A39A0 /* Color+extension.swift */; };
+		8F63AE1E2504DB5F008A39A0 /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F63AE1D2504DB5F008A39A0 /* OnboardingCoordinator.swift */; };
 		8F65466C230C78990053B3F8 /* HolkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F65466B230C78990053B3F8 /* HolkButton.swift */; };
 		8F65466F230DC4CC0053B3F8 /* HolkTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F65466E230DC4CC0053B3F8 /* HolkTextField.swift */; };
 		8F6546712316FE190053B3F8 /* NewUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6546702316FE190053B3F8 /* NewUserViewController.swift */; };
@@ -190,7 +191,7 @@
 		8F0D4040227A0D68000BD840 /* OnboardingInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingInfoViewController.swift; sourceTree = "<group>"; };
 		8F16DE65245A127000EFC1BD /* EmailValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailValidation.swift; sourceTree = "<group>"; };
 		8F16DE67245B3D8500EFC1BD /* ShellCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShellCoordinator.swift; sourceTree = "<group>"; };
-		8F16DE69245CE43700EFC1BD /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
+		8F16DE69245CE43700EFC1BD /* AuthenticationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationCoordinator.swift; sourceTree = "<group>"; };
 		8F16DE6B245DB5CB00EFC1BD /* IntegrateInsuranceResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntegrateInsuranceResponse.swift; sourceTree = "<group>"; };
 		8F16DE7024609DA300EFC1BD /* AddInsuranceTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInsuranceTypeViewController.swift; sourceTree = "<group>"; };
 		8F16DE7224609F5D00EFC1BD /* AddInsuranceProviderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddInsuranceProviderViewController.swift; sourceTree = "<group>"; };
@@ -239,6 +240,7 @@
 		8F5FA9412454EEBD009201A3 /* ProviderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderService.swift; sourceTree = "<group>"; };
 		8F63AE1725038286008A39A0 /* FeatureFlags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeatureFlags.swift; sourceTree = "<group>"; };
 		8F63AE1B250385CC008A39A0 /* Color+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+extension.swift"; sourceTree = "<group>"; };
+		8F63AE1D2504DB5F008A39A0 /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
 		8F65466B230C78990053B3F8 /* HolkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolkButton.swift; sourceTree = "<group>"; };
 		8F65466E230DC4CC0053B3F8 /* HolkTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolkTextField.swift; sourceTree = "<group>"; };
 		8F6546702316FE190053B3F8 /* NewUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewUserViewController.swift; sourceTree = "<group>"; };
@@ -827,6 +829,7 @@
 			isa = PBXGroup;
 			children = (
 				8F5BE48A2471E68D006AE8AF /* OnboardingContainerViewController.swift */,
+				8F6546702316FE190053B3F8 /* NewUserViewController.swift */,
 				8F25CAAB23429F7100DC3B97 /* OnboardingInsuranceTypeViewController.swift */,
 				8F25CAA423410CB800DC3B97 /* OnboardingInsuranceProviderViewController.swift */,
 				8F3C7DAD23F4AB63002EDA57 /* OnboardingConsentViewController.swift */,
@@ -840,9 +843,9 @@
 			isa = PBXGroup;
 			children = (
 				8F16DE67245B3D8500EFC1BD /* ShellCoordinator.swift */,
-				8F16DE69245CE43700EFC1BD /* OnboardingCoordinator.swift */,
+				8F16DE69245CE43700EFC1BD /* AuthenticationCoordinator.swift */,
+				8F63AE1D2504DB5F008A39A0 /* OnboardingCoordinator.swift */,
 				8FA941542353ADC200844D97 /* SessionCoordinator.swift */,
-				8F6546702316FE190053B3F8 /* NewUserViewController.swift */,
 				8F66F2FD23BC04F90083DC3A /* LoadingViewController.swift */,
 				8F5B5A3A22783D0200E79A40 /* TabBarController.swift */,
 			);
@@ -1056,7 +1059,7 @@
 				8F9807E722722D5E00584BA9 /* StoreController.swift in Sources */,
 				8FC8EA6C24B8DD4100BE69D9 /* InsuranceThinkOfDetailViewModel.swift in Sources */,
 				8FD6768C2495107400E62820 /* InsuranceGapsCollectionViewCell.swift in Sources */,
-				8F16DE6A245CE43700EFC1BD /* OnboardingCoordinator.swift in Sources */,
+				8F16DE6A245CE43700EFC1BD /* AuthenticationCoordinator.swift in Sources */,
 				8FF6E75422B9634400F6D398 /* HolkSegmentedControl.swift in Sources */,
 				8F5D89D5244B364B007F1B26 /* InsuranceProvider.swift in Sources */,
 				8FC8EA6924B65AF400BE69D9 /* InsuranceThinkOfDetailViewController.swift in Sources */,
@@ -1170,6 +1173,7 @@
 				8F02658824C1A30E00F4208B /* SubInsuranceCollectionViewCell.swift in Sources */,
 				8F5D89DF244EEB40007F1B26 /* InsuranceSuggestionCardCollectionViewCell.swift in Sources */,
 				8F65466C230C78990053B3F8 /* HolkButton.swift in Sources */,
+				8F63AE1E2504DB5F008A39A0 /* OnboardingCoordinator.swift in Sources */,
 				8F7C44302351336E00B54A36 /* BankIDService.swift in Sources */,
 				8FC81CF5248C478900F6BC8C /* HomeInsuranceBeneficiaryCollectionViewCell.swift in Sources */,
 				8FF6E72D22B0333000F6D398 /* InsuranceCollectionViewCell.swift in Sources */,
