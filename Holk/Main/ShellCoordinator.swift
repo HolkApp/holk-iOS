@@ -16,6 +16,7 @@ final class ShellCoordinator {
     private var cancellables = Set<AnyCancellable>()
     private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
     private var sessionCoordinator: SessionCoordinator?
+    private var authenticationCoordinator: AuthenticationCoordinator?
     private var onboardingCoordinator: OnboardingCoordinator?
     private lazy var landingPageNavigationController: UINavigationController = {
         let navigationController = UINavigationController()
@@ -83,9 +84,9 @@ final class ShellCoordinator {
     }
 
     func authenticate(authenticateOnOtherDevice: Bool = false) {
-        onboardingCoordinator = OnboardingCoordinator(navigationController: landingPageNavigationController, storeController: storeController)
-        onboardingCoordinator?.coordinator = self
-        onboardingCoordinator?.start(authenticateOnOtherDevice)
+        authenticationCoordinator = AuthenticationCoordinator(navigationController: landingPageNavigationController, storeController: storeController)
+        authenticationCoordinator?.delegate = self
+        authenticationCoordinator?.start(authenticateOnOtherDevice)
     }
 
     func logout() {
@@ -94,7 +95,7 @@ final class ShellCoordinator {
         rootViewController.dismiss(animated: false) {
             DispatchQueue.main.async {
                 self.setupViewController()
-                self.onboardingCoordinator = nil
+                self.authenticationCoordinator = nil
                 self.sessionCoordinator = nil
             }
         }
@@ -114,13 +115,60 @@ extension ShellCoordinator {
         onboardingInfoViewController.coordinator = self
         landingPageNavigationController.pushViewController(onboardingInfoViewController, animated: true)
     }
+
+    private func showError(_ error: Error) {
+        let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+        alert.addAction(.init(
+            title: "Close",
+            style: .default,
+            handler: { action in
+                alert.dismiss(animated: true)
+            })
+        )
+
+        if landingPageNavigationController.presentedViewController != nil {
+            landingPageNavigationController.dismiss(animated: false) {
+                self.landingPageNavigationController.present(alert, animated: true)
+            }
+        } else {
+            landingPageNavigationController.present(alert, animated: true)
+        }
+    }
+}
+
+extension ShellCoordinator: AuthenticationCoordinatorDelegate {
+    func authenticationDidCancel(_ coordinator: AuthenticationCoordinator) {
+        rootViewController.dismiss(animated: false) {
+            self.showLandingScreen()
+        }
+    }
+
+    func authentication(_ coordinator: AuthenticationCoordinator, didAuthenticateWith user: User) {
+        storeController.suggestionStore.fetchAllSuggestions()
+        storeController.insuranceStore.allInsurances { [weak self] result in
+            guard let self = self else { return }
+            if case .success(let insurances) = result, !insurances.isEmpty {
+                self.rootViewController.dismiss(animated: false) {
+                    self.showSession()
+                    self.onboardingCoordinator = nil
+                }
+            } else {
+                self.onboardingCoordinator = OnboardingCoordinator(navigationController:
+                    self.landingPageNavigationController, storeController: self.storeController, user: user)
+                self.onboardingCoordinator?.delegate = self
+                self.onboardingCoordinator?.start()
+            }
+        }
+    }
+
+    func authentication(_ coordinator: AuthenticationCoordinator, didFailWith error: Error) {
+        showError(error)
+    }
 }
 
 extension ShellCoordinator: OnboardingCoordinatorDelegate {
     func onboardingStopped(_ coordinator: OnboardingCoordinator) {
-        rootViewController.dismiss(animated: false) {
-            self.showLandingScreen()
-        }
+        self.logout()
     }
 
     func onboardingFinished(_ coordinator: OnboardingCoordinator) {
