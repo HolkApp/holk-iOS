@@ -9,12 +9,13 @@
 import UIKit
 
 protocol AuthenticationCoordinatorDelegate: AnyObject {
-    func onboardingStopped(_ coordinator: AuthenticationCoordinator)
-    func onboardingFinished(_ coordinator: AuthenticationCoordinator)
+    func authenticationDidCancel(_ coordinator: AuthenticationCoordinator)
+    func authentication(_ coordinator: AuthenticationCoordinator, didAuthenticateWith user: User)
+    func authentication(_ coordinator: AuthenticationCoordinator, didFailWith error: Error)
 }
 
 final class AuthenticationCoordinator {
-    weak var coordinator: AuthenticationCoordinatorDelegate?
+    weak var delegate: AuthenticationCoordinatorDelegate?
     
     private var navigationController: UINavigationController
     private var storeController: StoreController
@@ -30,6 +31,7 @@ final class AuthenticationCoordinator {
     }
 
     func start(_ authenticateOnOtherDevice: Bool) {
+        // TODO: Just use a loading screen
         let onboardingContainerViewController = OnboardingContainerViewController(storeController: storeController)
         onboardingContainerViewController.delegate = self
         navigationController.pushViewController(onboardingContainerViewController, animated: false)
@@ -48,7 +50,7 @@ extension AuthenticationCoordinator {
             case .success(let bankIDAuthenticationResponse):
                 self.handleAuthenticationUpdate(bankIDAuthenticationResponse, handleOnOtherDevice: authenticateOnOtherDevice)
             case .failure(let error):
-                self.showError(error, requestName: "authorize/bank-id/auth")
+                self.delegate?.authentication(self, didFailWith: error)
             }
         }
     }
@@ -98,7 +100,7 @@ extension AuthenticationCoordinator {
                     self.navigationController.dismiss(animated: true)
                 }
             case .failure(let error):
-                self.showError(error, requestName: "authorize/oauth/token")
+                self.delegate?.authentication(self, didFailWith: error)
             }
         }
     }
@@ -111,54 +113,25 @@ extension AuthenticationCoordinator {
                 self.backgroundTask = .invalid
                 switch result {
                 case .success(let user):
-
-                    self.showOnboardingFlow()
+                    self.delegate?.authentication(self, didAuthenticateWith: user)
                 case .failure(let error):
-                    self.showOnboardingFlow()
-                    // TODO: Error handling
-                    self.showError(error, requestName: "authorize/user")
+                    self.delegate?.authentication(self, didFailWith: error)
                 }
             }
         }
     }
 
-    private func showError(_ error: APIError, requestName: String) {
-        let alert = UIAlertController(title: requestName + (String(describing: error.errorCode)), message: error.debugMessage, preferredStyle: .alert)
-        alert.addAction(.init(
-            title: "Close",
-            style: .default,
-            handler: { action in
-                alert.dismiss(animated: true)
-            })
-        )
-
-        if navigationController.presentedViewController != nil {
-            navigationController.dismiss(animated: false) {
-                self.navigationController.present(alert, animated: true)
-            }
-        } else {
-            navigationController.present(alert, animated: true)
-        }
-    }
-
-    private func showOnboardingFlow() {
-        onboardingContainerViewController?.startOnboarding(storeController.user)
-    }
-
     @objc private func dismissPresntedViewController(_ sender: Any) {
-        self.navigationController.presentedViewController?.dismiss(animated: true)
+        navigationController.presentedViewController?.dismiss(animated: true)
     }
 }
 
-
-// MARK: - AuthenticationCoordinator
 extension AuthenticationCoordinator: OnboardingContainerDelegate {
     func onboardingStopped(_ onboardingContainerViewController: OnboardingContainerViewController) {
-        coordinator?.onboardingStopped(self)
-        storeController.authenticationStore.cancelAll()
+        delegate?.authenticationDidCancel(self)
     }
 
     func onboardingFinished(_ onboardingContainerViewController: OnboardingContainerViewController) {
-        coordinator?.onboardingFinished(self)
+        // Noop
     }
 }
