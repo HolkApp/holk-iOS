@@ -17,6 +17,3 @@ var demoMode: Bool {
     return false
     #endif
 }
-
-
-

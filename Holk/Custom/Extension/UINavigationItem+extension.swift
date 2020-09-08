@@ -18,7 +18,9 @@ extension UINavigationItem {
         standard.shadowImage = UIImage()
         standard.shadowColor = .clear
 
-        standard.setBackIndicatorImage(UIImage(systemName: "chevron.left")?.withSymbolWeightConfiguration(.regular, pointSize: 30), transitionMaskImage: UIImage(systemName: "chevron.left")?.withSymbolWeightConfiguration(.regular, pointSize: 30))
+        let backIndicatorImage = UIImage(systemName: "chevron.left")?.withSymbolWeightConfiguration(.regular, pointSize: 30).withAlignmentRectInsets(.init(top: 0, left: -10, bottom: 0, right: 0))
+
+        standard.setBackIndicatorImage(backIndicatorImage, transitionMaskImage: backIndicatorImage)
 
         let largeTitleFont = Font.font(name: .poppins, weight: .semiBold, size: 30)
         standard.largeTitleTextAttributes = [
@@ -33,7 +35,7 @@ extension UINavigationItem {
 
         let button = UIBarButtonItemAppearance(style: .plain)
 
-        button.normal.titleTextAttributes = [.foregroundColor: backgroundColor]
+        button.normal.titleTextAttributes = [.foregroundColor: UIColor.clear]
         button.normal.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -10)
         standard.backButtonAppearance = button
 
