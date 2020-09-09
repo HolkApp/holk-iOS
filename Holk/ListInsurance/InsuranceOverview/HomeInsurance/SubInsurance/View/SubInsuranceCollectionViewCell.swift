@@ -49,7 +49,6 @@ final class SubInsuranceCollectionViewCell: UICollectionViewCell {
         descriptionLabel.setText(subInsurance.body, with: .body1)
 
         // TODO:
-
         gapValueLabel.setText("0", with: .number1)
         thinkOfValueLabel.setText("1", with: .number1)
     }
@@ -61,7 +60,7 @@ final class SubInsuranceCollectionViewCell: UICollectionViewCell {
         layer.shadowOpacity = 0.08
 
         translatesAutoresizingMaskIntoConstraints = false
-        contentView.layoutMargins = .init(top: 0, left: 18, bottom: 0, right: 18)
+        contentView.layoutMargins = .init(top: 0, left: 20, bottom: 0, right: 20)
 
         cardView.layer.cornerRadius = 10
         cardView.translatesAutoresizingMaskIntoConstraints = false
