@@ -59,6 +59,7 @@ final class InsuranceThinkOfDetailViewController: UIViewController {
         navigationItem.setAppearance(backgroundColor: viewModel.headerBackgroundViewColor ?? Color.secondaryBackground)
         navigationController?.navigationBar.tintColor = Color.secondaryBackground
 
+        collectionView.contentInset = .init(top: 0, left: 0, bottom: 40, right: 0)
         collectionView.bounces = false
         collectionView.backgroundColor = Color.secondaryBackground
         collectionView.showsVerticalScrollIndicator = false

@@ -44,7 +44,7 @@ final class ThinkOfRelatedInsuranceCollectionHeaderView: UICollectionReusableVie
     private func setup() {
         clipsToBounds = true
 
-        layoutMargins = .init(top: 36, left: 26, bottom: 36, right: 26)
+        layoutMargins = .init(top: 36, left: 32, bottom: 36, right: 32)
 
         titleLabel.setText("Din info", with: .header6)
         titleLabel.textColor = Color.mainForeground
