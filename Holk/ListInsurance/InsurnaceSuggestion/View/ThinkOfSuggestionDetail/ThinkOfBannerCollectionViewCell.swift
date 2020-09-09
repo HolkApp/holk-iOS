@@ -39,7 +39,7 @@ final class ThinkOfBannerCollectionViewCell: UICollectionViewCell {
     private func setup() {
         backgroundColor = Color.secondaryBackground
 
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
 
         headerLabel.setStyleGuide(.header5)
