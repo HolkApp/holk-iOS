@@ -9,7 +9,13 @@
 import Foundation
 
 enum Endpoint: String {
-    static let baseUrl = "https://dev.holk.app/"
+    static var baseUrl: String {
+        if demoMode {
+            return "https://dev.holk.app/"
+        } else {
+            return "https://api.holk.app/"
+        }
+    }
 
     case authenticate = "authorize/bank-id/auth"
     case token = "authorize/oauth/token"
