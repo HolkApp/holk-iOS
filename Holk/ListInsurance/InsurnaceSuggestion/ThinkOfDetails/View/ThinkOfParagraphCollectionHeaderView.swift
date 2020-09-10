@@ -22,7 +22,7 @@ final class ThinkOfParagraphCollectionHeaderView: UICollectionReusableView {
         fatalError()
     }
 
-    func configure(_ viewModel: ThinkOfSuggestionParagraphHeaderViewModel) {
+    func configure(_ viewModel: ThinkOfParagraphHeaderViewModel) {
         headerLabel.setText(viewModel.detailHeader, with: .header5)
         descriptionLabel.setText(viewModel.detailDescription, with: .subHeader5)
     }

@@ -18,7 +18,7 @@ final class ThinkOfDetailsViewController: UIViewController {
 
     enum Item: Hashable {
         case banner(imageURL: URL?)
-        case paragraph(ThinkOfSuggestionParagraphViewModel)
+        case paragraph(ThinkOfParagraphViewModel)
         case subInsurance(ThinkOfSubInsuranceViewModel)
     }
 
@@ -131,7 +131,7 @@ extension ThinkOfDetailsViewController {
                 return nil
             case .paragraph:
                 if kind == UICollectionView.elementKindSectionHeader {
-                    let thinkOfParagraphHeaderViewModel = self.viewModel.makeThinkOfSuggestionParagraphHeaderViewModel()
+                    let thinkOfParagraphHeaderViewModel = self.viewModel.makeThinkOfParagraphHeaderViewModel()
                     let thinkOfParagraphCollectionHeaderView = collectionView.dequeueReusableSupplementaryView(
                         ThinkOfParagraphCollectionHeaderView.self,
                         of: kind,
@@ -167,7 +167,7 @@ extension ThinkOfDetailsViewController {
                 let bannerItem = Item.banner(imageURL: nil)
                 snapshot.appendItems([bannerItem], toSection: section)
             case .paragraph:
-                let paragraphItems = viewModel.makeAllThinkOfSuggestionParagraphViewModel().map({ Item.paragraph($0) })
+                let paragraphItems = viewModel.makeAllThinkOfParagraphViewModel().map({ Item.paragraph($0) })
                 snapshot.appendItems(paragraphItems, toSection: section)
             case .subInsurance:
                 let subInsuranceItems = viewModel.makeAllThinkOfSubInsuranceViewModel().map { Item.subInsurance($0) }

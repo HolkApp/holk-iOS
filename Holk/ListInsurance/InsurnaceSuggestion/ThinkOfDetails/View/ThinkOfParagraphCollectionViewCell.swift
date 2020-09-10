@@ -55,7 +55,7 @@ final class ThinkOfParagraphCollectionViewCell: UICollectionViewCell {
 }
 
 extension ThinkOfParagraphCollectionViewCell {
-    func configure(_ viewModel: ThinkOfSuggestionParagraphViewModel) {
+    func configure(_ viewModel: ThinkOfParagraphViewModel) {
         // TODO: Configure the icon
 //        paragraph.icon
         descriptionLabel.setText(viewModel.text, with: .body2)

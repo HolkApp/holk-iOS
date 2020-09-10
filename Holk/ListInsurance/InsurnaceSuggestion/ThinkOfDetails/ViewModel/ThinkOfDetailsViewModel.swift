@@ -47,12 +47,12 @@ final class ThinkOfDetailsViewModel {
         }
     }
 
-    func makeThinkOfSuggestionParagraphHeaderViewModel() -> ThinkOfSuggestionParagraphHeaderViewModel {
-        return ThinkOfSuggestionParagraphHeaderViewModel(thinkOfSuggestion: thinkOfSuggestion)
+    func makeThinkOfParagraphHeaderViewModel() -> ThinkOfParagraphHeaderViewModel {
+        return ThinkOfParagraphHeaderViewModel(thinkOfSuggestion: thinkOfSuggestion)
     }
 
-    func makeAllThinkOfSuggestionParagraphViewModel() -> [ThinkOfSuggestionParagraphViewModel] {
-        return detailParagraphs.map(ThinkOfSuggestionParagraphViewModel.init(paragraph: ))
+    func makeAllThinkOfParagraphViewModel() -> [ThinkOfParagraphViewModel] {
+        return detailParagraphs.map(ThinkOfParagraphViewModel.init(paragraph: ))
     }
 
     func makeThinkOfSubInsuranceHeaderViewModel() -> ThinkOfSubInsuranceHeaderViewModel? {

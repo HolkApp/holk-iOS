@@ -1,5 +1,5 @@
 //
-//  ThinkOfSuggestionParagraphHeaderViewModel.swift
+//  ThinkOfParagraphHeaderViewModel.swift
 //  Holk
 //
 //  Created by 张梦皓 on 2020-07-19.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ThinkOfSuggestionParagraphHeaderViewModel: Hashable {
+struct ThinkOfParagraphHeaderViewModel: Hashable {
     let detailHeader: String
     let detailDescription: String
 

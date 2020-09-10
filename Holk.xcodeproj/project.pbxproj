@@ -15,7 +15,7 @@
 		8F02658A24C43E5800F4208B /* ThinkOfBannerCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F02658924C43E5800F4208B /* ThinkOfBannerCollectionHeaderView.swift */; };
 		8F02658E24C4517400F4208B /* Poppins-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F02658D24C4517400F4208B /* Poppins-ExtraBold.ttf */; };
 		8F02659024C4517D00F4208B /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F02658F24C4517D00F4208B /* Poppins-Bold.ttf */; };
-		8F02659224C4C2FB00F4208B /* ThinkOfSuggestionParagraphHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F02659124C4C2FB00F4208B /* ThinkOfSuggestionParagraphHeaderViewModel.swift */; };
+		8F02659224C4C2FB00F4208B /* ThinkOfParagraphHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F02659124C4C2FB00F4208B /* ThinkOfParagraphHeaderViewModel.swift */; };
 		8F02659424C4C43F00F4208B /* ThinkOfBannerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F02659324C4C43F00F4208B /* ThinkOfBannerCollectionViewCell.swift */; };
 		8F0D403F227A0AD4000BD840 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0D403E227A0AD4000BD840 /* APIError.swift */; };
 		8F0D4041227A0D68000BD840 /* OnboardingInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F0D4040227A0D68000BD840 /* OnboardingInfoViewController.swift */; };
@@ -117,7 +117,7 @@
 		8FC81CF5248C478900F6BC8C /* HomeInsuranceBeneficiaryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC81CF4248C478900F6BC8C /* HomeInsuranceBeneficiaryCollectionViewCell.swift */; };
 		8FC8EA6924B65AF400BE69D9 /* ThinkOfDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC8EA6824B65AF300BE69D9 /* ThinkOfDetailsViewController.swift */; };
 		8FC8EA6C24B8DD4100BE69D9 /* ThinkOfDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC8EA6B24B8DD4100BE69D9 /* ThinkOfDetailsViewModel.swift */; };
-		8FC8EA6E24B8ECF900BE69D9 /* ThinkOfSuggestionParagraphViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC8EA6D24B8ECF900BE69D9 /* ThinkOfSuggestionParagraphViewModel.swift */; };
+		8FC8EA6E24B8ECF900BE69D9 /* ThinkOfParagraphViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC8EA6D24B8ECF900BE69D9 /* ThinkOfParagraphViewModel.swift */; };
 		8FC8EA7024B9077500BE69D9 /* ThinkOfSubInsuranceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC8EA6F24B9077500BE69D9 /* ThinkOfSubInsuranceViewModel.swift */; };
 		8FC8EA7224BA3DE000BE69D9 /* ThinkOfSubInsuranceHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC8EA7124BA3DE000BE69D9 /* ThinkOfSubInsuranceHeaderViewModel.swift */; };
 		8FC8EA7624BA540300BE69D9 /* ThinkOfParagraphCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FC8EA7524BA540300BE69D9 /* ThinkOfParagraphCollectionViewCell.swift */; };
@@ -189,7 +189,7 @@
 		8F02658924C43E5800F4208B /* ThinkOfBannerCollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThinkOfBannerCollectionHeaderView.swift; sourceTree = "<group>"; };
 		8F02658D24C4517400F4208B /* Poppins-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraBold.ttf"; sourceTree = "<group>"; };
 		8F02658F24C4517D00F4208B /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
-		8F02659124C4C2FB00F4208B /* ThinkOfSuggestionParagraphHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThinkOfSuggestionParagraphHeaderViewModel.swift; sourceTree = "<group>"; };
+		8F02659124C4C2FB00F4208B /* ThinkOfParagraphHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThinkOfParagraphHeaderViewModel.swift; sourceTree = "<group>"; };
 		8F02659324C4C43F00F4208B /* ThinkOfBannerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThinkOfBannerCollectionViewCell.swift; sourceTree = "<group>"; };
 		8F0D403E227A0AD4000BD840 /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		8F0D4040227A0D68000BD840 /* OnboardingInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingInfoViewController.swift; sourceTree = "<group>"; };
@@ -291,7 +291,7 @@
 		8FC81CF4248C478900F6BC8C /* HomeInsuranceBeneficiaryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInsuranceBeneficiaryCollectionViewCell.swift; sourceTree = "<group>"; };
 		8FC8EA6824B65AF300BE69D9 /* ThinkOfDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThinkOfDetailsViewController.swift; sourceTree = "<group>"; };
 		8FC8EA6B24B8DD4100BE69D9 /* ThinkOfDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThinkOfDetailsViewModel.swift; sourceTree = "<group>"; };
-		8FC8EA6D24B8ECF900BE69D9 /* ThinkOfSuggestionParagraphViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThinkOfSuggestionParagraphViewModel.swift; sourceTree = "<group>"; };
+		8FC8EA6D24B8ECF900BE69D9 /* ThinkOfParagraphViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThinkOfParagraphViewModel.swift; sourceTree = "<group>"; };
 		8FC8EA6F24B9077500BE69D9 /* ThinkOfSubInsuranceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThinkOfSubInsuranceViewModel.swift; sourceTree = "<group>"; };
 		8FC8EA7124BA3DE000BE69D9 /* ThinkOfSubInsuranceHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThinkOfSubInsuranceHeaderViewModel.swift; sourceTree = "<group>"; };
 		8FC8EA7524BA540300BE69D9 /* ThinkOfParagraphCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThinkOfParagraphCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -505,7 +505,7 @@
 			isa = PBXGroup;
 			children = (
 				8FD676892493F7C300E62820 /* ThinkOfListViewController.swift */,
-				8F63AE2625098567008A39A0 /* View */,
+				8FD6769E24A8CE0E00E62820 /* ThinkOfCollectionViewCell.swift */,
 			);
 			path = ThinkOf;
 			sourceTree = "<group>";
@@ -517,14 +517,6 @@
 				8F63AE2925098640008A39A0 /* View */,
 			);
 			path = Gap;
-			sourceTree = "<group>";
-		};
-		8F63AE2625098567008A39A0 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				8FD6769E24A8CE0E00E62820 /* ThinkOfCollectionViewCell.swift */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		8F63AE2825098635008A39A0 /* ViewModel */ = {
@@ -696,8 +688,8 @@
 			isa = PBXGroup;
 			children = (
 				8FC8EA6B24B8DD4100BE69D9 /* ThinkOfDetailsViewModel.swift */,
-				8F02659124C4C2FB00F4208B /* ThinkOfSuggestionParagraphHeaderViewModel.swift */,
-				8FC8EA6D24B8ECF900BE69D9 /* ThinkOfSuggestionParagraphViewModel.swift */,
+				8F02659124C4C2FB00F4208B /* ThinkOfParagraphHeaderViewModel.swift */,
+				8FC8EA6D24B8ECF900BE69D9 /* ThinkOfParagraphViewModel.swift */,
 				8FC8EA7124BA3DE000BE69D9 /* ThinkOfSubInsuranceHeaderViewModel.swift */,
 				8FC8EA6F24B9077500BE69D9 /* ThinkOfSubInsuranceViewModel.swift */,
 			);
@@ -1161,7 +1153,7 @@
 				8FD676882493F7A400E62820 /* GapListViewController.swift in Sources */,
 				8FC8EA7624BA540300BE69D9 /* ThinkOfParagraphCollectionViewCell.swift in Sources */,
 				8F16DE772460A22300EFC1BD /* AddInsuranceConfirmationViewController.swift in Sources */,
-				8FC8EA6E24B8ECF900BE69D9 /* ThinkOfSuggestionParagraphViewModel.swift in Sources */,
+				8FC8EA6E24B8ECF900BE69D9 /* ThinkOfParagraphViewModel.swift in Sources */,
 				8F66F2FE23BC04F90083DC3A /* LoadingViewController.swift in Sources */,
 				8F25CAAC23429F7100DC3B97 /* OnboardingInsuranceTypeViewController.swift in Sources */,
 				8F5BE489246FE16A006AE8AF /* OnboardingCell.swift in Sources */,
@@ -1232,7 +1224,7 @@
 				8FC81CF02484011D00F6BC8C /* InsuranceViewController.swift in Sources */,
 				8F691D3A24588C9C0093E965 /* InsuranceCredentialService.swift in Sources */,
 				8F16DE7124609DA300EFC1BD /* AddInsuranceTypeViewController.swift in Sources */,
-				8F02659224C4C2FB00F4208B /* ThinkOfSuggestionParagraphHeaderViewModel.swift in Sources */,
+				8F02659224C4C2FB00F4208B /* ThinkOfParagraphHeaderViewModel.swift in Sources */,
 				8FC296BE23E7614D002A39D1 /* LandingInfoViewController.swift in Sources */,
 				8F02658824C1A30E00F4208B /* SubInsuranceCollectionViewCell.swift in Sources */,
 				8F5D89DF244EEB40007F1B26 /* InsuranceSuggestionCardCollectionViewCell.swift in Sources */,

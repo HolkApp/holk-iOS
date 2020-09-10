@@ -1,5 +1,5 @@
 //
-//  ThinkOfSuggestionParagraphViewModel.swift
+//  ThinkOfParagraphViewModel.swift
 //  Holk
 //
 //  Created by 张梦皓 on 2020-07-10.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ThinkOfSuggestionParagraphViewModel: Hashable {
+struct ThinkOfParagraphViewModel: Hashable {
     private var paragraph: Paragraph
     var icon: String
     var text: String
