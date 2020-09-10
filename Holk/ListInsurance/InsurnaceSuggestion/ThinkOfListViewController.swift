@@ -1,5 +1,5 @@
 //
-//  InsuranceThinkOfsViewController.swift
+//  ThinkOfListViewController.swift
 //  Holk
 //
 //  Created by 张梦皓 on 2020-06-12.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class InsuranceThinkOfsViewController: UIViewController {
+final class ThinkOfListViewController: UIViewController {
     enum Section: CaseIterable {
         case thinkOf
     }
@@ -76,8 +76,8 @@ final class InsuranceThinkOfsViewController: UIViewController {
         collectionView.bounces = false
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
-        collectionView.registerCell(InsuranceThinkOfsCollectionViewCell.self)
-        collectionView.registerReusableSupplementaryView(InsuranceSuggestionCollectionHeaderView.self, of: UICollectionView.elementKindSectionHeader)
+        collectionView.registerCell(ThinkOfCollectionViewCell.self)
+        collectionView.registerReusableSupplementaryView(SuggestionCollectionHeaderView.self, of: UICollectionView.elementKindSectionHeader)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
 
         setupLayout()
@@ -116,21 +116,21 @@ final class InsuranceThinkOfsViewController: UIViewController {
     }
 }
 
-extension InsuranceThinkOfsViewController {
+extension ThinkOfListViewController {
     func makeDataSource() -> DataSource {
         let dataSource = DataSource(
             collectionView: collectionView,
             cellProvider: { (collectionView, indexPath, thinkOf) in
-                let insuranceThinkOfsCollectionViewCell =  collectionView.dequeueCell(InsuranceThinkOfsCollectionViewCell.self, indexPath: indexPath)
-                insuranceThinkOfsCollectionViewCell.configure(thinkOf)
-                return insuranceThinkOfsCollectionViewCell
+                let thinkOfCollectionViewCell =  collectionView.dequeueCell(ThinkOfCollectionViewCell.self, indexPath: indexPath)
+                thinkOfCollectionViewCell.configure(thinkOf)
+                return thinkOfCollectionViewCell
         })
         dataSource.supplementaryViewProvider = ({ (collectionView, kind, indexPath) in
             if kind == UICollectionView.elementKindSectionHeader {
-                let insuranceSuggestionCollectionHeaderView =
-                    collectionView.dequeueReusableSupplementaryView(InsuranceSuggestionCollectionHeaderView.self, of: kind, indexPath: indexPath)
-                insuranceSuggestionCollectionHeaderView.configure("Viktiga saker att tänka på")
-                return insuranceSuggestionCollectionHeaderView
+                let suggestionCollectionHeaderView =
+                    collectionView.dequeueReusableSupplementaryView(SuggestionCollectionHeaderView.self, of: kind, indexPath: indexPath)
+                suggestionCollectionHeaderView.configure("Viktiga saker att tänka på")
+                return suggestionCollectionHeaderView
             } else {
                 return nil
             }
@@ -146,10 +146,10 @@ extension InsuranceThinkOfsViewController {
     }
 }
 
-extension InsuranceThinkOfsViewController: UICollectionViewDelegate {
+extension ThinkOfListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let thinkOf = thinkOfs[indexPath.item]
-        let insuranceThinkOfDetailViewController = InsuranceThinkOfDetailViewController(storeController: storeController, thinkOf: thinkOf)
-        show(insuranceThinkOfDetailViewController, sender: self)
+        let thinkOfDetailsViewController = ThinkOfDetailsViewController(storeController: storeController, thinkOf: thinkOf)
+        show(thinkOfDetailsViewController, sender: self)
     }
 }

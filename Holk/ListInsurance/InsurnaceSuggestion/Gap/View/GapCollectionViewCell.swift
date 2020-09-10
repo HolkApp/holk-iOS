@@ -1,5 +1,5 @@
 //
-//  InsuranceGapsCollectionViewCell.swift
+//  GapCollectionViewCell.swift
 //  Holk
 //
 //  Created by 张梦皓 on 2020-06-13.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class InsuranceGapsCollectionViewCell: UICollectionViewCell {
+final class GapCollectionViewCell: UICollectionViewCell {
     // MARK: - Private variables
     private let iconView = UIImageView()
     private let titleLabel = UILabel()

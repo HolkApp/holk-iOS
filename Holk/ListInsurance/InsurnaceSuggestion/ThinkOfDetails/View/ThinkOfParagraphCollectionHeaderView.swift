@@ -1,15 +1,14 @@
 //
-//  ThinkOfBannerCollectionViewCell.swift
+//  ThinkOfParagraphCollectionHeaderView.swift
 //  Holk
 //
-//  Created by 张梦皓 on 2020-07-19.
+//  Created by 张梦皓 on 2020-09-10.
 //  Copyright © 2020 Holk. All rights reserved.
 //
 
 import UIKit
 
-final class ThinkOfBannerCollectionViewCell: UICollectionViewCell {
-    private let imageView = UIImageView()
+final class ThinkOfParagraphCollectionHeaderView: UICollectionReusableView {
     private let headerLabel = UILabel()
     private let descriptionLabel = UILabel()
 
@@ -23,24 +22,13 @@ final class ThinkOfBannerCollectionViewCell: UICollectionViewCell {
         fatalError()
     }
 
-    func configure(_ viewModel: ThinkOfSuggestionBannerViewModel) {
-        if let imageURL = viewModel.imageURL {
-            UIImage.makeImage(with: imageURL) { [weak self] image in
-                self?.imageView.image = image
-            }
-        } else {
-            imageView.image = UIImage(named: "thinkOfPlaceholder")
-        }
-
+    func configure(_ viewModel: ThinkOfSuggestionParagraphHeaderViewModel) {
         headerLabel.setText(viewModel.detailHeader, with: .header5)
         descriptionLabel.setText(viewModel.detailDescription, with: .subHeader5)
     }
 
     private func setup() {
         backgroundColor = Color.secondaryBackground
-
-        imageView.contentMode = .scaleAspectFill
-        imageView.translatesAutoresizingMaskIntoConstraints = false
 
         headerLabel.setStyleGuide(.header5)
         headerLabel.numberOfLines = 0
@@ -56,21 +44,16 @@ final class ThinkOfBannerCollectionViewCell: UICollectionViewCell {
     }
 
     private func setupLayout() {
-        addSubview(imageView)
         addSubview(headerLabel)
         addSubview(descriptionLabel)
 
         NSLayoutConstraint.activate([
-            imageView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            imageView.topAnchor.constraint(equalTo: topAnchor),
-            imageView.trailingAnchor.constraint(equalTo: trailingAnchor),
-
+            headerLabel.topAnchor.constraint(equalTo: topAnchor),
             headerLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32),
-            headerLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 28),
             headerLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -32),
 
+            descriptionLabel.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: 8),
             descriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 32),
-            descriptionLabel.topAnchor.constraint(equalTo: headerLabel.lastBaselineAnchor, constant: 8),
             descriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -32),
             descriptionLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])

@@ -114,10 +114,10 @@ extension InsuranceViewController: UICollectionViewDataSource, UICollectionViewD
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionHeader {
-            let insuranceSuggestionCollectionHeaderView =
+            let homeInsuranceHeaderView =
                 collectionView.dequeueReusableSupplementaryView(HomeInsuranceHeaderView.self, of: kind, indexPath: indexPath)
-            insuranceSuggestionCollectionHeaderView.configure(insurance)
-            return insuranceSuggestionCollectionHeaderView
+            homeInsuranceHeaderView.configure(insurance)
+            return homeInsuranceHeaderView
         } else {
             return UICollectionReusableView()
         }

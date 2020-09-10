@@ -1,5 +1,5 @@
 //
-//  InsuranceGapsViewController.swift
+//  GapListViewController.swift
 //  Holk
 //
 //  Created by 张梦皓 on 2020-06-12.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class InsuranceGapsViewController: UIViewController {
+final class GapListViewController: UIViewController {
     enum Section: CaseIterable {
         case gap
     }
@@ -76,8 +76,8 @@ final class InsuranceGapsViewController: UIViewController {
         collectionView.bounces = false
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
-        collectionView.registerCell(InsuranceGapsCollectionViewCell.self)
-        collectionView.registerReusableSupplementaryView(InsuranceSuggestionCollectionHeaderView.self, of: UICollectionView.elementKindSectionHeader)
+        collectionView.registerCell(GapCollectionViewCell.self)
+        collectionView.registerReusableSupplementaryView(SuggestionCollectionHeaderView.self, of: UICollectionView.elementKindSectionHeader)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
 
         setupLayout()
@@ -116,21 +116,21 @@ final class InsuranceGapsViewController: UIViewController {
     }
 }
 
-extension InsuranceGapsViewController {
+extension GapListViewController {
     func makeDataSource() -> DataSource {
         let dataSource = DataSource(
             collectionView: collectionView,
             cellProvider: { (collectionView, indexPath, gap) in
-                let insuranceGapsSuggestionCollectionViewCell =  collectionView.dequeueCell(InsuranceGapsCollectionViewCell.self, indexPath: indexPath)
-                insuranceGapsSuggestionCollectionViewCell.configure(gap)
-                return insuranceGapsSuggestionCollectionViewCell
+                let gapCollectionViewCell =  collectionView.dequeueCell(GapCollectionViewCell.self, indexPath: indexPath)
+                gapCollectionViewCell.configure(gap)
+                return gapCollectionViewCell
         })
         dataSource.supplementaryViewProvider = ({ (collectionView, kind, indexPath) in
             if kind == UICollectionView.elementKindSectionHeader {
-                let insuranceSuggestionCollectionHeaderView =
-                    collectionView.dequeueReusableSupplementaryView(InsuranceSuggestionCollectionHeaderView.self, of: kind, indexPath: indexPath)
-                insuranceSuggestionCollectionHeaderView.configure("Luckor som finns i ditt skydd")
-                return insuranceSuggestionCollectionHeaderView
+                let suggestionCollectionHeaderView =
+                    collectionView.dequeueReusableSupplementaryView(SuggestionCollectionHeaderView.self, of: kind, indexPath: indexPath)
+                suggestionCollectionHeaderView.configure("Luckor som finns i ditt skydd")
+                return suggestionCollectionHeaderView
             } else {
                 return nil
             }
@@ -146,4 +146,4 @@ extension InsuranceGapsViewController {
     }
 }
 
-extension InsuranceGapsViewController: UICollectionViewDelegate {}
+extension GapListViewController: UICollectionViewDelegate {}

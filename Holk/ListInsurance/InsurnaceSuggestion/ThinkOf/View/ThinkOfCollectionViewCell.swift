@@ -1,5 +1,5 @@
 //
-//  InsuranceThinkOfsCollectionViewCell.swift
+//  ThinkOfCollectionViewCell.swift
 //  Holk
 //
 //  Created by 张梦皓 on 2020-06-28.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class InsuranceThinkOfsCollectionViewCell: UICollectionViewCell {
+final class ThinkOfCollectionViewCell: UICollectionViewCell {
     // MARK: - Private variables
     private let iconView = UIImageView()
     private let thinkOfTypeIconView = HolkIconView()

@@ -24,7 +24,7 @@ final class ThinkOfBannerCollectionHeaderView: UICollectionReusableView {
         fatalError()
     }
 
-    func configure(_ viewModel: InsuranceThinkOfDetailViewModel) {
+    func configure(_ viewModel: ThinkOfDetailsViewModel) {
         iconView.imageView.image = viewModel.iconImage
         iconView.backgroundColor = viewModel.iconImageBackgroundColor
         tagLabel.setText(viewModel.subInsuranceText, with: .titleHeader1)

@@ -1,5 +1,5 @@
 //
-//  InsuranceThinkOfDetailViewModel.swift
+//  ThinkOfDetailsViewModel.swift
 //  Holk
 //
 //  Created by 张梦皓 on 2020-07-10.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class InsuranceThinkOfDetailViewModel {
+final class ThinkOfDetailsViewModel {
     private var storeController: StoreController
     private var thinkOfSuggestion: ThinkOfSuggestion
 
@@ -47,32 +47,22 @@ final class InsuranceThinkOfDetailViewModel {
         }
     }
 
-    func makeThinkOfSuggestionBannerViewModel() -> ThinkOfSuggestionBannerViewModel {
-        return ThinkOfSuggestionBannerViewModel(thinkOfSuggestion: thinkOfSuggestion)
+    func makeThinkOfSuggestionParagraphHeaderViewModel() -> ThinkOfSuggestionParagraphHeaderViewModel {
+        return ThinkOfSuggestionParagraphHeaderViewModel(thinkOfSuggestion: thinkOfSuggestion)
     }
 
     func makeAllThinkOfSuggestionParagraphViewModel() -> [ThinkOfSuggestionParagraphViewModel] {
         return detailParagraphs.map(ThinkOfSuggestionParagraphViewModel.init(paragraph: ))
     }
 
-    private func makeThinkOfSuggestionParagraphViewModel(at index: IndexPath) -> ThinkOfSuggestionParagraphViewModel {
-        let paragraph = detailParagraphs[index.item]
-        return ThinkOfSuggestionParagraphViewModel(paragraph: paragraph)
-    }
-
-    func makeThinkOfInsuranceViewModel() -> ThinkOfInsuranceViewModel? {
+    func makeThinkOfSubInsuranceHeaderViewModel() -> ThinkOfSubInsuranceHeaderViewModel? {
         guard let mappedInsurance = mappedInsurance else { return nil }
         let providerName = mappedInsurance.insuranceProviderName
         let provider = storeController.providerStore[providerName]
-        return ThinkOfInsuranceViewModel(insurance: mappedInsurance, provider: provider)
+        return ThinkOfSubInsuranceHeaderViewModel(insurance: mappedInsurance, provider: provider)
     }
 
     func makeAllThinkOfSubInsuranceViewModel() -> [ThinkOfSubInsuranceViewModel] {
         return mappedSubInsurances.map(ThinkOfSubInsuranceViewModel.init(subInsurance: ))
-    }
-
-    private func makeThinkOfSubInsuranceViewModel(at indexPath: IndexPath) -> ThinkOfSubInsuranceViewModel {
-        let subInsurance = mappedSubInsurances[indexPath.item]
-        return ThinkOfSubInsuranceViewModel(subInsurance: subInsurance)
     }
 }

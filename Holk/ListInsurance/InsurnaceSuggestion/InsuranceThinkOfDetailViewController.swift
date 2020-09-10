@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class InsuranceThinkOfDetailViewController: UIViewController {
+final class ThinkOfDetailsViewController: UIViewController {
 
     enum Section: CaseIterable {
         case banner
@@ -85,7 +85,7 @@ final class InsuranceThinkOfDetailViewController: UIViewController {
 }
 
 // MARK: UICollectionViewLayout
-extension InsuranceThinkOfDetailViewController {
+extension ThinkOfDetailsViewController {
     private func makeDataSource() -> DataSource {
         let dataSource = DataSource(
             collectionView: collectionView,

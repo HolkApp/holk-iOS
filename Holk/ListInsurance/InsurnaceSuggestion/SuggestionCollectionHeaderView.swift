@@ -1,5 +1,5 @@
 //
-//  InsuranceSuggestionCollectionHeaderView.swift
+//  SuggestionCollectionHeaderView.swift
 //  Holk
 //
 //  Created by 张梦皓 on 2020-06-13.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class InsuranceSuggestionCollectionHeaderView: UICollectionReusableView {
+final class SuggestionCollectionHeaderView: UICollectionReusableView {
     let textLabel = UILabel()
 
     override init(frame: CGRect) {

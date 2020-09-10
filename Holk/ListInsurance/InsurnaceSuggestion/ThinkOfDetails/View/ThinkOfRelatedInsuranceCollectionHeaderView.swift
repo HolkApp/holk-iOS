@@ -31,7 +31,7 @@ final class ThinkOfRelatedInsuranceCollectionHeaderView: UICollectionReusableVie
         fatalError()
     }
 
-    func configure(_ viewModel: ThinkOfInsuranceViewModel) {
+    func configure(_ viewModel: ThinkOfSubInsuranceHeaderViewModel) {
         nameValueLabel.setText(viewModel.insuranceName, with: .titleHeader2)
         endDateValueLabel.setText(viewModel.endDateString, with: .titleHeader2)
         if let imageURL = viewModel.insuranceImageURL {

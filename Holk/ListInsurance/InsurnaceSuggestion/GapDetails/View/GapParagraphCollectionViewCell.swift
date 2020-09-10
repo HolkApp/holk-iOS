@@ -1,15 +1,16 @@
 //
-//  ThinkOfParagraphCollectionViewCell.swift
+//  GapParagraphCollectionViewCell.swift
 //  Holk
 //
-//  Created by 张梦皓 on 2020-07-11.
+//  Created by 张梦皓 on 2020-09-10.
 //  Copyright © 2020 Holk. All rights reserved.
 //
 
 import UIKit
 
-final class ThinkOfParagraphCollectionViewCell: UICollectionViewCell {
+final class GapParagraphCollectionViewCell: UICollectionViewCell {
     private let iconView = HolkIconView()
+    private let titleLabel = UILabel()
     private let descriptionLabel = UILabel()
 
     override init(frame: CGRect) {
@@ -28,6 +29,11 @@ final class ThinkOfParagraphCollectionViewCell: UICollectionViewCell {
         iconView.imageView.tintColor = Color.mainForeground
         iconView.translatesAutoresizingMaskIntoConstraints = false
 
+        titleLabel.numberOfLines = 0
+        titleLabel.textColor = Color.mainForeground
+        titleLabel.setStyleGuide(.titleHeader1)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+
         descriptionLabel.numberOfLines = 0
         descriptionLabel.textColor = Color.mainForeground
         descriptionLabel.setStyleGuide(.body2)
@@ -38,26 +44,23 @@ final class ThinkOfParagraphCollectionViewCell: UICollectionViewCell {
 
     private func setupLayout() {
         contentView.addSubview(iconView)
+        contentView.addSubview(titleLabel)
         contentView.addSubview(descriptionLabel)
 
         NSLayoutConstraint.activate([
-            iconView.widthAnchor.constraint(equalToConstant: 52),
-            iconView.heightAnchor.constraint(equalToConstant: 52),
+            iconView.widthAnchor.constraint(equalToConstant: 45),
+            iconView.heightAnchor.constraint(equalToConstant: 45),
             iconView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 26),
             iconView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            iconView.trailingAnchor.constraint(equalTo: descriptionLabel.leadingAnchor, constant: -20),
+            iconView.trailingAnchor.constraint(equalTo: titleLabel.leadingAnchor, constant: -20),
 
-            descriptionLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -26),
-            descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -26),
+            titleLabel.bottomAnchor.constraint(equalTo: descriptionLabel.topAnchor, constant: -8),
+
+            descriptionLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
+            descriptionLabel.trailingAnchor.constraint(equalTo: descriptionLabel.trailingAnchor),
+            descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
         ])
-    }
-}
-
-extension ThinkOfParagraphCollectionViewCell {
-    func configure(_ viewModel: ThinkOfSuggestionParagraphViewModel) {
-        // TODO: Configure the icon
-//        paragraph.icon
-        descriptionLabel.setText(viewModel.text, with: .body2)
     }
 }

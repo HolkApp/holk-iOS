@@ -1,5 +1,5 @@
 //
-//  ThinkOfSuggestionBannerViewModel.swift
+//  ThinkOfSuggestionParagraphHeaderViewModel.swift
 //  Holk
 //
 //  Created by 张梦皓 on 2020-07-19.
@@ -8,8 +8,7 @@
 
 import Foundation
 
-struct ThinkOfSuggestionBannerViewModel: Hashable {
-    var imageURL: URL? = nil
+struct ThinkOfSuggestionParagraphHeaderViewModel: Hashable {
     let detailHeader: String
     let detailDescription: String
 

@@ -1,5 +1,5 @@
 //
-//  ThinkOfInsuranceViewModel.swift
+//  ThinkOfSubInsuranceHeaderViewModel.swift
 //  Holk
 //
 //  Created by 张梦皓 on 2020-07-11.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ThinkOfInsuranceViewModel: Hashable {
+struct ThinkOfSubInsuranceHeaderViewModel: Hashable {
     private var insurance: Insurance
 
     var insuranceKind: Insurance.Kind
