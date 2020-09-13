@@ -42,7 +42,7 @@ final class ThinkOfCollectionViewCell: UICollectionViewCell {
 
         // TODO: Find the correct image
         thinkOfTypeIconView.imageView.image = UIImage(named: "travel")
-        thinkOfTypeIconView.backgroundColor = Color.thinkOfIconBackground
+        thinkOfTypeIconView.backgroundColor = Color.travelInsuranceIconBackgroundColor
         thinkOfTypeIconView.translatesAutoresizingMaskIntoConstraints = false
 
         subInsuranceTypeLabel.setStyleGuide(.titleHeader1)

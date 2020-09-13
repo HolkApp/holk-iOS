@@ -240,7 +240,7 @@ extension Color {
 
 // MARK: Suggestion
 extension Color {
-    static var thinkOfIconBackground: UIColor {
+    static var suggestionBackground: UIColor {
         return UIColor { traitCollection in
             if traitCollection.userInterfaceStyle == .dark {
                 return makeColor(asset: .blue9)

@@ -67,7 +67,7 @@ final class GapDetailsViewController: UIViewController {
         )
         collectionView.translatesAutoresizingMaskIntoConstraints = false
 
-        createButton.backgroundColor = Color.secondaryHighlight
+        createButton.backgroundColor = Color.suggestionBackground
         createButton.layer.cornerRadius = 8
         createButton.set(color: Color.secondaryLabel)
         createButton.setTitle("Skaffa skydd", for: .normal)
