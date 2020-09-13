@@ -27,9 +27,9 @@ final class GapParagraphHeaderView: UICollectionReusableView {
     }
 
     func configure(_ viewModel: GapParagraphHeaderViewModel) {
-        titleLabel.setText(viewModel.title, with: .cardHeader3)
-        descriptionLabel.setText(viewModel.description, with: .body4)
-        headerLabel.setText(viewModel.paragraphHeader, with: .header5)
+        titleLabel.set(text: viewModel.title, with: .cardHeader3)
+        descriptionLabel.set(text: viewModel.description, with: .body4)
+        headerLabel.set(text: viewModel.paragraphHeader, with: .header5)
     }
 
     private func setup() {

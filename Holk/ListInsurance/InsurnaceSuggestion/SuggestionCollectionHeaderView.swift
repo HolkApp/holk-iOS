@@ -35,7 +35,7 @@ final class SuggestionCollectionHeaderView: UICollectionReusableView {
     }
 
     func configure(_ text: String) {
-        textLabel.setText(text, with: .body3)
+        textLabel.set(text: text, with: .body3)
     }
 }
 

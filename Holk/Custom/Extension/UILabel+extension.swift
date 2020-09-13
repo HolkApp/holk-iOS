@@ -9,8 +9,8 @@
 import UIKit
 
 extension UILabel {
-    func setText(_ string: String?, with styleGuide: FontStyleGuide) {
-        text = string
+    func set(text: String?, with styleGuide: FontStyleGuide) {
+        self.text = text
         setStyleGuide(styleGuide)
     }
 
@@ -82,6 +82,9 @@ extension UILabel {
         case .body4:
             font = Font.font(name: .raleway, weight: .semiBold, size: 21)
             setLineHeight(26)
+        case .button1:
+            font = Font.font(name: .montserrat, weight: .bold, size: 19)
+            setLineHeight(35)
         case .number1:
             font = Font.font(name: .poppins, weight: .medium, size: 20)
             setLineHeight(33)
@@ -104,9 +107,7 @@ extension UILabel {
         guard let font = font else { return }
 
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 0
-        paragraphStyle.minimumLineHeight = lineHeight
-        paragraphStyle.maximumLineHeight = lineHeight
+        paragraphStyle.lineSpacing = lineHeight - font.pointSize
         paragraphStyle.alignment = textAlignment
 
         let attrString: NSMutableAttributedString

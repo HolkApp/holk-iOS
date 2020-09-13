@@ -57,7 +57,7 @@ final class ThinkOfParagraphCollectionHeaderView: UICollectionReusableView {
 
 extension ThinkOfParagraphCollectionHeaderView {
     func configure(_ viewModel: ThinkOfParagraphHeaderViewModel) {
-        headerLabel.setText(viewModel.detailHeader, with: .header5)
-        descriptionLabel.setText(viewModel.detailDescription, with: .subHeader5)
+        headerLabel.set(text: viewModel.detailHeader, with: .header5)
+        descriptionLabel.set(text: viewModel.detailDescription, with: .subHeader5)
     }
 }

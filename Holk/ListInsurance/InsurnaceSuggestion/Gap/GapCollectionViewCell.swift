@@ -26,8 +26,8 @@ final class GapCollectionViewCell: UICollectionViewCell {
     }
 
     func configure(_ gap: GapSuggestion) {
-        titleLabel.setText(gap.title, with: .cardHeader2)
-        tagLabel.setText(gap.type, with: .header7)
+        titleLabel.set(text: gap.title, with: .cardHeader2)
+        tagLabel.set(text: gap.type, with: .header7)
     }
 
     private func setup() {

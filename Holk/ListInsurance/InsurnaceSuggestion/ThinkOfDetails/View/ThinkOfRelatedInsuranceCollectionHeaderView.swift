@@ -36,14 +36,14 @@ final class ThinkOfRelatedInsuranceCollectionHeaderView: UICollectionReusableVie
 
         layoutMargins = .init(top: 36, left: 32, bottom: 36, right: 32)
 
-        titleLabel.setText("Din info", with: .header6)
+        titleLabel.set(text: "Din info", with: .header6)
         titleLabel.textColor = Color.mainForeground
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
         titleSeparatorline.backgroundColor = Color.thinkOfSeparator
         titleSeparatorline.translatesAutoresizingMaskIntoConstraints = false
 
-        nameLabel.setText("Försäkring", with: .titleHeader1)
+        nameLabel.set(text: "Försäkring", with: .titleHeader1)
         nameLabel.textColor = Color.mainForeground
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
 
@@ -56,7 +56,7 @@ final class ThinkOfRelatedInsuranceCollectionHeaderView: UICollectionReusableVie
         nameSeparatorline.translatesAutoresizingMaskIntoConstraints = false
 
         providerLabel.text = "Bolag"
-        providerLabel.setText("Bolag", with: .titleHeader1)
+        providerLabel.set(text: "Bolag", with: .titleHeader1)
         providerLabel.textColor = Color.mainForeground
         providerLabel.translatesAutoresizingMaskIntoConstraints = false
 
@@ -66,7 +66,7 @@ final class ThinkOfRelatedInsuranceCollectionHeaderView: UICollectionReusableVie
         providerSeparatorline.backgroundColor = Color.thinkOfSeparator
         providerSeparatorline.translatesAutoresizingMaskIntoConstraints = false
 
-        endDateLabel.setText("Gäller till", with: .titleHeader1)
+        endDateLabel.set(text: "Gäller till", with: .titleHeader1)
         endDateLabel.textColor = Color.mainForeground
         endDateLabel.translatesAutoresizingMaskIntoConstraints = false
 
@@ -148,8 +148,8 @@ final class ThinkOfRelatedInsuranceCollectionHeaderView: UICollectionReusableVie
 
 extension ThinkOfRelatedInsuranceCollectionHeaderView {
     func configure(_ viewModel: ThinkOfSubInsuranceHeaderViewModel) {
-        nameValueLabel.setText(viewModel.insuranceName, with: .titleHeader2)
-        endDateValueLabel.setText(viewModel.endDateString, with: .titleHeader2)
+        nameValueLabel.set(text: viewModel.insuranceName, with: .titleHeader2)
+        endDateValueLabel.set(text: viewModel.endDateString, with: .titleHeader2)
         if let imageURL = viewModel.insuranceImageURL {
             UIImage.makeImage(with: imageURL) { [weak self] image in
                 self?.providerValueLabel.image = image

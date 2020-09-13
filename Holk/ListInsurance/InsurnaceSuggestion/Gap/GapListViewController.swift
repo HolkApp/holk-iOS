@@ -59,11 +59,11 @@ final class GapListViewController: UIViewController {
         iconView.image = UIImage(systemName: "bell")?.withSymbolWeightConfiguration(.light)
         iconView.translatesAutoresizingMaskIntoConstraints = false
 
-        titleLabel.setText("Luckor", with: .header4)
+        titleLabel.set(text: "Luckor", with: .header4)
         titleLabel.textColor = Color.mainForeground
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        numberLabel.setText("\(gaps.count) st", with: .number3)
+        numberLabel.set(text: "\(gaps.count) st", with: .number3)
         numberLabel.textColor = Color.mainForeground
         numberLabel.textAlignment = .right
         numberLabel.translatesAutoresizingMaskIntoConstraints = false

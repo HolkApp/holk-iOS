@@ -60,6 +60,6 @@ final class GapBannerCollectionViewCell: UICollectionViewCell {
 extension GapBannerCollectionViewCell {
     func configure(_ viewModel: GapBannerViewModel) {
         iconView.image = viewModel.icon
-        titleLabel.setText(viewModel.title, with: .cardHeader3)
+        titleLabel.set(text: viewModel.title, with: .cardHeader3)
     }
 }

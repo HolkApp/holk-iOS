@@ -45,9 +45,9 @@ final class HomeInsuranceCollectionViewCell: UICollectionViewCell {
     func configure(_ insurance: Insurance, provider: InsuranceProvider?) {
         self.insurance = insurance
 
-        titleLabel.setText("Dina skydd", with: .header6)
-        insuranceSubNumberLabel.setText("\(insurance.subInsurances.count)", with: .largeNumber)
-        insuranceTextLabel.setText("Skydd", with: .subHeader2)
+        titleLabel.set(text: "Dina skydd", with: .header6)
+        insuranceSubNumberLabel.set(text: "\(insurance.subInsurances.count)", with: .largeNumber)
+        insuranceTextLabel.set(text: "Skydd", with: .subHeader2)
         
         if let provider = provider {
             UIImage.makeImage(with: provider.logoUrl) { [weak self] image in

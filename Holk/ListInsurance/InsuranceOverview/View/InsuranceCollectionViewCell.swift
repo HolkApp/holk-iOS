@@ -46,8 +46,8 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
 
     func configure(_ insurance: Insurance, provider: InsuranceProvider?) {
         self.insurance = insurance
-        titleLabel.setText(insurance.kind.description, with: .header5)
-        subtitleLabel.setText(insurance.address, with: .subHeader3)
+        titleLabel.set(text: insurance.kind.description, with: .header5)
+        subtitleLabel.set(text: insurance.address, with: .subHeader3)
         if let provider = provider {
             UIImage.makeImage(with: provider.logoUrl) { [weak self] image in
                 self?.insuranceImageView.image = image
@@ -55,14 +55,14 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         }
         switch insurance.endDate.expirationDaysLeft() {
         case .valid(let daysLeft):
-            daysLabel.setText("\(daysLeft)", with: .number2)
-            daysTextLabel.setText("Dagar kvar", with: .body1)
+            daysLabel.set(text: "\(daysLeft)", with: .number2)
+            daysTextLabel.set(text: "Dagar kvar", with: .body1)
         case .today:
             daysLabel.text = ""
-            daysTextLabel.setText("Ends today", with: .body1)
+            daysTextLabel.set(text: "Ends today", with: .body1)
         case .expired:
             daysLabel.text = ""
-            daysTextLabel.setText("Expired", with: .body1)
+            daysTextLabel.set(text: "Expired", with: .body1)
         default:
             daysLabel.text = ""
             daysTextLabel.text = ""

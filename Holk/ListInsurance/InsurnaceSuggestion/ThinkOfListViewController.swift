@@ -59,11 +59,11 @@ final class ThinkOfListViewController: UIViewController {
         iconView.image = UIImage(named: "light")?.withSymbolWeightConfiguration(.light)
         iconView.translatesAutoresizingMaskIntoConstraints = false
 
-        titleLabel.setText("Tänk på", with: .header4)
+        titleLabel.set(text: "Tänk på", with: .header4)
         titleLabel.textColor = Color.mainForeground
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        numberLabel.setText("\(thinkOfs.count) st", with: .number3)
+        numberLabel.set(text: "\(thinkOfs.count) st", with: .number3)
         numberLabel.textColor = Color.mainForeground
         numberLabel.textAlignment = .right
         numberLabel.translatesAutoresizingMaskIntoConstraints = false

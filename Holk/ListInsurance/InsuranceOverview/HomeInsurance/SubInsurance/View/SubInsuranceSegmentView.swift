@@ -74,7 +74,7 @@ final class SubInsuranceSegmentView: UIControl {
     }
 
     func configure(_ segmentKind: String, numberOfSubInsurances: Int) {
-        titleLabel.setText(segmentKind, with: .titleHeader3)
-        numberLabel.setText("\(numberOfSubInsurances)", with: .number4)
+        titleLabel.set(text: segmentKind, with: .titleHeader3)
+        numberLabel.set(text: "\(numberOfSubInsurances)", with: .number4)
     }
 }

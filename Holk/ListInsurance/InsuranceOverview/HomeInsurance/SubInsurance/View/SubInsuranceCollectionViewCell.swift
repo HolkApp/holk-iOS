@@ -45,12 +45,12 @@ final class SubInsuranceCollectionViewCell: UICollectionViewCell {
         iconView.imageView.image = UIImage.init(subInsurance: subInsurance)
         iconView.backgroundColor = Color.iconBackgroundColor(subInsurance)
         cardView.backgroundColor = Color.backgroundColor(subInsurance)
-        titleLabel.setText(subInsurance.header, with: .cardHeader2)
-        descriptionLabel.setText(subInsurance.body, with: .body1)
+        titleLabel.set(text: subInsurance.header, with: .cardHeader2)
+        descriptionLabel.set(text: subInsurance.body, with: .body1)
 
         // TODO:
-        gapValueLabel.setText("0", with: .number1)
-        thinkOfValueLabel.setText("1", with: .number1)
+        gapValueLabel.set(text: "0", with: .number1)
+        thinkOfValueLabel.set(text: "1", with: .number1)
     }
 
     private func setup() {

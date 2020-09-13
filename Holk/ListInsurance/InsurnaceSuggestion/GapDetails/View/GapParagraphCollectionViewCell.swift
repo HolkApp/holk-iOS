@@ -69,7 +69,7 @@ extension GapParagraphCollectionViewCell {
     func configure(_ viewModel: GapParagraphViewModel) {
         // TODO: Configure the icon
 //        viewModel.icon
-        titleLabel.setText(viewModel.title, with: .header5)
-        descriptionLabel.setText(viewModel.text, with: .body2)
+        titleLabel.set(text: viewModel.title, with: .header5)
+        descriptionLabel.set(text: viewModel.text, with: .body2)
     }
 }

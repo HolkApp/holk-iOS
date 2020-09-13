@@ -27,6 +27,7 @@ enum FontStyleGuide {
     case titleHeader1
     case titleHeader2
     case titleHeader3
+    case button1
     case body1
     case body2
     case body3

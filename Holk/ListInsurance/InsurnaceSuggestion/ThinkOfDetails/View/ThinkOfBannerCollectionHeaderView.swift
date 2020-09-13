@@ -79,8 +79,8 @@ extension ThinkOfBannerCollectionHeaderView {
     func configure(_ viewModel: ThinkOfDetailsViewModel) {
            iconView.imageView.image = viewModel.iconImage
            iconView.backgroundColor = viewModel.iconImageBackgroundColor
-           tagLabel.setText(viewModel.subInsuranceText, with: .titleHeader1)
-           titleLabel.setText(viewModel.title, with: .cardHeader3)
+           tagLabel.set(text: viewModel.subInsuranceText, with: .titleHeader1)
+           titleLabel.set(text: viewModel.title, with: .cardHeader3)
            headerBackgroundView.backgroundColor = viewModel.headerBackgroundViewColor
        }
 }
