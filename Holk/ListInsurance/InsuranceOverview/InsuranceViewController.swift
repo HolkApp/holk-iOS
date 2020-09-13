@@ -55,6 +55,7 @@ final class InsuranceViewController: UIViewController {
         collectionView.bounces = false
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
+        collectionView.contentInset = .init(top: 0, left: 0, bottom: 40, right: 0)
         collectionView.registerCell(HomeInsuranceCollectionViewCell.self)
         collectionView.registerCell(HomeInsuranceBeneficiaryCollectionViewCell.self)
         collectionView.registerCell(HomeInsuranceCostCollectionViewCell.self)

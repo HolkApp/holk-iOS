@@ -71,6 +71,7 @@ final class HomeSubInsurancesViewController: UIViewController {
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.setAppearance(backgroundColor: Color.secondaryBackground)
 
+        collectionView.contentInset = .init(top: 0, left: 0, bottom: 40, right: 0)
         collectionView.bounces = false
         collectionView.backgroundColor = Color.insuranceBackground
         collectionView.showsVerticalScrollIndicator = false
@@ -158,7 +159,7 @@ extension HomeSubInsurancesViewController {
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitem: item, count: 1)
         let cardSection = NSCollectionLayoutSection(group: group)
         cardSection.interGroupSpacing = 24
-        cardSection.contentInsets = .init(top: 40, leading: 0, bottom: 20, trailing: 0)
+        cardSection.contentInsets = .init(top: 40, leading: 0, bottom: 0, trailing: 0)
         cardSection.boundarySupplementaryItems = [makeSubInsuranceSectionHeader()]
         return cardSection
     }
