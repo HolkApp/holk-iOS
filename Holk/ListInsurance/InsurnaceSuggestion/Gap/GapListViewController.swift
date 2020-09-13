@@ -146,4 +146,10 @@ extension GapListViewController {
     }
 }
 
-extension GapListViewController: UICollectionViewDelegate {}
+extension GapListViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let gap = gaps[indexPath.item]
+        let gapDetailsViewController = GapDetailsViewController(gap: gap)
+        show(gapDetailsViewController, sender: self)
+    }
+}
