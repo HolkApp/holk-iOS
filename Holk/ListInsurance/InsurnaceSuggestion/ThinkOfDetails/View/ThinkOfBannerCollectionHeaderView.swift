@@ -24,14 +24,6 @@ final class ThinkOfBannerCollectionHeaderView: UICollectionReusableView {
         fatalError()
     }
 
-    func configure(_ viewModel: ThinkOfDetailsViewModel) {
-        iconView.imageView.image = viewModel.iconImage
-        iconView.backgroundColor = viewModel.iconImageBackgroundColor
-        tagLabel.setText(viewModel.subInsuranceText, with: .titleHeader1)
-        titleLabel.setText(viewModel.title, with: .cardHeader3)
-        headerBackgroundView.backgroundColor = viewModel.headerBackgroundViewColor
-    }
-
     private func setup() {
         clipsToBounds = true
         backgroundColor = Color.secondaryBackground
@@ -78,7 +70,17 @@ final class ThinkOfBannerCollectionHeaderView: UICollectionReusableView {
             titleLabel.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
             titleLabel.topAnchor.constraint(equalTo: tagLabel.lastBaselineAnchor, constant: 8),
             titleLabel.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
-            titleLabel.bottomAnchor.constraint(equalTo: headerBackgroundView.bottomAnchor, constant: -52)
+            titleLabel.bottomAnchor.constraint(equalTo: headerBackgroundView.bottomAnchor, constant: -40)
         ])
     }
+}
+
+extension ThinkOfBannerCollectionHeaderView {
+    func configure(_ viewModel: ThinkOfDetailsViewModel) {
+           iconView.imageView.image = viewModel.iconImage
+           iconView.backgroundColor = viewModel.iconImageBackgroundColor
+           tagLabel.setText(viewModel.subInsuranceText, with: .titleHeader1)
+           titleLabel.setText(viewModel.title, with: .cardHeader3)
+           headerBackgroundView.backgroundColor = viewModel.headerBackgroundViewColor
+       }
 }

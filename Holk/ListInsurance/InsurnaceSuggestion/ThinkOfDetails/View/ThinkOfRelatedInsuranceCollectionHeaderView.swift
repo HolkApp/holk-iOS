@@ -31,16 +31,6 @@ final class ThinkOfRelatedInsuranceCollectionHeaderView: UICollectionReusableVie
         fatalError()
     }
 
-    func configure(_ viewModel: ThinkOfSubInsuranceHeaderViewModel) {
-        nameValueLabel.setText(viewModel.insuranceName, with: .titleHeader2)
-        endDateValueLabel.setText(viewModel.endDateString, with: .titleHeader2)
-        if let imageURL = viewModel.insuranceImageURL {
-            UIImage.makeImage(with: imageURL) { [weak self] image in
-                self?.providerValueLabel.image = image
-            }
-        }
-    }
-
     private func setup() {
         clipsToBounds = true
 
@@ -50,7 +40,7 @@ final class ThinkOfRelatedInsuranceCollectionHeaderView: UICollectionReusableVie
         titleLabel.textColor = Color.mainForeground
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        titleSeparatorline.backgroundColor = Color.separator
+        titleSeparatorline.backgroundColor = Color.thinkOfSeparator
         titleSeparatorline.translatesAutoresizingMaskIntoConstraints = false
 
         nameLabel.setText("Försäkring", with: .titleHeader1)
@@ -62,7 +52,7 @@ final class ThinkOfRelatedInsuranceCollectionHeaderView: UICollectionReusableVie
         nameValueLabel.textAlignment = .right
         nameValueLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        nameSeparatorline.backgroundColor = Color.separator
+        nameSeparatorline.backgroundColor = Color.thinkOfSeparator
         nameSeparatorline.translatesAutoresizingMaskIntoConstraints = false
 
         providerLabel.text = "Bolag"
@@ -73,7 +63,7 @@ final class ThinkOfRelatedInsuranceCollectionHeaderView: UICollectionReusableVie
         providerValueLabel.contentMode = .scaleAspectFit
         providerValueLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        providerSeparatorline.backgroundColor = Color.separator
+        providerSeparatorline.backgroundColor = Color.thinkOfSeparator
         providerSeparatorline.translatesAutoresizingMaskIntoConstraints = false
 
         endDateLabel.setText("Gäller till", with: .titleHeader1)
@@ -85,7 +75,7 @@ final class ThinkOfRelatedInsuranceCollectionHeaderView: UICollectionReusableVie
         endDateValueLabel.textAlignment = .right
         endDateValueLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        endDateSeparatorline.backgroundColor = Color.separator
+        endDateSeparatorline.backgroundColor = Color.thinkOfSeparator
         endDateSeparatorline.translatesAutoresizingMaskIntoConstraints = false
 
         setupLayout()
@@ -153,5 +143,17 @@ final class ThinkOfRelatedInsuranceCollectionHeaderView: UICollectionReusableVie
             endDateSeparatorline.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
             endDateSeparatorline.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor)
         ])
+    }
+}
+
+extension ThinkOfRelatedInsuranceCollectionHeaderView {
+    func configure(_ viewModel: ThinkOfSubInsuranceHeaderViewModel) {
+        nameValueLabel.setText(viewModel.insuranceName, with: .titleHeader2)
+        endDateValueLabel.setText(viewModel.endDateString, with: .titleHeader2)
+        if let imageURL = viewModel.insuranceImageURL {
+            UIImage.makeImage(with: imageURL) { [weak self] image in
+                self?.providerValueLabel.image = image
+            }
+        }
     }
 }

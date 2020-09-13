@@ -21,16 +21,6 @@ final class ThinkOfBannerCollectionViewCell: UICollectionViewCell {
         fatalError()
     }
 
-    func configure(_ imageURL: URL?) {
-        if let imageURL = imageURL {
-            UIImage.makeImage(with: imageURL) { [weak self] image in
-                self?.imageView.image = image
-            }
-        } else {
-            imageView.image = UIImage(named: "thinkOfPlaceholder")
-        }
-    }
-
     private func setup() {
         backgroundColor = Color.secondaryBackground
 
@@ -49,5 +39,17 @@ final class ThinkOfBannerCollectionViewCell: UICollectionViewCell {
             imageView.trailingAnchor.constraint(equalTo: trailingAnchor),
             imageView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
+    }
+}
+
+extension ThinkOfBannerCollectionViewCell {
+    func configure(_ imageURL: URL?) {
+        if let imageURL = imageURL {
+            UIImage.makeImage(with: imageURL) { [weak self] image in
+                self?.imageView.image = image
+            }
+        } else {
+            imageView.image = UIImage(named: "thinkOfPlaceholder")
+        }
     }
 }

@@ -22,11 +22,6 @@ final class ThinkOfParagraphCollectionHeaderView: UICollectionReusableView {
         fatalError()
     }
 
-    func configure(_ viewModel: ThinkOfParagraphHeaderViewModel) {
-        headerLabel.setText(viewModel.detailHeader, with: .header5)
-        descriptionLabel.setText(viewModel.detailDescription, with: .subHeader5)
-    }
-
     private func setup() {
         backgroundColor = Color.secondaryBackground
 
@@ -57,5 +52,12 @@ final class ThinkOfParagraphCollectionHeaderView: UICollectionReusableView {
             descriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -32),
             descriptionLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
+    }
+}
+
+extension ThinkOfParagraphCollectionHeaderView {
+    func configure(_ viewModel: ThinkOfParagraphHeaderViewModel) {
+        headerLabel.setText(viewModel.detailHeader, with: .header5)
+        descriptionLabel.setText(viewModel.detailDescription, with: .subHeader5)
     }
 }
