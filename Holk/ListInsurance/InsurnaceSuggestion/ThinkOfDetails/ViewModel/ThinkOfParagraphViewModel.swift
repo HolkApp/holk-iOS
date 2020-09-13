@@ -15,7 +15,7 @@ struct ThinkOfParagraphViewModel: Hashable {
 
     init(paragraph: Paragraph) {
         self.paragraph = paragraph
-        icon = paragraph.icon
-        text = paragraph.text
+        self.icon = paragraph.icon
+        self.text = paragraph.text
     }
 }
