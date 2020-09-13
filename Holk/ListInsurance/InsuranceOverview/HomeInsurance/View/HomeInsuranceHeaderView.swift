@@ -18,11 +18,9 @@ final class HomeInsuranceHeaderView: UICollectionReusableView {
         clipsToBounds = true
         backgroundColor = .clear
 
-        titleLabel.setStyleGuide(.header4)
         titleLabel.textColor = Color.mainForeground
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        descriptionLabel.setStyleGuide(.subHeader1)
         descriptionLabel.textColor = Color.mainForeground
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
 

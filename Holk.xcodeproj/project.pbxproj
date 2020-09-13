@@ -556,8 +556,8 @@
 			isa = PBXGroup;
 			children = (
 				8F63AE1F25097D5F008A39A0 /* GapDetailsViewController.swift */,
-				8F63AE2E25098F19008A39A0 /* View */,
 				8F63AE2825098635008A39A0 /* ViewModel */,
+				8F63AE2E25098F19008A39A0 /* View */,
 			);
 			path = GapDetails;
 			sourceTree = "<group>";
