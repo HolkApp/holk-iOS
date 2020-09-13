@@ -51,7 +51,7 @@ final class GapParagraphCollectionViewCell: UICollectionViewCell {
             iconView.widthAnchor.constraint(equalToConstant: 45),
             iconView.heightAnchor.constraint(equalToConstant: 45),
             iconView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 26),
-            iconView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            iconView.topAnchor.constraint(equalTo: contentView.topAnchor),
             iconView.trailingAnchor.constraint(equalTo: titleLabel.leadingAnchor, constant: -20),
 
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
@@ -69,7 +69,7 @@ extension GapParagraphCollectionViewCell {
     func configure(_ viewModel: GapParagraphViewModel) {
         // TODO: Configure the icon
 //        viewModel.icon
-        titleLabel.set(text: viewModel.title, with: .header5)
+        titleLabel.set(text: viewModel.title, with: .titleHeader1)
         descriptionLabel.set(text: viewModel.text, with: .body2)
     }
 }

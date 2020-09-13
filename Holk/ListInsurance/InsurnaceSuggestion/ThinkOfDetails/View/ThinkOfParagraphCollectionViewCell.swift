@@ -44,10 +44,10 @@ final class ThinkOfParagraphCollectionViewCell: UICollectionViewCell {
             iconView.widthAnchor.constraint(equalToConstant: 45),
             iconView.heightAnchor.constraint(equalToConstant: 45),
             iconView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 26),
-            iconView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            iconView.topAnchor.constraint(equalTo: contentView.topAnchor),
             iconView.trailingAnchor.constraint(equalTo: descriptionLabel.leadingAnchor, constant: -20),
 
-            descriptionLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            descriptionLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
             descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -26),
             descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
         ])
