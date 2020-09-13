@@ -120,6 +120,16 @@ extension Color {
         return makeColor(asset: #function)
     }
 
+    static var label: UIColor {
+        return UIColor { traitCollection in
+            if traitCollection.userInterfaceStyle == .dark {
+                return .black
+            } else {
+                return .black
+            }
+        }
+    }
+
     static var secondaryLabel: UIColor {
         return UIColor { traitCollection in
             if traitCollection.userInterfaceStyle == .dark {
@@ -140,12 +150,22 @@ extension Color {
         }
     }
 
-    static var separator: UIColor {
+    static var thinkOfSeparator: UIColor {
         return UIColor { traitCollection in
             if traitCollection.userInterfaceStyle == .dark {
                 return makeColor(asset: .blue2)
             } else {
                 return makeColor(asset: .blue2)
+            }
+        }
+    }
+
+    static var gapSeparator: UIColor {
+        return UIColor { traitCollection in
+            if traitCollection.userInterfaceStyle == .dark {
+                return makeColor(asset: .grey3)
+            } else {
+                return makeColor(asset: .grey3)
             }
         }
     }

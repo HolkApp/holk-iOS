@@ -79,6 +79,9 @@ extension UILabel {
         case .body3:
             font = Font.font(name: .montserrat, weight: .medium, size: 18)
             setLineHeight(25)
+        case .body4:
+            font = Font.font(name: .raleway, weight: .semiBold, size: 21)
+            setLineHeight(26)
         case .number1:
             font = Font.font(name: .poppins, weight: .medium, size: 20)
             setLineHeight(33)

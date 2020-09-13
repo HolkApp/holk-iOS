@@ -30,6 +30,7 @@ enum FontStyleGuide {
     case body1
     case body2
     case body3
+    case body4
     case number1
     case number2
     case number3
