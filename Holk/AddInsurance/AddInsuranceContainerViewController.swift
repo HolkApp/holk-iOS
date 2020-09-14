@@ -76,7 +76,7 @@ final class AddInsuranceContainerViewController: UIViewController {
             image: UIImage(systemName: "xmark")?.withSymbolWeightConfiguration(.medium)
         )
         closeButton.translatesAutoresizingMaskIntoConstraints = false
-        closeButton.addTarget(self, action: #selector(stopAddingInsurance(_:)), for: .touchUpInside)
+        closeButton.addTarget(self, action: #selector(stopAddingPressed(_:)), for: .touchUpInside)
 
         view.addSubview(collectionView)
         view.addSubview(progressView)
@@ -182,7 +182,13 @@ final class AddInsuranceContainerViewController: UIViewController {
         progressView.setLoading(true)
     }
 
-    @objc private func stopAddingInsurance(_ sender: Any) {
+    @objc private func stopAddingPressed(_ sender: Any) {
+        guard let visibleItem = collectionView.indexPathsForVisibleItems.first,
+        visibleItem.item != 0 else {
+            self.dismiss(animated: true)
+            self.addInsuranceViewControllers.removeAll()
+            return
+        }
         let alert = UIAlertController(title: "Are you sure you want to cancel", message: nil, preferredStyle: .alert)
         alert.addAction(
             UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in

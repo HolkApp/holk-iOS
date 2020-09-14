@@ -92,7 +92,7 @@ final class OnboardingContainerViewController: UIViewController {
             image: UIImage(systemName: "xmark")?.withSymbolWeightConfiguration(.medium)
         )
         closeButton.translatesAutoresizingMaskIntoConstraints = false
-        closeButton.addTarget(self, action: #selector(stopOnboardingAlert(_:)), for: .touchUpInside)
+        closeButton.addTarget(self, action: #selector(stopOnboardingPressed(_:)), for: .touchUpInside)
 
         view.addSubview(collectionView)
         view.addSubview(progressView)
@@ -200,7 +200,13 @@ final class OnboardingContainerViewController: UIViewController {
         progressView.setLoading(true)
     }
 
-    @objc private func stopOnboardingAlert(_ sender: Any) {
+    @objc private func stopOnboardingPressed(_ sender: Any) {
+        guard let visibleItem = collectionView.indexPathsForVisibleItems.first,
+        visibleItem.item != 0 else {
+            self.delegate?.onboardingStopped(self)
+            self.onboardingViewControllers.removeAll()
+            return
+        }
         let alert = UIAlertController(title: "Are you sure you want to cancel", message: nil, preferredStyle: .alert)
         alert.addAction(
             UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
