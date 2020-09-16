@@ -107,7 +107,7 @@ extension UILabel {
         guard let font = font else { return }
 
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = lineHeight - font.pointSize
+        paragraphStyle.lineSpacing = lineHeight - font.lineHeight
         paragraphStyle.alignment = textAlignment
 
         let attrString: NSMutableAttributedString
