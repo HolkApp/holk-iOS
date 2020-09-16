@@ -9,7 +9,7 @@
 import UIKit
 
 extension UINavigationItem {
-    func setAppearance(backgroundColor: UIColor) {
+    func setAppearance(backgroundColor: UIColor? = nil) {
         let standard = UINavigationBarAppearance()
 
         standard.configureWithOpaqueBackground()

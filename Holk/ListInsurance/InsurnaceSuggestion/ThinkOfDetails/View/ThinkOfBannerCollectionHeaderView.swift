@@ -61,7 +61,7 @@ final class ThinkOfBannerCollectionHeaderView: UICollectionReusableView {
             iconView.widthAnchor.constraint(equalToConstant: 52),
             iconView.heightAnchor.constraint(equalToConstant: 52),
             iconView.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
-            iconView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+            iconView.topAnchor.constraint(equalTo: topAnchor, constant: 60),
 
             tagLabel.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
             tagLabel.topAnchor.constraint(equalTo: iconView.bottomAnchor, constant: 12),

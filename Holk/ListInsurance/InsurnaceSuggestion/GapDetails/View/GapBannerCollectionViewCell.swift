@@ -47,12 +47,12 @@ final class GapBannerCollectionViewCell: UICollectionViewCell {
             iconView.widthAnchor.constraint(equalToConstant: 48),
             iconView.heightAnchor.constraint(equalToConstant: 48),
             iconView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            iconView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
+            iconView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 80),
             iconView.bottomAnchor.constraint(equalTo: titleLabel.topAnchor, constant: -28),
 
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
             titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
-            titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -56)
+            titleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -80)
         ])
     }
 }

@@ -51,14 +51,16 @@ final class GapDetailsViewController: UIViewController {
     }
 
     private func setup() {
-        navigationItem.setAppearance(backgroundColor: viewModel.headerBackgroundViewColor ?? Color.secondaryBackground)
+        navigationItem.setAppearance()
         navigationController?.navigationBar.tintColor = Color.secondaryBackground
 
         collectionView.contentInset = .init(top: 0, left: 0, bottom: 80, right: 0)
+        collectionView.delegate = self
         collectionView.bounces = false
         collectionView.backgroundColor = Color.secondaryBackground
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
+        collectionView.contentInsetAdjustmentBehavior = .never
         collectionView.registerCell(GapBannerCollectionViewCell.self)
         collectionView.registerCell(GapParagraphCollectionViewCell.self)
         collectionView.registerReusableSupplementaryView(
@@ -189,5 +191,11 @@ extension GapDetailsViewController {
         let headerElement = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
         return headerElement
     }
+}
 
+extension GapDetailsViewController: UICollectionViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let alpha: CGFloat = max(min(scrollView.adjustedContentOffset.y, 60), 0) / 60
+        navigationController?.navigationBar.backgroundColor = viewModel.headerBackgroundViewColor?.withAlphaComponent(alpha)
+    }
 }

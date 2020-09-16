@@ -56,14 +56,16 @@ final class ThinkOfDetailsViewController: UIViewController {
     }
 
     private func setup() {
-        navigationItem.setAppearance(backgroundColor: viewModel.headerBackgroundViewColor ?? Color.secondaryBackground)
+        navigationItem.setAppearance()
         navigationController?.navigationBar.tintColor = Color.secondaryBackground
 
-        collectionView.contentInset = .init(top: 0, left: 0, bottom: 40, right: 0)
+        collectionView.contentInset.bottom = 40
+        collectionView.delegate = self
         collectionView.bounces = false
         collectionView.backgroundColor = Color.secondaryBackground
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
+        collectionView.contentInsetAdjustmentBehavior = .never
         collectionView.registerCell(ThinkOfBannerCollectionViewCell.self)
         collectionView.registerCell(ThinkOfParagraphCollectionViewCell.self)
         collectionView.registerCell(SubInsuranceCollectionViewCell.self)
@@ -193,7 +195,7 @@ extension ThinkOfDetailsViewController {
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(390))
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
         let cardSection = NSCollectionLayoutSection(group: group)
-        cardSection.contentInsets = .init(top: 0, leading: 0, bottom: 36, trailing: 0)
+        cardSection.contentInsets = .init(top: -56, leading: 0, bottom: 36, trailing: 0)
         cardSection.boundarySupplementaryItems = [makeThinkOfDetailHeader()]
         return cardSection
     }
@@ -238,5 +240,12 @@ extension ThinkOfDetailsViewController {
         let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(240))
         let headerElement = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
         return headerElement
+    }
+}
+
+extension ThinkOfDetailsViewController: UICollectionViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let alpha: CGFloat = max(min(scrollView.adjustedContentOffset.y, 60), 0) / 60
+        navigationController?.navigationBar.backgroundColor = viewModel.headerBackgroundViewColor?.withAlphaComponent(alpha)
     }
 }
