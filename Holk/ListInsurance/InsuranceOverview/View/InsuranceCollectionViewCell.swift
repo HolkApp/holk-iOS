@@ -138,7 +138,7 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
             containerView.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
             containerView.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor),
 
-            titleLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 16),
+            titleLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 18),
             titleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 24),
             titleLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -24),
 

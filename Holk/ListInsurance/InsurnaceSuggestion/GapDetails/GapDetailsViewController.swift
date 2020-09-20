@@ -54,7 +54,7 @@ final class GapDetailsViewController: UIViewController {
         navigationItem.setAppearance()
         navigationController?.navigationBar.tintColor = Color.secondaryBackground
 
-        collectionView.contentInset = .init(top: 0, left: 0, bottom: 80, right: 0)
+        collectionView.contentInset = .init(top: 0, left: 0, bottom: 200, right: 0)
         collectionView.delegate = self
         collectionView.bounces = false
         collectionView.backgroundColor = Color.secondaryBackground

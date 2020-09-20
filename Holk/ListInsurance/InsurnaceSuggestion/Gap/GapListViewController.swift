@@ -68,7 +68,7 @@ final class GapListViewController: UIViewController {
         numberLabel.textAlignment = .right
         numberLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        separatorLine.backgroundColor = Color.placeholder
+        separatorLine.backgroundColor = Color.separator
         separatorLine.translatesAutoresizingMaskIntoConstraints = false
 
         collectionView.backgroundColor = .clear

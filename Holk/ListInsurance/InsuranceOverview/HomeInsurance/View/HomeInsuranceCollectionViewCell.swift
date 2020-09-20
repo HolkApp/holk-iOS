@@ -170,7 +170,7 @@ extension HomeInsuranceCollectionViewCell: HolkRingChartDataSource {
     }
 
     func ringChart(_ ringChart: HolkRingChart, ringChartWidthAt index: Int) -> CGFloat? {
-        return 8
+        return 4
     }
 
     func ringChart(_ ringChart: HolkRingChart, colorForSegmentAt index: Int) -> UIColor? {

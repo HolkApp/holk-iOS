@@ -35,7 +35,7 @@ final class GapCollectionViewCell: UICollectionViewCell {
         contentView.layer.cornerRadius = 16
         contentView.layer.cornerCurve = .continuous
 
-        iconView.image = UIImage(systemName: "bell")?.withSymbolWeightConfiguration(.light)
+        iconView.image = UIImage(systemName: "bell")?.withSymbolWeightConfiguration(.thin)
         iconView.tintColor = Color.secondaryLabel
         iconView.translatesAutoresizingMaskIntoConstraints = false
 
@@ -66,7 +66,7 @@ final class GapCollectionViewCell: UICollectionViewCell {
 
         NSLayoutConstraint.activate([
             iconView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            iconView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 24),
+            iconView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 32),
             iconView.widthAnchor.constraint(equalTo: iconView.heightAnchor),
             iconView.heightAnchor.constraint(equalToConstant: 42),
 
@@ -78,11 +78,11 @@ final class GapCollectionViewCell: UICollectionViewCell {
             tagLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
             tagLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
 
-            chevronView.topAnchor.constraint(equalTo: tagLabel.bottomAnchor, constant: 36),
+            chevronView.topAnchor.constraint(equalTo: tagLabel.bottomAnchor, constant: 28),
             chevronView.widthAnchor.constraint(equalToConstant: 16),
             chevronView.heightAnchor.constraint(equalToConstant: 24),
             chevronView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -12),
-            chevronView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16)
+            chevronView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20)
         ])
     }
 

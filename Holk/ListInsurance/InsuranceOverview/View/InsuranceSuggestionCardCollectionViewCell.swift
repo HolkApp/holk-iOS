@@ -89,7 +89,7 @@ class InsuranceSuggestionCardCollectionViewCell: UICollectionViewCell {
         suggestionAnimationView.contentMode = .scaleAspectFit
         suggestionImageView.contentMode = .scaleAspectFit
 
-        suggestionIllustrationView.backgroundColor = .red
+        suggestionIllustrationView.backgroundColor = .clear
         suggestionIllustrationView.translatesAutoresizingMaskIntoConstraints = false
 
         suggestionLabel.setStyleGuide(.body1)

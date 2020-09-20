@@ -44,8 +44,8 @@ final class GapBannerCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(titleLabel)
 
         NSLayoutConstraint.activate([
-            iconView.widthAnchor.constraint(equalToConstant: 48),
-            iconView.heightAnchor.constraint(equalToConstant: 48),
+            iconView.widthAnchor.constraint(equalToConstant: 56),
+            iconView.heightAnchor.constraint(equalToConstant: 56),
             iconView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             iconView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 80),
             iconView.bottomAnchor.constraint(equalTo: titleLabel.topAnchor, constant: -28),
