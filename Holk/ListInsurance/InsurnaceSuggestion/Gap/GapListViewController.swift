@@ -50,8 +50,14 @@ final class GapListViewController: UIViewController {
         applySnapshot(animatingDifferences: false)
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        navigationController?.navigationBar.backgroundColor = .clear
+    }
+
     private func setup() {
-        navigationItem.setAppearance(backgroundColor: Color.mainBackground)
+        navigationItem.setAppearance()
 
         view.backgroundColor = Color.mainBackground
 

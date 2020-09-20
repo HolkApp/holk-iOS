@@ -39,7 +39,6 @@ final class HomeInsuranceBeneficiaryCollectionViewCell: UICollectionViewCell {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
         usernameLabel.textColor = Color.mainForeground
-        usernameLabel.setStyleGuide(.body2)
         usernameLabel.numberOfLines = 0
         usernameLabel.translatesAutoresizingMaskIntoConstraints = false
 
