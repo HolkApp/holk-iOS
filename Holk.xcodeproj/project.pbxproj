@@ -50,7 +50,6 @@
 		8F4965E124154DC800DEAFC1 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F4965E024154DC800DEAFC1 /* Montserrat-Bold.ttf */; };
 		8F54C244242C07E000D72FD7 /* Result+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F54C243242C07E000D72FD7 /* Result+extension.swift */; };
 		8F54C246242C1FDC00D72FD7 /* UserInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F54C245242C1FDC00D72FD7 /* UserInfoResponse.swift */; };
-		8F54C24B242FD76E00D72FD7 /* HomeInsuranceDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F54C24A242FD76E00D72FD7 /* HomeInsuranceDetailTableViewCell.swift */; };
 		8F5AF02423C6759C00690373 /* MockType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5AF02323C6759C00690373 /* MockType.swift */; };
 		8F5B5A3B22783D0200E79A40 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5B5A3A22783D0200E79A40 /* TabBarController.swift */; };
 		8F5BE489246FE16A006AE8AF /* OnboardingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F5BE488246FE16A006AE8AF /* OnboardingCell.swift */; };
@@ -229,7 +228,6 @@
 		8F4965E024154DC800DEAFC1 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		8F54C243242C07E000D72FD7 /* Result+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+extension.swift"; sourceTree = "<group>"; };
 		8F54C245242C1FDC00D72FD7 /* UserInfoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoResponse.swift; sourceTree = "<group>"; };
-		8F54C24A242FD76E00D72FD7 /* HomeInsuranceDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInsuranceDetailTableViewCell.swift; sourceTree = "<group>"; };
 		8F5AF02323C6759C00690373 /* MockType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockType.swift; sourceTree = "<group>"; };
 		8F5B5A3A22783D0200E79A40 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		8F5BE488246FE16A006AE8AF /* OnboardingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCell.swift; sourceTree = "<group>"; };
@@ -677,7 +675,6 @@
 				8FD676982497945400E62820 /* HomeInsuranceHeaderView.swift */,
 				8FC81CF4248C478900F6BC8C /* HomeInsuranceBeneficiaryCollectionViewCell.swift */,
 				8FD67677248EDBFF00E62820 /* HomeInsuranceCostCollectionViewCell.swift */,
-				8F54C24A242FD76E00D72FD7 /* HomeInsuranceDetailTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1142,7 +1139,6 @@
 				8F9807E92276F10E00584BA9 /* InsuranceCoordinator.swift in Sources */,
 				8F48BE6723315F49004D79D2 /* HolkIllustrationLabel.swift in Sources */,
 				8F02659424C4C43F00F4208B /* ThinkOfBannerCollectionViewCell.swift in Sources */,
-				8F54C24B242FD76E00D72FD7 /* HomeInsuranceDetailTableViewCell.swift in Sources */,
 				8FD676992497945400E62820 /* HomeInsuranceHeaderView.swift in Sources */,
 				8FA766CB24411265007EB2A2 /* UIScrollView+extension.swift in Sources */,
 				8F63AE32250A109B008A39A0 /* ThinkOfParagraphCollectionHeaderView.swift in Sources */,
