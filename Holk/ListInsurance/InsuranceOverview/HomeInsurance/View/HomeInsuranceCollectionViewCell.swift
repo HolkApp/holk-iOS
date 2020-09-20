@@ -83,16 +83,15 @@ final class HomeInsuranceCollectionViewCell: UICollectionViewCell {
         insuranceSubNumberLabel.textAlignment = .center
         insuranceSubNumberLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        insuranceTextLabel.setStyleGuide(.subHeader2)
         insuranceTextLabel.textColor = Color.mainForeground
         insuranceTextLabel.numberOfLines = 0
         insuranceTextLabel.textAlignment = .center
         insuranceTextLabel.translatesAutoresizingMaskIntoConstraints = false
 
         ringChartLabelsStackView.axis = .vertical
-        ringChartLabelsStackView.spacing = 20
+        ringChartLabelsStackView.spacing = 24
         ringChartLabelsStackView.isBaselineRelativeArrangement = true
-        ringChartLabelsStackView.backgroundColor = .green
+        ringChartLabelsStackView.backgroundColor = .clear
         ringChartLabelsStackView.translatesAutoresizingMaskIntoConstraints = false
 
         insuranceImageView.contentMode = .scaleAspectFit

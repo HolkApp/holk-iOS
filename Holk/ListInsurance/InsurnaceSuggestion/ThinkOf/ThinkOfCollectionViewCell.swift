@@ -56,7 +56,7 @@ final class ThinkOfCollectionViewCell: UICollectionViewCell {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
         chevronView.image = UIImage(systemName: "chevron.right")
-        chevronView.tintColor = Color.secondaryLabel
+        chevronView.tintColor = Color.mainForeground.withAlphaComponent(0.5)
         chevronView.translatesAutoresizingMaskIntoConstraints = false
 
         setupLayout()

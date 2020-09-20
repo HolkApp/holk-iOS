@@ -79,7 +79,7 @@ final class SubInsuranceCollectionViewCell: UICollectionViewCell {
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
 
         chevronView.image = UIImage(systemName: "chevron.right")
-        chevronView.tintColor = Color.mainForeground
+        chevronView.tintColor = Color.mainForeground.withAlphaComponent(0.5)
         chevronView.translatesAutoresizingMaskIntoConstraints = false
 
         gapImageView.image = UIImage(systemName: "bell")?.withSymbolWeightConfiguration(.light)

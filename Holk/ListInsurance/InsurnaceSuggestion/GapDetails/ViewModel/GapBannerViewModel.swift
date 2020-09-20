@@ -16,6 +16,6 @@ struct GapBannerViewModel: Hashable {
     init(gapSuggestion: GapSuggestion) {
         title = gapSuggestion.title
         type = gapSuggestion.type
-        icon = UIImage(systemName: "bell")?.withSymbolWeightConfiguration(.light)
+        icon = UIImage(systemName: "bell")?.withSymbolWeightConfiguration(.thin)
     }
 }

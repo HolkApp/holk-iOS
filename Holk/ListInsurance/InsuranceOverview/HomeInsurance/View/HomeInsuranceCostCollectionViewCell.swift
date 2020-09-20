@@ -46,7 +46,7 @@ final class HomeInsuranceCostCollectionViewCell: UICollectionViewCell {
         chevronView.tintColor = Color.mainForeground
         chevronView.translatesAutoresizingMaskIntoConstraints = false
 
-        bottomSeparatorLine.backgroundColor = Color.placeholder
+        bottomSeparatorLine.backgroundColor = Color.separator
         bottomSeparatorLine.translatesAutoresizingMaskIntoConstraints = false
 
         contentView.addSubview(titleLabel)

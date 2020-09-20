@@ -35,7 +35,6 @@ final class HomeInsuranceBeneficiaryCollectionViewCell: UICollectionViewCell {
 
         titleLabel.set(text: "Gäller för", with: .header6)
         titleLabel.textColor = Color.mainForeground
-        titleLabel.setStyleGuide(.header6)
         titleLabel.numberOfLines = 0
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
@@ -48,10 +47,10 @@ final class HomeInsuranceBeneficiaryCollectionViewCell: UICollectionViewCell {
         chevronView.tintColor = Color.mainForeground
         chevronView.translatesAutoresizingMaskIntoConstraints = false
 
-        topSeparatorLine.backgroundColor = Color.placeholder
+        topSeparatorLine.backgroundColor = Color.separator
         topSeparatorLine.translatesAutoresizingMaskIntoConstraints = false
 
-        bottomSeparatorLine.backgroundColor = Color.placeholder
+        bottomSeparatorLine.backgroundColor = Color.separator
         bottomSeparatorLine.translatesAutoresizingMaskIntoConstraints = false
 
         contentView.addSubview(titleLabel)
