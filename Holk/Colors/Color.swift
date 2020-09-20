@@ -23,6 +23,7 @@ enum Color {
         case grey2
         case grey3
         case grey4
+        case grey5
         case pink1
         case red1
         case yellow2
@@ -136,6 +137,16 @@ extension Color {
                 return .white
             } else {
                 return .white
+            }
+        }
+    }
+
+    static var separator: UIColor {
+        return UIColor { traitCollection in
+            if traitCollection.userInterfaceStyle == .dark {
+                return makeColor(asset: .grey5)
+            } else {
+                return makeColor(asset: .grey5)
             }
         }
     }
