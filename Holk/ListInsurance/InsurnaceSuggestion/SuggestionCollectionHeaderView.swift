@@ -12,7 +12,7 @@ final class SuggestionCollectionHeaderView: UICollectionReusableView {
     let textLabel = UILabel()
 
     override init(frame: CGRect) {
-        super.init(frame: .zero)
+        super.init(frame: frame)
 
         clipsToBounds = true
         backgroundColor = .clear

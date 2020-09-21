@@ -13,20 +13,22 @@ final class SubInsuranceHeaderView: UICollectionReusableView {
     private let titleLabel = UILabel()
     private let descriptionLabel = UILabel()
     private let imageView = UIImageView()
+    private let containerView = UIView()
     private let basicSubInsurancesSegmentView = SubInsuranceSegmentView()
     private let additionalSubInsurancesSegmentView = SubInsuranceSegmentView()
 
     override init(frame: CGRect) {
-        super.init(frame: .zero)
+        super.init(frame: frame)
 
-        clipsToBounds = true
         backgroundColor = Color.secondaryBackground
 
+        titleLabel.numberOfLines = 0
         titleLabel.setStyleGuide(.header4)
         titleLabel.textAlignment = .center
         titleLabel.textColor = Color.mainForeground
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
+        descriptionLabel.numberOfLines = 0
         descriptionLabel.setStyleGuide(.subHeader3)
         descriptionLabel.textAlignment = .center
         descriptionLabel.textColor = Color.mainForeground
@@ -44,21 +46,19 @@ final class SubInsuranceHeaderView: UICollectionReusableView {
         additionalSubInsurancesSegmentView.isSelected = false
         additionalSubInsurancesSegmentView.translatesAutoresizingMaskIntoConstraints = false
 
-        let stackView = UIStackView()
-        stackView.spacing = 32
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.addArrangedSubview(basicSubInsurancesSegmentView)
-        stackView.addArrangedSubview(additionalSubInsurancesSegmentView)
+        containerView.translatesAutoresizingMaskIntoConstraints = false
 
         addSubview(titleLabel)
         addSubview(descriptionLabel)
         addSubview(imageView)
-        addSubview(stackView)
+        addSubview(containerView)
+        containerView.addSubview(basicSubInsurancesSegmentView)
+        containerView.addSubview(additionalSubInsurancesSegmentView)
 
-        let stackViewLeadingAnchor = stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 48)
-        let stackViewTrailingAnchor = stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -48)
-        stackViewLeadingAnchor.priority = .defaultHigh
-        stackViewTrailingAnchor.priority = .defaultHigh
+        let containerViewLeadingAnchor = containerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 48)
+        let containerViewTrailingAnchor = containerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -48)
+        containerViewLeadingAnchor.priority = .defaultHigh
+        containerViewTrailingAnchor.priority = .defaultHigh
 
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 30),
@@ -73,12 +73,22 @@ final class SubInsuranceHeaderView: UICollectionReusableView {
             imageView.centerXAnchor.constraint(equalTo: centerXAnchor),
             imageView.widthAnchor.constraint(equalToConstant: 114),
             imageView.heightAnchor.constraint(equalToConstant: 92),
-            imageView.bottomAnchor.constraint(equalTo: stackView.topAnchor, constant: -48),
 
-            stackView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            stackViewLeadingAnchor,
-            stackViewTrailingAnchor,
-            stackView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            basicSubInsurancesSegmentView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            basicSubInsurancesSegmentView.topAnchor.constraint(equalTo: containerView.topAnchor),
+            basicSubInsurancesSegmentView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
+            basicSubInsurancesSegmentView.widthAnchor.constraint(equalTo: additionalSubInsurancesSegmentView.widthAnchor),
+
+            additionalSubInsurancesSegmentView.leadingAnchor.constraint(equalTo: basicSubInsurancesSegmentView.trailingAnchor, constant: 32),
+            additionalSubInsurancesSegmentView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            additionalSubInsurancesSegmentView.topAnchor.constraint(equalTo: containerView.topAnchor),
+            additionalSubInsurancesSegmentView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),
+
+            containerView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 48),
+            containerView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            containerViewLeadingAnchor,
+            containerViewTrailingAnchor,
+            containerView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
 

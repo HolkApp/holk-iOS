@@ -22,7 +22,7 @@ final class ThinkOfRelatedInsuranceCollectionHeaderView: UICollectionReusableVie
     private let endDateSeparatorline = UIView()
 
     override init(frame: CGRect) {
-        super.init(frame: .zero)
+        super.init(frame: frame)
 
         setup()
     }
@@ -134,6 +134,7 @@ final class ThinkOfRelatedInsuranceCollectionHeaderView: UICollectionReusableVie
             endDateLabel.topAnchor.constraint(equalTo: providerSeparatorline.bottomAnchor, constant: 16),
             endDateLabel.trailingAnchor.constraint(equalTo: endDateValueLabel.leadingAnchor, constant: -8),
 
+            endDateValueLabel.centerYAnchor.constraint(equalTo: endDateLabel.centerYAnchor),
             endDateValueLabel.lastBaselineAnchor.constraint(equalTo: endDateLabel.lastBaselineAnchor),
             endDateValueLabel.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
 

@@ -13,7 +13,7 @@ final class HomeInsuranceHeaderView: UICollectionReusableView {
     let descriptionLabel = UILabel()
 
     override init(frame: CGRect) {
-        super.init(frame: .zero)
+        super.init(frame: frame)
 
         clipsToBounds = true
         backgroundColor = .clear

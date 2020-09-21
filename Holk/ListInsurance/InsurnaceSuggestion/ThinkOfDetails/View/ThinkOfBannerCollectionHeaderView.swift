@@ -15,7 +15,7 @@ final class ThinkOfBannerCollectionHeaderView: UICollectionReusableView {
     private let titleLabel = UILabel()
 
     override init(frame: CGRect) {
-        super.init(frame: .zero)
+        super.init(frame: frame)
 
         setup()
     }

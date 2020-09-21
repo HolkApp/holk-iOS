@@ -13,7 +13,7 @@ final class ThinkOfParagraphCollectionHeaderView: UICollectionReusableView {
     private let descriptionLabel = UILabel()
 
     override init(frame: CGRect) {
-        super.init(frame: .zero)
+        super.init(frame: frame)
 
         setup()
     }

@@ -25,8 +25,6 @@ final class SubInsuranceSegmentView: UIControl {
     }
 
     private func setup() {
-
-        backgroundColor = .clear
         layoutMargins = .init(top: 0, left: 6, bottom: 0, right: 6)
 
         titleLabel.textColor = Color.placeholder
@@ -49,9 +47,9 @@ final class SubInsuranceSegmentView: UIControl {
         addSubview(selectionView)
 
         NSLayoutConstraint.activate([
+            numberLabel.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor),
             numberLabel.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
             numberLabel.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
-            numberLabel.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor),
 
             titleLabel.topAnchor.constraint(equalTo: numberLabel.bottomAnchor, constant: 4),
             titleLabel.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
