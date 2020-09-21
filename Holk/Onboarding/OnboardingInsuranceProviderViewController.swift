@@ -61,7 +61,7 @@ final class OnboardingInsuranceProviderViewController: UIViewController {
         navigationItem.title = "Start finding your gaps"
         view.backgroundColor = Color.mainBackground
         
-        headerLabel.font = Font.bold(.header)
+        headerLabel.font = FontStyleGuide.header2.font
         headerLabel.textColor = Color.mainForeground
         headerLabel.textAlignment = .left
         headerLabel.text = "Pick insurance company"

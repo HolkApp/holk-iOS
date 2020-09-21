@@ -65,7 +65,7 @@ final class OnboardingConfirmationViewController: UIViewController {
         imageView.image = UIImage(systemName: "checkmark.circle")?.withSymbolWeightConfiguration(.thin)
         imageView.tintColor = Color.success
         
-        titleLabel.font = Font.bold(.header)
+        titleLabel.font = FontStyleGuide.header2.font
         titleLabel.textColor = Color.mainForeground
         titleLabel.numberOfLines = 0
         titleLabel.text = "Great,"

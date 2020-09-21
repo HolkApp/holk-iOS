@@ -42,7 +42,7 @@ final class OnboardingInsuranceTypeViewController: UIViewController {
         
         view.backgroundColor = Color.mainBackground
         
-        headerLabel.font = Font.bold(.header)
+        headerLabel.font = FontStyleGuide.header2.font
         headerLabel.textColor = Color.mainForeground
         headerLabel.textAlignment = .left
         headerLabel.text = "Pick insurance"

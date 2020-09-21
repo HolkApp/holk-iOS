@@ -49,7 +49,7 @@ final class OnboardingConsentViewController: UIViewController {
         view.layoutMargins.right = 40
         view.backgroundColor = Color.mainBackground
         
-        headerLabel.font = Font.bold(.header)
+        headerLabel.font = FontStyleGuide.header2.font
         headerLabel.textColor = Color.mainForeground
         headerLabel.textAlignment = .left
         headerLabel.text = "Add your insurance"
@@ -66,7 +66,7 @@ final class OnboardingConsentViewController: UIViewController {
         let descriptionText = String(format: text, insuranceProvider.displayName)
         descriptionTextView.attributedText = Parser.parse(
             markdownString: descriptionText,
-            font: Font.regular(.label),
+            font: FontStyleGuide.subHeader5.font,
             textColor: Color.mainForeground
         )
         
