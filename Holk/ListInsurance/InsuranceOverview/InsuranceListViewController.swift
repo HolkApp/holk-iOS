@@ -51,49 +51,18 @@ final class InsuranceListViewController: UICollectionViewController {
             .sink { [weak self] in self?.suggestions = $0 }
             .store(in: &cancellables)
     }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        navigationController?.navigationBar.layoutMargins.left = 24
-        navigationController?.navigationBar.layoutMargins.right = 24
-
-        collectionView.contentInset = .init(top: 1, left: 0, bottom: 0, right: 0)
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-
-        navigationController?.navigationBar.layoutMargins.left = 16
-        navigationController?.navigationBar.layoutMargins.right = 16
-    }
     
     private func setup() {
         title = "Försäkringar"
-
-        let largeTitleFont = Font.font(name: .poppins, weight: .semiBold, size: 30)
-        navigationController?.navigationBar.largeTitleTextAttributes = [
-            .font: largeTitleFont,
-            .foregroundColor: Color.mainForeground
-        ]
-        let titleFont = Font.font(name: .poppins, weight: .semiBold, size: 20)
-        navigationController?.navigationBar.titleTextAttributes = [
-            .font: titleFont,
-            .foregroundColor: Color.mainForeground
-        ]
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "profile"), style: .plain, target: self, action: #selector(profileTapped(sender:)))
         navigationItem.setAppearance(backgroundColor: Color.insuranceBackground)
 
-        view.backgroundColor = Color.insuranceBackground
-        view.layoutMargins = .zero
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "profile"), style: .plain, target: self, action: #selector(profileTapped(sender:)))
 
-        collectionView.backgroundColor = .clear
+        collectionView.backgroundColor = Color.insuranceBackground
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
-        collectionView.alwaysBounceVertical = true
         collectionView.registerCell(InsuranceCollectionViewCell.self)
         collectionView.registerCell(InsuranceSuggestionCardCollectionViewCell.self)
     }

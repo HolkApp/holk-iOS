@@ -28,9 +28,10 @@ final class InsuranceCoordinator: NSObject, UINavigationControllerDelegate {
         let insuranceListViewController = InsuranceListViewController(storeController: storeController, collectionViewLayout: layout)
         insuranceListViewController.coordinator = self
 
+        navController.navigationBar.prefersLargeTitles = true
         navController.tabBarItem = UITabBarItem(title: "Översikt", image: UIImage(systemName: "square.stack.3d.up"), selectedImage: UIImage(systemName: "square.stack.3d.up.fill"))
         navController.delegate = self
-        navController.setViewControllers([insuranceListViewController], animated: true)
+        navController.pushViewController(insuranceListViewController, animated: false)
     }
 
     func showInsurance(_ insurance: Insurance) {
