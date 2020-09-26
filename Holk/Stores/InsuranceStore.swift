@@ -13,7 +13,8 @@ final class InsuranceStore {
     // MARK: - Public variables
     var insuranceStatus = PassthroughSubject<Result<ScrapingStatusResponse.ScrapingStatus, APIError>, Never>()
     @Published var aggregatedInsuranceIds: [Insurance.ID] = []
-    @Published var insuranceList: [Insurance] = []
+    @Published var homeInsurances: [Insurance] = []
+    var accidentalInsuranceList: [AccidentalInsurance] = []
 
     // MARK: - Private variables
     private let user: User
@@ -48,8 +49,8 @@ final class InsuranceStore {
                     completion(.failure(error))
                 }
             }) { [weak self] allInsuranceResponse in
-                self?.insuranceList = allInsuranceResponse.insuranceList
-                completion(.success(allInsuranceResponse.insuranceList))
+                self?.homeInsurances = allInsuranceResponse.homeInsurances
+                completion(.success(allInsuranceResponse.homeInsurances))
         }.store(in: &cancellables)
     }
 
@@ -90,10 +91,14 @@ final class InsuranceStore {
 extension InsuranceStore {
     // TODO: Update the logic when the backend is ready
     func relatedInsurances(thinkOf: ThinkOfSuggestion) -> [Insurance] {
-        return insuranceList.filter { insurance in
+        return homeInsurances.filter { insurance in
             insurance.subInsurances.contains { subInsurance in
                 subInsurance.kind == .child
             }
         }
+    }
+
+    func accidentialInsurance(insurance: Insurance) -> AccidentalInsurance? {
+        return accidentalInsuranceList.first { $0.insuranceProviderName == insurance.insuranceProviderName }
     }
 }

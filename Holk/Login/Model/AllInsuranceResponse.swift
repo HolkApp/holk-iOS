@@ -19,24 +19,24 @@ extension AllInsuranceResponse {
                     header: "test header",
                     iconUrl: URL(string: "https://storage.googleapis.com/holk_static_content/subinsurance_content/icon/placeholder.png")!,
                     kind: .child)
-            ]
+            ], accidentalInsurances: []
         )
     }()
 }
 
 struct AllInsuranceResponse: Codable {
-    let insuranceList: [Insurance]
+    let homeInsurances: [Insurance]
     let lastUpdated: Date?
     
     private enum CodingKeys: String, CodingKey {
-        case insuranceList = "insuranceList"
+        case homeInsurances = "homeInsuranceList"
         case lastUpdated = "lastScraped"
     }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        insuranceList = try container.decode([Insurance].self, forKey: .insuranceList)
+        homeInsurances = try container.decode([Insurance].self, forKey: .homeInsurances)
         let lastUpdatedString = try? container.decode(String.self, forKey: .lastUpdated)
         lastUpdated = lastUpdatedString.flatMap { DateFormatter.simpleDateFormatter.date(from: $0)
         }

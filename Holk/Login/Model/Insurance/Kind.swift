@@ -7,3 +7,14 @@
 //
 
 import Foundation
+
+enum Kind: String, Codable {
+    case homeInsurance = "HEMFORSAKRING"
+
+    var description: String {
+        switch self {
+        case .homeInsurance:
+            return "Hemförsäkring"
+        }
+    }
+}

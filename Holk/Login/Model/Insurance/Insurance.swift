@@ -46,6 +46,40 @@ struct Insurance: Codable, Hashable, Equatable {
         }
     }
 
+    struct Cost: Codable, Hashable, Equatable {
+        enum Frequency: String, Codable {
+            case annual = "ANNUAL"
+            case monthly = "MONTHLY"
+        }
+
+        let paymentFrequency: Frequency
+        let price: Double
+
+        var monthlyPrice: Double {
+            switch paymentFrequency {
+            case .annual: return price / 12.0
+            case .monthly: return price
+            }
+        }
+        var annualPrice: Double {
+            switch paymentFrequency {
+            case .annual: return price
+            case .monthly: return price * 12.0
+            }
+        }
+    }
+
+    enum Kind: String, Codable {
+        case homeInsurance = "HEMFORSAKRING"
+
+        var description: String {
+            switch self {
+            case .homeInsurance:
+                return "Hemförsäkring"
+            }
+        }
+    }
+
     let id: Insurance.ID
     let insuranceProviderName: String
     let kind: Kind
@@ -57,7 +91,11 @@ struct Insurance: Codable, Hashable, Equatable {
     let address: String
     let cost: Cost
     var subInsurances: [SubInsurance]
+    var addonInsurances: [AddonInsurance] = []
+    var accidentalInsurances: [AccidentalInsurance]
+}
 
+extension Insurance {
     private enum CodingKeys: String, CodingKey {
         case id = "id"
         case insuranceProviderName = "insuranceProviderName"
@@ -70,10 +108,9 @@ struct Insurance: Codable, Hashable, Equatable {
         case address = "address"
         case cost = "cost"
         case subInsurances = "subInsuranceList"
+        case accidentalInsurances = "accidentalInsuranceList"
     }
-}
 
-extension Insurance {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
@@ -89,6 +126,7 @@ extension Insurance {
         address = try container.decode(String.self, forKey: .address)
         cost = try container.decode(Cost.self, forKey: .cost)
         subInsurances = try container.decode([SubInsurance].self, forKey: .subInsurances)
+        accidentalInsurances = try container.decode([AccidentalInsurance].self, forKey: .accidentalInsurances)
     }
 }
 

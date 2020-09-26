@@ -7,3 +7,20 @@
 //
 
 import Foundation
+
+
+struct AddonInsurance: Codable, Hashable, Equatable {
+    var kind: Kind
+    let insuranceProviderName: String
+
+    enum Kind: String, Codable {
+        case accidental = "ACCIDENTAL"
+    }
+}
+
+extension AddonInsurance {
+    init(_ accidentalInsurance: AccidentalInsurance) {
+        kind = .accidental
+        insuranceProviderName = accidentalInsurance.insuranceProviderName
+    }
+}

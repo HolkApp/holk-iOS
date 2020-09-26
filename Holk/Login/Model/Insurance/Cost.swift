@@ -30,14 +30,3 @@ struct Cost: Codable, Hashable, Equatable {
         }
     }
 }
-
-enum Kind: String, Codable {
-    case homeInsurance = "HEMFORSAKRING"
-
-    var description: String {
-        switch self {
-        case .homeInsurance:
-            return "Hemförsäkring"
-        }
-    }
-}
