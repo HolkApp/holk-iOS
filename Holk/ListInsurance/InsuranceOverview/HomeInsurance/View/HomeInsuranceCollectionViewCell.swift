@@ -169,24 +169,9 @@ extension HomeInsuranceCollectionViewCell: HolkRingChartDataSource {
         return 1 / CGFloat(numberOfSegments(ringChart))
     }
 
-    func ringChart(_ ringChart: HolkRingChart, ringChartWidthAt index: Int) -> CGFloat? {
-        return 4
-    }
-
     func ringChart(_ ringChart: HolkRingChart, colorForSegmentAt index: Int) -> UIColor? {
-        if index == 0 {
-            return Color.mainForeground
-        } else if index == 1 {
-            return Color.mainHighlight
-        } else if index == 2 {
-            return Color.success
-        } else if index == 3 {
-            return .green
-        } else if index == 4 {
-            return .red
-        } else {
-            return .cyan
-        }
+        let subInsurance = insurance?.subInsurances[index]
+        return subInsurance.flatMap(Color.backgroundColor(_:))
     }
 
     func ringChart(_ ringChart: HolkRingChart, iconForSegmentAt index: Int) -> UIImage? {
