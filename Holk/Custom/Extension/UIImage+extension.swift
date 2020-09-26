@@ -74,8 +74,12 @@ extension UIImage {
 extension UIImage {
     convenience init?(subInsurance: Insurance.SubInsurance) {
         switch subInsurance.kind {
+        case .movables: self.init(named: "movables")
         case .travel: self.init(named: "travel")
-        default:  self.init(named: "goods")
+        case .liability: self.init(named: "liability")
+        case .legal: self.init(named: "legal")
+        case .assault: self.init(named: "assault")
+        default: self.init(named: "travel")
         }
     }
 }
