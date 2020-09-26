@@ -19,12 +19,14 @@ enum Color {
         case blue8
         case blue9
         case green1
+        case green2
         case grey1
         case grey2
         case grey3
         case grey4
         case grey5
         case pink1
+        case pink2
         case red1
         case yellow2
         case yellow3
@@ -206,49 +208,6 @@ extension Color {
 
 }
 
-// MARK: Insurance SubInsurance Color
-extension Color {
-    static var goodsInsuranceBackgroundColor: UIColor {
-        return UIColor { traitCollection in
-            if traitCollection.userInterfaceStyle == .dark {
-                return makeColor(asset: .yellow2)
-            } else {
-                return makeColor(asset: .yellow2)
-            }
-        }
-    }
-
-    static var travelInsuranceBackgroundColor: UIColor {
-        return UIColor { traitCollection in
-            if traitCollection.userInterfaceStyle == .dark {
-                return makeColor(asset: .blue8)
-            } else {
-                return makeColor(asset: .blue8)
-            }
-        }
-    }
-
-    static var goodsInsuranceIconBackgroundColor: UIColor {
-        return UIColor { traitCollection in
-            if traitCollection.userInterfaceStyle == .dark {
-                return makeColor(asset: .yellow3)
-            } else {
-                return makeColor(asset: .yellow3)
-            }
-        }
-    }
-
-    static var travelInsuranceIconBackgroundColor: UIColor {
-        return UIColor { traitCollection in
-            if traitCollection.userInterfaceStyle == .dark {
-                return makeColor(asset: .blue6)
-            } else {
-                return makeColor(asset: .blue6)
-            }
-        }
-    }
-}
-
 // MARK: Suggestion
 extension Color {
     static var suggestionBackground: UIColor {
@@ -288,6 +247,43 @@ extension Color {
             } else {
                 return makeColor(asset: .grey1)
             }
+        }
+    }
+}
+
+// MARK: Color extension for SubInsurance
+extension Color {
+    static func backgroundColor(_ subInsurance: Insurance.SubInsurance) -> UIColor {
+        switch subInsurance.kind {
+        case .movables:
+            return makeColor(asset: .yellow2)
+        case .travel:
+            return makeColor(asset: .blue8)
+        case .liability:
+            return makeColor(asset: .red1)
+        case .legal:
+            return makeColor(asset: .grey3)
+        case .assault:
+            return makeColor(asset: .green1)
+        default:
+            return makeColor(asset: .blue8)
+        }
+    }
+
+    static func iconBackgroundColor(_ subInsurance: Insurance.SubInsurance) -> UIColor {
+        switch subInsurance.kind {
+        case .movables:
+            return makeColor(asset: .yellow3)
+        case .travel:
+            return makeColor(asset: .blue6)
+        case .liability:
+            return makeColor(asset: .pink2)
+        case .legal:
+            return makeColor(asset: .grey5)
+        case .assault:
+            return makeColor(asset: .green2)
+        default:
+            return makeColor(asset: .blue6)
         }
     }
 }
