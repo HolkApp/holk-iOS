@@ -9,7 +9,7 @@
 import UIKit
 
 extension UINavigationItem {
-    func setAppearance(backgroundColor: UIColor? = nil) {
+    func setAppearance(backgroundColor: UIColor = .clear) {
         let standard = UINavigationBarAppearance()
 
         standard.configureWithOpaqueBackground()
@@ -18,16 +18,16 @@ extension UINavigationItem {
         standard.shadowImage = UIImage()
         standard.shadowColor = .clear
 
-        let backIndicatorImage = UIImage(systemName: "chevron.left")?.withSymbolWeightConfiguration(.regular, pointSize: 30).withAlignmentRectInsets(.init(top: 0, left: -10, bottom: 0, right: 0))
+        let backIndicatorImage = UIImage(systemName: "chevron.left")?.withSymbolWeightConfiguration(.regular, pointSize: 30).withAlignmentRectInsets(.init(top: 0, left: -16, bottom: 0, right: 0))
 
         standard.setBackIndicatorImage(backIndicatorImage, transitionMaskImage: backIndicatorImage)
 
-        let largeTitleFont = Font.font(name: .poppins, weight: .semiBold, size: 30)
+        let largeTitleFont = FontStyleGuide.header4.font
         standard.largeTitleTextAttributes = [
             .font: largeTitleFont,
             .foregroundColor: Color.mainForeground
         ]
-        let titleFont = Font.font(name: .poppins, weight: .semiBold, size: 20)
+        let titleFont = FontStyleGuide.titleHeader2.font
         standard.titleTextAttributes = [
             .font: titleFont,
             .foregroundColor: Color.mainForeground
@@ -36,7 +36,7 @@ extension UINavigationItem {
         let button = UIBarButtonItemAppearance(style: .plain)
 
         button.normal.titleTextAttributes = [.foregroundColor: UIColor.clear]
-        button.normal.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -10)
+        button.normal.titlePositionAdjustment = .init(horizontal: 0, vertical: -4)
         standard.backButtonAppearance = button
 
         standardAppearance = standard
