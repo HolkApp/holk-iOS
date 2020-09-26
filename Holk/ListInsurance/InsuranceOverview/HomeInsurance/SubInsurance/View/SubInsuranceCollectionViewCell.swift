@@ -42,7 +42,7 @@ final class SubInsuranceCollectionViewCell: UICollectionViewCell {
     }
 
     func configure(_ subInsurance: Insurance.SubInsurance) {
-        iconView.imageView.image = UIImage.init(subInsurance: subInsurance)
+        iconView.imageView.image = UIImage.init(subInsurance: subInsurance)?.withRenderingMode(.alwaysTemplate)
         iconView.backgroundColor = Color.iconBackgroundColor(subInsurance)
         cardView.backgroundColor = Color.backgroundColor(subInsurance)
         titleLabel.set(text: subInsurance.header, with: .cardHeader2)
@@ -55,7 +55,7 @@ final class SubInsuranceCollectionViewCell: UICollectionViewCell {
 
     private func setup() {
         layer.cornerRadius = 15
-        layer.shadowOffset = CGSize(width: 0, height: 8)
+        layer.shadowOffset = CGSize(width: 0, height: 4)
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOpacity = 0.08
 

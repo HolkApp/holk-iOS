@@ -35,7 +35,7 @@ final class HomeInsuranceHeaderView: UICollectionReusableView {
             descriptionLabel.topAnchor.constraint(equalTo: titleLabel.lastBaselineAnchor, constant: 8),
             descriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             descriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            descriptionLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 8)
+            descriptionLabel.lastBaselineAnchor.constraint(equalTo: bottomAnchor, constant: -8)
         ])
     }
 

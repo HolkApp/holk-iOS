@@ -11,7 +11,6 @@ import Foundation
 struct ThinkOfSubInsuranceHeaderViewModel: Hashable {
     private var insurance: Insurance
 
-    var insuranceKind: Insurance.Kind
     var insuranceName: String?
     var insuranceImageURL: URL?
     var endDate: Date
@@ -19,7 +18,6 @@ struct ThinkOfSubInsuranceHeaderViewModel: Hashable {
 
     init(insurance: Insurance, provider: InsuranceProvider?) {
         self.insurance = insurance
-        insuranceKind = insurance.kind
         insuranceImageURL = provider?.logoUrl
         insuranceName = provider?.displayName
         endDate = insurance.endDate

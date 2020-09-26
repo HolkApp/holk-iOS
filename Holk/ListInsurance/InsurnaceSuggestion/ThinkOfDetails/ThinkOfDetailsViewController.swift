@@ -59,13 +59,13 @@ final class ThinkOfDetailsViewController: UIViewController {
         navigationItem.setAppearance()
         navigationController?.navigationBar.tintColor = Color.secondaryBackground
 
-        collectionView.contentInset.bottom = 40
         collectionView.delegate = self
         collectionView.bounces = false
         collectionView.backgroundColor = Color.secondaryBackground
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
-        collectionView.contentInsetAdjustmentBehavior = .never
+        collectionView.contentInset.top = -(navigationController?.navigationBar.frame.height ?? 0)
+        collectionView.contentInset.bottom = 40
         collectionView.registerCell(ThinkOfBannerCollectionViewCell.self)
         collectionView.registerCell(ThinkOfParagraphCollectionViewCell.self)
         collectionView.registerCell(SubInsuranceCollectionViewCell.self)

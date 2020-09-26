@@ -31,8 +31,8 @@ final class HomeSubInsurancesViewController: UIViewController {
 
     // MARK: - Private Variables
     private let insurance: Insurance
-    private let basicSubInsurances: [HomeSubInsuranceSegment]
-    private let additionalSubInsurances: [HomeSubInsuranceSegment]
+    private let subInsurances: [HomeSubInsuranceSegment]
+    private let addonInsurances: [HomeSubInsuranceSegment]
     private var selectedSegment: SubInsuranceSegment = .basic
     private lazy var dataSource = makeDataSource()
     private lazy var collectionView: UICollectionView = {
@@ -44,9 +44,9 @@ final class HomeSubInsurancesViewController: UIViewController {
     init(storeController: StoreController, insurance: Insurance) {
         self.storeController = storeController
         self.insurance = insurance
-        basicSubInsurances = insurance.subInsurances.compactMap { HomeSubInsuranceSegment.basic($0) }
+        subInsurances = insurance.subInsurances.compactMap { HomeSubInsuranceSegment.basic($0) }
         // TODO: Update this
-        additionalSubInsurances = []
+        addonInsurances = []
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -129,9 +129,9 @@ extension HomeSubInsurancesViewController {
         snapshot.appendSections(sections)
         switch selectedSegment {
         case .basic:
-            snapshot.appendItems(basicSubInsurances)
+            snapshot.appendItems(subInsurances)
         case .additional:
-            snapshot.appendItems(additionalSubInsurances)
+            snapshot.appendItems(addonInsurances)
         }
 
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)

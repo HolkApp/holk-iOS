@@ -44,7 +44,7 @@ final class InsuranceListViewController: UICollectionViewController {
         
         setup()
 
-        storeController.insuranceStore.$insuranceList
+        storeController.insuranceStore.$homeInsurances
             .sink { [weak self] in self?.insuranceList = $0 }
             .store(in: &cancellables)
         storeController.suggestionStore.suggestions

@@ -41,7 +41,7 @@ final class ThinkOfDetailsViewModel {
         } ?? []
 
         if let subInsurance = mappedSubInsurances.first {
-            iconImage = UIImage.init(subInsurance: subInsurance)
+            iconImage = UIImage.init(subInsurance: subInsurance)?.withRenderingMode(.alwaysTemplate)
             iconImageBackgroundColor = Color.iconBackgroundColor(subInsurance)
             headerBackgroundViewColor = Color.backgroundColor(subInsurance)
         }

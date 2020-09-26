@@ -31,6 +31,7 @@ final class ThinkOfBannerCollectionHeaderView: UICollectionReusableView {
         layoutMargins = .init(top: 0, left: 26, bottom: 26, right: 26)
 
         headerBackgroundView.translatesAutoresizingMaskIntoConstraints = false
+        iconView.tintColor = Color.mainForeground
         iconView.translatesAutoresizingMaskIntoConstraints = false
 
         tagLabel.setStyleGuide(.titleHeader1)

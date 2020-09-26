@@ -40,9 +40,9 @@ final class ThinkOfCollectionViewCell: UICollectionViewCell {
         iconView.tintColor = Color.mainForeground
         iconView.translatesAutoresizingMaskIntoConstraints = false
 
-        // TODO: Find the correct image
+        // TODO: Find the correct image and color
         thinkOfTypeIconView.imageView.image = UIImage(named: "travel")
-        thinkOfTypeIconView.backgroundColor = Color.travelInsuranceIconBackgroundColor
+        thinkOfTypeIconView.backgroundColor = Color.iconBackgroundColor(.init(body: "", header: "", iconUrl: URL(string: "test://")!, kind: .travel))
         thinkOfTypeIconView.translatesAutoresizingMaskIntoConstraints = false
 
         subInsuranceTypeLabel.setStyleGuide(.titleHeader1)
@@ -68,6 +68,11 @@ final class ThinkOfCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(titleLabel)
         contentView.addSubview(subInsuranceTypeLabel)
         contentView.addSubview(chevronView)
+
+        contentView.layer.shadowRadius = 16
+        contentView.layer.shadowOffset = CGSize(width: 0, height: 4)
+        contentView.layer.shadowColor = UIColor.black.withAlphaComponent(0.15).cgColor
+        contentView.layer.shadowOpacity = 1
 
         NSLayoutConstraint.activate([
             iconView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 14),

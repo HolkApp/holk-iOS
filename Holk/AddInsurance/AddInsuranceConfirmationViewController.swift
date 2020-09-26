@@ -83,7 +83,7 @@ final class AddInsuranceConfirmationViewController: UIViewController {
 
         cardContentView.backgroundColor = Color.mainBackground
         cardContentView.layer.shadowRadius = 15
-        cardContentView.layer.shadowOffset = CGSize(width: 0, height: 8)
+        cardContentView.layer.shadowOffset = CGSize(width: 0, height: 4)
         cardContentView.layer.shadowColor = UIColor.black.cgColor
         cardContentView.layer.shadowOpacity = 0.08
 

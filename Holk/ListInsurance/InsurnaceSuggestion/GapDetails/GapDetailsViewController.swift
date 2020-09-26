@@ -76,6 +76,11 @@ final class GapDetailsViewController: UIViewController {
         createButton.addTarget(self, action: #selector(createProtection), for: .touchUpInside)
         createButton.translatesAutoresizingMaskIntoConstraints = false
 
+        createButton.layer.shadowRadius = 8
+        createButton.layer.shadowOffset = CGSize(width: 0, height: 4)
+        createButton.layer.shadowColor = UIColor.black.withAlphaComponent(0.15).cgColor
+        createButton.layer.shadowOpacity = 1
+
         view.addSubview(collectionView)
         view.addSubview(createButton)
 

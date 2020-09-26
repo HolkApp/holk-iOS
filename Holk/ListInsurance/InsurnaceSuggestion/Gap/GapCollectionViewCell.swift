@@ -64,6 +64,11 @@ final class GapCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(tagLabel)
         contentView.addSubview(chevronView)
 
+        contentView.layer.shadowRadius = 16
+        contentView.layer.shadowOffset = CGSize(width: 0, height: 4)
+        contentView.layer.shadowColor = UIColor.black.withAlphaComponent(0.15).cgColor
+        contentView.layer.shadowOpacity = 1
+
         NSLayoutConstraint.activate([
             iconView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             iconView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 32),
