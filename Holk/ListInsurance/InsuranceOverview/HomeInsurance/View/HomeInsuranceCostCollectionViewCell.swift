@@ -17,6 +17,7 @@ final class HomeInsuranceCostCollectionViewCell: UICollectionViewCell {
     private let costLabel = UILabel()
     private let chevronView = UIImageView()
     private let bottomSeparatorLine = UIView()
+    private let amountFormatter = DynamicAmountFormatter()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,6 +30,8 @@ final class HomeInsuranceCostCollectionViewCell: UICollectionViewCell {
     }
 
     private func setup() {
+        amountFormatter.alwaysHidesCurrencySymbol = true
+
         contentView.backgroundColor = .clear
         contentView.layoutMargins = .init(top: 0, left: 6, bottom: 0, right: 6)
 
@@ -78,7 +81,8 @@ final class HomeInsuranceCostCollectionViewCell: UICollectionViewCell {
 
     func configure(_ insurance: Insurance) {
         self.insurance = insurance
-        let costText = String(format: "%.0f kr/mån", insurance.cost.monthlyPrice)
+        let cost = amountFormatter.string(from: insurance.cost.monthlyPrice)
+        let costText = "\(cost) kr/mån"
         costLabel.set(text: costText, with: .subHeader4)
     }
 }
