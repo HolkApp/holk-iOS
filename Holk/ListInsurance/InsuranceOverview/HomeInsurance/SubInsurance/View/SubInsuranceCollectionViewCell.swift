@@ -53,6 +53,18 @@ final class SubInsuranceCollectionViewCell: UICollectionViewCell {
         thinkOfValueLabel.set(text: "1", with: .number1)
     }
 
+    func configure(_ subInsurance: Insurance.AddonInsurance) {
+        // TODO: Update
+//        iconView.imageView.image = UIImage.init(subInsurance: subInsurance)?.withRenderingMode(.alwaysTemplate)
+        iconView.backgroundColor = Color.paragraphIconBackground
+        cardView.backgroundColor = Color.mainHighlight
+        titleLabel.set(text: subInsurance.header, with: .cardHeader2)
+        descriptionLabel.set(text: subInsurance.body, with: .body1)
+
+        gapValueLabel.set(text: "0", with: .number1)
+        thinkOfValueLabel.set(text: "0", with: .number1)
+    }
+
     private func setup() {
         layer.cornerRadius = 15
         layer.shadowOffset = CGSize(width: 0, height: 4)

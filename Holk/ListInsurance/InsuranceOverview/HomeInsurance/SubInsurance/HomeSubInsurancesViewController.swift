@@ -15,12 +15,12 @@ final class HomeSubInsurancesViewController: UIViewController {
 
     enum HomeSubInsuranceSegment: Hashable {
         case basic(Insurance.SubInsurance)
-        case additional(Insurance.SubInsurance)
+        case addon(Insurance.AddonInsurance)
     }
 
     enum SubInsuranceSegment {
         case basic
-        case additional
+        case addon
     }
 
     typealias DataSource = UICollectionViewDiffableDataSource<Section, HomeSubInsuranceSegment>
@@ -45,8 +45,7 @@ final class HomeSubInsurancesViewController: UIViewController {
         self.storeController = storeController
         self.insurance = insurance
         subInsurances = insurance.subInsurances.compactMap { HomeSubInsuranceSegment.basic($0) }
-        // TODO: Update this
-        addonInsurances = []
+        addonInsurances = insurance.addonInsurances.compactMap { HomeSubInsuranceSegment.addon($0) }
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -100,9 +99,9 @@ extension HomeSubInsurancesViewController {
                     let subInsuranceCollectionViewCell = collectionView.dequeueCell(SubInsuranceCollectionViewCell.self, indexPath: indexPath)
                     subInsuranceCollectionViewCell.configure(basicSubInsurance)
                     return subInsuranceCollectionViewCell
-                case .additional(let additionalSubInsurance):
+                case .addon(let addonSubInsurance):
                     let subInsuranceCollectionViewCell = collectionView.dequeueCell(SubInsuranceCollectionViewCell.self, indexPath: indexPath)
-                    subInsuranceCollectionViewCell.configure(additionalSubInsurance)
+                    subInsuranceCollectionViewCell.configure(addonSubInsurance)
                     return subInsuranceCollectionViewCell
                 }
         })
@@ -130,7 +129,7 @@ extension HomeSubInsurancesViewController {
         switch selectedSegment {
         case .basic:
             snapshot.appendItems(subInsurances)
-        case .additional:
+        case .addon:
             snapshot.appendItems(addonInsurances)
         }
 
