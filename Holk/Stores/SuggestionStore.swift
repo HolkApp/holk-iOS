@@ -12,6 +12,8 @@ import Combine
 final class SuggestionStore {
     // MARK: Public variables
     var suggestions = CurrentValueSubject<SuggestionsListResponse?, Never>(nil)
+    @Published var gaps: [GapSuggestion] = []
+    @Published var thinkOfs: [ThinkOfSuggestion] = []
 
     // MARK: - Private variables
     private let user: User
@@ -33,6 +35,8 @@ final class SuggestionStore {
                 break
             }
         }) { [weak self] suggestionsListResponse in
+            self?.gaps = suggestionsListResponse.gaps
+            self?.thinkOfs = suggestionsListResponse.thinkOfs
             self?.suggestions.value = suggestionsListResponse
             completion(.success(suggestionsListResponse))
         }.store(in: &cancellables)
@@ -40,5 +44,15 @@ final class SuggestionStore {
 
     func cancelAll() {
         cancellables.forEach { $0.cancel() }
+    }
+}
+
+extension SuggestionStore {
+    func thinkOfs(_ subInsurance: Insurance.SubInsurance) -> [ThinkOfSuggestion] {
+        return thinkOfs.filter {
+            return $0.tags.contains { tag in
+                tag.key == .subInsurance && tag.value == subInsurance.kind.rawValue
+            }
+        }
     }
 }

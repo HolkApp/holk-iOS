@@ -113,7 +113,8 @@ extension ThinkOfDetailsViewController {
                     return thinkOfParagraphCollectionViewCell
                 case .subInsurance(let thinkOfSubInsuranceViewModel):
                     let subInsuranceCollectionViewCell = collectionView.dequeueCell(SubInsuranceCollectionViewCell.self, indexPath: indexPath)
-                    subInsuranceCollectionViewCell.configure(thinkOfSubInsuranceViewModel.subInsurance)
+                    let thinkOfs = self.storeController.suggestionStore.thinkOfs(thinkOfSubInsuranceViewModel.subInsurance)
+                    subInsuranceCollectionViewCell.configure(thinkOfSubInsuranceViewModel.subInsurance, thinkOfs: thinkOfs)
                     return subInsuranceCollectionViewCell
                 }
         })

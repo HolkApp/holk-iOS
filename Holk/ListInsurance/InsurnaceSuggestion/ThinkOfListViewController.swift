@@ -34,7 +34,7 @@ final class ThinkOfListViewController: UIViewController {
 
     init(storeController: StoreController) {
         self.storeController = storeController
-        self.thinkOfs = storeController.suggestionStore.suggestions.value?.thinkOfs ?? []
+        self.thinkOfs = storeController.suggestionStore.thinkOfs
 
         super.init(nibName: nil, bundle: nil)
     }

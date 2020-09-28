@@ -34,7 +34,7 @@ final class GapListViewController: UIViewController {
 
     init(storeController: StoreController) {
         self.storeController = storeController
-        self.gaps = storeController.suggestionStore.suggestions.value?.gaps ?? []
+        self.gaps = storeController.suggestionStore.gaps
 
         super.init(nibName: nil, bundle: nil)
     }

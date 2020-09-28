@@ -97,11 +97,13 @@ extension HomeSubInsurancesViewController {
                 switch subInsurance {
                 case .basic(let basicSubInsurance):
                     let subInsuranceCollectionViewCell = collectionView.dequeueCell(SubInsuranceCollectionViewCell.self, indexPath: indexPath)
-                    subInsuranceCollectionViewCell.configure(basicSubInsurance)
+                    let thinkOfs = self.storeController.suggestionStore.thinkOfs(basicSubInsurance)
+                    subInsuranceCollectionViewCell.configure(basicSubInsurance, thinkOfs: thinkOfs)
                     return subInsuranceCollectionViewCell
                 case .addon(let addonSubInsurance):
                     let subInsuranceCollectionViewCell = collectionView.dequeueCell(SubInsuranceCollectionViewCell.self, indexPath: indexPath)
-                    subInsuranceCollectionViewCell.configure(addonSubInsurance)
+                    // TODO: Fix this for add ons
+                    subInsuranceCollectionViewCell.configure(addonSubInsurance, thinkOfs: [])
                     return subInsuranceCollectionViewCell
                 }
         })

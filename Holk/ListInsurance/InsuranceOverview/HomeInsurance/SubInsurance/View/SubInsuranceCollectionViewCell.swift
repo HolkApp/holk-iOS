@@ -41,7 +41,7 @@ final class SubInsuranceCollectionViewCell: UICollectionViewCell {
         iconView.backgroundColor = nil
     }
 
-    func configure(_ subInsurance: Insurance.SubInsurance) {
+    func configure(_ subInsurance: Insurance.SubInsurance, thinkOfs: [ThinkOfSuggestion]) {
         iconView.imageView.image = UIImage.init(subInsurance: subInsurance)?.withRenderingMode(.alwaysTemplate)
         iconView.backgroundColor = Color.iconBackgroundColor(subInsurance)
         cardView.backgroundColor = Color.backgroundColor(subInsurance)
@@ -50,10 +50,10 @@ final class SubInsuranceCollectionViewCell: UICollectionViewCell {
 
         // TODO:
         gapValueLabel.set(text: "0", with: .number1)
-        thinkOfValueLabel.set(text: "1", with: .number1)
+        thinkOfValueLabel.set(text: "\(thinkOfs.count)", with: .number1)
     }
 
-    func configure(_ subInsurance: Insurance.AddonInsurance) {
+    func configure(_ subInsurance: Insurance.AddonInsurance, thinkOfs: [ThinkOfSuggestion]) {
         // TODO: Update
 //        iconView.imageView.image = UIImage.init(subInsurance: subInsurance)?.withRenderingMode(.alwaysTemplate)
         iconView.backgroundColor = Color.paragraphIconBackground
@@ -62,7 +62,7 @@ final class SubInsuranceCollectionViewCell: UICollectionViewCell {
         descriptionLabel.set(text: subInsurance.body, with: .body1)
 
         gapValueLabel.set(text: "0", with: .number1)
-        thinkOfValueLabel.set(text: "0", with: .number1)
+        thinkOfValueLabel.set(text: "\(thinkOfs.count)", with: .number1)
     }
 
     private func setup() {
