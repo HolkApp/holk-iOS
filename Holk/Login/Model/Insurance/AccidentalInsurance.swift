@@ -23,7 +23,6 @@ struct AccidentalInsurance: Codable, Hashable, Equatable {
 
     let id: AccidentalInsurance.ID
     let insuranceProviderName: String
-    let kind: AddonInsurance.Kind
     let providerReference: String
     let insuranceObject: String
     let cost: Cost
@@ -49,7 +48,6 @@ extension AccidentalInsurance {
         id = AccidentalInsurance.ID(idString)
         insuranceProviderName = try container.decode(String.self, forKey: .insuranceProviderName)
         insuranceObject = try container.decode(String.self, forKey: .insuranceObject)
-        kind = .accidental
         providerReference = try container.decode(String.self, forKey: .providerReference)
         startDate = try container.decode(Date.self, forKey: .startDate)
         endDate = try container.decode(Date.self, forKey: .endDate)

@@ -7,3 +7,41 @@
 //
 
 import Foundation
+
+extension Insurance {
+    struct SubInsurance: Codable, Hashable, Equatable {
+        enum Kind: String, Codable {
+            case liability = "LIABILITY"
+            case assault = "ASSAULT"
+            case legal = "LEGAL"
+            case movables = "MOVABLES"
+            case travel = "TRAVEL"
+
+            // TODO: Maybe will be removed?
+            case child = "CHILD_INSURANCE"
+        }
+
+        let body: String
+        let header: String
+        let iconUrl: URL
+        let kind: Kind
+
+        private enum CodingKeys: String, CodingKey {
+            case kind = "type"
+            case header = "headerText"
+            case body = "bodyText"
+            case iconUrl = "iconUrl"
+        }
+    }
+}
+
+extension Insurance.SubInsurance {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        kind = try container.decode(Kind.self, forKey: .kind)
+        body = try container.decode(String.self, forKey: .body)
+        header = try container.decode(String.self, forKey: .header)
+        iconUrl = try container.decode(URL.self, forKey: .iconUrl)
+    }
+}

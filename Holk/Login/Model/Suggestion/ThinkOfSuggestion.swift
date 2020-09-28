@@ -7,7 +7,9 @@ struct ThinkOfSuggestion: Codable, Hashable {
         let paragraphs: [Paragraph]
     }
 
+    let coverPhoto: URL
     let title: String
-    let type: String
+    let header: String
     let details: Details
+    let tags: [SuggestionTag]
 }

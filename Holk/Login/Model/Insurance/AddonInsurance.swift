@@ -8,19 +8,24 @@
 
 import Foundation
 
+extension Insurance {
+    struct AddonInsurance: Codable, Hashable, Equatable {
+        var kind: Kind
+        let insuranceProviderName: String
+        let body: String
+        let header: String
 
-struct AddonInsurance: Codable, Hashable, Equatable {
-    var kind: Kind
-    let insuranceProviderName: String
-
-    enum Kind: String, Codable {
-        case accidental = "ACCIDENTAL"
+        enum Kind: String, Codable {
+            case accidental = "ACCIDENTAL"
+        }
     }
 }
 
-extension AddonInsurance {
+extension Insurance.AddonInsurance {
     init(_ accidentalInsurance: AccidentalInsurance) {
         kind = .accidental
         insuranceProviderName = accidentalInsurance.insuranceProviderName
+        header = "Accidental insurance text"
+        body = "Mock text, need to get from backend"
     }
 }
