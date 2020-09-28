@@ -166,7 +166,7 @@ extension ThinkOfDetailsViewController {
         sections.forEach { section in
             switch section {
             case .banner:
-                let bannerItem = Item.banner(imageURL: nil)
+                let bannerItem = Item.banner(imageURL: viewModel.coverImage)
                 snapshot.appendItems([bannerItem], toSection: section)
             case .paragraph:
                 let paragraphItems = viewModel.makeAllThinkOfParagraphViewModel().map({ Item.paragraph($0) })

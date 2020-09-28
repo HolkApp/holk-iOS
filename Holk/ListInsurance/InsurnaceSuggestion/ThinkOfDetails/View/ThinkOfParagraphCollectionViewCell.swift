@@ -57,7 +57,9 @@ final class ThinkOfParagraphCollectionViewCell: UICollectionViewCell {
 extension ThinkOfParagraphCollectionViewCell {
     func configure(_ viewModel: ThinkOfParagraphViewModel) {
         // TODO: Configure the icon
-//        paragraph.icon
+        UIImage.makeImage(with: viewModel.icon) { [weak self] image in
+            self?.iconView.imageView.image = image
+        }
         descriptionLabel.set(text: viewModel.text, with: .body2)
     }
 }

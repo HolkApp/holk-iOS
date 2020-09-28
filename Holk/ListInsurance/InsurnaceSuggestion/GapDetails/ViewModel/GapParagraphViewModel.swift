@@ -9,7 +9,7 @@
 import UIKit
 
 struct GapParagraphViewModel: Hashable {
-    let icon: String
+    let icon: URL
     let title: String
     let text: String
 

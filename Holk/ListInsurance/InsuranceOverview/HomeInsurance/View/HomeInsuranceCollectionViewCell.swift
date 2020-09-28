@@ -46,7 +46,7 @@ final class HomeInsuranceCollectionViewCell: UICollectionViewCell {
         self.insurance = insurance
 
         titleLabel.set(text: "Dina skydd", with: .header6)
-        insuranceSubNumberLabel.set(text: "\(insurance.subInsurances.count)", with: .largeNumber)
+        insuranceSubNumberLabel.set(text: "\(insurance.subInsurances.count + insurance.addonInsurances.count)", with: .largeNumber)
         insuranceTextLabel.set(text: "Skydd", with: .subHeader2)
         
         if let provider = provider {

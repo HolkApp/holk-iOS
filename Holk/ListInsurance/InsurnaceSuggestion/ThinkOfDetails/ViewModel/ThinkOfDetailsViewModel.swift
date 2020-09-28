@@ -21,6 +21,7 @@ final class ThinkOfDetailsViewModel {
 
     // TODO: fix
     var iconImage: UIImage?
+    var coverImage: URL?
     var iconImageBackgroundColor: UIColor?
     var headerBackgroundViewColor: UIColor?
 
@@ -30,7 +31,7 @@ final class ThinkOfDetailsViewModel {
 
         title = thinkOfSuggestion.title
         detailParagraphs = thinkOfSuggestion.details.paragraphs
-        subInsuranceText = thinkOfSuggestion.type
+        subInsuranceText = thinkOfSuggestion.header
 
         // TOOD: Remove the mock
         mappedInsurance = insurances.first { insurance in
@@ -39,7 +40,8 @@ final class ThinkOfDetailsViewModel {
         mappedSubInsurances = mappedInsurance?.subInsurances.filter { subInsurance in
             subInsurance.kind == .child
         } ?? []
-
+        coverImage = thinkOfSuggestion.coverPhoto
+        
         if let subInsurance = mappedSubInsurances.first {
             iconImage = UIImage.init(subInsurance: subInsurance)?.withRenderingMode(.alwaysTemplate)
             iconImageBackgroundColor = Color.iconBackgroundColor(subInsurance)

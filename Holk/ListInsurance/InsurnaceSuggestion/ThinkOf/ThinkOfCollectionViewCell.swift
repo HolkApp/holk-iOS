@@ -28,7 +28,7 @@ final class ThinkOfCollectionViewCell: UICollectionViewCell {
 
     func configure(_ thinkOf: ThinkOfSuggestion) {
         titleLabel.set(text: thinkOf.title, with: .cardHeader2)
-        subInsuranceTypeLabel.set(text: thinkOf.type, with: .titleHeader1)
+        subInsuranceTypeLabel.set(text: thinkOf.header, with: .titleHeader1)
     }
 
     private func setup() {

@@ -108,8 +108,7 @@ final class SubInsuranceHeaderView: UICollectionReusableView {
         descriptionLabel.set(text: insurance.kind.description, with: .subHeader3)
 
         basicSubInsurancesSegmentView.configure("Grundskydd", numberOfSubInsurances:  insurance.subInsurances.count)
-        // TODO: Put addon here
-        additionalSubInsurancesSegmentView.configure("Tilläggsskydd", numberOfSubInsurances:  0)
+        additionalSubInsurancesSegmentView.configure("Tilläggsskydd", numberOfSubInsurances:  insurance.addonInsurances.count)
     }
 }
 
@@ -122,7 +121,7 @@ extension SubInsuranceHeaderView {
         } else {
             basicSubInsurancesSegmentView.isSelected = false
             additionalSubInsurancesSegmentView.isSelected = true
-            subInsurancesViewController?.updateSelection(.additional)
+            subInsurancesViewController?.updateSelection(.addon)
         }
     }
 }

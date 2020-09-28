@@ -10,7 +10,7 @@ import Foundation
 
 struct ThinkOfParagraphViewModel: Hashable {
     private var paragraph: Paragraph
-    var icon: String
+    var icon: URL
     var text: String
 
     init(paragraph: Paragraph) {

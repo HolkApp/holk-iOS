@@ -14,7 +14,6 @@ final class InsuranceStore {
     var insuranceStatus = PassthroughSubject<Result<ScrapingStatusResponse.ScrapingStatus, APIError>, Never>()
     @Published var aggregatedInsuranceIds: [Insurance.ID] = []
     @Published var homeInsurances: [Insurance] = []
-    var accidentalInsuranceList: [AccidentalInsurance] = []
 
     // MARK: - Private variables
     private let user: User
@@ -96,9 +95,5 @@ extension InsuranceStore {
                 subInsurance.kind == .child
             }
         }
-    }
-
-    func accidentialInsurance(insurance: Insurance) -> AccidentalInsurance? {
-        return accidentalInsuranceList.first { $0.insuranceProviderName == insurance.insuranceProviderName }
     }
 }
