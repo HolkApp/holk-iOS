@@ -37,19 +37,20 @@ final class ThinkOfBannerCollectionViewCell: UICollectionViewCell {
             imageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             imageView.topAnchor.constraint(equalTo: topAnchor),
             imageView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            imageView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            imageView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            imageView.heightAnchor.constraint(equalToConstant: 190)
         ])
     }
 }
 
 extension ThinkOfBannerCollectionViewCell {
     func configure(_ imageURL: URL?) {
-        if let imageURL = imageURL {
-            UIImage.makeImage(with: imageURL) { [weak self] image in
+        UIImage.makeImage(with: imageURL) { [weak self] image in
+            if let image = image {
                 self?.imageView.image = image
+            } else {
+                self?.imageView.image = UIImage(named: "thinkOfPlaceholder")
             }
-        } else {
-            imageView.image = UIImage(named: "thinkOfPlaceholder")
         }
     }
 }

@@ -56,7 +56,6 @@ final class ThinkOfParagraphCollectionViewCell: UICollectionViewCell {
 
 extension ThinkOfParagraphCollectionViewCell {
     func configure(_ viewModel: ThinkOfParagraphViewModel) {
-        // TODO: Configure the icon
         UIImage.makeImage(with: viewModel.icon) { [weak self] image in
             self?.iconView.imageView.image = image
         }
