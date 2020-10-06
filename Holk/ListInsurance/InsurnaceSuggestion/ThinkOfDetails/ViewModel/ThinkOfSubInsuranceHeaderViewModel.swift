@@ -9,9 +9,7 @@
 import Foundation
 
 struct ThinkOfSubInsuranceHeaderViewModel: Hashable {
-    private var insurance: Insurance
-
-    var insuranceName: String?
+    var insurance: Insurance
     var insuranceImageURL: URL?
     var endDate: Date
     var endDateString: String { DateFormatter.yyyyMMddDateFormatter.string(from: endDate) }
@@ -19,7 +17,6 @@ struct ThinkOfSubInsuranceHeaderViewModel: Hashable {
     init(insurance: Insurance, provider: InsuranceProvider?) {
         self.insurance = insurance
         insuranceImageURL = provider?.logoUrl
-        insuranceName = provider?.displayName
         endDate = insurance.endDate
     }
 }

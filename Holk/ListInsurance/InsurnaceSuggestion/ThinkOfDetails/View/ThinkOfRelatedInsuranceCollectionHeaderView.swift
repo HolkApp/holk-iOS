@@ -149,7 +149,7 @@ final class ThinkOfRelatedInsuranceCollectionHeaderView: UICollectionReusableVie
 
 extension ThinkOfRelatedInsuranceCollectionHeaderView {
     func configure(_ viewModel: ThinkOfSubInsuranceHeaderViewModel) {
-        nameValueLabel.set(text: viewModel.insuranceName, with: .titleHeader2)
+        nameValueLabel.set(text: viewModel.insurance.kind.description, with: .titleHeader2)
         endDateValueLabel.set(text: viewModel.endDateString, with: .titleHeader2)
         if let imageURL = viewModel.insuranceImageURL {
             UIImage.makeImage(with: imageURL) { [weak self] image in
