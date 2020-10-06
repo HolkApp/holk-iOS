@@ -28,7 +28,6 @@ final class ThinkOfDetailsViewController: UIViewController {
     private let viewModel: ThinkOfDetailsViewModel
     private var storeController: StoreController
     private var thinkOf: ThinkOfSuggestion
-    private var relatedInsurances: [Insurance]
     private var shouldShowSubInsurance: Bool
 
     private lazy var dataSource = makeDataSource()
@@ -41,8 +40,7 @@ final class ThinkOfDetailsViewController: UIViewController {
         self.storeController = storeController
         self.thinkOf = thinkOf
         self.shouldShowSubInsurance = shouldShowSubInsurance
-        relatedInsurances = storeController.insuranceStore.relatedInsurances(thinkOf: thinkOf)
-        viewModel = ThinkOfDetailsViewModel(storeController, thinkOfSuggestion: thinkOf, insurances: relatedInsurances)
+        viewModel = ThinkOfDetailsViewModel(storeController, thinkOfSuggestion: thinkOf, insurances: storeController.insuranceStore.homeInsurances)
 
         super.init(nibName: nil, bundle: nil)
     }

@@ -34,12 +34,9 @@ final class ThinkOfDetailsViewModel {
         subInsuranceText = thinkOfSuggestion.header
 
         // TOOD: Remove the mock
-        mappedInsurance = insurances.first { insurance in
-            insurance.subInsurances.contains { segment in segment.kind == .travel }
-        }
-        mappedSubInsurances = mappedInsurance?.subInsurances.filter { subInsurance in
-            subInsurance.kind == .travel
-        } ?? []
+        mappedInsurance = insurances.first
+
+        mappedSubInsurances = thinkOfSuggestion.relatedSubInsurances(OfInsurances: insurances)
         coverImage = thinkOfSuggestion.coverPhoto
         
         if let subInsurance = mappedSubInsurances.first {
