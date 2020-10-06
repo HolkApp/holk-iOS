@@ -118,10 +118,10 @@ final class ThinkOfRelatedInsuranceCollectionHeaderView: UICollectionReusableVie
 
             providerLabel.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
             providerLabel.topAnchor.constraint(equalTo: nameSeparatorline.bottomAnchor, constant: 16),
-            providerLabel.trailingAnchor.constraint(equalTo: providerValueLabel.leadingAnchor, constant: -8),
+            providerLabel.trailingAnchor.constraint(lessThanOrEqualTo: providerValueLabel.leadingAnchor, constant: -8),
 
-            providerValueLabel.heightAnchor.constraint(equalToConstant: 32),
-            providerValueLabel.widthAnchor.constraint(equalToConstant: 140),
+            providerValueLabel.heightAnchor.constraint(equalToConstant: 48),
+            providerValueLabel.widthAnchor.constraint(equalToConstant: 110),
             providerValueLabel.centerYAnchor.constraint(equalTo: providerLabel.centerYAnchor),
             providerValueLabel.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
 
