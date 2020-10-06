@@ -15,8 +15,11 @@ extension Insurance {
         let body: String
         let header: String
 
-        enum Kind: String, Codable {
+        enum Kind: String, Codable, DefaultableDecodable {
             case accidental = "ACCIDENTAL"
+            case unknown
+
+            static var decodeFallbackValue = unknown
         }
     }
 }

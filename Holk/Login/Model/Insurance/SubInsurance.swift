@@ -10,15 +10,15 @@ import Foundation
 
 extension Insurance {
     struct SubInsurance: Codable, Hashable, Equatable {
-        enum Kind: String, Codable {
+        enum Kind: String, Codable, DefaultableDecodable {
             case liability = "LIABILITY"
             case assault = "ASSAULT"
             case legal = "LEGAL"
             case movables = "MOVABLES"
             case travel = "TRAVEL"
+            case unknown
 
-            // TODO: Maybe will be removed?
-            case child = "CHILD_INSURANCE"
+            static var decodeFallbackValue = unknown
         }
 
         let body: String

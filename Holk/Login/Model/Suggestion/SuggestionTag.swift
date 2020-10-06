@@ -12,7 +12,10 @@ struct SuggestionTag: Codable, Hashable {
     let key: Key
     let value: String
 
-    enum Key: String, Codable {
+    enum Key: String, Codable, DefaultableDecodable {
         case subInsurance = "HOMEINSURANCE_SUBINSURANCE"
+        case unknown
+
+        static var decodeFallbackValue = unknown
     }
 }
