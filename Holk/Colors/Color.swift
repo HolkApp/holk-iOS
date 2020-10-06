@@ -265,7 +265,7 @@ extension Color {
             return makeColor(asset: .grey3)
         case .assault:
             return makeColor(asset: .green1)
-        default:
+        case .unknown:
             return makeColor(asset: .blue8)
         }
     }
@@ -282,7 +282,7 @@ extension Color {
             return makeColor(asset: .grey5)
         case .assault:
             return makeColor(asset: .green2)
-        default:
+        case .unknown:
             return makeColor(asset: .blue6)
         }
     }
