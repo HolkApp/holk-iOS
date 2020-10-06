@@ -122,39 +122,39 @@ extension ThinkOfDetailsViewController {
             guard let self = self else { return nil }
             switch Section.allCases[indexPath.section] {
             case.banner:
-                if kind == UICollectionView.elementKindSectionHeader {
-                    let thinkOfDetailCollectionHeaderView = collectionView.dequeueReusableSupplementaryView(
-                        ThinkOfBannerCollectionHeaderView.self,
-                        of: kind,
-                        indexPath: indexPath
-                    )
-                    thinkOfDetailCollectionHeaderView.configure(self.viewModel)
-                    return thinkOfDetailCollectionHeaderView
+                guard kind == UICollectionView.elementKindSectionHeader else {
+                    return UICollectionReusableView()
                 }
-                return nil
+                let thinkOfDetailCollectionHeaderView = collectionView.dequeueReusableSupplementaryView(
+                    ThinkOfBannerCollectionHeaderView.self,
+                    of: kind,
+                    indexPath: indexPath
+                )
+                thinkOfDetailCollectionHeaderView.configure(self.viewModel)
+                return thinkOfDetailCollectionHeaderView
             case .paragraph:
-                if kind == UICollectionView.elementKindSectionHeader {
-                    let thinkOfParagraphHeaderViewModel = self.viewModel.makeThinkOfParagraphHeaderViewModel()
-                    let thinkOfParagraphCollectionHeaderView = collectionView.dequeueReusableSupplementaryView(
-                        ThinkOfParagraphCollectionHeaderView.self,
-                        of: kind,
-                        indexPath: indexPath
-                    )
-                    thinkOfParagraphCollectionHeaderView.configure(thinkOfParagraphHeaderViewModel)
-                    return thinkOfParagraphCollectionHeaderView
+                guard kind == UICollectionView.elementKindSectionHeader else {
+                    return UICollectionReusableView()
                 }
-                return nil
+                let thinkOfParagraphCollectionHeaderView = collectionView.dequeueReusableSupplementaryView(
+                    ThinkOfParagraphCollectionHeaderView.self,
+                    of: kind,
+                    indexPath: indexPath
+                )
+                let thinkOfParagraphHeaderViewModel = self.viewModel.makeThinkOfParagraphHeaderViewModel()
+                thinkOfParagraphCollectionHeaderView.configure(thinkOfParagraphHeaderViewModel)
+                return thinkOfParagraphCollectionHeaderView
             case .subInsurance:
-                if kind == UICollectionView.elementKindSectionHeader, let subInsuranceHeaderViewModel = self.viewModel.makeThinkOfSubInsuranceHeaderViewModel() {
-                    let thinkOfRelatedInsuranceCollectionHeaderView = collectionView.dequeueReusableSupplementaryView(
-                        ThinkOfRelatedInsuranceCollectionHeaderView.self,
-                        of: kind,
-                        indexPath: indexPath
-                    )
-                    thinkOfRelatedInsuranceCollectionHeaderView.configure(subInsuranceHeaderViewModel)
-                    return thinkOfRelatedInsuranceCollectionHeaderView
+                guard kind == UICollectionView.elementKindSectionHeader, let subInsuranceHeaderViewModel = self.viewModel.makeThinkOfSubInsuranceHeaderViewModel() else {
+                    return UICollectionReusableView()
                 }
-                return nil
+                let thinkOfRelatedInsuranceCollectionHeaderView = collectionView.dequeueReusableSupplementaryView(
+                    ThinkOfRelatedInsuranceCollectionHeaderView.self,
+                    of: kind,
+                    indexPath: indexPath
+                )
+                thinkOfRelatedInsuranceCollectionHeaderView.configure(subInsuranceHeaderViewModel)
+                return thinkOfRelatedInsuranceCollectionHeaderView
             }
         })
         return dataSource
@@ -173,10 +173,9 @@ extension ThinkOfDetailsViewController {
                 let paragraphItems = viewModel.makeAllThinkOfParagraphViewModel().map({ Item.paragraph($0) })
                 snapshot.appendItems(paragraphItems, toSection: section)
             case .subInsurance:
-                if self.shouldShowSubInsurance {
-                    let subInsuranceItems = viewModel.makeAllThinkOfSubInsuranceViewModel().map { Item.subInsurance($0) }
-                    snapshot.appendItems(subInsuranceItems, toSection: section)
-                }
+                guard self.shouldShowSubInsurance else { return }
+                let subInsuranceItems = viewModel.makeAllThinkOfSubInsuranceViewModel().map { Item.subInsurance($0) }
+                snapshot.appendItems(subInsuranceItems, toSection: section)
             }
         }
 
