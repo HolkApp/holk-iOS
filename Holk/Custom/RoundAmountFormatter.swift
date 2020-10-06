@@ -1,14 +1,14 @@
 //
-//  DynamicAmountFormatter.swift
+//  RoundAmountFormatter.swift
 //  Holk
 //
-//  Created by 张梦皓 on 2020-09-23.
+//  Created by 张梦皓 on 2020-10-06.
 //  Copyright © 2020 Holk. All rights reserved.
 //
 
 import Foundation
 
-final class DynamicAmountFormatter: NumberFormatter {
+final class RoundAmountFormatter: NumberFormatter {
     var alwaysHidesCurrencySymbol: Bool {
         get {
             return numberStyle != .currency
@@ -30,7 +30,7 @@ final class DynamicAmountFormatter: NumberFormatter {
 
         self.numberStyle = .currency
         minimumFractionDigits = 0
-        maximumFractionDigits = 2
+        maximumFractionDigits = 0
     }
 
     required init?(coder aDecoder: NSCoder) {

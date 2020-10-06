@@ -171,6 +171,7 @@
 		8FF6E75422B9634400F6D398 /* HolkSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF6E75322B9634400F6D398 /* HolkSegmentedControl.swift */; };
 		8FFF8CB32521079400F980AF /* SuggestionTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFF8CB22521079400F980AF /* SuggestionTag.swift */; };
 		8FFF8CCD252CFFA300F980AF /* DefaultableCodable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFF8CCC252CFFA300F980AF /* DefaultableCodable+Extension.swift */; };
+		8FFF8CD5252D186700F980AF /* RoundAmountFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FFF8CD4252D186700F980AF /* RoundAmountFormatter.swift */; };
 		BAF35E3A0FC2681C15010270 /* Pods_Holk.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8FE8B9DA95EB0FD6E86D7C8 /* Pods_Holk.framework */; };
 		BEC69268D196FC01992EDBB1 /* Pods_HolkTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B80DFE433079278D0CE38BB /* Pods_HolkTests.framework */; };
 /* End PBXBuildFile section */
@@ -358,6 +359,7 @@
 		8FF6E75322B9634400F6D398 /* HolkSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolkSegmentedControl.swift; sourceTree = "<group>"; };
 		8FFF8CB22521079400F980AF /* SuggestionTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionTag.swift; sourceTree = "<group>"; };
 		8FFF8CCC252CFFA300F980AF /* DefaultableCodable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DefaultableCodable+Extension.swift"; sourceTree = "<group>"; };
+		8FFF8CD4252D186700F980AF /* RoundAmountFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundAmountFormatter.swift; sourceTree = "<group>"; };
 		97E98E517D78DF88FA66A5F6 /* Pods-Holk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Holk.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Holk/Pods-Holk.debug.xcconfig"; sourceTree = "<group>"; };
 		9F4E618218FC1902FC784B34 /* Pods-HolkTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HolkTests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-HolkTests/Pods-HolkTests.staging.xcconfig"; sourceTree = "<group>"; };
 		CBDD3942014B08C5EE16C7C5 /* Pods-HolkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HolkTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HolkTests/Pods-HolkTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -870,6 +872,7 @@
 			isa = PBXGroup;
 			children = (
 				8FC39F6C251BA8BA00F26DBB /* DynamicAmountFormatter.swift */,
+				8FFF8CD4252D186700F980AF /* RoundAmountFormatter.swift */,
 				8FE52F07239BBDD6001A77F5 /* Helper */,
 				8F9C83DD22A6E316005BB336 /* CustomView */,
 				8F858A4523CB376B006B416A /* Extension */,
@@ -1242,6 +1245,7 @@
 				8FC8EA7824BB3EC200BE69D9 /* ThinkOfRelatedInsuranceCollectionHeaderView.swift in Sources */,
 				8F5D89E52450F11C007F1B26 /* AuthenticationService.swift in Sources */,
 				8F63AE34250A1677008A39A0 /* GapParagraphHeaderViewModel.swift in Sources */,
+				8FFF8CD5252D186700F980AF /* RoundAmountFormatter.swift in Sources */,
 				8FA766CF24435607007EB2A2 /* FontStyleGuide.swift in Sources */,
 				8FC39F7E251BEAB100F26DBB /* Cost.swift in Sources */,
 				8FD84E682270E732009D563D /* AppDelegate.swift in Sources */,
