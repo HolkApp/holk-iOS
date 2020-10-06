@@ -29,6 +29,7 @@ final class ThinkOfDetailsViewController: UIViewController {
     private var storeController: StoreController
     private var thinkOf: ThinkOfSuggestion
     private var relatedInsurances: [Insurance]
+    private var shouldShowSubInsurance: Bool
 
     private lazy var dataSource = makeDataSource()
     private lazy var collectionView: UICollectionView = {
@@ -36,9 +37,10 @@ final class ThinkOfDetailsViewController: UIViewController {
         return UICollectionView(frame: .zero, collectionViewLayout: layout)
     }()
 
-    init(storeController: StoreController, thinkOf: ThinkOfSuggestion) {
+    init(storeController: StoreController, thinkOf: ThinkOfSuggestion, shouldShowSubInsurance: Bool = true) {
         self.storeController = storeController
         self.thinkOf = thinkOf
+        self.shouldShowSubInsurance = shouldShowSubInsurance
         relatedInsurances = storeController.insuranceStore.relatedInsurances(thinkOf: thinkOf)
         viewModel = ThinkOfDetailsViewModel(storeController, thinkOfSuggestion: thinkOf, insurances: relatedInsurances)
 
@@ -173,8 +175,10 @@ extension ThinkOfDetailsViewController {
                 let paragraphItems = viewModel.makeAllThinkOfParagraphViewModel().map({ Item.paragraph($0) })
                 snapshot.appendItems(paragraphItems, toSection: section)
             case .subInsurance:
-                let subInsuranceItems = viewModel.makeAllThinkOfSubInsuranceViewModel().map { Item.subInsurance($0) }
-                snapshot.appendItems(subInsuranceItems, toSection: section)
+                if self.shouldShowSubInsurance {
+                    let subInsuranceItems = viewModel.makeAllThinkOfSubInsuranceViewModel().map { Item.subInsurance($0) }
+                    snapshot.appendItems(subInsuranceItems, toSection: section)
+                }
             }
         }
 
