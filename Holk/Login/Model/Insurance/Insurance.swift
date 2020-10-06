@@ -21,36 +21,18 @@ struct Insurance: Codable, Hashable, Equatable {
         let value: String
     }
 
-    struct Cost: Codable, Hashable, Equatable {
-        enum Frequency: String, Codable {
-            case annual = "ANNUAL"
-            case monthly = "MONTHLY"
-        }
-
-        let paymentFrequency: Frequency
-        let price: Double
-
-        var monthlyPrice: Double {
-            switch paymentFrequency {
-            case .annual: return price / 12.0
-            case .monthly: return price
-            }
-        }
-        var annualPrice: Double {
-            switch paymentFrequency {
-            case .annual: return price
-            case .monthly: return price * 12.0
-            }
-        }
-    }
-
-    enum Kind: String, Codable {
+    enum Kind: String, Codable, DefaultableDecodable {
         case homeInsurance = "HEMFORSAKRING"
+        case unknown
+
+        static var decodeFallbackValue = unknown
 
         var description: String {
             switch self {
             case .homeInsurance:
                 return "Hemförsäkring"
+            case .unknown:
+                return self.rawValue
             }
         }
     }

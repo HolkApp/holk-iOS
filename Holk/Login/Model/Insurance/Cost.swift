@@ -9,9 +9,12 @@
 import Foundation
 
 struct Cost: Codable, Hashable, Equatable {
-    enum Frequency: String, Codable {
+    enum Frequency: String, Codable, DefaultableDecodable {
         case annual = "ANNUAL"
         case monthly = "MONTHLY"
+        case unknown
+
+        static var decodeFallbackValue = unknown
     }
 
     let paymentFrequency: Frequency
@@ -21,12 +24,14 @@ struct Cost: Codable, Hashable, Equatable {
         switch paymentFrequency {
         case .annual: return price / 12.0
         case .monthly: return price
+        case .unknown: return price
         }
     }
     var annualPrice: Double {
         switch paymentFrequency {
         case .annual: return price
         case .monthly: return price * 12.0
+        case .unknown: return price * 12.0
         }
     }
 }
