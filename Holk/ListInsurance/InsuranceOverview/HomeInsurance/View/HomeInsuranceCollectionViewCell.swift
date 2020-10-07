@@ -43,8 +43,6 @@ final class HomeInsuranceCollectionViewCell: UICollectionViewCell {
     }
 
     func configure(_ insurance: Insurance, provider: InsuranceProvider?) {
-        self.insurance = insurance
-
         titleLabel.set(text: "Dina skydd", with: .header6)
         insuranceSubNumberLabel.set(text: "\(insurance.subInsurances.count + insurance.addonInsurances.count)", with: .largeNumber)
         insuranceTextLabel.set(text: "Skydd", with: .subHeader2)
@@ -54,6 +52,8 @@ final class HomeInsuranceCollectionViewCell: UICollectionViewCell {
                 self?.insuranceImageView.image = image
             }
         }
+
+        self.insurance = insurance
 
         ringChart.reloadSegments()
     }
@@ -157,12 +157,11 @@ final class HomeInsuranceCollectionViewCell: UICollectionViewCell {
 }
 
 extension HomeInsuranceCollectionViewCell: HolkRingChartDataSource {
-    private var mockNumberOfSegments: Int {
-        return insurance?.subInsurances.count ?? 6
-    }
-
     func numberOfSegments(_ ringChart: HolkRingChart) -> Int {
-        return mockNumberOfSegments
+        guard let insurance = insurance else {
+            return 0
+        }
+        return insurance.subInsurances.count + insurance.addonInsurances.count
     }
 
     func ringChart(_ ringChart: HolkRingChart, sizeForSegmentAt index: Int) -> CGFloat {
@@ -170,14 +169,22 @@ extension HomeInsuranceCollectionViewCell: HolkRingChartDataSource {
     }
 
     func ringChart(_ ringChart: HolkRingChart, colorForSegmentAt index: Int) -> UIColor? {
-        let subInsurance = insurance?.subInsurances[index]
-        return subInsurance.flatMap(Color.backgroundColor(_:))
+        if let subInsurances = insurance?.subInsurances, subInsurances.count > index {
+            let subInsurance = subInsurances[index]
+            return Color.subInsuranceBackgroundColor(subInsurance.kind)
+        } else {
+            // TODO: Color for addons
+            return .gray
+        }
     }
 
     func ringChart(_ ringChart: HolkRingChart, iconForSegmentAt index: Int) -> UIImage? {
-        let subInsurance = insurance?.subInsurances[index]
-        return subInsurance.flatMap(
-            UIImage.init(subInsurance: )
-        )?.withRenderingMode(.alwaysTemplate)
+        if let subInsurances = insurance?.subInsurances, subInsurances.count > index {
+            let subInsurance = subInsurances[index]
+            return UIImage.init(subInsuranceKind: subInsurance.kind)?.withRenderingMode(.alwaysTemplate)
+        } else {
+            // TODO: Icon for addons
+            return  nil
+        }
     }
 }
