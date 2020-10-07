@@ -109,17 +109,6 @@ final class HolkRingChart: UIView {
     
     override func didMoveToSuperview() {
         super.didMoveToSuperview()
-        
-        let baseColor = tintColor ?? .clear
-        let numberOfSegments = dataSource?.numberOfSegments(self) ?? Constants.maxNumberOfSegments
-        segments = (0..<numberOfSegments).map { index in
-            let segmentChartWidth = dataSource?.ringChart(self, ringChartWidthAt: index) ?? Constants.defaultRingChartWidth
-            maxRingChartWidth = (maxRingChartWidth?.isLess(than: segmentChartWidth) ?? true) ? segmentChartWidth : maxRingChartWidth
-            return HolkRingChartLayer(ringChartWidth: segmentChartWidth, baseColor: baseColor)
-        }
-        for segment in segments {
-            containerView.layer.addSublayer(segment)
-        }
 
         reloadSegments()
     }
@@ -137,31 +126,39 @@ final class HolkRingChart: UIView {
         iconsView.layout()
     }
     
+    private var shouldAnimateMask = true
+    private var latestAnimationDuration: TimeInterval = 0
+
     func reloadSegments(animated: Bool = false) {
         reloadSegments(animationDuration: animated ? 0.3 : nil)
     }
     
-    private var shouldAnimateMask = true
-    private var latestAnimationDuration: TimeInterval = 0
-    
     func reloadSegments(animationDuration: TimeInterval?) {
         shouldAnimateMask = animationDuration != nil
         latestAnimationDuration = animationDuration ?? 0
-        let numberOfSegments = dataSource?.numberOfSegments(self) ?? 0
+
+        let baseColor = tintColor ?? .clear
+        let numberOfSegments = dataSource?.numberOfSegments(self) ?? Constants.maxNumberOfSegments
         assert(numberOfSegments <= Constants.maxNumberOfSegments, "Too many segments!")
-        
+
         var previousValue: CGFloat = 0
-        for (offset, segment) in segments.enumerated() {
+        segments = (0..<numberOfSegments).map { index in
             let value: CGFloat
-            if offset < numberOfSegments, let dataSource = dataSource {
-                value = dataSource.ringChart(self, sizeForSegmentAt: offset)
-                segment.baseColor = dataSource.ringChart(self, colorForSegmentAt: offset) ?? tintColor
+
+            let segmentChartWidth = dataSource?.ringChart(self, ringChartWidthAt: index) ?? Constants.defaultRingChartWidth
+            maxRingChartWidth = (maxRingChartWidth?.isLess(than: segmentChartWidth) ?? true) ? segmentChartWidth : maxRingChartWidth
+            let ringChartLayer = HolkRingChartLayer(ringChartWidth: segmentChartWidth, baseColor: baseColor)
+
+            if index < numberOfSegments, let dataSource = dataSource {
+                value = dataSource.ringChart(self, sizeForSegmentAt: index)
+                ringChartLayer.baseColor = dataSource.ringChart(self, colorForSegmentAt: index) ?? tintColor
             } else {
                 value = 0.0
             }
-            segment.updateStartAngle(previousValue, distance: value, animationDuration: animationDuration)
-            
+            ringChartLayer.updateStartAngle(previousValue, distance: value, animationDuration: animationDuration)
             previousValue += value
+
+            return ringChartLayer
         }
     }
 
