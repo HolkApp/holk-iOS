@@ -123,7 +123,7 @@ extension ThinkOfDetailsViewController {
             switch Section.allCases[indexPath.section] {
             case.banner:
                 guard kind == UICollectionView.elementKindSectionHeader else {
-                    return UICollectionReusableView()
+                    return HolkEmptyCollectionHeaderView()
                 }
                 let thinkOfDetailCollectionHeaderView = collectionView.dequeueReusableSupplementaryView(
                     ThinkOfBannerCollectionHeaderView.self,
@@ -134,7 +134,7 @@ extension ThinkOfDetailsViewController {
                 return thinkOfDetailCollectionHeaderView
             case .paragraph:
                 guard kind == UICollectionView.elementKindSectionHeader else {
-                    return UICollectionReusableView()
+                    return HolkEmptyCollectionHeaderView()
                 }
                 let thinkOfParagraphCollectionHeaderView = collectionView.dequeueReusableSupplementaryView(
                     ThinkOfParagraphCollectionHeaderView.self,
@@ -146,7 +146,7 @@ extension ThinkOfDetailsViewController {
                 return thinkOfParagraphCollectionHeaderView
             case .subInsurance:
                 guard kind == UICollectionView.elementKindSectionHeader, let subInsuranceHeaderViewModel = self.viewModel.makeThinkOfSubInsuranceHeaderViewModel() else {
-                    return UICollectionReusableView()
+                    return HolkEmptyCollectionHeaderView()
                 }
                 let thinkOfRelatedInsuranceCollectionHeaderView = collectionView.dequeueReusableSupplementaryView(
                     ThinkOfRelatedInsuranceCollectionHeaderView.self,
