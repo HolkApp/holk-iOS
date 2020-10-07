@@ -21,15 +21,15 @@ extension Insurance {
             static var decodeFallbackValue = unknown
         }
 
-        let body: String
-        let header: String
+        let subtitle: String
+        let title: String
         let iconUrl: URL
         let kind: Kind
 
         private enum CodingKeys: String, CodingKey {
             case kind = "type"
-            case header = "headerText"
-            case body = "bodyText"
+            case title = "title"
+            case subtitle = "subtitle"
             case iconUrl = "iconUrl"
         }
     }
@@ -40,8 +40,8 @@ extension Insurance.SubInsurance {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         kind = try container.decode(Kind.self, forKey: .kind)
-        body = try container.decode(String.self, forKey: .body)
-        header = try container.decode(String.self, forKey: .header)
+        subtitle = try container.decode(String.self, forKey: .subtitle)
+        title = try container.decode(String.self, forKey: .title)
         iconUrl = try container.decode(URL.self, forKey: .iconUrl)
     }
 }

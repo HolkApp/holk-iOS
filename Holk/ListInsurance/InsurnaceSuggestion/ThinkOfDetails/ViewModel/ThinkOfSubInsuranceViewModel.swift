@@ -16,6 +16,6 @@ struct ThinkOfSubInsuranceViewModel: Hashable {
     init(subInsurance: Insurance.SubInsurance) {
         self.subInsurance = subInsurance
         kind = subInsurance.kind
-        text = subInsurance.body
+        text = subInsurance.subtitle
     }
 }

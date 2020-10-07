@@ -42,11 +42,11 @@ final class SubInsuranceCollectionViewCell: UICollectionViewCell {
     }
 
     func configure(_ subInsurance: Insurance.SubInsurance, thinkOfs: [ThinkOfSuggestion]) {
-        iconView.imageView.image = UIImage.init(subInsurance: subInsurance)?.withRenderingMode(.alwaysTemplate)
-        iconView.backgroundColor = Color.iconBackgroundColor(subInsurance)
-        cardView.backgroundColor = Color.backgroundColor(subInsurance)
-        titleLabel.set(text: subInsurance.header, with: .cardHeader2)
-        descriptionLabel.set(text: subInsurance.body, with: .body1)
+        iconView.imageView.image = UIImage.init(subInsuranceKind: subInsurance.kind)?.withRenderingMode(.alwaysTemplate)
+        iconView.backgroundColor = Color.subInsuranceIconBackgroundColor(subInsurance.kind)
+        cardView.backgroundColor = Color.subInsuranceBackgroundColor(subInsurance.kind)
+        titleLabel.set(text: subInsurance.title, with: .cardHeader2)
+        descriptionLabel.set(text: subInsurance.subtitle, with: .body1)
 
         // TODO:
         gapValueLabel.set(text: "0", with: .number1)
