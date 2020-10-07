@@ -76,8 +76,8 @@ extension UIImage {
 
 // MARK: - SubInsurance Image extension
 extension UIImage {
-    convenience init?(subInsurance: Insurance.SubInsurance) {
-        switch subInsurance.kind {
+    convenience init?(subInsuranceKind: Insurance.SubInsurance.Kind) {
+        switch subInsuranceKind {
         case .movables: self.init(named: "movables")
         case .travel: self.init(named: "travel")
         case .liability: self.init(named: "liability")
@@ -90,5 +90,10 @@ extension UIImage {
 
 // MARK: - Suggestion Image extension
 extension UIImage {
-    
+    convenience init?(thinkOf: ThinkOfSuggestion) {
+        guard let subInsuranceKind = thinkOf.tags.first(where: { $0.key == .subInsurance })?.value, let kind = Insurance.SubInsurance.Kind(rawValue: subInsuranceKind) else {
+            return nil
+        }
+        self.init(subInsuranceKind: kind)
+    }
 }

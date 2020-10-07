@@ -29,10 +29,12 @@ final class ThinkOfCollectionViewCell: UICollectionViewCell {
     func configure(_ thinkOf: ThinkOfSuggestion) {
         titleLabel.set(text: thinkOf.title, with: .cardHeader2)
         subInsuranceTypeLabel.set(text: thinkOf.header, with: .titleHeader1)
+        thinkOfTypeIconView.imageView.image = UIImage(thinkOf: thinkOf)
+        thinkOfTypeIconView.backgroundColor = Color.subInsuranceIconBackgroundColor(thinkOf)
+        contentView.backgroundColor = Color.subInsuranceBackgroundColor(thinkOf)
     }
 
     private func setup() {
-        contentView.backgroundColor = Color.thinkOfBackground
         contentView.layer.cornerRadius = 16
         contentView.layer.cornerCurve = .continuous
 
@@ -40,9 +42,6 @@ final class ThinkOfCollectionViewCell: UICollectionViewCell {
         iconView.tintColor = Color.mainForeground
         iconView.translatesAutoresizingMaskIntoConstraints = false
 
-        // TODO: Find the correct image and color
-        thinkOfTypeIconView.imageView.image = UIImage(named: "travel")
-        thinkOfTypeIconView.backgroundColor = Color.iconBackgroundColor(.init(body: "", header: "", iconUrl: URL(string: "test://")!, kind: .travel))
         thinkOfTypeIconView.translatesAutoresizingMaskIntoConstraints = false
 
         subInsuranceTypeLabel.setStyleGuide(.titleHeader1)

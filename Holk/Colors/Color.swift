@@ -220,16 +220,6 @@ extension Color {
         }
     }
 
-    static var thinkOfBackground: UIColor {
-        return UIColor { traitCollection in
-            if traitCollection.userInterfaceStyle == .dark {
-                return makeColor(asset: .blue8)
-            } else {
-                return makeColor(asset: .blue8)
-            }
-        }
-    }
-
     static var gapLabel: UIColor {
         return UIColor { traitCollection in
             if traitCollection.userInterfaceStyle == .dark {
@@ -253,8 +243,15 @@ extension Color {
 
 // MARK: Color extension for SubInsurance
 extension Color {
-    static func backgroundColor(_ subInsurance: Insurance.SubInsurance) -> UIColor {
-        switch subInsurance.kind {
+    static func subInsuranceBackgroundColor(_ thinkOf: ThinkOfSuggestion) -> UIColor {
+        guard let subInsuranceKind = thinkOf.tags.first(where: { $0.key == .subInsurance })?.value, let kind = Insurance.SubInsurance.Kind(rawValue: subInsuranceKind) else {
+            return makeColor(asset: .blue8)
+        }
+        return subInsuranceBackgroundColor(kind)
+    }
+
+    static func subInsuranceBackgroundColor(_ subInsuranceKind: Insurance.SubInsurance.Kind) -> UIColor {
+        switch subInsuranceKind {
         case .movables:
             return makeColor(asset: .yellow2)
         case .travel:
@@ -270,8 +267,15 @@ extension Color {
         }
     }
 
-    static func iconBackgroundColor(_ subInsurance: Insurance.SubInsurance) -> UIColor {
-        switch subInsurance.kind {
+    static func subInsuranceIconBackgroundColor(_ thinkOf: ThinkOfSuggestion) -> UIColor {
+        guard let subInsuranceKind = thinkOf.tags.first(where: { $0.key == .subInsurance })?.value, let kind = Insurance.SubInsurance.Kind(rawValue: subInsuranceKind) else {
+            return makeColor(asset: .blue6)
+        }
+        return subInsuranceIconBackgroundColor(kind)
+    }
+
+    static func subInsuranceIconBackgroundColor(_ subInsuranceKind: Insurance.SubInsurance.Kind) -> UIColor {
+        switch subInsuranceKind {
         case .movables:
             return makeColor(asset: .yellow3)
         case .travel:

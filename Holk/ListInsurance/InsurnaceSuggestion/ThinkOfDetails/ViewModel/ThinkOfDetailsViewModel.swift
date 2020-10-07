@@ -38,11 +38,12 @@ final class ThinkOfDetailsViewModel {
 
         mappedSubInsurances = thinkOfSuggestion.relatedSubInsurances(OfInsurances: insurances)
         coverImage = thinkOfSuggestion.coverPhoto
+
+        iconImageBackgroundColor = Color.subInsuranceIconBackgroundColor(thinkOfSuggestion)
+        headerBackgroundViewColor = Color.subInsuranceBackgroundColor(thinkOfSuggestion)
         
         if let subInsurance = mappedSubInsurances.first {
-            iconImage = UIImage.init(subInsurance: subInsurance)?.withRenderingMode(.alwaysTemplate)
-            iconImageBackgroundColor = Color.iconBackgroundColor(subInsurance)
-            headerBackgroundViewColor = Color.backgroundColor(subInsurance)
+            iconImage = UIImage.init(subInsuranceKind: subInsurance.kind)?.withRenderingMode(.alwaysTemplate)
         }
     }
 
