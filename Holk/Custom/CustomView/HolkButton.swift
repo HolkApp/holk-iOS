@@ -9,6 +9,17 @@
 import UIKit
 
 final class HolkButton: UIButton {
+    var styleGuide: FontStyleGuide = .body1 {
+        didSet {
+            titleLabel?.setStyleGuide(styleGuide)
+        }
+    }
+
+    override func setTitle(_ title: String?, for state: UIControl.State) {
+        super.setTitle(title, for: state)
+        titleLabel?.setStyleGuide(styleGuide)
+    }
+    
     override var isEnabled: Bool {
         didSet {
             guard let backgroundColor = backgroundColor, isEnabled != oldValue else { return }
@@ -40,3 +51,28 @@ final class HolkButton: UIButton {
     }
 }
 
+fileprivate extension UILabel {
+    func setStyleGuide(_ styleGuide: FontStyleGuide) {
+        font = styleGuide.font
+        setLineHeight(styleGuide.lineHeight)
+    }
+
+    func setLineHeight(_ lineHeight: CGFloat) {
+        guard let font = font else { return }
+
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = lineHeight - font.lineHeight
+        paragraphStyle.alignment = textAlignment
+
+        let attrString: NSMutableAttributedString
+        if let attributedText = attributedText {
+            attrString = NSMutableAttributedString(attributedString: attributedText)
+        } else {
+            attrString = NSMutableAttributedString(string: text ?? "")
+            attrString.addAttribute(.font, value: font, range: NSRange(location: 0, length: attrString.length))
+        }
+
+        attrString.addAttribute(.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attrString.length))
+        self.attributedText = attrString
+    }
+}

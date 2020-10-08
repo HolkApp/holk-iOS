@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HolkRoundBackgroundLabel: UILabel {
+final class HolkRoundBackgroundLabel: HolkLabel {
     var cornerRadius: CGFloat?
 
     override init(frame: CGRect) {

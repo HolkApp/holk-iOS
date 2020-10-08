@@ -15,10 +15,5 @@ extension UIButton {
         imageView!.transform = CGAffineTransform(scaleX: -1.0, y: 1.0)
         imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: padding)
     }
-
-    func set(text: String?, with styleGuide: FontStyleGuide) {
-        self.setTitle(text, for: .normal)
-        titleLabel?.setStyleGuide(styleGuide)
-    }
 }
 

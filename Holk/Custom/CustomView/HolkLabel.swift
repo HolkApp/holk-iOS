@@ -1,25 +1,34 @@
 //
-//  UILabel+extension.swift
+//  HolkLabel.swift
 //  Holk
 //
-//  Created by 张梦皓 on 2020-04-12.
+//  Created by 张梦皓 on 2020-10-08.
 //  Copyright © 2020 Holk. All rights reserved.
 //
 
 import UIKit
 
-extension UILabel {
-    func set(text: String?, with styleGuide: FontStyleGuide) {
-        self.text = text
-        setStyleGuide(styleGuide)
+class HolkLabel: UILabel {
+    var styleGuide: FontStyleGuide = .body1 {
+        didSet {
+            super.setStyleGuide(styleGuide)
+        }
     }
 
+    override var text: String? {
+        didSet {
+            super.setStyleGuide(styleGuide)
+        }
+    }
+}
+
+fileprivate extension UILabel {
     func setStyleGuide(_ styleGuide: FontStyleGuide) {
         font = styleGuide.font
         setLineHeight(styleGuide.lineHeight)
     }
 
-    private func setLineHeight(_ lineHeight: CGFloat) {
+    func setLineHeight(_ lineHeight: CGFloat) {
         guard let font = font else { return }
 
         let paragraphStyle = NSMutableParagraphStyle()
@@ -38,4 +47,3 @@ extension UILabel {
         self.attributedText = attrString
     }
 }
-
