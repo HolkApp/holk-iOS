@@ -10,8 +10,8 @@ import UIKit
 
 final class GapParagraphCollectionViewCell: UICollectionViewCell {
     private let iconView = HolkIconView()
-    private let titleLabel = UILabel()
-    private let descriptionLabel = UILabel()
+    private let titleLabel = HolkLabel()
+    private let descriptionLabel = HolkLabel()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,14 +29,14 @@ final class GapParagraphCollectionViewCell: UICollectionViewCell {
         iconView.imageView.tintColor = Color.mainForeground
         iconView.translatesAutoresizingMaskIntoConstraints = false
 
+        titleLabel.styleGuide = .titleHeader1
         titleLabel.numberOfLines = 0
         titleLabel.textColor = Color.mainForeground
-        titleLabel.setStyleGuide(.titleHeader1)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
+        descriptionLabel.styleGuide = .body2
         descriptionLabel.numberOfLines = 0
         descriptionLabel.textColor = Color.mainForeground
-        descriptionLabel.setStyleGuide(.body2)
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
 
         setupLayout()
@@ -69,7 +69,7 @@ extension GapParagraphCollectionViewCell {
     func configure(_ viewModel: GapParagraphViewModel) {
         // TODO: Configure the icon
 //        viewModel.icon
-        titleLabel.set(text: viewModel.title, with: .titleHeader1)
-        descriptionLabel.set(text: viewModel.text, with: .body2)
+        titleLabel.text = viewModel.title
+        descriptionLabel.text = viewModel.text
     }
 }

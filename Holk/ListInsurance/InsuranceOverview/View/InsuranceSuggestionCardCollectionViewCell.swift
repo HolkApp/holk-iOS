@@ -21,7 +21,7 @@ class InsuranceSuggestionCardCollectionViewCell: UICollectionViewCell {
     private let suggestionAnimationView = AnimationView()
     private let suggestionImageView = UIImageView()
     private let suggestionIllustrationView = UIStackView()
-    private let suggestionLabel = UILabel()
+    private let suggestionLabel = HolkLabel()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -57,14 +57,14 @@ class InsuranceSuggestionCardCollectionViewCell: UICollectionViewCell {
             }
             suggestionIllustrationView.addArrangedSubview(suggestionAnimationView)
 
-            suggestionLabel.set(text: "Luckor", with: .body1)
+            suggestionLabel.text = "Luckor"
             suggestionValueLabel.text = suggestions.flatMap { String($0.gaps.count) }
             suggestionValueLabel.textColor = Color.mainForeground
         case .thinkOf:
             suggestionImageView.image = UIImage(named: "light")
             suggestionIllustrationView.addArrangedSubview(suggestionImageView)
 
-            suggestionLabel.set(text: "Tänk på", with: .body1)
+            suggestionLabel.text = "Tänk på"
             suggestionValueLabel.text = suggestions.flatMap { String($0.thinkOfs.count) }
             suggestionValueLabel.textColor = Color.mainForeground
         }
@@ -81,7 +81,7 @@ class InsuranceSuggestionCardCollectionViewCell: UICollectionViewCell {
         suggestionView.translatesAutoresizingMaskIntoConstraints = false
 
         suggestionValueLabel.cornerRadius = 10
-        suggestionValueLabel.setStyleGuide(.number1)
+        suggestionValueLabel.styleGuide = .number1
         suggestionValueLabel.backgroundColor = Color.secondaryBackground
         suggestionValueLabel.textAlignment = .center
         suggestionValueLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -92,7 +92,7 @@ class InsuranceSuggestionCardCollectionViewCell: UICollectionViewCell {
         suggestionIllustrationView.backgroundColor = .clear
         suggestionIllustrationView.translatesAutoresizingMaskIntoConstraints = false
 
-        suggestionLabel.setStyleGuide(.body1)
+        suggestionLabel.styleGuide = .body1
         suggestionLabel.textColor = Color.mainForeground
         suggestionLabel.numberOfLines = 0
         suggestionLabel.translatesAutoresizingMaskIntoConstraints = false

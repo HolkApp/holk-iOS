@@ -10,7 +10,7 @@ import UIKit
 
 final class GapBannerCollectionViewCell: UICollectionViewCell {
     private let iconView = UIImageView()
-    private let titleLabel = UILabel()
+    private let titleLabel = HolkLabel()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -33,7 +33,7 @@ final class GapBannerCollectionViewCell: UICollectionViewCell {
         titleLabel.textAlignment = .center
         titleLabel.numberOfLines = 0
         titleLabel.textColor = Color.gapLabel
-        titleLabel.setStyleGuide(.titleHeader1)
+        titleLabel.styleGuide = .titleHeader1
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
         setupLayout()
@@ -60,6 +60,6 @@ final class GapBannerCollectionViewCell: UICollectionViewCell {
 extension GapBannerCollectionViewCell {
     func configure(_ viewModel: GapBannerViewModel) {
         iconView.image = viewModel.icon
-        titleLabel.set(text: viewModel.title, with: .cardHeader3)
+        titleLabel.text = viewModel.title
     }
 }

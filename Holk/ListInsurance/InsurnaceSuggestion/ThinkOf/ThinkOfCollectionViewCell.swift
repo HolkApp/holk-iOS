@@ -12,8 +12,8 @@ final class ThinkOfCollectionViewCell: UICollectionViewCell {
     // MARK: - Private variables
     private let iconView = UIImageView()
     private let thinkOfTypeIconView = HolkIconView()
-    private let subInsuranceTypeLabel = UILabel()
-    private let titleLabel = UILabel()
+    private let subInsuranceTypeLabel = HolkLabel()
+    private let titleLabel = HolkLabel()
     private let chevronView = UIImageView()
 
     override init(frame: CGRect) {
@@ -27,8 +27,8 @@ final class ThinkOfCollectionViewCell: UICollectionViewCell {
     }
 
     func configure(_ thinkOf: ThinkOfSuggestion) {
-        titleLabel.set(text: thinkOf.title, with: .cardHeader2)
-        subInsuranceTypeLabel.set(text: thinkOf.header, with: .titleHeader1)
+        titleLabel.text = thinkOf.title
+        subInsuranceTypeLabel.text = thinkOf.header
         thinkOfTypeIconView.imageView.image = UIImage(thinkOf: thinkOf)
         thinkOfTypeIconView.backgroundColor = Color.subInsuranceIconBackgroundColor(thinkOf)
         contentView.backgroundColor = Color.subInsuranceBackgroundColor(thinkOf)
@@ -44,12 +44,12 @@ final class ThinkOfCollectionViewCell: UICollectionViewCell {
 
         thinkOfTypeIconView.translatesAutoresizingMaskIntoConstraints = false
 
-        subInsuranceTypeLabel.setStyleGuide(.titleHeader1)
+        subInsuranceTypeLabel.styleGuide = .titleHeader1
         subInsuranceTypeLabel.numberOfLines = 0
         subInsuranceTypeLabel.textColor = Color.mainForeground
         subInsuranceTypeLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        titleLabel.setStyleGuide(.cardHeader2)
+        titleLabel.styleGuide = .cardHeader2
         titleLabel.numberOfLines = 0
         titleLabel.textColor = Color.secondaryLabel
         titleLabel.translatesAutoresizingMaskIntoConstraints = false

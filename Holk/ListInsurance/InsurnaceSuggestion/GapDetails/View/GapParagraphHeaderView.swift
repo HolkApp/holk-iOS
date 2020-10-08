@@ -10,10 +10,10 @@ import UIKit
 
 final class GapParagraphHeaderView: UICollectionReusableView {
     // MARK: - Private variables
-    private let headerLabel = UILabel()
-    private let descriptionLabel = UILabel()
+    private let headerLabel = HolkLabel()
+    private let descriptionLabel = HolkLabel()
     private let separatorLine = UIView()
-    private let paragraphHeaderLabel = UILabel()
+    private let paragraphHeaderLabel = HolkLabel()
 
 
     override init(frame: CGRect) {
@@ -27,14 +27,17 @@ final class GapParagraphHeaderView: UICollectionReusableView {
     }
 
     private func setup() {
+        headerLabel.styleGuide = .header5
         headerLabel.numberOfLines = 0
         headerLabel.textColor = Color.label
         headerLabel.translatesAutoresizingMaskIntoConstraints = false
 
+        descriptionLabel.styleGuide = .body4
         descriptionLabel.numberOfLines = 0
         descriptionLabel.textColor = Color.secondaryForeground
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
 
+        paragraphHeaderLabel.styleGuide = .header5
         paragraphHeaderLabel.numberOfLines = 0
         paragraphHeaderLabel.textColor = Color.label
         paragraphHeaderLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -75,8 +78,8 @@ final class GapParagraphHeaderView: UICollectionReusableView {
 
 extension GapParagraphHeaderView {
     func configure(_ viewModel: GapParagraphHeaderViewModel) {
-        headerLabel.set(text: viewModel.header, with: .header5)
-        descriptionLabel.set(text: viewModel.description, with: .body4)
-        paragraphHeaderLabel.set(text: viewModel.paragraphHeader, with: .header5)
+        headerLabel.text = viewModel.header
+        descriptionLabel.text = viewModel.description
+        paragraphHeaderLabel.text = viewModel.paragraphHeader
     }
 }

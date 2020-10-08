@@ -11,8 +11,8 @@ import UIKit
 final class GapCollectionViewCell: UICollectionViewCell {
     // MARK: - Private variables
     private let iconView = UIImageView()
-    private let titleLabel = UILabel()
-    private let tagLabel = UILabel()
+    private let titleLabel = HolkLabel()
+    private let tagLabel = HolkLabel()
     private let chevronView = UIImageView()
 
     override init(frame: CGRect) {
@@ -26,8 +26,8 @@ final class GapCollectionViewCell: UICollectionViewCell {
     }
 
     func configure(_ gap: GapSuggestion) {
-        titleLabel.set(text: gap.title, with: .cardHeader2)
-        tagLabel.set(text: gap.type, with: .header7)
+        titleLabel.text = gap.title
+        tagLabel.text = gap.type
     }
 
     private func setup() {
@@ -39,13 +39,13 @@ final class GapCollectionViewCell: UICollectionViewCell {
         iconView.tintColor = Color.secondaryLabel
         iconView.translatesAutoresizingMaskIntoConstraints = false
 
-        titleLabel.setStyleGuide(.cardHeader2)
+        titleLabel.styleGuide = .cardHeader2
         titleLabel.numberOfLines = 0
         titleLabel.textColor = Color.gapLabel
         titleLabel.textAlignment = .center
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        tagLabel.setStyleGuide(.header7)
+        tagLabel.styleGuide = .header7
         tagLabel.numberOfLines = 0
         tagLabel.textColor = Color.secondaryLabel
         tagLabel.textAlignment = .center

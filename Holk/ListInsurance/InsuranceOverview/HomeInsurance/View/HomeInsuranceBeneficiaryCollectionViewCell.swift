@@ -13,8 +13,8 @@ final class HomeInsuranceBeneficiaryCollectionViewCell: UICollectionViewCell {
     var insurance: Insurance?
 
     // MARK: - Private variables
-    private let titleLabel = UILabel()
-    private let usernameLabel = UILabel()
+    private let titleLabel = HolkLabel()
+    private let usernameLabel = HolkLabel()
     private let chevronView = UIImageView()
     private let topSeparatorLine = UIView()
     private let bottomSeparatorLine = UIView()
@@ -33,11 +33,13 @@ final class HomeInsuranceBeneficiaryCollectionViewCell: UICollectionViewCell {
         contentView.backgroundColor = .clear
         contentView.layoutMargins = .init(top: 0, left: 6, bottom: 0, right: 6)
 
-        titleLabel.set(text: "Gäller för", with: .header6)
+        titleLabel.styleGuide = .header6
+        titleLabel.text = "Gäller för"
         titleLabel.textColor = Color.mainForeground
         titleLabel.numberOfLines = 0
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
+        usernameLabel.styleGuide = .body2
         usernameLabel.textColor = Color.mainForeground
         usernameLabel.numberOfLines = 0
         usernameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -87,6 +89,6 @@ final class HomeInsuranceBeneficiaryCollectionViewCell: UICollectionViewCell {
 
     func configure(_ insurance: Insurance) {
         self.insurance = insurance
-        usernameLabel.set(text: insurance.userName, with: .body2)
+        usernameLabel.text = insurance.userName
     }
 }

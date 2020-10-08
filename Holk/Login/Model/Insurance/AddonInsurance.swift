@@ -12,8 +12,8 @@ extension Insurance {
     struct AddonInsurance: Codable, Hashable, Equatable {
         var kind: Kind
         let insuranceProviderName: String
-        let body: String
-        let header: String
+        let subtitle: String
+        let title: String
 
         enum Kind: String, Codable, DefaultableDecodable {
             case accidental = "ACCIDENTAL"
@@ -28,7 +28,7 @@ extension Insurance.AddonInsurance {
     init(_ accidentalInsurance: AccidentalInsurance) {
         kind = .accidental
         insuranceProviderName = accidentalInsurance.insuranceProviderName
-        header = "Accidental insurance text"
-        body = "Mock text, need to get from backend"
+        title = "Accidental insurance text"
+        subtitle = "Mock text, need to get from backend"
     }
 }

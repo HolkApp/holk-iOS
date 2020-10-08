@@ -10,8 +10,8 @@ import UIKit
 
 final class SubInsuranceHeaderView: UICollectionReusableView {
     weak var subInsurancesViewController: HomeSubInsurancesViewController?
-    private let titleLabel = UILabel()
-    private let descriptionLabel = UILabel()
+    private let titleLabel = HolkLabel()
+    private let descriptionLabel = HolkLabel()
     private let imageView = UIImageView()
     private let containerView = UIView()
     private let basicSubInsurancesSegmentView = SubInsuranceSegmentView()
@@ -22,14 +22,14 @@ final class SubInsuranceHeaderView: UICollectionReusableView {
 
         backgroundColor = Color.secondaryBackground
 
+        titleLabel.styleGuide = .header4
         titleLabel.numberOfLines = 0
-        titleLabel.setStyleGuide(.header4)
         titleLabel.textAlignment = .center
         titleLabel.textColor = Color.mainForeground
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
+        descriptionLabel.styleGuide = .subHeader3
         descriptionLabel.numberOfLines = 0
-        descriptionLabel.setStyleGuide(.subHeader3)
         descriptionLabel.textAlignment = .center
         descriptionLabel.textColor = Color.mainForeground
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -104,8 +104,8 @@ final class SubInsuranceHeaderView: UICollectionReusableView {
     }
 
     func configure(_ insurance: Insurance) {
-        titleLabel.set(text: "Dina skydd", with: .header4)
-        descriptionLabel.set(text: insurance.kind.description, with: .subHeader3)
+        titleLabel.text = "Dina skydd"
+        descriptionLabel.text = insurance.kind.description
 
         basicSubInsurancesSegmentView.configure("Grundskydd", numberOfSubInsurances:  insurance.subInsurances.count)
         additionalSubInsurancesSegmentView.configure("Tilläggsskydd", numberOfSubInsurances:  insurance.addonInsurances.count)

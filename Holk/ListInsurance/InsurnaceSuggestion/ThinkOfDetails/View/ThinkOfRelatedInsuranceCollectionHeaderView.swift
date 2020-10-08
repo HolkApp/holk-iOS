@@ -9,16 +9,16 @@
 import UIKit
 
 final class ThinkOfRelatedInsuranceCollectionHeaderView: UICollectionReusableView {
-    private let titleLabel = UILabel()
+    private let titleLabel = HolkLabel()
     private let titleSeparatorline = UIView()
-    private let nameLabel = UILabel()
-    private let nameValueLabel = UILabel()
+    private let nameLabel = HolkLabel()
+    private let nameValueLabel = HolkLabel()
     private let nameSeparatorline = UIView()
-    private let providerLabel = UILabel()
+    private let providerLabel = HolkLabel()
     private let providerValueLabel = UIImageView()
     private let providerSeparatorline = UIView()
-    private let endDateLabel = UILabel()
-    private let endDateValueLabel = UILabel()
+    private let endDateLabel = HolkLabel()
+    private let endDateValueLabel = HolkLabel()
     private let endDateSeparatorline = UIView()
 
     override init(frame: CGRect) {
@@ -36,18 +36,20 @@ final class ThinkOfRelatedInsuranceCollectionHeaderView: UICollectionReusableVie
 
         layoutMargins = .init(top: 36, left: 32, bottom: 36, right: 32)
 
-        titleLabel.set(text: "Din info", with: .header6)
+        titleLabel.styleGuide = .header6
+        titleLabel.text = "Din info"
         titleLabel.textColor = Color.mainForeground
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
         titleSeparatorline.backgroundColor = Color.thinkOfSeparator
         titleSeparatorline.translatesAutoresizingMaskIntoConstraints = false
 
-        nameLabel.set(text: "Försäkring", with: .titleHeader1)
+        nameLabel.styleGuide = .titleHeader1
+        nameLabel.text = "Försäkring"
         nameLabel.textColor = Color.mainForeground
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        nameValueLabel.setStyleGuide(.titleHeader2)
+        nameValueLabel.styleGuide = .titleHeader2
         nameValueLabel.textColor = Color.secondaryForeground
         nameValueLabel.textAlignment = .right
         nameValueLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -55,8 +57,8 @@ final class ThinkOfRelatedInsuranceCollectionHeaderView: UICollectionReusableVie
         nameSeparatorline.backgroundColor = Color.thinkOfSeparator
         nameSeparatorline.translatesAutoresizingMaskIntoConstraints = false
 
+        providerLabel.styleGuide = .titleHeader1
         providerLabel.text = "Bolag"
-        providerLabel.set(text: "Bolag", with: .titleHeader1)
         providerLabel.textColor = Color.mainForeground
         providerLabel.translatesAutoresizingMaskIntoConstraints = false
 
@@ -66,11 +68,12 @@ final class ThinkOfRelatedInsuranceCollectionHeaderView: UICollectionReusableVie
         providerSeparatorline.backgroundColor = Color.thinkOfSeparator
         providerSeparatorline.translatesAutoresizingMaskIntoConstraints = false
 
-        endDateLabel.set(text: "Gäller till", with: .titleHeader1)
+        endDateLabel.styleGuide = .titleHeader1
+        endDateLabel.text = "Gäller till"
         endDateLabel.textColor = Color.mainForeground
         endDateLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        endDateValueLabel.setStyleGuide(.titleHeader2)
+        endDateValueLabel.styleGuide = .titleHeader2
         endDateValueLabel.textColor = Color.secondaryForeground
         endDateValueLabel.textAlignment = .right
         endDateValueLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -149,8 +152,8 @@ final class ThinkOfRelatedInsuranceCollectionHeaderView: UICollectionReusableVie
 
 extension ThinkOfRelatedInsuranceCollectionHeaderView {
     func configure(_ viewModel: ThinkOfSubInsuranceHeaderViewModel) {
-        nameValueLabel.set(text: viewModel.insurance.kind.description, with: .titleHeader2)
-        endDateValueLabel.set(text: viewModel.endDateString, with: .titleHeader2)
+        nameValueLabel.text = viewModel.insurance.kind.description
+        endDateValueLabel.text = viewModel.endDateString
         if let imageURL = viewModel.insuranceImageURL {
             UIImage.makeImage(with: imageURL) { [weak self] image in
                 self?.providerValueLabel.image = image

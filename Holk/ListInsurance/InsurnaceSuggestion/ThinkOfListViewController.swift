@@ -27,8 +27,8 @@ final class ThinkOfListViewController: UIViewController {
     // MARK: - Private variables
     private let storeController: StoreController
     private let iconView = UIImageView()
-    private let titleLabel = UILabel()
-    private let numberLabel = UILabel()
+    private let titleLabel = HolkLabel()
+    private let numberLabel = HolkLabel()
     private let separatorLine = UIView()
     private let thinkOfs: [ThinkOfSuggestion]
 
@@ -65,11 +65,13 @@ final class ThinkOfListViewController: UIViewController {
         iconView.image = UIImage(named: "light")?.withSymbolWeightConfiguration(.light)
         iconView.translatesAutoresizingMaskIntoConstraints = false
 
-        titleLabel.set(text: "Tänk på", with: .header4)
+        titleLabel.styleGuide = .header4
+        titleLabel.text = "Tänk på"
         titleLabel.textColor = Color.mainForeground
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        numberLabel.set(text: "\(thinkOfs.count) st", with: .number3)
+        numberLabel.styleGuide = .number3
+        numberLabel.text = "\(thinkOfs.count) st"
         numberLabel.textColor = Color.mainForeground
         numberLabel.textAlignment = .right
         numberLabel.translatesAutoresizingMaskIntoConstraints = false

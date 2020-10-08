@@ -11,8 +11,8 @@ import UIKit
 final class ThinkOfBannerCollectionHeaderView: UICollectionReusableView {
     private let headerBackgroundView = UIView()
     private let iconView = HolkIconView()
-    private let tagLabel = UILabel()
-    private let titleLabel = UILabel()
+    private let tagLabel = HolkLabel()
+    private let titleLabel = HolkLabel()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,12 +34,12 @@ final class ThinkOfBannerCollectionHeaderView: UICollectionReusableView {
         iconView.tintColor = Color.mainForeground
         iconView.translatesAutoresizingMaskIntoConstraints = false
 
-        tagLabel.setStyleGuide(.titleHeader1)
+        tagLabel.styleGuide = .titleHeader1
         tagLabel.numberOfLines = 0
         tagLabel.textColor = Color.mainForeground
         tagLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        titleLabel.setStyleGuide(.cardHeader3)
+        titleLabel.styleGuide = .cardHeader3
         titleLabel.numberOfLines = 0
         titleLabel.textColor = Color.secondaryLabel
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -80,8 +80,8 @@ extension ThinkOfBannerCollectionHeaderView {
     func configure(_ viewModel: ThinkOfDetailsViewModel) {
            iconView.imageView.image = viewModel.iconImage
            iconView.backgroundColor = viewModel.iconImageBackgroundColor
-           tagLabel.set(text: viewModel.subInsuranceText, with: .titleHeader1)
-           titleLabel.set(text: viewModel.title, with: .cardHeader3)
+           tagLabel.text = viewModel.subInsuranceText
+           titleLabel.text = viewModel.title
            headerBackgroundView.backgroundColor = viewModel.headerBackgroundViewColor
        }
 }

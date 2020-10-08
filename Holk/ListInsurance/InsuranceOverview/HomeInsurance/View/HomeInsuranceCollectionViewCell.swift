@@ -15,9 +15,9 @@ final class HomeInsuranceCollectionViewCell: UICollectionViewCell {
     let ringChart = HolkRingChart()
 
     // MARK: - Private variables
-    private let titleLabel = UILabel()
-    private let insuranceSubNumberLabel = UILabel()
-    private let insuranceTextLabel = UILabel()
+    private let titleLabel = HolkLabel()
+    private let insuranceSubNumberLabel = HolkLabel()
+    private let insuranceTextLabel = HolkLabel()
     private let insuranceImageView = UIImageView()
     private let chevronView = UIImageView()
     private let ringChartLabelsStackView = UIStackView()
@@ -43,9 +43,9 @@ final class HomeInsuranceCollectionViewCell: UICollectionViewCell {
     }
 
     func configure(_ insurance: Insurance, provider: InsuranceProvider?) {
-        titleLabel.set(text: "Dina skydd", with: .header6)
-        insuranceSubNumberLabel.set(text: "\(insurance.subInsurances.count + insurance.addonInsurances.count)", with: .largeNumber)
-        insuranceTextLabel.set(text: "Skydd", with: .subHeader2)
+        titleLabel.text = "Dina skydd"
+        insuranceSubNumberLabel.text = "\(insurance.subInsurances.count + insurance.addonInsurances.count)"
+        insuranceTextLabel.text = "Skydd"
         
         if let provider = provider {
             UIImage.makeImage(with: provider.logoUrl) { [weak self] image in
@@ -72,17 +72,18 @@ final class HomeInsuranceCollectionViewCell: UICollectionViewCell {
         containerView.layer.cornerCurve = .continuous
         containerView.translatesAutoresizingMaskIntoConstraints = false
 
-        titleLabel.setStyleGuide(.header6)
+        titleLabel.styleGuide = .header6
         titleLabel.textColor = Color.mainForeground
         titleLabel.numberOfLines = 0
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        insuranceSubNumberLabel.setStyleGuide(.largeNumber)
+        insuranceSubNumberLabel.styleGuide = .largeNumber
         insuranceSubNumberLabel.textColor = Color.mainForeground
         insuranceSubNumberLabel.numberOfLines = 0
         insuranceSubNumberLabel.textAlignment = .center
         insuranceSubNumberLabel.translatesAutoresizingMaskIntoConstraints = false
 
+        insuranceTextLabel.styleGuide = .subHeader2
         insuranceTextLabel.textColor = Color.mainForeground
         insuranceTextLabel.numberOfLines = 0
         insuranceTextLabel.textAlignment = .center

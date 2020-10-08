@@ -10,7 +10,7 @@ import UIKit
 
 final class ThinkOfParagraphCollectionViewCell: UICollectionViewCell {
     private let iconView = HolkIconView()
-    private let descriptionLabel = UILabel()
+    private let descriptionLabel = HolkLabel()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -30,7 +30,7 @@ final class ThinkOfParagraphCollectionViewCell: UICollectionViewCell {
 
         descriptionLabel.numberOfLines = 0
         descriptionLabel.textColor = Color.mainForeground
-        descriptionLabel.setStyleGuide(.body2)
+        descriptionLabel.styleGuide = .body2
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
 
         setupLayout()
@@ -59,6 +59,6 @@ extension ThinkOfParagraphCollectionViewCell {
         UIImage.makeImage(with: viewModel.icon) { [weak self] image in
             self?.iconView.imageView.image = image
         }
-        descriptionLabel.set(text: viewModel.text, with: .body2)
+        descriptionLabel.text = viewModel.text
     }
 }

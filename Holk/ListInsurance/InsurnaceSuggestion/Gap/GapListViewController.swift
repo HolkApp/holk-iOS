@@ -27,8 +27,8 @@ final class GapListViewController: UIViewController {
     // MARK: - Private variables
     private let storeController: StoreController
     private let iconView = UIImageView()
-    private let titleLabel = UILabel()
-    private let numberLabel = UILabel()
+    private let titleLabel = HolkLabel()
+    private let numberLabel = HolkLabel()
     private let separatorLine = UIView()
     private let gaps: [GapSuggestion]
 
@@ -65,11 +65,13 @@ final class GapListViewController: UIViewController {
         iconView.image = UIImage(systemName: "bell")?.withSymbolWeightConfiguration(.light)
         iconView.translatesAutoresizingMaskIntoConstraints = false
 
-        titleLabel.set(text: "Luckor", with: .header4)
+        titleLabel.text = "Luckor"
+        titleLabel.styleGuide = .header4
         titleLabel.textColor = Color.mainForeground
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        numberLabel.set(text: "\(gaps.count) st", with: .number3)
+        numberLabel.text = "\(gaps.count) st"
+        numberLabel.styleGuide = .number3
         numberLabel.textColor = Color.mainForeground
         numberLabel.textAlignment = .right
         numberLabel.translatesAutoresizingMaskIntoConstraints = false

@@ -13,8 +13,8 @@ final class HomeInsuranceCostCollectionViewCell: UICollectionViewCell {
     var insurance: Insurance?
     
     // MARK: - Private variables
-    private let titleLabel = UILabel()
-    private let costLabel = UILabel()
+    private let titleLabel = HolkLabel()
+    private let costLabel = HolkLabel()
     private let chevronView = UIImageView()
     private let bottomSeparatorLine = UIView()
     private let amountFormatter = DynamicAmountFormatter()
@@ -35,13 +35,14 @@ final class HomeInsuranceCostCollectionViewCell: UICollectionViewCell {
         contentView.backgroundColor = .clear
         contentView.layoutMargins = .init(top: 0, left: 6, bottom: 0, right: 6)
 
-        titleLabel.set(text: "Kostnad", with: .header6)
+        titleLabel.styleGuide = .header6
+        titleLabel.text = "Kostnad"
         titleLabel.textColor = Color.mainForeground
         titleLabel.numberOfLines = 0
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
         costLabel.textColor = Color.mainForeground
-        costLabel.setStyleGuide(.subHeader4)
+        costLabel.styleGuide = .subHeader4
         costLabel.numberOfLines = 0
         costLabel.translatesAutoresizingMaskIntoConstraints = false
 
@@ -82,7 +83,6 @@ final class HomeInsuranceCostCollectionViewCell: UICollectionViewCell {
     func configure(_ insurance: Insurance) {
         self.insurance = insurance
         let cost = amountFormatter.string(from: insurance.cost.monthlyPrice)
-        let costText = "\(cost) kr/mån"
-        costLabel.set(text: costText, with: .subHeader4)
+        costLabel.text = "\(cost) kr/mån"
     }
 }

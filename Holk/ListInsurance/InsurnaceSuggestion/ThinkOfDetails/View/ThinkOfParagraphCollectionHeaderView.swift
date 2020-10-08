@@ -9,8 +9,8 @@
 import UIKit
 
 final class ThinkOfParagraphCollectionHeaderView: UICollectionReusableView {
-    private let headerLabel = UILabel()
-    private let descriptionLabel = UILabel()
+    private let headerLabel = HolkLabel()
+    private let descriptionLabel = HolkLabel()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -25,12 +25,12 @@ final class ThinkOfParagraphCollectionHeaderView: UICollectionReusableView {
     private func setup() {
         backgroundColor = Color.secondaryBackground
 
-        headerLabel.setStyleGuide(.header5)
+        headerLabel.styleGuide = .header5
         headerLabel.numberOfLines = 0
         headerLabel.textColor = Color.mainForeground
         headerLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        descriptionLabel.setStyleGuide(.subHeader5)
+        descriptionLabel.styleGuide = .subHeader5
         descriptionLabel.numberOfLines = 0
         descriptionLabel.textColor = Color.mainForeground
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -57,7 +57,7 @@ final class ThinkOfParagraphCollectionHeaderView: UICollectionReusableView {
 
 extension ThinkOfParagraphCollectionHeaderView {
     func configure(_ viewModel: ThinkOfParagraphHeaderViewModel) {
-        headerLabel.set(text: viewModel.detailHeader, with: .header5)
-        descriptionLabel.set(text: viewModel.detailDescription, with: .subHeader5)
+        headerLabel.text = viewModel.detailHeader
+        headerLabel.text = viewModel.detailDescription
     }
 }

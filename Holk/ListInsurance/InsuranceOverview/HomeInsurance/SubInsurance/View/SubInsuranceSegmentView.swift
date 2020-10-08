@@ -10,8 +10,8 @@ import UIKit
 
 final class SubInsuranceSegmentView: UIControl {
     // MARK: - Private variables
-    private let titleLabel = UILabel()
-    private let numberLabel = UILabel()
+    private let titleLabel = HolkLabel()
+    private let numberLabel = HolkLabel()
     private let selectionView = UIView()
 
     override init(frame: CGRect) {
@@ -28,12 +28,13 @@ final class SubInsuranceSegmentView: UIControl {
         layoutMargins = .init(top: 0, left: 6, bottom: 0, right: 6)
 
         titleLabel.textColor = Color.placeholder
+        titleLabel.styleGuide = .titleHeader3
         titleLabel.numberOfLines = 0
         titleLabel.textAlignment = .center
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
         numberLabel.textColor = Color.placeholder
-        numberLabel.setStyleGuide(.number4)
+        numberLabel.styleGuide = .number4
         numberLabel.numberOfLines = 0
         numberLabel.textAlignment = .center
         numberLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -72,7 +73,7 @@ final class SubInsuranceSegmentView: UIControl {
     }
 
     func configure(_ segmentKind: String, numberOfSubInsurances: Int) {
-        titleLabel.set(text: segmentKind, with: .titleHeader3)
-        numberLabel.set(text: "\(numberOfSubInsurances)", with: .number4)
+        titleLabel.text = segmentKind
+        numberLabel.text = "\(numberOfSubInsurances)"
     }
 }

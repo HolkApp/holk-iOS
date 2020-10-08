@@ -11,8 +11,8 @@ import UIKit
 final class SubInsuranceCollectionViewCell: UICollectionViewCell {
     private let cardView = UIView()
     private let iconView = HolkIconView()
-    private let titleLabel = UILabel()
-    private let descriptionLabel = UILabel()
+    private let titleLabel = HolkLabel()
+    private let descriptionLabel = HolkLabel()
     private let chevronView = UIImageView()
 
     private let gapView = UIView()
@@ -41,28 +41,27 @@ final class SubInsuranceCollectionViewCell: UICollectionViewCell {
         iconView.backgroundColor = nil
     }
 
-    func configure(_ subInsurance: Insurance.SubInsurance, thinkOfs: [ThinkOfSuggestion]) {
+    func configure(_ subInsurance: Insurance.SubInsurance, thinkOfs: [ThinkOfSuggestion], gaps: [GapSuggestion] = []) {
         iconView.imageView.image = UIImage.init(subInsuranceKind: subInsurance.kind)?.withRenderingMode(.alwaysTemplate)
         iconView.backgroundColor = Color.subInsuranceIconBackgroundColor(subInsurance.kind)
         cardView.backgroundColor = Color.subInsuranceBackgroundColor(subInsurance.kind)
-        titleLabel.set(text: subInsurance.title, with: .cardHeader2)
-        descriptionLabel.set(text: subInsurance.subtitle, with: .body1)
-
+        titleLabel.text = subInsurance.title
+        descriptionLabel.text = subInsurance.subtitle
         // TODO:
-        gapValueLabel.set(text: "0", with: .number1)
-        thinkOfValueLabel.set(text: "\(thinkOfs.count)", with: .number1)
+        gapValueLabel.text = "\(gaps.count)"
+        thinkOfValueLabel.text = "\(thinkOfs.count)"
     }
 
-    func configure(_ subInsurance: Insurance.AddonInsurance, thinkOfs: [ThinkOfSuggestion]) {
+    func configure(_ addonInsurance: Insurance.AddonInsurance, thinkOfs: [ThinkOfSuggestion], gaps: [GapSuggestion] = []) {
         // TODO: Update
 //        iconView.imageView.image = UIImage.init(subInsurance: subInsurance)?.withRenderingMode(.alwaysTemplate)
         iconView.backgroundColor = Color.paragraphIconBackground
         cardView.backgroundColor = Color.mainHighlight
-        titleLabel.set(text: subInsurance.header, with: .cardHeader2)
-        descriptionLabel.set(text: subInsurance.body, with: .body1)
-
-        gapValueLabel.set(text: "0", with: .number1)
-        thinkOfValueLabel.set(text: "\(thinkOfs.count)", with: .number1)
+        titleLabel.text = addonInsurance.title
+        descriptionLabel.text = addonInsurance.subtitle
+        // TODO:
+        gapValueLabel.text = "\(gaps.count)"
+        thinkOfValueLabel.text = "\(thinkOfs.count)"
     }
 
     private func setup() {
@@ -80,12 +79,12 @@ final class SubInsuranceCollectionViewCell: UICollectionViewCell {
         iconView.imageView.tintColor = Color.mainForeground
         iconView.translatesAutoresizingMaskIntoConstraints = false
 
-        titleLabel.setStyleGuide(.cardHeader2)
+        titleLabel.styleGuide = .cardHeader2
         titleLabel.textColor = Color.secondaryLabel
         titleLabel.numberOfLines = 0
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        descriptionLabel.setStyleGuide(.body1)
+        descriptionLabel.styleGuide = .body1
         descriptionLabel.textColor = Color.mainForeground
         descriptionLabel.numberOfLines = 0
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -100,7 +99,7 @@ final class SubInsuranceCollectionViewCell: UICollectionViewCell {
         gapImageView.translatesAutoresizingMaskIntoConstraints = false
 
         gapValueLabel.cornerRadius = 10
-        gapValueLabel.setStyleGuide(.number1)
+        gapValueLabel.styleGuide = .number1
         gapValueLabel.textColor = Color.warning
         gapValueLabel.backgroundColor = Color.secondaryBackground
         gapValueLabel.textAlignment = .center
@@ -112,7 +111,7 @@ final class SubInsuranceCollectionViewCell: UICollectionViewCell {
         thinkOfImageView.translatesAutoresizingMaskIntoConstraints = false
 
         thinkOfValueLabel.cornerRadius = 10
-        thinkOfValueLabel.setStyleGuide(.number1)
+        thinkOfValueLabel.styleGuide = .number1
         thinkOfValueLabel.textColor = Color.mainForeground
         thinkOfValueLabel.backgroundColor = Color.secondaryBackground
         thinkOfValueLabel.textAlignment = .center

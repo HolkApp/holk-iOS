@@ -9,8 +9,8 @@
 import UIKit
 
 final class HomeInsuranceHeaderView: UICollectionReusableView {
-    let titleLabel = UILabel()
-    let descriptionLabel = UILabel()
+    let titleLabel = HolkLabel()
+    let descriptionLabel = HolkLabel()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -18,9 +18,11 @@ final class HomeInsuranceHeaderView: UICollectionReusableView {
         clipsToBounds = true
         backgroundColor = .clear
 
+        titleLabel.styleGuide = .header4
         titleLabel.textColor = Color.mainForeground
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
+        descriptionLabel.styleGuide = .subHeader1
         descriptionLabel.textColor = Color.mainForeground
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
 
@@ -44,8 +46,8 @@ final class HomeInsuranceHeaderView: UICollectionReusableView {
     }
 
     func configure(_ insurance: Insurance) {
-        titleLabel.set(text: insurance.kind.description, with: .header4)
-        descriptionLabel.set(text: insurance.address, with: .subHeader1)
+        titleLabel.text = insurance.kind.description
+        descriptionLabel.text = insurance.address
     }
 }
 

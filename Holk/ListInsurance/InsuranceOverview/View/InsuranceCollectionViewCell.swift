@@ -14,13 +14,13 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
     let containerView = UIView()
 
     // MARK: - Private variables
-    private let titleLabel = UILabel()
-    private let subtitleLabel = UILabel()
+    private let titleLabel = HolkLabel()
+    private let subtitleLabel = HolkLabel()
     private let insuranceTypeImageView = UIImageView()
     private let insuranceImageView = UIImageView()
     private let clockImageView = UIImageView()
-    private let daysLabel = UILabel()
-    private let daysTextLabel = UILabel()
+    private let daysLabel = HolkLabel()
+    private let daysTextLabel = HolkLabel()
     
     private let lightFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
 
@@ -46,8 +46,8 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
 
     func configure(_ insurance: Insurance, provider: InsuranceProvider?) {
         self.insurance = insurance
-        titleLabel.set(text: insurance.kind.description, with: .header5)
-        subtitleLabel.set(text: insurance.address, with: .subHeader3)
+        titleLabel.text = insurance.kind.description
+        subtitleLabel.text = insurance.address
         if let provider = provider {
             UIImage.makeImage(with: provider.logoUrl) { [weak self] image in
                 self?.insuranceImageView.image = image
@@ -55,14 +55,14 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         }
         switch insurance.endDate.expirationDaysLeft() {
         case .valid(let daysLeft):
-            daysLabel.set(text: "\(daysLeft)", with: .number2)
-            daysTextLabel.set(text: "Dagar kvar", with: .body1)
+            daysLabel.text = "\(daysLeft)"
+            daysTextLabel.text = "Dagar kvar"
         case .today:
             daysLabel.text = ""
-            daysTextLabel.set(text: "Ends today", with: .body1)
+            daysTextLabel.text = "Ends today"
         case .expired:
             daysLabel.text = ""
-            daysTextLabel.set(text: "Expired", with: .body1)
+            daysTextLabel.text = "Expired"
         default:
             daysLabel.text = ""
             daysTextLabel.text = ""
@@ -83,11 +83,13 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         containerView.layer.cornerCurve = .continuous
         containerView.translatesAutoresizingMaskIntoConstraints = false
 
+        titleLabel.styleGuide = .header5
         titleLabel.textColor = Color.mainForeground
         titleLabel.numberOfLines = 0
         titleLabel.setContentHuggingPriority(.required, for: .vertical)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
+        subtitleLabel.styleGuide = .subHeader3
         subtitleLabel.textColor = Color.mainForeground
         subtitleLabel.numberOfLines = 0
         subtitleLabel.setContentHuggingPriority(.required, for: .vertical)
@@ -98,13 +100,13 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         clockImageView.tintColor = Color.mainForeground
         clockImageView.translatesAutoresizingMaskIntoConstraints = false
 
-        daysLabel.setStyleGuide(.number2)
+        daysLabel.styleGuide = .number2
         daysLabel.textColor = Color.mainForeground
         daysLabel.numberOfLines = 0
         daysLabel.textAlignment = .center
         daysLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        daysTextLabel.setStyleGuide(.body1)
+        daysTextLabel.styleGuide = .body1
         daysTextLabel.textColor = Color.secondaryForeground
         daysTextLabel.numberOfLines = 0
         daysTextLabel.textAlignment = .center

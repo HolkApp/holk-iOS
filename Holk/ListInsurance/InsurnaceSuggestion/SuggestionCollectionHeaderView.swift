@@ -9,7 +9,7 @@
 import UIKit
 
 final class SuggestionCollectionHeaderView: UICollectionReusableView {
-    let textLabel = UILabel()
+    let textLabel = HolkLabel()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -17,6 +17,7 @@ final class SuggestionCollectionHeaderView: UICollectionReusableView {
         clipsToBounds = true
         backgroundColor = .clear
 
+        textLabel.styleGuide = .body3
         textLabel.textColor = Color.secondaryForeground
         textLabel.translatesAutoresizingMaskIntoConstraints = false
         
@@ -35,7 +36,7 @@ final class SuggestionCollectionHeaderView: UICollectionReusableView {
     }
 
     func configure(_ text: String) {
-        textLabel.set(text: text, with: .body3)
+        textLabel.text = text
     }
 }
 
