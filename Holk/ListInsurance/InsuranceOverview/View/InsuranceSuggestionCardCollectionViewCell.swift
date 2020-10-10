@@ -50,18 +50,26 @@ class InsuranceSuggestionCardCollectionViewCell: UICollectionViewCell {
         // TODO: Update this
         switch suggestionType {
         case .gap:
-            let starAnimation = Animation.named("Bell")
-            suggestionAnimationView.animation = starAnimation
-            suggestionAnimationView.play(fromProgress: 0, toProgress: 0.55, loopMode: .repeat(2)) {  [weak self] finished in
-                self?.suggestionAnimationView.currentProgress = 0.85
+            let gaps = suggestions?.gaps ?? []
+            if gaps.isEmpty {
+                suggestionImageView.image = UIImage(systemName: "bell")?.withRenderingMode(.alwaysTemplate)
+                suggestionImageView.tintColor = Color.mainForeground
+                suggestionIllustrationView.addArrangedSubview(suggestionImageView)
+            } else {
+                let starAnimation = Animation.named("Bell")
+                suggestionAnimationView.animation = starAnimation
+                suggestionAnimationView.play(fromProgress: 0, toProgress: 0.55, loopMode: .repeat(2)) {  [weak self] finished in
+                    self?.suggestionAnimationView.currentProgress = 0.85
+                }
+                suggestionIllustrationView.addArrangedSubview(suggestionAnimationView)
             }
-            suggestionIllustrationView.addArrangedSubview(suggestionAnimationView)
-
             suggestionLabel.text = "Luckor"
-            suggestionValueLabel.text = suggestions.flatMap { String($0.gaps.count) }
+            suggestionValueLabel.text = String(gaps.count)
             suggestionValueLabel.textColor = Color.mainForeground
+
         case .thinkOf:
-            suggestionImageView.image = UIImage(named: "light")
+            suggestionImageView.image = UIImage(named: "light")?.withRenderingMode(.alwaysTemplate)
+            suggestionImageView.tintColor = Color.mainForeground
             suggestionIllustrationView.addArrangedSubview(suggestionImageView)
 
             suggestionLabel.text = "Tänk på"
