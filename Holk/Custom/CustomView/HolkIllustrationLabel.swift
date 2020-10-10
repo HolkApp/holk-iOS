@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HolkIllustrationLabel: UILabel {
+class HolkIllustrationLabel: HolkLabel {
     // MARK: - Private variables
     private lazy var suffixLabel = UILabel()
     // MARK: - Public variables

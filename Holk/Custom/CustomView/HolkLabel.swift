@@ -11,24 +11,32 @@ import UIKit
 class HolkLabel: UILabel {
     var styleGuide: FontStyleGuide = .body1 {
         didSet {
-            super.setStyleGuide(styleGuide)
+            setStyleGuide(styleGuide)
         }
     }
 
     override var text: String? {
         didSet {
-            super.setStyleGuide(styleGuide)
+            setStyleGuide(styleGuide)
         }
     }
-}
 
-fileprivate extension UILabel {
-    func setStyleGuide(_ styleGuide: FontStyleGuide) {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+
+        setStyleGuide(styleGuide)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setStyleGuide(_ styleGuide: FontStyleGuide) {
         font = styleGuide.font
         setLineHeight(styleGuide.lineHeight)
     }
 
-    func setLineHeight(_ lineHeight: CGFloat) {
+    private func setLineHeight(_ lineHeight: CGFloat) {
         guard let font = font else { return }
 
         let paragraphStyle = NSMutableParagraphStyle()

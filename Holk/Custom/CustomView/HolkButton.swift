@@ -17,6 +17,7 @@ final class HolkButton: UIButton {
 
     override func setTitle(_ title: String?, for state: UIControl.State) {
         super.setTitle(title, for: state)
+        
         titleLabel?.setStyleGuide(styleGuide)
     }
     
@@ -40,6 +41,16 @@ final class HolkButton: UIButton {
                 tintColor = tintColor.withAlphaComponent(1)
             }
         }
+    }
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+
+        titleLabel?.setStyleGuide(styleGuide)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     func set(color: UIColor, image: UIImage? = nil) {
