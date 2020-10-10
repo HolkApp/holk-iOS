@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class ThinkOfBannerCollectionViewCell: UICollectionViewCell {
     private let imageView = UIImageView()
@@ -45,12 +46,6 @@ final class ThinkOfBannerCollectionViewCell: UICollectionViewCell {
 
 extension ThinkOfBannerCollectionViewCell {
     func configure(_ imageURL: URL?) {
-        UIImage.makeImage(with: imageURL) { [weak self] image in
-            if let image = image {
-                self?.imageView.image = image
-            } else {
-                self?.imageView.image = UIImage(named: "thinkOfPlaceholder")
-            }
-        }
+        imageView.kf.setImage(with: imageURL, placeholder: UIImage(named: "thinkOfPlaceholder"))
     }
 }

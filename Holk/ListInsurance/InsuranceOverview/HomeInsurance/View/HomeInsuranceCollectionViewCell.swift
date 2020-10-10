@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class HomeInsuranceCollectionViewCell: UICollectionViewCell {
     // MARK: - Public variables
@@ -46,12 +47,7 @@ final class HomeInsuranceCollectionViewCell: UICollectionViewCell {
         titleLabel.text = "Dina skydd"
         insuranceSubNumberLabel.text = "\(insurance.subInsurances.count + insurance.addonInsurances.count)"
         insuranceTextLabel.text = "Skydd"
-        
-        if let provider = provider {
-            UIImage.makeImage(with: provider.logoUrl) { [weak self] image in
-                self?.insuranceImageView.image = image
-            }
-        }
+        insuranceImageView.kf.setImage(with: provider?.logoUrl)
 
         self.insurance = insurance
 

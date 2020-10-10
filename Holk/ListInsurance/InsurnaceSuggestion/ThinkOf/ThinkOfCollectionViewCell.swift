@@ -29,7 +29,7 @@ final class ThinkOfCollectionViewCell: UICollectionViewCell {
     func configure(_ thinkOf: ThinkOfSuggestion) {
         titleLabel.text = thinkOf.title
         subInsuranceTypeLabel.text = thinkOf.header
-        thinkOfTypeIconView.imageView.image = UIImage(thinkOf: thinkOf)
+        thinkOfTypeIconView.image = UIImage(thinkOf: thinkOf)
         thinkOfTypeIconView.backgroundColor = Color.subInsuranceIconBackgroundColor(thinkOf)
         contentView.backgroundColor = Color.subInsuranceBackgroundColor(thinkOf)
     }

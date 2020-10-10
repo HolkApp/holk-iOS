@@ -38,12 +38,12 @@ final class SubInsuranceCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
 
-        iconView.imageView.image = nil
+        iconView.image = nil
         iconView.backgroundColor = nil
     }
 
     func configure(_ subInsurance: Insurance.SubInsurance, thinkOfs: [ThinkOfSuggestion], gaps: [GapSuggestion] = []) {
-        iconView.imageView.image = UIImage.init(subInsuranceKind: subInsurance.kind)?.withRenderingMode(.alwaysTemplate)
+        iconView.image = UIImage.init(subInsuranceKind: subInsurance.kind)?.withRenderingMode(.alwaysTemplate)
         iconView.backgroundColor = Color.subInsuranceIconBackgroundColor(subInsurance.kind)
         cardView.backgroundColor = Color.subInsuranceBackgroundColor(subInsurance.kind)
         titleLabel.text = subInsurance.title
@@ -77,7 +77,7 @@ final class SubInsuranceCollectionViewCell: UICollectionViewCell {
         cardView.layer.cornerRadius = 10
         cardView.translatesAutoresizingMaskIntoConstraints = false
 
-        iconView.imageView.tintColor = Color.mainForeground
+        iconView.tintColor = Color.mainForeground
         iconView.translatesAutoresizingMaskIntoConstraints = false
 
         titleLabel.styleGuide = .cardHeader2

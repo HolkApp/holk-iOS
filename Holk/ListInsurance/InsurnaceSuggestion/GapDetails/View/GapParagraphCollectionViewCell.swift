@@ -26,7 +26,7 @@ final class GapParagraphCollectionViewCell: UICollectionViewCell {
     private func setup() {
         iconView.contentMode = .scaleAspectFit
         iconView.backgroundColor = Color.paragraphIconBackground
-        iconView.imageView.tintColor = Color.mainForeground
+        iconView.tintColor = Color.mainForeground
         iconView.translatesAutoresizingMaskIntoConstraints = false
 
         titleLabel.styleGuide = .titleHeader1
@@ -67,8 +67,7 @@ final class GapParagraphCollectionViewCell: UICollectionViewCell {
 
 extension GapParagraphCollectionViewCell {
     func configure(_ viewModel: GapParagraphViewModel) {
-        // TODO: Configure the icon
-//        viewModel.icon
+        iconView.kf.setImage(with: viewModel.icon)
         titleLabel.text = viewModel.title
         descriptionLabel.text = viewModel.text
     }

@@ -131,10 +131,7 @@ extension AddInsuranceProviderViewController: UITableViewDataSource {
         let onboardingInsuranceCell = tableView.dequeueCell(OnboardingInsuranceCell.self, indexPath: indexPath)
         if let list = storeController.providerStore.providerList.value {
             let provider = list[indexPath.item]
-            onboardingInsuranceCell.configure(title: provider.displayName)
-            UIImage.makeImage(with: provider.symbolUrl) { image in
-                onboardingInsuranceCell.configure(title: provider.displayName, image: image)
-            }
+            onboardingInsuranceCell.configure(title: provider.displayName, imageURL: provider.symbolUrl)
         } else {
             onboardingInsuranceCell.textLabel?.text = "loading"
         }

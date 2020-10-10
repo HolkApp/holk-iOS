@@ -25,7 +25,7 @@ final class ThinkOfParagraphCollectionViewCell: UICollectionViewCell {
     private func setup() {
         iconView.contentMode = .scaleAspectFit
         iconView.backgroundColor = Color.paragraphIconBackground
-        iconView.imageView.tintColor = Color.mainForeground
+        iconView.tintColor = Color.mainForeground
         iconView.translatesAutoresizingMaskIntoConstraints = false
 
         descriptionLabel.numberOfLines = 0
@@ -56,9 +56,7 @@ final class ThinkOfParagraphCollectionViewCell: UICollectionViewCell {
 
 extension ThinkOfParagraphCollectionViewCell {
     func configure(_ viewModel: ThinkOfParagraphViewModel) {
-        UIImage.makeImage(with: viewModel.icon) { [weak self] image in
-            self?.iconView.imageView.image = image
-        }
+        iconView.kf.setImage(with: viewModel.icon)
         descriptionLabel.text = viewModel.text
     }
 }

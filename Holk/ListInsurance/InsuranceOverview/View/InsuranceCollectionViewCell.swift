@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class InsuranceCollectionViewCell: UICollectionViewCell {
     // MARK: - Public variables
@@ -48,11 +49,8 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         self.insurance = insurance
         titleLabel.text = insurance.kind.description
         subtitleLabel.text = insurance.address
-        if let provider = provider {
-            UIImage.makeImage(with: provider.logoUrl) { [weak self] image in
-                self?.insuranceImageView.image = image
-            }
-        }
+        insuranceImageView.kf.setImage(with: provider?.logoUrl)
+
         switch insurance.endDate.expirationDaysLeft() {
         case .valid(let daysLeft):
             daysLabel.text = "\(daysLeft)"

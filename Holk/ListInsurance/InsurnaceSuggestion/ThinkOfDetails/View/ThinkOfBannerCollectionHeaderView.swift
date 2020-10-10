@@ -78,7 +78,7 @@ final class ThinkOfBannerCollectionHeaderView: UICollectionReusableView {
 
 extension ThinkOfBannerCollectionHeaderView {
     func configure(_ viewModel: ThinkOfDetailsViewModel) {
-           iconView.imageView.image = viewModel.iconImage
+           iconView.image = viewModel.iconImage
            iconView.backgroundColor = viewModel.iconImageBackgroundColor
            tagLabel.text = viewModel.subInsuranceText
            titleLabel.text = viewModel.title

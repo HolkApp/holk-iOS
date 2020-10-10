@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class ThinkOfRelatedInsuranceCollectionHeaderView: UICollectionReusableView {
     private let titleLabel = HolkLabel()
@@ -154,10 +155,6 @@ extension ThinkOfRelatedInsuranceCollectionHeaderView {
     func configure(_ viewModel: ThinkOfSubInsuranceHeaderViewModel) {
         nameValueLabel.text = viewModel.insurance.kind.description
         endDateValueLabel.text = viewModel.endDateString
-        if let imageURL = viewModel.insuranceImageURL {
-            UIImage.makeImage(with: imageURL) { [weak self] image in
-                self?.providerValueLabel.image = image
-            }
-        }
+        providerValueLabel.kf.setImage(with: viewModel.insuranceImageURL)
     }
 }
