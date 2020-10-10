@@ -13,7 +13,7 @@ final class HolkTextField: UITextField {
     // MARK: - Private variables
     private let underlineLayer = CAShapeLayer()
     private let placeholderLayer = CATextLayer()
-    private let helpLabel = UILabel()
+    private let helpLabel = HolkLabel()
     
     override  var placeholder: String? {
         didSet {
@@ -47,14 +47,14 @@ final class HolkTextField: UITextField {
         }
     }
     
-    private lazy var prefixLabel = UILabel()
+    private lazy var prefixLabel = HolkLabel()
      var prefix: String? {
         didSet {
             updatePrefix()
         }
     }
     
-    private lazy var suffixLabel = UILabel()
+    private lazy var suffixLabel = HolkLabel()
      var suffix: String? {
         didSet {
             updateSuffix()
@@ -66,22 +66,24 @@ final class HolkTextField: UITextField {
             updatePlaceholderLayer()
         }
     }
-    
-     override var font: UIFont? {
+
+    var styleGuide: FontStyleGuide = .header5 {
         didSet {
             if prefix != nil {
-                prefixLabel.font = font
+                prefixLabel.styleGuide = styleGuide
             }
             if suffix != nil {
-                suffixLabel.font = font
+                suffixLabel.styleGuide = styleGuide
             }
-            placeholderLayer.font = font as CFTypeRef
+            placeholderLayer.font = styleGuide.font as CFTypeRef
         }
     }
     
-     var helpFont: UIFont? {
+     var helpStyleGuide: FontStyleGuide? {
         didSet {
-            helpLabel.font = helpFont
+            if let helpStyleGuide = helpStyleGuide {
+                helpLabel.styleGuide = helpStyleGuide
+            }
             setNeedsLayout()
         }
     }
@@ -257,6 +259,30 @@ private extension HolkTextField {
         } else {
             suffixLabel.removeFromSuperview()
         }
+    }
+
+    private func setStyleGuide(_ styleGuide: FontStyleGuide) {
+        font = styleGuide.font
+        setLineHeight(styleGuide.lineHeight)
+    }
+
+    private func setLineHeight(_ lineHeight: CGFloat) {
+        guard let font = font else { return }
+
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = lineHeight - font.lineHeight
+        paragraphStyle.alignment = textAlignment
+
+        let attrString: NSMutableAttributedString
+        if let attributedText = attributedText {
+            attrString = NSMutableAttributedString(attributedString: attributedText)
+        } else {
+            attrString = NSMutableAttributedString(string: text ?? "")
+            attrString.addAttribute(.font, value: font, range: NSRange(location: 0, length: attrString.length))
+        }
+
+        attrString.addAttribute(.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attrString.length))
+        self.attributedText = attrString
     }
 }
 
