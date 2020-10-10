@@ -28,7 +28,7 @@ final class HolkIconView: UIView {
     private func setup() {
         clipsToBounds = true
 
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = contentMode
         imageView.translatesAutoresizingMaskIntoConstraints = false
 
         addSubview(imageView)
@@ -39,6 +39,12 @@ final class HolkIconView: UIView {
             imageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -12),
             imageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -12),
         ])
+    }
+
+    override var contentMode: UIView.ContentMode {
+        didSet {
+            imageView.contentMode = contentMode
+        }
     }
 
     override func layoutSubviews() {
