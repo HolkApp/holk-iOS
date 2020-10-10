@@ -86,7 +86,7 @@ final class SubInsuranceCollectionViewCell: UICollectionViewCell {
 
         descriptionLabel.styleGuide = .body1
         descriptionLabel.textColor = Color.mainForeground
-        descriptionLabel.numberOfLines = 0
+        descriptionLabel.numberOfLines = 2
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
 
         chevronView.image = UIImage(systemName: "chevron.right")
@@ -158,9 +158,10 @@ final class SubInsuranceCollectionViewCell: UICollectionViewCell {
             titleLabel.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -24),
 
             descriptionLabel.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 24),
-            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 6),
+            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.lastBaselineAnchor, constant: 6),
             descriptionLabel.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -24),
-            descriptionLabel.bottomAnchor.constraint(equalTo: cardView.bottomAnchor, constant: -16),
+            descriptionLabel.bottomAnchor.constraint(equalTo: cardView.bottomAnchor, constant: -32),
+            descriptionLabel.heightAnchor.constraint(equalToConstant: 40),
 
             gapImageView.heightAnchor.constraint(equalToConstant: 30),
             gapImageView.widthAnchor.constraint(equalToConstant: 30),
