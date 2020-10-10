@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class HolkIconView: UIView {
-    let imageView = UIImageView()
+    private let imageView = UIImageView()
 
     convenience init() {
         self.init(frame: .zero)
@@ -26,8 +27,10 @@ final class HolkIconView: UIView {
     }
 
     private func setup() {
+        contentMode = .scaleAspectFit
         clipsToBounds = true
 
+        imageView.image = image
         imageView.contentMode = contentMode
         imageView.translatesAutoresizingMaskIntoConstraints = false
 
@@ -39,6 +42,22 @@ final class HolkIconView: UIView {
             imageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -12),
             imageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -12),
         ])
+    }
+
+    override var tintColor: UIColor! {
+        didSet {
+            imageView.tintColor = tintColor
+        }
+    }
+
+    var kf: KingfisherWrapper<UIImageView> {
+        return imageView.kf
+    }
+
+    var image: UIImage? {
+        didSet {
+            imageView.image = image
+        }
     }
 
     override var contentMode: UIView.ContentMode {
