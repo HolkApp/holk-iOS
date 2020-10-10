@@ -82,7 +82,7 @@ extension Insurance {
         userName = try container.decode(String.self, forKey: .userName)
         address = try container.decode(String.self, forKey: .address)
         cost = try container.decode(Cost.self, forKey: .cost)
-        subInsurances = try container.decode([SubInsurance].self, forKey: .subInsurances)
+        subInsurances = try container.decode([SubInsurance].self, forKey: .subInsurances).sorted()
         accidentalInsurances = try container.decode([AccidentalInsurance].self, forKey: .accidentalInsurances)
         addonInsurances = accidentalInsurances.map({ AddonInsurance($0) })
     }

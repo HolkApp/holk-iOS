@@ -9,16 +9,41 @@
 import Foundation
 
 extension Insurance {
-    struct SubInsurance: Codable, Hashable, Equatable {
-        enum Kind: String, Codable, DefaultableDecodable {
-            case liability = "LIABILITY"
-            case assault = "ASSAULT"
-            case legal = "LEGAL"
+    struct SubInsurance: Codable, Hashable, Equatable, Comparable {
+        static func < (lhs: Insurance.SubInsurance, rhs: Insurance.SubInsurance) -> Bool {
+            return lhs.kind < rhs.kind
+        }
+
+        enum Kind: String, Codable, DefaultableDecodable, CaseIterable, Comparable {
             case movables = "MOVABLES"
             case travel = "TRAVEL"
+            case assault = "ASSAULT"
+            case liability = "LIABILITY"
+            case legal = "LEGAL"
             case unknown
 
             static var decodeFallbackValue = unknown
+
+            static func < (lhs: Insurance.SubInsurance.Kind, rhs: Insurance.SubInsurance.Kind) -> Bool {
+                return lhs.comparisonValue < rhs.comparisonValue
+            }
+
+            private var comparisonValue: Int {
+                switch self {
+                case .movables:
+                    return 0
+                case .travel:
+                    return 1
+                case .assault:
+                    return 2
+                case .liability:
+                    return 3
+                case .legal:
+                    return 4
+                case .unknown:
+                    return 5
+                }
+            }
         }
 
         let subtitle: String
