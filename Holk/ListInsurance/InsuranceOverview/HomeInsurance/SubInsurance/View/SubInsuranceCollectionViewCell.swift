@@ -13,6 +13,7 @@ final class SubInsuranceCollectionViewCell: UICollectionViewCell {
     private let iconView = HolkIconView()
     private let titleLabel = HolkLabel()
     private let descriptionLabel = HolkLabel()
+    private let descriptionPlaceholderView = UIView()
     private let chevronView = UIImageView()
 
     private let gapView = UIView()
@@ -89,6 +90,8 @@ final class SubInsuranceCollectionViewCell: UICollectionViewCell {
         descriptionLabel.numberOfLines = 2
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
 
+        descriptionPlaceholderView.translatesAutoresizingMaskIntoConstraints = false
+
         chevronView.image = UIImage(systemName: "chevron.right")
         chevronView.tintColor = Color.mainForeground.withAlphaComponent(0.5)
         chevronView.translatesAutoresizingMaskIntoConstraints = false
@@ -131,6 +134,7 @@ final class SubInsuranceCollectionViewCell: UICollectionViewCell {
         cardView.addSubview(iconView)
         cardView.addSubview(titleLabel)
         cardView.addSubview(descriptionLabel)
+        cardView.addSubview(descriptionPlaceholderView)
         cardView.addSubview(chevronView)
         cardView.addSubview(stackView)
 
@@ -160,8 +164,12 @@ final class SubInsuranceCollectionViewCell: UICollectionViewCell {
             descriptionLabel.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 24),
             descriptionLabel.topAnchor.constraint(equalTo: titleLabel.lastBaselineAnchor, constant: 6),
             descriptionLabel.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -24),
-            descriptionLabel.bottomAnchor.constraint(equalTo: cardView.bottomAnchor, constant: -32),
-            descriptionLabel.heightAnchor.constraint(equalToConstant: 40),
+
+            descriptionPlaceholderView.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 24),
+            descriptionPlaceholderView.topAnchor.constraint(equalTo: titleLabel.lastBaselineAnchor, constant: 6),
+            descriptionPlaceholderView.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -24),
+            descriptionPlaceholderView.bottomAnchor.constraint(equalTo: cardView.bottomAnchor, constant: -32),
+            descriptionPlaceholderView.heightAnchor.constraint(equalToConstant: 40),
 
             gapImageView.heightAnchor.constraint(equalToConstant: 30),
             gapImageView.widthAnchor.constraint(equalToConstant: 30),
