@@ -67,18 +67,14 @@ PODS:
   - nanopb/decode (1.30905.0)
   - nanopb/encode (1.30905.0)
   - PromisesObjC (1.2.10)
-  - SwiftLint (0.35.0)
 
 DEPENDENCIES:
   - Firebase/Analytics
   - Kingfisher (~> 5.15)
   - lottie-ios
   - MarkdownKit
-  - SwiftLint
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
-    - SwiftLint
   trunk:
     - Firebase
     - FirebaseAnalytics
@@ -108,8 +104,7 @@ SPEC CHECKSUMS:
   MarkdownKit: 379028e9cd3ebf05ccac87205cd9aead446159d4
   nanopb: c43f40fadfe79e8b8db116583945847910cbabc9
   PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
-  SwiftLint: 5553187048b900c91aa03552807681bb6b027846
 
-PODFILE CHECKSUM: eec75fc62fb093fddb89c9156a346e8ece1c5c75
+PODFILE CHECKSUM: 85a72dddea130dc7f2fefd5ccf80a705c0550a73
 
 COCOAPODS: 1.9.3

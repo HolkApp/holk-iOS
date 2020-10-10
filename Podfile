@@ -5,7 +5,6 @@ target 'Holk' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
   pod 'Kingfisher', '~> 5.15'
-  pod 'SwiftLint'
   pod 'MarkdownKit'
   pod 'lottie-ios'
   pod 'Firebase/Analytics'
