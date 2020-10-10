@@ -197,7 +197,7 @@ extension ThinkOfDetailsViewController {
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(390))
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
         let cardSection = NSCollectionLayoutSection(group: group)
-        cardSection.contentInsets = .init(top: -56, leading: 0, bottom: 36, trailing: 0)
+        cardSection.contentInsets = .init(top: 0, leading: 0, bottom: 26, trailing: 0)
         cardSection.boundarySupplementaryItems = [makeThinkOfDetailHeader()]
         return cardSection
     }
