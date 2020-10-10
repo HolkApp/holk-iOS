@@ -1,5 +1,4 @@
 PODS:
-  - Alamofire (4.9.0)
   - Firebase/Analytics (6.30.0):
     - Firebase/Core
   - Firebase/Core (6.30.0):
@@ -57,6 +56,9 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (6.7.2):
     - GoogleUtilities/Logger
+  - Kingfisher (5.15.5):
+    - Kingfisher/Core (= 5.15.5)
+  - Kingfisher/Core (5.15.5)
   - lottie-ios (3.1.8)
   - MarkdownKit (1.5)
   - nanopb (1.30905.0):
@@ -68,15 +70,14 @@ PODS:
   - SwiftLint (0.35.0)
 
 DEPENDENCIES:
-  - Alamofire
   - Firebase/Analytics
+  - Kingfisher (~> 5.15)
   - lottie-ios
   - MarkdownKit
   - SwiftLint
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
-    - Alamofire
     - SwiftLint
   trunk:
     - Firebase
@@ -87,13 +88,13 @@ SPEC REPOS:
     - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleUtilities
+    - Kingfisher
     - lottie-ios
     - MarkdownKit
     - nanopb
     - PromisesObjC
 
 SPEC CHECKSUMS:
-  Alamofire: afc3e7c6db61476cb45cdd23fed06bad03bbc321
   Firebase: 210f41ca352067d83b1ba4fd2e7fb49a0c017397
   FirebaseAnalytics: a299a86ef70fcc6aa011418bc65a7e101fb9636c
   FirebaseCore: 9a41e2de78fef10f63cee30ab10e2945266bc1fc
@@ -102,12 +103,13 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: 3def7652b1f5b5a576178dc332e2a36a260fbef6
   GoogleDataTransport: 672fb0ce96fe7f7f31d43672fca62ad2c9c86f7b
   GoogleUtilities: 7f2f5a07f888cdb145101d6042bc4422f57e70b3
+  Kingfisher: e3ec347a5ab8817b7585ef46923a2d2b9a7d8fbe
   lottie-ios: 48fac6be217c76937e36e340e2d09cf7b10b7f5f
   MarkdownKit: 379028e9cd3ebf05ccac87205cd9aead446159d4
   nanopb: c43f40fadfe79e8b8db116583945847910cbabc9
   PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
   SwiftLint: 5553187048b900c91aa03552807681bb6b027846
 
-PODFILE CHECKSUM: 578336d3658e91bbf2ab0ff856c24442e58477cd
+PODFILE CHECKSUM: eec75fc62fb093fddb89c9156a346e8ece1c5c75
 
 COCOAPODS: 1.9.3
