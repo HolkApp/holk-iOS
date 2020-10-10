@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Alamofire
 
 extension UIImage {
     convenience init?(layer: CALayer) {
@@ -30,39 +29,6 @@ extension UIImage {
 
         guard let cgImage = image?.cgImage else { return nil }
         self.init(cgImage: cgImage)
-    }
-
-    @discardableResult
-    static func makeImage(with imageUrl: URL?, completion: ((UIImage?) -> Void)? = nil) -> DownloadRequest? {
-        guard let imageUrl = imageUrl else {
-            completion?(nil)
-            return nil
-        }
-        let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0] as NSURL
-        let newPath = path.appendingPathComponent(imageUrl.absoluteString)
-
-        let destination: DownloadRequest.DownloadFileDestination = { _, _ in
-            return (newPath!, [.removePreviousFile, .createIntermediateDirectories])
-        }
-
-        do { //Use saved file, if possible
-            let data = try Data(contentsOf: newPath!)
-            if let image = UIImage(data: data) {
-                completion?(image)
-            } else {
-                throw CocoaError(.fileNoSuchFile)
-            }
-        } catch {
-            return Alamofire.download(imageUrl, to: destination).validate().responseData { response in
-                if let data = response.result.value {
-                    let image = UIImage(data: data)
-                    completion?(image)
-                } else {
-                    completion?(nil)
-                }
-            }
-        }
-        return nil
     }
 
     func withSymbolWeightConfiguration(_ weight: SymbolWeight, pointSize: CGFloat? = nil) -> UIImage {
