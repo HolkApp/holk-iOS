@@ -43,9 +43,9 @@ final class ThinkOfParagraphCollectionViewCell: UICollectionViewCell {
         NSLayoutConstraint.activate([
             iconView.widthAnchor.constraint(equalToConstant: 45),
             iconView.heightAnchor.constraint(equalToConstant: 45),
-            iconView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 26),
+            iconView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 32),
             iconView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            iconView.trailingAnchor.constraint(equalTo: descriptionLabel.leadingAnchor, constant: -20),
+            iconView.trailingAnchor.constraint(equalTo: descriptionLabel.leadingAnchor, constant: -16),
 
             descriptionLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
             descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -26),

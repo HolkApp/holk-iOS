@@ -162,11 +162,11 @@ final class SubInsuranceCollectionViewCell: UICollectionViewCell {
             titleLabel.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -24),
 
             descriptionLabel.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 24),
-            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.lastBaselineAnchor, constant: 6),
+            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.lastBaselineAnchor, constant: 10),
             descriptionLabel.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -24),
 
             descriptionPlaceholderView.leadingAnchor.constraint(equalTo: cardView.leadingAnchor, constant: 24),
-            descriptionPlaceholderView.topAnchor.constraint(equalTo: titleLabel.lastBaselineAnchor, constant: 6),
+            descriptionPlaceholderView.topAnchor.constraint(equalTo: titleLabel.lastBaselineAnchor, constant: 10),
             descriptionPlaceholderView.trailingAnchor.constraint(equalTo: cardView.trailingAnchor, constant: -24),
             descriptionPlaceholderView.bottomAnchor.constraint(equalTo: cardView.bottomAnchor, constant: -32),
             descriptionPlaceholderView.heightAnchor.constraint(equalToConstant: 40),
