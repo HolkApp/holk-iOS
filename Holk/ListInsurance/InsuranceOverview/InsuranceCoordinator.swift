@@ -35,9 +35,9 @@ final class InsuranceCoordinator: NSObject, UINavigationControllerDelegate {
     }
 
     func showInsurance(_ insurance: Insurance) {
-        let insuranceViewController = InsuranceViewController(storeController: storeController, insurance: insurance)
-        insuranceViewController.coordinator = self
-        navController.pushViewController(insuranceViewController, animated: true)
+        let homeInsuranceViewController = HomeInsuranceViewController(storeController: storeController, insurance: insurance)
+        homeInsuranceViewController.coordinator = self
+        navController.pushViewController(homeInsuranceViewController, animated: true)
     }
 
     func showinsuranceDetail(_ insurance: Insurance) {
@@ -55,9 +55,9 @@ final class InsuranceCoordinator: NSObject, UINavigationControllerDelegate {
     
     // MARK: - UINavigationControllerDelegate
     func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        if fromVC is InsuranceListViewController, toVC is InsuranceViewController {
+        if fromVC is InsuranceListViewController, toVC is HomeInsuranceViewController {
             return InsuranceTransition()
-        } else if fromVC is InsuranceViewController, toVC is InsuranceListViewController {
+        } else if fromVC is HomeInsuranceViewController, toVC is InsuranceListViewController {
             return InsuranceTransition()
         }
         return nil
