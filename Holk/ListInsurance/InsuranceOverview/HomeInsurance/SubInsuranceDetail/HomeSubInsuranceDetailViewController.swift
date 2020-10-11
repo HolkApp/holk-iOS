@@ -13,6 +13,12 @@ final class HomeSubInsuranceDetailViewController: UIViewController {
     private var storeController: StoreController
     private var insurance: Insurance
 
+    enum SubInsuranceDetailSegment {
+        case cover
+        case gaps
+        case thinkOfs
+    }
+
 //    typealias DataSource = UICollectionViewDiffableDataSource<Section, Item>
 //    typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Item>
 
