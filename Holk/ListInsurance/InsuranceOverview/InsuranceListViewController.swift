@@ -16,7 +16,12 @@ final class InsuranceListViewController: UICollectionViewController {
 
     // MARK: - Private variables
     private var storeController: StoreController
-    private var suggestions: SuggestionsListResponse? {
+    private var gaps: [GapSuggestion] = [] {
+        didSet {
+            collectionView.reloadData()
+        }
+    }
+    private var thinkOfs: [ThinkOfSuggestion] = [] {
         didSet {
             collectionView.reloadData()
         }
@@ -47,8 +52,11 @@ final class InsuranceListViewController: UICollectionViewController {
         storeController.insuranceStore.$homeInsurances
             .sink { [weak self] in self?.insuranceList = $0 }
             .store(in: &cancellables)
-        storeController.suggestionStore.suggestions
-            .sink { [weak self] in self?.suggestions = $0 }
+        storeController.suggestionStore.$gaps
+            .sink { [weak self] in self?.gaps = $0 }
+            .store(in: &cancellables)
+        storeController.suggestionStore.$thinkOfs
+            .sink { [weak self] in self?.thinkOfs = $0 }
             .store(in: &cancellables)
     }
     
@@ -90,9 +98,9 @@ extension InsuranceListViewController {
         if indexPath.section == 0 {
             let insuranceSuggestionCardCollectionViewCell = collectionView.dequeueCell(InsuranceSuggestionCardCollectionViewCell.self, indexPath: indexPath)
             if indexPath.item == 0 {
-                insuranceSuggestionCardCollectionViewCell.configure(suggestions, suggestionType: .gap)
+                insuranceSuggestionCardCollectionViewCell.configure(gaps)
             } else {
-                insuranceSuggestionCardCollectionViewCell.configure(suggestions, suggestionType: .thinkOf)
+                insuranceSuggestionCardCollectionViewCell.configure(thinkOfs)
             }
             return insuranceSuggestionCardCollectionViewCell
         } else {

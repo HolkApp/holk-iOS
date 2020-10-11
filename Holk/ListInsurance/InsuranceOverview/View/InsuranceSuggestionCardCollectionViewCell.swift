@@ -46,37 +46,65 @@ class InsuranceSuggestionCardCollectionViewCell: UICollectionViewCell {
         suggestionImageView.removeFromSuperview()
     }
 
-    func configure(_ suggestions: SuggestionsListResponse?, suggestionType: SuggestionType) {
-        // TODO: Update this
-        switch suggestionType {
-        case .gap:
-            let gaps = suggestions?.gaps ?? []
-            if gaps.isEmpty {
-                suggestionImageView.image = UIImage(systemName: "bell")?.withSymbolWeightConfiguration(.light).withRenderingMode(.alwaysTemplate)
-                suggestionImageView.tintColor = Color.mainForeground
-                suggestionIllustrationView.addArrangedSubview(suggestionImageView)
-            } else {
-                let starAnimation = Animation.named("Bell")
-                suggestionAnimationView.animation = starAnimation
-                suggestionAnimationView.play(fromProgress: 0, toProgress: 0.55, loopMode: .repeat(2)) {  [weak self] finished in
-                    self?.suggestionAnimationView.currentProgress = 0.85
-                }
-                suggestionIllustrationView.addArrangedSubview(suggestionAnimationView)
-            }
-            suggestionLabel.text = "Luckor"
-            suggestionValueLabel.text = String(gaps.count)
-            suggestionValueLabel.textColor = Color.mainForeground
-
-        case .thinkOf:
-            suggestionImageView.image = UIImage(named: "light")?.withSymbolWeightConfiguration(.light).withRenderingMode(.alwaysTemplate)
+    func configure(_ gaps: [GapSuggestion]) {
+        if gaps.isEmpty {
+            suggestionImageView.image = UIImage(systemName: "bell")?.withSymbolWeightConfiguration(.light).withRenderingMode(.alwaysTemplate)
             suggestionImageView.tintColor = Color.mainForeground
             suggestionIllustrationView.addArrangedSubview(suggestionImageView)
-
-            suggestionLabel.text = "Tänk på"
-            suggestionValueLabel.text = suggestions.flatMap { String($0.thinkOfs.count) }
-            suggestionValueLabel.textColor = Color.mainForeground
+        } else {
+            let starAnimation = Animation.named("Bell")
+            suggestionAnimationView.animation = starAnimation
+            suggestionAnimationView.play(fromProgress: 0, toProgress: 0.55, loopMode: .repeat(2)) {  [weak self] finished in
+                self?.suggestionAnimationView.currentProgress = 0.85
+            }
+            suggestionIllustrationView.addArrangedSubview(suggestionAnimationView)
         }
+        suggestionLabel.text = "Luckor"
+        suggestionValueLabel.text = String(gaps.count)
+        suggestionValueLabel.textColor = Color.mainForeground
     }
+
+    func configure(_ thinkOfs: [ThinkOfSuggestion]) {
+        suggestionImageView.image = UIImage(named: "light")?.withSymbolWeightConfiguration(.light).withRenderingMode(.alwaysTemplate)
+        suggestionImageView.tintColor = Color.mainForeground
+        suggestionIllustrationView.addArrangedSubview(suggestionImageView)
+
+        suggestionLabel.text = "Tänk på"
+        suggestionValueLabel.text = String(thinkOfs.count)
+        suggestionValueLabel.textColor = Color.mainForeground
+    }
+
+//    func configure(_ suggestions: SuggestionsListResponse?, suggestionType: SuggestionType) {
+//        // TODO: Update this
+//        switch suggestionType {
+//        case .gap:
+//            let gaps = suggestions?.gaps ?? []
+//            if gaps.isEmpty {
+//                suggestionImageView.image = UIImage(systemName: "bell")?.withSymbolWeightConfiguration(.light).withRenderingMode(.alwaysTemplate)
+//                suggestionImageView.tintColor = Color.mainForeground
+//                suggestionIllustrationView.addArrangedSubview(suggestionImageView)
+//            } else {
+//                let starAnimation = Animation.named("Bell")
+//                suggestionAnimationView.animation = starAnimation
+//                suggestionAnimationView.play(fromProgress: 0, toProgress: 0.55, loopMode: .repeat(2)) {  [weak self] finished in
+//                    self?.suggestionAnimationView.currentProgress = 0.85
+//                }
+//                suggestionIllustrationView.addArrangedSubview(suggestionAnimationView)
+//            }
+//            suggestionLabel.text = "Luckor"
+//            suggestionValueLabel.text = String(gaps.count)
+//            suggestionValueLabel.textColor = Color.mainForeground
+//
+//        case .thinkOf:
+//            suggestionImageView.image = UIImage(named: "light")?.withSymbolWeightConfiguration(.light).withRenderingMode(.alwaysTemplate)
+//            suggestionImageView.tintColor = Color.mainForeground
+//            suggestionIllustrationView.addArrangedSubview(suggestionImageView)
+//
+//            suggestionLabel.text = "Tänk på"
+//            suggestionValueLabel.text = suggestions.flatMap { String($0.thinkOfs.count) }
+//            suggestionValueLabel.textColor = Color.mainForeground
+//        }
+//    }
 
     private func setup() {
         contentView.layoutMargins = .init(top: 6, left: 6, bottom: 6, right: 6)

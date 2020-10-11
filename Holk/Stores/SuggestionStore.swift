@@ -11,7 +11,6 @@ import Combine
 
 final class SuggestionStore {
     // MARK: Public variables
-    var suggestions = CurrentValueSubject<SuggestionsListResponse?, Never>(nil)
     @Published var gaps: [GapSuggestion] = []
     @Published var thinkOfs: [ThinkOfSuggestion] = []
 
@@ -37,7 +36,6 @@ final class SuggestionStore {
         }) { [weak self] suggestionsListResponse in
             self?.gaps = suggestionsListResponse.gaps
             self?.thinkOfs = suggestionsListResponse.thinkOfs
-            self?.suggestions.value = suggestionsListResponse
             completion(.success(suggestionsListResponse))
         }.store(in: &cancellables)
     }
