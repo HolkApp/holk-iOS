@@ -89,7 +89,15 @@ final class HomeSubInsurancesViewController: UIViewController {
 }
 
 // MARK: UICollectionViewLayout
-extension HomeSubInsurancesViewController {
+extension HomeSubInsurancesViewController: UICollectionViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let yOffset = scrollView.adjustedContentOffset.y
+        if let headerView = collectionView.supplementaryView(forElementKind: UICollectionView.elementKindSectionHeader, at: IndexPath(row: 0, section: 0)),
+           yOffset <= 0 {
+            headerView.transform = .init(translationX: 0, y: yOffset)
+        }
+    }
+
     private func makeDataSource() -> DataSource {
         let dataSource = DataSource(
             collectionView: collectionView,

@@ -200,7 +200,13 @@ extension GapDetailsViewController {
 
 extension GapDetailsViewController: UICollectionViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let alpha: CGFloat = max(min(scrollView.adjustedContentOffset.y, 60), 0) / 60
+        let yOffset = scrollView.adjustedContentOffset.y
+        let alpha: CGFloat = max(min(yOffset, 60), 0) / 60
         navigationController?.navigationBar.backgroundColor = viewModel.headerBackgroundViewColor?.withAlphaComponent(alpha)
+
+        if let headerView = collectionView.cellForItem(at: IndexPath(row: 0, section: 0)),
+           yOffset <= 0 {
+            headerView.transform = .init(translationX: 0, y: yOffset)
+        }
     }
 }

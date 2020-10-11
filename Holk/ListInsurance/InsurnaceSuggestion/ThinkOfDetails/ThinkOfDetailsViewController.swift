@@ -246,7 +246,16 @@ extension ThinkOfDetailsViewController {
 
 extension ThinkOfDetailsViewController: UICollectionViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let alpha: CGFloat = max(min(scrollView.adjustedContentOffset.y, 60), 0) / 60
+        let yOffset = scrollView.adjustedContentOffset.y
+        let alpha: CGFloat = max(min(yOffset, 60), 0) / 60
         navigationController?.navigationBar.backgroundColor = viewModel.headerBackgroundViewColor?.withAlphaComponent(alpha)
+
+        if let bannerView = collectionView.cellForItem(at: IndexPath(row: 0, section: 0)),
+           let headerView = collectionView.supplementaryView(forElementKind: UICollectionView.elementKindSectionHeader, at: IndexPath(row: 0, section: 0)),
+           yOffset <= 0 {
+            headerView.transform = .init(translationX: 0, y: yOffset)
+            let factor = (abs(yOffset) + bannerView.frame.height) / bannerView.frame.height
+            bannerView.transform = CGAffineTransform(scaleX: factor, y: factor).translatedBy(x: 0, y: yOffset * 0.5)
+        }
     }
 }
