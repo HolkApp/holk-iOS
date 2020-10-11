@@ -1,5 +1,5 @@
 //
-//  InsuranceViewController.swift
+//  HomeInsuranceViewController.swift
 //  Holk
 //
 //  Created by 张梦皓 on 2020-05-31.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class InsuranceViewController: UIViewController {
+final class HomeInsuranceViewController: UIViewController {
     // MARK: - Public Variables
     weak var coordinator: InsuranceCoordinator?
     var selectedIndexPath: IndexPath?

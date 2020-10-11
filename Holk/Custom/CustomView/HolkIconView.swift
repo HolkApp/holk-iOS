@@ -9,7 +9,7 @@
 import UIKit
 import Kingfisher
 
-final class HolkIconView: UIView {
+class HolkIconView: UIView {
     private let imageView = UIImageView()
 
     convenience init() {
