@@ -60,7 +60,7 @@ final class AddInsuranceConfirmationViewController: UIViewController {
         navigationItem.title = "Start finding your gaps"
         navigationItem.hidesBackButton = true
 
-        imageView.image = UIImage(systemName: "checkmark.circle")?.withSymbolWeightConfiguration(.thin)
+        imageView.image = UIImage(systemName: "checkmark.circle")?.withSymbolWeightConfiguration(.light)
         imageView.tintColor = Color.success
 
         titleLabel.font = FontStyleGuide.header2.font

@@ -63,7 +63,7 @@ final class HomeInsuranceCollectionViewCell: UICollectionViewCell {
         layer.shadowOpacity = 0.05
         layer.shadowRadius = 30
 
-        containerView.backgroundColor = Color.insuranceBackground
+        containerView.backgroundColor = Color.secondaryBackground
         containerView.layer.cornerRadius = 16
         containerView.layer.cornerCurve = .continuous
         containerView.translatesAutoresizingMaskIntoConstraints = false

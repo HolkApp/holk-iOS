@@ -10,10 +10,10 @@ import UIKit
 
 final class InsuranceTransition: NSObject, UIViewControllerAnimatedTransitioning {
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        if let insuranceListViewController = transitionContext.viewController(forKey: .from) as? InsuranceListViewController, let toViewController = transitionContext.viewController(forKey: .to) as? InsuranceViewController {
+        if let insuranceListViewController = transitionContext.viewController(forKey: .from) as? InsuranceListViewController, let toViewController = transitionContext.viewController(forKey: .to) as? HomeInsuranceViewController {
             let fromViewController = insuranceListViewController
             push(transitionContext, fromViewController: fromViewController, toViewController: toViewController)
-        } else if let fromViewController = transitionContext.viewController(forKey: .from) as? InsuranceViewController,
+        } else if let fromViewController = transitionContext.viewController(forKey: .from) as? HomeInsuranceViewController,
             let insuranceListViewController = transitionContext.viewController(forKey: .to) as? InsuranceListViewController {
             pop(transitionContext, fromViewController: fromViewController, toViewController: insuranceListViewController)
         } else {
@@ -25,7 +25,7 @@ final class InsuranceTransition: NSObject, UIViewControllerAnimatedTransitioning
         return 0.4
     }
 
-    private func push(_ transitionContext: UIViewControllerContextTransitioning, fromViewController: InsuranceListViewController, toViewController: InsuranceViewController) {
+    private func push(_ transitionContext: UIViewControllerContextTransitioning, fromViewController: InsuranceListViewController, toViewController: HomeInsuranceViewController) {
         if let selectedIndexPath = fromViewController.selectedIndexPath, let fromCell = fromViewController.collectionView.cellForItem(at: selectedIndexPath) as? InsuranceCollectionViewCell, let toView = toViewController.view {
             let containerView = transitionContext.containerView
             containerView.addSubview(toViewController.view)
@@ -66,7 +66,7 @@ final class InsuranceTransition: NSObject, UIViewControllerAnimatedTransitioning
         }
     }
 
-    private func pop(_ transitionContext: UIViewControllerContextTransitioning, fromViewController: InsuranceViewController, toViewController: InsuranceListViewController) {
+    private func pop(_ transitionContext: UIViewControllerContextTransitioning, fromViewController: HomeInsuranceViewController, toViewController: InsuranceListViewController) {
         if let fromView = fromViewController.view,
             let selectedIndexPath = toViewController.selectedIndexPath,
             let toCell = toViewController.collectionView.cellForItem(at: selectedIndexPath) as? InsuranceCollectionViewCell {

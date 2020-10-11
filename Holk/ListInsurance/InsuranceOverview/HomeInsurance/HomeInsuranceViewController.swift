@@ -41,13 +41,13 @@ final class HomeInsuranceViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        navigationController?.navigationBar.barTintColor = Color.secondaryBackground
+        navigationController?.navigationBar.barTintColor = Color.mainBackground
     }
 
     private func setup() {
         navigationItem.largeTitleDisplayMode = .never
-        navigationItem.setAppearance(backgroundColor: Color.secondaryBackground)
-        view.backgroundColor = Color.secondaryBackground
+        navigationItem.setAppearance(backgroundColor: Color.mainBackground)
+        view.backgroundColor = Color.mainBackground
 
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -77,7 +77,7 @@ final class HomeInsuranceViewController: UIViewController {
     }
 }
 
-extension InsuranceViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension HomeInsuranceViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 3
     }

@@ -54,11 +54,11 @@ final class InsuranceListViewController: UICollectionViewController {
     
     private func setup() {
         title = "Försäkringar"
-        navigationItem.setAppearance(backgroundColor: Color.insuranceBackground)
+        navigationItem.setAppearance(backgroundColor: Color.secondaryBackground)
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "profile"), style: .plain, target: self, action: #selector(profileTapped(sender:)))
 
-        collectionView.backgroundColor = Color.insuranceBackground
+        collectionView.backgroundColor = Color.secondaryBackground
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.showsVerticalScrollIndicator = false

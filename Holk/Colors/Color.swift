@@ -65,7 +65,7 @@ extension Color {
         return makeColor(asset: #function)
     }
 
-    static var insuranceBackground: UIColor {
+    static var secondaryBackground: UIColor {
         return UIColor { traitCollection in
             if traitCollection.userInterfaceStyle == .dark {
                 return makeColor(asset: .blue1)
@@ -76,10 +76,6 @@ extension Color {
     }
 
     static var mainBackground: UIColor {
-        return makeColor(asset: #function)
-    }
-
-    static var secondaryBackground: UIColor {
         return UIColor { traitCollection in
             if traitCollection.userInterfaceStyle == .dark {
                 return .white
@@ -210,6 +206,16 @@ extension Color {
 
 // MARK: Suggestion
 extension Color {
+    static var selectedIconBackground: UIColor {
+        return UIColor { traitCollection in
+            if traitCollection.userInterfaceStyle == .dark {
+                return .white
+            } else {
+                return .white
+            }
+        }
+    }
+
     static var suggestionBackground: UIColor {
         return UIColor { traitCollection in
             if traitCollection.userInterfaceStyle == .dark {

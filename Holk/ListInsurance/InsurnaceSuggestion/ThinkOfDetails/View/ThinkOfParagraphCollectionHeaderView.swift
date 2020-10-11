@@ -23,7 +23,7 @@ final class ThinkOfParagraphCollectionHeaderView: UICollectionReusableView {
     }
 
     private func setup() {
-        backgroundColor = Color.secondaryBackground
+        backgroundColor = Color.mainBackground
 
         headerLabel.styleGuide = .header5
         headerLabel.numberOfLines = 0

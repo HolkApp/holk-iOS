@@ -27,7 +27,7 @@ final class GapBannerCollectionViewCell: UICollectionViewCell {
 
         iconView.contentMode = .scaleAspectFit
         iconView.backgroundColor = .clear
-        iconView.tintColor = Color.secondaryBackground
+        iconView.tintColor = Color.mainBackground
         iconView.translatesAutoresizingMaskIntoConstraints = false
 
         titleLabel.textAlignment = .center

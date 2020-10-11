@@ -57,11 +57,11 @@ final class ThinkOfDetailsViewController: UIViewController {
 
     private func setup() {
         navigationItem.setAppearance()
-        navigationController?.navigationBar.tintColor = Color.secondaryBackground
+        navigationController?.navigationBar.tintColor = Color.mainBackground
 
         collectionView.delegate = self
         collectionView.bounces = false
-        collectionView.backgroundColor = Color.secondaryBackground
+        collectionView.backgroundColor = Color.mainBackground
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.contentInset.top = -(navigationController?.navigationBar.frame.height ?? 0)

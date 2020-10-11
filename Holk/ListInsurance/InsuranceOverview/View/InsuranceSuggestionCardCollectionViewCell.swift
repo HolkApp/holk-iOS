@@ -52,7 +52,7 @@ class InsuranceSuggestionCardCollectionViewCell: UICollectionViewCell {
         case .gap:
             let gaps = suggestions?.gaps ?? []
             if gaps.isEmpty {
-                suggestionImageView.image = UIImage(systemName: "bell")?.withRenderingMode(.alwaysTemplate)
+                suggestionImageView.image = UIImage(systemName: "bell")?.withSymbolWeightConfiguration(.light).withRenderingMode(.alwaysTemplate)
                 suggestionImageView.tintColor = Color.mainForeground
                 suggestionIllustrationView.addArrangedSubview(suggestionImageView)
             } else {
@@ -68,7 +68,7 @@ class InsuranceSuggestionCardCollectionViewCell: UICollectionViewCell {
             suggestionValueLabel.textColor = Color.mainForeground
 
         case .thinkOf:
-            suggestionImageView.image = UIImage(named: "light")?.withRenderingMode(.alwaysTemplate)
+            suggestionImageView.image = UIImage(named: "light")?.withSymbolWeightConfiguration(.light).withRenderingMode(.alwaysTemplate)
             suggestionImageView.tintColor = Color.mainForeground
             suggestionIllustrationView.addArrangedSubview(suggestionImageView)
 
@@ -90,7 +90,7 @@ class InsuranceSuggestionCardCollectionViewCell: UICollectionViewCell {
 
         suggestionValueLabel.cornerRadius = 10
         suggestionValueLabel.styleGuide = .number1
-        suggestionValueLabel.backgroundColor = Color.secondaryBackground
+        suggestionValueLabel.backgroundColor = Color.mainBackground
         suggestionValueLabel.textAlignment = .center
         suggestionValueLabel.translatesAutoresizingMaskIntoConstraints = false
 

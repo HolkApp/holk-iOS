@@ -23,7 +23,7 @@ final class ThinkOfBannerCollectionViewCell: UICollectionViewCell {
     }
 
     private func setup() {
-        backgroundColor = Color.secondaryBackground
+        backgroundColor = Color.mainBackground
 
         imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false

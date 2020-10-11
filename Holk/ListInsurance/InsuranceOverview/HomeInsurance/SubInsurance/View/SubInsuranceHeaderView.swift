@@ -10,6 +10,7 @@ import UIKit
 
 final class SubInsuranceHeaderView: UICollectionReusableView {
     weak var subInsurancesViewController: HomeSubInsurancesViewController?
+
     private let titleLabel = HolkLabel()
     private let descriptionLabel = HolkLabel()
     private let imageView = UIImageView()
@@ -20,7 +21,7 @@ final class SubInsuranceHeaderView: UICollectionReusableView {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        backgroundColor = Color.secondaryBackground
+        backgroundColor = Color.mainBackground
 
         titleLabel.styleGuide = .header4
         titleLabel.numberOfLines = 0
@@ -114,13 +115,12 @@ final class SubInsuranceHeaderView: UICollectionReusableView {
 
 extension SubInsuranceHeaderView {
     @objc private func segmentSelected(_ sender: UIControl) {
-        if sender === basicSubInsurancesSegmentView {
-            basicSubInsurancesSegmentView.isSelected = true
-            additionalSubInsurancesSegmentView.isSelected = false
+        basicSubInsurancesSegmentView.isSelected = sender === basicSubInsurancesSegmentView
+        additionalSubInsurancesSegmentView.isSelected = sender === additionalSubInsurancesSegmentView
+
+        if basicSubInsurancesSegmentView.isSelected {
             subInsurancesViewController?.updateSelection(.basic)
-        } else {
-            basicSubInsurancesSegmentView.isSelected = false
-            additionalSubInsurancesSegmentView.isSelected = true
+        } else if additionalSubInsurancesSegmentView.isSelected {
             subInsurancesViewController?.updateSelection(.addon)
         }
     }

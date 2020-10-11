@@ -52,12 +52,12 @@ final class GapDetailsViewController: UIViewController {
 
     private func setup() {
         navigationItem.setAppearance()
-        navigationController?.navigationBar.tintColor = Color.secondaryBackground
+        navigationController?.navigationBar.tintColor = Color.mainBackground
 
         collectionView.contentInset = .init(top: 0, left: 0, bottom: 200, right: 0)
         collectionView.delegate = self
         collectionView.bounces = false
-        collectionView.backgroundColor = Color.secondaryBackground
+        collectionView.backgroundColor = Color.mainBackground
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.contentInsetAdjustmentBehavior = .never

@@ -26,7 +26,7 @@ final class ThinkOfBannerCollectionHeaderView: UICollectionReusableView {
 
     private func setup() {
         clipsToBounds = true
-        backgroundColor = Color.secondaryBackground
+        backgroundColor = Color.mainBackground
 
         layoutMargins = .init(top: 0, left: 26, bottom: 26, right: 26)
 

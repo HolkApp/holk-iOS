@@ -68,11 +68,11 @@ final class HomeSubInsurancesViewController: UIViewController {
 
     private func setup() {
         navigationItem.largeTitleDisplayMode = .never
-        navigationItem.setAppearance(backgroundColor: Color.secondaryBackground)
+        navigationItem.setAppearance(backgroundColor: Color.mainBackground)
 
         collectionView.contentInset = .init(top: 0, left: 0, bottom: 40, right: 0)
         collectionView.bounces = false
-        collectionView.backgroundColor = Color.insuranceBackground
+        collectionView.backgroundColor = Color.secondaryBackground
         collectionView.showsVerticalScrollIndicator = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.registerCell(SubInsuranceCollectionViewCell.self)

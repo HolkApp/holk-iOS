@@ -87,6 +87,7 @@ final class SubInsuranceCollectionViewCell: UICollectionViewCell {
 
         descriptionLabel.styleGuide = .body1
         descriptionLabel.textColor = Color.mainForeground
+        // Show max two lines and fixed the height for two lines
         descriptionLabel.numberOfLines = 2
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
 
@@ -104,7 +105,7 @@ final class SubInsuranceCollectionViewCell: UICollectionViewCell {
         gapValueLabel.cornerRadius = 10
         gapValueLabel.styleGuide = .number1
         gapValueLabel.textColor = Color.warning
-        gapValueLabel.backgroundColor = Color.secondaryBackground
+        gapValueLabel.backgroundColor = Color.mainBackground
         gapValueLabel.textAlignment = .center
         gapValueLabel.translatesAutoresizingMaskIntoConstraints = false
 
@@ -116,7 +117,7 @@ final class SubInsuranceCollectionViewCell: UICollectionViewCell {
         thinkOfValueLabel.cornerRadius = 10
         thinkOfValueLabel.styleGuide = .number1
         thinkOfValueLabel.textColor = Color.mainForeground
-        thinkOfValueLabel.backgroundColor = Color.secondaryBackground
+        thinkOfValueLabel.backgroundColor = Color.mainBackground
         thinkOfValueLabel.textAlignment = .center
         thinkOfValueLabel.translatesAutoresizingMaskIntoConstraints = false
 
