@@ -81,7 +81,6 @@ final class ThinkOfListViewController: UIViewController {
 
         collectionView.backgroundColor = .clear
         collectionView.delegate = self
-        collectionView.bounces = false
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.registerCell(ThinkOfCollectionViewCell.self)

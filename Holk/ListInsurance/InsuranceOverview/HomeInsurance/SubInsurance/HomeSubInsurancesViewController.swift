@@ -71,10 +71,10 @@ final class HomeSubInsurancesViewController: UIViewController {
         navigationItem.setAppearance(backgroundColor: Color.mainBackground)
 
         collectionView.contentInset = .init(top: 0, left: 0, bottom: 40, right: 0)
-        collectionView.bounces = false
         collectionView.backgroundColor = Color.secondaryBackground
         collectionView.showsVerticalScrollIndicator = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.delegate = self
         collectionView.registerCell(SubInsuranceCollectionViewCell.self)
         collectionView.registerReusableSupplementaryView(SubInsuranceHeaderView.self, of: UICollectionView.elementKindSectionHeader)
         view.addSubview(collectionView)

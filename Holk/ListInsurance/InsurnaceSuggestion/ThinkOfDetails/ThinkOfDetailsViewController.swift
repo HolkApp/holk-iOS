@@ -60,7 +60,6 @@ final class ThinkOfDetailsViewController: UIViewController {
         navigationController?.navigationBar.tintColor = Color.mainBackground
 
         collectionView.delegate = self
-        collectionView.bounces = false
         collectionView.backgroundColor = Color.mainBackground
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false

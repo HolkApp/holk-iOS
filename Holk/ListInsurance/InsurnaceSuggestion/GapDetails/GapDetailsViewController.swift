@@ -56,7 +56,6 @@ final class GapDetailsViewController: UIViewController {
 
         collectionView.contentInset = .init(top: 0, left: 0, bottom: 200, right: 0)
         collectionView.delegate = self
-        collectionView.bounces = false
         collectionView.backgroundColor = Color.mainBackground
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
