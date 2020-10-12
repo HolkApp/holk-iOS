@@ -9,7 +9,7 @@
 import UIKit
 
 final class ThinkOfParagraphCollectionViewCell: UICollectionViewCell {
-    private let iconView = HolkIconView()
+    private let iconView = UIImageView()
     private let descriptionLabel = HolkLabel()
 
     override init(frame: CGRect) {
@@ -24,7 +24,6 @@ final class ThinkOfParagraphCollectionViewCell: UICollectionViewCell {
 
     private func setup() {
         iconView.contentMode = .scaleAspectFit
-        iconView.backgroundColor = Color.paragraphIconBackground
         iconView.tintColor = Color.mainForeground
         iconView.translatesAutoresizingMaskIntoConstraints = false
 

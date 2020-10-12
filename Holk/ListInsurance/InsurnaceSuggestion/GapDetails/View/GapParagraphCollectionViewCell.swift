@@ -9,7 +9,7 @@
 import UIKit
 
 final class GapParagraphCollectionViewCell: UICollectionViewCell {
-    private let iconView = HolkIconView()
+    private let iconView = UIImageView()
     private let titleLabel = HolkLabel()
     private let descriptionLabel = HolkLabel()
 
@@ -25,7 +25,6 @@ final class GapParagraphCollectionViewCell: UICollectionViewCell {
 
     private func setup() {
         iconView.contentMode = .scaleAspectFit
-        iconView.backgroundColor = Color.paragraphIconBackground
         iconView.tintColor = Color.mainForeground
         iconView.translatesAutoresizingMaskIntoConstraints = false
 
