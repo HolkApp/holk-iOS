@@ -77,15 +77,13 @@ final class OnboardingInsuranceCell: UITableViewCell {
         
         updateColor()
         
-        let bottomConstraint = iconView.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor)
-        bottomConstraint.priority = .defaultHigh
         NSLayoutConstraint.activate([
             iconView.widthAnchor.constraint(equalToConstant: 48),
             iconView.heightAnchor.constraint(equalToConstant: 48),
             iconView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
             iconView.trailingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: -20),
             iconView.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
-            bottomConstraint,
+            iconView.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor).withPriority(.defaultHigh),
             
             stackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             stackView.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor, constant: -20),

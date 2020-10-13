@@ -56,11 +56,6 @@ final class SubInsuranceHeaderView: UICollectionReusableView {
         containerView.addSubview(basicSubInsurancesSegmentView)
         containerView.addSubview(additionalSubInsurancesSegmentView)
 
-        let containerViewLeadingAnchor = containerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 48)
-        let containerViewTrailingAnchor = containerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -48)
-        containerViewLeadingAnchor.priority = .defaultHigh
-        containerViewTrailingAnchor.priority = .defaultHigh
-
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 30),
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -87,8 +82,8 @@ final class SubInsuranceHeaderView: UICollectionReusableView {
 
             containerView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 48),
             containerView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            containerViewLeadingAnchor,
-            containerViewTrailingAnchor,
+            containerView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 48).withPriority(.defaultHigh),
+            containerView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -48).withPriority(.defaultHigh),
             containerView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }

@@ -134,9 +134,6 @@ final class AddInsuranceConfirmationViewController: UIViewController {
         cardView.addSubview(badgeLabel)
         view.addSubview(doneButton)
 
-        let cardViewBottomConstraint = cardView.bottomAnchor.constraint(lessThanOrEqualTo: doneButton.topAnchor)
-            cardViewBottomConstraint.priority = .defaultHigh
-
         NSLayoutConstraint.activate([
             imageView.widthAnchor.constraint(equalToConstant: 80),
             imageView.heightAnchor.constraint(equalToConstant: 80),
@@ -154,7 +151,7 @@ final class AddInsuranceConfirmationViewController: UIViewController {
             cardView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 20),
             cardView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             cardView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            cardViewBottomConstraint,
+            cardView.bottomAnchor.constraint(lessThanOrEqualTo: doneButton.topAnchor).withPriority(.defaultHigh),
 
             cardContentView.leadingAnchor.constraint(equalTo: cardView.layoutMarginsGuide.leadingAnchor),
             cardContentView.topAnchor.constraint(equalTo: cardView.layoutMarginsGuide.topAnchor),

@@ -117,11 +117,6 @@ final class HomeInsuranceCollectionViewCell: UICollectionViewCell {
         ringChart.addSubview(ringChartLabelsStackView)
         ringChart.titleView = ringChartLabelsStackView
 
-        let ringChartLeadingConstraint = ringChart.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 64)
-        ringChartLeadingConstraint.priority = .defaultHigh
-        let ringChartTrailingConstraint = ringChart.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -64)
-        ringChartTrailingConstraint.priority = .defaultHigh
-
         NSLayoutConstraint.activate([
             containerView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
             containerView.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
@@ -135,8 +130,8 @@ final class HomeInsuranceCollectionViewCell: UICollectionViewCell {
             ringChart.widthAnchor.constraint(lessThanOrEqualToConstant: 220),
             ringChart.heightAnchor.constraint(equalTo: ringChart.widthAnchor),
             ringChart.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 48),
-            ringChartLeadingConstraint,
-            ringChartTrailingConstraint,
+            ringChart.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 64).withPriority(.defaultHigh),
+            ringChart.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -64).withPriority(.defaultHigh),
             ringChart.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
 
             insuranceImageView.topAnchor.constraint(equalTo: ringChart.bottomAnchor, constant: 36),
