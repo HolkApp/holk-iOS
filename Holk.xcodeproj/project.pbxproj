@@ -162,6 +162,7 @@
 		8FF4054D2533595900328C44 /* HolkIconSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF4054C2533595900328C44 /* HolkIconSelectionView.swift */; };
 		8FF4055625335F7400328C44 /* SubInsuranceDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF4055525335F7400328C44 /* SubInsuranceDetailHeaderView.swift */; };
 		8FF405712536371600328C44 /* NSLayoutConstraint+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF405702536371500328C44 /* NSLayoutConstraint+extension.swift */; };
+		8FF40576253639E900328C44 /* LocalizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF40575253639E900328C44 /* LocalizedString.swift */; };
 		8FF6E72622AC0D2800F6D398 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF6E72522AC0D2800F6D398 /* Color.swift */; };
 		8FF6E72822B026DB00F6D398 /* InsuranceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF6E72722B026DB00F6D398 /* InsuranceListViewController.swift */; };
 		8FF6E72D22B0333000F6D398 /* InsuranceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF6E72C22B0333000F6D398 /* InsuranceCollectionViewCell.swift */; };
@@ -354,6 +355,7 @@
 		8FF4054C2533595900328C44 /* HolkIconSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolkIconSelectionView.swift; sourceTree = "<group>"; };
 		8FF4055525335F7400328C44 /* SubInsuranceDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubInsuranceDetailHeaderView.swift; sourceTree = "<group>"; };
 		8FF405702536371500328C44 /* NSLayoutConstraint+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutConstraint+extension.swift"; sourceTree = "<group>"; };
+		8FF40575253639E900328C44 /* LocalizedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedString.swift; sourceTree = "<group>"; };
 		8FF6E72522AC0D2800F6D398 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		8FF6E72722B026DB00F6D398 /* InsuranceListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceListViewController.swift; sourceTree = "<group>"; };
 		8FF6E72C22B0333000F6D398 /* InsuranceCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -896,6 +898,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		8FF40574253639D600328C44 /* String */ = {
+			isa = PBXGroup;
+			children = (
+				8F858A4623CB377B006B416A /* Parser.swift */,
+				8FF40575253639E900328C44 /* LocalizedString.swift */,
+			);
+			path = String;
+			sourceTree = "<group>";
+		};
 		8FF6E72222A70F5000F6D398 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
@@ -904,7 +915,7 @@
 				8FE52F07239BBDD6001A77F5 /* Helper */,
 				8F9C83DD22A6E316005BB336 /* CustomView */,
 				8F858A4523CB376B006B416A /* Extension */,
-				8F858A4623CB377B006B416A /* Parser.swift */,
+				8FF40574253639D600328C44 /* String */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -1162,6 +1173,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8FF40576253639E900328C44 /* LocalizedString.swift in Sources */,
 				8F02657B24C0CE3600F4208B /* UINavigationItem+extension.swift in Sources */,
 				8F16DE7324609F5D00EFC1BD /* AddInsuranceProviderViewController.swift in Sources */,
 				8F3305A82401F27400E9B443 /* HolkRingChartLayer.swift in Sources */,
