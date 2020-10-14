@@ -189,20 +189,30 @@ final class AddInsuranceContainerViewController: UIViewController {
             self.addInsuranceViewControllers.removeAll()
             return
         }
-        let alert = UIAlertController(title: "Are you sure you want to cancel", message: nil, preferredStyle: .alert)
-        alert.addAction(
-            UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
-                alert.dismiss(animated: true)
-            })
+        let alert = UIAlertController(
+            title: LocalizedString.Generic.Alert.stopAggregationTitle,
+            message: nil,
+            preferredStyle: .alert
         )
         alert.addAction(
-            UIAlertAction(title: "OK", style: .default, handler: { [weak self] _ in
-                guard let self = self else { return }
-                alert.dismiss(animated: true) {
-                    self.dismiss(animated: true)
-                    self.addInsuranceViewControllers.removeAll()
-                }
-            })
+            UIAlertAction(
+                title: LocalizedString.Generic.cancel,
+                style: .cancel,
+                handler: { _ in
+                    alert.dismiss(animated: true)
+                })
+        )
+        alert.addAction(
+            UIAlertAction(
+                title: LocalizedString.Generic.ok,
+                style: .default,
+                handler: { [weak self] _ in
+                    guard let self = self else { return }
+                    alert.dismiss(animated: true) {
+                        self.dismiss(animated: true)
+                        self.addInsuranceViewControllers.removeAll()
+                    }
+                })
         )
         present(alert, animated: true)
     }
@@ -210,7 +220,7 @@ final class AddInsuranceContainerViewController: UIViewController {
     private func showError(_ error: APIError, requestName: String) {
         let alert = UIAlertController(title: requestName + (String(describing: error.errorCode)), message: error.debugMessage, preferredStyle: .alert)
         alert.addAction(.init(
-            title: "Close",
+            title: LocalizedString.Generic.close,
             style: .default,
             handler: { action in
                 alert.dismiss(animated: true)

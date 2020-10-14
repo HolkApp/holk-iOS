@@ -63,27 +63,28 @@ class NewUserViewController: UIViewController {
         
         stackView.axis = .vertical
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        
-        titleLabel.text = "Hi \(user.givenName),"
+
+
+        titleLabel.text = String(format: LocalizedString.Onboarding.NewUser.title, user.givenName)
         titleLabel.font = Font.extraBold(.header)
         titleLabel.textColor = Color.mainForeground
         titleLabel.numberOfLines = 0
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        subtitleLabel.text = "Great to see that you want to sign up for Holk"
+        subtitleLabel.text = LocalizedString.Onboarding.NewUser.subtitle
         subtitleLabel.font = Font.regular(.title)
         subtitleLabel.textColor = Color.mainForeground
         subtitleLabel.numberOfLines = 0
         subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        descriptionLabel.text = "Enter your mail adress in order to complete your account"
+        descriptionLabel.text = LocalizedString.Onboarding.NewUser.description
         descriptionLabel.font = Font.regular(.subtitle)
         descriptionLabel.textColor = Color.mainForeground
         descriptionLabel.numberOfLines = 0
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         
         emailTextField.helpColor = Color.placeholder
-        emailTextField.placeholder = "E-post adress"
+        emailTextField.placeholder = LocalizedString.Onboarding.NewUser.emailPlaceholder
         emailTextField.textColor = Color.mainForeground
         emailTextField.tintColor = Color.mainForeground
         emailTextField.returnKeyType = .continue

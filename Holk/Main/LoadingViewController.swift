@@ -30,7 +30,7 @@ final class LoadingViewController: UIViewController {
         loadingSpinner.translatesAutoresizingMaskIntoConstraints = false
         textLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        textLabel.text = "One moment, please"
+        textLabel.text = LocalizedString.Generic.loading
         textLabel.textAlignment = .center
         textLabel.numberOfLines = 0
         

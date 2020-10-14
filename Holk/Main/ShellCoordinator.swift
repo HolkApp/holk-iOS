@@ -117,9 +117,13 @@ extension ShellCoordinator {
     }
 
     private func showError(_ error: Error) {
-        let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+        let alert = UIAlertController(
+            title: LocalizedString.Generic.Error.title,
+            message: error.localizedDescription,
+            preferredStyle: .alert
+        )
         alert.addAction(.init(
-            title: "Close",
+            title: LocalizedString.Generic.close,
             style: .default,
             handler: { action in
                 alert.dismiss(animated: true)

@@ -34,31 +34,35 @@ class OnboardingInfoViewController: UIViewController {
     private func setup() {
         view.backgroundColor = Color.mainBackground
 
-        titleLabel.text = "Så här funkar det"
+        titleLabel.text = LocalizedString.Onboarding.Information.title
         titleLabel.font = Font.extraBold(.title)
         titleLabel.textColor = Color.mainForeground
         titleLabel.numberOfLines = 0
-        subtitleLabel.text = "Först granskar och analyseriar vi din försäkring och sedan jämför vi den med hur ditt vardagsliv ser ut."
+
+        subtitleLabel.text = LocalizedString.Onboarding.Information.subtitle
         subtitleLabel.font = Font.regular(.label)
         subtitleLabel.textColor = Color.mainForeground
         subtitleLabel.numberOfLines = 0
-        headerLabel.text = "3 enkla steg"
+
+        headerLabel.text = LocalizedString.Onboarding.Information.steps
         headerLabel.font = Font.semiBold(.title)
         headerLabel.textColor = Color.mainForeground
         headerLabel.numberOfLines = 0
-        loginLabel.text = "Hämta din försäkring med Bank-ID."
+
+        loginLabel.text = LocalizedString.Onboarding.Information.firstStep
         loginLabel.font = Font.regular(.description)
         loginLabel.textColor = Color.mainForeground
         loginLabel.numberOfLines = 0
-        answerQuestionLabel.text = "Svara på några enkla frågor om din vardag"
+
+        answerQuestionLabel.text = LocalizedString.Onboarding.Information.secondStep
         answerQuestionLabel.font = Font.regular(.description)
         answerQuestionLabel.textColor = Color.mainForeground
         answerQuestionLabel.numberOfLines = 0
-        analyseLabel.text = "Holks AI motor analyserar och letar luckor och saknade skydd som du bör tänka på."
+
+        analyseLabel.text = LocalizedString.Onboarding.Information.thirdStep
         analyseLabel.font = Font.regular(.description)
         analyseLabel.textColor = Color.mainForeground
         analyseLabel.numberOfLines = 0
-
 
         loginImage.image = UIImage(systemName: "checkmark.shield")
         loginImage.tintColor = Color.mainForeground

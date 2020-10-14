@@ -207,20 +207,30 @@ final class OnboardingContainerViewController: UIViewController {
             self.onboardingViewControllers.removeAll()
             return
         }
-        let alert = UIAlertController(title: "Are you sure you want to cancel", message: nil, preferredStyle: .alert)
-        alert.addAction(
-            UIAlertAction(title: "Cancel", style: .cancel, handler: { _ in
-                alert.dismiss(animated: true)
-            })
+        let alert = UIAlertController(
+            title: LocalizedString.Generic.Alert.stopAggregationTitle,
+            message: nil,
+            preferredStyle: .alert
         )
         alert.addAction(
-            UIAlertAction(title: "OK", style: .default, handler: { [weak self] _ in
-                guard let self = self else { return }
-                alert.dismiss(animated: true) {
-                    self.delegate?.onboardingStopped(self)
-                    self.onboardingViewControllers.removeAll()
-                }
-            })
+            UIAlertAction(
+                title: LocalizedString.Generic.cancel,
+                style: .cancel,
+                handler: { _ in
+                    alert.dismiss(animated: true)
+                })
+        )
+        alert.addAction(
+            UIAlertAction(
+                title: LocalizedString.Generic.ok,
+                style: .default,
+                handler: { [weak self] _ in
+                    guard let self = self else { return }
+                    alert.dismiss(animated: true) {
+                        self.delegate?.onboardingStopped(self)
+                        self.onboardingViewControllers.removeAll()
+                    }
+                })
         )
         present(alert, animated: true)
     }
@@ -228,7 +238,7 @@ final class OnboardingContainerViewController: UIViewController {
     func showError(_ error: APIError, requestName: String) {
         let alert = UIAlertController(title: requestName + (String(describing: error.errorCode)), message: error.debugMessage, preferredStyle: .alert)
         alert.addAction(.init(
-            title: "Close",
+            title: LocalizedString.Generic.close,
             style: .default,
             handler: { action in
                 alert.dismiss(animated: true)
@@ -291,6 +301,7 @@ extension OnboardingContainerViewController: OnboardingConsentViewControllerDele
                         self.progressBarToTop()
                     }
                 case .failure(let error):
+                    // TODO: Remove this
                     self.showError(error, requestName: "aggregate/status/id")
                 }
         }.store(in: &cancellables)
@@ -333,6 +344,7 @@ extension OnboardingContainerViewController: OnboardingConsentViewControllerDele
                     .pollInsuranceStatus(integrateInsuranceResponse.scrapeSessionId)
             }
         case .failure(let error):
+            // TODO: Remove this
             showError(error, requestName: "insurance/scraping")
         }
     }

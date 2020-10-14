@@ -44,7 +44,7 @@ final class LandingPageViewController: UIPageViewController {
         loginButton.addGestureRecognizer(longPressGestureRecognizer)
 
         loginButton.backgroundColor = Color.mainBackground
-        loginButton.setTitle("Logga in", for: .normal)
+        loginButton.setTitle(LocalizedString.Onboarding.Landing.login, for: .normal)
         loginButton.titleLabel?.font = Font.semiBold(.subtitle)
         loginButton.set(color: Color.mainForeground, image: UIImage(named: "BankID"))
         loginButton.imageToTheRightOfText()
@@ -56,7 +56,7 @@ final class LandingPageViewController: UIPageViewController {
             infoButton.layer.cornerCurve = .continuous
         }
         infoButton.contentEdgeInsets = UIEdgeInsets(top: 10, left: 15, bottom: 10, right: 15)
-        infoButton.setTitle("Så här funkar det", for: .normal)
+        infoButton.setTitle(LocalizedString.Onboarding.Information.title, for: .normal)
         infoButton.set(color: Color.mainForeground)
         infoButton.addTarget(self, action: #selector(infoTapped(_:)), for: .touchUpInside)
         
@@ -65,11 +65,11 @@ final class LandingPageViewController: UIPageViewController {
         dataSource = self
         delegate = self
         
-        let firstViewController = LandingInfoViewController(text: "Hitta dina luckor")
+        let firstViewController = LandingInfoViewController(text: LocalizedString.Onboarding.Landing.firstTitle)
         firstViewController.view.backgroundColor = Color.landingBackground
-        let middleViewController = LandingInfoViewController(text: "Förstå din försäkring")
+        let middleViewController = LandingInfoViewController(text: LocalizedString.Onboarding.Landing.secondTitle)
         middleViewController.view.backgroundColor = Color.landingSecondaryBackground
-        let lastViewController = LandingInfoViewController(text: "Bli bättre skyddad", textColor: Color.mainForeground)
+        let lastViewController = LandingInfoViewController(text: LocalizedString.Onboarding.Landing.thirdTitle, textColor: Color.mainForeground)
         lastViewController.view.backgroundColor = Color.mainHighlight
         orderedViewControllers = [firstViewController, middleViewController, lastViewController]
         // First set only the next visible view controller

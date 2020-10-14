@@ -64,6 +64,7 @@ extension OnboardingCoordinator: NewUserViewControllerDelegate {
                     self.onboardingContainerViewController.start()
                 }
             case .failure(let error):
+                // TODO: remove this
                 self.onboardingContainerViewController.showError(error, requestName: "authorize/user/email")
             }
         }
