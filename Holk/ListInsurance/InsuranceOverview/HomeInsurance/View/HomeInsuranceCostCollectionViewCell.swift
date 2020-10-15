@@ -36,7 +36,7 @@ final class HomeInsuranceCostCollectionViewCell: UICollectionViewCell {
         contentView.layoutMargins = .init(top: 0, left: 6, bottom: 0, right: 6)
 
         titleLabel.styleGuide = .header6
-        titleLabel.text = "Kostnad"
+        titleLabel.text = LocalizedString.Insurance.Details.cost
         titleLabel.textColor = Color.mainForeground
         titleLabel.numberOfLines = 0
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -83,6 +83,6 @@ final class HomeInsuranceCostCollectionViewCell: UICollectionViewCell {
     func configure(_ insurance: Insurance) {
         self.insurance = insurance
         let cost = amountFormatter.string(from: insurance.cost.monthlyPrice)
-        costLabel.text = "\(cost) kr/mån"
+        costLabel.text = String(format: LocalizedString.Insurance.Details.costPerMonth, cost)
     }
 }

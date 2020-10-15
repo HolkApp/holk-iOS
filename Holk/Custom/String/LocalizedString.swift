@@ -51,7 +51,11 @@ struct LocalizedString {
     }
 
     enum Insurance {
-        static let text = NSLocalizedString("Insurance.Aggregate.Text", value: "Försäkringar", comment: "Insurance text")
+        static let text = NSLocalizedString("Insurance.Text", value: "Försäkringar", comment: "Insurance text")
+        static let daysLeft = NSLocalizedString("Insurance.DaysLeft", value: "Dagar kvar", comment: "Days left text to show how many days left before the insurance is expired, in plural")
+        static let dayLeft = NSLocalizedString("Insurance.DayLeft", value: "Dag kvar", comment: "Day left text to show how many days left before the insurance is expired, in singular")
+        static let expiresToday = NSLocalizedString("Insurance.ExpiresToday", value: "Expires today", comment: "Expires today text to when the insurance is expiring")
+        static let expired = NSLocalizedString("Insurance.Expired", value: "Expired", comment: "Expired text to when the insurance is expired")
 
         enum Aggregate {
             static let navigationTitle = NSLocalizedString("Insurance.Aggregate.NavigationTitle", value: "Start finding your gaps", comment: "Start title text on the navigation bar for aggregate new insurance")
@@ -66,8 +70,24 @@ struct LocalizedString {
                 static let title = NSLocalizedString("Insurance.Aggregate.Confirmation.Title", value: "Great,", comment: "Title text when the aggregation is finished")
                 static let insuranceFound = NSLocalizedString("Insurance.Aggregate.Confirmation.InsuranceFound", value: "We found your insurance at %@", comment: "Text to show when the aggregation is success and find the insurance")
                 static let insuranceNotFound = NSLocalizedString("Insurance.Aggregate.Confirmation.InsuranceNotFound", value: "Sorry, but we cannot find your insurance", comment: "Text to show when not finding the insurance after aggregation")
-                static let done = NSLocalizedString("Insurance.Aggregate.Confirmation.Done", value: "Add to Holk", comment: "Text for the done button text to close the confirmation screen ")
+                static let done = NSLocalizedString("Insurance.Aggregate.Confirmation.Done", value: "Add to Holk", comment: "Text for the done button text to close the confirmation screen")
             }
         }
+
+        enum Details {
+            static let title = NSLocalizedString("Insurance.Details.Title", value: "Dina skydd", comment: "Title Text to show on the insurnace detials view")
+            static let protections = NSLocalizedString("Insurance.Details.Protections", value: "Skydd", comment: "Protections text to show on how many subinsurance you have from the insurnace")
+            static let validForPerson = NSLocalizedString("Insurance.Details.ValidForPerson", value: "Gäller för", comment: "Valid for text to show who is the insurance protection for")
+            static let cost = NSLocalizedString("Insurance.Details.Cost", value: "Kostnad", comment: "Text to show the cost of the insurance")
+            static let costPerMonth = NSLocalizedString("Insurance.Details.CostPerMonth", value: "%@ kr/mån", comment: "Text to show the cost per month unit of the insurance")
+        }
+    }
+
+    enum Suggestion {
+        static let gap = NSLocalizedString("Suggestion.Gap", value: "Lukor", comment: "Gaps suggestion text, singular")
+        static let gaps = NSLocalizedString("Suggestion.Gaps", value: "Lukor", comment: "Gaps suggestion text, plural")
+        static let thinkOf = NSLocalizedString("Suggestion.ThinkOf", value: "Tänk på", comment: "Thinkofs suggestion text, singular")
+        static let thinkOfs = NSLocalizedString("Suggestion.ThinkOfs", value: "Tänk på", comment: "Thinkofs suggestion text, plural")
+
     }
 }

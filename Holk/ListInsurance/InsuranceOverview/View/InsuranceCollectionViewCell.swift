@@ -54,16 +54,20 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         switch insurance.endDate.expirationDaysLeft() {
         case .valid(let daysLeft):
             daysLabel.text = "\(daysLeft)"
-            daysTextLabel.text = "Dagar kvar"
+            if daysLeft == 1 {
+                daysTextLabel.text = LocalizedString.Insurance.dayLeft
+            } else {
+                daysTextLabel.text = LocalizedString.Insurance.daysLeft
+            }
         case .today:
-            daysLabel.text = ""
-            daysTextLabel.text = "Ends today"
+            daysLabel.text = String()
+            daysTextLabel.text = LocalizedString.Insurance.expiresToday
         case .expired:
-            daysLabel.text = ""
-            daysTextLabel.text = "Expired"
+            daysLabel.text = String()
+            daysTextLabel.text = LocalizedString.Insurance.expired
         default:
-            daysLabel.text = ""
-            daysTextLabel.text = ""
+            daysLabel.text = String()
+            daysTextLabel.text = String()
         }
     }
 

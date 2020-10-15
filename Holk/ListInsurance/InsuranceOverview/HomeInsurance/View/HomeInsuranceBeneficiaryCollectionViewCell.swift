@@ -34,7 +34,7 @@ final class HomeInsuranceBeneficiaryCollectionViewCell: UICollectionViewCell {
         contentView.layoutMargins = .init(top: 0, left: 6, bottom: 0, right: 6)
 
         titleLabel.styleGuide = .header6
-        titleLabel.text = "Gäller för"
+        titleLabel.text = LocalizedString.Insurance.Details.validForPerson
         titleLabel.textColor = Color.mainForeground
         titleLabel.numberOfLines = 0
         titleLabel.translatesAutoresizingMaskIntoConstraints = false

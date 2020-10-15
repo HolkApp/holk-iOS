@@ -44,9 +44,9 @@ final class HomeInsuranceCollectionViewCell: UICollectionViewCell {
     }
 
     func configure(_ insurance: Insurance, provider: InsuranceProvider?) {
-        titleLabel.text = "Dina skydd"
+        titleLabel.text = LocalizedString.Insurance.Details.title
         insuranceSubNumberLabel.text = "\(insurance.subInsurances.count + insurance.addonInsurances.count)"
-        insuranceTextLabel.text = "Skydd"
+        insuranceTextLabel.text = LocalizedString.Insurance.Details.protections
         insuranceImageView.kf.setImage(with: provider?.logoUrl)
 
         self.insurance = insurance
