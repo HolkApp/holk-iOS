@@ -69,7 +69,7 @@ final class OnboardingInsuranceCell: UITableViewCell {
         
         comingUpLabel.numberOfLines = 0
         comingUpLabel.font = Font.semiBold(.description)
-        comingUpLabel.text = "Coming Soon"
+        comingUpLabel.text = LocalizedString.Insurance.Aggregate.comingSoon
         
         stackView.axis = .vertical
         stackView.spacing = -10

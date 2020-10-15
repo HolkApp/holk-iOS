@@ -61,7 +61,7 @@ final class InsuranceListViewController: UICollectionViewController {
     }
     
     private func setup() {
-        title = "Försäkringar"
+        title = LocalizedString.Insurance.text
         navigationItem.setAppearance(backgroundColor: Color.secondaryBackground)
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "profile"), style: .plain, target: self, action: #selector(profileTapped(sender:)))

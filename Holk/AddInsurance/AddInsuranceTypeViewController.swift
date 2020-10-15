@@ -38,14 +38,14 @@ final class AddInsuranceTypeViewController: UIViewController {
     }
 
     private func setup() {
-        navigationItem.title = "Start finding your gaps"
+        navigationItem.title = LocalizedString.Insurance.Aggregate.navigationTitle
 
         view.backgroundColor = Color.mainBackground
 
         headerLabel.font = FontStyleGuide.header2.font
         headerLabel.textColor = Color.mainForeground
         headerLabel.textAlignment = .left
-        headerLabel.text = "Pick insurance"
+        headerLabel.text = LocalizedString.Insurance.Aggregate.selectInsurance
         headerLabel.numberOfLines = 0
 
         tableView.registerCell(OnboardingInsuranceCell.self)

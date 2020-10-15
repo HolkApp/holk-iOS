@@ -45,7 +45,7 @@ final class AddInsuranceConsentViewController: UIViewController {
     }
 
     private func setup() {
-        navigationItem.title = "Start finding your gaps"
+        navigationItem.title = LocalizedString.Insurance.Aggregate.navigationTitle
 
         view.layoutMargins.left = 40
         view.layoutMargins.right = 40
@@ -54,7 +54,7 @@ final class AddInsuranceConsentViewController: UIViewController {
         headerLabel.font = FontStyleGuide.header2.font
         headerLabel.textColor = Color.mainForeground
         headerLabel.textAlignment = .left
-        headerLabel.text = "Add your insurance"
+        headerLabel.text = LocalizedString.Insurance.Aggregate.addInsurance
         headerLabel.numberOfLines = 0
 
         descriptionTextView.backgroundColor = .clear
@@ -64,7 +64,7 @@ final class AddInsuranceConsentViewController: UIViewController {
             .foregroundColor: Color.landingBackground,
             .underlineStyle: NSUnderlineStyle.single.rawValue
         ]
-        let text = "We will fetch your insurance from %@. \n[Our terms and policies](http://google.com)"
+        let text = LocalizedString.Insurance.Aggregate.description
         let descriptionText = String(format: text, insuranceProvider.displayName)
         descriptionTextView.attributedText = Parser.parse(
             markdownString: descriptionText,

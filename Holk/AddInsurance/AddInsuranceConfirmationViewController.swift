@@ -32,7 +32,7 @@ final class AddInsuranceConfirmationViewController: UIViewController {
         didSet {
             DispatchQueue.main.async {
                 guard let addedInsurance = self.addedInsurance, let insuranceProvider = self.storeController.providerStore[addedInsurance.insuranceProviderName] else { return }
-                self.descriptionLabel.text = String(format: "We found your insurance at %@", insuranceProvider.displayName)
+                self.descriptionLabel.text = String(format: LocalizedString.Insurance.Aggregate.Confirmation.insuranceFound, insuranceProvider.displayName)
                 self.insuranceLabel.text = addedInsurance.kind.description
                 self.addressLabel.text = addedInsurance.address
             }
@@ -57,7 +57,7 @@ final class AddInsuranceConfirmationViewController: UIViewController {
     }
 
     private func setup() {
-        navigationItem.title = "Start finding your gaps"
+        navigationItem.title = LocalizedString.Insurance.Aggregate.navigationTitle
         navigationItem.hidesBackButton = true
 
         imageView.image = UIImage(systemName: "checkmark.circle")?.withSymbolWeightConfiguration(.light)
@@ -73,9 +73,10 @@ final class AddInsuranceConfirmationViewController: UIViewController {
         descriptionLabel.numberOfLines = 0
         if let addedInsurance = addedInsurance,
             let provider = storeController.providerStore[addedInsurance.insuranceProviderName] {
-            descriptionLabel.text = String(format: "We found your insurance at %@", provider.displayName)
+            descriptionLabel.text = String(format: LocalizedString.Insurance.Aggregate.Confirmation.insuranceFound, provider.displayName)
         } else {
-            descriptionLabel.text = "Sorry, but we cannot find any insurance"
+            descriptionLabel.text = LocalizedString.Insurance.Aggregate.Confirmation.insuranceNotFound
+
         }
 
         cardView.backgroundColor = .clear
@@ -104,7 +105,7 @@ final class AddInsuranceConfirmationViewController: UIViewController {
         badgeLabel.layer.backgroundColor = UIColor.red.cgColor
         badgeLabel.text = "7"
 
-        doneButton.setTitle("Add to Holk", for: .normal)
+        doneButton.setTitle(LocalizedString.Insurance.Aggregate.Confirmation.done, for: .normal)
         doneButton.backgroundColor = Color.mainHighlight
         doneButton.titleLabel?.font = Font.semiBold(.subtitle)
         doneButton.set(color: Color.mainForeground)

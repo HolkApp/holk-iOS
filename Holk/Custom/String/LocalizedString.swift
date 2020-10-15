@@ -47,8 +47,27 @@ struct LocalizedString {
             static let subtitle = NSLocalizedString("Onboarding.NewUser.Subtitle", value: "Great to see that you want to sign up for Holk", comment: "Welcome subtitle text for onboarding new user view")
             static let description = NSLocalizedString("Onboarding.NewUser.Description", value: "Enter your mail adress in order to complete your account", comment: "Description text for asking email address on onboarding new user view")
             static let emailPlaceholder = NSLocalizedString("Onboarding.NewUser.EmailPlaceholder", value: "E-post adress", comment: "Email placeholder text for on onboarding new user view")
+        }
+    }
 
+    enum Insurance {
+        static let text = NSLocalizedString("Insurance.Aggregate.Text", value: "Försäkringar", comment: "Insurance text")
 
+        enum Aggregate {
+            static let navigationTitle = NSLocalizedString("Insurance.Aggregate.NavigationTitle", value: "Start finding your gaps", comment: "Start title text on the navigation bar for aggregate new insurance")
+            static let selectInsuranceProvider = NSLocalizedString("Insurance.Aggregate.SelectInsuranceProvider", value: "Pick an insurance company", comment: "Text for select which insurance company provider to aggregate the insurance")
+            static let selectInsurance = NSLocalizedString("Insurance.Aggregate.SelectInsurance", value: "Pick an insurance type", comment: "Text for select which insurance type to aggregate the insurance")
+            static let addInsurance = NSLocalizedString("Insurance.Aggregate.AddInsurance", value: "Add your insurance", comment: "Header text to let the user to aggregate the insurance")
+            static let description = NSLocalizedString("Insurance.Aggregate.Description", value: "We will fetch your insurance from %@. \n[Our terms and policies](http://google.com)", comment: "Description text to ask the user to aggregate the insurance and the text to show a link to terms and condition")
+            static let comingSoon = NSLocalizedString("Insurance.Aggregate.ComingSoon", value: "Coming Soon", comment: "Coming soon text to show when for not supported insurance type when aggregate the insurance")
+            static let temporaryUnavailable = NSLocalizedString("Insurance.Aggregate.TemporaryUnavailable", value: "Temporary unavailable", comment: "Temporary unavailable text to show when the provider is not available for aggregate at the momnent")
+
+            enum Confirmation {
+                static let title = NSLocalizedString("Insurance.Aggregate.Confirmation.Title", value: "Great,", comment: "Title text when the aggregation is finished")
+                static let insuranceFound = NSLocalizedString("Insurance.Aggregate.Confirmation.InsuranceFound", value: "We found your insurance at %@", comment: "Text to show when the aggregation is success and find the insurance")
+                static let insuranceNotFound = NSLocalizedString("Insurance.Aggregate.Confirmation.InsuranceNotFound", value: "Sorry, but we cannot find your insurance", comment: "Text to show when not finding the insurance after aggregation")
+                static let done = NSLocalizedString("Insurance.Aggregate.Confirmation.Done", value: "Add to Holk", comment: "Text for the done button text to close the confirmation screen ")
+            }
         }
     }
 }
