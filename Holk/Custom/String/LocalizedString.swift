@@ -14,6 +14,8 @@ struct LocalizedString {
         static let ok = NSLocalizedString("Generic.OK", value: "OK", comment: "Generic text for OK")
         static let cancel = NSLocalizedString("Generic.Cancel", value: "Cancel", comment: "Generic text for Cancel")
         static let loading = NSLocalizedString("Generic.Loading", value: "Loading, please wait", comment: "Generic description text for loading text")
+        static let piece = NSLocalizedString("Generic.Piece", value: "%@ st", comment: "Number of things, singular")
+        static let pieces = NSLocalizedString("Generic.Pieces", value: "%@ st", comment: "Number of things, plural")
 
         enum Alert {
             static let stopAggregationTitle = NSLocalizedString("Generic.Alert.StopAggregationTitle", value: "Do you want to stop insurance aggregation", comment: "Alert title text for asking user before quite the insurnace aggregation flow")
@@ -52,10 +54,13 @@ struct LocalizedString {
 
     enum Insurance {
         static let text = NSLocalizedString("Insurance.Text", value: "Försäkringar", comment: "Insurance text")
+        static let company = NSLocalizedString("Insurance.Company", value: "Bolag", comment: "Insurance company text")
+
         static let daysLeft = NSLocalizedString("Insurance.DaysLeft", value: "Dagar kvar", comment: "Days left text to show how many days left before the insurance is expired, in plural")
         static let dayLeft = NSLocalizedString("Insurance.DayLeft", value: "Dag kvar", comment: "Day left text to show how many days left before the insurance is expired, in singular")
         static let expiresToday = NSLocalizedString("Insurance.ExpiresToday", value: "Expires today", comment: "Expires today text to when the insurance is expiring")
         static let expired = NSLocalizedString("Insurance.Expired", value: "Expired", comment: "Expired text to when the insurance is expired")
+        static let validUntil = NSLocalizedString("Insurance.ValidUntil", value: "Gäller till", comment: "Valid until text to show when the insurance is expiring")
 
         enum Aggregate {
             static let navigationTitle = NSLocalizedString("Insurance.Aggregate.NavigationTitle", value: "Start finding your gaps", comment: "Start title text on the navigation bar for aggregate new insurance")
@@ -86,10 +91,16 @@ struct LocalizedString {
     }
 
     enum Suggestion {
-        static let gap = NSLocalizedString("Suggestion.Gap", value: "Lukor", comment: "Gaps suggestion text, singular")
-        static let gaps = NSLocalizedString("Suggestion.Gaps", value: "Lukor", comment: "Gaps suggestion text, plural")
-        static let thinkOf = NSLocalizedString("Suggestion.ThinkOf", value: "Tänk på", comment: "Thinkofs suggestion text, singular")
-        static let thinkOfs = NSLocalizedString("Suggestion.ThinkOfs", value: "Tänk på", comment: "Thinkofs suggestion text, plural")
+        enum Gap {
+            static let gap = NSLocalizedString("Suggestion.Gap.Gap", value: "Lukor", comment: "Gaps suggestion text, singular")
+            static let gaps = NSLocalizedString("Suggestion.Gap.Gaps", value: "Lukor", comment: "Gaps suggestion text, plural")
+        }
 
+        enum ThinkOf {
+            static let thinkOf = NSLocalizedString("Suggestion.ThinkOf.ThinkOf", value: "Tänk på", comment: "Thinkofs suggestion text, singular")
+            static let thinkOfs = NSLocalizedString("Suggestion.ThinkOf.ThinkOfs", value: "Tänk på", comment: "Thinkofs suggestion text, plural")
+            static let title = NSLocalizedString("Suggestion.ThinkOf.Title", value: "Viktiga saker att tänka på", comment: "Thinkofs suggestion title text on the suggestion list")
+            static let detailTitle = NSLocalizedString("Suggestion.ThinkOf.DetailTitle", value: "Din info", comment: "Thinkofs suggestion detail title text on the think of suggestion detail")
+        }
     }
 }

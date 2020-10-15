@@ -38,7 +38,7 @@ final class ThinkOfRelatedInsuranceCollectionHeaderView: UICollectionReusableVie
         layoutMargins = .init(top: 36, left: 32, bottom: 36, right: 32)
 
         titleLabel.styleGuide = .header6
-        titleLabel.text = "Din info"
+        titleLabel.text = LocalizedString.Suggestion.ThinkOf.detailTitle
         titleLabel.textColor = Color.mainForeground
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
@@ -46,7 +46,7 @@ final class ThinkOfRelatedInsuranceCollectionHeaderView: UICollectionReusableVie
         titleSeparatorline.translatesAutoresizingMaskIntoConstraints = false
 
         nameLabel.styleGuide = .titleHeader1
-        nameLabel.text = "Försäkring"
+        nameLabel.text = LocalizedString.Insurance.text
         nameLabel.textColor = Color.mainForeground
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
 
@@ -59,7 +59,7 @@ final class ThinkOfRelatedInsuranceCollectionHeaderView: UICollectionReusableVie
         nameSeparatorline.translatesAutoresizingMaskIntoConstraints = false
 
         providerLabel.styleGuide = .titleHeader1
-        providerLabel.text = "Bolag"
+        providerLabel.text = LocalizedString.Insurance.company
         providerLabel.textColor = Color.mainForeground
         providerLabel.translatesAutoresizingMaskIntoConstraints = false
 
@@ -70,7 +70,7 @@ final class ThinkOfRelatedInsuranceCollectionHeaderView: UICollectionReusableVie
         providerSeparatorline.translatesAutoresizingMaskIntoConstraints = false
 
         endDateLabel.styleGuide = .titleHeader1
-        endDateLabel.text = "Gäller till"
+        endDateLabel.text = LocalizedString.Insurance.validUntil
         endDateLabel.textColor = Color.mainForeground
         endDateLabel.translatesAutoresizingMaskIntoConstraints = false
 

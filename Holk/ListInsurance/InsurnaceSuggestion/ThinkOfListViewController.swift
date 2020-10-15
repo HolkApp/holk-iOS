@@ -66,12 +66,16 @@ final class ThinkOfListViewController: UIViewController {
         iconView.translatesAutoresizingMaskIntoConstraints = false
 
         titleLabel.styleGuide = .header4
-        titleLabel.text = "Tänk på"
+        titleLabel.text = LocalizedString.Suggestion.ThinkOf.thinkOfs
         titleLabel.textColor = Color.mainForeground
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
         numberLabel.styleGuide = .number3
-        numberLabel.text = "\(thinkOfs.count) st"
+        if thinkOfs.count == 1 {
+            numberLabel.text = String(format: LocalizedString.Generic.piece, "\(thinkOfs.count)")
+        } else {
+            numberLabel.text = String(format: LocalizedString.Generic.pieces, "\(thinkOfs.count)")
+        }
         numberLabel.textColor = Color.mainForeground
         numberLabel.textAlignment = .right
         numberLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -136,7 +140,7 @@ extension ThinkOfListViewController {
             if kind == UICollectionView.elementKindSectionHeader {
                 let suggestionCollectionHeaderView =
                     collectionView.dequeueReusableSupplementaryView(SuggestionCollectionHeaderView.self, of: kind, indexPath: indexPath)
-                suggestionCollectionHeaderView.configure("Viktiga saker att tänka på")
+                suggestionCollectionHeaderView.configure(LocalizedString.Suggestion.ThinkOf.title)
                 return suggestionCollectionHeaderView
             } else {
                 return nil

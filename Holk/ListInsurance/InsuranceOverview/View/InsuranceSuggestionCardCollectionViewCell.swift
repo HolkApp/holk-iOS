@@ -59,7 +59,7 @@ class InsuranceSuggestionCardCollectionViewCell: UICollectionViewCell {
             }
             suggestionIllustrationView.addArrangedSubview(suggestionAnimationView)
         }
-        suggestionLabel.text = LocalizedString.Suggestion.gaps
+        suggestionLabel.text = LocalizedString.Suggestion.Gap.gaps
         suggestionValueLabel.text = String(gaps.count)
         suggestionValueLabel.textColor = Color.mainForeground
     }
@@ -69,7 +69,7 @@ class InsuranceSuggestionCardCollectionViewCell: UICollectionViewCell {
         suggestionImageView.tintColor = Color.mainForeground
         suggestionIllustrationView.addArrangedSubview(suggestionImageView)
 
-        suggestionLabel.text = LocalizedString.Suggestion.thinkOfs
+        suggestionLabel.text = LocalizedString.Suggestion.ThinkOf.thinkOfs
         suggestionValueLabel.text = String(thinkOfs.count)
         suggestionValueLabel.textColor = Color.mainForeground
     }
