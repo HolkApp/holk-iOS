@@ -100,11 +100,11 @@ final class SubInsuranceHeaderView: UICollectionReusableView {
     }
 
     func configure(_ insurance: Insurance) {
-        titleLabel.text = "Dina skydd"
+        titleLabel.text = LocalizedString.Insurance.Details.title
         descriptionLabel.text = insurance.kind.description
 
-        basicSubInsurancesSegmentView.configure("Grundskydd", numberOfSubInsurances:  insurance.subInsurances.count)
-        additionalSubInsurancesSegmentView.configure("Tilläggsskydd", numberOfSubInsurances:  insurance.addonInsurances.count)
+        basicSubInsurancesSegmentView.configure(LocalizedString.Insurance.Details.basicProtections, numberOfSubInsurances:  insurance.subInsurances.count)
+        additionalSubInsurancesSegmentView.configure(LocalizedString.Insurance.Details.additionalProtections, numberOfSubInsurances:  insurance.addonInsurances.count)
     }
 }
 

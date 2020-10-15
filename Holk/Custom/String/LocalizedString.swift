@@ -80,6 +80,8 @@ struct LocalizedString {
             static let validForPerson = NSLocalizedString("Insurance.Details.ValidForPerson", value: "Gäller för", comment: "Valid for text to show who is the insurance protection for")
             static let cost = NSLocalizedString("Insurance.Details.Cost", value: "Kostnad", comment: "Text to show the cost of the insurance")
             static let costPerMonth = NSLocalizedString("Insurance.Details.CostPerMonth", value: "%@ kr/mån", comment: "Text to show the cost per month unit of the insurance")
+            static let basicProtections = NSLocalizedString("Insurance.Details.BasicProtections", value: "Grundskydd", comment: "Text to show the basic protections(subinsurances) of the insurance")
+            static let additionalProtections = NSLocalizedString("Insurance.Details.AdditionalProtections", value: "Grundskydd", comment: "Text to show the additional protections(subinsurances) of the insurance")
         }
     }
 
