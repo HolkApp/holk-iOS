@@ -71,7 +71,7 @@ final class GapDetailsViewController: UIViewController {
         createButton.backgroundColor = Color.suggestionBackground
         createButton.layer.cornerRadius = 8
         createButton.styleGuide = .button1
-        createButton.setTitle("Skaffa skydd", for: .normal)
+        createButton.setTitle(LocalizedString.Suggestion.Gap.actionButton, for: .normal)
         createButton.set(color: Color.secondaryLabel)
         createButton.addTarget(self, action: #selector(createProtection), for: .touchUpInside)
         createButton.translatesAutoresizingMaskIntoConstraints = false

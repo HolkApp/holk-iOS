@@ -94,6 +94,8 @@ struct LocalizedString {
         enum Gap {
             static let gap = NSLocalizedString("Suggestion.Gap.Gap", value: "Lukor", comment: "Gaps suggestion text, singular")
             static let gaps = NSLocalizedString("Suggestion.Gap.Gaps", value: "Lukor", comment: "Gaps suggestion text, plural")
+            static let title = NSLocalizedString("Suggestion.Gap.Title", value: "Luckor som finns i ditt skydd", comment: "Gaps suggestion title text on the suggestion list")
+            static let actionButton = NSLocalizedString("Suggestion.Gap.ActionButton", value: "Skaffa skydd", comment: "Button text on the gap suggestion detail view for the call to action to get more insurance")
         }
 
         enum ThinkOf {

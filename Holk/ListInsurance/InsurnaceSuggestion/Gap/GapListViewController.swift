@@ -65,12 +65,17 @@ final class GapListViewController: UIViewController {
         iconView.image = UIImage(systemName: "bell")?.withSymbolWeightConfiguration(.light)
         iconView.translatesAutoresizingMaskIntoConstraints = false
 
-        titleLabel.text = "Luckor"
+        titleLabel.text = LocalizedString.Suggestion.Gap.gaps
         titleLabel.styleGuide = .header4
         titleLabel.textColor = Color.mainForeground
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        numberLabel.text = "\(gaps.count) st"
+        if gaps.count == 1 {
+            numberLabel.text = String(format: LocalizedString.Generic.piece, "\(gaps.count)")
+        } else {
+            numberLabel.text = String(format: LocalizedString.Generic.pieces, "\(gaps.count)")
+        }
+
         numberLabel.styleGuide = .number3
         numberLabel.textColor = Color.mainForeground
         numberLabel.textAlignment = .right
@@ -136,7 +141,7 @@ extension GapListViewController {
             if kind == UICollectionView.elementKindSectionHeader {
                 let suggestionCollectionHeaderView =
                     collectionView.dequeueReusableSupplementaryView(SuggestionCollectionHeaderView.self, of: kind, indexPath: indexPath)
-                suggestionCollectionHeaderView.configure("Luckor som finns i ditt skydd")
+                suggestionCollectionHeaderView.configure(LocalizedString.Suggestion.Gap.title)
                 return suggestionCollectionHeaderView
             } else {
                 return nil
