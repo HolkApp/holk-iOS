@@ -1,5 +1,5 @@
 //
-//  SubInsuranceDetailHeaderView.swift
+//  SubInsuranceDetailsHeaderView.swift
 //  Holk
 //
 //  Created by 张梦皓 on 2020-10-11.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class SubInsuranceDetailHeaderView: UICollectionReusableView {
+final class SubInsuranceDetailsHeaderView: UICollectionReusableView {
     weak var subInsuranceDetailViewController: HomeSubInsuranceDetailViewController?
 
     private let titleLabel = HolkLabel()
@@ -98,11 +98,12 @@ final class SubInsuranceDetailHeaderView: UICollectionReusableView {
     }
 }
 
-extension SubInsuranceDetailHeaderView {
+extension SubInsuranceDetailsHeaderView {
     @objc private func iconViewSelected(_ sender: UIControl) {
-//        basicSubInsurancesSegmentView.isSelected = sender === basicSubInsurancesSegmentView
-//        additionalSubInsurancesSegmentView.isSelected = sender === basicSubInsurancesSegmentView
-//
+        coverSelection.isSelected = sender == coverSelection
+        gapSelection.isSelected = sender == gapSelection
+        thinkOfSelection.isSelected = sender == thinkOfSelection
+
 //        if sender === basicSubInsurancesSegmentView {
 //            subInsuranceDetailViewController?.updateSelection(.basic)
 //        } else {
