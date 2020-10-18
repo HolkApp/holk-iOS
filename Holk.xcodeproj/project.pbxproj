@@ -663,10 +663,10 @@
 		8F9C1CC9253B87990013F2C7 /* Insurance */ = {
 			isa = PBXGroup;
 			children = (
+				8F9C1CCD253B87990013F2C7 /* Insurance.swift */,
 				8F9C1CCA253B87990013F2C7 /* SubInsurance.swift */,
 				8F9C1CCB253B87990013F2C7 /* AddonInsurance.swift */,
 				8F9C1CCC253B87990013F2C7 /* AccidentalInsurance.swift */,
-				8F9C1CCD253B87990013F2C7 /* Insurance.swift */,
 				8F9C1CCE253B87990013F2C7 /* Cost.swift */,
 			);
 			path = Insurance;

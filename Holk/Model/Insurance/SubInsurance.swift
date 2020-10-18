@@ -14,6 +14,13 @@ extension Insurance {
             return lhs.kind < rhs.kind
         }
 
+        struct Item: Codable, Hashable, Equatable {
+            let infoText: String
+            let maxAmount: String
+            let name: String
+            let result: String
+        }
+
         enum Kind: String, Codable, DefaultableDecodable, CaseIterable, Comparable {
             case movables = "MOVABLES"
             case travel = "TRAVEL"
@@ -54,8 +61,8 @@ extension Insurance {
         private enum CodingKeys: String, CodingKey {
             case kind = "type"
             case title = "title"
-            case subtitle = "subtitle"
-            case iconUrl = "iconUrl"
+            case subtitle = "subTitle"
+            case iconUrl = "icon"
         }
     }
 }
