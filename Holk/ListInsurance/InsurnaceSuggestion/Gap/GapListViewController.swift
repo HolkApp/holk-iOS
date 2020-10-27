@@ -57,6 +57,7 @@ final class GapListViewController: UIViewController {
     }
 
     private func setup() {
+        navigationItem.largeTitleDisplayMode = .never
         navigationItem.setAppearance()
 
         view.backgroundColor = Color.mainBackground

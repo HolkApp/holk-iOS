@@ -46,15 +46,16 @@ final class HomeInsuranceViewController: UIViewController {
 
     private func setup() {
         navigationItem.largeTitleDisplayMode = .never
-        navigationItem.setAppearance(backgroundColor: Color.mainBackground)
+        navigationItem.setAppearance()
+        
         view.backgroundColor = Color.mainBackground
 
+        collectionView.contentInset.bottom = 40
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.backgroundColor = .clear
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
-        collectionView.contentInset = .init(top: 0, left: 0, bottom: 40, right: 0)
         collectionView.registerCell(HomeInsuranceCollectionViewCell.self)
         collectionView.registerCell(HomeInsuranceBeneficiaryCollectionViewCell.self)
         collectionView.registerCell(HomeInsuranceCostCollectionViewCell.self)

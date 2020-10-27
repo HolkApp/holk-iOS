@@ -8,8 +8,12 @@
 
 import UIKit
 
+protocol SubInsuranceDetailsHeaderViewDelegate: AnyObject {
+    func updateSelection(_ subInsuranceDetailsHeaderView: SubInsuranceDetailsHeaderView)
+}
+
 final class SubInsuranceDetailsHeaderView: UICollectionReusableView {
-    weak var subInsuranceDetailViewController: HomeSubInsuranceDetailViewController?
+    weak var delegate: SubInsuranceDetailsHeaderViewDelegate?
 
     private let titleLabel = HolkLabel()
     private let subtitle = HolkLabel()
@@ -30,12 +34,24 @@ final class SubInsuranceDetailsHeaderView: UICollectionReusableView {
         fatalError("init(coder:) has not been implemented")
     }
 
+    func configure(subInsurance: Insurance.SubInsurance) {
+        titleLabel.text = subInsurance.title
+        subtitle.text = "Hemförsäkring"
+
+        backgroundColor = Color.subInsuranceBackgroundColor(subInsurance.kind)
+    }
+
     private func setup() {
         layoutMargins = .init(top: 20, left: 40, bottom: 28, right: 40)
 
+        titleLabel.styleGuide = .cardHeader1
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        subtitle.styleGuide = .header6
         subtitle.translatesAutoresizingMaskIntoConstraints = false
+
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+
         selectionsContainerView.translatesAutoresizingMaskIntoConstraints = false
 
         coverSelection.addTarget(self, action: #selector(iconViewSelected(_:)), for: .touchUpInside)
@@ -61,7 +77,7 @@ final class SubInsuranceDetailsHeaderView: UICollectionReusableView {
 
         NSLayoutConstraint.activate([
             titleLabel.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
-            titleLabel.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor),
+            titleLabel.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor, constant: 80),
             titleLabel.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
 
             subtitle.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),

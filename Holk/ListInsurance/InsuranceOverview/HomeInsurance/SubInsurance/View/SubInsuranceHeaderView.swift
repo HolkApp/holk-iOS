@@ -8,8 +8,12 @@
 
 import UIKit
 
+protocol SubInsuranceHeaderViewDelegate: AnyObject {
+    func updateSelection(_ subInsuranceHeaderView: SubInsuranceHeaderView, selectedSubInsuranceKind: HomeSubInsurancesViewController.SelectedSubInsuranceKind)
+}
+
 final class SubInsuranceHeaderView: UICollectionReusableView {
-    weak var subInsurancesViewController: HomeSubInsurancesViewController?
+    weak var delegate: SubInsuranceHeaderViewDelegate?
 
     private let titleLabel = HolkLabel()
     private let descriptionLabel = HolkLabel()
@@ -57,7 +61,7 @@ final class SubInsuranceHeaderView: UICollectionReusableView {
         containerView.addSubview(additionalSubInsurancesSegmentView)
 
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 30),
+            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 100),
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
 
@@ -114,9 +118,9 @@ extension SubInsuranceHeaderView {
         additionalSubInsurancesSegmentView.isSelected = sender === additionalSubInsurancesSegmentView
 
         if basicSubInsurancesSegmentView.isSelected {
-            subInsurancesViewController?.updateSelection(.basic)
+            delegate?.updateSelection(self, selectedSubInsuranceKind: .basic)
         } else if additionalSubInsurancesSegmentView.isSelected {
-            subInsurancesViewController?.updateSelection(.addon)
+            delegate?.updateSelection(self, selectedSubInsuranceKind: .addon)
         }
     }
 }

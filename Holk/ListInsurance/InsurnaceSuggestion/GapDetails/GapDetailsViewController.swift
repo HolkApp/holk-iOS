@@ -54,12 +54,12 @@ final class GapDetailsViewController: UIViewController {
         navigationItem.setAppearance()
         navigationController?.navigationBar.tintColor = Color.mainBackground
 
-        collectionView.contentInset = .init(top: 0, left: 0, bottom: 200, right: 0)
+        collectionView.contentInset.top = -(navigationController?.navigationBar.frame.height ?? 0)
+        collectionView.contentInset.bottom = 40
         collectionView.delegate = self
         collectionView.backgroundColor = Color.mainBackground
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
-        collectionView.contentInsetAdjustmentBehavior = .never
         collectionView.registerCell(GapBannerCollectionViewCell.self)
         collectionView.registerCell(GapParagraphCollectionViewCell.self)
         collectionView.registerReusableSupplementaryView(

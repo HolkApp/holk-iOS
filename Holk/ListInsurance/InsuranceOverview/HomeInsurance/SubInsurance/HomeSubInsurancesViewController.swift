@@ -18,7 +18,7 @@ final class HomeSubInsurancesViewController: UIViewController {
         case addon(Insurance.AddonInsurance)
     }
 
-    enum SubInsuranceSegment {
+    enum SelectedSubInsuranceKind {
         case basic
         case addon
     }
@@ -33,7 +33,7 @@ final class HomeSubInsurancesViewController: UIViewController {
     private let insurance: Insurance
     private let subInsurances: [HomeSubInsuranceSegment]
     private let addonInsurances: [HomeSubInsuranceSegment]
-    private var selectedSegment: SubInsuranceSegment = .basic
+    private var selectedSubInsuranceKind: SelectedSubInsuranceKind = .basic
     private lazy var dataSource = makeDataSource()
     private lazy var collectionView: UICollectionView = {
         let layout = makeSubinsurancesLayout()
@@ -61,16 +61,13 @@ final class HomeSubInsurancesViewController: UIViewController {
         applySnapshot(animatingDifferences: false)
     }
 
-    func updateSelection(_ segment: SubInsuranceSegment) {
-        selectedSegment = segment
-        applySnapshot()
-    }
-
     private func setup() {
         navigationItem.largeTitleDisplayMode = .never
-        navigationItem.setAppearance(backgroundColor: Color.mainBackground)
+        navigationItem.setAppearance()
 
-        collectionView.contentInset = .init(top: 0, left: 0, bottom: 40, right: 0)
+        // Quick fix, since setting contentInsetAdjustmentBehavior to false will break the layout
+        collectionView.contentInset.top = -(navigationBarHeight + statusBarHeight)
+        collectionView.contentInset.bottom = 40
         collectionView.backgroundColor = Color.secondaryBackground
         collectionView.showsVerticalScrollIndicator = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -98,6 +95,11 @@ extension HomeSubInsurancesViewController: UICollectionViewDelegate {
         }
     }
 
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let homeSubInsuranceDetailViewController = HomeSubInsuranceDetailViewController(storeController: storeController, insurance: insurance, subInsurance: insurance.subInsurances[indexPath.item])
+        show(homeSubInsuranceDetailViewController, sender: self)
+    }
+
     private func makeDataSource() -> DataSource {
         let dataSource = DataSource(
             collectionView: collectionView,
@@ -120,10 +122,11 @@ extension HomeSubInsurancesViewController: UICollectionViewDelegate {
             if kind == UICollectionView.elementKindSectionHeader {
                 let subInsuranceHeaderView = collectionView.dequeueReusableSupplementaryView(
                     SubInsuranceHeaderView.self,
-                    of: kind, indexPath: indexPath
+                    of: kind,
+                    indexPath: indexPath
                 )
                 subInsuranceHeaderView.configure(self.insurance)
-                subInsuranceHeaderView.subInsurancesViewController = self
+                subInsuranceHeaderView.delegate = self
                 return subInsuranceHeaderView
             } else {
                 return nil
@@ -136,7 +139,7 @@ extension HomeSubInsurancesViewController: UICollectionViewDelegate {
         var snapshot = Snapshot()
         let sections = Section.allCases
         snapshot.appendSections(sections)
-        switch selectedSegment {
+        switch selectedSubInsuranceKind {
         case .basic:
             snapshot.appendItems(subInsurances)
         case .addon:
@@ -171,5 +174,12 @@ extension HomeSubInsurancesViewController: UICollectionViewDelegate {
         cardSection.contentInsets = .init(top: 40, leading: 0, bottom: 0, trailing: 0)
         cardSection.boundarySupplementaryItems = [makeSubInsuranceSectionHeader()]
         return cardSection
+    }
+}
+
+extension HomeSubInsurancesViewController: SubInsuranceHeaderViewDelegate {
+    func updateSelection(_ subInsuranceHeaderView: SubInsuranceHeaderView, selectedSubInsuranceKind: SelectedSubInsuranceKind) {
+        self.selectedSubInsuranceKind = selectedSubInsuranceKind
+        applySnapshot()
     }
 }
