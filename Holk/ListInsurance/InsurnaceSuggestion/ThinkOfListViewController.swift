@@ -62,7 +62,7 @@ final class ThinkOfListViewController: UIViewController {
         view.backgroundColor = Color.mainBackground
 
         iconView.tintColor = Color.mainForeground
-        iconView.image = UIImage(named: "light")?.withSymbolWeightConfiguration(.light)
+        iconView.image = UIImage.thinkOf
         iconView.translatesAutoresizingMaskIntoConstraints = false
 
         titleLabel.styleGuide = .header4

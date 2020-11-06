@@ -38,7 +38,7 @@ final class ThinkOfCollectionViewCell: UICollectionViewCell {
         contentView.layer.cornerRadius = 16
         contentView.layer.cornerCurve = .continuous
 
-        iconView.image = UIImage(named: "light")
+        iconView.image = UIImage.thinkOf
         iconView.tintColor = Color.mainForeground
         iconView.translatesAutoresizingMaskIntoConstraints = false
 
@@ -54,7 +54,7 @@ final class ThinkOfCollectionViewCell: UICollectionViewCell {
         titleLabel.textColor = Color.secondaryLabel
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        chevronView.image = UIImage(systemName: "chevron.right")
+        chevronView.image = UIImage(systemName: "chevron.right")?.withRenderingMode(.alwaysTemplate)
         chevronView.tintColor = Color.mainForeground.withAlphaComponent(0.5)
         chevronView.translatesAutoresizingMaskIntoConstraints = false
 

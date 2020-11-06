@@ -93,11 +93,11 @@ final class SubInsuranceCollectionViewCell: UICollectionViewCell {
 
         descriptionPlaceholderView.translatesAutoresizingMaskIntoConstraints = false
 
-        chevronView.image = UIImage(systemName: "chevron.right")
+        chevronView.image = UIImage(systemName: "chevron.right")?.withRenderingMode(.alwaysTemplate)
         chevronView.tintColor = Color.mainForeground.withAlphaComponent(0.5)
         chevronView.translatesAutoresizingMaskIntoConstraints = false
 
-        gapImageView.image = UIImage(systemName: "bell")?.withSymbolWeightConfiguration(.light)
+        gapImageView.image = UIImage.gap
         gapImageView.contentMode = .scaleAspectFit
         gapImageView.tintColor = Color.mainForeground
         gapImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -109,7 +109,7 @@ final class SubInsuranceCollectionViewCell: UICollectionViewCell {
         gapValueLabel.textAlignment = .center
         gapValueLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        thinkOfImageView.image = UIImage(named: "light")?.withSymbolWeightConfiguration(.light)
+        thinkOfImageView.image = UIImage.thinkOf
         thinkOfImageView.contentMode = .scaleAspectFit
         thinkOfImageView.tintColor = Color.mainForeground
         thinkOfImageView.translatesAutoresizingMaskIntoConstraints = false

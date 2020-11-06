@@ -30,7 +30,7 @@ struct Insurance: Codable, Hashable, Equatable {
         var description: String {
             switch self {
             case .homeInsurance:
-                return "Hemförsäkring"
+                return LocalizedString.Insurance.homeInsurance
             case .unknown:
                 return self.rawValue
             }

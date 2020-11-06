@@ -52,6 +52,10 @@ extension UIImage {
         default: self.init(named: "travel")
         }
     }
+
+    static let cover = UIImage(systemName: "umbrella")
+    static let gap = UIImage(systemName: "bell")?.withSymbolWeightConfiguration(.light)
+    static let thinkOf = UIImage(named: "light")?.withRenderingMode(.alwaysTemplate)
 }
 
 // MARK: - Suggestion Image extension

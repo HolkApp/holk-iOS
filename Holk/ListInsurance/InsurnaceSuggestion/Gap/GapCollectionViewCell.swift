@@ -35,7 +35,7 @@ final class GapCollectionViewCell: UICollectionViewCell {
         contentView.layer.cornerRadius = 16
         contentView.layer.cornerCurve = .continuous
 
-        iconView.image = UIImage(systemName: "bell")?.withSymbolWeightConfiguration(.light)
+        iconView.image = UIImage.gap
         iconView.tintColor = Color.secondaryLabel
         iconView.translatesAutoresizingMaskIntoConstraints = false
 

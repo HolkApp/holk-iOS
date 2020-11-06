@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        // TODO: Should check, only centerain screens should be able to redirect
+        // TODO: Should check, only certain screens should be able to redirect
         return true
     }
 }

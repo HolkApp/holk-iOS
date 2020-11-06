@@ -61,6 +61,7 @@ struct LocalizedString {
         static let expiresToday = NSLocalizedString("Insurance.ExpiresToday", value: "Expires today", comment: "Expires today text to when the insurance is expiring")
         static let expired = NSLocalizedString("Insurance.Expired", value: "Expired", comment: "Expired text to when the insurance is expired")
         static let validUntil = NSLocalizedString("Insurance.ValidUntil", value: "Gäller till", comment: "Valid until text to show when the insurance is expiring")
+        static let homeInsurance = NSLocalizedString("Insurance.HomeInsurance", value: "Hemförsäkring", comment: "Translation for home insurance")
 
         enum Aggregate {
             static let navigationTitle = NSLocalizedString("Insurance.Aggregate.NavigationTitle", value: "Start finding your gaps", comment: "Start title text on the navigation bar for aggregate new insurance")

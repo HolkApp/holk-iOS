@@ -48,7 +48,7 @@ class InsuranceSuggestionCardCollectionViewCell: UICollectionViewCell {
 
     func configure(_ gaps: [GapSuggestion]) {
         if gaps.isEmpty {
-            suggestionImageView.image = UIImage(systemName: "bell")?.withSymbolWeightConfiguration(.light).withRenderingMode(.alwaysTemplate)
+            suggestionImageView.image = UIImage.gap
             suggestionImageView.tintColor = Color.mainForeground
             suggestionIllustrationView.addArrangedSubview(suggestionImageView)
         } else {
@@ -65,7 +65,7 @@ class InsuranceSuggestionCardCollectionViewCell: UICollectionViewCell {
     }
 
     func configure(_ thinkOfs: [ThinkOfSuggestion]) {
-        suggestionImageView.image = UIImage(named: "light")?.withSymbolWeightConfiguration(.light).withRenderingMode(.alwaysTemplate)
+        suggestionImageView.image = UIImage.thinkOf
         suggestionImageView.tintColor = Color.mainForeground
         suggestionIllustrationView.addArrangedSubview(suggestionImageView)
 

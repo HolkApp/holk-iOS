@@ -63,7 +63,7 @@ final class GapListViewController: UIViewController {
         view.backgroundColor = Color.mainBackground
 
         iconView.tintColor = Color.mainForeground
-        iconView.image = UIImage(systemName: "bell")?.withSymbolWeightConfiguration(.light)
+        iconView.image = UIImage.gap
         iconView.translatesAutoresizingMaskIntoConstraints = false
 
         titleLabel.text = LocalizedString.Suggestion.Gap.gaps
