@@ -1,14 +1,14 @@
 //
-//  SubInsuranceDetailsTitleCollectionViewCell.swift
+//  SubInsuranceDetailsItemCollectionViewCell.swift
 //  Holk
 //
-//  Created by 张梦皓 on 2020-10-18.
+//  Created by 张梦皓 on 2020-10-19.
 //  Copyright © 2020 Holk. All rights reserved.
 //
 
 import UIKit
 
-final class SubInsuranceDetailsTitleCollectionViewCell: UICollectionViewCell {
+final class SubInsuranceDetailsItemCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
@@ -20,6 +20,6 @@ final class SubInsuranceDetailsTitleCollectionViewCell: UICollectionViewCell {
     }
 
     private func setup() {
-        
+
     }
 }
