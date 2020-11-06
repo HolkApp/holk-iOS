@@ -24,6 +24,8 @@ final class SubInsuranceDetailsHeaderView: UICollectionReusableView {
     private let gapSelection = HolkIconSelectionView()
     private let thinkOfSelection = HolkIconSelectionView()
 
+    var selectedSubInsuranceDetails: SelectedSubInsuranceDetails = .cover
+
     override init(frame: CGRect) {
         super.init(frame: frame)
 
@@ -34,9 +36,10 @@ final class SubInsuranceDetailsHeaderView: UICollectionReusableView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func configure(subInsurance: Insurance.SubInsurance) {
+    func configure(subInsurance: Insurance.SubInsurance, selectedSubInsuranceDetails: SelectedSubInsuranceDetails = .cover) {
         titleLabel.text = subInsurance.title
-        subtitle.text = "Hemförsäkring"
+        subtitle.text = LocalizedString.Insurance.homeInsurance
+        self.selectedSubInsuranceDetails = selectedSubInsuranceDetails
 
         backgroundColor = Color.subInsuranceBackgroundColor(subInsurance.kind)
     }
@@ -55,14 +58,17 @@ final class SubInsuranceDetailsHeaderView: UICollectionReusableView {
         selectionsContainerView.translatesAutoresizingMaskIntoConstraints = false
 
         coverSelection.addTarget(self, action: #selector(iconViewSelected(_:)), for: .touchUpInside)
+        coverSelection.configure(image: UIImage.cover)
         coverSelection.isSelected = true
         coverSelection.translatesAutoresizingMaskIntoConstraints = false
 
         gapSelection.addTarget(self, action: #selector(iconViewSelected(_:)), for: .touchUpInside)
+        gapSelection.configure(image: UIImage.gap)
         gapSelection.isSelected = false
         gapSelection.translatesAutoresizingMaskIntoConstraints = false
 
         thinkOfSelection.addTarget(self, action: #selector(iconViewSelected(_:)), for: .touchUpInside)
+        thinkOfSelection.configure(image: UIImage.thinkOf)
         thinkOfSelection.isSelected = false
         thinkOfSelection.translatesAutoresizingMaskIntoConstraints = false
 
