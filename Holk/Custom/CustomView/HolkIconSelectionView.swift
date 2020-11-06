@@ -9,7 +9,8 @@
 import UIKit
 
 final class HolkIconSelectionView: UIControl {
-    private var backgroundView = UIView()
+    private let imageView = UIImageView()
+    private let textLabel = HolkRoundBackgroundLabel()
 
     convenience init() {
         self.init(frame: .zero)
@@ -26,23 +27,48 @@ final class HolkIconSelectionView: UIControl {
     }
 
     private func setup() {
-        backgroundView.clipsToBounds = true
-        backgroundView.backgroundColor = backgroundColor
-        backgroundView.translatesAutoresizingMaskIntoConstraints = false
+        layoutMargins = .init(top: 6, left: 6, bottom: 6, right: 6)
 
-        insertSubview(backgroundView, at: 0)
+        imageView.clipsToBounds = true
+        imageView.tintColor = Color.mainForeground
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+
+        textLabel.cornerRadius = 10
+        textLabel.styleGuide = .number1
+        textLabel.backgroundColor = Color.selectedIconBackground
+        textLabel.textAlignment = .center
+        textLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        addSubview(imageView)
+        addSubview(textLabel)
 
         NSLayoutConstraint.activate([
-            backgroundView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            backgroundView.topAnchor.constraint(equalTo: topAnchor),
-            backgroundView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            backgroundView.bottomAnchor.constraint(equalTo: bottomAnchor)
+            imageView.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
+            imageView.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor),
+            imageView.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
+            imageView.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor),
+
+            textLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 14),
+            textLabel.topAnchor.constraint(equalTo: topAnchor, constant: -10),
         ])
+    }
+
+    func configure(image: UIImage?, text: String? = nil) {
+        textLabel.text = text
+        textLabel.isHidden = text == nil
+        imageView.image = image
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        layer.cornerRadius = min(frame.width, frame.height) / 2
     }
 
     override var isSelected: Bool {
         didSet {
-            backgroundView.backgroundColor = isSelected ? Color.selectedIconBackground : backgroundColor
+            backgroundColor = isSelected ? Color.selectedIconBackground : .clear
         }
     }
 }
