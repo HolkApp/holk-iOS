@@ -9,7 +9,7 @@
 import UIKit
 
 protocol SubInsuranceDetailsHeaderViewDelegate: AnyObject {
-    func updateSelection(_ subInsuranceDetailsHeaderView: SubInsuranceDetailsHeaderView)
+    func subInsuranceDetailsHeaderView(_ subInsuranceDetailsHeaderView: SubInsuranceDetailsHeaderView, updatedSelection: SubInsuranceDetailViewModel.SelectedSubInsuranceDetails)
 }
 
 final class SubInsuranceDetailsHeaderView: UICollectionReusableView {
@@ -24,7 +24,11 @@ final class SubInsuranceDetailsHeaderView: UICollectionReusableView {
     private let gapSelection = HolkIconSelectionView()
     private let thinkOfSelection = HolkIconSelectionView()
 
-    var selectedSubInsuranceDetails: SelectedSubInsuranceDetails = .cover
+    var selectedSubInsuranceDetails: SubInsuranceDetailViewModel.SelectedSubInsuranceDetails = .cover {
+        didSet {
+            delegate?.subInsuranceDetailsHeaderView(self, updatedSelection: selectedSubInsuranceDetails)
+        }
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -36,7 +40,7 @@ final class SubInsuranceDetailsHeaderView: UICollectionReusableView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func configure(subInsurance: Insurance.SubInsurance, selectedSubInsuranceDetails: SelectedSubInsuranceDetails = .cover) {
+    func configure(subInsurance: Insurance.SubInsurance, selectedSubInsuranceDetails: SubInsuranceDetailViewModel.SelectedSubInsuranceDetails = .cover) {
         titleLabel.text = subInsurance.title
         subtitle.text = LocalizedString.Insurance.homeInsurance
         self.selectedSubInsuranceDetails = selectedSubInsuranceDetails
@@ -122,14 +126,18 @@ final class SubInsuranceDetailsHeaderView: UICollectionReusableView {
 
 extension SubInsuranceDetailsHeaderView {
     @objc private func iconViewSelected(_ sender: UIControl) {
-        coverSelection.isSelected = sender == coverSelection
-        gapSelection.isSelected = sender == gapSelection
-        thinkOfSelection.isSelected = sender == thinkOfSelection
+        coverSelection.isSelected = sender === coverSelection
+        gapSelection.isSelected = sender === gapSelection
+        thinkOfSelection.isSelected = sender === thinkOfSelection
 
-//        if sender === basicSubInsurancesSegmentView {
-//            subInsuranceDetailViewController?.updateSelection(.basic)
-//        } else {
-//            subInsuranceDetailViewController?.updateSelection(.addon)
-//        }
+        switch sender {
+        case coverSelection:
+            selectedSubInsuranceDetails = .cover
+        case gapSelection:
+            selectedSubInsuranceDetails = .gaps
+        case thinkOfSelection:
+            selectedSubInsuranceDetails = .thinkOfs
+        default: break
+        }
     }
 }
