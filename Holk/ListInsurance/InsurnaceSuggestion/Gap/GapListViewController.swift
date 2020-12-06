@@ -20,8 +20,8 @@ final class GapListViewController: UIViewController {
 
     // MARK: - Public variables
     lazy var collectionView: UICollectionView = {
-        let insurancSuggestionsLayout = UICollectionViewCompositionalLayout.makeInsuranceSuggestionsLayout()
-        return UICollectionView(frame: .zero, collectionViewLayout: insurancSuggestionsLayout)
+        let insuranceSuggestionsLayout = makeInsuranceSuggestionsLayout()
+        return UICollectionView(frame: .zero, collectionViewLayout: insuranceSuggestionsLayout)
     }()
 
     // MARK: - Private variables
@@ -130,7 +130,34 @@ final class GapListViewController: UIViewController {
 }
 
 extension GapListViewController {
-    func makeDataSource() -> DataSource {
+    private func makeInsuranceSuggestionsLayout() -> UICollectionViewLayout {
+        let sections = [makeInsuranceSuggestionSection()]
+
+        let layout = UICollectionViewCompositionalLayout { (sectionIndex, environment) in
+            return sections[sectionIndex]
+        }
+        return layout
+    }
+
+    private func makeInsuranceSuggestionSection() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(500))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(230))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        let thinkOfsSection = NSCollectionLayoutSection(group: group)
+        thinkOfsSection.boundarySupplementaryItems = [makeSectionHeaderElement()]
+        thinkOfsSection.contentInsets = .init(top: 0, leading: 16, bottom: 0, trailing: 16)
+        thinkOfsSection.interGroupSpacing = 24
+        return thinkOfsSection
+    }
+
+    private func makeSectionHeaderElement() -> NSCollectionLayoutBoundarySupplementaryItem {
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(100))
+        let headerElement = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+        return headerElement
+    }
+
+    private func makeDataSource() -> DataSource {
         let dataSource = DataSource(
             collectionView: collectionView,
             cellProvider: { (collectionView, indexPath, gap) in
@@ -151,7 +178,7 @@ extension GapListViewController {
         return dataSource
     }
 
-    func applySnapshot(animatingDifferences: Bool = true) {
+    private func applySnapshot(animatingDifferences: Bool = true) {
         var snapshot = Snapshot()
         snapshot.appendSections(Section.allCases)
         snapshot.appendItems(gaps)
