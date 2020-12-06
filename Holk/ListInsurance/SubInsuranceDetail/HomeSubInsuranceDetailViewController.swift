@@ -8,36 +8,39 @@
 
 import UIKit
 
-enum SelectedSubInsuranceDetails {
-    case cover
-    case gaps
-    case thinkOfs
-}
-
 final class HomeSubInsuranceDetailViewController: UIViewController {
     enum Section: CaseIterable {
         case title
+        case detailsSegment
         case detailsItem
     }
 
     enum SubInsuranceDetailsItem: Hashable {
         case title
-        case cover
+        case segment([Insurance.SubInsurance.Item.Segment])
+        case cover(Insurance.SubInsurance.Item)
         case gap
         case thinkOf
     }
 
-    private enum SelectedSubInsuranceCoverSegment {
-        case primary
-        case secondary
-    }
-
     // MARK: - Private Variables
     private var storeController: StoreController
-    private var insurance: Insurance
     private var subInsurance: Insurance.SubInsurance
-    private var selectedSubInsuranceDetails: SelectedSubInsuranceDetails = .cover
-    private var selectedSubInsuranceCoverSegment: SelectedSubInsuranceCoverSegment = .primary
+    private var selectedSubInsuranceDetails: SubInsuranceDetailViewModel.SelectedSubInsuranceDetails = .cover {
+        didSet {
+            DispatchQueue.main.async {
+                self.applySnapshot()
+            }
+        }
+    }
+    private var selectedSubInsuranceCoverSegment: Insurance.SubInsurance.Item.Segment? {
+        didSet {
+            DispatchQueue.main.async {
+                self.applySnapshot()
+            }
+        }
+    }
+    private var subInsuranceDetailViewModel: SubInsuranceDetailViewModel
     private lazy var dataSource = makeDataSource()
 
     typealias DataSource = UICollectionViewDiffableDataSource<Section, SubInsuranceDetailsItem>
@@ -48,10 +51,10 @@ final class HomeSubInsuranceDetailViewController: UIViewController {
         return UICollectionView(frame: .zero, collectionViewLayout: layout)
     }()
 
-    init(storeController: StoreController, insurance: Insurance, subInsurance: Insurance.SubInsurance) {
+    init(storeController: StoreController, subInsurance: Insurance.SubInsurance) {
         self.storeController = storeController
-        self.insurance = insurance
         self.subInsurance = subInsurance
+        subInsuranceDetailViewModel = SubInsuranceDetailViewModel(storeController: storeController, subInsurance: subInsurance)
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -67,6 +70,12 @@ final class HomeSubInsuranceDetailViewController: UIViewController {
         applySnapshot(animatingDifferences: false)
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        navigationItem.setAppearance()
+    }
+
     private func setup() {
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.setAppearance()
@@ -79,9 +88,11 @@ final class HomeSubInsuranceDetailViewController: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.delegate = self
         collectionView.registerCell(SubInsuranceDetailsTitleCollectionViewCell.self)
+        collectionView.registerCell(SubInsuranceDetailsSegmentCollectionViewCell.self)
         collectionView.registerCell(SubInsuranceDetailsItemCollectionViewCell.self)
+        collectionView.registerCell(ThinkOfCollectionViewCell.self)
         collectionView.registerReusableSupplementaryView(SubInsuranceDetailsHeaderView.self, of: UICollectionView.elementKindSectionHeader)
-        collectionView.registerReusableSupplementaryView(SubInsuranceDetailsSegmentHeaderView.self, of: UICollectionView.elementKindSectionHeader)
+
         view.addSubview(collectionView)
 
         NSLayoutConstraint.activate([
@@ -100,21 +111,32 @@ extension HomeSubInsuranceDetailViewController {
         let sections = Section.allCases
         snapshot.appendSections(sections)
         sections.forEach { section in
-            if section == .title {
+            switch section {
+            case .title:
                 snapshot.appendItems([.title], toSection: section)
-            } else {
+            case .detailsSegment:
+                if subInsuranceDetailViewModel.groupedItems.keys.count > 1, case .cover = selectedSubInsuranceDetails {
+                    let segments = subInsuranceDetailViewModel.groupedItems.map(\.key).sorted()
+                    snapshot.appendItems([.segment(segments)], toSection: section)
+                }
+            case .detailsItem:
                 switch selectedSubInsuranceDetails {
                 case .cover:
                     // TODO: Check the segment and add different snapshot
-                    if selectedSubInsuranceCoverSegment == .primary {
-                        snapshot.appendItems([.cover], toSection: section)
-                    } else {
-                        snapshot.appendItems([.cover], toSection: section)
+                    switch selectedSubInsuranceCoverSegment {
+                    case .home:
+                        subInsurance.items.forEach { snapshot.appendItems([.cover($0)], toSection: section) }
+                    case .outdoor:
+                        snapshot.appendItems([], toSection: section)
+                    default:
+                        subInsurance.items.forEach { snapshot.appendItems([.cover($0)], toSection: section) }
                     }
                 case .gaps:
-                    snapshot.appendItems([.gap], toSection: section)
+                    snapshot.appendItems([], toSection: section)
                 case .thinkOfs:
-                    snapshot.appendItems([.thinkOf], toSection: section)
+                    self.subInsuranceDetailViewModel.thinkOfs.forEach { _ in
+                        snapshot.appendItems([.thinkOf], toSection: section)
+                    }
                 }
             }
         }
@@ -125,21 +147,30 @@ extension HomeSubInsuranceDetailViewController {
         // TODO:
         let dataSource = DataSource(
             collectionView: collectionView,
-            cellProvider: { (collectionView, indexPath, subInsuranceDetailsItem) in
+            cellProvider: { [weak self] (collectionView, indexPath, subInsuranceDetailsItem) in
+                guard let self = self else { return UICollectionViewCell() }
                 switch subInsuranceDetailsItem {
                 case .title:
                     let subInsuranceDetailsTitleCollectionViewCell = collectionView.dequeueCell(
                         SubInsuranceDetailsTitleCollectionViewCell.self,
                         indexPath: indexPath
                     )
-                    subInsuranceDetailsTitleCollectionViewCell.configure("Ditt skydd")
+                    subInsuranceDetailsTitleCollectionViewCell.configure(self.selectedSubInsuranceDetails)
                     return subInsuranceDetailsTitleCollectionViewCell
-                case .cover:
+                case .segment(let segments):
+                    let subInsuranceDetailsSegmentCollectionViewCell = collectionView.dequeueCell(
+                        SubInsuranceDetailsSegmentCollectionViewCell.self,
+                        indexPath: indexPath
+                    )
+                    subInsuranceDetailsSegmentCollectionViewCell.configure(self.subInsurance, segments: segments)
+                    subInsuranceDetailsSegmentCollectionViewCell.delegate = self
+                    return subInsuranceDetailsSegmentCollectionViewCell
+                case .cover(let item):
                     let subInsuranceDetailsItemCollectionViewCell = collectionView.dequeueCell(
                         SubInsuranceDetailsItemCollectionViewCell.self,
                         indexPath: indexPath
                     )
-                    subInsuranceDetailsItemCollectionViewCell.configure(self.subInsurance.items[indexPath.item])
+                    subInsuranceDetailsItemCollectionViewCell.configure(item)
                     return subInsuranceDetailsItemCollectionViewCell
                 case .gap:
                     let subInsuranceDetailsItemCollectionViewCell = collectionView.dequeueCell(
@@ -148,20 +179,35 @@ extension HomeSubInsuranceDetailViewController {
                     )
                     return subInsuranceDetailsItemCollectionViewCell
                 case .thinkOf:
-                    let subInsuranceDetailsItemCollectionViewCell = collectionView.dequeueCell(
-                        SubInsuranceDetailsItemCollectionViewCell.self,
+                    let thinkOfCollectionViewCell = collectionView.dequeueCell(
+                        ThinkOfCollectionViewCell.self,
                         indexPath: indexPath
                     )
-                    return subInsuranceDetailsItemCollectionViewCell
+                    thinkOfCollectionViewCell.configure(self.subInsuranceDetailViewModel.thinkOfs[indexPath.item])
+                    return thinkOfCollectionViewCell
                 }
         })
-        
+        dataSource.supplementaryViewProvider = ({ [weak self] (collectionView, kind, indexPath) in
+            guard let self = self, kind == UICollectionView.elementKindSectionHeader else { return nil }
+            if Section.allCases[indexPath.section] == .title {
+                let subInsuranceDetailsHeaderView = collectionView.dequeueReusableSupplementaryView(
+                    SubInsuranceDetailsHeaderView.self,
+                    of: kind,
+                    indexPath: indexPath
+                )
+                subInsuranceDetailsHeaderView.configure(subInsurance: self.subInsurance)
+                subInsuranceDetailsHeaderView.delegate = self
+                return subInsuranceDetailsHeaderView
+            } else {
+                return nil
+            }
+        })
         return dataSource
     }
 
     // TODO: Update
     private func makeDetailLayout() -> UICollectionViewLayout {
-        let sections = [makeSubInsuranceTitleSection(), makeSubInsuranceDetailsSection()]
+        let sections = [makeSubInsuranceTitleSection(), makeSubInsuranceDetailsSegment(), makeSubInsuranceDetailsSection()]
 
         let layout = UICollectionViewCompositionalLayout { (sectionIndex, environment) in
             return sections[sectionIndex]
@@ -170,12 +216,6 @@ extension HomeSubInsuranceDetailViewController {
     }
 
     private func makeSubInsuranceTitleHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
-        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(260))
-        let headerElement = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
-        return headerElement
-    }
-
-    private func makeSubInsuranceDetailsHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
         let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(260))
         let headerElement = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
         return headerElement
@@ -191,17 +231,53 @@ extension HomeSubInsuranceDetailViewController {
         return cardSection
     }
 
+    private func makeSubInsuranceDetailsSegment() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(200))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(200))
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+        let cardSection = NSCollectionLayoutSection(group: group)
+        return cardSection
+    }
+
     private func makeSubInsuranceDetailsSection() -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(200))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(200))
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
         let cardSection = NSCollectionLayoutSection(group: group)
-        cardSection.boundarySupplementaryItems = [makeSubInsuranceDetailsHeader()]
+        cardSection.contentInsets = .init(top: 0, leading: 20, bottom: 0, trailing: 20)
+        cardSection.interGroupSpacing = 24
         return cardSection
     }
 }
 
-extension HomeSubInsuranceDetailViewController: UICollectionViewDelegate {
+// MARK: SubInsuranceDetailsHeaderViewDelegate
+extension HomeSubInsuranceDetailViewController: SubInsuranceDetailsHeaderViewDelegate {
+    func subInsuranceDetailsHeaderView(_ subInsuranceDetailsHeaderView: SubInsuranceDetailsHeaderView, updatedSelection: SubInsuranceDetailViewModel.SelectedSubInsuranceDetails) {
+        selectedSubInsuranceDetails = updatedSelection
+    }
+}
 
+// MARK: SubInsuranceDetailsSegmentHeaderViewDelegate
+extension HomeSubInsuranceDetailViewController: SubInsuranceDetailsSegmentCollectionViewCellDelegate {
+    func subInsuranceDetailsSegmentCollectionViewCell(_ headerView: SubInsuranceDetailsSegmentCollectionViewCell, updatedSegment: Insurance.SubInsurance.Item.Segment) {
+        selectedSubInsuranceCoverSegment = updatedSegment
+    }
+}
+
+// MARK: UICollectionViewDelegate
+extension HomeSubInsuranceDetailViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch selectedSubInsuranceDetails {
+        case .cover:
+            break
+        case .gaps:
+            break
+        case .thinkOfs:
+            let thinkOf = subInsuranceDetailViewModel.thinkOfs[indexPath.item]
+            let thinkOfDetailsViewController = ThinkOfDetailsViewController(storeController: storeController, thinkOf: thinkOf)
+            present(thinkOfDetailsViewController, animated: true)
+        }
+    }
 }
