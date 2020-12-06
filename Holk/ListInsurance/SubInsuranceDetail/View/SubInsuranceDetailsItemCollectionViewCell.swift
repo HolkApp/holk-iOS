@@ -31,12 +31,10 @@ final class SubInsuranceDetailsItemCollectionViewCell: UICollectionViewCell {
     func configure(_ item: Insurance.SubInsurance.Item) {
         itemView.configure(item: item)
         titleLabel.text = item.name
-        helperLabel.text = item.result
+        helperLabel.text = item.infoText
     }
 
     private func setup() {
-        contentView.layoutMargins = .init(top: 0, left: 20, bottom: 0, right: 20)
-
         // TODO: Update the image
         imageView.image = UIImage(named: "house")
         imageView.contentMode = .scaleAspectFit
@@ -80,18 +78,18 @@ final class SubInsuranceDetailsItemCollectionViewCell: UICollectionViewCell {
         containerView.addSubview(chevronView)
 
         NSLayoutConstraint.activate([
-            imageView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
-            imageView.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor, constant: 44),
+            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            imageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 44),
             imageView.heightAnchor.constraint(equalToConstant: 48),
             imageView.widthAnchor.constraint(equalToConstant: 48),
 
             titleLabel.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 14),
             titleLabel.centerYAnchor.constraint(equalTo: imageView.centerYAnchor),
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
 
-            containerView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
+            containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             containerView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 24),
-            containerView.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
+            containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
 
             itemView.leadingAnchor.constraint(equalTo: containerView.layoutMarginsGuide.leadingAnchor),

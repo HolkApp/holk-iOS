@@ -23,8 +23,8 @@ final class SubInsuranceDetailsItemView: UIView {
     }
 
     func configure(item: Insurance.SubInsurance.Item) {
-        textLabel.text = item.infoText
-        valueLabel.text = item.maxAmount
+        textLabel.text = item.key
+        valueLabel.text = item.value
     }
 
     private func setup() {
@@ -43,6 +43,7 @@ final class SubInsuranceDetailsItemView: UIView {
         NSLayoutConstraint.activate([
             textLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             textLabel.topAnchor.constraint(equalTo: topAnchor),
+            textLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5),
             textLabel.trailingAnchor.constraint(lessThanOrEqualTo: valueLabel.leadingAnchor),
 
             valueLabel.topAnchor.constraint(equalTo: topAnchor),

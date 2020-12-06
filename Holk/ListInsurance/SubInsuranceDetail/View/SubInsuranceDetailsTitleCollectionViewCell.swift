@@ -22,22 +22,35 @@ final class SubInsuranceDetailsTitleCollectionViewCell: UICollectionViewCell {
     }
 
     private func setup() {
-        layoutMargins = .init(top: 24, left: 30, bottom: 24, right: 30)
+        contentView.layoutMargins = .init(top: 24, left: 30, bottom: 24, right: 30)
 
         titleLabel.styleGuide = .cardHeader2
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        addSubview(titleLabel)
+        contentView.addSubview(titleLabel)
 
         NSLayoutConstraint.activate([
-            titleLabel.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
-            titleLabel.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor),
-            titleLabel.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
-            titleLabel.lastBaselineAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor)
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
+            titleLabel.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor),
+            titleLabel.lastBaselineAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor)
         ])
     }
 
-    func configure(_ title: String) {
-        titleLabel.text = title
+    func configure(_ selectedSubInsuranceDetails: SubInsuranceDetailViewModel.SelectedSubInsuranceDetails) {
+        titleLabel.text = selectedSubInsuranceDetails.description
+    }
+}
+
+extension SubInsuranceDetailViewModel.SelectedSubInsuranceDetails {
+    var description: String {
+        switch self {
+        case .cover:
+            return "Ditt skydd"
+        case .gaps:
+            return "Luckor"
+        case .thinkOfs:
+            return "Tänk på"
+        }
     }
 }

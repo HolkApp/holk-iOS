@@ -91,7 +91,7 @@
 		8F743804254D894A003C5A52 /* HomeSubInsuranceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7437F5254D894A003C5A52 /* HomeSubInsuranceDetailViewController.swift */; };
 		8F743805254D894A003C5A52 /* SubInsuranceDetailsItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7437F7254D894A003C5A52 /* SubInsuranceDetailsItemCollectionViewCell.swift */; };
 		8F743806254D894A003C5A52 /* SubInsuranceDetailsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7437F8254D894A003C5A52 /* SubInsuranceDetailsHeaderView.swift */; };
-		8F743807254D894A003C5A52 /* SubInsuranceDetailsSegmentHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7437F9254D894A003C5A52 /* SubInsuranceDetailsSegmentHeaderView.swift */; };
+		8F743807254D894A003C5A52 /* SubInsuranceDetailsSegmentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7437F9254D894A003C5A52 /* SubInsuranceDetailsSegmentCollectionViewCell.swift */; };
 		8F743808254D894A003C5A52 /* SubInsuranceDetailsTitleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7437FA254D894A003C5A52 /* SubInsuranceDetailsTitleCollectionViewCell.swift */; };
 		8F7C442A23511C1200B54A36 /* AuthenticationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7C442923511C1200B54A36 /* AuthenticationStore.swift */; };
 		8F7C442C23511C5900B54A36 /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7C442B23511C5900B54A36 /* APIEndpoint.swift */; };
@@ -122,6 +122,9 @@
 		8F9C1CE2253B87990013F2C7 /* Cost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9C1CCE253B87990013F2C7 /* Cost.swift */; };
 		8F9C1CE3253B87990013F2C7 /* AllInsuranceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9C1CCF253B87990013F2C7 /* AllInsuranceResponse.swift */; };
 		8F9D1F302551EBCF00F1D099 /* SubInsuranceDetailsItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9D1F2F2551EBCF00F1D099 /* SubInsuranceDetailsItemView.swift */; };
+		8F9D1F7925560A5900F1D099 /* SubInsuranceDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9D1F7825560A5900F1D099 /* SubInsuranceDetailViewModel.swift */; };
+		8F9D1F7F25560BD700F1D099 /* SubInsuranceDetailsHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9D1F7E25560BD700F1D099 /* SubInsuranceDetailsHeaderViewModel.swift */; };
+		8F9D1F892557012700F1D099 /* SubInsuranceDetailsItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9D1F882557012700F1D099 /* SubInsuranceDetailsItemViewModel.swift */; };
 		8F9F6D9A23DA41A900B1727E /* HolkProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9F6D9923DA41A900B1727E /* HolkProgressBarView.swift */; };
 		8FA5F375239D832C00083430 /* ProviderStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA5F374239D832C00083430 /* ProviderStore.swift */; };
 		8FA766C82440F729007EB2A2 /* HolkRoundBackgroundLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA766C72440F729007EB2A2 /* HolkRoundBackgroundLabel.swift */; };
@@ -286,7 +289,7 @@
 		8F7437F5254D894A003C5A52 /* HomeSubInsuranceDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeSubInsuranceDetailViewController.swift; sourceTree = "<group>"; };
 		8F7437F7254D894A003C5A52 /* SubInsuranceDetailsItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubInsuranceDetailsItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		8F7437F8254D894A003C5A52 /* SubInsuranceDetailsHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubInsuranceDetailsHeaderView.swift; sourceTree = "<group>"; };
-		8F7437F9254D894A003C5A52 /* SubInsuranceDetailsSegmentHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubInsuranceDetailsSegmentHeaderView.swift; sourceTree = "<group>"; };
+		8F7437F9254D894A003C5A52 /* SubInsuranceDetailsSegmentCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubInsuranceDetailsSegmentCollectionViewCell.swift; sourceTree = "<group>"; };
 		8F7437FA254D894A003C5A52 /* SubInsuranceDetailsTitleCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubInsuranceDetailsTitleCollectionViewCell.swift; sourceTree = "<group>"; };
 		8F7C442923511C1200B54A36 /* AuthenticationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationStore.swift; sourceTree = "<group>"; };
 		8F7C442B23511C5900B54A36 /* APIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
@@ -317,6 +320,9 @@
 		8F9C1CCE253B87990013F2C7 /* Cost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cost.swift; sourceTree = "<group>"; };
 		8F9C1CCF253B87990013F2C7 /* AllInsuranceResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllInsuranceResponse.swift; sourceTree = "<group>"; };
 		8F9D1F2F2551EBCF00F1D099 /* SubInsuranceDetailsItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubInsuranceDetailsItemView.swift; sourceTree = "<group>"; };
+		8F9D1F7825560A5900F1D099 /* SubInsuranceDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubInsuranceDetailViewModel.swift; sourceTree = "<group>"; };
+		8F9D1F7E25560BD700F1D099 /* SubInsuranceDetailsHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubInsuranceDetailsHeaderViewModel.swift; sourceTree = "<group>"; };
+		8F9D1F882557012700F1D099 /* SubInsuranceDetailsItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubInsuranceDetailsItemViewModel.swift; sourceTree = "<group>"; };
 		8F9F6D9923DA41A900B1727E /* HolkProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolkProgressBarView.swift; sourceTree = "<group>"; };
 		8FA5F374239D832C00083430 /* ProviderStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProviderStore.swift; sourceTree = "<group>"; };
 		8FA766C72440F729007EB2A2 /* HolkRoundBackgroundLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolkRoundBackgroundLabel.swift; sourceTree = "<group>"; };
@@ -585,8 +591,8 @@
 		8F7437E7254D894A003C5A52 /* HomeInsurance */ = {
 			isa = PBXGroup;
 			children = (
-				8F7437E8254D894A003C5A52 /* View */,
 				8F7437F3254D894A003C5A52 /* HomeInsuranceViewController.swift */,
+				8F7437E8254D894A003C5A52 /* View */,
 			);
 			name = HomeInsurance;
 			path = Holk/HomeInsurance;
@@ -627,6 +633,7 @@
 			children = (
 				8F7437F5254D894A003C5A52 /* HomeSubInsuranceDetailViewController.swift */,
 				8F7437F6254D894A003C5A52 /* View */,
+				8F9D1F7725560A3800F1D099 /* ViewModel */,
 			);
 			path = SubInsuranceDetail;
 			sourceTree = "<group>";
@@ -636,7 +643,7 @@
 			children = (
 				8F7437F8254D894A003C5A52 /* SubInsuranceDetailsHeaderView.swift */,
 				8F7437FA254D894A003C5A52 /* SubInsuranceDetailsTitleCollectionViewCell.swift */,
-				8F7437F9254D894A003C5A52 /* SubInsuranceDetailsSegmentHeaderView.swift */,
+				8F7437F9254D894A003C5A52 /* SubInsuranceDetailsSegmentCollectionViewCell.swift */,
 				8F7437F7254D894A003C5A52 /* SubInsuranceDetailsItemCollectionViewCell.swift */,
 				8F9D1F2F2551EBCF00F1D099 /* SubInsuranceDetailsItemView.swift */,
 			);
@@ -752,6 +759,16 @@
 				8FCEE9AF23254B5700F75FB8 /* KeyboardEvent */,
 			);
 			path = CustomView;
+			sourceTree = "<group>";
+		};
+		8F9D1F7725560A3800F1D099 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				8F9D1F7825560A5900F1D099 /* SubInsuranceDetailViewModel.swift */,
+				8F9D1F7E25560BD700F1D099 /* SubInsuranceDetailsHeaderViewModel.swift */,
+				8F9D1F882557012700F1D099 /* SubInsuranceDetailsItemViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		8FA766C92440F8F0007EB2A2 /* HolkRingChart */ = {
@@ -1215,6 +1232,7 @@
 				8F63AE2025097D5F008A39A0 /* GapDetailsViewController.swift in Sources */,
 				8FC8EA6924B65AF400BE69D9 /* ThinkOfDetailsViewController.swift in Sources */,
 				8F9C1CDE253B87990013F2C7 /* SubInsurance.swift in Sources */,
+				8F9D1F892557012700F1D099 /* SubInsuranceDetailsItemViewModel.swift in Sources */,
 				8FC296BB23E237D0002A39D1 /* LandingPageViewController.swift in Sources */,
 				8F7437FB254D894A003C5A52 /* HomeInsuranceCostCollectionViewCell.swift in Sources */,
 				8FF6E73D22B6B59B00F6D398 /* InsuranceProtectionCoordinator.swift in Sources */,
@@ -1236,6 +1254,7 @@
 				8F9807E92276F10E00584BA9 /* InsuranceCoordinator.swift in Sources */,
 				8F9C1CDB253B87990013F2C7 /* MockType.swift in Sources */,
 				8F48BE6723315F49004D79D2 /* HolkIllustrationLabel.swift in Sources */,
+				8F9D1F7F25560BD700F1D099 /* SubInsuranceDetailsHeaderViewModel.swift in Sources */,
 				8F02659424C4C43F00F4208B /* ThinkOfBannerCollectionViewCell.swift in Sources */,
 				8F9C1CD9253B87990013F2C7 /* UserInfoResponse.swift in Sources */,
 				8FA766CB24411265007EB2A2 /* UIScrollView+extension.swift in Sources */,
@@ -1299,6 +1318,7 @@
 				8FCEE9B323254C2D00F75FB8 /* KeyboardEventFloatingViewHandler.swift in Sources */,
 				8FA766C82440F729007EB2A2 /* HolkRoundBackgroundLabel.swift in Sources */,
 				8F9C1CD0253B87990013F2C7 /* BankIDAuthenticationResponse.swift in Sources */,
+				8F9D1F7925560A5900F1D099 /* SubInsuranceDetailViewModel.swift in Sources */,
 				8FD6769D249FEA3500E62820 /* HolkQRViewController.swift in Sources */,
 				8F16DE66245A127000EFC1BD /* EmailValidation.swift in Sources */,
 				8FF6E73B22B6B55800F6D398 /* InsuranceProtectionViewController.swift in Sources */,
@@ -1351,7 +1371,7 @@
 				8F5B5A3B22783D0200E79A40 /* TabBarController.swift in Sources */,
 				8F743806254D894A003C5A52 /* SubInsuranceDetailsHeaderView.swift in Sources */,
 				8F3C7DB023F82865002EDA57 /* InsuranceStore.swift in Sources */,
-				8F743807254D894A003C5A52 /* SubInsuranceDetailsSegmentHeaderView.swift in Sources */,
+				8F743807254D894A003C5A52 /* SubInsuranceDetailsSegmentCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

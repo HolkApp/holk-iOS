@@ -36,7 +36,7 @@ final class ThinkOfDetailsViewModel {
         // TOOD: Remove the mock
         mappedInsurance = insurances.first
 
-        mappedSubInsurances = thinkOfSuggestion.relatedSubInsurances(OfInsurances: insurances)
+        mappedSubInsurances = mappedInsurance.flatMap {thinkOfSuggestion.relatedSubInsurances(OfInsurances: [$0]) } ?? []
         coverImage = thinkOfSuggestion.coverPhoto
 
         iconImageBackgroundColor = Color.subInsuranceIconBackgroundColor(thinkOfSuggestion)

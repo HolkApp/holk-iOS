@@ -27,15 +27,6 @@ extension UICollectionViewCompositionalLayout {
         }
         return layout
     }
-
-    static func makeInsuranceSuggestionsLayout() -> UICollectionViewLayout {
-        let sections = [makeInsuranceSuggestionSection()]
-
-        let layout = UICollectionViewCompositionalLayout { (sectionIndex, environment) in
-            return sections[sectionIndex]
-        }
-        return layout
-    }
 }
 
 // MARK: - NSCollectionLayoutSection
@@ -101,18 +92,6 @@ extension UICollectionViewCompositionalLayout {
         let costSection = NSCollectionLayoutSection(group: group)
         costSection.contentInsets = .init(top: 0, leading: 20, bottom: 0, trailing: 20)
         return costSection
-    }
-
-    static func makeInsuranceSuggestionSection() -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(500))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(230))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-        let gapsSection = NSCollectionLayoutSection(group: group)
-        gapsSection.boundarySupplementaryItems = [makeSectionHeaderElement()]
-        gapsSection.contentInsets = .init(top: 0, leading: 16, bottom: 0, trailing: 16)
-        gapsSection.interGroupSpacing = 24
-        return gapsSection
     }
 }
 

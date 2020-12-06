@@ -96,7 +96,7 @@ extension HomeSubInsurancesViewController: UICollectionViewDelegate {
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let homeSubInsuranceDetailViewController = HomeSubInsuranceDetailViewController(storeController: storeController, insurance: insurance, subInsurance: insurance.subInsurances[indexPath.item])
+        let homeSubInsuranceDetailViewController = HomeSubInsuranceDetailViewController(storeController: storeController, subInsurance: insurance.subInsurances[indexPath.item])
         show(homeSubInsuranceDetailViewController, sender: self)
     }
 
