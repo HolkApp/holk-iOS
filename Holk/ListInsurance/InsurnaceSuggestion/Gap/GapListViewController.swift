@@ -145,16 +145,10 @@ extension GapListViewController {
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(230))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         let thinkOfsSection = NSCollectionLayoutSection(group: group)
-        thinkOfsSection.boundarySupplementaryItems = [makeSectionHeaderElement()]
+        thinkOfsSection.boundarySupplementaryItems = [UICollectionViewCompositionalLayout.makeSectionHeaderElement()]
         thinkOfsSection.contentInsets = .init(top: 0, leading: 16, bottom: 0, trailing: 16)
         thinkOfsSection.interGroupSpacing = 24
         return thinkOfsSection
-    }
-
-    private func makeSectionHeaderElement() -> NSCollectionLayoutBoundarySupplementaryItem {
-        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(100))
-        let headerElement = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
-        return headerElement
     }
 
     private func makeDataSource() -> DataSource {

@@ -13,7 +13,7 @@ final class HomeInsuranceViewController: UIViewController {
     weak var coordinator: InsuranceCoordinator?
     var selectedIndexPath: IndexPath?
     lazy var collectionView: UICollectionView = {
-        let insuranceLayout = UICollectionViewCompositionalLayout.makeHomeInsuranceLayout()
+        let insuranceLayout = makeHomeInsuranceLayout()
         return UICollectionView(frame: .zero, collectionViewLayout: insuranceLayout)
     }()
     
@@ -122,5 +122,48 @@ extension HomeInsuranceViewController: UICollectionViewDataSource, UICollectionV
         } else {
             return UICollectionReusableView()
         }
+    }
+}
+
+extension HomeInsuranceViewController {
+    private func makeHomeInsuranceLayout() -> UICollectionViewLayout {
+        let sections = [makeHomeInsuranceSection(), makeInsuranceBeneficiarySection(), makeInsuranceCostSection()]
+
+        let layout = UICollectionViewCompositionalLayout { (sectionIndex, environment) in
+            return sections[sectionIndex]
+        }
+        return layout
+    }
+
+    private func makeHomeInsuranceSection() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(420))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(420))
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+        let cardSection = NSCollectionLayoutSection(group: group)
+        cardSection.interGroupSpacing = 24
+        cardSection.boundarySupplementaryItems = [UICollectionViewCompositionalLayout.makeSectionHeaderElement()]
+        cardSection.contentInsets = .init(top: 36, leading: 16, bottom: 0, trailing: 16)
+        return cardSection
+    }
+
+    private func makeInsuranceBeneficiarySection() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(128))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(128))
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+        let beneficiarySection = NSCollectionLayoutSection(group: group)
+        beneficiarySection.contentInsets = .init(top: 48, leading: 16, bottom: 0, trailing: 16)
+        return beneficiarySection
+    }
+
+    private func makeInsuranceCostSection() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(100))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(100))
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+        let costSection = NSCollectionLayoutSection(group: group)
+        costSection.contentInsets = .init(top: 0, leading: 20, bottom: 0, trailing: 20)
+        return costSection
     }
 }

@@ -24,7 +24,8 @@ final class InsuranceCoordinator: NSObject, UINavigationControllerDelegate {
     }
     // MARK: - Public Methods
     func start() {
-        let layout = UICollectionViewCompositionalLayout.makeInsuranceListLayout()
+        // Move the layout into the `InsuranceListViewController`
+        let layout = makeInsuranceListLayout()
         let insuranceListViewController = InsuranceListViewController(storeController: storeController, collectionViewLayout: layout)
         insuranceListViewController.coordinator = self
 
@@ -61,5 +62,37 @@ final class InsuranceCoordinator: NSObject, UINavigationControllerDelegate {
             return InsuranceTransition()
         }
         return nil
+    }
+}
+
+extension InsuranceCoordinator {
+    private func makeInsuranceListLayout() -> UICollectionViewLayout {
+        let sections = [makeSuggestionSection(), makeInsuranceListSection()]
+
+        let layout = UICollectionViewCompositionalLayout { (sectionIndex, environment) in
+            return sections[sectionIndex]
+        }
+        return layout
+    }
+
+    private func makeSuggestionSection() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .estimated(80))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(80))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 2)
+        let suggestionSection = NSCollectionLayoutSection(group: group)
+        suggestionSection.contentInsets = .init(top: 0, leading: 16, bottom: 0, trailing: 16)
+        return suggestionSection
+    }
+
+    private func makeInsuranceListSection() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(400))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(360))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        let cardSection = NSCollectionLayoutSection(group: group)
+        cardSection.interGroupSpacing = 24
+        cardSection.contentInsets = .init(top: 12, leading: 16, bottom: 0, trailing: 16)
+        return cardSection
     }
 }
