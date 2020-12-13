@@ -1,5 +1,5 @@
 //
-//  SubInsuranceDetailsEmptySuggestionCollectionView.swift
+//  SubInsuranceDetailsEmptySuggestionCollectionCell.swift
 //  Holk
 //
 //  Created by 张梦皓 on 2020-12-06.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class SubInsuranceDetailsEmptySuggestionCollectionView: UICollectionViewCell {
+final class SubInsuranceDetailsEmptySuggestionCollectionCell: UICollectionViewCell {
     private let valueLabel = HolkIllustrationLabel()
     private let textLabel = HolkLabel()
 
