@@ -31,13 +31,15 @@ final class InsuranceCoordinator: NSObject, UINavigationControllerDelegate {
 
         navController.navigationBar.prefersLargeTitles = true
         navController.tabBarItem = UITabBarItem(title: "Översikt", image: UIImage(systemName: "square.stack.3d.up"), selectedImage: UIImage(systemName: "square.stack.3d.up.fill"))
-        navController.delegate = self
+//        navController.delegate = self
+
         navController.pushViewController(insuranceListViewController, animated: false)
     }
 
     func showInsurance(_ insurance: Insurance) {
         let homeInsuranceViewController = HomeInsuranceViewController(storeController: storeController, insurance: insurance)
         homeInsuranceViewController.coordinator = self
+        homeInsuranceViewController.hidesBottomBarWhenPushed = true
         navController.pushViewController(homeInsuranceViewController, animated: true)
     }
 
@@ -53,7 +55,9 @@ final class InsuranceCoordinator: NSObject, UINavigationControllerDelegate {
     @objc private func back(_ sender: Any) {
         navController.popViewController(animated: true)
     }
-    
+}
+
+extension InsuranceCoordinator {
     // MARK: - UINavigationControllerDelegate
     func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         if fromVC is InsuranceListViewController, toVC is HomeInsuranceViewController {

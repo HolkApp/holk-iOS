@@ -36,7 +36,7 @@ final class SessionCoordinator: NSObject, UINavigationControllerDelegate {
         let tabbarController = TabBarController(storeController: storeController)
         tabbarController.navigationItem.hidesBackButton = true
         tabbarController.coordinator = self
-        tabbarController.modalPresentationStyle = .overFullScreen
+        tabbarController.modalPresentationStyle = .fullScreen
         presenterViewController?.present(tabbarController, animated: false)
     }
 }

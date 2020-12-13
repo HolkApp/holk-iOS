@@ -13,15 +13,13 @@ final class TabBarController: UITabBarController {
     weak var coordinator: SessionCoordinator?
     
     // MARK: - Private variables
-    private let insuranceCoordinator: InsuranceCoordinator
-    private let protectionCoordinator: InsuranceProtectionCoordinator
+    private lazy var insuranceCoordinator = InsuranceCoordinator(storeController: storeController)
+    private lazy var protectionCoordinator = InsuranceProtectionCoordinator()
     private var storeController: StoreController
     private let addMoreButton = HolkButton()
 
     init(storeController: StoreController) {
         self.storeController = storeController
-        insuranceCoordinator = InsuranceCoordinator(storeController: storeController)
-        protectionCoordinator = InsuranceProtectionCoordinator()
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -33,13 +31,14 @@ final class TabBarController: UITabBarController {
     override func viewDidLoad() {
         insuranceCoordinator.start()
         insuranceCoordinator.delegate = self
+        
         protectionCoordinator.start()
 
         viewControllers = [
             insuranceCoordinator.navController,
             protectionCoordinator.navController
         ]
-        
+
         tabBar.barTintColor = Color.mainBackground
         tabBar.unselectedItemTintColor = Color.mainForeground
         tabBar.tintColor = Color.secondaryHighlight
@@ -52,7 +51,7 @@ final class TabBarController: UITabBarController {
         addMoreButton.clipsToBounds = true
         addMoreButton.translatesAutoresizingMaskIntoConstraints = false
 
-        view.addSubview(addMoreButton)
+        tabBar.addSubview(addMoreButton)
 
         NSLayoutConstraint.activate([
             addMoreButton.centerXAnchor.constraint(equalTo: tabBar.centerXAnchor),
