@@ -55,7 +55,7 @@ final class GapDetailsViewController: UIViewController {
         navigationController?.navigationBar.tintColor = Color.mainBackground
 
         collectionView.contentInset.top = -(navigationController?.navigationBar.frame.height ?? 0)
-        collectionView.contentInset.bottom = 40
+        collectionView.contentInset.bottom = 50
         collectionView.delegate = self
         collectionView.backgroundColor = Color.mainBackground
         collectionView.showsVerticalScrollIndicator = false
