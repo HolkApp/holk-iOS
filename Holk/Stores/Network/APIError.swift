@@ -15,7 +15,7 @@ struct APIError: Error, Equatable, Decodable {
     var debugMessage: String?
 
     var localizedDescription: String {
-        return debugMessage ?? "Something went wrong"
+        return message ?? debugMessage ?? "Something went wrong"
     }
 }
 

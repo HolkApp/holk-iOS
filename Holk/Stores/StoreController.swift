@@ -46,10 +46,10 @@ final class StoreController {
         user = User()
 
         authenticationStore = AuthenticationStore(queue: queue, user: user)
-        userStore = UserStore.init(queue: queue, user: user)
-        providerStore = ProviderStore(queue: queue, user: user)
-        insuranceStore = InsuranceStore(queue: queue, user: user)
-        suggestionStore = SuggestionStore(queue: queue, user: user)
+        userStore = UserStore(queue: queue, user: user, authenticationStore: authenticationStore)
+        providerStore = ProviderStore(queue: queue, user: user, authenticationStore: authenticationStore)
+        insuranceStore = InsuranceStore(queue: queue, user: user, authenticationStore: authenticationStore)
+        suggestionStore = SuggestionStore(queue: queue, user: user, authenticationStore: authenticationStore)
     }
     
     func resetSession() {

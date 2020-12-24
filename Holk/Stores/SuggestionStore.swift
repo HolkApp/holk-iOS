@@ -17,11 +17,13 @@ final class SuggestionStore {
     // MARK: - Private variables
     private let user: User
     private let suggestionService: SuggestionService
+    private let authenticationStore: AuthenticationStore
     private var cancellables = Set<AnyCancellable>()
 
-    init(queue: DispatchQueue, user: User) {
+    init(queue: DispatchQueue, user: User, authenticationStore: AuthenticationStore) {
         self.user = user
         suggestionService = SuggestionService(client: APIClient(queue: queue), user: user)
+        self.authenticationStore = authenticationStore
     }
 
     func fetchAllSuggestions(completion: @escaping (Result<SuggestionsListResponse, APIError>) -> Void = { _ in }) {

@@ -19,12 +19,14 @@ final class InsuranceStore {
     private let user: User
     private let insuranceCredentialService: InsuranceCredentialService
     private let insuranceService: InsuranceService
+    private let authenticationStore: AuthenticationStore
     private var cancellables = Set<AnyCancellable>()
 
-    init(queue: DispatchQueue, user: User) {
+    init(queue: DispatchQueue, user: User, authenticationStore: AuthenticationStore) {
         self.user = user
         insuranceCredentialService = InsuranceCredentialService(client: APIClient(queue: queue), user: user)
         insuranceService = InsuranceService(client: APIClient(queue: queue), user: user)
+        self.authenticationStore = authenticationStore
     }
 
     func addInsurance(_ provider: InsuranceProvider, integrationHandler: @escaping (Result<IntegrateInsuranceResponse, APIError>) -> Void = { _ in }) {

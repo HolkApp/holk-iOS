@@ -11,12 +11,14 @@ import Combine
 
 final class UserStore {
     private let userService: UserService
+    private let authenticationStore: AuthenticationStore
     private var cancellables = Set<AnyCancellable>()
     private var user: User
 
-    init(queue: DispatchQueue, user: User) {
+    init(queue: DispatchQueue, user: User, authenticationStore: AuthenticationStore) {
         self.user = user
         self.userService = UserService(client: APIClient(queue: queue), user: user)
+        self.authenticationStore = authenticationStore
     }
 
     func userInfo(completion: @escaping (Result<User, APIError>) -> Void = { _ in }) {

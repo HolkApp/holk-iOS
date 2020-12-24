@@ -15,11 +15,13 @@ final class ProviderStore {
     // MARK: - Private variables
     private let user: User
     private let providerService: ProviderService
+    private let authenticationStore: AuthenticationStore
     private var cancellables = Set<AnyCancellable>()
     
-    init(queue: DispatchQueue, user: User) {
+    init(queue: DispatchQueue, user: User, authenticationStore: AuthenticationStore) {
         self.user = user
         providerService = ProviderService(client: APIClient(queue: queue), user: user)
+        self.authenticationStore = authenticationStore
     }
 
     // TODO: Update this simplify it by having return observable and keep a cache for the value.
