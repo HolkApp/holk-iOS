@@ -1,6 +1,6 @@
 import Foundation
 
-struct OauthAuthenticationResponse: Codable {
+struct OAuthAuthenticationResponse: Codable {
     let accessToken: String
     let refreshToken: String
     let tokenType: String
@@ -20,7 +20,7 @@ struct OauthAuthenticationResponse: Codable {
     }
 }
 
-extension OauthAuthenticationResponse {
+extension OAuthAuthenticationResponse {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         

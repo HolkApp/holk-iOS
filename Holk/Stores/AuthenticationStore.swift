@@ -33,7 +33,7 @@ final class AuthenticationStore {
             .store(in: &cancellables)
     }
 
-    func token(orderRef: String, completion: @escaping (Result<OauthAuthenticationResponse, APIError>) -> Void) {
+    func token(orderRef: String, completion: @escaping (Result<OAuthAuthenticationResponse, APIError>) -> Void) {
         return authenticationService.token(orderRef: orderRef)
             .sink(receiveCompletion: { result in
                 switch result {
@@ -42,13 +42,13 @@ final class AuthenticationStore {
                 case .finished:
                     break
                 }
-            }) { [weak self] oauthAuthenticationResponse in
-                self?.user.session = Session(oauthAuthenticationResponse: oauthAuthenticationResponse)
-                completion(.success(oauthAuthenticationResponse)) }
+            }) { [weak self] oAuthAuthenticationResponse in
+                self?.user.session = Session(oAuthAuthenticationResponse: oAuthAuthenticationResponse)
+                completion(.success(oAuthAuthenticationResponse)) }
             .store(in: &cancellables)
     }
     
-    func refresh(completion: @escaping (Result<OauthAuthenticationResponse, APIError>) -> Void) {
+    func refresh(completion: @escaping (Result<OAuthAuthenticationResponse, APIError>) -> Void) {
         guard let refreshToken = user.session?.refreshToken else {
             let urlError = URLError.init(.cannotParseResponse)
             completion(.failure(.init(urlError: urlError)))
@@ -64,9 +64,9 @@ final class AuthenticationStore {
                 case .finished:
                     break
                 }
-            }) { [weak self] oauthAuthenticationResponse in
-                self?.user.session = Session(oauthAuthenticationResponse: oauthAuthenticationResponse)
-                completion(.success(oauthAuthenticationResponse)) }
+            }) { [weak self] oAuthAuthenticationResponse in
+                self?.user.session = Session(oAuthAuthenticationResponse: oAuthAuthenticationResponse)
+                completion(.success(oAuthAuthenticationResponse)) }
             .store(in: &cancellables)
     }
 

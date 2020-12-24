@@ -36,7 +36,7 @@ final class AuthenticationService {
             .eraseToAnyPublisher()
     }
 
-    func token(orderRef: String) -> AnyPublisher<OauthAuthenticationResponse, APIError> {
+    func token(orderRef: String) -> AnyPublisher<OAuthAuthenticationResponse, APIError> {
         var httpHeaders = [
             "Content-Type": "application/x-www-form-urlencoded"
         ]
@@ -56,7 +56,7 @@ final class AuthenticationService {
             .eraseToAnyPublisher()
     }
 
-    func refresh(refreshToken: String) -> AnyPublisher<OauthAuthenticationResponse, APIError> {
+    func refresh(refreshToken: String) -> AnyPublisher<OAuthAuthenticationResponse, APIError> {
         var httpHeaders = [
             "Content-Type": "application/x-www-form-urlencoded"
         ]

@@ -108,7 +108,7 @@
 		8F9C1CD4253B87990013F2C7 /* ThinkOfSuggestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9C1CBD253B87990013F2C7 /* ThinkOfSuggestion.swift */; };
 		8F9C1CD5253B87990013F2C7 /* GapSuggestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9C1CBE253B87990013F2C7 /* GapSuggestion.swift */; };
 		8F9C1CD6253B87990013F2C7 /* IntegrateInsuranceResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9C1CBF253B87990013F2C7 /* IntegrateInsuranceResponse.swift */; };
-		8F9C1CD7253B87990013F2C7 /* OauthAuthenticationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9C1CC0253B87990013F2C7 /* OauthAuthenticationResponse.swift */; };
+		8F9C1CD7253B87990013F2C7 /* OAuthAuthenticationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9C1CC0253B87990013F2C7 /* OAuthAuthenticationResponse.swift */; };
 		8F9C1CD8253B87990013F2C7 /* AddUserEmailRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9C1CC2253B87990013F2C7 /* AddUserEmailRequest.swift */; };
 		8F9C1CD9253B87990013F2C7 /* UserInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9C1CC3253B87990013F2C7 /* UserInfoResponse.swift */; };
 		8F9C1CDA253B87990013F2C7 /* ProviderStatusResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9C1CC5253B87990013F2C7 /* ProviderStatusResponse.swift */; };
@@ -166,6 +166,7 @@
 		8FD84E6F2270E736009D563D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8FD84E6E2270E736009D563D /* Assets.xcassets */; };
 		8FD84E7D2270E736009D563D /* HolkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD84E7C2270E736009D563D /* HolkTests.swift */; };
 		8FE52F09239BBDEF001A77F5 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FE52F08239BBDEF001A77F5 /* KeychainService.swift */; };
+		8FF04B5F2594DD8700A69F0E /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF04B5E2594DD8700A69F0E /* UserSession.swift */; };
 		8FF141712548C61700B87995 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF141702548C61600B87995 /* UIViewController+Extension.swift */; };
 		8FF40500252F889400328C44 /* HolkLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF404FF252F889400328C44 /* HolkLabel.swift */; };
 		8FF4054D2533595900328C44 /* HolkIconSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FF4054C2533595900328C44 /* HolkIconSelectionView.swift */; };
@@ -307,7 +308,7 @@
 		8F9C1CBD253B87990013F2C7 /* ThinkOfSuggestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThinkOfSuggestion.swift; sourceTree = "<group>"; };
 		8F9C1CBE253B87990013F2C7 /* GapSuggestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GapSuggestion.swift; sourceTree = "<group>"; };
 		8F9C1CBF253B87990013F2C7 /* IntegrateInsuranceResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntegrateInsuranceResponse.swift; sourceTree = "<group>"; };
-		8F9C1CC0253B87990013F2C7 /* OauthAuthenticationResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OauthAuthenticationResponse.swift; sourceTree = "<group>"; };
+		8F9C1CC0253B87990013F2C7 /* OAuthAuthenticationResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthAuthenticationResponse.swift; sourceTree = "<group>"; };
 		8F9C1CC2253B87990013F2C7 /* AddUserEmailRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddUserEmailRequest.swift; sourceTree = "<group>"; };
 		8F9C1CC3253B87990013F2C7 /* UserInfoResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoResponse.swift; sourceTree = "<group>"; };
 		8F9C1CC5253B87990013F2C7 /* ProviderStatusResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProviderStatusResponse.swift; sourceTree = "<group>"; };
@@ -369,6 +370,7 @@
 		8FD84E7C2270E736009D563D /* HolkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolkTests.swift; sourceTree = "<group>"; };
 		8FD84E7E2270E736009D563D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8FE52F08239BBDEF001A77F5 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
+		8FF04B5E2594DD8700A69F0E /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
 		8FF141702548C61600B87995 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		8FF404FF252F889400328C44 /* HolkLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolkLabel.swift; sourceTree = "<group>"; };
 		8FF4054C2533595900328C44 /* HolkIconSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolkIconSelectionView.swift; sourceTree = "<group>"; };
@@ -670,7 +672,7 @@
 		8F9C1CB7253B87990013F2C7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				8F9C1CC0253B87990013F2C7 /* OauthAuthenticationResponse.swift */,
+				8F9C1CC0253B87990013F2C7 /* OAuthAuthenticationResponse.swift */,
 				8F9C1CB8253B87990013F2C7 /* BankIDAuthenticationResponse.swift */,
 				8F9C1CB9253B87990013F2C7 /* Suggestion */,
 				8F9C1CBF253B87990013F2C7 /* IntegrateInsuranceResponse.swift */,
@@ -904,6 +906,7 @@
 				8FD84E872270E7C9009D563D /* Network */,
 				8F9807E622722D5E00584BA9 /* StoreController.swift */,
 				8F25CAA0233E981800DC3B97 /* User.swift */,
+				8FF04B5E2594DD8700A69F0E /* UserSession.swift */,
 				8F7C442923511C1200B54A36 /* AuthenticationStore.swift */,
 				8F5D89E624534AB8007F1B26 /* UserStore.swift */,
 				8FA5F374239D832C00083430 /* ProviderStore.swift */,
@@ -1276,6 +1279,7 @@
 				8F16DE772460A22300EFC1BD /* AddInsuranceConfirmationViewController.swift in Sources */,
 				8FC8EA6E24B8ECF900BE69D9 /* ThinkOfParagraphViewModel.swift in Sources */,
 				8F66F2FE23BC04F90083DC3A /* LoadingViewController.swift in Sources */,
+				8FF04B5F2594DD8700A69F0E /* UserSession.swift in Sources */,
 				8F25CAAC23429F7100DC3B97 /* OnboardingInsuranceTypeViewController.swift in Sources */,
 				8FC39F6D251BA8BB00F26DBB /* DynamicAmountFormatter.swift in Sources */,
 				8F5BE489246FE16A006AE8AF /* OnboardingCell.swift in Sources */,
@@ -1301,7 +1305,7 @@
 				8FF40500252F889400328C44 /* HolkLabel.swift in Sources */,
 				8F63AE2D2509892E008A39A0 /* GapDetailsViewModel.swift in Sources */,
 				8F3C7DB223F833B4002EDA57 /* OnboardingConfirmationViewController.swift in Sources */,
-				8F9C1CD7253B87990013F2C7 /* OauthAuthenticationResponse.swift in Sources */,
+				8F9C1CD7253B87990013F2C7 /* OAuthAuthenticationResponse.swift in Sources */,
 				8FE52F09239BBDEF001A77F5 /* KeychainService.swift in Sources */,
 				8F4965DF24130EA200DEAFC1 /* FloatingPoint+extension.swift in Sources */,
 				8F3305A423FB3EEA00E9B443 /* DateFormatter+extension.swift in Sources */,
