@@ -47,7 +47,7 @@ final class TabBarController: UITabBarController {
         addMoreButton.set(color: Color.mainBackground, image: addMoreImage)
         addMoreButton.addTarget(self, action: #selector(addMoreTapped(sender:)), for: .touchUpInside)
         addMoreButton.backgroundColor = Color.secondaryHighlight
-        addMoreButton.layer.cornerRadius = 26
+        addMoreButton.layer.cornerRadius = 20
         addMoreButton.clipsToBounds = true
         addMoreButton.translatesAutoresizingMaskIntoConstraints = false
 
@@ -55,9 +55,9 @@ final class TabBarController: UITabBarController {
 
         NSLayoutConstraint.activate([
             addMoreButton.centerXAnchor.constraint(equalTo: tabBar.centerXAnchor),
-            addMoreButton.centerYAnchor.constraint(equalTo: tabBar.topAnchor),
-            addMoreButton.widthAnchor.constraint(equalToConstant: 52),
-            addMoreButton.heightAnchor.constraint(equalToConstant: 52)
+            addMoreButton.topAnchor.constraint(equalTo: tabBar.topAnchor, constant: 8),
+            addMoreButton.widthAnchor.constraint(equalToConstant: 40),
+            addMoreButton.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
 
