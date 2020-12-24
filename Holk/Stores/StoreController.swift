@@ -15,8 +15,8 @@ protocol StoreControllerDelegate: AnyObject {
 
 enum SessionState {
     case updated
-    case shouldRefresh
-    case newSession
+    case expired
+    case new
 }
 
 final class StoreController {
@@ -30,11 +30,11 @@ final class StoreController {
     private(set) var user: User
     
     var sessionState: SessionState {
-        guard let expirationDate = user.session?.expirationDate else { return .newSession }
+        guard let expirationDate = user.session?.expirationDate else { return .new }
         let fiveMintuesLater = Date().addingTimeInterval(300)
         switch expirationDate.compare(fiveMintuesLater) {
         case .orderedAscending:
-            return .shouldRefresh
+            return .expired
         default:
             return .updated
         }

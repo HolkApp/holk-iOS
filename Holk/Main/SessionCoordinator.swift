@@ -25,18 +25,16 @@ final class SessionCoordinator: NSObject, UINavigationControllerDelegate {
     }
     
     func start() {
-        showSession()
+        DispatchQueue.main.async {
+            let tabbarController = TabBarController(storeController: self.storeController)
+            tabbarController.navigationItem.hidesBackButton = true
+            tabbarController.coordinator = self
+            tabbarController.modalPresentationStyle = .fullScreen
+            self.presenterViewController?.present(tabbarController, animated: false)
+        }
     }
 
     func logout() {
         coordinator?.logout()
-    }
-
-    private func showSession() {
-        let tabbarController = TabBarController(storeController: storeController)
-        tabbarController.navigationItem.hidesBackButton = true
-        tabbarController.coordinator = self
-        tabbarController.modalPresentationStyle = .fullScreen
-        presenterViewController?.present(tabbarController, animated: false)
     }
 }

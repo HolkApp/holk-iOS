@@ -42,11 +42,11 @@ final class ShellCoordinator {
 
     private func setupViewController() {
         switch storeController.sessionState {
-        case .newSession:
+        case .new:
             DispatchQueue.main.async {
                 self.showLandingScreen()
             }
-        case .shouldRefresh:
+        case .expired:
             showLoading()
             self.storeController.authenticationStore.refresh { [weak self] result in
                 switch result {
