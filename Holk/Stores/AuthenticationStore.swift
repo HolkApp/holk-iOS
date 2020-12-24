@@ -43,7 +43,7 @@ final class AuthenticationStore {
                     break
                 }
             }) { [weak self] oAuthAuthenticationResponse in
-                self?.user.session = Session(oAuthAuthenticationResponse: oAuthAuthenticationResponse)
+                self?.user.session = User.Session(oAuthAuthenticationResponse: oAuthAuthenticationResponse)
                 completion(.success(oAuthAuthenticationResponse)) }
             .store(in: &cancellables)
     }
@@ -65,7 +65,7 @@ final class AuthenticationStore {
                     break
                 }
             }) { [weak self] oAuthAuthenticationResponse in
-                self?.user.session = Session(oAuthAuthenticationResponse: oAuthAuthenticationResponse)
+                self?.user.session = User.Session(oAuthAuthenticationResponse: oAuthAuthenticationResponse)
                 completion(.success(oAuthAuthenticationResponse)) }
             .store(in: &cancellables)
     }
