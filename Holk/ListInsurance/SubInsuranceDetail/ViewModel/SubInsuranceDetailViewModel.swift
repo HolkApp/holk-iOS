@@ -34,6 +34,10 @@ final class SubInsuranceDetailViewModel {
     let subInsuranceDetailsHeaderViewModel: SubInsuranceDetailsHeaderViewModel
     let subInsuranceDetailsItemViewModels: [SubInsuranceDetailsItemViewModel]
 
+    var segments: [Insurance.SubInsurance.Item.Segment] {
+        groupedItems.map(\.key).sorted()
+    }
+
     init(storeController: StoreController, subInsurance: Insurance.SubInsurance) {
         self.subInsurance = subInsurance
         self.storeController = storeController

@@ -115,21 +115,19 @@ extension HomeSubInsuranceDetailViewController {
             case .title:
                 snapshot.appendItems([.title], toSection: section)
             case .detailsSegment:
-                if subInsuranceDetailViewModel.groupedItems.keys.count > 1, case .cover = selectedSubInsuranceDetails {
-                    let segments = subInsuranceDetailViewModel.groupedItems.map(\.key).sorted()
-                    snapshot.appendItems([.segment(segments)], toSection: section)
+                if subInsuranceDetailViewModel.segments.count > 1, case .cover = selectedSubInsuranceDetails {
+                    snapshot.appendItems([.segment(subInsuranceDetailViewModel.segments)], toSection: section)
+                    if selectedSubInsuranceCoverSegment == nil {
+                        selectedSubInsuranceCoverSegment = .home
+                    }
                 }
             case .detailsItem:
                 switch selectedSubInsuranceDetails {
                 case .cover:
-                    // TODO: Check the segment and add different snapshot
-                    switch selectedSubInsuranceCoverSegment {
-                    case .home:
-                        subInsurance.items.forEach { snapshot.appendItems([.cover($0)], toSection: section) }
-                    case .outdoor:
-                        snapshot.appendItems([], toSection: section)
-                    default:
-                        subInsurance.items.forEach { snapshot.appendItems([.cover($0)], toSection: section) }
+                    subInsurance.items.forEach {
+                        if selectedSubInsuranceCoverSegment == nil || $0.segment == selectedSubInsuranceCoverSegment {
+                            snapshot.appendItems([.cover($0)], toSection: section)
+                        }
                     }
                 case .gaps:
                     snapshot.appendItems([], toSection: section)
