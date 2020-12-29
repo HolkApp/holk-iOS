@@ -16,6 +16,7 @@ struct LocalizedString {
         static let loading = NSLocalizedString("Generic.Loading", value: "Loading, please wait", comment: "Generic description text for loading text")
         static let piece = NSLocalizedString("Generic.Piece", value: "%@ st", comment: "Number of things, singular")
         static let pieces = NSLocalizedString("Generic.Pieces", value: "%@ st", comment: "Number of things, plural")
+        static let start = NSLocalizedString("Generic.Start", value: "Börja", comment: "Text for start")
 
         enum Alert {
             static let stopAggregationTitle = NSLocalizedString("Generic.Alert.StopAggregationTitle", value: "Do you want to stop insurance aggregation", comment: "Alert title text for asking user before quite the insurnace aggregation flow")
