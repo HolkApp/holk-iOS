@@ -17,6 +17,8 @@ final class TabBarController: UITabBarController {
     private lazy var protectionCoordinator = InsuranceProtectionCoordinator()
     private var storeController: StoreController
     private let addMoreButton = HolkButton()
+    private var addMoreButtonCenterXAnchor: NSLayoutConstraint?
+    private var addMoreButtonTopAnchor: NSLayoutConstraint?
 
     init(storeController: StoreController) {
         self.storeController = storeController
@@ -51,11 +53,11 @@ final class TabBarController: UITabBarController {
         addMoreButton.clipsToBounds = true
         addMoreButton.translatesAutoresizingMaskIntoConstraints = false
 
-        tabBar.addSubview(addMoreButton)
+        view.addSubview(addMoreButton)
 
         NSLayoutConstraint.activate([
-            addMoreButton.centerXAnchor.constraint(equalTo: tabBar.centerXAnchor),
-            addMoreButton.topAnchor.constraint(equalTo: tabBar.topAnchor, constant: 8),
+            addMoreButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            addMoreButton.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -4),
             addMoreButton.widthAnchor.constraint(equalToConstant: 40),
             addMoreButton.heightAnchor.constraint(equalToConstant: 40)
         ])
@@ -78,10 +80,31 @@ final class TabBarController: UITabBarController {
         addInsuranceContainerViewController.delegate = self
         present(addInsuranceContainerViewController, animated: true)
     }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        view.bringSubviewToFront(addMoreButton)
+    }
 }
 
 // TODO: Change this when have a real profile
 extension TabBarController: InsuranceCoordinatorDelegate {
+    func willShowInsuranceList(_ coordinator: InsuranceCoordinator) {
+        addMoreButton.isHidden = false
+    }
+
+    func willShowInsuranceDetail(_ coordinator: InsuranceCoordinator) {
+        addMoreButton.isHidden = true
+    }
+
+    func didShowInsuranceList(_ coordinator: InsuranceCoordinator) {
+        view.bringSubviewToFront(addMoreButton)
+    }
+
+    func didShowInsuranceDetail(_ coordinator: InsuranceCoordinator) {
+    }
+
     func logout(_ coordinator: InsuranceCoordinator) {
         self.coordinator?.logout()
     }

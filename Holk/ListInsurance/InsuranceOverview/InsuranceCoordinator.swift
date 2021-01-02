@@ -9,6 +9,10 @@
 import UIKit
 
 protocol InsuranceCoordinatorDelegate: AnyObject {
+    func willShowInsuranceList(_ coordinator: InsuranceCoordinator)
+    func didShowInsuranceList(_ coordinator: InsuranceCoordinator)
+    func willShowInsuranceDetail(_ coordinator: InsuranceCoordinator)
+    func didShowInsuranceDetail(_ coordinator: InsuranceCoordinator)
     func logout(_ coordinator: InsuranceCoordinator)
 }
 
@@ -31,7 +35,7 @@ final class InsuranceCoordinator: NSObject, UINavigationControllerDelegate {
 
         navController.navigationBar.prefersLargeTitles = true
         navController.tabBarItem = UITabBarItem(title: "Översikt", image: UIImage(systemName: "square.stack.3d.up"), selectedImage: UIImage(systemName: "square.stack.3d.up.fill"))
-//        navController.delegate = self
+        navController.delegate = self
 
         navController.pushViewController(insuranceListViewController, animated: false)
     }
@@ -43,7 +47,7 @@ final class InsuranceCoordinator: NSObject, UINavigationControllerDelegate {
         navController.pushViewController(homeInsuranceViewController, animated: true)
     }
 
-    func showinsuranceDetail(_ insurance: Insurance) {
+    func showInsuranceDetail(_ insurance: Insurance) {
         let homeinsuranceSubInsurancesViewController = HomeSubInsurancesViewController(storeController: storeController, insurance: insurance)
         navController.pushViewController(homeinsuranceSubInsurancesViewController, animated: true)
     }
@@ -66,6 +70,22 @@ extension InsuranceCoordinator {
             return InsuranceTransition()
         }
         return nil
+    }
+
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        if viewController is InsuranceListViewController {
+            delegate?.willShowInsuranceList(self)
+        } else if viewController is HomeInsuranceViewController {
+            delegate?.willShowInsuranceDetail(self)
+        }
+    }
+
+    func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
+        if viewController is InsuranceListViewController {
+            delegate?.didShowInsuranceList(self)
+        } else if viewController is HomeInsuranceViewController {
+            delegate?.didShowInsuranceDetail(self)
+        }
     }
 }
 
