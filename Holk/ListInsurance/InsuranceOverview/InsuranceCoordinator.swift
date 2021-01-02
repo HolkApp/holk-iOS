@@ -64,11 +64,11 @@ final class InsuranceCoordinator: NSObject, UINavigationControllerDelegate {
 extension InsuranceCoordinator {
     // MARK: - UINavigationControllerDelegate
     func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        if fromVC is InsuranceListViewController, toVC is HomeInsuranceViewController {
-            return InsuranceTransition()
-        } else if fromVC is HomeInsuranceViewController, toVC is InsuranceListViewController {
-            return InsuranceTransition()
-        }
+//        if fromVC is InsuranceListViewController, toVC is HomeInsuranceViewController {
+//            return InsuranceTransition()
+//        } else if fromVC is HomeInsuranceViewController, toVC is InsuranceListViewController {
+//            return InsuranceTransition()
+//        }
         return nil
     }
 
