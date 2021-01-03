@@ -45,6 +45,18 @@ final class LoadingViewController: UIViewController {
         ])
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        pauseLoadingAnimation()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        resumeLoadingAnimation()
+    }
+
     @objc private func pauseLoadingAnimation() {
         loadingSpinner.setLoading(false)
     }
