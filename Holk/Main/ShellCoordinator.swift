@@ -126,13 +126,14 @@ extension ShellCoordinator {
             title: LocalizedString.Generic.close,
             style: .default,
             handler: { action in
-                alert.dismiss(animated: true)
+                alert.dismiss(animated: true) {
+                    self.logout()
+                }
             })
         )
-
         if landingPageNavigationController.presentedViewController != nil {
             landingPageNavigationController.dismiss(animated: false) {
-                self.landingPageNavigationController.present(alert, animated: true)
+                self.landingPageNavigationController.topViewController?.present(alert, animated: true)
             }
         } else {
             landingPageNavigationController.present(alert, animated: true)
