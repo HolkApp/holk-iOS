@@ -36,7 +36,7 @@ extension User {
         private var _refreshToken: String?
         private var _expirationDateString: String?
 
-        private(set) var isNewUser: Bool = false
+        private(set) var isNewUser: Bool?
 
         private(set) var expirationDate: Date? {
             get {

@@ -17,7 +17,7 @@ final class User {
     var userInfoResponse: UserInfoResponse?
 
     var isNewUser: Bool {
-        session?.isNewUser ?? false
+        session?.isNewUser ?? email.isEmpty
     }
 
     var userName: String {

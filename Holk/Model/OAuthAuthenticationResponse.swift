@@ -6,7 +6,7 @@ struct OAuthAuthenticationResponse: Codable {
     let tokenType: String
     let scope: String
     let jti: String
-    let newUser: Bool
+    let newUser: Bool?
     let expiresInSeconds: Int
     
     private enum CodingKeys: String, CodingKey {
@@ -29,7 +29,7 @@ extension OAuthAuthenticationResponse {
         tokenType = try container.decode(String.self, forKey: .tokenType)
         scope = try container.decode(String.self, forKey: .scope)
         jti = try container.decode(String.self, forKey: .jti)
-        newUser = (try? container.decode(Bool.self, forKey: .newUser)) ?? false
+        newUser = (try? container.decode(Bool.self, forKey: .newUser))
         expiresInSeconds = try container.decode(Int.self, forKey: .expiresInSeconds)
     }
 }
