@@ -17,6 +17,8 @@ struct LocalizedString {
         static let piece = NSLocalizedString("Generic.Piece", value: "%@ st", comment: "Number of things, singular")
         static let pieces = NSLocalizedString("Generic.Pieces", value: "%@ st", comment: "Number of things, plural")
         static let start = NSLocalizedString("Generic.Start", value: "Börja", comment: "Text for start")
+        static let logout = NSLocalizedString("Generic.Logout", value: "Logout", comment: "Text for logout")
+        static let deleteAccount = NSLocalizedString("Generic.DeleteAccount", value: "Delete", comment: "Text for delete account")
 
         enum Alert {
             static let stopAggregationTitle = NSLocalizedString("Generic.Alert.StopAggregationTitle", value: "Do you want to stop insurance aggregation", comment: "Alert title text for asking user before quite the insurnace aggregation flow")
