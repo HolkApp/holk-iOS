@@ -22,7 +22,7 @@ final class UserStore {
     }
 
     func userInfo(completion: @escaping (Result<User, APIError>) -> Void = { _ in }) {
-        userService.fetchUserInfo()
+        userService.fetchInfo()
             .sink(receiveCompletion: { result in
                 switch result {
                 case .failure(let error):
@@ -40,6 +40,19 @@ final class UserStore {
 
     func addEmail(_ email: String, completion: @escaping (Result<Void, APIError>) -> Void) {
         userService.addEmail(email)
+            .sink(receiveCompletion: { result in
+                switch result {
+                case .failure(let error):
+                    completion(.failure(error))
+                case .finished:
+                    break
+                }
+            }) { _ in completion(.success) }
+            .store(in: &cancellables)
+    }
+
+    func delete(completion: @escaping (Result<Void, APIError>) -> Void) {
+        userService.delete()
             .sink(receiveCompletion: { result in
                 switch result {
                 case .failure(let error):

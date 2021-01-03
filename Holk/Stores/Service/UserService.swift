@@ -22,7 +22,7 @@ final class UserService {
         self.user = user
     }
 
-    func fetchUserInfo() -> AnyPublisher<UserInfoResponse, APIError> {
+    func fetchInfo() -> AnyPublisher<UserInfoResponse, APIError> {
         // TODO: Do something to the header to not set in every server
         var httpHeaders = [
             "Content-Type": "application/json",
@@ -54,6 +54,22 @@ final class UserService {
 
         return client
             .httpRequest(method: .post, url: Endpoint.addEmail.url, headers: httpHeaders, body: data)
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
+    }
+
+    func delete() -> AnyPublisher<Data, APIError> {
+        var httpHeaders = [
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        ]
+
+        httpHeaders.merge(authorizationBearerHeader) { (_, new) -> String in
+            return new
+        }
+
+        return client
+            .httpRequest(method: .delete, url: Endpoint.user.url, headers: httpHeaders)
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
