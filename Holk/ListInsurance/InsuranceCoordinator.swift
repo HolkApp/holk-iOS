@@ -48,8 +48,14 @@ final class InsuranceCoordinator: NSObject, UINavigationControllerDelegate {
     }
 
     func showInsuranceDetail(_ insurance: Insurance) {
-        let homeinsuranceSubInsurancesViewController = HomeSubInsurancesViewController(storeController: storeController, insurance: insurance)
-        navController.pushViewController(homeinsuranceSubInsurancesViewController, animated: true)
+        let homeInsuranceSubInsurancesViewController = HomeSubInsurancesViewController(storeController: storeController, insurance: insurance)
+        navController.pushViewController(homeInsuranceSubInsurancesViewController, animated: true)
+    }
+
+    func showProfile() {
+        let profileViewController = ProfileViewController(storeController: storeController)
+        profileViewController.delegate = self
+        navController.pushViewController(profileViewController, animated: true)
     }
 
     func logout() {
@@ -118,5 +124,26 @@ extension InsuranceCoordinator {
         cardSection.interGroupSpacing = 24
         cardSection.contentInsets = .init(top: 12, leading: 16, bottom: 0, trailing: 16)
         return cardSection
+    }
+}
+
+extension InsuranceCoordinator: ProfileViewControllerdelegate {
+    func logout(_ profileViewController: ProfileViewController) {
+        logout()
+    }
+
+    func delete(_ profileViewController: ProfileViewController) {
+        storeController.userStore.delete { [weak self] result in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                switch result {
+                case .success:
+                    self.logout()
+                case .failure(let error):
+                    // TODO: Error handling
+                    print(error)
+                }
+            }
+        }
     }
 }

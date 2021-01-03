@@ -93,8 +93,8 @@ extension AuthenticationCoordinator {
             guard let self = self else { return }
             switch result {
             case .success:
-                self.storeController.providerStore.fetchInsuranceProviders()
                 self.fetchUserInfo()
+                self.storeController.providerStore.fetchInsuranceProviders()
                 if self.isPresentingQRCode {
                     self.isPresentingQRCode = false
                     self.navigationController.dismiss(animated: true)

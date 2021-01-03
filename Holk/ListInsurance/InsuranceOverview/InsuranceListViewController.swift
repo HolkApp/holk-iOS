@@ -76,7 +76,7 @@ final class InsuranceListViewController: UICollectionViewController {
     }
 
     @objc private func profileTapped(sender: UIButton) {
-        coordinator?.logout()
+        coordinator?.showProfile()
     }
 }
 
