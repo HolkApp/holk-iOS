@@ -260,7 +260,7 @@ extension ThinkOfDetailsViewController: UICollectionViewDelegate {
            yOffset <= 0 {
             headerView.transform = .init(translationX: 0, y: yOffset)
             let factor = (abs(yOffset) + bannerView.frame.height) / bannerView.frame.height
-            bannerView.transform = CGAffineTransform(scaleX: factor, y: factor).translatedBy(x: 0, y: yOffset * 0.5)
+            bannerView.transform = CGAffineTransform(scaleX: factor, y: factor).translatedBy(x: 0, y: yOffset * 0.48)
         }
     }
 }
