@@ -33,6 +33,7 @@ final class OnboardingContainerViewController: UIViewController {
         return UICollectionView(frame: .zero, collectionViewLayout: layout)
     }()
     private var progressViewTopAnchor: NSLayoutConstraint?
+    private var progressViewYCenterAnchor: NSLayoutConstraint?
     private var progressViewHeightAnchor: NSLayoutConstraint?
     private var providerType: InsuranceProviderType?
     private var insuranceProvider: InsuranceProvider?
@@ -64,9 +65,9 @@ final class OnboardingContainerViewController: UIViewController {
     }
 
     func start() {
-        progressBarToTop(animated: true, completion: { [weak self] in
+        progressBarToTop { [weak self] in
             self?.showInsuranceType()
-        })
+        }
     }
 
     private func setup() {
@@ -102,11 +103,11 @@ final class OnboardingContainerViewController: UIViewController {
     }
 
     private func setupLayout() {
-        let progressViewTopAnchor = progressView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: view.bounds.height / 2 - 100)
         let progressViewHeightAnchor = progressView.heightAnchor.constraint(equalToConstant: 150)
+        let progressViewYCenterAnchor = progressView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
 
-        self.progressViewTopAnchor = progressViewTopAnchor
-        self.progressViewHeightAnchor = progressViewHeightAnchor
+        self.progressViewTopAnchor = progressView.topAnchor.constraint(equalTo: view.topAnchor, constant: 40)
+        self.progressViewYCenterAnchor = progressViewYCenterAnchor
         NSLayoutConstraint.activate([
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -114,8 +115,8 @@ final class OnboardingContainerViewController: UIViewController {
             collectionView.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
 
             progressView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            progressViewTopAnchor,
             progressViewHeightAnchor,
+            progressViewYCenterAnchor,
             progressView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
             progressView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
 
@@ -159,7 +160,8 @@ final class OnboardingContainerViewController: UIViewController {
             self.progressView.update(.bar, animated: animated) {
                 if animated {
                     UIView.animate(withDuration: 0.3, animations: {
-                        self.progressViewTopAnchor?.constant = 40
+                        self.progressViewTopAnchor?.isActive = true
+                        self.progressViewYCenterAnchor?.isActive = false
                         self.progressViewHeightAnchor?.constant = 40
                         self.view.layoutIfNeeded()
                     }) { _ in
@@ -170,7 +172,8 @@ final class OnboardingContainerViewController: UIViewController {
                         }
                     }
                 } else {
-                    self.progressViewTopAnchor?.constant = 40
+                    self.progressViewTopAnchor?.isActive = true
+                    self.progressViewYCenterAnchor?.isActive = false
                     self.progressViewHeightAnchor?.constant = 40
                     self.collectionView.isHidden = false
                     self.progressView.isHidden = false
@@ -183,7 +186,8 @@ final class OnboardingContainerViewController: UIViewController {
     func progressSpinnerToCenter() {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
-            self.progressViewTopAnchor?.constant = self.view.bounds.height / 2 - 100
+            self.progressViewYCenterAnchor?.isActive = true
+            self.progressViewTopAnchor?.isActive = false
             self.progressViewHeightAnchor?.constant = 150
             self.progressView.update(.spinner, animated: false)
             self.collectionView.isHidden = true
