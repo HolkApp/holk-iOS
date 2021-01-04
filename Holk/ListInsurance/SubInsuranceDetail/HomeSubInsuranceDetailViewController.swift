@@ -275,7 +275,7 @@ extension HomeSubInsuranceDetailViewController: UICollectionViewDelegate {
         case .thinkOfs:
             let thinkOf = subInsuranceDetailViewModel.thinkOfs[indexPath.item]
             let thinkOfDetailsViewController = ThinkOfDetailsViewController(storeController: storeController, thinkOf: thinkOf)
-            present(thinkOfDetailsViewController, animated: true)
+            present(UINavigationController(rootViewController: thinkOfDetailsViewController), animated: true)
         }
     }
 }

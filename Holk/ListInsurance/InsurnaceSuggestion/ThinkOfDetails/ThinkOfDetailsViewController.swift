@@ -58,6 +58,7 @@ final class ThinkOfDetailsViewController: UIViewController {
     private func setup() {
         navigationItem.setAppearance()
         navigationController?.navigationBar.tintColor = Color.mainBackground
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(cancel(_:)))
 
         collectionView.contentInset.top = -(navigationController?.navigationBar.frame.height ?? 0)
         collectionView.contentInset.bottom = 40
@@ -92,6 +93,10 @@ final class ThinkOfDetailsViewController: UIViewController {
         ])
 
         applySnapshot(animatingDifferences: false)
+    }
+
+    @objc private func cancel(_ sender: Any) {
+        dismiss(animated: true)
     }
 }
 

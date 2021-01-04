@@ -53,6 +53,7 @@ final class ThinkOfListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        navigationController?.navigationBar.tintColor = Color.mainForeground
         navigationController?.navigationBar.backgroundColor = .clear
     }
 

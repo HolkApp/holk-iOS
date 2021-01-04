@@ -118,11 +118,11 @@ extension InsuranceListViewController {
         if indexPath.section == 0 {
             if indexPath.item == 0 {
                 let gapListViewController = GapListViewController(storeController: storeController)
-                gapListViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(cancel(_:)))
+                gapListViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(cancel(_:)))
                 present(UINavigationController(rootViewController: gapListViewController), animated: true)
             } else {
                 let thinkOfListViewController = ThinkOfListViewController(storeController: storeController)
-                thinkOfListViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(cancel(_:)))
+                thinkOfListViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(cancel(_:)))
                 present(UINavigationController(rootViewController: thinkOfListViewController), animated: true)
             }
         } else {

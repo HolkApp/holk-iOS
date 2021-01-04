@@ -80,7 +80,7 @@ extension AuthenticationCoordinator {
         guard let deepLinkUrl = deepLinkUrl, let qrImage = BankIDService.generateQRCode(from: deepLinkUrl.absoluteString) else { return }
         DispatchQueue.main.async {
             let qrCodeViewController = HolkQRCodeViewController(qrImage: qrImage)
-            qrCodeViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(self.dismissPresntedViewController(_:)))
+            qrCodeViewController.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(self.dismissPresntedViewController(_:)))
             let qrController = UINavigationController(rootViewController: qrCodeViewController)
             self.navigationController.present(qrController, animated: true) { [weak self] in
                 self?.isPresentingQRCode = true
