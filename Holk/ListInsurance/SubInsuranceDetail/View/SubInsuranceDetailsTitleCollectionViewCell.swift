@@ -46,11 +46,11 @@ extension SubInsuranceDetailViewModel.SelectedSubInsuranceDetails {
     var description: String {
         switch self {
         case .cover:
-            return "Ditt skydd"
+            return LocalizedString.Insurance.Details.title
         case .gaps:
-            return "Luckor"
+            return LocalizedString.Suggestion.Gap.gap
         case .thinkOfs:
-            return "Tänk på"
+            return LocalizedString.Suggestion.ThinkOf.thinkOf
         }
     }
 }
