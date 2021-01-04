@@ -9,7 +9,7 @@
 import UIKit
 
 extension UINavigationItem {
-    func setAppearance(backgroundColor: UIColor = .clear) {
+    func setAppearance(backgroundColor: UIColor = .clear, foregroundColor: UIColor = Color.mainForeground) {
         let standard = UINavigationBarAppearance()
 
         standard.configureWithOpaqueBackground()
@@ -23,14 +23,18 @@ extension UINavigationItem {
         standard.setBackIndicatorImage(backIndicatorImage, transitionMaskImage: backIndicatorImage)
 
         let largeTitleFont = FontStyleGuide.header4.font
+        let style = NSMutableParagraphStyle()
+            style.alignment = .justified
+            style.firstLineHeadIndent = 8
         standard.largeTitleTextAttributes = [
             .font: largeTitleFont,
-            .foregroundColor: Color.mainForeground
+            .foregroundColor: foregroundColor,
+            .paragraphStyle: style
         ]
         let titleFont = FontStyleGuide.titleHeader2.font
         standard.titleTextAttributes = [
             .font: titleFont,
-            .foregroundColor: Color.mainForeground
+            .foregroundColor: foregroundColor
         ]
 
         let button = UIBarButtonItemAppearance(style: .plain)
