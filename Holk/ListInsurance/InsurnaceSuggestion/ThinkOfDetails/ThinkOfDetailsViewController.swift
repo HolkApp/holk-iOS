@@ -252,7 +252,8 @@ extension ThinkOfDetailsViewController {
 extension ThinkOfDetailsViewController: UICollectionViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let yOffset = scrollView.adjustedContentOffset.y
-        let alpha: CGFloat = max(min(yOffset, 60), 0) / 60
+
+        let alpha: CGFloat = yOffset.clamped(min: 0, max: 40) / 40
         navigationController?.navigationBar.backgroundColor = viewModel.headerBackgroundViewColor?.withAlphaComponent(alpha)
 
         if let bannerView = collectionView.cellForItem(at: IndexPath(row: 0, section: 0)),

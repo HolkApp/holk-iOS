@@ -20,7 +20,7 @@ final class HomeSubInsurancesViewController: UIViewController {
 
     enum SelectedSubInsuranceKind {
         case basic
-        case addon
+        case addOn
     }
 
     typealias DataSource = UICollectionViewDiffableDataSource<Section, HomeSubInsuranceSegment>
@@ -32,8 +32,9 @@ final class HomeSubInsurancesViewController: UIViewController {
     // MARK: - Private Variables
     private let insurance: Insurance
     private let subInsurances: [HomeSubInsuranceSegment]
-    private let addonInsurances: [HomeSubInsuranceSegment]
+    private let addOnInsurances: [HomeSubInsuranceSegment]
     private var selectedSubInsuranceKind: SelectedSubInsuranceKind = .basic
+    private var navigationBarAlpha: CGFloat = 0
     private lazy var dataSource = makeDataSource()
     private lazy var collectionView: UICollectionView = {
         let layout = makeSubinsurancesLayout()
@@ -45,7 +46,7 @@ final class HomeSubInsurancesViewController: UIViewController {
         self.storeController = storeController
         self.insurance = insurance
         subInsurances = insurance.subInsurances.compactMap { HomeSubInsuranceSegment.basic($0) }
-        addonInsurances = insurance.addonInsurances.compactMap { HomeSubInsuranceSegment.addon($0) }
+        addOnInsurances = insurance.addonInsurances.compactMap { HomeSubInsuranceSegment.addon($0) }
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -61,9 +62,17 @@ final class HomeSubInsurancesViewController: UIViewController {
         applySnapshot(animatingDifferences: false)
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        navigationItem.setAppearance(backgroundColor: Color.mainBackground.withAlphaComponent(navigationBarAlpha))
+    }
+
     private func setup() {
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.setAppearance()
+
+        title = LocalizedString.Insurance.Details.title
 
         // Quick fix, since setting contentInsetAdjustmentBehavior to false will break the layout
         collectionView.contentInset.top = -(navigationBarHeight + statusBarHeight)
@@ -89,6 +98,8 @@ final class HomeSubInsurancesViewController: UIViewController {
 extension HomeSubInsurancesViewController: UICollectionViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let yOffset = scrollView.adjustedContentOffset.y
+        navigationBarAlpha = yOffset.clamped(min: 0, max: 40) / 40
+        navigationItem.setAppearance(backgroundColor: Color.mainBackground.withAlphaComponent(navigationBarAlpha))
         if let headerView = collectionView.supplementaryView(forElementKind: UICollectionView.elementKindSectionHeader, at: IndexPath(row: 0, section: 0)),
            yOffset <= 0 {
             headerView.transform = .init(translationX: 0, y: yOffset)
@@ -142,8 +153,8 @@ extension HomeSubInsurancesViewController: UICollectionViewDelegate {
         switch selectedSubInsuranceKind {
         case .basic:
             snapshot.appendItems(subInsurances)
-        case .addon:
-            snapshot.appendItems(addonInsurances)
+        case .addOn:
+            snapshot.appendItems(addOnInsurances)
         }
 
         dataSource.apply(snapshot, animatingDifferences: animatingDifferences)

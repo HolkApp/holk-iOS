@@ -20,6 +20,7 @@ final class HomeInsuranceViewController: UIViewController {
     // MARK: - Private Variables
     private var storeController: StoreController
     private var insurance: Insurance
+    private var navigationBarAlpha: CGFloat = 0
 
     init(storeController: StoreController, insurance: Insurance) {
         self.storeController = storeController
@@ -38,15 +39,11 @@ final class HomeInsuranceViewController: UIViewController {
         setup()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        navigationController?.navigationBar.barTintColor = Color.mainBackground
-    }
-
     private func setup() {
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.setAppearance()
+
+        title = insurance.kind.description
         
         view.backgroundColor = Color.mainBackground
 
@@ -78,6 +75,11 @@ final class HomeInsuranceViewController: UIViewController {
 }
 
 extension HomeInsuranceViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let yOffset = scrollView.adjustedContentOffset.y
+        navigationBarAlpha = yOffset.clamped(min: 0, max: 40) / 40
+        navigationItem.setAppearance(backgroundColor: Color.mainBackground.withAlphaComponent(navigationBarAlpha))
+    }
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 3
     }

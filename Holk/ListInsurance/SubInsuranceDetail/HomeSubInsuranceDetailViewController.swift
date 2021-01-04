@@ -41,6 +41,7 @@ final class HomeSubInsuranceDetailViewController: UIViewController {
         }
     }
     private var subInsuranceDetailViewModel: SubInsuranceDetailViewModel
+    private var navigationBarAlpha: CGFloat = 0
     private lazy var dataSource = makeDataSource()
 
     typealias DataSource = UICollectionViewDiffableDataSource<Section, SubInsuranceDetailsItem>
@@ -73,12 +74,14 @@ final class HomeSubInsuranceDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        navigationItem.setAppearance()
+        navigationItem.setAppearance(backgroundColor: Color.subInsuranceBackgroundColor(subInsurance.kind).withAlphaComponent(navigationBarAlpha))
     }
 
     private func setup() {
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.setAppearance()
+
+        title = LocalizedString.Insurance.Details.protections
 
         // Quick fix, since setting contentInsetAdjustmentBehavior to false will break the layout
         collectionView.contentInset.top = -(navigationBarHeight + statusBarHeight)
@@ -266,6 +269,18 @@ extension HomeSubInsuranceDetailViewController: SubInsuranceDetailsSegmentCollec
 
 // MARK: UICollectionViewDelegate
 extension HomeSubInsuranceDetailViewController: UICollectionViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let yOffset = scrollView.adjustedContentOffset.y
+        navigationBarAlpha = yOffset.clamped(min: 0, max: 40) / 40
+        navigationItem.setAppearance(
+            backgroundColor: Color.subInsuranceBackgroundColor(subInsurance.kind).withAlphaComponent(navigationBarAlpha)
+        )
+        if let headerView = collectionView.supplementaryView(forElementKind: UICollectionView.elementKindSectionHeader, at: IndexPath(row: 0, section: 0)),
+           yOffset <= 0 {
+            headerView.transform = .init(translationX: 0, y: yOffset)
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch selectedSubInsuranceDetails {
         case .cover:

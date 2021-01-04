@@ -120,7 +120,7 @@ extension SubInsuranceHeaderView {
         if basicSubInsurancesSegmentView.isSelected {
             delegate?.updateSelection(self, selectedSubInsuranceKind: .basic)
         } else if additionalSubInsurancesSegmentView.isSelected {
-            delegate?.updateSelection(self, selectedSubInsuranceKind: .addon)
+            delegate?.updateSelection(self, selectedSubInsuranceKind: .addOn)
         }
     }
 }
