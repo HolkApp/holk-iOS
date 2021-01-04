@@ -41,4 +41,6 @@ extension UINavigationItem {
 
         standardAppearance = standard
     }
+
+    var hasTransparentAppearance: Bool { (standardAppearance?.titleTextAttributes[.foregroundColor] as? UIColor) == UIColor.clear }
 }
