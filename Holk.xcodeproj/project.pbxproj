@@ -75,6 +75,7 @@
 		8F691D38245760310093E965 /* InsuranceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F691D37245760310093E965 /* InsuranceService.swift */; };
 		8F691D3A24588C9C0093E965 /* InsuranceCredentialService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F691D3924588C9C0093E965 /* InsuranceCredentialService.swift */; };
 		8F6DC3B325A6295E00460C8C /* ChevronView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6DC3B225A6295E00460C8C /* ChevronView.swift */; };
+		8F6DC3C225A6386400460C8C /* UIImageView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6DC3C125A6386400460C8C /* UIImageView+extension.swift */; };
 		8F6FAF3C24E5D4C6000EE3F1 /* Raleway-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F6FAF3624E5D4C4000EE3F1 /* Raleway-Medium.ttf */; };
 		8F6FAF3D24E5D4C6000EE3F1 /* Raleway-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F6FAF3724E5D4C5000EE3F1 /* Raleway-Regular.ttf */; };
 		8F6FAF3E24E5D4C6000EE3F1 /* Raleway-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F6FAF3824E5D4C5000EE3F1 /* Raleway-SemiBold.ttf */; };
@@ -278,6 +279,7 @@
 		8F691D37245760310093E965 /* InsuranceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceService.swift; sourceTree = "<group>"; };
 		8F691D3924588C9C0093E965 /* InsuranceCredentialService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceCredentialService.swift; sourceTree = "<group>"; };
 		8F6DC3B225A6295E00460C8C /* ChevronView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChevronView.swift; sourceTree = "<group>"; };
+		8F6DC3C125A6386400460C8C /* UIImageView+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+extension.swift"; sourceTree = "<group>"; };
 		8F6FAF3624E5D4C4000EE3F1 /* Raleway-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Medium.ttf"; sourceTree = "<group>"; };
 		8F6FAF3724E5D4C5000EE3F1 /* Raleway-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Regular.ttf"; sourceTree = "<group>"; };
 		8F6FAF3824E5D4C5000EE3F1 /* Raleway-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -681,6 +683,7 @@
 				8FF6E73322B57DA800F6D398 /* ReusableView+Identifiable.swift */,
 				8FD67679248EE66800E62820 /* UITableView+UICollectionView+extension.swift */,
 				8FF6E75122B960B300F6D398 /* UIImage+extension.swift */,
+				8F6DC3C125A6386400460C8C /* UIImageView+extension.swift */,
 				8F02657A24C0CE3600F4208B /* UINavigationItem+extension.swift */,
 				8F3305A323FB3EEA00E9B443 /* DateFormatter+extension.swift */,
 				8FD676942496B43500E62820 /* Date+extension.swift */,
@@ -1288,6 +1291,7 @@
 				8F9C1CD1253B87990013F2C7 /* Paragraph.swift in Sources */,
 				8F63AE32250A109B008A39A0 /* ThinkOfParagraphCollectionHeaderView.swift in Sources */,
 				8FF6E72822B026DB00F6D398 /* InsuranceListViewController.swift in Sources */,
+				8F6DC3C225A6386400460C8C /* UIImageView+extension.swift in Sources */,
 				8F54C244242C07E000D72FD7 /* Result+extension.swift in Sources */,
 				8F7C442A23511C1200B54A36 /* AuthenticationStore.swift in Sources */,
 				8F63AE3A250ABB58008A39A0 /* GapBannerViewModel.swift in Sources */,

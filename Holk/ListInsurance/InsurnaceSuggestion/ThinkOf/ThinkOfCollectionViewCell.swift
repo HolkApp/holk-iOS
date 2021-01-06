@@ -51,7 +51,7 @@ final class ThinkOfCollectionViewCell: UICollectionViewCell {
 
         titleLabel.styleGuide = .cardHeader2
         titleLabel.numberOfLines = 0
-        titleLabel.textColor = Color.secondaryLabel
+        titleLabel.textColor = Color.lightLabel
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
         chevronView.tintColor = Color.mainForeground.withAlphaComponent(0.5)

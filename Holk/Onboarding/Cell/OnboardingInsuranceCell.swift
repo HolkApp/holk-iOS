@@ -113,7 +113,7 @@ final class OnboardingInsuranceCell: UITableViewCell {
     
     func configure(title: String, imageURL: URL? = nil, isUpcoming: Bool = false) {
         titleLabel.text = title
-        iconView.kf.setImage(with: imageURL)
+        iconView.setImage(with: imageURL)
         self.isUpcoming = isUpcoming
     }
 

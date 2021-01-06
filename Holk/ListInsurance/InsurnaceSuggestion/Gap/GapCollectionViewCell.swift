@@ -36,7 +36,7 @@ final class GapCollectionViewCell: UICollectionViewCell {
         contentView.layer.cornerCurve = .continuous
 
         iconView.image = UIImage.gap
-        iconView.tintColor = Color.secondaryLabel
+        iconView.tintColor = Color.lightLabel
         iconView.translatesAutoresizingMaskIntoConstraints = false
 
         titleLabel.styleGuide = .cardHeader2
@@ -47,11 +47,11 @@ final class GapCollectionViewCell: UICollectionViewCell {
 
         tagLabel.styleGuide = .header7
         tagLabel.numberOfLines = 0
-        tagLabel.textColor = Color.secondaryLabel
+        tagLabel.textColor = Color.lightLabel
         tagLabel.textAlignment = .center
         tagLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        chevronView.tintColor = Color.secondaryLabel
+        chevronView.tintColor = Color.lightLabel
         chevronView.translatesAutoresizingMaskIntoConstraints = false
 
         setupLayout()

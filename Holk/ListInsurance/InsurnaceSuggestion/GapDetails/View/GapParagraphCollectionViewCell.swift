@@ -66,7 +66,7 @@ final class GapParagraphCollectionViewCell: UICollectionViewCell {
 
 extension GapParagraphCollectionViewCell {
     func configure(_ viewModel: GapParagraphViewModel) {
-        iconView.kf.setImage(with: viewModel.icon)
+        iconView.setImage(with: viewModel.icon)
         titleLabel.text = viewModel.title
         descriptionLabel.text = viewModel.text
     }

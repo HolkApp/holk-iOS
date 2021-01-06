@@ -41,7 +41,7 @@ final class ThinkOfBannerCollectionHeaderView: UICollectionReusableView {
 
         titleLabel.styleGuide = .cardHeader3
         titleLabel.numberOfLines = 0
-        titleLabel.textColor = Color.secondaryLabel
+        titleLabel.textColor = Color.lightLabel
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
         setupLayout()

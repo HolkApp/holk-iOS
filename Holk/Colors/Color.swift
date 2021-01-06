@@ -132,6 +132,16 @@ extension Color {
     static var secondaryLabel: UIColor {
         return UIColor { traitCollection in
             if traitCollection.userInterfaceStyle == .dark {
+                return makeColor(asset: .grey2)
+            } else {
+                return makeColor(asset: .grey2)
+            }
+        }
+    }
+
+    static var lightLabel: UIColor {
+        return UIColor { traitCollection in
+            if traitCollection.userInterfaceStyle == .dark {
                 return .white
             } else {
                 return .white

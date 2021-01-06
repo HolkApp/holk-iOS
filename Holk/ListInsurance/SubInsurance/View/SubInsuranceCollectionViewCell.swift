@@ -81,7 +81,7 @@ final class SubInsuranceCollectionViewCell: UICollectionViewCell {
         iconView.translatesAutoresizingMaskIntoConstraints = false
 
         titleLabel.styleGuide = .cardHeader2
-        titleLabel.textColor = Color.secondaryLabel
+        titleLabel.textColor = Color.lightLabel
         titleLabel.numberOfLines = 0
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 

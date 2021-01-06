@@ -55,7 +55,7 @@ final class ThinkOfParagraphCollectionViewCell: UICollectionViewCell {
 
 extension ThinkOfParagraphCollectionViewCell {
     func configure(_ viewModel: ThinkOfParagraphViewModel) {
-        iconView.kf.setImage(with: viewModel.icon)
+        iconView.setImage(with: viewModel.icon)
         descriptionLabel.text = viewModel.text
     }
 }
