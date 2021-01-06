@@ -17,6 +17,7 @@ final class ProfileViewController: UIViewController {
     weak var delegate: ProfileViewControllerdelegate?
 
     private let tableView = UITableView()
+    private let headerView = ProfileHeaderView()
 
     private var storeController: StoreController
 
@@ -57,6 +58,18 @@ final class ProfileViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+
+        headerView.update(user: storeController.user)
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        let height = headerView.systemLayoutSizeFitting(CGSize(width: view.frame.width, height: .greatestFiniteMagnitude), withHorizontalFittingPriority: .required, verticalFittingPriority: .init(249)).height
+        var frame = headerView.frame
+        frame.size.height = height
+        tableView.tableHeaderView = headerView
+        tableView.tableHeaderView?.frame = frame
     }
 
     @objc private func logout() {

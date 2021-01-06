@@ -18,28 +18,42 @@ final class ProfileHeaderView: UIView {
     }
 }
 
-private extension ProfileHeaderView {
-    func setup() {
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.styleGuide = .cardHeader1
+extension ProfileHeaderView {
+    private func setup() {
+        layoutMargins = .init(top: 0, left: 20, bottom: 0, right: 20)
+
+        nameLabel.styleGuide = .cardHeader2
         nameLabel.textColor = Color.label
-        nameLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
+        nameLabel.textAlignment = .center
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        emailLabel.styleGuide = .body2
+        emailLabel.textColor = Color.label
+        emailLabel.textAlignment = .center
+        emailLabel.translatesAutoresizingMaskIntoConstraints = false
 
         imageView.image = UIImage(systemName: "person.circle")
-        imageView.contentMode = .center
+        imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
 
-        addSubview(nameLabel)
         addSubview(imageView)
+        addSubview(nameLabel)
+        addSubview(emailLabel)
 
         NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: topAnchor, constant: 60),
+            imageView.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor, constant: 60),
             imageView.centerXAnchor.constraint(equalTo: centerXAnchor),
-            imageView.widthAnchor.constraint(equalToConstant: 40),
-            imageView.heightAnchor.constraint(equalToConstant: 40),
+            imageView.widthAnchor.constraint(equalToConstant: 60),
+            imageView.heightAnchor.constraint(equalToConstant: 60),
 
             nameLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 16),
-            nameLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            nameLabel.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
+            nameLabel.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
+
+            emailLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8),
+            emailLabel.leadingAnchor.constraint(equalTo: layoutMarginsGuide.leadingAnchor),
+            emailLabel.trailingAnchor.constraint(equalTo: layoutMarginsGuide.trailingAnchor),
+            emailLabel.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor)
         ])
     }
 
