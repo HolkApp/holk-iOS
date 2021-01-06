@@ -14,7 +14,7 @@ final class SubInsuranceCollectionViewCell: UICollectionViewCell {
     private let titleLabel = HolkLabel()
     private let descriptionLabel = HolkLabel()
     private let descriptionPlaceholderView = UIView()
-    private let chevronView = UIImageView()
+    private let chevronView = ChevronView()
 
     private let gapView = UIView()
     private let gapValueLabel = HolkRoundBackgroundLabel()
@@ -93,7 +93,6 @@ final class SubInsuranceCollectionViewCell: UICollectionViewCell {
 
         descriptionPlaceholderView.translatesAutoresizingMaskIntoConstraints = false
 
-        chevronView.image = UIImage(systemName: "chevron.right")?.withRenderingMode(.alwaysTemplate)
         chevronView.tintColor = Color.mainForeground.withAlphaComponent(0.5)
         chevronView.translatesAutoresizingMaskIntoConstraints = false
 

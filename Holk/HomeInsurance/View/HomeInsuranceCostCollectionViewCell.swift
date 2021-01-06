@@ -15,7 +15,7 @@ final class HomeInsuranceCostCollectionViewCell: UICollectionViewCell {
     // MARK: - Private variables
     private let titleLabel = HolkLabel()
     private let costLabel = HolkLabel()
-    private let chevronView = UIImageView()
+    private let chevronView = ChevronView()
     private let bottomSeparatorLine = UIView()
     private let amountFormatter = DynamicAmountFormatter()
 
@@ -46,7 +46,6 @@ final class HomeInsuranceCostCollectionViewCell: UICollectionViewCell {
         costLabel.numberOfLines = 0
         costLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        chevronView.image = UIImage(systemName: "chevron.right")
         chevronView.tintColor = Color.mainForeground
         chevronView.translatesAutoresizingMaskIntoConstraints = false
 

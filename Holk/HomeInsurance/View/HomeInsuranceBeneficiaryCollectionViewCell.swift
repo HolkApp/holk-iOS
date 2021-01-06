@@ -15,7 +15,7 @@ final class HomeInsuranceBeneficiaryCollectionViewCell: UICollectionViewCell {
     // MARK: - Private variables
     private let titleLabel = HolkLabel()
     private let usernameLabel = HolkLabel()
-    private let chevronView = UIImageView()
+    private let chevronView = ChevronView()
     private let topSeparatorLine = UIView()
     private let bottomSeparatorLine = UIView()
 
@@ -44,7 +44,6 @@ final class HomeInsuranceBeneficiaryCollectionViewCell: UICollectionViewCell {
         usernameLabel.numberOfLines = 0
         usernameLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        chevronView.image = UIImage(systemName: "chevron.right")
         chevronView.tintColor = Color.mainForeground
         chevronView.translatesAutoresizingMaskIntoConstraints = false
 

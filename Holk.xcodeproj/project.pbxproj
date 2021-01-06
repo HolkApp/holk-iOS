@@ -74,6 +74,7 @@
 		8F691D332455C32F0093E965 /* URLRequest+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F691D322455C32F0093E965 /* URLRequest+extension.swift */; };
 		8F691D38245760310093E965 /* InsuranceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F691D37245760310093E965 /* InsuranceService.swift */; };
 		8F691D3A24588C9C0093E965 /* InsuranceCredentialService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F691D3924588C9C0093E965 /* InsuranceCredentialService.swift */; };
+		8F6DC3B325A6295E00460C8C /* ChevronView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6DC3B225A6295E00460C8C /* ChevronView.swift */; };
 		8F6FAF3C24E5D4C6000EE3F1 /* Raleway-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F6FAF3624E5D4C4000EE3F1 /* Raleway-Medium.ttf */; };
 		8F6FAF3D24E5D4C6000EE3F1 /* Raleway-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F6FAF3724E5D4C5000EE3F1 /* Raleway-Regular.ttf */; };
 		8F6FAF3E24E5D4C6000EE3F1 /* Raleway-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F6FAF3824E5D4C5000EE3F1 /* Raleway-SemiBold.ttf */; };
@@ -275,6 +276,7 @@
 		8F691D322455C32F0093E965 /* URLRequest+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+extension.swift"; sourceTree = "<group>"; };
 		8F691D37245760310093E965 /* InsuranceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceService.swift; sourceTree = "<group>"; };
 		8F691D3924588C9C0093E965 /* InsuranceCredentialService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceCredentialService.swift; sourceTree = "<group>"; };
+		8F6DC3B225A6295E00460C8C /* ChevronView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChevronView.swift; sourceTree = "<group>"; };
 		8F6FAF3624E5D4C4000EE3F1 /* Raleway-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Medium.ttf"; sourceTree = "<group>"; };
 		8F6FAF3724E5D4C5000EE3F1 /* Raleway-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Regular.ttf"; sourceTree = "<group>"; };
 		8F6FAF3824E5D4C5000EE3F1 /* Raleway-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -753,6 +755,7 @@
 				8FA766C72440F729007EB2A2 /* HolkRoundBackgroundLabel.swift */,
 				8FF404FF252F889400328C44 /* HolkLabel.swift */,
 				8F65466B230C78990053B3F8 /* HolkButton.swift */,
+				8F6DC3B225A6295E00460C8C /* ChevronView.swift */,
 				8FA766C92440F8F0007EB2A2 /* HolkRingChart */,
 				8FCEE9AF23254B5700F75FB8 /* KeyboardEvent */,
 			);
@@ -1229,6 +1232,7 @@
 				8F9807E722722D5E00584BA9 /* StoreController.swift in Sources */,
 				8FC8EA6C24B8DD4100BE69D9 /* ThinkOfDetailsViewModel.swift in Sources */,
 				8FD6768C2495107400E62820 /* GapCollectionViewCell.swift in Sources */,
+				8F6DC3B325A6295E00460C8C /* ChevronView.swift in Sources */,
 				8F16DE6A245CE43700EFC1BD /* AuthenticationCoordinator.swift in Sources */,
 				8FF6E75422B9634400F6D398 /* HolkSegmentedControl.swift in Sources */,
 				8F63AE2025097D5F008A39A0 /* GapDetailsViewController.swift in Sources */,

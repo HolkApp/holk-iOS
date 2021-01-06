@@ -16,7 +16,7 @@ final class SubInsuranceDetailsItemCollectionViewCell: UICollectionViewCell {
     private let separatorLine = UIView()
     private let coverImageView = UIImageView()
     private let helperLabel = HolkLabel()
-    private let chevronView = UIImageView()
+    private let chevronView = ChevronView()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -64,8 +64,6 @@ final class SubInsuranceDetailsItemCollectionViewCell: UICollectionViewCell {
         helperLabel.translatesAutoresizingMaskIntoConstraints = false
 
         chevronView.tintColor = Color.label
-        chevronView.contentMode = .scaleAspectFit
-        chevronView.image = UIImage(systemName: "chevron.right")
         chevronView.translatesAutoresizingMaskIntoConstraints = false
 
         contentView.addSubview(imageView)

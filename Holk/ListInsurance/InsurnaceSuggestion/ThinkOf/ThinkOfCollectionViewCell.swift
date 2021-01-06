@@ -14,7 +14,7 @@ final class ThinkOfCollectionViewCell: UICollectionViewCell {
     private let thinkOfTypeIconView = HolkIconView()
     private let subInsuranceTypeLabel = HolkLabel()
     private let titleLabel = HolkLabel()
-    private let chevronView = UIImageView()
+    private let chevronView = ChevronView()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -54,7 +54,6 @@ final class ThinkOfCollectionViewCell: UICollectionViewCell {
         titleLabel.textColor = Color.secondaryLabel
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        chevronView.image = UIImage(systemName: "chevron.right")?.withRenderingMode(.alwaysTemplate)
         chevronView.tintColor = Color.mainForeground.withAlphaComponent(0.5)
         chevronView.translatesAutoresizingMaskIntoConstraints = false
 

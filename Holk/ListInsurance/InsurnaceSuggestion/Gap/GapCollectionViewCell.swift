@@ -13,7 +13,7 @@ final class GapCollectionViewCell: UICollectionViewCell {
     private let iconView = UIImageView()
     private let titleLabel = HolkLabel()
     private let tagLabel = HolkLabel()
-    private let chevronView = UIImageView()
+    private let chevronView = ChevronView()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -51,7 +51,6 @@ final class GapCollectionViewCell: UICollectionViewCell {
         tagLabel.textAlignment = .center
         tagLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        chevronView.image = UIImage(systemName: "chevron.right")
         chevronView.tintColor = Color.secondaryLabel
         chevronView.translatesAutoresizingMaskIntoConstraints = false
 

@@ -20,7 +20,7 @@ final class HomeInsuranceCollectionViewCell: UICollectionViewCell {
     private let insuranceSubNumberLabel = HolkLabel()
     private let insuranceTextLabel = HolkLabel()
     private let insuranceImageView = UIImageView()
-    private let chevronView = UIImageView()
+    private let chevronView = ChevronView()
     private let ringChartLabelsStackView = UIStackView()
 
     override init(frame: CGRect) {
@@ -94,7 +94,6 @@ final class HomeInsuranceCollectionViewCell: UICollectionViewCell {
         insuranceImageView.contentMode = .scaleAspectFit
         insuranceImageView.translatesAutoresizingMaskIntoConstraints = false
 
-        chevronView.image = UIImage(systemName: "chevron.right")
         chevronView.tintColor = Color.mainForeground
         chevronView.translatesAutoresizingMaskIntoConstraints = false
 
