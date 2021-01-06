@@ -36,6 +36,8 @@ final class LandingPageViewController: UIPageViewController {
     }
     
     private func setup() {
+        navigationItem.setAppearance()
+
         let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(loginLongPressed(_:)))
         longPressGestureRecognizer.minimumPressDuration = 1.0
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(loginTapped(_:)))

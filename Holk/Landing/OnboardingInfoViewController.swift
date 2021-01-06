@@ -32,6 +32,8 @@ class OnboardingInfoViewController: UIViewController {
     }
     
     private func setup() {
+        navigationItem.setAppearance()
+        
         view.backgroundColor = Color.mainBackground
 
         titleLabel.text = LocalizedString.Onboarding.Information.title
