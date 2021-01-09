@@ -44,7 +44,7 @@ final class AddInsuranceProviderViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        let listNumber =  storeController.providerStore.providerList.value?.count ?? 0
+        let listNumber =  storeController.providerStore.providers?.count ?? 0
         let listContentHeight = CGFloat(listNumber * 72)
         if tableView.frame.height > listContentHeight {
             tableView.contentInset.top = tableView.frame.height - listContentHeight + 8
@@ -77,7 +77,7 @@ final class AddInsuranceProviderViewController: UIViewController {
 
         loadInsuranceProviderListIfNeeded()
 
-        storeController.providerStore.providerList.sink { [weak self] list in
+        storeController.providerStore.providersSubject.sink { [weak self] list in
             self?.view.setNeedsLayout()
             self?.tableView.reloadData()
         }.store(in: &cancellables)
@@ -103,7 +103,7 @@ final class AddInsuranceProviderViewController: UIViewController {
     }
 
     private func loadInsuranceProviderListIfNeeded() {
-        if storeController.providerStore.providerList.value == nil {
+        if storeController.providerStore.providers == nil {
             storeController.providerStore.fetchInsuranceProviders()
         }
     }
@@ -115,22 +115,22 @@ final class AddInsuranceProviderViewController: UIViewController {
 
 extension AddInsuranceProviderViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let list = storeController.providerStore.providerList.value {
-            select(list[indexPath.item])
+        if let providers = storeController.providerStore.providers {
+            select(providers[indexPath.item])
         }
     }
 }
 
 extension AddInsuranceProviderViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let list = storeController.providerStore.providerList.value
-        return list?.count ?? 0
+        let providers = storeController.providerStore.providers
+        return providers?.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let onboardingInsuranceCell = tableView.dequeueCell(OnboardingInsuranceCell.self, indexPath: indexPath)
-        if let list = storeController.providerStore.providerList.value {
-            let provider = list[indexPath.item]
+        if let providers = storeController.providerStore.providers {
+            let provider = providers[indexPath.item]
             onboardingInsuranceCell.configure(title: provider.displayName, imageURL: provider.symbolUrl)
         } else {
             onboardingInsuranceCell.textLabel?.text = "loading"

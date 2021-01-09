@@ -61,10 +61,6 @@ final class HomeInsuranceViewController: UIViewController {
 
         view.addSubview(collectionView)
 
-        setupLayout()
-    }
-
-    private func setupLayout() {
         NSLayoutConstraint.activate([
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -80,6 +76,7 @@ extension HomeInsuranceViewController: UICollectionViewDataSource, UICollectionV
         navigationBarAlpha = yOffset.clamped(min: 0, max: 40) / 40
         navigationItem.setAppearance(backgroundColor: Color.mainBackground.withAlphaComponent(navigationBarAlpha))
     }
+
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 3
     }

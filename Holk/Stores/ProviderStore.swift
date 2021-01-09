@@ -10,7 +10,10 @@ import Combine
 
 final class ProviderStore {
     // MARK: - Public variables
-    var providerList = CurrentValueSubject<[InsuranceProvider]?, Never>(nil)
+    var providersSubject = CurrentValueSubject<[InsuranceProvider]?, Never>(nil)
+    var providers: [InsuranceProvider]? {
+        providersSubject.value
+    }
     
     // MARK: - Private variables
     private let user: User
@@ -36,13 +39,17 @@ final class ProviderStore {
                 }
             }) { [weak self] in
                 completion(.success($0))
-                self?.providerList.send($0.providerStatusList)
+                self?.providersSubject.send($0.providerStatusList)
             }
             .store(in: &cancellables)
     }
 
+    subscript(_ insurance: Insurance) -> InsuranceProvider? {
+        return self[insurance.insuranceProviderName]
+    }
+
     subscript(_ providerName: String) -> InsuranceProvider? {
-        return providerList.value?.first(where: { $0.internalName == providerName })
+        return providersSubject.value?.first(where: { $0.internalName == providerName })
     }
 
     func cancelAll() {
