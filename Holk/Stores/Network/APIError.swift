@@ -8,14 +8,21 @@
 
 import Foundation
 
-struct APIError: Error, Equatable, Decodable {
+struct APIError: LocalizedError, Equatable, Decodable {
     var errorCode: Int?
     var timestamp: Date?
     var message: String?
     var debugMessage: String?
 
-    var localizedDescription: String {
+    var failureReason: String? {
         return message ?? debugMessage ?? "Something went wrong"
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case errorCode = "errorCode"
+        case message = "error_description"
+        case debugMessage = "error"
+        case timestamp = "timestamp"
     }
 }
 

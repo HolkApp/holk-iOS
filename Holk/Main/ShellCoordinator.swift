@@ -117,9 +117,17 @@ extension ShellCoordinator {
     }
 
     private func showError(_ error: Error) {
+        var message: String? {
+            if let error = error as? LocalizedError {
+                return error.failureReason
+            } else {
+                return error.localizedDescription
+            }
+        }
+
         let alert = UIAlertController(
             title: LocalizedString.Generic.Error.title,
-            message: error.localizedDescription,
+            message: message,
             preferredStyle: .alert
         )
         alert.addAction(.init(
