@@ -11,12 +11,12 @@ import UIKit
 protocol InsuranceCoordinatorDelegate: AnyObject {
     func willShowInsuranceList(_ coordinator: InsuranceCoordinator)
     func didShowInsuranceList(_ coordinator: InsuranceCoordinator)
-    func willShowInsuranceDetail(_ coordinator: InsuranceCoordinator)
-    func didShowInsuranceDetail(_ coordinator: InsuranceCoordinator)
+    func willHideInsuranceList(_ coordinator: InsuranceCoordinator)
+    func didHideInsuranceList(_ coordinator: InsuranceCoordinator)
     func logout(_ coordinator: InsuranceCoordinator)
 }
 
-final class InsuranceCoordinator: NSObject, UINavigationControllerDelegate {
+final class InsuranceCoordinator: NSObject {
     // MARK: - Public Variables
     var storeController: StoreController
     weak var delegate: InsuranceCoordinatorDelegate?
@@ -55,6 +55,7 @@ final class InsuranceCoordinator: NSObject, UINavigationControllerDelegate {
     func showProfile() {
         let profileViewController = ProfileViewController(storeController: storeController)
         profileViewController.delegate = self
+        profileViewController.hidesBottomBarWhenPushed = true
         navController.pushViewController(profileViewController, animated: true)
     }
 
@@ -67,8 +68,8 @@ final class InsuranceCoordinator: NSObject, UINavigationControllerDelegate {
     }
 }
 
-extension InsuranceCoordinator {
-    // MARK: - UINavigationControllerDelegate
+// MARK: - UINavigationControllerDelegate
+extension InsuranceCoordinator: UINavigationControllerDelegate {
     func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
 //        if fromVC is InsuranceListViewController, toVC is HomeInsuranceViewController {
 //            return InsuranceTransition()
@@ -81,8 +82,8 @@ extension InsuranceCoordinator {
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         if viewController is InsuranceListViewController {
             delegate?.willShowInsuranceList(self)
-        } else if viewController is HomeInsuranceViewController {
-            delegate?.willShowInsuranceDetail(self)
+        } else {
+            delegate?.willHideInsuranceList(self)
         }
     }
 
@@ -90,7 +91,7 @@ extension InsuranceCoordinator {
         if viewController is InsuranceListViewController {
             delegate?.didShowInsuranceList(self)
         } else if viewController is HomeInsuranceViewController {
-            delegate?.didShowInsuranceDetail(self)
+            delegate?.didHideInsuranceList(self)
         }
     }
 }

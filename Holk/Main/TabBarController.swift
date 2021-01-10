@@ -94,7 +94,7 @@ extension TabBarController: InsuranceCoordinatorDelegate {
         addMoreButton.isHidden = false
     }
 
-    func willShowInsuranceDetail(_ coordinator: InsuranceCoordinator) {
+    func willHideInsuranceList(_ coordinator: InsuranceCoordinator) {
         addMoreButton.isHidden = true
     }
 
@@ -102,7 +102,7 @@ extension TabBarController: InsuranceCoordinatorDelegate {
         view.bringSubviewToFront(addMoreButton)
     }
 
-    func didShowInsuranceDetail(_ coordinator: InsuranceCoordinator) {
+    func didHideInsuranceList(_ coordinator: InsuranceCoordinator) {
     }
 
     func logout(_ coordinator: InsuranceCoordinator) {
