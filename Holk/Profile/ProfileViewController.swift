@@ -94,8 +94,8 @@ final class ProfileViewController: UIViewController {
         }
 
         let insuranceProfileSectionViewModel = ProfileSectionViewModel(
-            title: "Aggregated Insurances",
-            actionTitle: "+ Add more",
+            title: LocalizedString.Insurance.text,
+            actionTitle: LocalizedString.Insurance.Aggregate.addInsurance,
             section: .insurance,
             isExpandable: true,
             items: insuranceProfileCellViewModels
