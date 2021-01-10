@@ -10,8 +10,9 @@ import UIKit
 import Combine
 
 protocol ProfileViewControllerdelegate: AnyObject {
+    func addMoreInsurance(_ profileViewController: ProfileViewController)
     func logout(_ profileViewController: ProfileViewController)
-    func delete(_ profileViewController: ProfileViewController)
+    func deleteAccount(_ profileViewController: ProfileViewController)
 }
 
 final class ProfileViewController: UIViewController {
@@ -163,6 +164,7 @@ extension ProfileViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = tableView.dequeueHeaderFooterView(ProfileSectionHeaderView.self)
         headerView.viewModel = sectionViewModels[section].headerViewModel
+        headerView.delegate = self
         return headerView
     }
 
@@ -188,7 +190,30 @@ extension ProfileViewController: UITableViewDelegate {
         case .logout:
             delegate?.logout(self)
         case .deleteAccount:
-            delegate?.delete(self)
+            let alert = UIAlertController(
+                title: LocalizedString.Account.deleteWarning,
+                message: nil,
+                preferredStyle: .alert
+            )
+            alert.addAction(
+                .init(
+                    title: LocalizedString.Generic.ok,
+                    style: .destructive,
+                    handler: { action in
+                        alert.dismiss(animated: true) {
+                            self.delegate?.deleteAccount(self)
+                        }
+                })
+            )
+            alert.addAction(
+                .init(
+                    title: LocalizedString.Generic.cancel,
+                    style: .cancel,
+                    handler: { action in
+                        alert.dismiss(animated: true)
+                })
+            )
+            present(alert, animated: true)
         case .insurance(let insurance):
             break
         case .expandable:
@@ -198,3 +223,14 @@ extension ProfileViewController: UITableViewDelegate {
     }
 }
 
+extension ProfileViewController: ProfileSectionHeaderViewDelegate {
+    func profileSectionHeaderView(_ profileSectionHeaderView: ProfileSectionHeaderView, didPressWithViewModel viewModel: ProfileSectionHeaderViewModel) {
+        switch viewModel.section {
+        case .insurance:
+            self.delegate?.addMoreInsurance(self)
+        default: break
+        }
+    }
+
+
+}

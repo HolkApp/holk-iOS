@@ -9,11 +9,32 @@
 import UIKit
 
 protocol InsuranceCoordinatorDelegate: AnyObject {
+    func addMoreInsurance(_ coordinator: InsuranceCoordinator)
+    func logout(_ coordinator: InsuranceCoordinator)
+    func deleteAccount(_ coordinator: InsuranceCoordinator)
+
     func willShowInsuranceList(_ coordinator: InsuranceCoordinator)
     func didShowInsuranceList(_ coordinator: InsuranceCoordinator)
     func willHideInsuranceList(_ coordinator: InsuranceCoordinator)
     func didHideInsuranceList(_ coordinator: InsuranceCoordinator)
-    func logout(_ coordinator: InsuranceCoordinator)
+}
+
+extension InsuranceCoordinatorDelegate {
+    func willShowInsuranceList(_ coordinator: InsuranceCoordinator) {
+
+    }
+
+    func didShowInsuranceList(_ coordinator: InsuranceCoordinator) {
+
+    }
+
+    func willHideInsuranceList(_ coordinator: InsuranceCoordinator){
+
+    }
+
+    func didHideInsuranceList(_ coordinator: InsuranceCoordinator) {
+
+    }
 }
 
 final class InsuranceCoordinator: NSObject {
@@ -57,10 +78,6 @@ final class InsuranceCoordinator: NSObject {
         profileViewController.delegate = self
         profileViewController.hidesBottomBarWhenPushed = true
         navController.pushViewController(profileViewController, animated: true)
-    }
-
-    func logout() {
-        delegate?.logout(self)
     }
 
     @objc private func back(_ sender: Any) {
@@ -129,22 +146,15 @@ extension InsuranceCoordinator {
 }
 
 extension InsuranceCoordinator: ProfileViewControllerdelegate {
-    func logout(_ profileViewController: ProfileViewController) {
-        logout()
+    func addMoreInsurance(_ profileViewController: ProfileViewController) {
+        delegate?.addMoreInsurance(self)
     }
 
-    func delete(_ profileViewController: ProfileViewController) {
-        storeController.userStore.delete { [weak self] result in
-            guard let self = self else { return }
-            DispatchQueue.main.async {
-                switch result {
-                case .success:
-                    self.logout()
-                case .failure(let error):
-                    // TODO: Error handling
-                    print(error)
-                }
-            }
-        }
+    func logout(_ profileViewController: ProfileViewController) {
+        delegate?.logout(self)
+    }
+
+    func deleteAccount(_ profileViewController: ProfileViewController) {
+        delegate?.deleteAccount(self)
     }
 }

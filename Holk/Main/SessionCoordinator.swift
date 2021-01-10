@@ -37,4 +37,17 @@ final class SessionCoordinator: NSObject, UINavigationControllerDelegate {
     func logout() {
         coordinator?.logout()
     }
+
+    func deleteAccount() {
+        storeController.userStore.delete { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .success:
+                self.coordinator?.logout()
+            case .failure(let error):
+                // TODO: Error handling
+                print(error)
+            }
+        }
+    }
 }

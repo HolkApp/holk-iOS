@@ -75,16 +75,20 @@ final class TabBarController: UITabBarController {
         navigationController?.setNavigationBarHidden(false, animated: false)
     }
 
-    @objc private func addMoreTapped(sender: UIButton) {
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        view.bringSubviewToFront(addMoreButton)
+    }
+
+    private func addMoreInsurance() {
         let addInsuranceContainerViewController = AddInsuranceContainerViewController(storeController: storeController)
         addInsuranceContainerViewController.delegate = self
         present(addInsuranceContainerViewController, animated: true)
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-
-        view.bringSubviewToFront(addMoreButton)
+    @objc private func addMoreTapped(sender: UIButton) {
+        addMoreInsurance()
     }
 }
 
@@ -102,11 +106,16 @@ extension TabBarController: InsuranceCoordinatorDelegate {
         view.bringSubviewToFront(addMoreButton)
     }
 
-    func didHideInsuranceList(_ coordinator: InsuranceCoordinator) {
+    func addMoreInsurance(_ coordinator: InsuranceCoordinator) {
+        addMoreInsurance()
     }
 
     func logout(_ coordinator: InsuranceCoordinator) {
         self.coordinator?.logout()
+    }
+
+    func deleteAccount(_ coordinator: InsuranceCoordinator) {
+        self.coordinator?.deleteAccount()
     }
 }
 
