@@ -1,7 +1,7 @@
 import UIKit
 
 protocol ProfileSectionHeaderViewDelegate: AnyObject {
-    func profileSectionHeaderView(_ view: ProfileSectionHeaderView, didPressActionWithViewModel viewModel: ProfileSectionHeaderViewModel)
+    func profileSectionHeaderView(_ profileSectionHeaderView: ProfileSectionHeaderView, didPressWithViewModel viewModel: ProfileSectionHeaderViewModel)
 }
 
 final class ProfileSectionHeaderView: UITableViewHeaderFooterView {
@@ -50,8 +50,8 @@ private extension ProfileSectionHeaderView {
         headlineLabel.setContentHuggingPriority(UILayoutPriority(rawValue: 250), for: .horizontal)
 
         actionButton.translatesAutoresizingMaskIntoConstraints = false
-        actionButton.styleGuide = .titleHeader2
-        actionButton.set(color: Color.label)
+        actionButton.styleGuide = .button1
+        actionButton.set(color: Color.secondaryHighlight)
         actionButton.setContentHuggingPriority(UILayoutPriority(rawValue: 251), for: .horizontal)
         actionButton.setContentCompressionResistancePriority(.required, for: .horizontal)
         actionButton.addTarget(self, action: #selector(didPressActionButton(_:)), for: .touchUpInside)
@@ -102,6 +102,6 @@ private extension ProfileSectionHeaderView {
     @objc
     func didPressActionButton(_ sender: Any) {
         guard let viewModel = viewModel else { return }
-        delegate?.profileSectionHeaderView(self, didPressActionWithViewModel: viewModel)
+        delegate?.profileSectionHeaderView(self, didPressWithViewModel: viewModel)
     }
 }

@@ -33,6 +33,7 @@ extension ProfileHeaderView {
         emailLabel.translatesAutoresizingMaskIntoConstraints = false
 
         imageView.image = UIImage(systemName: "person.circle")
+        imageView.tintColor = Color.secondaryHighlight
         imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
 
