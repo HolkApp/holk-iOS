@@ -16,4 +16,19 @@ extension UIViewController {
     var navigationBarHeight: CGFloat {
         navigationController?.navigationBar.frame.height ?? 0
     }
+
+
+    // TODO: RequestName For Debug only, remove it
+    func showError(_ error: APIError, requestName: String = String()) {
+        let alert = UIAlertController(title: requestName + (String(describing: error.errorCode)), message: error.debugMessage, preferredStyle: .alert)
+        alert.addAction(.init(
+            title: LocalizedString.Generic.close,
+            style: .default,
+            handler: { action in
+                alert.dismiss(animated: true)
+            })
+        )
+
+        present(alert, animated: true)
+    }
 }
