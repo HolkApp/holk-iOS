@@ -14,6 +14,7 @@ final class OnboardingContainerViewController: UIViewController {
     private let storeController: StoreController
     private let progressView = HolkProgressBarView()
     private let closeButton = HolkButton()
+    private let doneButton = HolkButton()
     private var backgroundTask: UIBackgroundTaskIdentifier = .invalid
     private weak var insuranceProviderTypeViewController: OnboardingInsuranceTypeViewController?
     private weak var insuranceProviderViewController: OnboardingInsuranceProviderViewController?
@@ -95,6 +96,12 @@ final class OnboardingContainerViewController: UIViewController {
         closeButton.translatesAutoresizingMaskIntoConstraints = false
         closeButton.addTarget(self, action: #selector(stopOnboardingPressed(_:)), for: .touchUpInside)
 
+        doneButton.setTitle(LocalizedString.Insurance.Aggregate.Confirmation.done, for: .normal)
+        doneButton.backgroundColor = Color.mainHighlight
+        doneButton.styleGuide = .button1
+        doneButton.set(color: Color.mainForeground)
+        doneButton.addTarget(self, action: #selector(submit(_:)), for: .touchUpInside)
+
         view.addSubview(collectionView)
         view.addSubview(progressView)
         view.addSubview(closeButton)
@@ -149,9 +156,19 @@ final class OnboardingContainerViewController: UIViewController {
 
     private func showInsuranceAggregatedConfirmation(_ addedInsuranceList: [Insurance]) {
         let confirmationViewController = OnboardingConfirmationViewController(storeController, addedInsuranceList: addedInsuranceList)
-        confirmationViewController.delegate = self
         onboardingViewControllers.append(confirmationViewController)
         collectionView.scrollToItem(at: IndexPath(item: 3, section: 0), at: .centeredHorizontally, animated: true)
+        collectionView.isUserInteractionEnabled = false
+
+        doneButton.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(doneButton)
+
+        NSLayoutConstraint.activate([
+            doneButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            doneButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            doneButton.heightAnchor.constraint(equalToConstant: 90),
+            doneButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
     }
 
     func progressBarToTop(animated: Bool = true, completion: (() -> Void)? = nil) {
@@ -166,8 +183,9 @@ final class OnboardingContainerViewController: UIViewController {
                         self.view.layoutIfNeeded()
                     }) { _ in
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                            self.collectionView.isHidden  = false
+                            self.collectionView.isHidden = false
                             self.progressView.isHidden = false
+                            self.doneButton.isHidden = false
                             completion?()
                         }
                     }
@@ -177,6 +195,7 @@ final class OnboardingContainerViewController: UIViewController {
                     self.progressViewHeightAnchor?.constant = 40
                     self.collectionView.isHidden = false
                     self.progressView.isHidden = false
+                    self.doneButton.isHidden = false
                     completion?()
                 }
             }
@@ -191,6 +210,7 @@ final class OnboardingContainerViewController: UIViewController {
             self.progressViewHeightAnchor?.constant = 150
             self.progressView.update(.spinner, animated: false)
             self.collectionView.isHidden = true
+            self.doneButton.isHidden = true
         }
     }
 
@@ -239,17 +259,9 @@ final class OnboardingContainerViewController: UIViewController {
         present(alert, animated: true)
     }
 
-    func showError(_ error: APIError, requestName: String) {
-        let alert = UIAlertController(title: requestName + (String(describing: error.errorCode)), message: error.debugMessage, preferredStyle: .alert)
-        alert.addAction(.init(
-            title: LocalizedString.Generic.close,
-            style: .default,
-            handler: { action in
-                alert.dismiss(animated: true)
-            })
-        )
-
-        present(alert, animated: true)
+    @objc private func submit(_ sender: UIButton) {
+        delegate?.onboardingFinished(self)
+        onboardingViewControllers.removeAll()
     }
 }
 
@@ -351,13 +363,6 @@ extension OnboardingContainerViewController: OnboardingConsentViewControllerDele
             // TODO: Remove this
             showError(error, requestName: "insurance/scraping")
         }
-    }
-}
-
-extension OnboardingContainerViewController: OnboardingConfirmationViewControllerDelegate {
-    func onboardingConfirmation(_ viewController: OnboardingConfirmationViewController) {
-        delegate?.onboardingFinished(self)
-        onboardingViewControllers.removeAll()
     }
 }
 

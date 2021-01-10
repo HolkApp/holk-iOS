@@ -8,14 +8,7 @@
 
 import UIKit
 
-protocol OnboardingConfirmationViewControllerDelegate: AnyObject {
-    func onboardingConfirmation(_ viewController: OnboardingConfirmationViewController)
-}
-
 final class OnboardingConfirmationViewController: UIViewController {
-    // MARK: - Public variables
-    weak var delegate: OnboardingConfirmationViewControllerDelegate?
-
     // MARK: - Private variables
     private let storeController: StoreController
     private let imageView = UIImageView()
@@ -26,7 +19,6 @@ final class OnboardingConfirmationViewController: UIViewController {
     private let insuranceLabel = UILabel()
     private let addressLabel = UILabel()
     private let badgeLabel = UILabel()
-    private let doneButton = HolkButton()
     
     private var addedInsurance: Insurance? {
         didSet {
@@ -106,12 +98,6 @@ final class OnboardingConfirmationViewController: UIViewController {
         badgeLabel.layer.backgroundColor = UIColor.red.cgColor
         badgeLabel.text = "7"
         
-        doneButton.setTitle(LocalizedString.Insurance.Aggregate.Confirmation.done, for: .normal)
-        doneButton.backgroundColor = Color.mainHighlight
-        doneButton.titleLabel?.font = Font.semiBold(.subtitle)
-        doneButton.set(color: Color.mainForeground)
-        doneButton.addTarget(self, action: #selector(submit(_:)), for: .touchUpInside)
-        
         setupLayout()
     }
     
@@ -124,7 +110,6 @@ final class OnboardingConfirmationViewController: UIViewController {
         insuranceLabel.translatesAutoresizingMaskIntoConstraints = false
         addressLabel.translatesAutoresizingMaskIntoConstraints = false
         badgeLabel.translatesAutoresizingMaskIntoConstraints = false
-        doneButton.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(imageView)
         view.addSubview(titleLabel)
@@ -134,7 +119,6 @@ final class OnboardingConfirmationViewController: UIViewController {
         cardContentView.addSubview(insuranceLabel)
         cardContentView.addSubview(addressLabel)
         cardView.addSubview(badgeLabel)
-        view.addSubview(doneButton)
         
         NSLayoutConstraint.activate([
             imageView.widthAnchor.constraint(equalToConstant: 80),
@@ -153,7 +137,7 @@ final class OnboardingConfirmationViewController: UIViewController {
             cardView.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 20),
             cardView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             cardView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            cardView.bottomAnchor.constraint(lessThanOrEqualTo: doneButton.topAnchor).withPriority(.defaultHigh),
+            cardView.bottomAnchor.constraint(lessThanOrEqualTo: view.bottomAnchor, constant: -90).withPriority(.defaultHigh),
             
             cardContentView.leadingAnchor.constraint(equalTo: cardView.layoutMarginsGuide.leadingAnchor),
             cardContentView.topAnchor.constraint(equalTo: cardView.layoutMarginsGuide.topAnchor),
@@ -172,16 +156,7 @@ final class OnboardingConfirmationViewController: UIViewController {
             badgeLabel.widthAnchor.constraint(equalToConstant: 32),
             badgeLabel.heightAnchor.constraint(equalToConstant: 32),
             badgeLabel.centerYAnchor.constraint(equalTo: cardContentView.topAnchor),
-            badgeLabel.trailingAnchor.constraint(equalTo: cardContentView.trailingAnchor, constant: -40),
-            
-            doneButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            doneButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            doneButton.heightAnchor.constraint(equalToConstant: 90),
-            doneButton.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            badgeLabel.trailingAnchor.constraint(equalTo: cardContentView.trailingAnchor, constant: -40)
         ])
-    }
-    
-    @objc private func submit(_ sender: UIButton) {
-        delegate?.onboardingConfirmation(self)
     }
 }

@@ -91,7 +91,7 @@ final class LandingPageViewController: UIPageViewController {
             loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             loginButton.heightAnchor.constraint(equalToConstant: 90),
-            loginButton.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            loginButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             
             pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             pageControl.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100)

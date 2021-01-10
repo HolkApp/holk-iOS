@@ -13,6 +13,7 @@ final class AddInsuranceContainerViewController: UIViewController {
     private let storeController: StoreController
     private let progressView = HolkProgressBarView()
     private let closeButton = HolkButton()
+    private let doneButton = HolkButton()
     private weak var insuranceProviderTypeViewController: AddInsuranceTypeViewController?
     private weak var insuranceProviderViewController: AddInsuranceProviderViewController?
     private weak var consentViewController: AddInsuranceConsentViewController?
@@ -70,6 +71,12 @@ final class AddInsuranceContainerViewController: UIViewController {
         collectionView.isScrollEnabled = false
         collectionView.dataSource = self
         collectionView.registerCell(OnboardingCell.self)
+
+        doneButton.setTitle(LocalizedString.Insurance.Aggregate.Confirmation.done, for: .normal)
+        doneButton.backgroundColor = Color.mainHighlight
+        doneButton.styleGuide = .button1
+        doneButton.set(color: Color.mainForeground)
+        doneButton.addTarget(self, action: #selector(submit(_:)), for: .touchUpInside)
 
         closeButton.set(
             color: Color.mainForeground,
@@ -140,7 +147,8 @@ final class AddInsuranceContainerViewController: UIViewController {
                         self.progressViewHeightAnchor?.constant = 40
                         self.view.layoutIfNeeded()
                     }) { _ in
-                        self.collectionView.isHidden  = false
+                        self.collectionView.isHidden = false
+                        self.doneButton.isHidden = false
                         self.progressView.isHidden = false
                         completion?()
                     }
@@ -148,6 +156,7 @@ final class AddInsuranceContainerViewController: UIViewController {
                     self.progressViewTopAnchor?.constant = 40
                     self.progressViewHeightAnchor?.constant = 40
                     self.collectionView.isHidden = false
+                    self.doneButton.isHidden = false
                     self.progressView.isHidden = false
                     completion?()
                 }
@@ -162,14 +171,25 @@ final class AddInsuranceContainerViewController: UIViewController {
             self.progressViewHeightAnchor?.constant = 150
             self.progressView.update(.spinner, animated: false)
             self.collectionView.isHidden = true
+            self.doneButton.isHidden = true
         }
     }
 
     private func showInsuranceAggregatedConfirmation(_ addedInsuranceList: [Insurance]) {
         let confirmationViewController = AddInsuranceConfirmationViewController(storeController, addedInsuranceList: addedInsuranceList)
-        confirmationViewController.delegate = self
         addInsuranceViewControllers.append(confirmationViewController)
         collectionView.scrollToItem(at: IndexPath(item: 3, section: 0), at: .centeredHorizontally, animated: true)
+        collectionView.isUserInteractionEnabled = false
+
+        doneButton.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(doneButton)
+
+        NSLayoutConstraint.activate([
+            doneButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            doneButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            doneButton.heightAnchor.constraint(equalToConstant: 90),
+            doneButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
     }
 
     @objc private func pauseLoadingAnimation() {
@@ -217,17 +237,9 @@ final class AddInsuranceContainerViewController: UIViewController {
         present(alert, animated: true)
     }
 
-    private func showError(_ error: APIError, requestName: String) {
-        let alert = UIAlertController(title: requestName + (String(describing: error.errorCode)), message: error.debugMessage, preferredStyle: .alert)
-        alert.addAction(.init(
-            title: LocalizedString.Generic.close,
-            style: .default,
-            handler: { action in
-                alert.dismiss(animated: true)
-            })
-        )
 
-        present(alert, animated: true)
+    @objc private func submit(_ sender: UIButton) {
+        delegate?.addInsuranceDidFinish(self)
     }
 }
 
@@ -334,13 +346,7 @@ extension AddInsuranceContainerViewController: AddInsuranceConsentViewController
     }
 }
 
-extension AddInsuranceContainerViewController: AddInsuranceConfirmationViewControllerDelegate {
-    func addInsuranceFinished(_ viewController: AddInsuranceConfirmationViewController) {
-        delegate?.addInsuranceDidFinish(self)
-    }
-}
-
-extension AddInsuranceContainerViewController: UICollectionViewDataSource {
+extension AddInsuranceContainerViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         1
     }
