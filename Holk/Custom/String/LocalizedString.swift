@@ -28,9 +28,10 @@ struct LocalizedString {
     }
 
     enum Account {
-        static let title = NSLocalizedString("Generic.Account.title", value: "Account", comment: "Text for Account")
-        static let logout = NSLocalizedString("Generic.Account.Logout", value: "Logout", comment: "Text for logout")
-        static let delete = NSLocalizedString("Generic.Account.Delete", value: "Delete", comment: "Text for delete account")
+        static let title = NSLocalizedString("Account.title", value: "Account", comment: "Text for Account")
+        static let logout = NSLocalizedString("Account.Logout", value: "Logout", comment: "Text for logout")
+        static let delete = NSLocalizedString("Account.Delete", value: "Delete", comment: "Text for delete account")
+        static let deleteWarning = NSLocalizedString("Account.DeleteWarning", value: "Are you sure you want to delete your Holk account?", comment: "Warning text for deleting Holk account")
     }
 
     enum Onboarding {
