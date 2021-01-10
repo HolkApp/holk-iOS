@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Combine
 
 protocol ProfileViewControllerdelegate: AnyObject {
     func logout(_ profileViewController: ProfileViewController)
@@ -16,8 +17,17 @@ protocol ProfileViewControllerdelegate: AnyObject {
 final class ProfileViewController: UIViewController {
     weak var delegate: ProfileViewControllerdelegate?
 
-    private let tableView = UITableView()
+    private let tableView = UITableView(
+        frame: CGRect.zero,
+        style: .grouped
+    )
     private let headerView = ProfileHeaderView()
+    private var sectionViewModels = [ProfileSectionViewModel]() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    private var cancellables = Set<AnyCancellable>()
 
     private var storeController: StoreController
 
@@ -35,20 +45,35 @@ final class ProfileViewController: UIViewController {
         super.viewDidLoad()
 
         setup()
+        
+        storeController.insuranceStore.$homeInsurances
+            .sink { [weak self] _ in self?.updateViewModel() }
+            .store(in: &cancellables)
     }
 
     private func setup() {
+        navigationItem.largeTitleDisplayMode = .never
+        navigationItem.setAppearance()
+
         view.layoutMargins = .init(top: 0, left: 20, bottom: 16, right: 20)
         view.backgroundColor = Color.mainBackground
 
         tableView.backgroundColor = Color.mainBackground
         tableView.separatorStyle = .none
-//        tableView.register(ProfileSectionHeaderView.self,
-//                    forHeaderFooterViewReuseIdentifier: ProfileSectionHeaderView.identifier)
-//
-//        tableView.register(ProfileTitleTableViewCell.self, forCellReuseIdentifier: ProfileTitleTableViewCell.identifier)
-//        tableView.register(ProfileMultiRowTableViewCell.self, forCellReuseIdentifier: ProfileMultiRowTableViewCell.identifier)
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 88
+        tableView.sectionHeaderHeight = UITableView.automaticDimension
+        tableView.estimatedSectionHeaderHeight = ProfileSectionHeaderView.height
+        tableView.registerCell(ProfileButtonTableViewCell.self)
+        tableView.registerCell(ProfileTitleTableViewCell.self)
+        tableView.registerHeaderFooterView(ProfileSectionHeaderView.self)
+        tableView.dataSource = self
+        tableView.delegate = self
         tableView.translatesAutoresizingMaskIntoConstraints = false
+
+        headerView.update(user: storeController.user)
+
+        updateViewModel()
 
         view.addSubview(tableView)
 
@@ -59,7 +84,42 @@ final class ProfileViewController: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
 
-        headerView.update(user: storeController.user)
+        tableView.reloadData()
+    }
+
+    private func updateViewModel() {
+        let insuranceProfileCellViewModels = storeController.insuranceStore.homeInsurances.map {
+            ProfileCellViewModel(insurance: $0, storeController: storeController)
+        }
+
+        let insuranceProfileSectionViewModel = ProfileSectionViewModel(
+            title: "Aggregated Insurances",
+            actionTitle: "+ Add more",
+            section: .insurance,
+            isExpandable: true,
+            items: insuranceProfileCellViewModels
+        )
+
+        let accountProfileCellViewModels = [
+            ProfileCellViewModel(
+                cellType: .logout
+            ),
+            ProfileCellViewModel(
+                cellType: .deleteAccount
+            )
+        ]
+
+        let accountProfileSectionViewModel = ProfileSectionViewModel(
+            title: LocalizedString.Account.title,
+            section: .account,
+            isExpandable: false,
+            items: accountProfileCellViewModels
+        )
+
+        sectionViewModels = [
+            insuranceProfileSectionViewModel,
+            accountProfileSectionViewModel
+        ]
     }
 
     override func viewDidLayoutSubviews() {
@@ -71,12 +131,70 @@ final class ProfileViewController: UIViewController {
         tableView.tableHeaderView = headerView
         tableView.tableHeaderView?.frame = frame
     }
+}
 
-    @objc private func logout() {
-        delegate?.logout(self)
+extension ProfileViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        sectionViewModels.count
     }
 
-    @objc private func deleteUser() {
-        delegate?.delete(self)
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        sectionViewModels[section].items.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let sectionViewModel = sectionViewModels[indexPath.section]
+        let items = sectionViewModel.items
+        let viewModel = items[indexPath.row]
+
+        let cell = tableView.dequeueCell(ProfileTitleTableViewCell.self, indexPath: indexPath)
+
+        if sectionViewModel.isExpandable {
+            cell.shouldShowSeparator = false
+        } else {
+            cell.shouldShowSeparator = indexPath.row < (items.count - 1)
+        }
+
+        cell.viewModel = viewModel
+
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = tableView.dequeueHeaderFooterView(ProfileSectionHeaderView.self)
+        headerView.viewModel = sectionViewModels[section].headerViewModel
+        return headerView
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let sectionViewModel = sectionViewModels[indexPath.section]
+
+        if sectionViewModel.isExpandable && sectionViewModel.isExpanded {
+            return 0
+        }
+
+        return ProfileTitleTableViewCell.height
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        ProfileSectionHeaderView.height
     }
 }
+
+extension ProfileViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let viewModel = sectionViewModels[indexPath.section]
+        switch viewModel.items[indexPath.row].cellType {
+        case .logout:
+            delegate?.logout(self)
+        case .deleteAccount:
+            delegate?.delete(self)
+        case .insurance(let insurance):
+            break
+        case .expandable:
+            break
+        }
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+

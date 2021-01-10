@@ -41,7 +41,7 @@ extension ProfileHeaderView {
         addSubview(emailLabel)
 
         NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor, constant: 60),
+            imageView.topAnchor.constraint(equalTo: layoutMarginsGuide.topAnchor),
             imageView.centerXAnchor.constraint(equalTo: centerXAnchor),
             imageView.widthAnchor.constraint(equalToConstant: 60),
             imageView.heightAnchor.constraint(equalToConstant: 60),

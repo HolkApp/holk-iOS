@@ -1,6 +1,8 @@
 import UIKit
 
 class ProfileTableViewCell: UITableViewCell {
+    static let height: CGFloat = 64
+    
     var viewModel: ProfileCellViewModel? {
         didSet {
             update()
@@ -43,7 +45,7 @@ class ProfileTableViewCell: UITableViewCell {
         chevronView.image = nil
         chevronView.transform = .identity
         leftImageView.backgroundColor = UIColor.clear
-        separatorLeadingConstraint?.constant = 20
+        separatorLeadingConstraint?.constant = 18
         rightLabelTrailingConstraint?.constant = -20
         leftLabelLeadingConstraint?.constant = 20
         subtitleLabel.text = nil
@@ -85,32 +87,32 @@ class ProfileTableViewCell: UITableViewCell {
         contentView.addSubview(titleLabel)
         contentView.addSubview(chevronView)
 
-        let separatorLeadingConstraint = separatorLineView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20)
+        let separatorLeadingConstraint = separatorLineView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 18)
         self.separatorLeadingConstraint = separatorLeadingConstraint
 
-        let rightLabelTrailingConstraint = subtitleLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20)
+        let rightLabelTrailingConstraint = subtitleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20)
         self.rightLabelTrailingConstraint = rightLabelTrailingConstraint
 
         NSLayoutConstraint.activate([
             separatorLeadingConstraint,
-            separatorLineView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -19),
+            separatorLineView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -18),
             separatorLineView.heightAnchor.constraint(equalToConstant: 1),
             separatorLineView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
 
             leftImageView.heightAnchor.constraint(equalToConstant: 40),
             leftImageView.widthAnchor.constraint(equalTo: leftImageView.heightAnchor),
-            leftImageView.rightAnchor.constraint(equalTo: titleLabel.leftAnchor, constant: -20),
+            leftImageView.trailingAnchor.constraint(equalTo: titleLabel.leadingAnchor, constant: -4),
             leftImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
 
             rightLabelTrailingConstraint,
-            subtitleLabel.leftAnchor.constraint(equalTo: titleLabel.rightAnchor, constant: 16),
+            subtitleLabel.leadingAnchor.constraint(equalTo: titleLabel.trailingAnchor, constant: 12),
             subtitleLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
             subtitleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
 
             chevronView.widthAnchor.constraint(equalToConstant: 15),
             chevronView.topAnchor.constraint(equalTo: contentView.topAnchor),
             chevronView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            chevronView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20)
+            chevronView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20)
         ])
     }
 
@@ -133,11 +135,11 @@ class ProfileTableViewCell: UITableViewCell {
     private func setImage(imageUrl: URL?) {
         if let imageUrl = imageUrl {
             leftImageView.setImage(with: imageUrl)
-            leftLabelLeadingConstraint?.constant = 80
-            separatorLeadingConstraint?.constant = 80
+            leftLabelLeadingConstraint?.constant = 60
+            separatorLeadingConstraint?.constant = 60
         } else {
             leftImageView.image = nil
-            separatorLeadingConstraint?.constant = 20
+            separatorLeadingConstraint?.constant = 18
             leftLabelLeadingConstraint?.constant = 20
         }
     }
