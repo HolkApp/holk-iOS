@@ -9,7 +9,7 @@
 import Foundation
 
 extension Date {
-    func expirationDaysLeft() -> ExpirationDaysLeft? {
+    var expirationDaysLeft: ExpirationDaysLeft? {
         let components = Calendar.current.dateComponents([.day], from: Date(), to: self)
         guard let days = components.day else { return nil }
         if days > 0 {
