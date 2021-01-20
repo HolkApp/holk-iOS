@@ -28,6 +28,7 @@ final class ProfileViewController: UIViewController {
             tableView.reloadData()
         }
     }
+    private let loadingViewController = LoadingViewController()
     private var cancellables = Set<AnyCancellable>()
 
     private var storeController: StoreController
@@ -62,11 +63,11 @@ final class ProfileViewController: UIViewController {
         tableView.backgroundColor = Color.mainBackground
         tableView.separatorStyle = .none
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 88
+        tableView.estimatedRowHeight = 80
         tableView.sectionHeaderHeight = UITableView.automaticDimension
         tableView.estimatedSectionHeaderHeight = ProfileSectionHeaderView.height
-        tableView.registerCell(ProfileButtonTableViewCell.self)
-        tableView.registerCell(ProfileTitleTableViewCell.self)
+        tableView.registerCell(ProfileTableViewCell.self)
+        tableView.registerCell(ProfileInsuranceTableViewCell.self)
         tableView.registerHeaderFooterView(ProfileSectionHeaderView.self)
         tableView.dataSource = self
         tableView.delegate = self
@@ -148,7 +149,16 @@ extension ProfileViewController: UITableViewDataSource {
         let items = sectionViewModel.items
         let viewModel = items[indexPath.row]
 
-        let cell = tableView.dequeueCell(ProfileTitleTableViewCell.self, indexPath: indexPath)
+        let cell: ProfileTableViewCell = {
+            switch viewModel.cellType {
+            case .insurance:
+                let cell = tableView.dequeueCell(ProfileInsuranceTableViewCell.self, indexPath: indexPath)
+                cell.delegate = self
+                return cell
+            default:
+                return tableView.dequeueCell(ProfileTableViewCell.self, indexPath: indexPath)
+            }
+        }()
 
         if sectionViewModel.isExpandable {
             cell.shouldShowSeparator = false
@@ -168,16 +178,6 @@ extension ProfileViewController: UITableViewDataSource {
         return headerView
     }
 
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let sectionViewModel = sectionViewModels[indexPath.section]
-
-        if sectionViewModel.isExpandable && sectionViewModel.isExpanded {
-            return 0
-        }
-
-        return ProfileTitleTableViewCell.height
-    }
-
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         ProfileSectionHeaderView.height
     }
@@ -185,41 +185,55 @@ extension ProfileViewController: UITableViewDataSource {
 
 extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let viewModel = sectionViewModels[indexPath.section]
-        switch viewModel.items[indexPath.row].cellType {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let sectionViewModel = sectionViewModels[indexPath.section]
+        let itemViewModel = sectionViewModel.items[indexPath.row]
+        switch itemViewModel.cellType {
         case .logout:
             delegate?.logout(self)
         case .deleteAccount:
-            let alert = UIAlertController(
-                title: LocalizedString.Account.deleteWarning,
-                message: nil,
-                preferredStyle: .alert
-            )
-            alert.addAction(
-                .init(
-                    title: LocalizedString.Generic.ok,
-                    style: .destructive,
-                    handler: { action in
-                        alert.dismiss(animated: true) {
-                            self.delegate?.deleteAccount(self)
-                        }
-                })
-            )
-            alert.addAction(
-                .init(
-                    title: LocalizedString.Generic.cancel,
-                    style: .cancel,
-                    handler: { action in
-                        alert.dismiss(animated: true)
-                })
-            )
-            present(alert, animated: true)
-        case .insurance(let insurance):
-            break
+            deleteAccount()
+        case .insurance:
+            sectionViewModel.items.forEach {
+                if $0.title != itemViewModel.title {
+                    $0.isExpanded = false
+                }
+            }
+            itemViewModel.isExpanded.toggle()
+            tableView.beginUpdates()
+            tableView.reloadSections(IndexSet(integer: indexPath.section), with: .automatic)
+            tableView.endUpdates()
         case .expandable:
             break
         }
-        tableView.deselectRow(at: indexPath, animated: true)
+    }
+
+    private func deleteAccount() {
+        let alert = UIAlertController(
+            title: LocalizedString.Generic.Alert.deleteWarning,
+            message: nil,
+            preferredStyle: .alert
+        )
+        alert.addAction(
+            .init(
+                title: LocalizedString.Generic.ok,
+                style: .destructive,
+                handler: { action in
+                    alert.dismiss(animated: true) {
+                        self.delegate?.deleteAccount(self)
+                    }
+            })
+        )
+        alert.addAction(
+            .init(
+                title: LocalizedString.Generic.cancel,
+                style: .cancel,
+                handler: { action in
+                    alert.dismiss(animated: true)
+            })
+        )
+        present(alert, animated: true)
     }
 }
 
@@ -231,6 +245,43 @@ extension ProfileViewController: ProfileSectionHeaderViewDelegate {
         default: break
         }
     }
+}
 
+extension ProfileViewController: ProfileInsuranceTableViewCellDelegate {
+    func refresh(_ profileInsuranceTableViewCell: ProfileInsuranceTableViewCell, insurance: Insurance) {
+        addChild(loadingViewController)
+        view.addSubview(loadingViewController.view)
+        loadingViewController.view.frame = view.bounds
+        loadingViewController.didMove(toParent: self)
+        
+        storeController.insuranceStore.addInsurance(insurance.insuranceProviderName) { [weak self] result in
+            guard let self = self else { return }
+            self.loadingViewController.removeFromParent()
+            self.loadingViewController.view.removeFromSuperview()
+            switch result {
+            case .success: break
+            case .failure(let error):
+                let alert = UIAlertController(
+                    title: error.localizedDescription,
+                    message: nil,
+                    preferredStyle: .alert
+                )
+                alert.addAction(
+                    .init(
+                        title: LocalizedString.Generic.ok,
+                        style: .destructive,
+                        handler: { action in
+                            alert.dismiss(animated: true)
+                    })
+                )
+                self.present(alert, animated: true)
+            }
+        }
+    }
+
+    func delete(_ profileInsuranceTableViewCell: ProfileInsuranceTableViewCell, insurance: Insurance) {
+        // TODO: Missing backend
+        print("Delete insurance ")
+    }
 
 }

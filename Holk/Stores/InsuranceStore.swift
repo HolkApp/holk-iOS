@@ -30,8 +30,12 @@ final class InsuranceStore {
     }
 
     func addInsurance(_ provider: InsuranceProvider, integrationHandler: @escaping (Result<IntegrateInsuranceResponse, APIError>) -> Void = { _ in }) {
+        self.addInsurance(provider.internalName)
+    }
+
+    func addInsurance(_ providerInternalName: String, integrationHandler: @escaping (Result<IntegrateInsuranceResponse, APIError>) -> Void = { _ in }) {
         insuranceCredentialService
-            .integrateInsurance(providerName: provider.internalName)
+            .integrateInsurance(providerName: providerInternalName)
             .sink(receiveCompletion: { result in
                 if case let .failure(error) = result {
                     integrationHandler(.failure(error))
