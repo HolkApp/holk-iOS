@@ -80,9 +80,7 @@
 		8F6DC3B325A6295E00460C8C /* ChevronView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6DC3B225A6295E00460C8C /* ChevronView.swift */; };
 		8F6DC3BD25A6311C00460C8C /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6DC3BC25A6311C00460C8C /* ProfileTableViewCell.swift */; };
 		8F6DC3C225A6386400460C8C /* UIImageView+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6DC3C125A6386400460C8C /* UIImageView+extension.swift */; };
-		8F6DC3C625A6524D00460C8C /* ProfileTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6DC3C525A6524D00460C8C /* ProfileTitleTableViewCell.swift */; };
 		8F6DC3CA25A6556100460C8C /* ProfileCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6DC3C925A6556100460C8C /* ProfileCellViewModel.swift */; };
-		8F6DC3D025A6621000460C8C /* ProfileButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6DC3CF25A6621000460C8C /* ProfileButtonTableViewCell.swift */; };
 		8F6DC3D425A67CF600460C8C /* ProfileSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6DC3D325A67CF600460C8C /* ProfileSectionViewModel.swift */; };
 		8F6FAF3C24E5D4C6000EE3F1 /* Raleway-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F6FAF3624E5D4C4000EE3F1 /* Raleway-Medium.ttf */; };
 		8F6FAF3D24E5D4C6000EE3F1 /* Raleway-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F6FAF3724E5D4C5000EE3F1 /* Raleway-Regular.ttf */; };
@@ -111,6 +109,7 @@
 		8F858A4723CB377B006B416A /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F858A4623CB377B006B416A /* Parser.swift */; };
 		8F858A4B23CD1470006B416A /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F858A4A23CD1470006B416A /* Poppins-Regular.ttf */; };
 		8F858A4D23CD16FD006B416A /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F858A4C23CD16FC006B416A /* Poppins-SemiBold.ttf */; };
+		8F8627C825ACCB6000AFDFB7 /* ProfileInsuranceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8627C725ACCB6000AFDFB7 /* ProfileInsuranceTableViewCell.swift */; };
 		8F9807E722722D5E00584BA9 /* StoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9807E622722D5E00584BA9 /* StoreController.swift */; };
 		8F9807E92276F10E00584BA9 /* InsuranceCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9807E82276F10E00584BA9 /* InsuranceCoordinator.swift */; };
 		8F9C1CD0253B87990013F2C7 /* BankIDAuthenticationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9C1CB8253B87990013F2C7 /* BankIDAuthenticationResponse.swift */; };
@@ -292,9 +291,7 @@
 		8F6DC3B225A6295E00460C8C /* ChevronView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChevronView.swift; sourceTree = "<group>"; };
 		8F6DC3BC25A6311C00460C8C /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		8F6DC3C125A6386400460C8C /* UIImageView+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+extension.swift"; sourceTree = "<group>"; };
-		8F6DC3C525A6524D00460C8C /* ProfileTitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTitleTableViewCell.swift; sourceTree = "<group>"; };
 		8F6DC3C925A6556100460C8C /* ProfileCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCellViewModel.swift; sourceTree = "<group>"; };
-		8F6DC3CF25A6621000460C8C /* ProfileButtonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileButtonTableViewCell.swift; sourceTree = "<group>"; };
 		8F6DC3D325A67CF600460C8C /* ProfileSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSectionViewModel.swift; sourceTree = "<group>"; };
 		8F6FAF3624E5D4C4000EE3F1 /* Raleway-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Medium.ttf"; sourceTree = "<group>"; };
 		8F6FAF3724E5D4C5000EE3F1 /* Raleway-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Regular.ttf"; sourceTree = "<group>"; };
@@ -323,6 +320,7 @@
 		8F858A4623CB377B006B416A /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		8F858A4A23CD1470006B416A /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		8F858A4C23CD16FC006B416A /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
+		8F8627C725ACCB6000AFDFB7 /* ProfileInsuranceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInsuranceTableViewCell.swift; sourceTree = "<group>"; };
 		8F9807E622722D5E00584BA9 /* StoreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreController.swift; sourceTree = "<group>"; };
 		8F9807E82276F10E00584BA9 /* InsuranceCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsuranceCoordinator.swift; sourceTree = "<group>"; };
 		8F9C1CB8253B87990013F2C7 /* BankIDAuthenticationResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BankIDAuthenticationResponse.swift; sourceTree = "<group>"; };
@@ -635,8 +633,7 @@
 				8F80635A25A6131400B135C8 /* ProfileHeaderView.swift */,
 				8F61BAC325AA571400689E2A /* ProfileSectionHeaderView.swift */,
 				8F6DC3BC25A6311C00460C8C /* ProfileTableViewCell.swift */,
-				8F6DC3C525A6524D00460C8C /* ProfileTitleTableViewCell.swift */,
-				8F6DC3CF25A6621000460C8C /* ProfileButtonTableViewCell.swift */,
+				8F8627C725ACCB6000AFDFB7 /* ProfileInsuranceTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1338,7 +1335,6 @@
 				8F6DC3CA25A6556100460C8C /* ProfileCellViewModel.swift in Sources */,
 				8FD676882493F7A400E62820 /* GapListViewController.swift in Sources */,
 				8FC8EA7624BA540300BE69D9 /* ThinkOfParagraphCollectionViewCell.swift in Sources */,
-				8F6DC3D025A6621000460C8C /* ProfileButtonTableViewCell.swift in Sources */,
 				8F9C1CD2253B87990013F2C7 /* SuggestionsListResponse.swift in Sources */,
 				8F16DE772460A22300EFC1BD /* AddInsuranceConfirmationViewController.swift in Sources */,
 				8FC8EA6E24B8ECF900BE69D9 /* ThinkOfParagraphViewModel.swift in Sources */,
@@ -1367,10 +1363,10 @@
 				8F7C442C23511C5900B54A36 /* APIEndpoint.swift in Sources */,
 				8F5D89E124505D23007F1B26 /* APIClient.swift in Sources */,
 				8F743802254D894A003C5A52 /* SubInsuranceCollectionViewCell.swift in Sources */,
+				8F8627C825ACCB6000AFDFB7 /* ProfileInsuranceTableViewCell.swift in Sources */,
 				8FD676852492CE0600E62820 /* SuggestionService.swift in Sources */,
 				8FD6767A248EE66800E62820 /* UITableView+UICollectionView+extension.swift in Sources */,
 				8F5BE48D24745EF5006AE8AF /* AddInsuranceContainerViewController.swift in Sources */,
-				8F6DC3C625A6524D00460C8C /* ProfileTitleTableViewCell.swift in Sources */,
 				8FF40500252F889400328C44 /* HolkLabel.swift in Sources */,
 				8F63AE2D2509892E008A39A0 /* GapDetailsViewModel.swift in Sources */,
 				8F3C7DB223F833B4002EDA57 /* OnboardingConfirmationViewController.swift in Sources */,

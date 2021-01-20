@@ -50,7 +50,7 @@ final class InsuranceCollectionViewCell: UICollectionViewCell {
         subtitleLabel.text = insurance.address
         insuranceImageView.setImage(with: provider?.logoUrl)
 
-        switch insurance.endDate.expirationDaysLeft() {
+        switch insurance.endDate.expirationDaysLeft {
         case .valid(let daysLeft):
             daysLabel.text = "\(daysLeft)"
             if daysLeft == 1 {

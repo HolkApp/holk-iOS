@@ -27,9 +27,8 @@ class ProfileCellViewModel {
             cellType: .insurance(insurance: insurance),
             title: insurance.insuranceProviderName,
             subtitle: insurance.address,
-            accessory: .chevron,
-            imageUrl: storeController.providerStore[insurance]?.symbolUrl,
-            isExpanded: false
+            accessory: .expand,
+            imageUrl: storeController.providerStore[insurance]?.symbolUrl
         )
     }
 

@@ -23,6 +23,12 @@ final class GapParagraphCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+
+        iconView.image = nil
+    }
+
     private func setup() {
         iconView.contentMode = .scaleAspectFit
         iconView.tintColor = Color.mainForeground

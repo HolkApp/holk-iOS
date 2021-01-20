@@ -17,6 +17,12 @@ final class ThinkOfBannerCollectionViewCell: UICollectionViewCell {
         setup()
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+
+        imageView.image = nil
+    }
+
     required init?(coder aDecoder: NSCoder) {
         fatalError()
     }

@@ -1,6 +1,6 @@
 import UIKit
 
-struct ProfileSectionHeaderViewModel {
+struct ProfileSectionHeaderViewModel: Equatable {
     let headlineTitle: String?
     let actionTitle: String?
     let section: ProfileSectionViewModel.ProfileSection

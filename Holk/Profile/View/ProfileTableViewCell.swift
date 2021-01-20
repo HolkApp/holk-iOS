@@ -15,8 +15,10 @@ class ProfileTableViewCell: UITableViewCell {
 
     private let subtitleLabel = HolkLabel()
     private let chevronView = ChevronView()
+    let stackView = UIStackView()
 
     var leftLabelLeadingConstraint: NSLayoutConstraint?
+    var stackViewHeightConstraint: NSLayoutConstraint?
     private var separatorLeadingConstraint: NSLayoutConstraint?
     private var rightLabelTrailingConstraint: NSLayoutConstraint?
 
@@ -49,6 +51,8 @@ class ProfileTableViewCell: UITableViewCell {
         rightLabelTrailingConstraint?.constant = -20
         leftLabelLeadingConstraint?.constant = 20
         subtitleLabel.text = nil
+        titleLabel.textColor = Color.label
+        titleLabel.text = nil
         leftImageView.isHidden = false
 
         selectionStyle = .default
@@ -81,11 +85,16 @@ class ProfileTableViewCell: UITableViewCell {
 
         chevronView.translatesAutoresizingMaskIntoConstraints = false
 
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+
         contentView.addSubview(separatorLineView)
         contentView.addSubview(leftImageView)
         contentView.addSubview(subtitleLabel)
         contentView.addSubview(titleLabel)
         contentView.addSubview(chevronView)
+        contentView.addSubview(stackView)
 
         let separatorLeadingConstraint = separatorLineView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 18)
         self.separatorLeadingConstraint = separatorLeadingConstraint
@@ -93,31 +102,47 @@ class ProfileTableViewCell: UITableViewCell {
         let rightLabelTrailingConstraint = subtitleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20)
         self.rightLabelTrailingConstraint = rightLabelTrailingConstraint
 
+        let leftLabelLeadingConstraint = titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20)
+        self.leftLabelLeadingConstraint = leftLabelLeadingConstraint
+
+        let stackViewHeightConstraint = stackView.heightAnchor.constraint(equalToConstant: 0)
+        self.stackViewHeightConstraint = stackViewHeightConstraint
+
         NSLayoutConstraint.activate([
             separatorLeadingConstraint,
             separatorLineView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -18),
             separatorLineView.heightAnchor.constraint(equalToConstant: 1),
             separatorLineView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
 
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
+            leftLabelLeadingConstraint,
+
             leftImageView.heightAnchor.constraint(equalToConstant: 40),
             leftImageView.widthAnchor.constraint(equalTo: leftImageView.heightAnchor),
             leftImageView.trailingAnchor.constraint(equalTo: titleLabel.leadingAnchor, constant: -4),
-            leftImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            leftImageView.centerYAnchor.constraint(equalTo: subtitleLabel.centerYAnchor),
 
             rightLabelTrailingConstraint,
             subtitleLabel.leadingAnchor.constraint(equalTo: titleLabel.trailingAnchor, constant: 12),
-            subtitleLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
-            subtitleLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            subtitleLabel.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
 
-            chevronView.widthAnchor.constraint(equalToConstant: 15),
-            chevronView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            chevronView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            chevronView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20)
+            chevronView.widthAnchor.constraint(equalToConstant: 20),
+            chevronView.heightAnchor.constraint(equalToConstant: 20),
+            chevronView.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
+            chevronView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+
+            stackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16),
+            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            stackViewHeightConstraint,
         ])
     }
 
     func update() {
         guard let viewModel = viewModel else { return }
+
+        titleLabel.text = viewModel.title
 
         subtitleLabel.text = viewModel.subtitle
         rightLabelTrailingConstraint?.constant = viewModel.accessory == .none ? -20 : -50
@@ -126,7 +151,11 @@ class ProfileTableViewCell: UITableViewCell {
 
         chevronView.isHidden = viewModel.accessory == .none
         if viewModel.accessory == .expand {
-            showChevron(direction: .down, color: Color.label)
+            if viewModel.isExpanded {
+                showChevron(direction: .up, color: Color.label)
+            } else {
+                showChevron(direction: .down, color: Color.label)
+            }
         } else {
             showChevron(direction: .right, color: Color.placeholder)
         }

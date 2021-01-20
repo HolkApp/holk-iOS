@@ -20,6 +20,7 @@ struct LocalizedString {
 
         enum Alert {
             static let stopAggregationTitle = NSLocalizedString("Generic.Alert.StopAggregationTitle", value: "Do you want to stop insurance aggregation", comment: "Alert title text for asking user before quite the insurnace aggregation flow")
+            static let deleteWarning = NSLocalizedString("Account.DeleteWarning", value: "Are you sure you want to delete your Holk account?", comment: "Warning text for deleting Holk account")
         }
 
         enum Error {
@@ -31,7 +32,7 @@ struct LocalizedString {
         static let title = NSLocalizedString("Account.title", value: "Account", comment: "Text for Account")
         static let logout = NSLocalizedString("Account.Logout", value: "Logout", comment: "Text for logout")
         static let delete = NSLocalizedString("Account.Delete", value: "Delete", comment: "Text for delete account")
-        static let deleteWarning = NSLocalizedString("Account.DeleteWarning", value: "Are you sure you want to delete your Holk account?", comment: "Warning text for deleting Holk account")
+        static let refresh = NSLocalizedString("Generic.Refresh", value: "Refresh", comment: "Text for refresh")
     }
 
     enum Onboarding {
