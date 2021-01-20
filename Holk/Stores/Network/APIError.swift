@@ -15,7 +15,7 @@ struct APIError: LocalizedError, Equatable, Decodable {
     var debugMessage: String?
 
     var failureReason: String? {
-        return message ?? debugMessage ?? "Something went wrong"
+        return message ?? "Something went wrong"
     }
 
     private enum CodingKeys: String, CodingKey {
