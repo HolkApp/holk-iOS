@@ -23,6 +23,21 @@ final class SubInsuranceDetailsEmptySuggestionCollectionCell: UICollectionViewCe
     }
 
     private func setup() {
-        
+        textLabel.translatesAutoresizingMaskIntoConstraints = false
+        valueLabel.translatesAutoresizingMaskIntoConstraints = false
+
+        addSubview(valueLabel)
+        addSubview(textLabel)
+
+        NSLayoutConstraint.activate([
+            textLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            textLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            textLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
+            textLabel.bottomAnchor.constraint(equalTo: valueLabel.topAnchor, constant: -20),
+
+            valueLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            valueLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            valueLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -12)
+        ])
     }
 }
