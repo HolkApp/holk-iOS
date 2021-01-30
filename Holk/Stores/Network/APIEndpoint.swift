@@ -19,8 +19,8 @@ enum Endpoint: String {
 
     case authenticate = "authorize/bank-id/auth"
     case token = "authorize/oauth/token"
-    case addEmail = "authorize/user/email"
-    case user = "authorize/user"
+    case addEmail = "user/email"
+    case user = "user"
     case insurancesIssuers = "aggregate/provider/status"
     case allInsurances = "insurance"
     case addInsurance = "aggregate/provider/%@"
