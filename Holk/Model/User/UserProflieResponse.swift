@@ -2,9 +2,9 @@ import Foundation
 
 struct UserProfile: Codable {
     let email: String?
-    let fullName: String
+    let name: String
     let givenName: String
-    let surName: String
-    let userId: String
+    let surname: String
+    let id: UUID
     let personalNumber: String
 }

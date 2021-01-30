@@ -21,7 +21,7 @@ final class User {
     }
 
     var userName: String {
-        profile?.fullName ?? String()
+        profile?.name ?? String()
     }
 
     var givenName: String {
@@ -29,11 +29,11 @@ final class User {
     }
 
     var surName: String {
-        profile?.surName ?? String()
+        profile?.surname ?? String()
     }
     
     var userID: String {
-        profile?.userId ?? String()
+        profile?.id.uuidString ?? String()
     }
 
     var email: String {
