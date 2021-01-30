@@ -1,5 +1,5 @@
 import Foundation
 
-struct AddUserEmailRequest: Codable {
+struct UpdateEmailRequest: Codable {
     let email: String
 }

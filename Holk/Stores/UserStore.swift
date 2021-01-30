@@ -32,7 +32,7 @@ final class UserStore {
                 }
             }) { [weak self] in
                 guard let self = self else { return }
-                self.user.userInfoResponse = $0
+                self.user.profile = $0
                 completion(.success(self.user))
             }
             .store(in: &cancellables)

@@ -22,7 +22,7 @@ final class UserService {
         self.user = user
     }
 
-    func fetchInfo() -> AnyPublisher<UserInfoResponse, APIError> {
+    func fetchInfo() -> AnyPublisher<UserProfile, APIError> {
         // TODO: Do something to the header to not set in every server
         var httpHeaders = [
             "Content-Type": "application/json",
@@ -49,7 +49,7 @@ final class UserService {
             return new
         }
 
-        let body = AddUserEmailRequest(email: email)
+        let body = UpdateEmailRequest(email: email)
         let data = try? JSONEncoder().encode(body)
 
         return client

@@ -19,14 +19,13 @@ extension User {
             if let response = oAuthAuthenticationResponse {
                 accessToken = response.accessToken
                 refreshToken = response.refreshToken
-                let expiresInSeconds = response.expiresInSeconds
-                expirationDate = Calendar.current.date(byAdding: .second, value: expiresInSeconds, to: Date())
+                expires = response.expires
                 isNewUser = response.newUser
             }
         }
 
         func reset() {
-            expirationDate = nil
+            expires = nil
             accessToken = nil
             refreshToken = nil
         }
@@ -38,7 +37,7 @@ extension User {
 
         private(set) var isNewUser: Bool?
 
-        private(set) var expirationDate: Date? {
+        private(set) var expires: Date? {
             get {
                 if _expirationDateString == nil {
                     _expirationDateString = KeychainService.get(account: kHolkAccountName, service: kHolkServiceExpirationDate)

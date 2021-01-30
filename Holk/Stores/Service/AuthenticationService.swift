@@ -46,8 +46,8 @@ final class AuthenticationService {
         }
 
         let postParams = [
-            "grant_type": "bank-id",
-            "order_ref": orderRef
+            "grantType": "bank_id",
+            "orderRef": orderRef
         ]
 
         return client
@@ -66,8 +66,8 @@ final class AuthenticationService {
         }
 
         let postParams = [
-            "grant_type": "refresh_token",
-            "refresh_token": refreshToken
+            "grantType": "refresh_token",
+            "refreshToken": refreshToken
         ]
 
         return client

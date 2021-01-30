@@ -30,7 +30,7 @@ final class StoreController {
     private(set) var user: User
     
     var sessionState: SessionState {
-        guard let expirationDate = user.session?.expirationDate else { return .new }
+        guard let expirationDate = user.session?.expires else { return .new }
         let fiveMintuesLater = Date().addingTimeInterval(300)
         switch expirationDate.compare(fiveMintuesLater) {
         case .orderedAscending:

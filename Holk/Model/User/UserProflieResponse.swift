@@ -1,6 +1,6 @@
 import Foundation
 
-struct UserInfoResponse: Codable {
+struct UserProfile: Codable {
     let email: String?
     let fullName: String
     let givenName: String

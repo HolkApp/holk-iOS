@@ -14,38 +14,38 @@ final class User {
     }
 
     var session: Session?
-    var userInfoResponse: UserInfoResponse?
+    var profile: UserProfile?
 
     var isNewUser: Bool {
         session?.isNewUser ?? email.isEmpty
     }
 
     var userName: String {
-        userInfoResponse?.fullName ?? String()
+        profile?.fullName ?? String()
     }
 
     var givenName: String {
-        userInfoResponse?.givenName ?? String()
+        profile?.givenName ?? String()
     }
 
     var surName: String {
-        userInfoResponse?.surName ?? String()
+        profile?.surName ?? String()
     }
     
     var userID: String {
-        userInfoResponse?.userId ?? String()
+        profile?.userId ?? String()
     }
 
     var email: String {
-        userInfoResponse?.email ?? String()
+        profile?.email ?? String()
     }
 
     var personalNumber: String {
-        userInfoResponse?.personalNumber ?? String()
+        profile?.personalNumber ?? String()
     }
 
     func reset() {
         session?.reset()
-        userInfoResponse = nil
+        profile = nil
     }
 }

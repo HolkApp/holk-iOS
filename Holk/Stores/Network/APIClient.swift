@@ -67,7 +67,7 @@ class APIClient {
             return Fail(error: APIError(urlError: urlError)).eraseToAnyPublisher()
         }
         let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .formatted(DateFormatter.yyyyMMddDateFormatter)
+        decoder.dateDecodingStrategy = .iso8601
 
         guard (200...299).contains(httpResponse.statusCode) else {
             do {
