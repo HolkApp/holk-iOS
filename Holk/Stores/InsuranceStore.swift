@@ -29,11 +29,11 @@ final class InsuranceStore {
         self.authenticationStore = authenticationStore
     }
 
-    func addInsurance(_ provider: InsuranceProvider, integrationHandler: @escaping (Result<IntegrateInsuranceResponse, APIError>) -> Void = { _ in }) {
-        self.addInsurance(provider.internalName)
+    func addInsurance(_ provider: InsuranceProvider, integrationHandler: @escaping (Result<IntegrateInsuranceResponse, APIError>) -> Void) {
+        self.addInsurance(provider.internalName, integrationHandler: integrationHandler)
     }
 
-    func addInsurance(_ providerInternalName: String, integrationHandler: @escaping (Result<IntegrateInsuranceResponse, APIError>) -> Void = { _ in }) {
+    func addInsurance(_ providerInternalName: String, integrationHandler: @escaping (Result<IntegrateInsuranceResponse, APIError>) -> Void) {
         insuranceCredentialService
             .integrateInsurance(providerName: providerInternalName)
             .sink(receiveCompletion: { result in
