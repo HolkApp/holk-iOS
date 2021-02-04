@@ -24,7 +24,7 @@ final class ProviderService {
 
     func fetchInsuranceProviders() -> AnyPublisher<ProviderStatusResponse, APIError> {
         return client
-            .httpRequest(method: .get, url: Endpoint.insurancesIssuers.url, headers: authorizationBearerHeader)
+            .httpRequest(method: .get, url: Endpoint.insurancesProviders.url, headers: authorizationBearerHeader)
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }

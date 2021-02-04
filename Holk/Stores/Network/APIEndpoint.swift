@@ -21,7 +21,7 @@ enum Endpoint: String {
     case token = "authorize/oauth/token"
     case addEmail = "user/email"
     case user = "user"
-    case insurancesIssuers = "aggregate/provider/status"
+    case insurancesProviders = "aggregate/provider/status"
     case allInsurances = "insurance"
     case addInsurance = "aggregate/provider/%@"
     case scrapingStatus = "aggregate/status/id/%@"
