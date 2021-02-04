@@ -8,4 +8,3 @@ struct ProviderStatusResponse: Codable {
     }
 
 }
-
